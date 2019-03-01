@@ -20,7 +20,7 @@
       
         <tags>
             
-            <tag> 日志 </tag>
+            <tag> 日记 </tag>
             
             <tag> 生活 </tag>
             
@@ -47,7 +47,7 @@
       
         <tags>
             
-            <tag> 日志 </tag>
+            <tag> 日记 </tag>
             
             <tag> 生活 </tag>
             
@@ -58,17 +58,6 @@
     
   
   
-    
-    
-    <entry>
-      <title>categories</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
     
     
     <entry>
@@ -86,6 +75,17 @@
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>categories</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
