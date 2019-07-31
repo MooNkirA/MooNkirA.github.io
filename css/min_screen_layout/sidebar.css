@@ -1,0 +1,217 @@
+#sidebar {
+  display: none;
+  position: fixed;
+  left: -3rem;
+  width: 3rem;
+  height: 100%;
+  overflow: hidden;
+  background: $rgba-color;
+}
+#sidebar .toggle-sidebar-info {
+  margin: 0.16rem auto 0;
+  width: 1rem;
+  height: 0.32rem;
+  line-height: 0.32rem;
+  font-size: 0.14rem;
+  text-align: center;
+}
+#sidebar .toggle-sidebar-info span {
+  display: block;
+  width: 1rem;
+  height: 0.32rem;
+}
+#sidebar .sidebar-toc {
+  position: absolute;
+  left: 0;
+  top: 0.48rem;
+  padding: 0 0.16rem;
+  width: 2.68rem;
+  height: calc(100% - 0.48rem);
+}
+#sidebar .sidebar-toc .sidebar-toc-title {
+  margin-top: 0.24rem;
+  font-size: 0.2rem;
+  text-align: center;
+  color: $color-white;
+}
+#sidebar .sidebar-toc .sidebar-toc-progress {
+  margin-top: 0.24rem;
+  font-size: 0.16rem;
+}
+#sidebar .sidebar-toc .sidebar-toc-progress .progress-notice {
+  margin-right: 0.08rem;
+}
+#sidebar .sidebar-toc .sidebar-toc-progress .progress-num {
+  margin-right: 0.08rem;
+  font-weight: 600;
+  color: $color-theme;
+}
+#sidebar .sidebar-toc .sidebar-toc-progress .progress-percentage {
+  font-size: 0.16rem;
+}
+#sidebar .sidebar-toc .sidebar-toc-progress .sidebar-toc-progress-bar {
+  margin-top: 0.08rem;
+  height: 0.01rem;
+  width: 0;
+  background: $color-theme;
+}
+#sidebar .sidebar-toc .sidebar-toc-content {
+  margin-top: 0.24rem;
+  height: calc(100% - 1.4rem);
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc {
+  font-size: 0.14rem;
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc .toc-item {
+  line-height: 0.28rem;
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc .toc-item .toc-link {
+  transition: $transition-delay;
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc .toc-item .toc-link:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc .toc-item .toc-link.active {
+  color: $color-theme;
+}
+#sidebar .sidebar-toc .sidebar-toc-content .toc .toc-child {
+  padding-left: 0.12rem;
+  display: none;
+}
+#sidebar .author-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 3rem;
+}
+#sidebar .author-info.hide {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  left: 0.8rem;
+  top: 0.48rem;
+}
+#sidebar .author-info .author-info-avatar {
+  margin-top: 0.16rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#sidebar .author-info .author-info-avatar .author-info-avatar-img {
+  padding: 0.02rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 0.02rem solid $rgba-color;
+}
+#sidebar .author-info .author-info-avatar .author-info-avatar-img:hover {
+  animation: avatar 5s linear infinite;
+}
+#sidebar .author-info .author-info-name {
+  margin-top: 0.16rem;
+  color: $color-white;
+}
+#sidebar .author-info .author-info-description {
+  margin-top: 0.24rem;
+  font-size: 0.14rem;
+}
+#sidebar .author-info .links-buttons {
+  margin-top: 0.24rem;
+  padding: 0 0.16rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#sidebar .author-info .links-buttons .links-button {
+  position: relative;
+  margin-top: 0.12rem;
+  margin-right: 0.12rem;
+  padding: 0.08rem 0.16rem 0.08rem 0.22rem;
+  font-size: 0.14rem;
+  background: $rgba-color;
+}
+#sidebar .author-info .links-buttons .links-button .icon-dot {
+  display: block;
+  position: absolute;
+  left: 0.1rem;
+  top: 0.12rem;
+  width: 0.06rem;
+  height: 0.06rem;
+  border-radius: 50%;
+}
+#sidebar .author-info-articles {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0.32rem;
+  font-size: 0.14rem;
+}
+#sidebar .author-info-articles .article-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 0.72rem;
+  transition: $transition-delay;
+}
+#sidebar .author-info-articles .article-meta .pull-top {
+  margin-top: 0.08rem;
+}
+#sidebar .author-info-articles .article-meta .pull-bottom {
+  margin: 0.08rem 0;
+}
+#sidebar .author-info-articles .article-meta:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#sidebar .author-info-articles .article-meta.author-info-articles-archives,
+#sidebar .author-info-articles .article-meta.author-info-articles-tags {
+  position: relative;
+}
+#sidebar .author-info-articles .article-meta.author-info-articles-archives:after,
+#sidebar .author-info-articles .article-meta.author-info-articles-tags:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  display: block;
+  width: 0.01rem;
+  height: 0.32rem;
+  background: $rgba-color;
+}
+#sidebar .author-info-articles .article-meta.author-info-articles-tags,
+#sidebar .author-info-articles .article-meta.author-info-articles-categories {
+  font-size: 0.14rem;
+}
+@-moz-keyframes avatar {
+  25% {
+    transform: rotateZ(30deg);
+  }
+  75% {
+    transform: rotateZ(-30deg);
+  }
+}
+@-webkit-keyframes avatar {
+  25% {
+    transform: rotateZ(30deg);
+  }
+  75% {
+    transform: rotateZ(-30deg);
+  }
+}
+@-o-keyframes avatar {
+  25% {
+    transform: rotateZ(30deg);
+  }
+  75% {
+    transform: rotateZ(-30deg);
+  }
+}
+@keyframes avatar {
+  25% {
+    transform: rotateZ(30deg);
+  }
+  75% {
+    transform: rotateZ(-30deg);
+  }
+}

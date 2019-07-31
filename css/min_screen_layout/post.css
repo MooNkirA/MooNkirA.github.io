@@ -1,0 +1,301 @@
+#post,
+.post-content {
+  margin-bottom: 0.16rem;
+  padding: 0.16rem;
+  background: $rgba-color;
+  border-radius: 0.04rem;
+}
+#post .post-header .title,
+.post-content .post-header .title {
+  font-size: 0.26rem;
+  color: $color-white;
+  position: relative;
+  margin: 0 0 0.16rem 0;
+  padding: 0.08rem 0;
+  display: block;
+  transition: $transition-delay;
+}
+#post .post-header .title:after,
+.post-content .post-header .title:after {
+  content: url("../../images/ufo.svg");
+  position: absolute;
+  left: 0;
+  bottom: -0.12rem;
+  width: 0.12rem;
+  height: 0.12rem;
+  font-size: 0.12rem;
+  font-weight: bolder;
+}
+#post .post-header .title:hover,
+.post-content .post-header .title:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#post .post-header .title:hover:after,
+.post-content .post-header .title:hover:after {
+  animation: rotate3ding 5s infinite;
+}
+#post .post-header .container,
+.post-content .post-header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin: 0 0 0.16rem 0;
+}
+#post .post-header .container .article-icon,
+.post-content .post-header .container .article-icon {
+  margin: 0 0.08rem 0 0;
+}
+#post .post-header .container .link-a,
+.post-content .post-header .container .link-a {
+  transition: $transition-delay;
+}
+#post .post-header .container .link-a:hover,
+.post-content .post-header .container .link-a:hover {
+  transition: $transition-delay;
+  color: $color-theme;
+}
+#post .post-header .container .post-date,
+.post-content .post-header .container .post-date,
+#post .post-header .container .categories,
+.post-content .post-header .container .categories,
+#post .post-header .container .tags,
+.post-content .post-header .container .tags {
+  display: block;
+  margin-top: 0.08rem;
+  padding: 0.08rem 0.16rem;
+  font-size: 0.14rem;
+}
+#post .post-header .container .post-date,
+.post-content .post-header .container .post-date {
+  margin-right: 0.08rem;
+}
+#post .post-header .container .categories,
+.post-content .post-header .container .categories {
+  margin-right: 0.08rem;
+}
+#post .post-header .container .tags,
+.post-content .post-header .container .tags {
+  margin-right: 0;
+}
+#post .main-content,
+.post-content .main-content {
+  line-height: 0.28rem;
+}
+#post .main-content img,
+.post-content .main-content img {
+  max-width: 100%;
+}
+#post .main-content a,
+.post-content .main-content a {
+  color: $color-sub-theme;
+}
+#post .main-content a:hover,
+.post-content .main-content a:hover {
+  color: $color-theme;
+}
+#post .main-content table,
+.post-content .main-content table {
+  margin: 0.08rem 0 0.16rem 0;
+  max-width: 100%;
+}
+#post .main-content table thead tr th,
+.post-content .main-content table thead tr th {
+  padding: 0.08rem 0.16rem;
+  border: 1px solid $color-font;
+  background: $rgba-color;
+  white-space: nowrap;
+}
+#post .main-content table tbody tr td,
+.post-content .main-content table tbody tr td {
+  padding: 0.08rem 0.16rem;
+  border: 1px solid $color-font;
+}
+#post .main-content h1,
+.post-content .main-content h1,
+#post .main-content h2,
+.post-content .main-content h2,
+#post .main-content h3,
+.post-content .main-content h3,
+#post .main-content h4,
+.post-content .main-content h4,
+#post .main-content h5,
+.post-content .main-content h5,
+#post .main-content h6,
+.post-content .main-content h6 {
+  position: relative;
+  cursor: pointer;
+  transition: $transition-delay;
+  padding-left: 0.16rem;
+  color: #fff3cd;
+}
+#post .main-content h1:before,
+.post-content .main-content h1:before,
+#post .main-content h2:before,
+.post-content .main-content h2:before,
+#post .main-content h3:before,
+.post-content .main-content h3:before,
+#post .main-content h4:before,
+.post-content .main-content h4:before,
+#post .main-content h5:before,
+.post-content .main-content h5:before,
+#post .main-content h6:before,
+.post-content .main-content h6:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: $color-sub-theme;
+  content: "\f0c1";
+  font: normal normal normal 0.12rem/1 FontAwesome;
+  font-size: 0.12rem;
+  transition: $transition-delay;
+}
+#post .main-content h1:hover,
+.post-content .main-content h1:hover,
+#post .main-content h2:hover,
+.post-content .main-content h2:hover,
+#post .main-content h3:hover,
+.post-content .main-content h3:hover,
+#post .main-content h4:hover,
+.post-content .main-content h4:hover,
+#post .main-content h5:hover,
+.post-content .main-content h5:hover,
+#post .main-content h6:hover,
+.post-content .main-content h6:hover {
+  padding-left: 0.24rem;
+}
+#post .main-content h1:hover:before,
+.post-content .main-content h1:hover:before,
+#post .main-content h2:hover:before,
+.post-content .main-content h2:hover:before,
+#post .main-content h3:hover:before,
+.post-content .main-content h3:hover:before,
+#post .main-content h4:hover:before,
+.post-content .main-content h4:hover:before,
+#post .main-content h5:hover:before,
+.post-content .main-content h5:hover:before,
+#post .main-content h6:hover:before,
+.post-content .main-content h6:hover:before {
+  color: $color-theme;
+}
+#post .main-content ol,
+.post-content .main-content ol,
+#post .main-content ul,
+.post-content .main-content ul {
+  margin-top: 0.08rem;
+  padding: 0 0 0 0.16rem;
+  list-style: none;
+  counter-reset: li;
+}
+#post .main-content ol p,
+.post-content .main-content ol p,
+#post .main-content ul p,
+.post-content .main-content ul p {
+  margin: 0;
+}
+#post .main-content ol ol,
+.post-content .main-content ol ol,
+#post .main-content ul ol,
+.post-content .main-content ul ol,
+#post .main-content ol ul,
+.post-content .main-content ol ul,
+#post .main-content ul ul,
+.post-content .main-content ul ul {
+  padding-left: 0.08rem;
+}
+#post .main-content ol li,
+.post-content .main-content ol li,
+#post .main-content ul li,
+.post-content .main-content ul li {
+  position: relative;
+  margin: 0.04rem 0;
+  padding: 0.02rem 0.1rem 0.02rem 0.3rem;
+}
+#post .main-content ol li:hover:before,
+.post-content .main-content ol li:hover:before,
+#post .main-content ul li:hover:before,
+.post-content .main-content ul li:hover:before {
+  transform: rotate(360deg);
+  color: $color-theme;
+}
+#post .main-content ol li:before,
+.post-content .main-content ol li:before,
+#post .main-content ul li:before,
+.post-content .main-content ul li:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $rgba-color;
+  color: $color-sub-theme;
+  cursor: pointer;
+  transition: $transition-delay;
+}
+#post .main-content ol li:before,
+.post-content .main-content ol li:before {
+  margin-top: 0.04rem;
+  width: 0.24rem;
+  height: 0.24rem;
+  border-radius: 0.12rem;
+  content: counter(li);
+  counter-increment: li;
+  text-align: center;
+  font-size: 0.12rem;
+  font-weight: 600;
+  line-height: 0.24rem;
+}
+#post .main-content ul li:hover:before,
+.post-content .main-content ul li:hover:before {
+  border-color: $color-theme;
+}
+#post .main-content ul li:before,
+.post-content .main-content ul li:before {
+  top: 0.11rem;
+  margin-left: 0.04rem;
+  width: 0.06rem;
+  height: 0.06rem;
+  border: 0.018rem solid $color-sub-theme;
+  background: transparent;
+  content: "";
+  line-height: 0.06rem;
+  transform: rotateZ(45deg);
+}
+#post .post-copyright,
+.post-content .post-copyright {
+  position: relative;
+  margin: 0.4rem 0 0.2rem 0;
+  padding: 0.1rem 0.16rem;
+  background: $rgba-color;
+  border-radius: 0.04rem;
+  transition: $transition-delay;
+}
+#post .post-copyright:hover,
+.post-content .post-copyright:hover {
+  box-shadow: 0 0 0.24rem $box-shadow-color;
+  transition: $transition-delay;
+}
+#post .post-copyright-author,
+.post-content .post-copyright-author,
+#post .post-copyright-type,
+.post-content .post-copyright-type,
+#post .post-copyright-notice,
+.post-content .post-copyright-notice {
+  margin: 0.12rem 0;
+}
+#post .post-copyright-meta,
+.post-content .post-copyright-meta {
+  color: $color-theme;
+  font-weight: bold;
+}
+#post .post-copyright-info a,
+.post-content .post-copyright-info a {
+  color: $color-sub-theme;
+  word-break: break-word;
+  transition: $transition-delay;
+}
+#post .post-copyright-info a:hover,
+.post-content .post-copyright-info a:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}

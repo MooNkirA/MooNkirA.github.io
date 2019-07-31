@@ -1,0 +1,42 @@
+#footer {
+  padding: 0 0.16rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 0.32rem);
+  height: 0.4rem;
+  line-height: 0.4rem;
+  border-top: 1px solid rgba(173,181,189,0.4);
+  font-size: 0.12rem;
+  color: $color-font;
+}
+#footer #side-button {
+  margin-top: 0.04rem;
+  width: 0.32rem;
+  height: 0.32rem;
+  cursor: pointer;
+  line-height: 0.32rem;
+  text-align: center;
+  transition: $transition-delay;
+}
+#footer #side-button.close {
+  transition: $transition-delay;
+  transform: rotate(180deg);
+}
+#footer .right-content {
+  display: flex;
+  flex-direction: row;
+}
+#footer .right-content .busuanzi {
+  margin-right: 0.16rem;
+}
+#footer .right-content .busuanzi #busuanzi_container_site_uv,
+#footer .right-content .busuanzi #busuanzi_container_site_pv {
+  margin-right: 0.08rem;
+}
+#footer .right-content .busuanzi .footer-separator {
+  margin: 0 0.08rem;
+}
+#footer .right-content .copyright {
+  font-size: 0.12rem;
+}

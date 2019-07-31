@@ -1,0 +1,232 @@
+#page .tag-cloud {
+  padding-top: 0.32rem;
+  text-align: center;
+}
+#page .tag-cloud .tag-cloud-title {
+  display: inline-block;
+  font-size: 0.3rem;
+}
+#page .tag-cloud .tag-cloud-line {
+  margin: 0 0.16rem;
+  font-size: 0.3rem;
+}
+#page .tag-cloud .tag-cloud-amount {
+  font-size: 0.3rem;
+}
+#page .tag-cloud .tag-cloud-tags {
+  margin: 0.32rem 0 0 0;
+}
+#page .tag-cloud .tag-cloud-tags a {
+  display: inline-block;
+  margin: 0.16rem 0.16rem;
+}
+#page .tag-cloud .tag-cloud-tags a:hover {
+  color: $color-theme;
+}
+#page .category-lists {
+  padding-top: 0.32rem;
+  text-align: center;
+}
+#page .category-lists .category-title {
+  display: inline-block;
+  font-size: 0.3rem;
+}
+#page .category-lists .category-line {
+  margin: 0 0.16rem;
+  font-size: 0.3rem;
+}
+#page .category-lists .category-amount {
+  font-size: 0.3rem;
+}
+#page .category-lists .category-list {
+  margin-top: 0.4rem;
+  padding: 0 0 0.08rem;
+  list-style: none;
+  counter-reset: li;
+  text-align: left;
+}
+#page .category-lists .category-list .category-list-item {
+  position: relative;
+  margin: 0.2rem 0;
+  padding: 0.1rem 0.5rem 0.1rem 0.32rem;
+  font-size: 0.14rem;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0.08rem;
+  left: 0;
+  width: 0.08rem;
+  height: 0.08rem;
+  border: 0.04rem solid $color-sub-theme;
+  background: transparent;
+  border-radius: 50%;
+  line-height: 0.3rem;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item:hover::before {
+  border: 0.04rem solid $color-theme;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item:hover .category-list-link,
+#page .category-lists .category-list .category-list-item:hover .category-list-count {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item .category-list-link {
+  color: $color-font;
+  text-decoration: none;
+  cursor: pointer;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item .category-list-count {
+  margin-left: 0.16rem;
+  color: $color-font;
+  transition: $transition-delay;
+}
+#page .category-lists .category-list .category-list-item .category-list-count::before {
+  content: '(';
+}
+#page .category-lists .category-list .category-list-item .category-list-count::after {
+  content: ')';
+}
+#page .about {
+  margin-bottom: 0.16rem;
+  padding: 0.16rem;
+  background: $rgba-color;
+  border-radius: 0.04rem;
+  line-height: 0.28rem;
+}
+#page .about img {
+  max-width: 100%;
+}
+#page .about a {
+  color: $color-sub-theme;
+}
+#page .about a:hover {
+  color: $color-theme;
+}
+#page .about table {
+  margin: 0.08rem 0 0.16rem 0;
+  max-width: 100%;
+}
+#page .about table thead tr th {
+  padding: 0.08rem 0.16rem;
+  border: 1px solid $color-font;
+  background: $rgba-color;
+  white-space: nowrap;
+}
+#page .about table tbody tr td {
+  padding: 0.08rem 0.16rem;
+  border: 1px solid $color-font;
+}
+#page .about h1,
+#page .about h2,
+#page .about h3,
+#page .about h4,
+#page .about h5,
+#page .about h6 {
+  position: relative;
+  cursor: pointer;
+  transition: $transition-delay;
+  padding-left: 0.16rem;
+  color: #fff3cd;
+}
+#page .about h1:before,
+#page .about h2:before,
+#page .about h3:before,
+#page .about h4:before,
+#page .about h5:before,
+#page .about h6:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: $color-sub-theme;
+  content: "\f0c1";
+  font: normal normal normal 0.12rem/1 FontAwesome;
+  font-size: 0.12rem;
+  transition: $transition-delay;
+}
+#page .about h1:hover,
+#page .about h2:hover,
+#page .about h3:hover,
+#page .about h4:hover,
+#page .about h5:hover,
+#page .about h6:hover {
+  padding-left: 0.24rem;
+}
+#page .about h1:hover:before,
+#page .about h2:hover:before,
+#page .about h3:hover:before,
+#page .about h4:hover:before,
+#page .about h5:hover:before,
+#page .about h6:hover:before {
+  color: $color-theme;
+}
+#page .about ol,
+#page .about ul {
+  margin-top: 0.08rem;
+  padding: 0 0 0 0.16rem;
+  list-style: none;
+  counter-reset: li;
+}
+#page .about ol p,
+#page .about ul p {
+  margin: 0;
+}
+#page .about ol ol,
+#page .about ul ol,
+#page .about ol ul,
+#page .about ul ul {
+  padding-left: 0.08rem;
+}
+#page .about ol li,
+#page .about ul li {
+  position: relative;
+  margin: 0.04rem 0;
+  padding: 0.02rem 0.1rem 0.02rem 0.3rem;
+}
+#page .about ol li:hover:before,
+#page .about ul li:hover:before {
+  transform: rotate(360deg);
+  color: $color-theme;
+}
+#page .about ol li:before,
+#page .about ul li:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $rgba-color;
+  color: $color-sub-theme;
+  cursor: pointer;
+  transition: $transition-delay;
+}
+#page .about ol li:before {
+  margin-top: 0.04rem;
+  width: 0.24rem;
+  height: 0.24rem;
+  border-radius: 0.12rem;
+  content: counter(li);
+  counter-increment: li;
+  text-align: center;
+  font-size: 0.12rem;
+  font-weight: 600;
+  line-height: 0.24rem;
+}
+#page .about ul li:hover:before {
+  border-color: $color-theme;
+}
+#page .about ul li:before {
+  top: 0.11rem;
+  margin-left: 0.04rem;
+  width: 0.06rem;
+  height: 0.06rem;
+  border: 0.018rem solid $color-sub-theme;
+  background: transparent;
+  content: "";
+  line-height: 0.06rem;
+  transform: rotateZ(45deg);
+}

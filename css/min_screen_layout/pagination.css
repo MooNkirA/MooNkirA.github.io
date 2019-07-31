@@ -1,0 +1,171 @@
+#pagination {
+  padding: 0 0.16rem;
+  height: 0.4rem;
+}
+#pagination .pagination {
+  height: 0.4rem;
+  text-align: center;
+}
+#pagination .pagination .prev,
+#pagination .pagination .page-number,
+#pagination .pagination .next {
+  margin: 0 0.04rem;
+  position: relative;
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  text-align: center;
+  line-height: 0.4rem;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 0.04rem;
+  color: $color-font;
+  transition: $transition-delay;
+  font-size: 0.14rem;
+}
+#pagination .pagination .prev:after,
+#pagination .pagination .page-number:after,
+#pagination .pagination .next:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: $rgba-color;
+  filter: blur(0.05rem);
+  margin: -0.2rem;
+  z-index: -1;
+}
+#pagination .pagination .prev:before,
+#pagination .pagination .page-number:before,
+#pagination .pagination .next:before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: -0.2rem;
+  width: 0.3rem;
+  height: 0.8rem;
+  background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+  transform: rotateZ(-30deg);
+}
+#pagination .pagination .prev:hover,
+#pagination .pagination .page-number:hover,
+#pagination .pagination .next:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#pagination .pagination .prev:hover:before,
+#pagination .pagination .page-number:hover:before,
+#pagination .pagination .next:hover:before {
+  left: 0.4rem;
+  top: -0.2rem;
+  transform: rotateZ(0deg);
+  transition: $transition-delay;
+}
+#pagination .pagination .prev {
+  margin-left: 0;
+}
+#pagination .pagination .page-number.current {
+  color: $color-theme;
+  font-size: 0.16rem;
+}
+#pagination .pagination .next {
+  margin-right: 0;
+}
+#pagination .pagination .space {
+  display: inline-block;
+  height: 0.4rem;
+  line-height: 0.3rem;
+  vertical-align: top;
+}
+#pagination .pull-left,
+#pagination .pull-right {
+  padding: 0 0.16rem;
+  position: relative;
+  display: inline-block;
+  height: 0.4rem;
+  text-align: center;
+  line-height: 0.4rem;
+  color: $color-font;
+  transition: $transition-delay;
+  font-size: 0.14rem;
+}
+#pagination .pull-left .line,
+#pagination .pull-right .line {
+  position: absolute;
+  transition: $transition-delay;
+  background: $color-theme;
+}
+#pagination .pull-left .line.line-top,
+#pagination .pull-right .line.line-top {
+  width: 0;
+  height: 0.01rem;
+  left: -110%;
+  top: -0.01rem;
+}
+#pagination .pull-left .line.line-right,
+#pagination .pull-right .line.line-right {
+  width: 0.01rem;
+  height: 0;
+  right: -0.01rem;
+  top: -110%;
+}
+#pagination .pull-left .line.line-bottom,
+#pagination .pull-right .line.line-bottom {
+  width: 0.01rem;
+  height: 0;
+  left: -0.01rem;
+  bottom: -110%;
+}
+#pagination .pull-left .line.line-left,
+#pagination .pull-right .line.line-left {
+  width: 0;
+  height: 0.01rem;
+  bottom: -0.01rem;
+  right: -110%;
+}
+#pagination .pull-left:hover,
+#pagination .pull-right:hover {
+  transition: $transition-delay;
+}
+#pagination .pull-left:hover .line-top,
+#pagination .pull-right:hover .line-top {
+  width: 100%;
+  left: 0;
+}
+#pagination .pull-left:hover .line-right,
+#pagination .pull-right:hover .line-right {
+  height: 100%;
+  top: 0;
+}
+#pagination .pull-left:hover .line-bottom,
+#pagination .pull-right:hover .line-bottom {
+  height: 100%;
+  bottom: 0;
+}
+#pagination .pull-left:hover .line-left,
+#pagination .pull-right:hover .line-left {
+  width: 100%;
+  right: 0;
+}
+#pagination .pull-left:hover a,
+#pagination .pull-right:hover a {
+  transition: $transition-delay;
+  color: $color-theme;
+}
+#pagination .pull-left a,
+#pagination .pull-right a {
+  transition: $transition-delay;
+  color: $color-font;
+  text-decoration: none;
+}
+#pagination .pull-left {
+  float: left;
+}
+#pagination .pull-right {
+  float: right;
+}

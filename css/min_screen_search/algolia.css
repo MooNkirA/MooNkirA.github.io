@@ -1,0 +1,159 @@
+#search-box > div {
+  width: 100%;
+  max-width: 100%;
+  height: 32px;
+}
+#search-box input {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 32px;
+  font-size: 14px;
+  outline: none;
+  border: 2px solid $color-theme;
+}
+.algolia-hit-item {
+  position: relative;
+  padding-left: 0.48rem;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  transition: $transition-delay;
+}
+.algolia-hit-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.06rem;
+  display: block;
+  width: 0.16rem;
+  height: 0.16rem;
+  border: 0.04rem solid $color-sub-theme;
+  border-radius: 50%;
+  transition: $transition-delay;
+}
+.algolia-hit-item:hover::before {
+  border: 0.04rem solid $color-theme;
+  transition: $transition-delay;
+}
+.algolia-hit-item .algolia-hit-item-link {
+  display: block;
+  color: $color-font;
+  text-decoration: none;
+  font-size: 0.14rem;
+  cursor: pointer;
+  transition: $transition-delay;
+}
+.algolia-hit-item .algolia-hit-item-link:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+.algolia-hit-item .algolia-hit-item-link em {
+  color: $color-theme;
+  font-weight: 700;
+}
+#algolia-hits-empty {
+  display: block;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  color: $color-font;
+  font-size: 0.14rem;
+}
+#algolia-pagination {
+  display: block;
+  margin: 0.24rem 0 0.08rem 0;
+  padding: 0 0.16rem;
+  height: 0.4rem;
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+}
+#algolia-pagination .pagination {
+  height: 0.4rem;
+  text-align: center;
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  padding: 0;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous,
+#algolia-pagination .pagination .ais-pagination--item__page,
+#algolia-pagination .pagination .ais-pagination--item__next {
+  margin: 0 0.04rem;
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  text-align: center;
+  line-height: 0.4rem;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 0.04rem;
+  color: $color-font;
+  transition: $transition-delay;
+  font-size: 0.14rem;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous:after,
+#algolia-pagination .pagination .ais-pagination--item__page:after,
+#algolia-pagination .pagination .ais-pagination--item__next:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: $rgba-color;
+  filter: blur(0.05rem);
+  margin: -0.2rem;
+  z-index: -1;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous:before,
+#algolia-pagination .pagination .ais-pagination--item__page:before,
+#algolia-pagination .pagination .ais-pagination--item__next:before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: -0.2rem;
+  width: 0.3rem;
+  height: 0.8rem;
+  background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+  transform: rotateZ(-30deg);
+}
+#algolia-pagination .pagination .ais-pagination--item__previous:hover,
+#algolia-pagination .pagination .ais-pagination--item__page:hover,
+#algolia-pagination .pagination .ais-pagination--item__next:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous:hover:before,
+#algolia-pagination .pagination .ais-pagination--item__page:hover:before,
+#algolia-pagination .pagination .ais-pagination--item__next:hover:before {
+  left: 0.4rem;
+  top: -0.2rem;
+  transform: rotateZ(0deg);
+  transition: $transition-delay;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous a:hover,
+#algolia-pagination .pagination .ais-pagination--item__page a:hover,
+#algolia-pagination .pagination .ais-pagination--item__next a:hover {
+  color: $color-theme;
+}
+#algolia-pagination .pagination .ais-pagination--item__previous {
+  margin-left: 0;
+}
+#algolia-pagination .pagination .ais-pagination--item__page.current {
+  color: $color-theme;
+  font-size: 0.16rem;
+  background: none;
+}
+#algolia-pagination .pagination .ais-pagination--item__page.current a {
+  color: $color-theme;
+}
+#algolia-pagination .pagination .ais-pagination--item__next {
+  margin-right: 0;
+}

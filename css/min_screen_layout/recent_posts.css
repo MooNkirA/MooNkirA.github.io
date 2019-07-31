@@ -1,0 +1,91 @@
+#recent-posts .recent-post-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0.32rem 0;
+  padding: 0.16rem;
+  background: $rgba-color;
+  border-radius: 0.04rem;
+  transition: $transition-delay;
+}
+#recent-posts .recent-post-item:hover {
+  box-shadow: 0 0 0.24rem $box-shadow-color;
+  transition: $transition-delay;
+}
+#recent-posts .recent-post-item .post-title {
+  position: relative;
+  margin: 0 0 0.16rem 0;
+  padding: 0.08rem 0;
+  display: block;
+  font-size: 0.24rem;
+  transition: $transition-delay;
+}
+#recent-posts .recent-post-item .post-title:after {
+  content: url("../../images/ufo.svg");
+  position: absolute;
+  left: 0;
+  bottom: -0.12rem;
+  width: 0.12rem;
+  height: 0.12rem;
+  font-size: 0.12rem;
+  font-weight: bolder;
+}
+#recent-posts .recent-post-item .post-title:hover {
+  color: $color-theme;
+  transition: $transition-delay;
+}
+#recent-posts .recent-post-item .post-title:hover:after {
+  animation: rotate3ding 5s infinite;
+}
+#recent-posts .recent-post-item .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  margin-top: 0.16rem;
+}
+#recent-posts .recent-post-item .container .article-icon {
+  margin: 0 0.08rem 0 0;
+}
+#recent-posts .recent-post-item .container .link-a {
+  transition: $transition-delay;
+}
+#recent-posts .recent-post-item .container .link-a:hover {
+  transition: $transition-delay;
+  color: $color-theme;
+}
+#recent-posts .recent-post-item .container .post-date,
+#recent-posts .recent-post-item .container .categories,
+#recent-posts .recent-post-item .container .tags {
+  display: block;
+  margin-top: 0.08rem;
+  padding: 0.08rem 0.16rem;
+  font-size: 0.14rem;
+}
+#recent-posts .recent-post-item .container .post-date {
+  margin-right: 0.08rem;
+}
+#recent-posts .recent-post-item .container .categories {
+  margin-right: 0.08rem;
+}
+#recent-posts .recent-post-item .container .tags {
+  margin-right: 0;
+}
+#recent-posts .recent-post-item .post-content {
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+#recent-posts .recent-post-item .content {
+  margin-top: 0.32rem;
+  display: block;
+  line-height: 0.28rem;
+}
+#recent-posts .recent-post-item .more {
+  margin: 0.32rem 0 0.16rem 0;
+  padding: 0.08rem 0;
+  display: inline-block;
+  width: 1rem;
+  text-align: center;
+  font-size: 0.12rem;
+}
