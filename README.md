@@ -1,4 +1,18 @@
+---
+tags:
+  - "#README"
+---
+
+
 > 个人编程笔记文档，持续更新中...😉
+
+## 🤖 Artificial Intelligence（人工智能）
+
+### AI 相关考试
+
+<ul class="docs">
+  <li><a href="#/AI/人工智能训练师/人工智能训练师考试笔记">人工智能训练师考试笔记</a></li>
+</ul>
 
 ## Java 核心技术
 
@@ -610,7 +624,7 @@
 
 Github Pages 在线阅读地址：[点击进入](https://moonkira.github.io/code-learning-note/#/)
 
-~~Gitee Pages 在线阅读地址：[点击进入](https://moonzero.gitee.io/code-learning-note/#/)~~（国内访问速度快，目前暂时停用）
+~~Gitee Pages 在线阅读地址：[点击进入](https://moonzero.gitee.io/code-learning-note/#/)~~（目前暂时停用）
 
 语雀版文档在线阅读地址：[点击进入](https://www.yuque.com/moonkira/code-note)
 

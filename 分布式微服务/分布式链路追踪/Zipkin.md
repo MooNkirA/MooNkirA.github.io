@@ -1,6 +1,6 @@
-## 1. Zipkin 概述
+## Zipkin 概述
 
-### 1.1. 简介
+### 简介
 
 Zipkin 是 Twitter 的一个开源项目，它基于 Google Dapper 实现，它致力于收集服务的定时数据，以解决微服务架构中的延迟问题，包括**数据的收集、存储、查找和展现**。
 
@@ -10,7 +10,7 @@ Zipkin 可以用来收集各个服务器上请求链路的跟踪数据，并通�
 
 > 官方网址：https://zipkin.io/
 
-### 1.2. Zipkin 核心组件
+### Zipkin 核心组件
 
 ![](images/20201112160121290_7521.png)
 
@@ -29,9 +29,9 @@ Zipkin 分为两端，一个是 Zipkin 服务端，一个是 Zipkin 客户端，
 - 一个 Zipkin 服务端。
 - 多个微服务，这些微服务中配置 Zipkin 客户端。
 
-## 2. Zipkin Server （服务端）的部署和配置
+## Zipkin Server （服务端）的部署和配置
 
-### 2.1. Zipkin Server 下载
+### Zipkin Server 下载
 
 从 spring boot 2.0 开始，官方就不再支持使用自建 Zipkin Server 的方式进行服务链路追踪，而是直接提供了编译好的 jar 包来使用。可以从官方网站下载先下载 Zipkin 的 web UI
 
@@ -39,9 +39,9 @@ Zipkin 分为两端，一个是 Zipkin 服务端，一个是 Zipkin 客户端，
 > - Zipkin Server 编译后 jar 下载地址：https://search.maven.org/artifact/io.zipkin/zipkin-server
 > - 此次示例下载的是 zipkin-server-2.20.0-exec.jar
 
-### 2.2. 启动
+### 启动
 
-#### 2.2.1. 已编译后 jar 包运行
+#### 已编译后 jar 包运行
 
 进行 jar 所在目录，使用命令行直接启动 Zipkin Server
 
@@ -49,7 +49,7 @@ Zipkin 分为两端，一个是 Zipkin 服务端，一个是 Zipkin 客户端，
 java -jar zipkin-server-2.22.0-exec.jar
 ```
 
-#### 2.2.2. 从源码运行
+#### 从源码运行
 
 ```bash
 # get the latest source
@@ -61,7 +61,7 @@ cd zipkin
 java -jar ./zipkin-server/target/zipkin-server-*exec.jar
 ```
 
-### 2.3. 相关部署与配置信息
+### 相关部署与配置信息
 
 默认 Zipkin Server 的请求端口为 `9411`。Zipkin Server 的启动参数可以通过官方提供的 yml 配置文件查找
 

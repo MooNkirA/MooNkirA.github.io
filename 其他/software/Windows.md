@@ -1,4 +1,4 @@
-## 1. 常用DOS命令
+## 常用DOS命令
 
 - d: 回车	盘符切换
 - dir(directory):列出当前目录下的文件以及文件夹
@@ -30,7 +30,7 @@
     - 具体命令是，在需要导出结果的命令后方添加“`|`”，再加入导出位置就可以了。比方说“`| clip`”是导出到剪贴板，“`| xxx.txt`”是导出到xxx.txt。
 - `&&` ：将多个命令“连接”起来，一步运行多组命令
 
-### 1.1. windows 常用命令
+### windows 常用命令
 
 ```bash
 # 查询端口
@@ -45,9 +45,9 @@ taskkill /F /PID "进程PID号"
 taskkill -f -t -im "进程名称"
 ```
 
-### 1.2. 自用的系统脚本
+### 自用的系统脚本
 
-#### 1.2.1. 内外网IP切换（适用win10系统）.20171122
+#### 内外网IP切换（适用win10系统）.20171122
 
 ```bash
 @echo off
@@ -104,7 +104,7 @@ goto 3
 exit
 ```
 
-#### 1.2.2. 内外网IP切换（适用win7系统）
+#### 内外网IP切换（适用win7系统）
 
 ```bash
 @echo off
@@ -160,7 +160,7 @@ goto 3
 exit
 ```
 
-#### 1.2.3. 一键删除电脑中的空文件夹脚本（未测试！！）
+#### 一键删除电脑中的空文件夹脚本（未测试！！）
 
 在任意目录中创建“xxx.bat”的批处理文件，复制以下脚本代码再双击运行即可。
 
@@ -192,7 +192,7 @@ rd "%%a"
 pause
 ```
 
-#### 1.2.4. 启用/禁用网络本地连接
+#### 启用/禁用网络本地连接
 
 启用/禁用网络连接脚本，**注意：需要使用管理员身份运行脚本**。
 
@@ -255,15 +255,15 @@ netsh interface set interface name="以太网" admin=DISABLED
 goto MENU
 ```
 
-### 1.3. 批处理(bat)脚本命令汇总（待整理）
+### 批处理(bat)脚本命令汇总（待整理）
 
 > 参考：[详细的批处理文件bat脚本命令](https://blog.csdn.net/ankang654321/article/details/103644637)
 
-## 2. 系统运行命令
+## 系统运行命令
 
 > 以下均为运行面板(Win+R)中输入的命令
 
-### 2.1. 如何使用 WIN+R 运行自定义命令启动程序
+### 如何使用 WIN+R 运行自定义命令启动程序
 
 首先在任意盘符下建立一个文件夹，比如在D盘建立名字为shortcut的文件夹
 
@@ -273,7 +273,7 @@ goto MENU
 
 > 注意事项: 如果想更加简单的使用 Win+R 打开程序，可以将shortcut下的文件名称更改为自己熟悉的(支持中文哦)
 
-### 2.2. window 系统常用原生命令
+### window 系统常用原生命令
 
 |                 快捷键                 |                  程序                   |
 | ------------------------------------- | --------------------------------------- |
@@ -291,7 +291,7 @@ goto MENU
 | `rundll32 user32.dll,LockWorkStation` | 表示锁定计算机                            |
 | wt                                    | Microsoft.WindowsTerminal（需要手动安装） |
 
-#### 2.2.1. 整理中
+#### 整理中
 
 - appwiz.cpl：程序和功能
 - certmgr.msc：证书管理实用程序
@@ -398,13 +398,13 @@ goto MENU
 - wuapp：Win更新
 - wscript：windows脚本宿主设置
 
-## 3. windows 系统相关设置
+## windows 系统相关设置
 
-### 3.1. 查询电脑配置
+### 查询电脑配置
 
 使用 Win + R 打开运行，执行 `dxdiag` 命令，查询电脑配置
 
-### 3.2. 关闭隐私
+### 关闭隐私
 
 打开设置，【隐私和安全性】->【常规】
 
@@ -414,7 +414,7 @@ goto MENU
 
 ![](images/585891322266906.png)
 
-### 3.3. 环境变量 (用户变量与系统变量)
+### 环境变量 (用户变量与系统变量)
 
 > 参考资源：http://www.dayanzai.me/environment-variables.html
 
@@ -429,13 +429,13 @@ goto MENU
 > - 用户变量只对当前用户起作用，不建议为了省事而配置系统环境变量。
 > - 用户环境变量优先级高于系统环境变量。对于环境变量，系统会先检查用户变量，之后再检查系统变量。
 
-#### 3.3.1. 用户变量
+#### 用户变量
 
 注册表中用户变量所在位置：`HKEY_CURRENT_USER\Environment`
 
 ![](images/482504916221048.png)
 
-#### 3.3.2. 系统变量
+#### 系统变量
 
 注册表中系统变量所在位置：`HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\Environment`
 
@@ -443,7 +443,7 @@ goto MENU
 
 在原有变量 `Path` 的基础上添加英文状态下的分号，然后添加路径名。*不要删除原先的系统变量，只要用分号隔开，然后添加路径名，最后也要加上分号。*
 
-#### 3.3.3. 常用变量清单
+#### 常用变量清单
 
 |               变量名称                |                                值                                |
 | :----------------------------------: | ---------------------------------------------------------------- |
@@ -488,11 +488,11 @@ goto MENU
 |              `%RANDOM%`              | 输出从 0 到 32767 的随机数。                                       |
 |                `%OS%`                | Windows_NT                                                       |
 
-### 3.4. hosts 文件
+### hosts 文件
 
 window 系统的 hosts 文件位置：`%windir%\System32\drivers\etc`
 
-#### 3.4.1. win10 和 win11 使用管理员身份打开 hosts 文件
+#### win10 和 win11 使用管理员身份打开 hosts 文件
 
 1. 在右下角输入框输入`cmd`，选择 "命令提示符（以管理员身份运行）"
 
@@ -506,21 +506,21 @@ window 系统的 hosts 文件位置：`%windir%\System32\drivers\etc`
 
 ![](images/459243417246835.png)
 
-### 3.5. win10 锁屏壁纸位置
+### win10 锁屏壁纸位置
 
 路径：`%HOMEPATH%\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets`
 
-### 3.6. 清理系统垃圾
+### 清理系统垃圾
 
-#### 3.6.1. 删除系统临时文件
+#### 删除系统临时文件
 
 按下 Win+R 打开运行窗口，输入命令 `%temp%`，可以全选里面的文件进行删除。一般建议每周一次即可。
 
-#### 3.6.2. C 盘清理
+#### C 盘清理
 
 按下 Win+R 打开运行窗口，输入命令 `cleanmgr`，选择清理 C 盘。
 
-#### 3.6.3. C 盘可清理内容
+#### C 盘可清理内容
 
 1. **PerfLogs**文件夹，系统的信息日志，文件夹可删。
 2. **Windows**文件夹
@@ -528,24 +528,24 @@ window 系统的 hosts 文件位置：`%windir%\System32\drivers\etc`
     - `C:\Windows\Help`，帮忙文件，可删
 3. **用户**文件夹：`C:\Users\用户名称\AppData\Local\Temp`。这个是Windows存留安装软件时解压的源文件，方便下次安装直接调取使用，节省解压时间，可删除。
 
-#### 3.6.4. 恶意软件清理
+#### 恶意软件清理
 
 按下 Win+R 打开运行窗口，输入命令 `MRT`，找开恶意软件清理程序，按提示操作即可。
 
-#### 3.6.5. win7 系统的 Temporary Internet Files 清空问题
+#### win7 系统的 Temporary Internet Files 清空问题
 
 1. `cmd.exe`
 2. `cd AppData\Local\Microsoft\Windows\Temporary Internet Files`（或者如果有Content.IE5目录的话，cd Content.IE5）
 3. `del /s/q/f *.*`
 
-### 3.7. 备份开始菜单
+### 备份开始菜单
 
 1. 按下Win+R打开运行窗口，输入命令powershell，然后点击确定按钮
 2. 这时就会打开Windows Powershell窗口，在这里输入命令`Export-startlayout –path E:\start.xml`，可以根据自己实际情况来设置相应的路径
 3. 按下回车键后，就会备份好开始菜单的布局文件
 4. 如果需要恢复开始菜单布局的话，只需要再次打开Windows Powershell命令行窗口，然后输入命令`import-startlayout -layoutpath E:\start.xml -mountpath c:`，按下回车键后，就会马上把其还原回来了
 
-### 3.8. 电脑护眼颜色设置
+### 电脑护眼颜色设置
 
 win7系统：
 
@@ -559,7 +559,7 @@ win10系统：
 2. 按照如下顺序找到windows：[HKEY_CURRENT_USER\Control Panel\Colors] windows。双击windows 进入编辑状态 将原本数值删除并输入：`202 234 206`。点击确定退出注册表。
 3. 按照如下顺序找到 window：[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\DefaultColors\Standard]。双击 window 打开编辑窗口，默认是勾选十六进制（若不是请勾选十六进制），将原始数据改为：`caeace`。点击确定退出注册表。
 
-### 3.9. AHCI 开启方法 
+### AHCI 开启方法 
 
 先去修改到 compatible（兼容模式）进入系统
 
@@ -569,7 +569,7 @@ win10系统：
 4. 然后出来看看BIOS里面的硬盘模式，修改为ACHI后（如果没有就算了）
 5. 然后在把SATA Operation Mode改为 enhanced（增强模式）
 
-### 3.10. NSIS：使用 netsh advfirewall 屏蔽某程序访问网络
+### NSIS：使用 netsh advfirewall 屏蔽某程序访问网络
 
 - 关闭防火墙
 
@@ -595,12 +595,12 @@ nsExec::Exec 'cmd /c netsh advfirewall firewall Delete rule name="TIM"'
 nsExec::Exec 'cmd /c netsh advfirewall firewall add rule name="TIM" dir=out action=block program="C:\Program Files\TIM Lite\Bin\TIM.exe"'
 ```
 
-### 3.11. 删掉 WIN10 回收站右键菜单的固定到＂开始＂屏幕！
+### 删掉 WIN10 回收站右键菜单的固定到＂开始＂屏幕！
 
 - 删除：打开注册表，定位到 `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Folder\shellex\ContextMenuHandlers`，删除其子键 `PintoStartScreen`
 - 恢复：在 `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Folder\shellex\ContextMenuHandlers` 上单击右键，新建项 `PintoStartScreen`，修改其默认值为 `{470C0EBD-5D73-4d58-9CED-E91E22E23282}`
 
-### 3.12. 限制保留宽带设置
+### 限制保留宽带设置
 
 1. 按“WIN+R”，打开【运行】对话框；
 2. 输入“regedit”，回车，打开注册表编辑器；
@@ -609,7 +609,7 @@ nsExec::Exec 'cmd /c netsh advfirewall firewall add rule name="TIM" dir=out acti
 5. 计算机配置－管理模板－网络－qos数据包计划程序－限制保留宽带
 6. 选择已启用。一般默认是20，直接把它改成0。
 
-### 3.13. win10 系统任务栏设置时间显示秒
+### win10 系统任务栏设置时间显示秒
 
 1. 按“WIN+R”，打开【运行】对话框；
 2. 输入“regedit”，回车，打开注册表编辑器；
@@ -621,14 +621,14 @@ nsExec::Exec 'cmd /c netsh advfirewall firewall add rule name="TIM" dir=out acti
 
 > Notes: 微软承认 win 11 系统中，删除了注册表值“`ShowSecondsInSystemClock`”，该值允许任务栏时钟以秒为单位显示时间。如果时间需要显示秒，需要安装第三方软件
 
-### 3.14. Win10 系统删除无用的服务
+### Win10 系统删除无用的服务
 
 1. 运行 -> `regedit`，打开注册表编辑器
 2. 定位到【计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services】，选择服务名称，右键删除即可
 
-### 3.15. 修改 window 默认系统安装目录
+### 修改 window 默认系统安装目录
 
-#### 3.15.1. 通过注册表修改安装目录
+#### 通过注册表修改安装目录
 
 Windows10 系统更改软件程序默认安装目录的方法
 
@@ -644,7 +644,7 @@ Windows10 系统更改软件程序默认安装目录的方法
 3. 在存储对应的右侧窗口，用鼠标左键按住右侧的滑块向下拖动，找到：保存位置，在保存位置下，点击：新的应用将保存到此电脑（C:）后面的小勾
 4. 修改成D盘。之后打开磁盘(D:\)，可以看到磁盘(D:\)中新增了三个文件夹：MoonZero（用户文件：文档、音乐、图片和视频）、Program Files（程序文件）和Windows Apps（窗口应用程序）；
 
-#### 3.15.2. Win 11 设置
+#### Win 11 设置
 
 在设置中，【系统】->【存储】->【保存新内容的地方】
 
@@ -654,7 +654,7 @@ Windows10 系统更改软件程序默认安装目录的方法
 
 ![](images/519700922258873.png)
 
-### 3.16. win10 一般禁用的服务
+### win10 一般禁用的服务
 
 1. 运行输入【services.msc】打开服务面板，禁用以下服务
     1. Connected User Experiences and Telemetry
@@ -668,7 +668,7 @@ Windows10 系统更改软件程序默认安装目录的方法
 3. 点击“设置” -> “更新与安全” -> “Windows预览体验计划”，退出 Windows Insider 计划。
 4. 右击任务栏空白处选择“任务管理器”，切换到“启动”标签，将没必要的自启动程序全部禁用。
 
-### 3.17. 修复 win10 右键无新建 txt 文本文件
+### 修复 win10 右键无新建 txt 文本文件
 
 ```bat
 Windows Registry Editor Version 5.00
@@ -686,11 +686,11 @@ Windows Registry Editor Version 5.00
 
 打开记事本，复制以上内容，另存为`xxx.reg`。点击文件，确认操作后，重启电脑生效
 
-### 3.18. 关闭 cmd 命令行窗口的中文输入法
+### 关闭 cmd 命令行窗口的中文输入法
 
 运行`regedit`命令，打开注册表窗口，修改注册表：`HKEY_CURRENT_USER\Console\LoadConIme` 的键值由`1`改为`0`
 
-### 3.19. 修改 cmd / powershell 命令行窗口默认编码
+### 修改 cmd / powershell 命令行窗口默认编码
 
 **临时修改**
 
@@ -701,7 +701,7 @@ Windows Registry Editor Version 5.00
 - **修改powershell默认编码**：运行`regedit`命令打开注册表，展开注册表`计算机\HKEY_CURRENT_USER\Console`项。选择powershell，点击修改右边窗口中`CodePage`项，选择十进制，修改值为`65001`。修改后就每次启动都默认改成UTF-8的编码
 - **修改cmd编码**：运行`regedit`命令打开注册表，展开注册表`计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor`项。如果右边窗口没有`autorun`字符串值，则右键新建字符串值，数值名称：`autorun`，数值数据：`chcp 65001`。修改后就每次启动都默认改成UTF-8的编码
 
-### 3.20. 彻底关闭 Cortana 小娜
+### 彻底关闭 Cortana 小娜
 
 - **关闭 Cortana 小娜的权限**
 
@@ -719,7 +719,7 @@ Win10的设置菜单 -> "应用" -> 在应用列表中搜索找到Cortana -> 高
 Get-AppxPackage -allusers Microsoft.549981C3F5F10 | Remove-AppxPackage
 ```
 
-### 3.21. 关闭 Win11 / Win 10 内存压缩
+### 关闭 Win11 / Win 10 内存压缩
 
 Win11默认开启了内存压缩功能。可以压缩内存中的数据，让内存占用更少，同时减少Swap频次，带来更高的I/O效率。但CPU性能较弱的设备，例如轻薄本，开启内存压缩可能会造成卡顿缓慢。同时，内存压缩需要消耗额外的CPU资源，带来更多耗电发热，这对注重续航的设备来说也是不合适的。
 
@@ -728,13 +728,13 @@ Win11默认开启了内存压缩功能。可以压缩内存中的数据，让内
 - **关闭内存压缩**。使用系统管理员权限，打开PowerShell，然后输入命令 `Disable-MMAgent -mc` 后，重启系统，内存压缩就关闭了。
 - **重新打开内存压缩**。使用系统管理员权限，打开PowerShell，然后输入命令 `Enable-MMAgent -mc` 后，重启系统，内存压缩就重新开启。
 
-### 3.22. 清除电脑的运行记录
+### 清除电脑的运行记录
 
 1. win+R 打开运行窗口，输入 `regedit` 打开注册表编辑器
 2. 展开 `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU`在右侧除了默认
 3. 将其他选项都删除掉
 
-### 3.23. 删除资源管理器中“此电脑”下面多余的图标
+### 删除资源管理器中“此电脑”下面多余的图标
 
 1. WIN+R 打开运行窗口，输入 `regedit` 打开注册表编辑器
 2. 在注册表中定位到：`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace` 项
@@ -764,9 +764,9 @@ Windows Registry Editor Version 5.00
 [-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]
 ```
 
-## 4. winget（Windows 软件商店平替）
+## winget（Windows 软件商店平替）
 
-### 4.1. winget 概述
+### winget 概述
 
 winget 是微软推出运行在 Windows 终端中的一个软件管理工具，仅在 Windows 10 1709 及更高版本中支持，核心命令是 `winget`。 在终端输入 `winget` 会看到：
 
@@ -812,7 +812,7 @@ WinGet 命令行实用工具可从命令行安装应用程序和其他程序包�
 可在此找到更多帮助: "https://aka.ms/winget-command-help"
 ```
 
-### 4.2. winget 的优缺点
+### winget 的优缺点
 
 **优点**：
 
@@ -831,7 +831,7 @@ WinGet 命令行实用工具可从命令行安装应用程序和其他程序包�
 - **更新速度**：winget 的更新速度可能不如一些第三方软件包管理工具快。这意味着一些新发布的软件包可能无法在第一时间通过 winget 进行安装或更新。不过对于软件版本来说，反而不建议非要安装最新版，这点见仁见智吧。
 - **社区支持**：与一些流行的第三方软件包管理工具相比，winget 的社区支持可能相对较弱。这可能导致人们在遇到问题时难以找到解决方案或获得帮助。
 
-### 4.3. winget 的使用
+### winget 的使用
 
 使用 `winget` 最常见的使用场景就是搜索，安装，卸载常用的软件。常用的 `winget` 命令有以下几个：
 
@@ -858,7 +858,7 @@ WeChat                Tencent.WeChat         3.9.9.43     Tag: 微信 winget
 
 因为带有“微信”关键词的安装包有很多，因此安装特定安装包的时候应输入安装包的 ID，这里微信的 ID 是 Tencent.WeChat ，因此输入命令 `winget install Tencent.WeChat` 即可。微信会自动安装，整个过程方便，安全，安静。
 
-### 4.4. 自动化安装脚本
+### 自动化安装脚本
 
 虽然只需要敲几个字母，不再需要到浏览器里搜索下载常用的安装包了，但是每次重装系统的时候还要一行一行的敲命令，也是挺麻烦的。在 GitHub 上有一个自动运行命令的安装脚本，可以免费下载使用。[脚本传送门](https://github.com/cgartlab/Software_Install_Script)
 
@@ -886,9 +886,9 @@ pause
 这样每次面对一台刚刚重装系统或者刚买的电脑，只需要运行这个脚本，就可以把常用的软件一次性安装好了。所有的列表保存在这个 txt 文档里，每一行是一个软件 ID。脚本运行的时候会逐一读取每一行的 ID，执行安装命令。注意，如果已经安装的软件则会检查更新并升级到最新版本。默认情况下，列表里的软件是自己常用的，可以根据需要自己增减定制。
 
 
-## 5. Windows 11 系统配置
+## Windows 11 系统配置
 
-### 5.1. 取消显示快速访问中“文档、视频...”等图标
+### 取消显示快速访问中“文档、视频...”等图标
 
 使用快捷键 win+R 打开运行命令窗口，输入`regedit`命令打开注册表。在地址栏定位到以下地址：
 
@@ -904,7 +904,7 @@ pause
 - 音乐：`{a0c69a99-21c8-4671-8703-7934162fcf1d}`
 - 文档：`{f42ee2d3-909f-4907-8871-4c22fc0bf756}`
 
-### 5.2. 设置任务栏小图标
+### 设置任务栏小图标
 
 1. 使用快捷键 win+R 打开运行命令窗口，输入`regedit`命令打开注册表。在地址栏定位到以下地址：
 
@@ -917,7 +917,7 @@ pause
 
 > <font color=purple>**但目前 win 11 不支持修改小图标的任务栏，修改后时间日期会出现下沉超出屏幕的问题。**</font>
 
-### 5.3. 开启 Windows 11 隐藏的教育主题
+### 开启 Windows 11 隐藏的教育主题
 
 教育主题适用于 Windows 11 家庭版、专业版和企业版。若要使 Windows 11 教育版主题可用，用户需要执行以下操作：
 
@@ -944,7 +944,7 @@ Windows Registry Editor Version 5.00
 
 完成上述步骤后，计算机应该在重启后在后台自动下载其他主题。您可能需要等待一段时间，直到此过程完成。安装后，可以通过转到“设置”应用并选择“个性化” -> “主题”来应用新主题。
 
-### 5.4. 搜索面板优化
+### 搜索面板优化
 
 按【Win + S】打开搜索面板，点击右上角的【...】选择【搜索设置】
 
@@ -954,11 +954,11 @@ Windows Registry Editor Version 5.00
 
 ![](images/178312210267286.png)
 
-## 6. Windows 11 键盘快捷键终极列表
+## Windows 11 键盘快捷键终极列表
 
 > 参考：http://www.dayanzai.me/windows-11-keyboard-shortcuts.html
 
-### 6.1. Windows 11 新增快捷键
+### Windows 11 新增快捷键
 
 Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。如果将鼠标悬停在最大化按钮（每个窗口右上角关闭十字符号旁边的方块）上，将看到多个网格。可以使用这些网格以想要的方式排列窗口。还有一个访问 Snap Layouts 的键盘快捷键。
 
@@ -970,7 +970,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |   快速访问 Snap 布局   | Win + Z |
 | 打开 Microsoft Teams  | Win + C |
 
-### 6.2. 文本编辑键盘快捷键
+### 文本编辑键盘快捷键
 
 |        操作         |  快捷键   |
 | :-----------------: | :------: |
@@ -983,7 +983,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 | 移动光标到当前行的开头 |   Home   |
 | 移动光标到当前行的结束 |   End    |
 
-### 6.3. 通用 Windows 键盘快捷键
+### 通用 Windows 键盘快捷键
 
 |                             操作                             |          快捷键          |
 | :---------------------------------------------------------: | :---------------------: |
@@ -1033,7 +1033,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |                       停止或离开当前任务                       |           Esc           |
 |              截取整个屏幕的屏幕截图并将其复制到剪贴板              |         PrtScn          |
 
-### 6.4. 功能键键盘快捷键
+### 功能键键盘快捷键
 
 |             操作              | 快捷键 |
 | :---------------------------: | :---: |
@@ -1045,7 +1045,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |    激活活动应用程序中的菜单栏     |  F10  |
 |      最大化或最小化活动窗口      |  F11  |
 
-### 6.5. 文件资源管理器键盘快捷键
+### 文件资源管理器键盘快捷键
 
 |             操作             |          快捷键           |
 | :-------------------------: | :----------------------: |
@@ -1069,7 +1069,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |       显示活动窗口的底部       |           End            |
 |       显示活动窗口的顶部       |           Home           |
 
-### 6.6. 任务栏键盘快捷键
+### 任务栏键盘快捷键
 
 |                  操作                  |              快捷键               |
 | :-----------------------------------: | :------------------------------: |
@@ -1080,7 +1080,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |       根据固定编号在任务栏中打开应用       |         Win + Number 键          |
 |             循环通过组的窗口             |     Ctrl + 单击分组的任务栏按钮     |
 
-### 6.7. 设置键盘快捷键
+### 设置键盘快捷键
 
 |    操作     |          快捷键           |
 | :--------: | :----------------------: |
@@ -1088,7 +1088,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 | 返回设置主页 |        Backspace         |
 |   搜索设置   | 在带有搜索框的任何页面上键入 |
 
-### 6.8. 虚拟桌面键盘快捷键
+### 虚拟桌面键盘快捷键
 
 |           操作           |       快捷键        |
 | :----------------------: | :----------------: |
@@ -1098,7 +1098,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 | 在左侧创建的虚拟桌面之间切换 | Win + Ctrl + 左箭头 |
 |   关闭您正在使用的虚拟桌面   |  Win + Ctrl + F4   |
 
-### 6.9. 对话框快捷键
+### 对话框快捷键
 
 |                         操作                          |         快捷键         |
 | :---------------------------------------------------: | :-------------------: |
@@ -1111,7 +1111,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 | 如果在“另存为”或“打开”对话框中选择了文件夹，则打开上一级文件夹 |       Backspace       |
 |          如果活动选项是一组选项按钮，则选择一个按钮          |         箭头键         |
 
-### 6.10. 命令提示符键盘快捷键
+### 命令提示符键盘快捷键
 
 |         操作          |    快捷键     |
 | :------------------: | :----------: |
@@ -1127,7 +1127,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 | 在输出历史中向上移动一行 | Ctrl + 上箭头 |
 | 在输出历史记录中下移一行 | Ctrl + 下箭头 |
 
-### 6.11. 游戏栏键盘快捷键
+### 游戏栏键盘快捷键
 
 |           操作            |       快捷键       |
 | :-----------------------: | :---------------: |
@@ -1137,7 +1137,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |    开始或停止记录活动游戏    |   Win + Alt + R   |
 | 显示/隐藏当前游戏的录制计时器 |   Win + Alt + T   |
 
-### 6.12. 辅助功能键盘快捷键
+### 辅助功能键盘快捷键
 
 |                  操作                  |               快捷键               |
 | :-----------------------------------: | :-------------------------------: |
@@ -1161,7 +1161,7 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |            打开或关闭高对比度            |  左 Alt 键 + 左 Shift 键 + PrtSc   |
 |             打开或关闭鼠标键             | 左 Alt 键 + 左 Shift 键 + Num Lock |
 
-### 6.13. 浏览器快捷方式
+### 浏览器快捷方式
 
 |               操作               |  快捷键   |
 | :-----------------------------: | :------: |
@@ -1175,8 +1175,8 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |          重新加载当前页面          | Ctrl + R |
 |     打开一个新选项卡并切换到它      | Ctrl + T |
 
-## 7. 待整理资料
+## 待整理资料
 
-### 7.1. 如何更改或配置 Windows 11/10 中隐藏的电源选项
+### 如何更改或配置 Windows 11/10 中隐藏的电源选项
 
 > https://cn.windows-office.net/?p=17342

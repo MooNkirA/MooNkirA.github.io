@@ -1,6 +1,6 @@
-## 1. 初识 Kafka
+## 初识 Kafka
 
-### 1.1. 概述
+### 概述
 
 > Kafka 官网：https://kafka.apache.org/
 
@@ -10,7 +10,7 @@ Apache Kafka 是一个分布式的发布-订阅消息系统，能够支撑海量
 
 ![](images/521452522220545.png)
 
-### 1.2. 特性
+### 特性
 
 1. 高吞吐量、低延迟：kafka 每秒可以处理几十万条消息，它的延迟最低只有几毫秒，每个主题可以分多个分区，消费组对分区进行消费操作
 2. 可扩展性：kafka 集群支持热扩展
@@ -18,7 +18,7 @@ Apache Kafka 是一个分布式的发布-订阅消息系统，能够支撑海量
 4. 容错性：允许集群中节点失败（若副本数量为 n，则允许 n-1 个节点失败）
 5. 高并发：支持数千个客户端同时读写
 
-### 1.3. 应用场景
+### 应用场景
 
 1. 日志收集：一个公司可以用 Kafka 可以收集各种服务的 log，通过 kafka 以统一接口服务的方式开放给各种 consumer，例如 Hadoop、Hbase、Solr 等
 2. 消息系统：解耦和生产者和消费者、缓存消息等
@@ -26,7 +26,7 @@ Apache Kafka 是一个分布式的发布-订阅消息系统，能够支撑海量
 4. 运营指标：Kafka 也经常用来记录运营监控数据。包括收集各种分布式应用的数据，生产各种操作的集中反馈，比如报警和报告
 5. 流式处理：比如 spark streaming 和 storm
 
-### 1.4. 技术优势
+### 技术优势
 
 - **可伸缩性**：Kafka 主要表示在以下两个重要特性
     - Kafka 集群在运行期间可以轻松地扩展或收缩（可以添加或删除代理），而不会宕机
@@ -34,37 +34,37 @@ Apache Kafka 是一个分布式的发布-订阅消息系统，能够支撑海量
 - **容错性和可靠性**：Kafka 的设计方式使某个代理的故障能够被集群中的其他代理检测到。由于每个主题都可以在多个代理上复制，所以集群可以在不中断服务的情况下从此类故障中恢复并继续运行。
 - **吞吐量**：代理能够以超快的速度有效地存储和检索数据。
 
-#### 1.4.1. Kafka 实现高吞吐量的原因
+#### Kafka 实现高吞吐量的原因
 
 - Kafka 的数据存储方式非常高效，数据存储在内存中，并且可以进行批量处理。
 - Kafka 的分区机制可以将数据分散在多个节点上，实现了负载均衡。
 - Kafka 的数据传输采用 Zero Copy 技术，减少了数据传输的开销。
 
-## 2. 核心概念详解（待整理）
+## 核心概念详解（待整理）
 
 > TODO: 待整理
 
-## 3. 安装与配置
+## 安装与配置
 
 > 安装包下载地址：https://kafka.apache.org/downloads
 
 ![](images/415914022238971.png)
 
-### 3.1. windows 版本
+### windows 版本
 
 > 注：windows 系统下的 3.x 版本目前可能会存在 bug，建议使用 2.x 版本。（目前本人使用的是 2.8.1 版本）
 
-#### 3.1.1. 安装
+#### 安装
 
 下载完成后，安装包是 `.tgz` 压缩文件，使用解压缩软件解压缩到无中文与空格的目录即可使用，解压后得到如下文件
 
 ![](images/505440123226838.png)
 
-#### 3.1.2. 启动服务器
+#### 启动服务器
 
 kafka 服务器的功能相当于 RocketMQ 中的 broker，kafka 运行还需要一个类似于命名服务器的服务。在 kafka 安装目录中自带一个类似于命名服务器的工具，叫做 zookeeper，它的作用是注册中心。
 
-##### 3.1.2.1. zookeeper 配置与启动
+##### zookeeper 配置与启动
 
 - 进入 kafka 的安装目录下的 config 目录，修改 zookeeper.properties 配置文件，文件内容如下：
 
@@ -101,7 +101,7 @@ cd /d E:\kafka_2.13-2.8.1\
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 ```
 
-##### 3.1.2.2. kafka 服务配置与启动
+##### kafka 服务配置与启动
 
 - 进入 kafka 的安装目录下的 config 目录，修改 server.properties 的配置文件，配置中需要关注以下几个参数：
 
@@ -125,7 +125,7 @@ cd /d E:\kafka_2.13-2.8.1\
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 ```
 
-#### 3.1.3. 启动可能出现的问题
+#### 启动可能出现的问题
 
 可能在启动服务的时候，会出现 Windows CMD 命令行解释器【输入行太长。 命令语法不正确】
 
@@ -135,9 +135,9 @@ cd /d E:\kafka_2.13-2.8.1\
 
 所以目前将 kafka 的安装目录直接移动到 E 盘的根目录中
 
-#### 3.1.4. Kafka 测试消息生产与消费 
+#### Kafka 测试消息生产与消费 
 
-##### 3.1.4.1. 创建主题
+##### 创建主题
 
 和之前操作其他 MQ 产品相似，kakfa 也是基于主题操作，操作之前需要先初始化 topic。
 
@@ -150,7 +150,7 @@ kafka-topics.bat --zookeeper 127.0.0.1:2181 --list
 kafka-topics.bat --delete --zookeeper localhost:2181 --topic moon
 ```
 
-##### 3.1.4.2. 测试服务器启动状态
+##### 测试服务器启动状态
 
 Kafka 提供有一套测试服务器功能的测试程序，运行 `bin\windows` 目录下的命令即可使用
 
@@ -159,7 +159,7 @@ kafka-console-producer.bat --broker-list localhost:9092 --topic moon						# 测�
 kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic moon --from-beginning	# 测试消息消费
 ```
 
-### 3.2. linux 版本（待整理）
+### linux 版本（待整理）
 
 > TODO: 待整理
 

@@ -1,8 +1,8 @@
-## 1. MyBatis 源码概述
+## MyBatis 源码概述
 
 > MyBatis 源码仓库地址：https://github.com/MyBatis/MyBatis-3
 
-### 1.1. MyBatis 源码包导入
+### MyBatis 源码包导入
 
 目前学习的 MyBatis 版本是：3.5.2，源码包导入过程：
 
@@ -16,13 +16,13 @@
 
 > 直接用`mybatis-3-master（注释版）.zip`的源码包，在里面加注释
 
-### 1.2. 源码架构分析
+### 源码架构分析
 
-#### 1.2.1. 物理分层
+#### 物理分层
 
 ![MyBatis源码结构.xmind](images/20191124082641659_9996.png)
 
-#### 1.2.2. 逻辑分层
+#### 逻辑分层
 
 MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如下：
 
@@ -38,9 +38,9 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 > 2. 方便开发团队分工和开发效率的提升；举个例子，mybatis 这么大的一个源码框架不可能是一个人开发的，他需要一个团队，团队之间肯定有分工，既然有了层次的划分，分工也会变得容易，开发人员可以专注于某一层的某一个模块的实现，专注力提升了，开发效率自然也会提升
 > 3. 提高系统的伸缩性和性能。系统分层之后，只要把层次之间的调用接口明确了，那就可以从逻辑上的分层变成物理上的分层。当系统并发量吞吐量上来了，怎么办？为了提高系统伸缩性和性能，可以把不同的层部署在不同服务器集群上，不同的组件放在不同的机器上，用多台机器去抗压力，这就提高了系统的性能。压力大的时候扩展节点加机器，压力小的时候，压缩节点减机器，系统的伸缩性就是这么来的
 
-## 2. MyBatis涉及的设计模式
+## MyBatis涉及的设计模式
 
-### 2.1. 外观模式（门面模式）
+### 外观模式（门面模式）
 
 从源码的架构分析，特别是接口层的设计，MyBatis的整体架构的设计模式符合外观模式
 
@@ -56,7 +56,7 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 - 一个复杂的模块或子系统提供一个供外界访问的接口
 - 子系统相对独立，外界对子系统的访问只要黑箱操作即可
 
-### 2.2. 面向对象设计需要遵循的六大设计原则
+### 面向对象设计需要遵循的六大设计原则
 
 > 学习源码除了学习编程的技巧、经验之外，最重要的是学习源码的设计的思想以及设计模式的灵活应用
 
@@ -69,9 +69,9 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 5. **里氏代换原则**：所有引用基类（父类）的地方必须能透明地使用其子类的对象；
 6. **接口隔离原则**：客户端不应该依赖它不需要的接口，一个类对另一个类的依赖应该建立在最小的接口上
 
-### 2.3. 建造者模式
+### 建造者模式
 
-#### 2.3.1. 什么是建造者模式
+#### 什么是建造者模式
 
 在配置加载阶段大量的使用了建造者模式，首先学习建造者模式。建造者模式（Builder Pattern）使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。建造者模式类图如下：
 
@@ -86,7 +86,7 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 
 > **关于建造器模式的扩展知识**：流式编程风格越来越流行，如 zookeeper 的 Curator、JDK8 的流式编程等等都是例子。流式编程的优点在于代码编程性更高、可读性更好，缺点在于对程序员编码要求更高、不太利于调试。建造者模式是实现流式编程风格的一种方式。
 
-#### 2.3.2. 与工厂模式区别
+#### 与工厂模式区别
 
 建造者模式应用场景如下：
 
@@ -102,9 +102,9 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
     - 工厂模式：客户端对产品的创建过程参与度低，对象实例化时属性值相对比较固定
     - 建造者模式：客户端参与了产品的创建，决定了产品的类型和内容，参与度高；适合实例化对象时属性变化频繁的场景
 
-### 2.4. 策略模式
+### 策略模式
 
-#### 2.4.1. 什么是策略模式
+#### 什么是策略模式
 
 策略模式（Strategy Pattern）策略模式定义了一系列的算法，并将每一个算法封装起来，而且使他们可以相互替换，让算法独立于使用它的客户而独立变化。Spring 容器中使用配置可以灵活的替换掉接口的实现类就是策略模式最常见的应用。类图如下：
 
@@ -114,12 +114,12 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 - Strategy：算法的统一接口
 - ConcreteStrategy：算法的具体实现
 
-#### 2.4.2. 策略模式的使用场景
+#### 策略模式的使用场景
 
 - 针对同一类型问题的多种处理方式，仅仅是具体行为有差别时
 - 出现同一抽象类有多个子类，而又需要使用 if-else 或者 switch-case 来选择具体子类时
 
-### 2.5. 模板模式
+### 模板模式
 
 **模板模式**是：一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行。定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定实现。类结构如下：
 
@@ -129,9 +129,9 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 
 **应用场景**：遇到由一系列步骤构成的过程需要执行，这个过程从高层次上看是相同的，但是有些步骤的实现可能不同，这个时候就需要考虑用模板模式了
 
-### 2.6. 装饰器模式
+### 装饰器模式
 
-#### 2.6.1. 模式的结构
+#### 模式的结构
 
 装饰器模式是一种用于代替继承的技术，无需通过继承增加子类就能扩展对象的新功能。使用对象的关联关系代替继承关系，更加灵活，同时避免类型体系的快速膨胀。装饰器 UML 类图如下：
 
@@ -142,14 +142,14 @@ MyBatis 源码共 16 个模块，可以分成三层，MyBatis源码分层图如�
 - **装饰器抽象类（Decorator）**：实现Component接口的抽象类，在其中封装了一个Component对象，也就是被装饰的对象
 - **具体装饰器类（ConcreteDecorator）**：该实现类要向被装饰的对象添加某些功能
 
-#### 2.6.2. 装饰器与继承的区别
+#### 装饰器与继承的区别
 
 装饰器相对于继承，装饰器模式灵活性更强，扩展性更强：
 
 - 灵活性：装饰器模式将功能切分成一个个独立的装饰器，在运行期可以根据需要动态的添加功能，甚至对添加的新功能进行自由的组合
 - 扩展性：当有新功能要添加的时候，只需要添加新的装饰器实现类，然后通过组合方式添加这个新装饰器，无需修改已有代码，符合开闭原则
 
-#### 2.6.3. 装饰器模式使用举例
+#### 装饰器模式使用举例
 
 - IO 中输入流和输出流的设计
 
@@ -159,7 +159,7 @@ BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new Fil
 
 - 对网络爬虫的自定义增强，可增强的功能包括：多线程能力、缓存、自动生成报表、黑白名单、random 触发等
 
-### 2.7. 责任链模式
+### 责任链模式
 
 责任链模式：就是把一件工作分别经过链上的各个节点，让这些节点依次处理这个工作。和装饰器模式不同，每个节点都知道后继者是谁；适合为完成同一个请求需要多个处理类的场景。责任链模式类图如下：
 
@@ -176,15 +176,15 @@ BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new Fil
 3. 增强给对象指派职责的灵活性。通过改变链内的成员或者调动它们的次序，允许动态地新增或者删除责任
 4. 增加新的请求处理类很方便
 
-## 3. 日志模块分析
+## 日志模块分析
 
-### 3.1. 日志模块需求分析
+### 日志模块需求分析
 
 1. MyBatis 没有提供日志的实现类，需要接入第三方的日志组件，但第三方日志组件都有各自的 Log 级别，且各不相同，而 MyBatis 统一提供了 trace、debug、warn、error 四个级别；
 2. 自动扫描日志实现，并且第三方日志插件加载优先级如下：slf4J -> commonsLoging -> Log4J2 -> Log4J -> JdkLog;
 3. 日志的使用要优雅的嵌入到主体功能中
 
-### 3.2. 适配器模式
+### 适配器模式
 
 日志模块的第一个需求是一个典型的使用适配器模式的场景。
 
@@ -212,7 +212,7 @@ MyBatis 日志模块使用适配器模式，具体实现如下：
 
 **总结：日志模块实现采用适配器模式，日志组件（Target）、适配器以及统一接口（Log 接口）定义清晰明确符合单一职责原则；同时，客户端在使用日志时，面向 Log 接口编程，不需要关心底层日志模块的实现，符合依赖倒转原则；最为重要的是，如果需要加入其他第三方日志框架，只需要扩展新的模块满足新需求，而不需要修改原有代码，这又符合了开闭原则**
 
-### 3.3. 怎么实现优先加载日志组件
+### 怎么实现优先加载日志组件
 
 见 org.apache.ibatis.logging.LogFactory 中的静态代码块，通过静态代码块确保第三方日志插件加载优先级如下：slf4J → commonsLoging → Log4J2 → Log4J → JdkLog。在`tryImplementation`方法，会判断适配器的构造方法是否为空，为空时才会执行
 
@@ -261,7 +261,7 @@ public final class LogFactory {
 }
 ```
 
-### 3.4. 代理模式和动态代理(知识回顾)
+### 代理模式和动态代理(知识回顾)
 
 代理模式定义：给目标对象提供一个代理对象，并由代理对象控制对目标对象的引用。有以下两个目的：
 
@@ -274,7 +274,7 @@ public final class LogFactory {
 
 代理模式有**静态代理**和**动态代理**两种实现方式
 
-#### 3.4.1. 静态代理
+#### 静态代理
 
 静态代理方式需要代理对象和目标对象实现一样的接口
 
@@ -283,7 +283,7 @@ public final class LogFactory {
     - 冗余。由于代理对象要实现与目标对象一致的接口，会产生过多的代理类
     - 不易维护。一旦接口增加方法，目标对象与代理对象都要进行修改
 
-#### 3.4.2. 动态代理
+#### 动态代理
 
 - 动态代理利用了 JDK API，动态地在内存中构建代理对象，从而实现对目标对象的代理功能
 - 动态代理又被称为 JDK 代理或接口代理。静态代理与动态代理的区别主要在
@@ -296,7 +296,7 @@ JDK 中生成代理对象主要涉及两个类/接口
 - 第一个为 `java.lang.reflect.Proxy` 类，通过静态方法 `newProxyInstance` 生成代理对象
 - 第二个为 `java.lang.reflect.InvocationHandler` 接口，通过 `invoke` 方法对业务进行增强
 
-### 3.5. 优雅的增强日志功能
+### 优雅的增强日志功能
 
 通过观察Mybatis框架的日志打印信息，总结框架对如下几个位置需要打日志：
 
@@ -317,21 +317,21 @@ JDK 中生成代理对象主要涉及两个类/接口
 - `ResultSetLogger`：负责打印数据结果信息
 - `StatementLooger`：与PreparedStatementLogger一样，只是打印没有预编译的SQL语句
 
-#### 3.5.1. 日志功能是如何加入主体功能中
+#### 日志功能是如何加入主体功能中
 
 既然在 Mybatis 中 Executor 才是访问数据库的组件，日志功能是在 Executor 中被嵌入的，具体代码在`org.apache.ibatis.executor.SimpleExecutor.prepareStatement(StatementHandler, Log)`方法中
 
 ![添加日志功能入口](images/20191208103527498_13572.png)
 
-## 4. 数据源模块分析
+## 数据源模块分析
 
 数据源模块重点：数据源的创建和数据库连接池（*池化技术*）的源码分析；数据源创建比较复杂，对于复杂对象的创建，可以考虑使用工厂模式来优化，接下来介绍下简单工厂模式和工厂模式
 
-### 4.1. 简单工厂模式（未整理）
+### 简单工厂模式（未整理）
 
-### 4.2. 工厂模式(未整理)
+### 工厂模式(未整理)
 
-### 4.3. 数据源的创建
+### 数据源的创建
 
 数据源对象是比较复杂的对象，其创建过程相对比较复杂，对于 MyBatis 创建一个数据源，具体来讲有如下难点
 
@@ -349,7 +349,7 @@ JDK 中生成代理对象主要涉及两个类/接口
 - `UnpooledDataSourceFactory`：工厂接口的实现类之一，用于创建 UnpooledDataSource(不带连接池的数据源)
 - `PooledDataSourceFactory`：工厂接口的实现类之一，用于创建 PooledDataSource（带连接池的数据源）
 
-## 5. MyBatis 基础执行流程分析
+## MyBatis 基础执行流程分析
 
 使用MyBatis完成一次数据库基础操作的代码如下：
 
@@ -385,11 +385,11 @@ public void testMyBatisGetMapper() {
 2. 代理封装阶段：封装 iBatis 的编程模型，使用 mapper 接口开发的初始化工作。
 3. 数据访问阶段：通过 SqlSession 完成 SQL 的解析，参数的映射、SQL 的执行、结果的解析过程。
 
-## 6. 第一阶段：加载与解析配置
+## 第一阶段：加载与解析配置
 
-### 6.1. 配置加载的核心类
+### 配置加载的核心类
 
-#### 6.1.1. 建造器三个核心类
+#### 建造器三个核心类
 
 在 MyBatis 中负责加载配置文件的核心类有三个，类图如下：
 
@@ -400,7 +400,7 @@ public void testMyBatisGetMapper() {
 - `XMLMapperBuilder`：主要负责解析映射配置 Mapper.xml 文件；
 - `XMLStatementBuilder`：主要负责解析映射配置文件中的 SQL 节点；
 
-#### 6.1.2. 三个核心类分工示意图
+#### 三个核心类分工示意图
 
 `XMLConfigBuilder`、`XMLMapperBuilder`、`XMLStatementBuilder` 这三个类在配置文件加载过程中非常重要，具体分工如下图所示：
 
@@ -408,7 +408,7 @@ public void testMyBatisGetMapper() {
 
 这三个类使用了建造者模式对 configuration 对象进行初始化，使用建造者模式屏蔽复杂对象的创建过程，把建造者模式演绎成了工厂模式。
 
-### 6.2. SqlSessionFactory（MyBatis启动入口）
+### SqlSessionFactory（MyBatis启动入口）
 
 根据MyBatis基础的执行代码可知，通过`new SqlSessionFactoryBuilder().build(inputStream);`可创建`SqlSessionFactory`实例，这也是MyBatis项目的启动入口
 
@@ -431,15 +431,15 @@ SqlSessionFactory build(InputStream inputStream, String env, Properties props)
 SqlSessionFactory build(Configuration config)
 ```
 
-### 6.3. 配置加载过程
+### 配置加载过程
 
 第一个阶段配置加载过程分解为四个步骤，四个步骤如下图：
 
 ![](images/20210319103056605_32064.png)
 
-### 6.4. 配置文件的解析（XMLConfigBuilder）
+### 配置文件的解析（XMLConfigBuilder）
 
-#### 6.4.1. 核心配置文件读取
+#### 核心配置文件读取
 
 通过`SqlSessionFactoryBuilder`建造`SqlSessionFactory`，并创建`XMLConfigBuilder`对象读取MyBatis核心配置文件。具体代码如下：
 
@@ -447,7 +447,7 @@ SqlSessionFactory build(Configuration config)
 
 ![](images/20210319104156962_9631.png)
 
-#### 6.4.2. parseConfiguration 配置元素解析
+#### parseConfiguration 配置元素解析
 
 进入`XMLConfigBuilder`的`parseConfiguration`方法，对MyBatis核心配置文件的各个元素进行解析，读取元素信息后填充到`Configuration`对象。重点关注以下的几个解析方法：
 
@@ -515,7 +515,7 @@ private void parseConfiguration(XNode root) {
 }
 ```
 
-#### 6.4.3. xml映射配置文件（Mapper.xml）的解析
+#### xml映射配置文件（Mapper.xml）的解析
 
 `XMLConfigBuilder`类的`parseConfiguration(XNode root)`方法，其中一个重点是`mapperElement(root.evalNode("mappers"))`，主要处理逻辑是读取MyBatis总配置文件中所配置的XML映射文件，然后再对映射文件逐个解析
 
@@ -630,9 +630,9 @@ private void configurationElement(XNode context) {
 
 在`XMLMapperBuilder.configurationElement()`方法解析xml映射文件过程中，有以下几个重点解析过程需要注意。
 
-### 6.5. 解析xml映射文件（XMLMapperBuilder）
+### 解析xml映射文件（XMLMapperBuilder）
 
-#### 6.5.1. xml映射配置的 cache 节点解析（待整理分析）
+#### xml映射配置的 cache 节点解析（待整理分析）
 
 `XMLMapperBuilder`类的`cacheElement(XNode)`方法用于实例化二级缓存，此过程中都使用了建造者模式，是建造者模式的典型应用。
 
@@ -653,7 +653,7 @@ private void cacheElement(XNode context) {
 }
 ```
 
-#### 6.5.2. xml映射配置的 resultMap 节点解析
+#### xml映射配置的 resultMap 节点解析
 
 `XMLMapperBuilder`类的`resultMapElements(List<XNode>)`方法用于解析`<resultMap>`节点，**需要重点理解此方法的处理流程**。解析完之后数据保存在`Configuration`对象的`Map<String, ResultMap> resultMaps`属性中。此实例化`resultMap`过程中都使用了建造者模式
 
@@ -791,7 +791,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
 }
 ```
 
-#### 6.5.3. 扩展细节：javaType与jdbcType的配置推导
+#### 扩展细节：javaType与jdbcType的配置推导
 
 通过`<resultMap>`标签可以不配置`javaType`与`jdbcType`，MyBatis框架会根据绑定的对象类型来推导出相应的`javaType`，即使`jdbcType`为空（没有配置），可以配置到相应的类型处理器`TypeHandler`，具体源码的处理位置在解析Mapper映射文件中的`<resultMap>`子标签时：
 
@@ -808,9 +808,9 @@ public class MapperBuilderAssistant extends BaseBuilder {
 ![](images/20210405111014659_19053.png)
 
 
-### 6.6. 解析xml映射文件操作语句相关节点（XMLStatmentBuilder）
+### 解析xml映射文件操作语句相关节点（XMLStatmentBuilder）
 
-#### 6.6.1. xml映射配置的 select、insert、update、delete 节点解析
+#### xml映射配置的 select、insert、update、delete 节点解析
 
 在`XMLMapperBuilder`类的`buildStatementFromContext(List<XNode>)`方法中，会创建`XMLStatmentBuilder`实例解析Mapper.xml映射文件的`<select>`、`<insert>`、`<update>`、`<delete>`节点
 
@@ -956,7 +956,7 @@ public class XMLStatementBuilder extends BaseBuilder {
 
 > <font color=red>**小总结：`XMLMapperBuilder`和`XMLStatementBuilder`负责解析读取配置文件里面的信息，`MapperBuilderAssistant`负责将信息填充到`Configuration`。将文件解析和数据的填充的工作分离在不同的类中，符合单一职责原则。**</font>
 
-#### 6.6.2. xml配置动态sql的解析封装
+#### xml配置动态sql的解析封装
 
 最终SQL节点树的解析由`XMLScriptBuilder`类负责，该类继承了`BaseBuilder`抽象类。
 
@@ -1108,7 +1108,7 @@ protected MixedSqlNode parseDynamicTags(XNode node) {
 
 ![](images/20210321161421367_19915.png)
 
-### 6.7. 解析后注册Mapper（XMLMapperBuilder）
+### 解析后注册Mapper（XMLMapperBuilder）
 
 通过上面的一系列解析后，`XMLMapperBuilder.configurationElement`方法已经执行完成，继续执行`bindMapperForNamespace`方法，实现mapper接口的注解扫描与接口代理注册的工作
 
@@ -1226,13 +1226,13 @@ public void parse() {
 }
 ```
 
-## 7. 第二阶段：代理的封装
+## 第二阶段：代理的封装
 
 经过上面第一阶段的准备，MyBatis已经将所有SQL数据都包装到`Configuration`类中
 
-### 7.1. SqlSession
+### SqlSession
 
-#### 7.1.1. 作用简述
+#### 作用简述
 
 第二个阶段使用到的第一个对象就是`SqlSession`，`SqlSession` 是 MyBaits 对外提供的最关键的核心接口，通过它可以执行数据库读写命令、获取映射器、管理事务等；`SqlSession` 也意味着客户端与数据库的一次连接，客户端对数据库的访问请求都是由 `SqlSession` 来处理的。如下图所示：
 
@@ -1243,7 +1243,7 @@ public void parse() {
 
 ![](images/20210325103501274_28416.png)
 
-#### 7.1.2. 获取
+#### 获取
 
 `SqlSession`由`SqlSessionFactory`（其默认的实现类为`DefaultSqlSessionFactory`）使用工厂模式创建，每个`SqlSession`都会引用`SqlSessionFactory`中全局唯一单例存在的`Configuration`实例。而获取`SqlSession`的核心方法是：
 
@@ -1290,7 +1290,7 @@ public class DefaultSqlSessionFactory implements SqlSessionFactory {
 
 通过源码可知，最终开启session后，返回的具体实现是`DefaultSqlSession`
 
-#### 7.1.3. 多种获取重载方法
+#### 多种获取重载方法
 
 `SqlSessionFactory` 有六个方法创建 `SqlSession` 实例。通常来说，当选择其中一个方法时，需要考虑以下几点：
 
@@ -1312,7 +1312,7 @@ SqlSession openSession(ExecutorType execType, Connection connection)
 Configuration getConfiguration();
 ```
 
-### 7.2. TransactionFactory 事务工厂
+### TransactionFactory 事务工厂
 
 此方法是从`Configuration`类中获取的事务工厂`TransactionFactory`是典型的策略模式的应用。运行期，`TransactionFactory`接口的实现，是由配置文件的配置决定，可配置选项包括：
 
@@ -1329,9 +1329,9 @@ Configuration getConfiguration();
 
 ![](images/20210325092724158_27597.png)
 
-### 7.3. Executor 组件
+### Executor 组件
 
-#### 7.3.1. 配置默认执行器类型
+#### 配置默认执行器类型
 
 在 MyBatis 总配置文件中，可以设置默认使用的执行器（*不配置则默认为`SIMPLE`*）。
 
@@ -1351,7 +1351,7 @@ Configuration getConfiguration();
 sqlSessionFactory.getConfiguration().setDefaultExecutorType(ExecutorType.BATCH);
 ```
 
-#### 7.3.2. 执行器的创建
+#### 执行器的创建
 
 在调用`sqlSessionFactory.openSession()`方法时，通过`Configuration`类的`getDefaultExecutorType()`方法可以获取到配置的默认执行器类型`ExecutorType`（枚举），然后调用`configuration.newExecutor(tx, execType)`方法，根据执行器类型来获取相应的执行器实现。具体源码如下：
 
@@ -1385,7 +1385,7 @@ public Executor newExecutor(Transaction transaction, ExecutorType executorType) 
 }
 ```
 
-#### 7.3.3. 执行器的作用与其实现类
+#### 执行器的作用与其实现类
 
 `Sqlsession` 的功能都是基于 `Executor` 来实现的，`Executor` 是 MyBaits 核心接口之一，定义了数据库操作最基本的方法，在其内部遵循 JDBC 规范完成对数据库的访问。其类继承结构如下图所示：
 
@@ -1403,7 +1403,7 @@ public Executor newExecutor(Transaction transaction, ExecutorType executorType) 
 
 > Notes: 以上 Executor 的各种实现的特点，都严格限制在 SqlSession 生命周期范围内。
 
-##### 7.3.3.1. ReuseExecutor
+##### ReuseExecutor
 
 不同类型的执行器使用了模板模式。以查询操作为例：
 
@@ -1433,7 +1433,7 @@ public <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBo
 
 ![](images/20210606213252654_21296.png)
 
-##### 7.3.3.2. BatchExecutor
+##### BatchExecutor
 
 `BatchExecutor`执行器需要注意的是，这个主要用于增删改的操作中，下面以修改操作为例：
 
@@ -1447,7 +1447,7 @@ public <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBo
 
 ![](images/20210606215743372_17277.png)
 
-##### 7.3.3.3. CachingExecutor
+##### CachingExecutor
 
 `CachingExecutor`执行器没有继承抽象模板类`BaseExecutor`，直接实现了`Executor`接口。在创建执行器时候，会将用户配置的执行器实例通过构造函数传入，因此`CachingExecutor`实例中持有其他执行器的实例。
 
@@ -1457,11 +1457,11 @@ public <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBo
 
 ![](images/20210606221137230_6353.png)
 
-##### 7.3.3.4. SimpleExecutor
+##### SimpleExecutor
 
 在源码分析中一直此类型的执行器，具体详见源码分析的流程
 
-### 7.4. MapperProxyFactory 代理工厂的映射建立
+### MapperProxyFactory 代理工厂的映射建立
 
 通过`SqlSession`实例获取`Mapper`接口实例，其实是jdk的动态代理。在`SqlSessionFactoryBuilder.build`创建`SqlSessionFactory`的过程，会扫描与建立相应Mapper接口代理工厂的映射关系，具体的实现位置如下：
 
@@ -1476,7 +1476,7 @@ knownMappers.put(type, new MapperProxyFactory<>(type));
 
 > 详见《解析后注册Mapper（XMLMapperBuilder）》章节
 
-### 7.5. Mapper 接口模块分析及相关核心类
+### Mapper 接口模块分析及相关核心类
 
 `SqlSession` 是 MyBatis 对外提供数据库访问最主要的 API，但是因为直接使用 `SqlSession` 进行数据库开发存在代码可读性差、可维护性差的问题。通过都使用 Mapper 接口的方式进行数据库的开发。实际上 MyBatis 的内部，将对 Mapper 接口的调用转发给了`SqlSession`，这个请求的转发是建立在配置文件解读、动态代理增强的基础之上实现的，实现的过程有三个关键要素
 
@@ -1496,14 +1496,14 @@ Mapper接口实例操作数据库功能所涉及的核心类结构如下：
     - `MethodSignature`：封装 mapper 接口方法的相关信息（入参，返回类型）
     - `ParamNameResolver`：解析 mapper 接口方法中的入参，将多个参数转成 Map
 
-### 7.6. Mapper 代理绑定流程
+### Mapper 代理绑定流程
 
 从`SqlSession.getMapper(Class<T>)`方法获取Mapper实例开始，Mapper代理生成与绑定的时序图如下所示：
 
 ![](images/20210325153548858_8623.png)
 
 
-#### 7.6.1. 获取代理阶段
+#### 获取代理阶段
 
 通过`SqlSession`获取相应的Mapper接口，具体是由`Configuration`类来实现
 
@@ -1585,7 +1585,7 @@ public class MapperProxyFactory<T> {
 }
 ```
 
-#### 7.6.2. MapperMethod （接口与sql信息的封装）
+#### MapperMethod （接口与sql信息的封装）
 
 `MapperMethod`类是封装了 Mapper 接口中对应方法的信息，以及对应的 sql 语句的信息（*xml映射文件或者注解配置的*）。`MapperProxy`代理的`invoke`方法中调用`cachedMapperMethod`方法，从`Map<Method, MapperMethod> methodCache`属性中获取到当前执行的接口方法相应`MapperMethod`实例，如果缓存中不存在，则创建并存入缓存中
 
@@ -1622,7 +1622,7 @@ public MapperMethod(Class<?> mapperInterface, Method method, Configuration confi
 
 `ParamNameResolver`类是用于方法参数的解析，主要建立方法的参数的映射关系，**参数顺序->参数名称**。其实方法的参数名称并不重要，普通方法参数只记录参数索引；如果方法参数使用了`@Param`注解，则需要记录注解的value值，用于以后替换sql占位符
 
-#### 7.6.3. SQL 绑定与执行总结
+#### SQL 绑定与执行总结
 
 ```java
 public class MapperMethod {
@@ -1638,11 +1638,11 @@ public class MapperMethod {
 - 通过 `MapperMethod.SqlCommand.name` 生成两维坐标
 - 通过 `MapperMethod.MethodSignature.paramNameResolve` 将传入的多个参数转成 Map 进行参数传递
 
-## 8. 第三个阶段：数据访问阶段
+## 第三个阶段：数据访问阶段
 
-### 8.1. Mapper 接口（代理）执行方法流程
+### Mapper 接口（代理）执行方法流程
 
-#### 8.1.1. 代理的调用
+#### 代理的调用
 
 上一个阶段，已经拿到Mapper的代理实例`MapperProxy`，然后在调用Mapper接口的相应的方法时，就会调用到`MapperProxy`代理的`invoke`方法
 
@@ -1795,7 +1795,7 @@ private <E> Object executeForMany(SqlSession sqlSession, Object[] args) {
 }
 ```
 
-#### 8.1.2. 方法参数的封装
+#### 方法参数的封装
 
 通过`method.convertArgsToSqlCommandParam(args)`方法获取当前执行的方法入参，实际是调用了参数解析器`ParamNameResolver`类的`getNamedParams`方法。如果只有一个参数，直接返回参数；如果有多个参数，则进行与之前解析出的参数名称进行对应，返回映射关系map。
 
@@ -1832,7 +1832,7 @@ public Object getNamedParams(Object[] args) {
 }
 ```
 
-#### 8.1.3. 执行数据库操作
+#### 执行数据库操作
 
 上面获取到待调用的方法的参数之后，就调用MyBatis相关操作数据库的方法（如`selectList`、`selectOne`、`insert`、`update`、`delete`等）。此时会交给`Executor`执行器来执行操作
 
@@ -1874,7 +1874,7 @@ public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBoun
 }
 ```
 
-#### 8.1.4. 动态sql的拼接
+#### 动态sql的拼接
 
 `MappedStatement.getBoundSql`方法是用于获取拼接好sql语句，具体实现逻辑如下：
 
@@ -1922,7 +1922,7 @@ public BoundSql getBoundSql(Object parameterObject) {
 
 ![](images/20210325223220822_19191.png)
 
-#### 8.1.5. 执行并返回结果
+#### 执行并返回结果
 
 上面获取到可执行的sql后，调用`BaseExecutor`执行器的相应的操作数据库方法。这里以查询为例，先从本地缓存获取结果，如果没有则查询数据库
 
@@ -1957,7 +1957,7 @@ private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowB
 
 > **以上就是Mapper代理方法调用操作数据库的基础流程，具体还有数据库的操作、预编译SQL语句的占位符处理、数据库结果集的封装成指定实体类等操作，是由`Executor`执行器分别调度`StatementHandler`、`ParameterHandler`、`ResultSetHandler`等三大核心组件来完成。具体源码的处理分析，详见下面章节**
 
-### 8.2. Executor 执行器的数据库处理流程
+### Executor 执行器的数据库处理流程
 
 MyBatis 的执行器组件是使用模板模式的典型应用，其中`BaseExecutor`、`BaseStatementHandler`是模板模式的最佳实践。（*模板模式简介详见上面《MyBatis涉及的设计模式》*）
 
@@ -1971,7 +1971,7 @@ MyBatis 的执行器组件是使用模板模式的典型应用，其中`BaseExec
 - `ReuseExecutor`：在`doQuery`方法中，使用预编译 `PrepareStatement` 对象访问数据库，访问时，会重用缓存中的 `PrepareStatement` 对象
 - `BatchExecutor`：在`doQuery`方法中，实现批量执行多条 SQL 语句的能力
 
-### 8.3. Executor 执行器调度的三个组件
+### Executor 执行器调度的三个组件
 
 对`SimpleExecutor.doQuery()`方法的源码分析可知，`Executor`执行器会调度三个组件来完成数据库的操作
 
@@ -1983,9 +1983,9 @@ MyBatis 的执行器组件是使用模板模式的典型应用，其中`BaseExec
 
 ![Executor调度三个组件流程图.drawio](images/20210327232303362_2320.jpg)
 
-### 8.4. StatementHandler 组件
+### StatementHandler 组件
 
-#### 8.4.1. 组件功能简介
+#### 组件功能简介
 
 `StatementHandler`完成Mybatis最核心的工作，也是`Executor`实现的基础；功能包括：创建`Statement`对象，为SQL语句绑定参数，执行增删改查等SQL语句、将结果映射集进行转化。
 
@@ -2007,7 +2007,7 @@ MyBatis 的执行器组件是使用模板模式的典型应用，其中`BaseExec
 </select>
 ```
 
-#### 8.4.2. 组件源码处理流程分析
+#### 组件源码处理流程分析
 
 还是上面操作查询语句为示例，具体在`MapperMethod`类的`executeForMany`方法中，通过`DefaultSqlSession`类中的`Executor`执行器调用`query`方法进行真正的查询操作，而逻辑都在`BaseExecutor`的子类中。
 
@@ -2032,7 +2032,7 @@ public <E> List<E> doQuery(MappedStatement ms, Object parameter, RowBounds rowBo
 }
 ```
 
-##### 8.4.2.1. RoutingStatementHandler 实现类的创建
+##### RoutingStatementHandler 实现类的创建
 
 在`Configuration`类的`newStatementHandler()`方法中，会创建`StatementHandler`，其具体的实现是`RoutingStatementHandler`
 
@@ -2098,7 +2098,7 @@ private Statement prepareStatement(StatementHandler handler, Log statementLog) t
 }
 ```
 
-##### 8.4.2.2. 创建带日志功能的 Connection 代理实例
+##### 创建带日志功能的 Connection 代理实例
 
 <font color=red>**值得注意的是，这个`Connection`对象是一个带有日志功能的代理对象**</font>。具体创建的位置在`StatementHandler`组件创建`Statement`对象的前一步
 
@@ -2112,7 +2112,7 @@ private Statement prepareStatement(StatementHandler handler, Log statementLog) t
 
 ![](images/20210328155312506_32719.png)
 
-##### 8.4.2.3. 创建 Statement 数据库操作实例
+##### 创建 Statement 数据库操作实例
 
 `handler.prepare()`方法首先会调到具体实现类`RoutingStatementHandler`的方法
 
@@ -2179,13 +2179,13 @@ protected Statement instantiateStatement(Connection connection) throws SQLExcept
 }
 ```
 
-##### 8.4.2.4. sql语句的占位符
+##### sql语句的占位符
 
 创建完成数据操作对象`Statement`后，就要处理预编译SQL语句，主要是进行`?`占位符的处理。<font color=red>**此部分的处理逻辑是由`ParameterHandler`组件来实现，具体源码分析详见《ParameterHandler 组件》章节**</font>
 
-### 8.5. ParameterHandler 组件
+### ParameterHandler 组件
 
-#### 8.5.1. 组件功能简介
+#### 组件功能简介
 
 `ParameterHandler`相比于其他的组件就简单很多了，`ParameterHandler`译为参数处理器，负责为`PreparedStatement`的预编译SQL语句`?`占位符参数动态赋值，这个接口很简单只有两个方法
 
@@ -2200,7 +2200,7 @@ public interface ParameterHandler {
 
 `ParameterHandler`只有一个实现类`DefaultParameterHandler`，它实现了这两个方法。
 
-#### 8.5.2. ParameterHandler 的创建
+#### ParameterHandler 的创建
 
 在`PreparedStatementHandler`中会调用`ParameterHandler`来对SQL语句的占位符进行处理，所以在其抽象父类的构造方法中会进行`ParameterHandler`的初始化
 
@@ -2226,9 +2226,9 @@ public interface ParameterHandler {
  }
 ```
 
-#### 8.5.3. 组件源码处理流程分析
+#### 组件源码处理流程分析
 
-##### 8.5.3.1. DefaultParameterHandler 参数处理器默认实现
+##### DefaultParameterHandler 参数处理器默认实现
 
 上面查询操作为例，具体SQL占位符转成参数值是在`SimpleExecutor.prepareStatement`中方法进行处理
 
@@ -2302,7 +2302,7 @@ public void setParameters(PreparedStatement ps) {
 }
 ```
 
-##### 8.5.3.2. ParameterMapping 对SQL中的#{}或者${}的封装
+##### ParameterMapping 对SQL中的#{}或者${}的封装
 
 在上面处理占位符过程中，会获取将`#{}`或者`${}`里面参数的封装成`ParameterMapping`对象，具体封装的处理在`RawSqlSource`中的构造函数中进行，然后在`getBoundSql`方法返回的`BoundSql`实例时，已经将`#{}`转成占位符`?`并且包含了每个占位符信息封装的`ParameterMapping`对象集合
 
@@ -2358,7 +2358,7 @@ public SqlSource parse(String originalSql, Class<?> parameterType, Map<String, O
 
 ![](images/20210328225448999_16962.png)
 
-##### 8.5.3.3. 参数类型处理器
+##### 参数类型处理器
 
 在`DefaultParameterHandler.setParameters()`方法中，会调用相应参数类型的处理类，*会首先调用抽象父类`BaseTypeHandler`中的`setParameter`*
 
@@ -2402,9 +2402,9 @@ private TypeHandler<?> resolveTypeHandler(Object parameter, JdbcType jdbcType) {
 
 ![](images/20210403172535817_23783.png)
 
-### 8.6. ResultSetHandler 组件
+### ResultSetHandler 组件
 
-#### 8.6.1. 组件功能简介
+#### 组件功能简介
 
 在`StatementHandler`组件的执行过程中，通过`ParameterHandler`组件对预编译的sql占位符进行赋值后，就会执行相应的sql操作，此时就会通过`ResultSetHandler`组件来将sql操作结果进行封装处理
 
@@ -2412,13 +2412,13 @@ private TypeHandler<?> resolveTypeHandler(Object parameter, JdbcType jdbcType) {
 
 ![ResultSetHandler组件执行流程图.drawio](images/20210405164021237_8354.jpg)
 
-#### 8.6.2. ResultSetHandler 的创建
+#### ResultSetHandler 的创建
 
 与`ParameterHandler`组件一样，在`PreparedStatementHandler`中会调用`ResultSetHandler`来对SQL语句的结果集进行处理，所以在其抽象父类`BaseStatementHandler`的构造方法中会进行`ResultSetHandler`的初始化。这里如果有配置代理则生成代理对象，如果没有，则生成`DefaultResultSetHandler`实例
 
 ![](images/20210404082300110_24475.png)
 
-#### 8.6.3. 组件源码处理流程分析（DefaultResultSetHandler 结果集处理器默认实现）
+#### 组件源码处理流程分析（DefaultResultSetHandler 结果集处理器默认实现）
 
 以上面查询为例，在`SimpleExecutor`执行`doQuery`操作时，会通过`StatementHandler`组件调用其`query`查询方法（*示例的sql语句会调用`PreparedStatementHandler`实现*）
 
@@ -2532,7 +2532,7 @@ storeObject(resultHandler, resultContext, rowValue, parentMapping, resultSet);
 
 最后将结果集返回
 
-#### 8.6.4. ${} 拼接符的赋值
+#### ${} 拼接符的赋值
 
 > 这里先回忆之前知识，如果是使用`${}`字符串拼接符，此时会将sql包装成`DynamicSqlSource`对象；如果使用`#{}`占位符，会将sql包装成`RawSqlSource`对象（*注：sql语句没有使用相关的动态标签的情况下*）
 
@@ -2552,9 +2552,9 @@ storeObject(resultHandler, resultContext, rowValue, parentMapping, resultSet);
 
 ![](images/20210405124226737_28362.png)
 
-## 9. MyBatis 嵌套查询分析
+## MyBatis 嵌套查询分析
 
-### 9.1. 正常情况下非懒加载查询测试
+### 正常情况下非懒加载查询测试
 
 - 实体类
 
@@ -2664,13 +2664,13 @@ public void testSingleTableCollection() throws Exception {
 
 ![](images/20210405231714998_2157.png)
 
-### 9.2. 嵌套查询
+### 嵌套查询
 
 在MyBatis框架中，如果一个查询语句中，通过在`<resultMap>`中使用`<collection>`配置，触发了其中一些字段的再次查询，称为“嵌套查询”。
 
 嵌套查询的处理就在MyBatis源码中的`ResultSet`的处理属性的映射时，会触发嵌套查询的`selectList`操作
 
-#### 9.2.1. 源码分析
+#### 源码分析
 
 首先会执行主查询语句的查询逻辑，通过`BaseExecutor`执行器的`query`方法进行查询
 
@@ -2710,11 +2710,11 @@ public void testSingleTableCollection() throws Exception {
 
 ![](images/20210503221104383_28722.png)
 
-#### 9.2.2. 嵌套查询的N+1问题
+#### 嵌套查询的N+1问题
 
 尽管嵌套查询大量的简化了存在关联关系的查询，但它存在N+1的问题。关联的嵌套查询显示得到一个结果集，然后根据这个结果集的每一条记录进行关联查询。现在假设嵌套查询就一个（即resultMap 内部就一个association标签），现查询的结果集返回条数为N，那么关联查询语句将会被执行N次，加上自身返回结果集查询1次，共需要访问数据库N+1次，进而有可能影响到性能。
 
-#### 9.2.3. 嵌套查询的N+1问题解决方案
+#### 嵌套查询的N+1问题解决方案
 
 解决“N+1 查询问题”的办法就是开启懒加载、按需加载数据，开启懒加载配置：
 
@@ -2733,19 +2733,19 @@ public void testSingleTableCollection() throws Exception {
 </resultMap>
 ```
 
-## 10. MyBatis 懒加载（延迟加载）原理
+## MyBatis 懒加载（延迟加载）原理
 
-### 10.1. MyBatis 对懒加载的支持
+### MyBatis 对懒加载的支持
 
 Mybatis 仅支持 association 关联对象（一对一查询）和 collection 关联集合对象（一对多查询）的延迟加载。在 Mybatis 配置文件中，可以配置是否启用延迟加载 `lazyLoadingEnabled=true|false`。
 
-### 10.2. 懒加载实现原理
+### 懒加载实现原理
 
 它的原理是，使用 CGLIB 创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用 `a.getB().getName()`，拦截器 `invoke()` 方法发现 `a.getB()` 是 null 值，那么就会单独发送事先保存好的查询关联B对象的sql，获取B的查询结果，然后调用 `a.setB(b)`，于是a的对象b属性就有值了，接着完成 `a.getB().getName()` 方法的调用。这就是延迟加载的基本原理。
 
 > Tips: 不光是 Mybatis，几乎所有的持久层框架（包括 Hibernate），支持延迟加载的原理都是一样的。
 
-### 10.3. 懒加载情况下的嵌套查询测试
+### 懒加载情况下的嵌套查询测试
 
 在`collection`标签中加上`fetchType="lazy"`即可
 
@@ -2771,7 +2771,7 @@ resultMap id="ContractResultMapWithIdCardInfo" type="com.moon.mybatis.pojo.Consu
 
 ![](images/20210503225149463_32635.png)
 
-### 10.4. 懒加载的逻辑处理源码分析
+### 懒加载的逻辑处理源码分析
 
 与非懒加载的情况不一样，如果是懒加载的情况，在`ResultSetHandler`组件循环处理结果封装时，不是直接返回结果对象，而是返回结果的代理对象，从而在调用相应获取属性的方法时，就会触发嵌套查询的语句。所以懒加载的逻辑处理源码位置肯定会在`ResultSetHandler`组件处理结果集的位置
 
@@ -2815,9 +2815,9 @@ resultMap id="ContractResultMapWithIdCardInfo" type="com.moon.mybatis.pojo.Consu
 
 ![](images/20210505231325296_26213.png)
 
-## 11. MyBatis 缓存原理
+## MyBatis 缓存原理
 
-### 11.1. 缓存模块需求分析
+### 缓存模块需求分析
 
 1. MyBatis 缓存的实现是基于 Map 的，从缓存里面读写数据是缓存模块的核心基础功能
 2. 除核心功能之外，有很多额外的附加功能，如：防止缓存击穿，添加缓存清空策略（fifo、lru）、序列化功能、日志能力、定时清空能力等
@@ -2830,9 +2830,9 @@ resultMap id="ContractResultMapWithIdCardInfo" type="com.moon.mybatis.pojo.Consu
 
 所以MyBatis缓存模块采用了装饰器模式实现了缓存模块
 
-### 11.2. 缓存源码分析
+### 缓存源码分析
 
-#### 11.2.1. 一级缓存的实现原理
+#### 一级缓存的实现原理
 
 查询缓存，肯定是在发起sql查询前去判断是否存在缓存，如果存在则直接返回缓存的结果。
 
@@ -2863,7 +2863,7 @@ cacheKey.update(configuration.getEnvironment().getId());
 
 ![](images/20210606154512487_30776.png)
 
-#### 11.2.2. 二级缓存的实现原理
+#### 二级缓存的实现原理
 
 二级缓存是`SqlSessionFactory`级别缓存，不同的`SqlSession`之间共享，因为在创建`SqlSessionFactory`时，同时会创建`Configuration`，相应的缓存是存储在`Configuration`实例中，而该实例是唯一，所以缓存是可以跨不同的`SqlSession`
 
@@ -2871,7 +2871,7 @@ cacheKey.update(configuration.getEnvironment().getId());
 
 ![](images/20210606163345710_7870.png)
 
-### 11.3. 装饰器在缓存模块的使用
+### 装饰器在缓存模块的使用
 
 MyBatis 缓存模块是一个经典的使用装饰器实现的模块。结构如下：
 
@@ -2893,7 +2893,7 @@ MyBatis 缓存模块是一个经典的使用装饰器实现的模块。结构如
 
 答：MyBati的缓存分为一级缓存、二级缓存。二级缓存是多个会话共享的缓存，确实会出现并发安全的问题，因此MyBatis在初始化二级缓存时，会给二级缓存默认加上SynchronizedCache装饰器的增强，在对共享数据HashMap操作时进行同步控制，所以二级缓存不会出现并发安全问题；而一级缓存是会话独享的，不会出现多个线程同时操作缓存数据的场景，因此一级缓存也不会出现并发安全的问题；
 
-### 11.4. 缓存的唯一标识 CacheKey
+### 缓存的唯一标识 CacheKey
 
 MyBatis 中涉及到动态 SQL 的原因，缓存项的 key 不能仅仅通过一个 String 来表示，所以通过 CacheKey 来封装缓存的 Key 值，CacheKey可以封装多个影响缓存项的因素；判断两个CacheKey是否相同关键是比较两个对象的 hash 值是否一致；构成 CacheKey 对象的要素包括：
 
@@ -2961,9 +2961,9 @@ public boolean equals(Object object) {
 }
 ```
 
-## 12. 插件模块源码分析
+## 插件模块源码分析
 
-### 12.1. 插件的理解
+### 插件的理解
 
 插件是用来改变或者扩展MyBatis的原有的功能，MyBatis的插件就是通过继承`Interceptor`拦截器实现的。注意：在没有完全理解插件之前禁止使用插件对MyBatis进行扩展，有可能会导致严重的问题。MyBatis中能使用插件进行拦截的接口和方法如下：
 
@@ -2972,11 +2972,11 @@ public boolean equals(Object object) {
 - ParameterHandler（getParameterObject 、setParameters）
 - ResultSetHandler（handleResultSets、handleCursorResultSets 、handleOutputParameters）
 
-### 12.2. 源码分析
+### 源码分析
 
 插件模块的源码分析主要搞清楚初始化、插件加载以及插件如何调用等三个问题。**MyBatis 的插件是通过动态代理对原有的对象进行增强的。**
 
-#### 12.2.1. Interceptor 接口
+#### Interceptor 接口
 
 自定义MyBatis插件必须实现`Interceptor`接口。该接口有如下三个方法：
 
@@ -3015,7 +3015,7 @@ public interface Interceptor {
 }
 ```
 
-#### 12.2.2. Plugin 类
+#### Plugin 类
 
 `Plugin`类实现`InvocationHandler`接口，该类提供了几个核心方法
 
@@ -3105,7 +3105,7 @@ private static Class<?>[] getAllInterfaces(Class<?> type, Map<Class<?>, Set<Meth
 
 - 被代理对象方法被调用时触发`invoke`的方法（*详见下面《插件的调用》章节*）
 
-#### 12.2.3. 插件初始化
+#### 插件初始化
 
 插件的初始化实际是在 Mybatis 第一个阶段初始化的过程中，解析总配置xml文件中的`<plugins>`插件标签时加载到`Configuration`对象中的，具体代码位置：`XMLConfigBuilder.pluginElement`
 
@@ -3140,11 +3140,11 @@ private void pluginElement(XNode parent) throws Exception {
 
 ![](images/20210607223859468_14661.png)
 
-#### 12.2.4. 插件的加载
+#### 插件的加载
 
 插件可以拦截`Executor`、`StatementHandler`、`ParameterHandler`、`ResultSetHandler`四个接口指定的方法。都通过`Configuration`对象创建这四大对象时，通过责任链模式按插件的顺序对四大对象进行了反复装饰（增强）
 
-##### 12.2.4.1. 加载 Executor 的增强插件
+##### 加载 Executor 的增强插件
 
 `Executor`的加载时机是在`DefaultSqlSessionFactory`开启`SqlSession`的时候，通过`Configuration.newExecutor`方法加载
 
@@ -3168,7 +3168,7 @@ public Object pluginAll(Object target) {
 
 > 注：其余类型对象增强的逻辑是一样，只是各个加载的插件的位置不一样
 
-##### 12.2.4.2. 加载 StatementHandler 的增强插件
+##### 加载 StatementHandler 的增强插件
 
 `StatementHandler`加载增强插件的位置是在执行增删改查时，通过`Configuration.newStatementHandler`方法加载
 
@@ -3176,7 +3176,7 @@ public Object pluginAll(Object target) {
 
 ![](images/20210608225117458_20294.png)
 
-##### 12.2.4.3. 加载 ParameterHandler 与 ResultSetHandler 的增强插件
+##### 加载 ParameterHandler 与 ResultSetHandler 的增强插件
 
 `ParameterHandler`与`ResultSetHandler`加载增强插件的位置是创建`RoutingStatementHandler`时，其构造函数会调用父类的`BaseStatementHandler`构造器时
 
@@ -3188,7 +3188,7 @@ public Object pluginAll(Object target) {
 
 ![](images/20210608225510682_22790.png)
 
-#### 12.2.5. 插件的调用
+#### 插件的调用
 
 上面已经分别初始化了插件与加载了插件，即已经生成相应四大对象的代理实例（有配置才会生代理，否则使用原对象）。如果有生成代理，当调用代理的方法时，即会调用`Plugin`类的`invoke`方法
 
@@ -3221,16 +3221,16 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 
 该方法的主要处理逻辑是，先从之前解析`@Intercepts`注解得到的signature信息，包含拦截器要拦截的所有类，以及类中的方法的Map集合中，获取当前接口需要拦截的方法，如果存在需要拦截的方法，则调用`Interceptor`接口的`intercept`方法，即由自定义拦截器类来实现；如果不需要拦截，即直接通过反射调用该对象原生的方法。
 
-## 13. MyBatis-Spring 集成原理分析（流程分析不太清晰，待完善）
+## MyBatis-Spring 集成原理分析（流程分析不太清晰，待完善）
 
-### 13.1. 官方资源
+### 官方资源
 
 - 代码仓库：https://github.com/mybatis/spring
 - 官方说明文档：http://mybatis.org/spring/zh/
 
 > mybatis-spring 源码安装过程和 mybatis 源码的安装过程一样
 
-### 13.2. SqlSessionFactoryBean 源码分析
+### SqlSessionFactoryBean 源码分析
 
 通过Spring整合的MyBatis的基础示例可知，无论基础xml配置还是注解配置方式，都需要创建`SqlSessionFactoryBean`对象。
 
@@ -3278,7 +3278,7 @@ public SqlSessionFactory getObject() throws Exception {
 
 所以根据源码可知，`SqlSessionFactoryBean`类最终作用是将通过使用`SqlSessionFactoryBuilder`创建的`SqlSessionFactory`实例注入到Spring容器中。IOC容器中的其他类就能通过`SqlSessionFactory`获取到`SqlSession`实例了，进行相关的SQL执行任务了
 
-### 13.3. MapperFactoryBean 源码分析
+### MapperFactoryBean 源码分析
 
 在XML配置中，可以通过加入`MapperFactoryBean`来将Mapper映射器注册到 Spring 容器中。
 
@@ -3333,7 +3333,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 
 需要注意：<font color=red>**每一个Mapper接口对应一个MapperFactoryBean对象**</font>
 
-### 13.4. SqlSessionTemplate 源码分析
+### SqlSessionTemplate 源码分析
 
 `MapperFactoryBean`类继承了`SqlSessionDaoSupport`抽象父类，该类中一个`SqlSessionTemplate`对象属性。
 
@@ -3388,7 +3388,7 @@ public static boolean isSqlSessionTransactional(SqlSession session, SqlSessionFa
 }
 ```
 
-### 13.5. MapperScannerConfigurer 源码分析
+### MapperScannerConfigurer 源码分析
 
 在xml配置中，会在Spring容器中配置`MapperScannerConfigurer`实例。一般情况下项目的Mapper接口的数量很多，此时就通过`MapperScannerConfigurer`类扫描每个 Mapper 接口一对一的生成 `MapperFactoryBean`实例
 
@@ -3415,7 +3415,7 @@ public class MapperScannerConfigurer
 
 ![](images/20210613114507513_29573.png)
 
-### 13.6. Connection 连接对象
+### Connection 连接对象
 
 MyBatis与Spring整合后，连接对象其实是从Spring的TheadLocal中获取。然后使用了Spring的事务，MyBatis里面的连接对象，就是Spring的连接对象
 
@@ -3423,9 +3423,9 @@ MyBatis与Spring整合后，连接对象其实是从Spring的TheadLocal中获取
 
 ![](images/20210613115518040_16546.png)
 
-## 14. 框架核心组件 - Configuration 类
+## 框架核心组件 - Configuration 类
 
-### 14.1. 类作用简述
+### 类作用简述
 
 `Configuration`，里面包含了配置的信息、反射工厂、对象工厂、代理工厂等数据是一个非常庞大的类。**在整个Mybatis流程中无处不在，需要重点关注**
 
@@ -3451,9 +3451,9 @@ public class Configuration {
 - `Map<String, MappedStatement> mappedStatements`：用于存储 mapper.xml 文件中的 select、insert、update 和 delete 节点，同时还包含了这些节点的很多重要属性；
 - `SqlSource`：用于创建`BoundSql`实例，mapper.xml 文件中的 sql 语句会被解析成`BoundSql`对象，经过解析`BoundSql`包含的语句最终仅仅包含`?`占位符，可以直接提交给数据库执行
 
-### 14.2. Configuration 对象的创建与生命周期
+### Configuration 对象的创建与生命周期
 
-#### 14.2.1. 对象的创建
+#### 对象的创建
 
 `Configuration`对象的初始化（属性复制），是在建造 `SqlSessionfactory` 的过程中进行的
 
@@ -3498,7 +3498,7 @@ private XMLConfigBuilder(XPathParser parser, String environment, Properties prop
 }
 ```
 
-#### 14.2.2. 类属性的填充
+#### 类属性的填充
 
 在创建`SqlSessionFactory`的过程，会调用`XMLConfigBuilder`实例的`parse`方法，在该方法中会对MyBatis的总配置文件的解析，从根节点`<configuration>`开始逐个解析下层节点，然后将解析的数据都封装到`Configuration`类中
 

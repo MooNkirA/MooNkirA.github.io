@@ -1,7 +1,7 @@
 # Day17 用户认证 & Zuul 网关
 
-## 1. 用户认证
-### 1.1. 用户认证流程分析
+## 用户认证
+### 用户认证流程分析
 
 ![用户认证流程图](images/20190822224353308_16550.jpg)
 
@@ -24,32 +24,32 @@
 6. **资源服务校验jwt的合法性并完成授权**
     - 资源服务校验jwt令牌，完成授权，拥有权限的方法正常执行，没有权限的方法将拒绝访问
 
-### 1.2. 认证服务查询数据库
-#### 1.2.1. 需求分析
+### 认证服务查询数据库
+#### 需求分析
 
 - 认证服务根据数据库中的用户信息去校验用户的身份，即校验账号和密码是否匹配
 - 认证服务不直接连接数据库，而是通过用户中心服务去查询用户中心数据库
 
 ![认证服务业务流程](images/20190822184154997_10350.jpg)
 
-#### 1.2.2. 搭建环境
-##### 1.2.2.1. 创建用户中心数据库
+#### 搭建环境
+##### 创建用户中心数据库
 
 用户中心负责用户管理，包括：用户信息管理、角色管理、权限管理等
 
 导入xc_user数据库数据，day16已经导入
 
-##### 1.2.2.2. 创建用户中心工程
+##### 创建用户中心工程
 
 资料位置：\day17 用户认证 Zuul\资料\xc-service-ucenter.zip
 
 ![用户中心工程结构](images/20190822144152494_27930.png)
 
-#### 1.2.3. 查询用户接口开发
+#### 查询用户接口开发
 
 该接口主要是完成用户中心根据账号查询用户信息接口功能
 
-##### 1.2.3.1. 后端 API 接口
+##### 后端 API 接口
 
 1. 在xc-framework-model工程，创建用户扩展响应数据类型XcUserExt，因为此接口将来被用来查询用户信息及用户权限信息
 
@@ -110,7 +110,7 @@ public interface UcenterControllerApi {
 }
 ```
 
-##### 1.2.3.2. dao 层
+##### dao 层
 
 在xc-service-ucenter工程，添加XcUser、XcCompantUser两个表的Dao数据访问层接口（使用spring-data-jpa）
 
@@ -152,7 +152,7 @@ public interface XcCompanyUserRepository extends JpaRepository<XcCompanyUser, St
 }
 ```
 
-##### 1.2.3.3. service 层
+##### service 层
 
 创建UserService业务类，实现用户查询的方法
 
@@ -221,7 +221,7 @@ public class UserService {
 }
 ```
 
-##### 1.2.3.4. Controller 层
+##### Controller 层
 
 创建UcenterController控制层，实现UcenterControllerApi接口
 
@@ -255,12 +255,12 @@ public class UcenterController implements UcenterControllerApi {
 }
 ```
 
-##### 1.2.3.5. 测试
+##### 测试
 
 使用Swagger-ui或postman测试用户信息查询接口
 
-#### 1.2.4. Feign调用查询用户接口
-##### 1.2.4.1. 认证服务创建 Feign client 接口
+#### Feign调用查询用户接口
+##### 认证服务创建 Feign client 接口
 
 认证服务需要远程调用用户中心服务查询用户，在认证服务中创建Feign客户端
 
@@ -283,7 +283,7 @@ public interface UserClient {
 }
 ```
 
-##### 1.2.4.2. 修改认证服务 UserDetailsServiceImpl
+##### 修改认证服务 UserDetailsServiceImpl
 
 认证服务调用spring security接口申请令牌，spring security接口会调用UserDetailsServiceImpl从数据库查询用户，如果查询不到则返回 NULL，表示不存在；在UserDetailsServiceImpl中将正确的密码返回，spring security 会自动去比对输入密码的正确性
 
@@ -382,7 +382,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 ![测试远程调用用户中心接口](images/20190822170819429_9306.png)
 
-##### 1.2.4.3. BCryptPasswordEncoder
+##### BCryptPasswordEncoder
 
 - 早期使用md5对密码进行编码，每次算出的md5值都一样，这样非常不安全，Spring Security推荐使用 BCryptPasswordEncoder 对密码加随机盐，每次的Hash值都不一样，安全性高
 
@@ -446,7 +446,7 @@ public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws 
 
 ![账号密码登陆测试](images/20190822175116351_1859.png)
 
-##### 1.2.4.4. 解析申请令牌错误信息
+##### 解析申请令牌错误信息
 
 当账号输入错误应该返回用户不存在的信息，当密码错误要返回用户名或密码错误信息，业务流程图如下
 
@@ -490,14 +490,14 @@ public class AuthService {
 
 ![令牌申请返回的错误信息](images/20190823084532670_27315.png)
 
-##### 1.2.4.5. 测试
+##### 测试
 
 - 使用postman请求http://localhost:40400/auth/userlogin
 1. 输入正确的账号和密码进行测试。从数据库找到测试账号，用户信息表中初始密码统一为111111
 2. 输入错误的账号和密码进行测试
 
-### 1.3. 用户登录前端
-#### 1.3.1. 需求分析
+### 用户登录前端
+#### 需求分析
 
 - 点击用户登录固定跳转到用户中心前端的登录页面
 
@@ -509,7 +509,7 @@ public class AuthService {
     - 页面有“登录|注册”链接的前端系统有：门户系统、搜索系统、用户中心。
     - 本次修改门户系统的页头，其它三处可参考门户修改
 
-#### 1.3.2. 前端Api方法
+#### 前端Api方法
 
 进入xc-ui-pc-learning工程定义api方法，在base模块下定义login.js，创建登陆方法
 
@@ -524,7 +524,7 @@ export const login = params => {
 }
 ```
 
-#### 1.3.3. 登陆页面
+#### 登陆页面
 
 1. 登录页面在xc-ui-pc-leanring\src\module\home\pageloginpage.vue。loginpage.vue使用了loginForm.vue组件，loginForm.vue页面包括了登录表单
 2. 路由配置，在home模块（\src\module\home\router\index.js）配置路由
@@ -591,7 +591,7 @@ login: function () {
 },
 ```
 
-#### 1.3.4. 点击登录页面
+#### 点击登录页面
 
 在门户的页头点击“登录|注册”连接到用户中心的登录页面，并且携带returnUrl。修改门户前端（xc-ui-pc-static-portal）的header.html
 
@@ -603,7 +603,7 @@ showlogin: function(){
 }
 ```
 
-#### 1.3.5. 测试
+#### 测试
 
 测试之前修改认证服务的配置，修改 application.yml 中cookie域名（已经修改可以不用理会）
 
@@ -621,8 +621,8 @@ cookieDomain: xuecheng.com
 
 ![登录测试](images/20190823184438311_23130.png)
 
-## 2. 前端显示当前用户
-### 2.1. 需求分析
+## 前端显示当前用户
+### 需求分析
 
 用户登录成功在页头显示当前登录的用户名称。数据流程如下图：
 
@@ -637,15 +637,15 @@ cookieDomain: xuecheng.com
     - sessionStorage 是H5的一个会话存储对象，在SessionStorage中保存的数据只在同一窗口或同一标签页中有效，在关闭窗口之后将会删除SessionStorage中的数据
     - seesionStorage 的存储方式采用key/value的方式，可保存5M左右的数据（不同的浏览器会有区别）
 
-### 2.2. JWT查询接口
-#### 2.2.1. 需求分析
+### JWT查询接口
+#### 需求分析
 
 认证服务对外提供jwt查询接口，流程如下
 
 1. 客户端携带cookie中的身份令牌请求认证服务获取jwt
 2. 认证服务根据身份令牌从redis中查询jwt令牌并返回给客户端
 
-#### 2.2.2. 后端API接口
+#### 后端API接口
 
 在认证模块AuthControllerApi中定义JWT查询接口方法
 
@@ -658,7 +658,7 @@ public interface AuthControllerApi {
 }
 ```
 
-#### 2.2.3. Service 层
+#### Service 层
 
 在AuthService业务层定义从redis获取令牌的方法
 
@@ -693,7 +693,7 @@ public AuthToken getUserToken(String token) {
 ```
 
 
-#### 2.2.4. Controller 层
+#### Controller 层
 
 在AuthController实现查询用户jwt令牌接口方法
 
@@ -736,7 +736,7 @@ private String getTokenFormCookie() {
 }
 ```
 
-#### 2.2.5. 测试
+#### 测试
 
 1. 使用postman测试，GET请求http://ucenter.xuecheng.com/openapi/auth/userlogin，观察cookie是否已存入用户身份令牌
 
@@ -746,14 +746,14 @@ private String getTokenFormCookie() {
 
 ![查询JWT令牌测试](images/20190825120607383_22958.png)
 
-### 2.3. 前端请求获取JWT
-#### 2.3.1. 需求分析
+### 前端请求获取JWT
+#### 需求分析
 
 1. 用户登录成功，前端请求认证服务获取jwt令牌
 2. 前端解析jwt令牌的内容，得到用户信息，并将用户信息存储到 sessionStorage
 3. 从 sessionStorage 取出用户信息在页头显示用户名称
 
-#### 2.3.2. 前端API方法
+#### 前端API方法
 
 在xc-ui-pc-static-portal前端工程中的login.js中定义getjwt方法
 
@@ -764,7 +764,7 @@ const getjwt = () => {
 }
 ```
 
-#### 2.3.3. 前端页面
+#### 前端页面
 
 1. 修改include/header.html文件，用户登录成功设置数据对象logined为true，设置数据对象user为当前用户信息
 
@@ -849,7 +849,7 @@ refresh_user:function(){
 },
 ```
 
-#### 2.3.4. 配置代理转发
+#### 配置代理转发
 
 上边实现在首页显示当前用户信息，首页需要通过Nginx代理请求认证服务，所以需要在首页的虚拟主机上配置代理路径
 
@@ -864,14 +864,14 @@ location ^~ /openapi/auth/ {
 
 ![测试登陆存储JWT到sessionStorage](images/20190825174114122_28316.png)
 
-## 3. 用户退出
-### 3.1. 需求分析
+## 用户退出
+### 需求分析
 
 1. 用户退出需要删除redis中的token
 2. 删除cookie中的token
 
-### 3.2. 服务羰
-#### 3.2.1. 后端API接口
+### 服务羰
+#### 后端API接口
 
 在xc-service-api工程认证服务AuthControllerApi类定义对外提供退出接口
 
@@ -880,7 +880,7 @@ location ^~ /openapi/auth/ {
 public ResponseResult logout();
 ```
 
-#### 3.2.2. Service 层
+#### Service 层
 
 在xc-service-ucenter-auth工程的业务层AuthService类定义删除redis中JWT令牌方法
 
@@ -900,7 +900,7 @@ public boolean delToken(String access_token) {
 }
 ```
 
-#### 3.2.3. Controller 层
+#### Controller 层
 
 修改AuthController中的退出方法
 
@@ -935,7 +935,7 @@ private void clearCookie(String token) {
 }
 ```
 
-#### 3.2.4. 退出URL放行
+#### 退出URL放行
 
 - 认证服务默认都要校验用户的身份信息，所以xc-service-ucenter-auth工程需要将退出url放行
 - 在 WebSecurityConfig 类中重写 `configure(WebSecurity web)` 方法
@@ -947,12 +947,12 @@ public void configure(WebSecurity web) throws Exception {
 }
 ```
 
-### 3.3. 前端页面
-#### 3.3.1. 需求分析
+### 前端页面
+#### 需求分析
 
 在用户中心前端工程（xc-ui-pc-learning）开发退出页面
 
-#### 3.3.2. 前端API方法
+#### 前端API方法
 
 在用户中心工程增加退出的api方法，修改base模块的login.js，增加方法
 
@@ -963,7 +963,7 @@ export const logout = params => {
 }
 ```
 
-#### 3.3.3. 退出页面
+#### 退出页面
 
 1. 在用户中心工程创建退出页面loginpage.vue
 2. 配置路由(\src\module\home\router\index.js)
@@ -1010,7 +1010,7 @@ created() {
 },
 ```
 
-#### 3.3.4. 其他前端工程连接到退出页面
+#### 其他前端工程连接到退出页面
 
 1. 以门面工程为例，修改include/header.html
 
@@ -1038,19 +1038,19 @@ logout: function () {
 },
 ```
 
-#### 3.3.5. 测试
+#### 测试
 
 用户登陆后，再点点击退出
 
 ![测试退出](images/20190826093955796_16272.png)
 
-## 4. Zuul 网关
-### 4.1. 需求分析
+## Zuul 网关
+### 需求分析
 
 - 网关的作用相当于一个过虑器、拦截器，它可以拦截多个系统的请求
 - 本项目主要使用网关校验用户的身份是否合法
 
-### 4.2. Zuul 介绍
+### Zuul 介绍
 
 - 什么是Zuul？
     - Spring Cloud Zuul是整合Netflix公司的Zuul开源项目实现的微服务网关，它实现了请求路由、负载均衡、校验过虑等功能
@@ -1062,7 +1062,7 @@ logout: function () {
 
 ![Zuul与Nginx架构](images/20190826143603523_8110.png)
 
-### 4.3. 搭建网关工程
+### 搭建网关工程
 
 1. 创建xc-govern-gateway网关工程，使用资料【\day17 用户认证 Zuul\资料\xc-govern-gateway.zip】
 
@@ -1089,8 +1089,8 @@ public class GatewayApplication {
 }
 ```
 
-### 4.4. 路由配置
-#### 4.4.1. 需求分析
+### 路由配置
+#### 需求分析
 
 Zuul网关具有代理的功能，根据请求的url转发到微服务
 
@@ -1100,7 +1100,7 @@ Zuul网关具有代理的功能，根据请求的url转发到微服务
 >
 > 客户端请求网关/api/course，通过路由转发到/course
 
-#### 4.4.2. 网关配置路由
+#### 网关配置路由
 
 在xc-govern-gateway工程appcation.yml中配置
 
@@ -1125,7 +1125,7 @@ zuul:
 - `sensitiveHeaders`：敏感头设置，默认会过滤掉cookie，这里设置为空表示不过滤
 - `ignoredHeaders`：可以设置过滤的头信息，默认为空表示不过滤任何头
 
-#### 4.4.3. 测试网关
+#### 测试网关
 
 - 启动eureka服务后，将xc-govern-gateway和xc-service-manage-course启动
 - 请求http://localhost:50201/api/course/coursepic/list/4028e58161bd22e60161bd23672a0001查询课程图片信息
@@ -1149,7 +1149,7 @@ public void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-#### 4.4.4. 完整的路由配置
+#### 完整的路由配置
 
 ```yml# 网关zuul配置
 zuul:
@@ -1189,11 +1189,11 @@ zuul:
       strip-prefix: false
 ```
 
-### 4.5. 过滤器
+### 过滤器
 
 Zuul的核心就是过滤器，通过过滤器实现请求过滤，身份校验等
 
-#### 4.5.1. ZuulFilter
+#### ZuulFilter
 
 自定义过滤器需要继承ZuulFilter，ZuulFilter是一个抽象类，需要覆盖它的四个方法
 
@@ -1202,7 +1202,7 @@ Zuul的核心就是过滤器，通过过滤器实现请求过滤，身份校验�
 3. `filterType`：返回字符串代表过滤器的类型，如下 pre：请求在被路由之前执行 routing：在路由请求时调用 post：在routing和errror过滤器之后调用 error：处理请求时发生错误调用
 4. `filterOrder`：此方法返回整型数值，通过此数值来定义过滤器的执行顺序，数字越小优先级越高
 
-#### 4.5.2. 自定义过滤器测试
+#### 自定义过滤器测试
 
 需求：过滤所有请求，判断头部信息是否有Authorization，如果没有则拒绝访问，有则转发到微服务。
 
@@ -1309,15 +1309,15 @@ public class LoginFilterTest extends ZuulFilter {
 
 2. Header中设置Authorization，成功获取课程数据
 
-## 5. 身份校验
-### 5.1. 需求分析
+## 身份校验
+### 需求分析
 
 - 实现网关连接Redis校验令牌
 1. 从cookie查询用户身份令牌是否存在，不存在则拒绝访问
 2. 从http header查询jwt令牌是否存在，不存在则拒绝访问
 3. 从Redis查询user_token令牌是否过期，过期则拒绝访问
 
-### 5.2. 配置redis参数
+### 配置redis参数
 
 配置xc-govern-gateway工程的application.yml文件，设置redis相关参数
 
@@ -1337,7 +1337,7 @@ spring:
         maxWait: -1 # 连接池最大等行时间 -1没有限制
 ```
 
-### 5.3. 定义校验业务类
+### 定义校验业务类
 
 在service包下定义AuthService类，定义相关查询令牌的方法。
 
@@ -1422,7 +1422,7 @@ public class AuthService {
 
 > **说明：由于令牌存储时采用 String 序列化策略，所以这里用 StringRedisTemplate 来查询key的有效期，使用 RedisTemplate 无法完成查询**
 
-### 5.4. 定义身份校验过滤器
+### 定义身份校验过滤器
 
 创建LoginFilter，实现身份校验逻辑
 
@@ -1551,7 +1551,7 @@ public class LoginFilter extends ZuulFilter {
 
 > *注：将之前测试的自定义过滤器的`@Component`注解注释了，不然后会影响身份校验过滤器执行*
 
-### 5.5. 测试
+### 测试
 
 1. 配置代理。通过nginx转发到gateway，在www.xuecheng.com虚拟主机来配置
 

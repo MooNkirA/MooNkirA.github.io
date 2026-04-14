@@ -1,6 +1,6 @@
 # Spring Data Redis
 
-## 1. Spring Data Redis 简介
+## Spring Data Redis 简介
 
 Redis 是一个基于内存的数据结构存储系统，它可以用作数据库或者缓存。它支持多种类型的数据结构，这些数据结构类型分别为 String（字符串）、List（列表）、Set（集合）、Hash（散列）和 Zset（有序集合）。
 
@@ -14,16 +14,16 @@ Spring Data Redis 的作用是通过一段简单的配置即可访问 redis 服�
     - `HashOperations`：map 类型的数据操作
     - `ListOperations`：list 类型的数据操作
 
-## 2. Spring Data Redis 快速入门案例
+## Spring Data Redis 快速入门案例
 
-### 2.1. Redis 环境搭建
+### Redis 环境搭建
 
 - Redis 的测试环境搭建，详见 [《Redis 安装笔记》](/Database/Redis/Redis-安装部署) 章节
 - Redis 的基础使用，详见 [《Redis 基础笔记》](/Database/Redis/Redis-基础) 章节
 
-### 2.2. 创建案例项目
+### 创建案例项目
 
-#### 2.2.1. 引入依赖
+#### 引入依赖
  
 创建 maven 项目 `spring-data-redis`，依赖相关依赖
 
@@ -64,7 +64,7 @@ Spring Data Redis 的作用是通过一段简单的配置即可访问 redis 服�
 </dependencies>
 ```
 
-#### 2.2.2. 创建配置文件
+#### 创建配置文件
 
 在 resources 目录创建 applicationContext-redis.xml 配置文件
 
@@ -105,7 +105,7 @@ Spring Data Redis 的作用是通过一段简单的配置即可访问 redis 服�
 </beans>
 ```
 
-#### 2.2.3. 测试
+#### 测试
 
 创建测试类，完成一条简单数据的存取
 
@@ -131,7 +131,7 @@ public class RedisBasicTest {
 }
 ```
 
-## 3. Spring Data Redis 的序列化器
+## Spring Data Redis 的序列化器
 
 通过 Redis 提供的客户端查看入门案例中存入 redis 的数据。会发现，存入的数据并不是简单的字符串，而是一些类似于二进制的数据
 
@@ -187,7 +187,7 @@ public void test() {
 
 ![](images/449950822238670.png)
 
-## 4. Spring Data Redis 常用类型操作 API
+## Spring Data Redis 常用类型操作 API
 
 在 Redis 中有五种常见类型，Spring Data Redis 对每一种数据类型都提供了一个 `xxxOperations` 的API，分别是：
 
@@ -197,9 +197,9 @@ public void test() {
 - `SetOperations`：用来操作 set 类型数据
 - `ZSetOperations`：用来操作 zset 类型数据
 
-### 4.1. String 类型操作 API
+### String 类型操作 API
  
-#### 4.1.1. 操作句柄的获取
+#### 操作句柄的获取
 
 通过 `RedisTemplate` 实体获取到字符串类型操作句柄 `ValueOperations<K, V>`
 
@@ -207,11 +207,11 @@ public void test() {
 public ValueOperations<K, V> opsForValue()
 ```
 
-#### 4.1.2. 常用 API（待整理）
+#### 常用 API（待整理）
 
 
 
-#### 4.1.3. 示例
+#### 示例
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -364,9 +364,9 @@ public class RedisStringTest {
 }
 ```
 
-### 4.2. Hash 类型操作 API
+### Hash 类型操作 API
 
-#### 4.2.1. 操作句柄的获取
+#### 操作句柄的获取
 
 通过 `RedisTemplate` 实体获取到 Hash 类型数据操作句柄 `HashOperations<K, HK, HV>`
 
@@ -378,11 +378,11 @@ public <HK, HV> HashOperations<K, HK, HV> opsForHash()
 - `HK`：hash 类型值的键类型
 - `HV`：hash 类型值的值类型（可以是自定义类，但此类必须实现 `Serializable` 序列化接口）
 
-#### 4.2.2. 常用 API（待整理）
+#### 常用 API（待整理）
 
 
 
-#### 4.2.3. 示例
+#### 示例
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -472,9 +472,9 @@ public class RedisHashTest {
 }
 ```
 
-### 4.3. List 类型操作 API
+### List 类型操作 API
 
-#### 4.3.1. 操作句柄的获取
+#### 操作句柄的获取
 
 通过 `RedisTemplate` 实体获取到 List 类型操作句柄 `ListOperations<K, V>`
 
@@ -482,11 +482,11 @@ public class RedisHashTest {
 public ListOperations<K, V> opsForList()
 ```
 
-#### 4.3.2. 常用 API（待整理）
+#### 常用 API（待整理）
 
 
 
-#### 4.3.3. 示例
+#### 示例
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -583,9 +583,9 @@ public class RedisListTest {
 }
 ```
 
-### 4.4. Set 类型操作 API
+### Set 类型操作 API
 
-#### 4.4.1. 操作句柄的获取
+#### 操作句柄的获取
 
 通过 `RedisTemplate` 实体获取到 Set 类型操作句柄 `SetOperations<K, V>`
 
@@ -593,11 +593,11 @@ public class RedisListTest {
 public SetOperations<K, V> opsForSet()
 ```
 
-#### 4.4.2. 常用 API（待整理）
+#### 常用 API（待整理）
 
 
 
-#### 4.4.3. 示例
+#### 示例
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -718,9 +718,9 @@ public class RedisSetTest {
 }
 ```
 
-### 4.5. ZSet 类型操作 API
+### ZSet 类型操作 API
 
-#### 4.5.1. 操作句柄的获取
+#### 操作句柄的获取
 
 通过 `RedisTemplate` 实体获取到 ZSet 类型操作句柄 `ZSetOperations<K, V>`
 
@@ -728,11 +728,11 @@ public class RedisSetTest {
 public ZSetOperations<K, V> opsForZSet()
 ```
 
-#### 4.5.2. 常用 API（待整理）
+#### 常用 API（待整理）
 
 
 
-#### 4.5.3. 示例
+#### 示例
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -910,7 +910,7 @@ public class RedisZSetTest {
 
 # Spring Data Redis 原理分析
 
-## 1. RestTemplate 底层实现
+## RestTemplate 底层实现
 
 Spring Data Redis 操作 Redis 服务器只要是通过 `RestTemplate` 实现的。下面通过源码追踪的形式来查阅 `RestTemplate` 底层到底是如何操作 redis
 

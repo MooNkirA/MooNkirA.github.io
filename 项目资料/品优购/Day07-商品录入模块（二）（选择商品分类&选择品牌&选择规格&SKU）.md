@@ -1,12 +1,10 @@
-# Day07 商品录入模块【二】（选择商品分类&选择品牌&选择规格&SKU）
+## 商品录入【选择商品分类】
 
-## 1. 商品录入【选择商品分类】
-
-### 1.1. 需求分析
+### 需求分析
 
 在商品录入界面实现商品分类的选择（三级分类）下拉框。当用户选择一级分类后，二级分类列表要相应更新，当用户选择二级分类后，三级列表要相应更新。
 
-### 1.2. 商品分类下拉列表-后端控制层
+### 商品分类下拉列表-后端控制层
 
 在pinyougou-shop-web工程中创建ItemCatController，复制pinyougou-manager-web工程的ItemCatController即可
 
@@ -40,9 +38,9 @@ public class ItemCatController {
 }
 ```
 
-### 1.3. 商品分类下拉列表-前端部分
+### 商品分类下拉列表-前端部分
 
-#### 1.3.1. 一级分类下拉选择框
+#### 一级分类下拉选择框
 
 - 在goodsController.js增加异步请求查询方法
 
@@ -90,7 +88,7 @@ $scope.findItemCatByParentId = (parentId, name) => {
 
 `ng-options`属性可以在表达式中使用数组或对象来自动生成一个select中的option列表。`ng-options`与`ng-repeat`很相似，很多时候可以用`ng-repeat`来代替`ng-options`。但是`ng-options`提供了一些好处，例如减少内存提高速度，以及提供选择框的选项来让用户选择。
 
-#### 1.3.2. 二级分类下拉选择框
+#### 二级分类下拉选择框
 
 - `$watch`方法用于监控某个变量的值，当被监控的值发生变化，就自动执行相应的函数。
 - 页面控制层goodsController增加监听方法，然后根据一级目录改变查询二级分类
@@ -120,7 +118,7 @@ $scope.$watch('goods.category1Id', function (newVal, oldVal) {
 </select>
 ```
 
-#### 1.3.3. 三级分类下拉选择框
+#### 三级分类下拉选择框
 
 - 页面控制层goodsController增加监听二级下拉框方法，根据二级目录改变查询三级分类
 
@@ -149,7 +147,7 @@ $scope.$watch('goods.category2Id', function (newVal, oldVal) {
 </select>
 ```
 
-#### 1.3.4. 读取模版ID
+#### 读取模版ID
 
 - 后端控制层ItemCatController，添加根据分类id查询模版id方法
 
@@ -226,13 +224,13 @@ $scope.$watch('goods.category3Id', function (newVal, oldVal) {
 
 ---
 
-## 2. 商品录入【品牌选择】
+## 商品录入【品牌选择】
 
-### 2.1. 需求分析
+### 需求分析
 
 在用户选择商品分类后，品牌列表要根据用户所选择的分类进行更新。具体的逻辑是根据用户选择的三级分类找到对应的商品类型模板，商品类型模板中存储了品牌的列表json数据。
 
-### 2.2. 品牌选择下拉框-后端部分
+### 品牌选择下拉框-后端部分
 
 - pinyougou-shop-web工程创建TypeTemplateController，创建根据主键id查询模版的方法
 
@@ -290,7 +288,7 @@ public TypeTemplate findTypeTemplateById(Long id) {
 }
 ```
 
-### 2.3. 品牌选择下拉框-前端部分
+### 品牌选择下拉框-前端部分
 
 - pinyougou-shop-web工程页面控制层goodsController增加查询监听模版id改变的方法
 
@@ -331,9 +329,9 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 
 ---
 
-## 3. 商品录入【扩展属性】
+## 商品录入【扩展属性】
 
-### 3.1. 需求分析
+### 需求分析
 
 - 在商品录入实现扩展属性的录入
 
@@ -344,7 +342,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 - 录入的扩展属性值是插入到tb_goods_desc表的custom_attribute_items字段
     - 格式：`[{"text":"分辨率","value":"1920*1080(FHD)"},{"text":"摄像头","value":"1200万像素"}]`
 
-### 3.2. 扩展属性-前端部分
+### 扩展属性-前端部分
 
 - 修改goodsController.js监听`goods.typeTemplateId`的方法，在用户更新模板ID时，读取模板中的扩展属性赋给商品的扩展属性
 - 当类型下拉框发生变化时，如果不清空`goods.goodsDesc.customAttributeItems`的值，则扩展属性还是显示上一次选择模版的扩展属性。所以在监听`goods.typeTemplateId`的值变化中，增加清空操作
@@ -399,15 +397,15 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 
 ---
 
-## 4. 商品录入【规格选择】
+## 商品录入【规格选择】
 
-### 4.1. 需求分析
+### 需求分析
 
 显示规格及选项列表（复选框）如下图，并保存用户选择的结果
 
 ![规格选择分析1](images/20190125154938139_32725.jpg)
 
-### 4.2. 显示规格选项列表
+### 显示规格选项列表
 
 - 由于模板中只记录了规格名称，而除了显示规格名称还是显示规格下的规格选项，所以需要在后端扩充方法
 - 此功能查询tb_type_template表中的spec_ids字段，<font color="red">**查询显示规格名称**</font>
@@ -418,7 +416,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 
 ![规格选择分析3](images/20190125155241041_11956.jpg)
 
-#### 4.2.1. 规格选项列表-后端部分
+#### 规格选项列表-后端部分
 
 - 修改pinyougou-shop-web工程控制层TypeTemplateController，新增根据id查询规格与规格选项的方法
 
@@ -512,7 +510,7 @@ public List<Map> findSpecByTypeTemplateId(Long id) {
 
 - 测试：登陆后输入网址，http://shop.moon.com/typeTemplate/findSpecByTemplateId?id=37
 
-#### 4.2.2. 规格选项列表-前端部分
+#### 规格选项列表-前端部分
 
 - 修改pinyougou-shop-web的前端控制器goodsController中的监听三级分类的方法中，增加发送异步请求查询规格的代码
 - 根据扩展属性一样，当类型下拉框发生变化时，需要在监听`goods.typeTemplateId`的值变化中，增加清空`$scope.specList`的操作
@@ -552,9 +550,9 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 </div>
 ```
 
-### 4.3. 保存选中规格选项
+### 保存选中规格选项
 
-#### 4.3.1. 需求分析
+#### 需求分析
 
 - 需要将用户选中的选项保存在`tb_goods_desc`表的`specification_items`字段中，定义json格式如下：
 
@@ -562,7 +560,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 [{"attributeName":"规格名称","attributeValue":["规格选项1","规格选项2"....]},....]
 ```
 
-#### 4.3.2. 代码实现
+#### 代码实现
 
 - 在pinyougou-shop-web工程的baseController.js增加从json数组中根据key的值，查询指定的json对象的工具方法
 
@@ -664,17 +662,17 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 
 ---
 
-## 5. 商品录入【SKU商品信息】
+## 商品录入【SKU商品信息】
 
-### 5.1. 需求分析
+### 需求分析
 
-#### 5.1.1. 需求
+#### 需求
 
 基于上一步完成的规格选择，根据选择的规格录入商品的SKU信息，当用户选择相应的规格，下面的SKU列表就会自动生成
 
 ![SKU商品信息生成](images/20190128101835910_15183.jpg)
 
-#### 5.1.2. 实现思路
+#### 实现思路
 
 1. 先定义一个初始的不带规格名称的集合，只有一条记录
 
@@ -687,9 +685,9 @@ $scope.goods.items = [{spec:{}, price:0, num:9999, status:'0', isDefault:'0'}];
 
 ![SKU商品信息生成2](images/20190128112515900_31245.jpg)
 
-### 5.2. 生成SKU商品信息-前端部分
+### 生成SKU商品信息-前端部分
 
-#### 5.2.1. 生成SKU表（tb_item）
+#### 生成SKU表（tb_item）
 
 - goodsController.js实现创建sku列表的方法
 
@@ -768,7 +766,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 - 在页面上添加表达式，进行测试：{{goods.items}}
 
 
-#### 5.2.2. 显示SKU列表
+#### 显示SKU列表
 
 - 修改goods_edit.html页面上，色么绑定SKU列表
 
@@ -807,7 +805,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 </tbody>
 ```
 
-#### 5.2.3. 保存数据时，清空所有新增页面绑定的数据
+#### 保存数据时，清空所有新增页面绑定的数据
 
 <font color="red">***注：在goodsController.js中的saveOrUpdate方法，在请求保存后台成功后，将之前查询后台返回的规格选项数据清空***</font>
 
@@ -816,7 +814,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 $scope.specList = {};
 ```
 
-### 5.3. 生成SKU商品信息-后端部分
+### 生成SKU商品信息-后端部分
 
 - 在服务层GoodsServiceImpl中注入需要保存的相关数据访问mapper接口
 
@@ -926,13 +924,13 @@ private void setItemInfo(Item item, Goods goods) {
 
 ---
 
-## 6. 商品录入【是否启用规格】
+## 商品录入【是否启用规格】
 
-### 6.1. 需求分析
+### 需求分析
 
 在规格面板添加是否启用规格，当用户没有选择该项，将原来的规格面板和SKU列表隐藏，用户保存商品后只生成一个SKU。
 
-### 6.2. 启用规格-前端部分
+### 启用规格-前端部分
 
 修改goods_edit.html添加复选框，绑定goods的`isEnableSpec`属性。用if指令控制规格面板与SKU列表的显示与隐藏
 
@@ -951,7 +949,7 @@ private void setItemInfo(Item item, Goods goods) {
 </div>
 ```
 
-### 6.3. 启用规格-后端部分
+### 启用规格-后端部分
 
 修改GoodServiceImpl的原来saveGoods方法，增加判断是否开启规格。如果不开启商品SPU即商品SKU
 

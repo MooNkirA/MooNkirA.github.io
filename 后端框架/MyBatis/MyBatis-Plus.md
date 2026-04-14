@@ -1,4 +1,4 @@
-## 1. MyBatis-Plus 简介
+## MyBatis-Plus 简介
 
 MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生
 
@@ -7,7 +7,7 @@ MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的�
 - 源码地址：https://github.com/baomidou/mybatis-plus
 - 码云地址：https://gitee.com/baomidou/mybatis-plus
 
-### 1.1. 特性
+### 特性
 
 - **无侵入**：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑
 - **损耗小**：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作
@@ -25,25 +25,25 @@ MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的�
 - **内置全局拦截插件**：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作
 - **内置 Sql 注入剥离器**：支持 Sql 注入剥离，有效预防 Sql 注入攻击
 
-### 1.2. 架构
+### 架构
 
 ![](images/20201003072146900_8644.png)
 
-### 1.3. 示例项目说明
+### 示例项目说明
 
 示例项目代码位置：`mybatis-note\mybatis-plus-samples\`
 
 github 位置：https://github.com/MooNkirA/mybatis-note/tree/master/mybatis-plus-samples
 
-## 2. MyBatis-Plus 快速入门示例
+## MyBatis-Plus 快速入门示例
 
-### 2.1. 创建示例数据库以及表
+### 创建示例数据库以及表
 
 脚本的位置：`mybatis-note\mybatis-plus-samples\document\sql\mysql-sample.sql`
 
-### 2.2. SpringBoot + Mybatis + MP
+### SpringBoot + Mybatis + MP
 
-#### 2.2.1. 引入依赖
+#### 引入依赖
 
 ```xml
 <dependencies>
@@ -81,7 +81,7 @@ github 位置：https://github.com/MooNkirA/mybatis-note/tree/master/mybatis-plu
 </dependencies>
 ```
 
-#### 2.2.2. 配置
+#### 配置
 
 - 在 `application.yml` 配置文件中添加数据库的相关配置：
 
@@ -107,7 +107,7 @@ public class QuickstartApplication {
 }
 ```
 
-#### 2.2.3. 创建实体类
+#### 创建实体类
 
 ```java
 @Data
@@ -119,7 +119,7 @@ public class User {
 }
 ```
 
-#### 2.2.4. 编写 mapper 接口
+#### 编写 mapper 接口
 
 ```java
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -129,7 +129,7 @@ public interface UserMapper extends BaseMapper<User> {
 }
 ```
 
-#### 2.2.5. 编写测试用例
+#### 编写测试用例
 
 ```java
 @SpringBootTest
@@ -147,11 +147,11 @@ public class BaseTest {
 }
 ```
 
-### 2.3. 项目入门示例
+### 项目入门示例
 
 > 注：此快速入门示例是在好客租房项目开发时的入门示例，代码位置在`haoke-project\haoke-technology-stack-sample\sample-mybatis-plus`
 
-#### 2.3.1. 创建数据库与相关表格
+#### 创建数据库与相关表格
 
 - 创建数据库
 
@@ -183,7 +183,7 @@ INSERT INTO `user` VALUES (5, 'Billie', 24, 'test5@baomidou.com');
 SET FOREIGN_KEY_CHECKS = 1;
 ```
 
-#### 2.3.2. 创建工程以及导入依赖
+#### 创建工程以及导入依赖
 
 创建 jar 类型的`sample-mybatis-plus`示例工程，修改`pom.xml`文件引入相关依赖
 
@@ -250,7 +250,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 </project>
 ```
 
-#### 2.3.3. 编写项目的配置文件
+#### 编写项目的配置文件
 
 编写 spring boot 项目的默认配置文件 `application.properties`
 
@@ -263,7 +263,7 @@ spring.datasource.username=root
 spring.datasource.password=123456
 ```
 
-#### 2.3.4. 创建实体类
+#### 创建实体类
 
 ```java
 @Data
@@ -275,7 +275,7 @@ public class User {
 }
 ```
 
-#### 2.3.5. 创建持久层 Mapper 接口
+#### 创建持久层 Mapper 接口
 
 使用 MyBatis-Plus 插件，需要继承此工具框架提供的`public interface BaseMapper<T>`接口，泛型为接口操作的数据库表相应的实体类。此`BaseMapper<T>`接口时定义很多基础操作方法
 
@@ -283,7 +283,7 @@ public class User {
 public interface UserMapper extends BaseMapper<User> { }
 ```
 
-#### 2.3.6. 编写 SpringBoot 启动类
+#### 编写 SpringBoot 启动类
 
 ```java
 // 设置mybatis框架对mapper接口的扫描包路径
@@ -296,7 +296,7 @@ public class MyBatisPlusApplication {
 }
 ```
 
-#### 2.3.7. 编写单元测试用例
+#### 编写单元测试用例
 
 ```java
 @RunWith(SpringRunner.class)
@@ -319,7 +319,7 @@ public class UserMapperTest {
 
 运行测试用例，查看测试结果
 
-## 3. BaseMapper（CRUD 基础接口）
+## BaseMapper（CRUD 基础接口）
 
 在 Mybatis Plus 中，`BaseMapper`接口中定义了一些常用的 CRUD 方法，当自定义的`Mapper`接口继承`BaseMapper`后即可以获取到各种各样的单表操作。官方说明如下：
 
@@ -334,7 +334,7 @@ public class UserMapperTest {
 >
 > 官方文档地址：[Mapper CRUD 接口](https://baomidou.com/guide/crud-interface.html#mapper-crud-%E6%8E%A5%E5%8F%A3)
 
-### 3.1. 新增操作
+### 新增操作
 
 ```java
 @Test
@@ -348,7 +348,7 @@ public void testSave(){
 }
 ```
 
-#### 3.1.1. 设置主键 ID 生成策略
+#### 设置主键 ID 生成策略
 
 上面示例数据插入结果：
 
@@ -375,11 +375,11 @@ public class User {
 
 ![](images/20201003090541241_12196.png)
 
-### 3.2. 更新操作
+### 更新操作
 
 在 MP 中，更新操作有 2 种，一种是根据 id 更新，另一种是根据条件更新。
 
-#### 3.2.1. 根据 ID 更新数据
+#### 根据 ID 更新数据
 
 源码方法定义：
 
@@ -409,7 +409,7 @@ public void testUpdateById() {
 
 ![](images/20201003091208666_19033.png)
 
-#### 3.2.2. 根据 Wrapper 条件更新
+#### 根据 Wrapper 条件更新
 
 源码方法定义：
 
@@ -445,9 +445,9 @@ public void testUpdateByWrapper() {
 }
 ```
 
-### 3.3. 删除操作
+### 删除操作
 
-#### 3.3.1. 根据 ID 删除
+#### 根据 ID 删除
 
 源码方法定义：
 
@@ -485,7 +485,7 @@ public void testDeleteById() {
 }
 ```
 
-#### 3.3.2. 根据 columnMap 条件删除
+#### 根据 columnMap 条件删除
 
 源码方法定义：
 
@@ -514,7 +514,7 @@ public void testDeleteByMap() {
 }
 ```
 
-#### 3.3.3. 根据 Wrapper 对象条件删除
+#### 根据 Wrapper 对象条件删除
 
 源码方法定义：
 
@@ -544,7 +544,7 @@ public void testDeleteByWrapper() {
 }
 ```
 
-#### 3.3.4. 根据 ID 集合批量删除
+#### 根据 ID 集合批量删除
 
 源码方法定义：
 
@@ -568,11 +568,11 @@ public void testDeleteBatchIds() {
 }
 ```
 
-### 3.4. 查询操作
+### 查询操作
 
 MP 提供了多种查询操作，包括根据 id 查询、批量查询、查询单条数据、查询列表、分页查询、根据条件查询等操作。
 
-#### 3.4.1. selectById - 根据 id 查询
+#### selectById - 根据 id 查询
 
 源码方法定义：
 
@@ -596,7 +596,7 @@ public void testSelectById() {
 }
 ```
 
-#### 3.4.2. selectBatchIds - 根据 ID 批量查询
+#### selectBatchIds - 根据 ID 批量查询
 
 源码方法定义：
 
@@ -619,7 +619,7 @@ public void testSelectBatchIds() {
 }
 ```
 
-#### 3.4.3. selectOne - 查询单条记录
+#### selectOne - 查询单条记录
 
 源码方法定义：
 
@@ -647,7 +647,7 @@ public void testSelectOne() {
 }
 ```
 
-#### 3.4.4. selectCount - 查询总记录数
+#### selectCount - 查询总记录数
 
 源码方法定义：
 
@@ -674,7 +674,7 @@ public void testSelectCount() {
 }
 ```
 
-#### 3.4.5. selectList - 条件查询
+#### selectList - 条件查询
 
 源码方法定义：
 
@@ -707,7 +707,7 @@ public void testSelectList() {
 }
 ```
 
-#### 3.4.6. selectPage - 分页查询
+#### selectPage - 分页查询
 
 源码方法定义：
 
@@ -775,11 +775,11 @@ public void testSelectPage() {
 }
 ```
 
-## 4. 通用 Service CRUD 封装
+## 通用 Service CRUD 封装
 
 Mybatis-Plus 为了开发更加快捷，对业务层也进行了封装，直接提供了相关的接口和实现类。在进行业务层开发时，可以继承 MP 提供的接口和实现类，使得编码更加高效。
 
-### 4.1. IService 接口概述
+### IService 接口概述
 
 `com.baomidou.mybatisplus.extension.service.IService`，该接口是一个泛型接口，里面提供了很多方法，包括基本的增删改查。
 
@@ -792,13 +792,13 @@ Mybatis-Plus 为了开发更加快捷，对业务层也进行了封装，直接�
 - 建议如果存在自定义通用 `Service` 方法的可能，请创建自己的 `IBaseService` 继承 Mybatis-Plus 提供的基类
 - 对象 `Wrapper` 为条件构造器
 
-#### 4.1.1. ServiceImpl 实现类
+#### ServiceImpl 实现类
 
 `com.baomidou.mybatisplus.extension.service.impl.ServiceImpl` 类是 MP 提供的 `IService` 接口实现类，该类实现了上面接口中的所有方法
 
-### 4.2. 接口方法
+### 接口方法
 
-#### 4.2.1. 新增操作 （Save）
+#### 新增操作 （Save）
 
 ```java
 // 插入一条记录（选择字段，策略插入）
@@ -817,7 +817,7 @@ boolean saveBatch(Collection<T> entityList, int batchSize);
 | `Collection<T>` | entityList | 实体对象集合 |
 |      `int`      | batchSize  | 插入批次数量 |
 
-#### 4.2.2. 新增或更新操作 （SaveOrUpdate）
+#### 新增或更新操作 （SaveOrUpdate）
 
 ```java
 // TableId 注解存在更新记录，否插入一条记录
@@ -839,7 +839,7 @@ boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize);
 | `Collection<T>` | entityList    | 实体对象集合                       |
 |      `int`      | batchSize     | 插入批次数量                       |
 
-#### 4.2.3. 更新操作 （Update）
+#### 更新操作 （Update）
 
 ```java
 // 根据 UpdateWrapper 条件，更新记录 需要设置sqlset
@@ -863,7 +863,7 @@ boolean updateBatchById(Collection<T> entityList, int batchSize);
 | `Collection<T>` | entityList    | 实体对象集合                       |
 |      `int`      | batchSize     | 插入批次数量                       |
 
-#### 4.2.4. 删除操作 （Remove）
+#### 删除操作 （Remove）
 
 ```java
 // 根据 entity 条件，删除记录
@@ -885,7 +885,7 @@ boolean removeByIds(Collection<? extends Serializable> idList);
 |        `Map<String, Object>`         | columnMap    | 表字段 map 对象           |
 | `Collection<? extends Serializable>` | idList       | 主键 ID 列表              |
 
-#### 4.2.5. 查询单个操作 （Get）
+#### 查询单个操作 （Get）
 
 ```java
 // 根据 ID 查询
@@ -910,7 +910,7 @@ Map<String, Object> getMap(Wrapper<T> queryWrapper);
 |              `T`              | entity       | 实体对象                   |
 | `Function<? super Object, V>` | mapper       | 转换函数                   |
 
-#### 4.2.6. 查询多个操作 （List）
+#### 查询多个操作 （List）
 
 ```java
 // 查询所有
@@ -944,7 +944,7 @@ List<Object> listObjs(Wrapper<T> queryWrapper);
 |        `Map<String, Object>`         | columnMap    | 表字段 map 对象                   |
 |    `Function<? super Object, V>`     | mapper       | 转换函数                          |
 
-#### 4.2.7. 分页操作 （Page）
+#### 分页操作 （Page）
 
 ```java
 // 无条件分页查询
@@ -964,7 +964,7 @@ IPage<Map<String, Object>> pageMaps(IPage<T> page, Wrapper<T> queryWrapper);
 |  `IPage<T>`  | page         | 翻页对象                          |
 | `Wrapper<T>` | queryWrapper | 实体对象封装操作类 `QueryWrapper` |
 
-#### 4.2.8. 聚合统计操作 （Count）
+#### 聚合统计操作 （Count）
 
 ```java
 // 查询总记录数
@@ -979,7 +979,7 @@ int count(Wrapper<T> queryWrapper);
 | :----------: | ------------ | --------------------------------- |
 | `Wrapper<T>` | queryWrapper | 实体对象封装操作类 `QueryWrapper` |
 
-#### 4.2.9. 链式操作（Chain）
+#### 链式操作（Chain）
 
 **query 查询**
 
@@ -1013,7 +1013,7 @@ update().eq("column", value).remove();
 lambdaUpdate().eq(Entity::getId, value).update(entity);
 ```
 
-### 4.3. 基础使用测试
+### 基础使用测试
 
 > 以用户表为示例
 
@@ -1204,11 +1204,11 @@ public class ServiceCrudTest {
 }
 ```
 
-## 5. 注解(!整理中)
+## 注解(!整理中)
 
 > 此章节介绍 MybatisPlus 注解包相关类详解(注解类包：mybatis-plus-annotation)
 
-### 5.1. @TableName
+### @TableName
 
 描述：表名注解，用于实体类上
 
@@ -1221,7 +1221,7 @@ public class ServiceCrudTest {
 |  `autoResultMap`   | `boolean`  |    否    | `false` | 是否自动构建 `resultMap` 并使用(如果设置 `resultMap` 则不会进行 `resultMap` 的自动构建并注入) |
 | `excludeProperty`  | `String[]` |    否    |  `{}`   | 需要排除的属性名(@since 3.3.1)                                                                |
 
-### 5.2. @TableField
+### @TableField
 
 描述：实体类字段注解(非主键)
 
@@ -1246,23 +1246,23 @@ public class ServiceCrudTest {
 >
 > `numericScale`只生效于 update 的 sql。`jdbcType`和`typeHandler`如果不配合`@TableName#autoResultMap = true`一起使用，也只生效于 update 的 sql。对于`typeHandler`如果你的字段类型和 set 进去的类型为`equals`关系，则只需要让你的`typeHandler`让 Mybatis 加载到即可，不需要使用注解
 
-### 5.3. @Version(opens new window)
+### @Version(opens new window)
 
 描述：乐观锁注解、标记 `@Verison` 在字段上
 
-### 5.4. @EnumValue(opens new window)
+### @EnumValue(opens new window)
 
 描述：通枚举类注解(注解在枚举字段上)
 
-## 6. 配置
+## 配置
 
 虽然在 MybatisPlus 中可以实现零配置，但是有些时候需要自定义一些配置，就需要使用 Mybatis 原生的一些配置文件方式了。在 MyBatis-Plus 中有大量的配置，其中有一部分是 Mybatis 原生的配置，另一部分是 MyBatis-Plus 的配置。
 
 > 更详细配置参考官方文档：https://baomidou.com/config/
 
-### 6.1. 基本配置
+### 基本配置
 
-#### 6.1.1. configLocation
+#### configLocation
 
 MyBatis 配置文件位置，如果您有单独的 MyBatis 配置，请将其路径配置到 configLocation 中。 _MyBatis Configuration 的具体内容请参考 MyBatis 官方文档_
 
@@ -1280,7 +1280,7 @@ mybatis-plus.config-location = classpath:mybatis-config.xml
 </bean>
 ```
 
-#### 6.1.2. mapperLocations
+#### mapperLocations
 
 - 类型：`String[]`
 - 默认值：`["classpath*:/mapper/**/*.xml"]`
@@ -1350,7 +1350,7 @@ public class UserMapperTest {
 }
 ```
 
-#### 6.1.3. typeAliasesPackage
+#### typeAliasesPackage
 
 MyBaits 别名包扫描路径，通过该属性可以给包中的类注册别名，注册后在 Mapper 对应的 XML 文件中可以直接使用类名，而不用使用全限定的类名（即 XML 中调用的时候不用包含包名）。
 
@@ -1368,11 +1368,11 @@ Spring MVC：
 </bean>
 ```
 
-### 6.2. Configuration
+### Configuration
 
 本部分（Configuration）的配置大都为 MyBatis 原生支持的配置，这意味着您可以通过 MyBatis XML 配置文件的形式进行配置。
 
-#### 6.2.1. mapUnderscoreToCamelCase
+#### mapUnderscoreToCamelCase
 
 - 类型：`boolean`
 - 默认值：`true`
@@ -1392,7 +1392,7 @@ Spring MVC：
 mybatis-plus.configuration.map-underscore-to-camel-case=false
 ```
 
-#### 6.2.2. cacheEnabled
+#### cacheEnabled
 
 - 类型：`boolean`
 - 默认值：`true`
@@ -1405,9 +1405,9 @@ mybatis-plus.configuration.map-underscore-to-camel-case=false
 mybatis-plus.configuration.cache-enabled=false
 ```
 
-### 6.3. DbConfig（DB 策略配置）
+### DbConfig（DB 策略配置）
 
-#### 6.3.1. idType
+#### idType
 
 - 类型：`com.baomidou.mybatisplus.annotation.IdType`
 - 默认值：`ASSIGN_ID`
@@ -1438,7 +1438,7 @@ mybatis-plus.global-config.db-config.id-type=auto
 </bean>
 ```
 
-#### 6.3.2. tablePrefix
+#### tablePrefix
 
 - 类型：`String`
 - 默认值：`null`
@@ -1469,7 +1469,7 @@ mybatis-plus.global-config.db-config.table-prefix=tb_
 </bean>
 ```
 
-## 7. Wrapper 条件构造器
+## Wrapper 条件构造器
 
 在 MP 中，`Wrapper`接口的实现类`AbstractWrapper`和`AbstractChainWrapper`，其关系如下：
 
@@ -1485,7 +1485,7 @@ mybatis-plus.global-config.db-config.table-prefix=tb_
 > - 以下举例均为使用普通 wrapper，入参为 Map 和 List 的均以 json 形式表现!
 > - 使用中如果入参的 Map 或者 List 为空，则不会加入最后生成的 sql 中!!!
 
-### 7.1. AbstractWrapper
+### AbstractWrapper
 
 **注意：**
 
@@ -1494,7 +1494,7 @@ mybatis-plus.global-config.db-config.table-prefix=tb_
 
 官方文档地址：https://baomidou.com/guide/wrapper.html#abstractwrapper
 
-#### 7.1.1. 全匹配 allEq
+#### 全匹配 allEq
 
 `allEq`方法定义：
 
@@ -1553,7 +1553,7 @@ public void testAllEq() {
 }
 ```
 
-#### 7.1.2. 基本比较操作
+#### 基本比较操作
 
 |   方法定义   |             含义              | 示例                                                     |
 | :----------: | :---------------------------: | -------------------------------------------------------- |
@@ -1622,7 +1622,7 @@ public void testBasicQuery() {
 }
 ```
 
-#### 7.1.3. 模糊查询
+#### 模糊查询
 
 |  方法定义   |      含义       | 示例                                            |
 | :---------: | :-------------: | ----------------------------------------------- |
@@ -1637,7 +1637,7 @@ public void testBasicQuery() {
 
 ```
 
-#### 7.1.4. 排序
+#### 排序
 
 |   方法定义    |          含义           | 示例                                                            |
 | :-----------: | :---------------------: | --------------------------------------------------------------- |
@@ -1664,7 +1664,7 @@ public void testOrderQuery() {
 }
 ```
 
-#### 7.1.5. 逻辑查询
+#### 逻辑查询
 
 | 方法定义 |        含义         | 示例                                                                                                                                                               |
 | :------: | :-----------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -1700,11 +1700,11 @@ public void testAndQuery() {
 }
 ```
 
-### 7.2. QueryWrapper
+### QueryWrapper
 
 说明：继承自`AbstractWrapper`，自身的内部属性 `entity` 也用于生成 `where` 条件及 `LambdaQueryWrapper`，可以通过 `new QueryWrapper().lambda()` 方法获取
 
-#### 7.2.1. select 设置查询字段
+#### select 设置查询字段
 
 ```java
 select(String... sqlSelect)
@@ -1728,9 +1728,9 @@ public void testSelect() {
 }
 ```
 
-## 8. ActiveRecord
+## ActiveRecord
 
-### 8.1. 什么是 ActiveRecord
+### 什么是 ActiveRecord
 
 ActiveRecord 也属于 ORM（对象关系映射）层，由 Rails 最早提出，遵循标准的 ORM 模型：表映射到记录，记录映射到对象，字段映射到对象属性。配合遵循的命名和配置惯例，能够很大程度的快速实现模型的操作，而且简洁易懂。
 
@@ -1740,7 +1740,7 @@ ActiveRecord 的主要思想是：
 - ActiveRecord 同时负责把自己持久化，在 ActiveRecord 中封装了对数据库的访问，即 CURD
 - ActiveRecord 是一种领域模型(Domain Model)，封装了部分业务逻辑
 
-### 8.2. 开启 ActiveRecord
+### 开启 ActiveRecord
 
 在 MP 中，使用 ActiveRecord 只需要将相应的表实体类继承 `com.baomidou.mybatisplus.extension.activerecord.Model` 类即可。如：
 
@@ -1778,7 +1778,7 @@ public class User extends Model<User> {
 
 > _值得注意是：官方示例中，AR 模式必须需要有 `pkVal` 方法，否则原 xxById 等方法会失效。_
 
-### 8.3. 使用 ActiveRecord 示例
+### 使用 ActiveRecord 示例
 
 ```java
 /**
@@ -1869,13 +1869,13 @@ public void testActiveRecordQuery() {
 
 > 注：测试时可观察控制台中的最终生成的 sql 语句
 
-## 9. Oracle 主键 Sequence
+## Oracle 主键 Sequence
 
 在 Oracle 数据库中，主键不能使用自增长了，需要使用 Sequence 序列生成 id 值
 
-### 9.1. Oracle 数据库环境搭建
+### Oracle 数据库环境搭建
 
-#### 9.1.1. 部署 Oracle 测试环境
+#### 部署 Oracle 测试环境
 
 使用 Docker 环境进行部署安装 Oracle
 
@@ -1894,7 +1894,7 @@ docker start oracle && docker logs -f oracle
 >
 > 需要注意的是：由于安装的 Oracle 是 64 位版本，所以 navicat 也是需要使用 64 为版本，否则连接不成功。
 
-#### 9.1.2. 创建表以及序列
+#### 创建表以及序列
 
 ```sql
 --创建表，表名以及字段名都要大写
@@ -1911,7 +1911,7 @@ CREATE TABLE "TB_USER" (
 CREATE SEQUENCE SEQ_USER START WITH 1 INCREMENT BY 1
 ```
 
-#### 9.1.3. 安装 Oracle 驱动包到 maven 本地仓库
+#### 安装 Oracle 驱动包到 maven 本地仓库
 
 由于版权原因，不能直接通过 maven 的中央仓库下载 oracle 数据库的 jdbc 驱动包，所以手动需要将驱动包安装到本地仓库。maven 安装命令如下：
 
@@ -1931,7 +1931,7 @@ mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=12.1
 </dependency>
 ```
 
-### 9.2. 修改数据库连接配置
+### 修改数据库连接配置
 
 ```yml
 spring:
@@ -1942,7 +1942,7 @@ spring:
     password: 123456
 ```
 
-### 9.3. 修改主键的生成策略
+### 修改主键的生成策略
 
 <font color=red>**主键生成策略必须使用`INPUT`**</font>
 
@@ -1973,7 +1973,7 @@ public class YourEntity {
 }
 ```
 
-### 9.4. 配置序列生成器
+### 配置序列生成器
 
 在项目中，配置 MP 的序列生成器，并添加到 Spring 容器中。MP 内置支持：
 
@@ -1985,7 +1985,7 @@ public class YourEntity {
 
 如果内置支持不满足你的需求，可实现`IKeyGenerator`接口来进行扩展
 
-#### 9.4.1. 方式 1: Spring xml 配置
+#### 方式 1: Spring xml 配置
 
 ```xml
 <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
@@ -1999,7 +1999,7 @@ public class YourEntity {
 <bean id="keyGenerator" class="com.baomidou.mybatisplus.extension.incrementer.H2KeyGenerator"/>
 ```
 
-#### 9.4.2. 方式 2: 使用配置类
+#### 方式 2: 使用配置类
 
 ```java
 @Configuration
@@ -2016,7 +2016,7 @@ public class MybatisPlusConfig {
 }
 ```
 
-#### 9.4.3. 方式 3: 通过 MybatisPlusPropertiesCustomizer 自定义
+#### 方式 3: 通过 MybatisPlusPropertiesCustomizer 自定义
 
 ```java
 @Bean
@@ -2025,7 +2025,7 @@ public MybatisPlusPropertiesCustomizer plusPropertiesCustomizer() {
 }
 ```
 
-### 9.5. 配置 @KeySequence 注解指定序列名称
+### 配置 @KeySequence 注解指定序列名称
 
 实体类配置主键 Sequence 名称。
 
@@ -2051,7 +2051,7 @@ public class User {
 - 支持父类定义 `@KeySequence`，子类使用，这样就可以几个表共用一个 Sequence。如果主键是`String`类型的，也可以使用
 - oracle 的 sequence 返回的是`Long`类型，如果主键类型是`Integer`，可能会引起`ClassCastException`
 
-### 9.6. 测试
+### 测试
 
 ```java
 @Test
@@ -2075,7 +2075,7 @@ public void testSequenceGenerate() {
 }
 ```
 
-### 9.7. 底层实现（了解）
+### 底层实现（了解）
 
 mybatis 原生提供了接口。MP 提供的现实类 `com.baomidou.mybatisplus.core.metadata.TableInfoHelper`
 
@@ -2114,7 +2114,7 @@ public static KeyGenerator genKeyGenerator(TableInfo tableInfo, MapperBuilderAss
 
 > `SelectKeyGenerator`对象是 mybatis 原生的主键生成器, 会在：执行 sql 之前调用主键生成器的方法获取主键结果，插入到 insert 语句中；在执行成功之后把主键的值回塞到实体对象中，这样我们只需通过对象的 getId()方法就可以获取到主键值
 
-## 10. Sql 注入器
+## Sql 注入器
 
 在 MP 中，通过 `AbstractSqlInjector` 将 `BaseMapper` 中的方法注入到了 Mybatis 容器，基础的增删改查方法才可以正常执行。
 
@@ -2124,7 +2124,7 @@ public static KeyGenerator genKeyGenerator(TableInfo tableInfo, MapperBuilderAss
 2. 编写自定义方法的逻辑处理类，继承抽象类`AbstractMethod`，实现`injectMappedStatement`方法，此方法就是自定义方法处理逻辑
 3. 继承 MP 框架的`ISqlInjector`接口默认实现类`DefaultSqlInjector`，重写`getMethodList`方法，增加扩展自定义的方法。
 
-### 10.1. SQL 自动注入器接口 ISqlInjector
+### SQL 自动注入器接口 ISqlInjector
 
 ```java
 public interface ISqlInjector {
@@ -2142,7 +2142,7 @@ public interface ISqlInjector {
 
 自定义自己的通用方法可以实现接口 `ISqlInjector` 也可以继承抽象类 `AbstractSqlInjector` 注入通用方法 SQL 语句，然后继承 `BaseMapper` 添加自定义方法，全局配置 `sqlInjector` 注入 MP 会自动将类所有方法注入到 mybatis 容器中。
 
-### 10.2. 编写接口继承 BaseMapper
+### 编写接口继承 BaseMapper
 
 编写 `MyBaseMapper` 接口（_名称自取_），此接口继承`BaseMapper`接口，相应扩展的方法都定义在此接口中。其他的 Mapper 接口都可以继承此 Mapper 接口，这样实现了统一的扩展。
 
@@ -2159,7 +2159,7 @@ public interface MyBaseMapper<T> extends BaseMapper<T> {
 }
 ```
 
-### 10.3. 编写自定义方法实现
+### 编写自定义方法实现
 
 自定义的 SQL 处理方法，需要继承 MP 框架的 `AbstractMethod` 抽象类，重写 `injectMappedStatement` 抽象方法，在方法中对 SQL 做自定义的处理。
 
@@ -2198,7 +2198,7 @@ public class FindAll extends AbstractMethod {
 }
 ```
 
-### 10.4. 编写 SqlInjector 的实现
+### 编写 SqlInjector 的实现
 
 自定义通用方法可以实现接口 `ISqlInjector`，也可以继承抽象类 `AbstractSqlInjector` 来注入自定义通用方法。值得注意的是，如果直接继承 `AbstractSqlInjector` 的话，原有的 `BaseMapper` 中的方法将失效，所以一般选择继承 MP 的框架提供的默认实现 `DefaultSqlInjector` 进行扩展。
 
@@ -2233,7 +2233,7 @@ public class MySqlInjector extends DefaultSqlInjector {
 
 > 注：此类需要注册到 spring 容器中
 
-### 10.5. 测试
+### 测试
 
 编写 mapper 接口，继承自定义的 `MyBaseMapper` 接口
 
@@ -2243,11 +2243,11 @@ public interface UserMapper extends MyBaseMapper<User>
 
 测试接口调用自定义方法。
 
-## 11. 自动填充功能
+## 自动填充功能
 
 在 MP 中提供了实现自动填充的功能，插入或者更新数据时，自动填充一些字段的数据。
 
-### 11.1. @TableField 注解的 fill 属性
+### @TableField 注解的 fill 属性
 
 在实体类中，给需要自动填充的字段添加 `@TableField` 注解，`fill` 属性指定生成器的策略
 
@@ -2283,7 +2283,7 @@ public enum FieldFill {
 }
 ```
 
-### 11.2. 编写 MetaObjectHandler 的实现
+### 编写 MetaObjectHandler 的实现
 
 自定义元对象处理器接口 `com.baomidou.mybatisplus.core.handlers.MetaObjectHandler` 的实现类。
 
@@ -2316,7 +2316,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
 > 注：自定义处理器需要声明 `@Component` 或 `@Bean` 注入 spring 容器中
 
-### 11.3. 注意事项
+### 注意事项
 
 - 填充原理是直接给实体对象的属性设置值!!!
 - 注解则是指定该属性在对应情况下必有值,如果无值则入库会是 `null`
@@ -2326,11 +2326,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 - 要想根据注解 `FieldFill.xxx` 和字段名以及字段类型来区分必须使用父类的 `strictInsertFill` 或者 `strictUpdateFill` 方法
 - 不需要根据任何来区分可以使用父类的 `fillStrategy` 方法
 
-## 12. 逻辑删除
+## 逻辑删除
 
 逻辑删除就是将数据标记为删除，而并非真正的物理删除（非`DELETE`操作），查询时需要携带状态条件，确保被标记的数据不被查询到。这样做的目的就是避免数据被真正的删除。
 
-### 12.1. 修改全局配置 DbConfig
+### 修改全局配置 DbConfig
 
 修改`com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig`的配置。例：application.yml
 
@@ -2345,7 +2345,7 @@ mybatis-plus:
 
 > 注：MP 的逻辑删除默认值为：1-已删除 0-未删除。如果表的代表逻辑删除的值与默认值一致，则可以不用修改`GlobalConfig$DbConfig`的配置
 
-### 12.2. 添加 @TableLogic 注解
+### 添加 @TableLogic 注解
 
 mp 实现逻辑删除，需要实体类相应的字段上加上 `@TableLogic` 注解
 
@@ -2356,7 +2356,7 @@ private Integer deleted;
 
 > _配置以上后，可以调用 `BaseMapper` 接口的删除方法，测试是否实现逻辑删除。_
 
-### 12.3. 特别说明
+### 特别说明
 
 <font color=red>**MP 的逻辑删除功能只对自动注入的 sql 起效**</font>，_即原`BaseMapper`的方法与自定义的 SQL 注入器的方法才有效_。
 
@@ -2377,11 +2377,11 @@ private Integer deleted;
 
 > 扩展：逻辑删除实质还是代表删除数据，只是为了保存有价值的数据的一种方案。如果经常需要查询这些“已删除”的数据，建议使用一个字段用于表示该记录的状态会更加合理。
 
-## 13. 通用枚举
+## 通用枚举
 
 MP 提供通用枚举的功能，让 sql 的操作（新增、更新、查询）时，自动将转换相应的枚举值。
 
-### 13.1. 声明通用枚举属性
+### 声明通用枚举属性
 
 - 方式一：使用 `@EnumValue` 注解枚举属性
 
@@ -2447,7 +2447,7 @@ public enum AgeEnum implements IEnum<Integer> {
 }
 ```
 
-### 13.2. 实体属性使用枚举类型
+### 实体属性使用枚举类型
 
 将实体类相应需要转换的属性改成使用枚举
 
@@ -2475,7 +2475,7 @@ public class User {
 }
 ```
 
-### 13.3. 配置扫描通用枚举
+### 配置扫描通用枚举
 
 配置`typeEnumsPackage`项，扫描通过枚举包的路径
 
@@ -2490,7 +2490,7 @@ mybatis-plus:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 ```
 
-### 13.4. 测试
+### 测试
 
 ```java
 /**
@@ -2537,13 +2537,13 @@ public void testQueryWrapper() {
 }
 ```
 
-## 14. 代码生成器
+## 代码生成器
 
-### 14.1. 代码生成器（历史版本）-待整理
+### 代码生成器（历史版本）-待整理
 
 示例代码位置：`\mybatis-note\mybatis-plus-samples\03-mybatis-plus-generator\mp-generator-previous\`
 
-#### 14.1.1. 添加依赖
+#### 添加依赖
 
 ```xml
 <dependencies>
@@ -2587,7 +2587,7 @@ public void testQueryWrapper() {
 </dependencies>
 ```
 
-#### 14.1.2. 编写配置
+#### 编写配置
 
 ```java
 /**
@@ -2723,11 +2723,11 @@ public class CodeGenerator {
 }
 ```
 
-### 14.2. 代码生成器（3.5.1+版本）
+### 代码生成器（3.5.1+版本）
 
 示例代码位置：`\mybatis-note\mybatis-plus-samples\03-mybatis-plus-generator\mp-generator-latest\`
 
-#### 14.2.1. 添加依赖
+#### 添加依赖
 
 ```xml
 <dependencies>
@@ -2777,7 +2777,7 @@ public class CodeGenerator {
 </dependencies>
 ```
 
-#### 14.2.2. 编写配置
+#### 编写配置
 
 ```java
 /**
@@ -2835,9 +2835,9 @@ public class MpFastAutoGenerator {
 }
 ```
 
-## 15. MyBatis 插件
+## MyBatis 插件
 
-### 15.1. mybatis 的插件机制
+### mybatis 的插件机制
 
 MyBatis 允许在已映射语句执行过程中的某一点进行拦截调用。默认情况下，MyBatis 允许使用插件来拦截的方法调用包括：
 
@@ -2857,13 +2857,13 @@ MyBatis 允许在已映射语句执行过程中的某一点进行拦截调用。
 
 > 详细插件执行机制详见[《MyBatis 源码笔记》](/后端框架/MyBatis/MyBatis-源码分析)的『插件模块源码分析』章节
 
-### 15.2. MybatisPlusInterceptor 核心插件
+### MybatisPlusInterceptor 核心插件
 
 该插件是 MP 核心插件，目前代理了 `Executor#query` 和 `Executor#update` 和 `StatementHandler#prepare` 方法
 
-### 15.3. PaginationInnerInterceptor 分页插件
+### PaginationInnerInterceptor 分页插件
 
-#### 15.3.1. 配置依赖
+#### 配置依赖
 
 ```xml
 <dependencies>
@@ -2886,9 +2886,9 @@ MyBatis 允许在已映射语句执行过程中的某一点进行拦截调用。
 </dependencies>
 ```
 
-#### 15.3.2. 配置分页插件
+#### 配置分页插件
 
-##### 15.3.2.1. spring xml 方式
+##### spring xml 方式
 
 ```xml
 <!-- spring xml 方式 -->
@@ -2909,7 +2909,7 @@ MyBatis 允许在已映射语句执行过程中的某一点进行拦截调用。
 </bean>
 ```
 
-##### 15.3.2.2. Spring boot 方式
+##### Spring boot 方式
 
 - 通过`@Bean`注解配置新版分页插件加入到 spring 容器
 
@@ -2968,7 +2968,7 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
 ```
 
-#### 15.3.3. 基于 BaseMapper 基础分页示例
+#### 基于 BaseMapper 基础分页示例
 
 ```java
 /**
@@ -3005,7 +3005,7 @@ private <T> void printPageInfo(Page<T> page) {
 }
 ```
 
-#### 15.3.4. PaginationInnerInterceptor 分页插件相关属性介绍
+#### PaginationInnerInterceptor 分页插件相关属性介绍
 
 |   属性名   |    类型    | 默认值  | 描述                                                                    |
 | :--------: | :--------: | :-----: | ----------------------------------------------------------------------- |
@@ -3016,9 +3016,9 @@ private <T> void printPageInfo(Page<T> page) {
 
 > <font color=red>**建议单一数据库类型的均设置 dbType**</font>
 
-#### 15.3.5. 自定义 mapper 接口分页查询
+#### 自定义 mapper 接口分页查询
 
-##### 15.3.5.1. 自定义分页方法的入参与出参的说明
+##### 自定义分页方法的入参与出参的说明
 
 - 如果返回类型是 `IPage` 则入参的 `IPage` 不能为`null`，因为`返回的IPage == 入参的IPage`
 
@@ -3040,7 +3040,7 @@ MyPage selectByIPage(MyPage page, ...其他参数);
 
 > 注：如果 xml 需要从 `page` 里取值，需要 `page.属性` 获取
 
-##### 15.3.5.2. 自定义 mapper 接口分页示例
+##### 自定义 mapper 接口分页示例
 
 - 自定义分页类
 
@@ -3175,11 +3175,11 @@ public void testSelectByMyPage() {
 }
 ```
 
-### 15.4. Pagehelper 分页助手
+### Pagehelper 分页助手
 
 MP 除了框架自己本身的分页插件之外，也可以引入第三方的 Pagehelper 分页助手
 
-#### 15.4.1. 配置依赖
+#### 配置依赖
 
 ```xml
 <dependencies>
@@ -3211,7 +3211,7 @@ MP 除了框架自己本身的分页插件之外，也可以引入第三方的 P
 </dependencies>
 ```
 
-#### 15.4.2. 配置分页插件
+#### 配置分页插件
 
 ```java
 @Configuration
@@ -3227,7 +3227,7 @@ public class MybatisPlusConfig {
 }
 ```
 
-#### 15.4.3. 测试示例
+#### 测试示例
 
 示例直接使用`BaseMapper`的基础操作测试
 
@@ -3253,7 +3253,7 @@ public void testDoSelectPageInfo() {
 }
 ```
 
-### 15.5. 执行 SQL 分析插件
+### 执行 SQL 分析插件
 
 在 MP 中提供了对 SQL 执行的分析的插件`SqlExplainInterceptor`，可用作阻断全表更新、删除的操作。
 
@@ -3291,7 +3291,7 @@ public MybatisPlusInterceptor mybatisPlusInterceptor() {
 
 测试时进行一些全表的操作，观察是否被阻断。
 
-### 15.6. 性能分析插件
+### 性能分析插件
 
 性能分析拦截器，用于输出每条 SQL 语句及其执行时间，可以设置最大执行时间，超过时间会抛出异常。
 
@@ -3320,15 +3320,15 @@ public MybatisPlusInterceptor mybatisPlusInterceptor() {
 
 > 注意：以上插件在 3.1.1 版本中生效，3.4.3.4 版本已无此插件
 
-### 15.7. 乐观锁插件
+### 乐观锁插件
 
-#### 15.7.1. 乐观锁实现方式
+#### 乐观锁实现方式
 
 1. 取出记录时，获取当前 version 字段值
 2. 执行更新时，使用版本做为条件。 `set version = newVersion where version = oldVersion`
 3. 如果 version 不对，就更新失败
 
-#### 15.7.2. 乐观锁插件配置
+#### 乐观锁插件配置
 
 spring xml 方式:
 
@@ -3369,7 +3369,7 @@ public class MybatisPlusConfig {
 }
 ```
 
-#### 15.7.3. 在实体类的字段上加上 @Version 注解
+#### 在实体类的字段上加上 @Version 注解
 
 给实体类相应版本字段添加 `@Version` 注解
 
@@ -3386,7 +3386,7 @@ private Integer version;
 - 仅支持 `updateById(id)` 与 `update(entity, wrapper)` 方法
 - 在 `update(entity, wrapper)` 方法下, `wrapper` 不能复用!!!
 
-#### 15.7.4. 测试示例
+#### 测试示例
 
 ```java
 /**
@@ -3505,9 +3505,9 @@ public void testUpdateByEntitySucc() {
 }
 ```
 
-## 16. 原理分析
+## 原理分析
 
-### 16.1. SQL 注入的原理
+### SQL 注入的原理
 
 MP 在启动后会将`BaseMapper`中的一系列的方法注册到`meppedStatements`中，下面分析是如何注入与流程。
 

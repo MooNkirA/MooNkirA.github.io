@@ -1,8 +1,8 @@
 # Spring Boot 整合 Solr
 
-## 1. 整合示例
+## 整合示例
 
-### 1.1. 加入依赖
+### 加入依赖
 
 在pom.xml中加入依赖：
 
@@ -16,7 +16,7 @@
 
 **注意：solr-solrj的版本必须为5.0以上才可以用。**
 
-### 1.2. 配置连接 Solr
+### 配置连接 Solr
 
 在application.properties中配置
 
@@ -30,7 +30,7 @@ spring.data.solr.zkHost=192.168.12.128:3181,192.168.12.128:3182,192.168.12.128:3
 
 **说明：切换到单机版，注释掉集群版配置信息即可。**
 
-### 1.3. SolrClient 操作 Solr
+### SolrClient 操作 Solr
 
 只需要直接注入SolrClient即可使用以下方法操Solr
 

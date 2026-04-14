@@ -1,6 +1,6 @@
 # Spring Data 概述
 
-## 1. 持久层开发存在的问题
+## 持久层开发存在的问题
 
 随着互联网技术的发展，现在的企业开发中用到的用于数据存储的产品，不再仅仅是关系型数据库，而是要根据场景需要选择不同的存储技术，比如用于缓存热点数据的 redis，用于存储文档数据的 mongodb，用于支持强大搜索功能的 elasticsearch 等等。
 
@@ -10,7 +10,7 @@
 
 开发人员就必须同时掌握多种数据访问技术，这无疑增加了开发成本。Spring Data 就是为了实现使用一套 API 支持各个不同的存储的访问而存在的一种技术。
 
-## 2. SpringData 简介
+## SpringData 简介
 
 Spring Data 是为数据访问提供一个熟悉的、一致的、基于 Spring 的编程模型。大大简化 dao 层开发，提供了一套统一的数据访问 API，同时还保留了各个底层数据存储的特殊特性。它可以很好的支持常用的关系型数据库、非关系型数据库、MapReduce 框架和云数据服务。
 
@@ -25,7 +25,7 @@ Spring Data 作为 dao 层开发技术，将大大简化代码量，而且其 AP
 7. 与 Spring MVC 控制器的高级集成
 8. 支持跨库存储
 
-## 3. Spring Data 的主要模块
+## Spring Data 的主要模块
 
 Spring Data 支持的持久层技术非常多，分成以下两大模块：
 
@@ -62,9 +62,9 @@ Spring Data 支持的持久层技术非常多，分成以下两大模块：
 - Spring Data Vault - 建立在 Spring Data KeyValue 之上的 Vault 存储库
 - Spring Data YugabyteDB - YugabyteDB 分布式 SQL 数据库的 Spring Data 模块
 
-## 4. SpringData 扩展内容
+## SpringData 扩展内容
 
-### 4.1. Repository 和 Template 的选用
+### Repository 和 Template 的选用
 
 在 Spring Data 的模块中，使用 Spring Data Jpa 的时候，采用了继承 Spring Data 提供的一个接口的形式，即继承 `JpaRepository<T, ID>, JpaSpecificationExecutor<T>` ，而使用 Sping Data Redis 的时候，通常是在实现类中注入一个 `RedisTemplate` 的方式。
 

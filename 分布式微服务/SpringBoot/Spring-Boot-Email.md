@@ -2,7 +2,7 @@
 
 本笔记基于 Spring Boot 2.5.8 版本进行开发
 
-## 1. 简述
+## 简述
 
 发送邮件应该是网站的必备功能之一，什么注册验证，忘记密码或者是给用户发送营销信息。最早期的时候会使用 JavaMail 相关 api 来写发送邮件的相关代码，后来 Spring 推出了 JavaMailSender 更加简化了邮件发送的过程，在之后 Spring Boot 对此进行了封装就有了现在的 spring-boot-starter-mail
 
@@ -14,9 +14,9 @@
 
 简单说就是 SMPT 是发邮件的标准，POP3 是收邮件的标准，IMAP 是对 POP3 的升级。在开发程序中操作邮件，通常是发邮件，所以 SMTP 是使用的重点，收邮件大部分都是通过邮件客户端完成，所以开发收邮件的代码极少。除非要读取邮件内容，然后解析，做邮件功能的统一处理。例如 HR 的邮箱收到求职者的简历，可以读取后统一处理。但是还不如直接开发独立的投递简历的系统，因为要想收邮件就要规范发邮件的人的书写格式，有点强人所难，并且极易收到外部攻击，不可能使用白名单来收邮件。如果能使用白名单来收邮件然后解析邮件，还不如开发个系统给白名单中的人专用呢，更安全。
 
-## 2. 基础整合使用
+## 基础整合使用
 
-### 2.1. 引入依赖
+### 引入依赖
 
 在 Spring Boot 中发送邮件，在 pom.xml 文件里面引入整合 javamail 的依赖 spring-boot-starter-mail
 
@@ -27,7 +27,7 @@
 </dependency>
 ```
 
-### 2.2. 邮件参数配置
+### 邮件参数配置
 
 - 在 application.yml 中添加邮箱配置参数。*`username`与`password`通过系统参数传递*
 
@@ -57,7 +57,7 @@ password 并不是邮箱账号的登录密码，是邮件供应商提供的一�
 
 ![](images/449895521238968.png)
 
-### 2.3. 编写接口与测试
+### 编写接口与测试
 
 1. 编写 mailService 接口与实现类
 
@@ -129,7 +129,7 @@ public class MailSendTest {
 }
 ```
 
-## 3. 发送 html 格式邮件
+## 发送 html 格式邮件
 
 1. 其他配置不需要改
 
@@ -180,7 +180,7 @@ public void testHtmlMail() {
 }
 ```
 
-## 4. 发送带附件的邮件
+## 发送带附件的邮件
 
 1. 本示例是指定一个上传的文件夹，将文件夹中所有文件作为附件上传，一个文件一封邮件
 2. 配置application.yml文件，设置上传文件夹
@@ -271,7 +271,7 @@ public void sendAttachmentsMail() {
 }
 ```
 
-## 5. 发送带静态资源的邮件
+## 发送带静态资源的邮件
 
 发送带静态资源的邮件其实就是在发送HTML邮件的基础上嵌入静态资源（比如图片），嵌入静态资源的过程和传入附件类似，唯一的区别在于需要标识资源的cid
 
@@ -326,7 +326,7 @@ public class EmailController {
 
 > `helper.addInline("img", file);`方法中的img和图片标签里cid后的名称相对应。启动项目访问http://localhost/email/sendInlineMail，提示发送成功
 
-## 6. 使用模板发送邮件
+## 使用模板发送邮件
 
 1. 在发送验证码等情况下可以创建一个邮件的模板，唯一的变量为验证码。这个例子中使用的模板解析引擎为Thymeleaf，所以首先引入Thymeleaf依赖:
 
@@ -412,10 +412,10 @@ public class EmailController {
 
 > 其中code对应模板里的`${code}`变量。启动项目，访问http://localhost/email/sendTemplateEmail?code=EOS9，页面提示发送成功
 
-## 7. （!待整理）邮件系统
+## （!待整理）邮件系统
 
 
-## 8. 其他
+## 其他
 
 [Spring Boot (十)：邮件服务](https://mp.weixin.qq.com/s?__biz=MzU3NzczMTAzMg==&mid=2247483733&idx=1&sn=287b97b8c50e202e57cad5aab75e7869&chksm=fd0161e2ca76e8f42f840c3f75168c59137dc63c35f2a2f8ee292e9afa952f96f479a63b2a38&mpshare=1&scene=1&srcid=07039b9TGI2GPvv7IfHHRVm0#rd)
 

@@ -1,4 +1,4 @@
-## 1. Git 相关图形化客户端
+## Git 相关图形化客户端
 
 - Git 第三方 GUI Clients 官方推荐整理：https://git-scm.com/downloads/guis
 - Sourcetree
@@ -6,9 +6,9 @@
 - TortoiseGit
 - Git Extensions 网址：https://gitextensions.github.io/
 
-## 2. IDEA 集成 Git 客户端
+## IDEA 集成 Git 客户端
 
-### 2.1. 初始化配置 Git
+### 初始化配置 Git
 
 1. 点击【File】菜单->【Settings】
 
@@ -22,7 +22,7 @@
 
 ![](images/409534508240172.png)
 
-### 2.2. 创建本地仓库
+### 创建本地仓库
 
 1. 选择【VCS】->【Import into Version Control】->【Create Git Repository】或者
 
@@ -36,7 +36,7 @@
 
 ![](images/154835915240172.png)
 
-### 2.3. Commit 提交代码
+### Commit 提交代码
 
 1. 右键选择【Git】->【Commit file...】，将当前项目代码提交到本地仓库
 
@@ -67,7 +67,7 @@ Bin
 
 ![](images/489925316245467.png)
 
-### 2.4. 版本切换
+### 版本切换
 
 - 方式一：选择控制台【Git】(旧版本的idea叫“Version Control”)->【Log】->【Reset Current Branch...】->【Reset】。
 
@@ -93,9 +93,9 @@ Bin
 
 ![](images/110760617221494.png)
 
-### 2.5. 分支管理
+### 分支管理
 
-#### 2.5.1. 创建分支
+#### 创建分支
 
 选择【VCS】(旧版本idea)->【Git】->【Branches】->【New Branch】-> 给分支起名字 ->【Creat】
 
@@ -105,13 +105,13 @@ Bin
 
 ![](images/136431617226439.png)
 
-#### 2.5.2. 切换分支
+#### 切换分支
 
 - 选择右下角 Git 分支的名称按钮 -> 选择要切换的分支 ->【Checkout】
 
 ![](images/370461817253394.png)
 
-#### 2.5.3. 合并分支
+#### 合并分支
 
 选择 Git(VCS)->【Merge...】
 
@@ -123,13 +123,13 @@ Bin
 
 > Tips: 如果合并时出现代码冲突，需要处理冲突后再合并。
 
-#### 2.5.4. 删除分支
+#### 删除分支
 
 点击右下角分支名称 -> 选中要删除的分支 ->【Delete】
 
 ![](images/354692817221156.png)
 
-### 2.6. 克隆远程仓库到本地仓库
+### 克隆远程仓库到本地仓库
 
 - 第一种方式(主窗口)：【Get from VSC】-> 选择【Version control: Git】-> 指定远程仓库的路径 -> 指定本地存放的路径 -> clone
 
@@ -139,7 +139,7 @@ Bin
 
 ![](images/466855517239719.png)
 
-### 2.7. 推送(push)本地仓库到远程仓库
+### 推送(push)本地仓库到远程仓库
 
 1. 【Git】(VCS)->【Push...】
 
@@ -153,13 +153,13 @@ Bin
 
 ![](images/478754017233385.png)
 
-### 2.8. 更新(pull)远端仓库代码到本地仓库
+### 更新(pull)远端仓库代码到本地仓库
 
 选择菜单栏或者右键项目，选择【Pull...】，更新远程仓库
 
 ![](images/376451218240898.png)
 
-### 2.9. 协同开发
+### 协同开发
 
 模拟两个程序员同步代码与更新代码。
 
@@ -171,7 +171,7 @@ Bin
 
 ![](images/86980022227337.jpg)
 
-#### 2.9.1. 获取代码
+#### 获取代码
 
 点击 pull 图标获取远程仓库代码
 
@@ -179,13 +179,13 @@ Bin
 
 ![](images/368070122240172.jpg)
 
-#### 2.9.2. 推送代码
+#### 推送代码
 
 点击 push 图标推送代码到远程仓库
 
 ![](images/176570822236727.jpg)
 
-#### 2.9.3. 解决冲突
+#### 解决冲突
 
 两个程序员修改了同一个文件中的同一行代码，提交时
 
@@ -196,21 +196,21 @@ Bin
 
 > Notes: <font color=red>**还需要重新push代码到远程仓库。**</font>
 
-### 2.10. idea 取消项目与 git 仓库的关联
+### idea 取消项目与 git 仓库的关联
 
 选择【file】->【settings】->【version control】，选择项目目录，再点“减号”即可解除 git 仓库的关联，然后去项目目录下删除`.git`这个文件夹即可
 
 ![](images/392491618226450.png)
 
-## 3. SourceTree（待整理）
+## SourceTree（待整理）
 
-### 3.1. 简介
+### 简介
 
 Sourcetree 是一个用于 Windows 和 Mac 的免费 Git 客户端。通过 Sourcetree 的简单 Git GUI 可视化和管理存储库，简化了与 Git 存储库进行交互。
 
 > Sourcetree 官方网址：https://www.sourcetreeapp.com/
 
-### 3.2. 安装
+### 安装
 
 下载完成后，在安装 SourceTree 的过程中，需要通过账户登录，但注册或登录界面可能根本无法打开，导致软件无法正常安装（*注：此情况是版本 2.5.5，后续版本好像没此问题*）。解决方法：
 
@@ -252,9 +252,9 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/367333620258985.png)
 
-### 3.3. 基础使用
+### 基础使用
 
-#### 3.3.1. 拉取代码
+#### 拉取代码
 
 > 以下是从 gitlab 上拉取下代码的示例
 
@@ -281,7 +281,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 点击克隆按钮，项目开始拉取到本地。等待项目拉取完毕后，即可在本地开发。
 
-#### 3.3.2. 上传代码
+#### 上传代码
 
 项目克隆完成之后，一般默认拉取的是 master 分支上的代码，由于 master 分支是主分支，项目多人开发的情况下，很容易造成冲突。所以一般会在 gitlab 远程新建一个开发的分支，如命名为：dev。
 
@@ -293,7 +293,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 3. 点击“推送”选项，选择正确的本地和远程分支，确定推送(相当于 svn 的 commit 操作)。
 4. 等待项目管理员将 dev 分支代码合并到 master 分支，完成从开发到上传。
 
-#### 3.3.3. 分支管理和使用
+#### 分支管理和使用
 
 点击“分支”选项，切换到“新分支”选项。
 
@@ -316,9 +316,9 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 
 
-### 3.4. 其他主要功能
+### 其他主要功能
 
-#### 3.4.1. 配置忽略文件
+#### 配置忽略文件
 
 利用 .gitignore 过滤文件，如编译过程中的中间文件等等，这些文件不需要被追踪管理。正常情况下，管理员创建项目后需要直接将忽略文件创建好。使用 sourcetree 添加忽略文件的方法以下：
 
@@ -328,21 +328,21 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/218285120264982.png)
 
-#### 3.4.2. 冲突提示信息
+#### 冲突提示信息
 
 ![](images/408654822246852.png)
 
-#### 3.4.3. “提交前，先更新”提交信息
+#### “提交前，先更新”提交信息
 
 ![](images/453174922267018.png)
 
-#### 3.4.4. 先拉取后推送
+#### 先拉取后推送
 
 如果推送时，拉取右上方显示数字，则需要先拉取再推送。
 
 ![](images/160225022259687.png)
 
-### 3.5. 使用变基(Rebase)实现将 Bench A 多个提交合并到 Bench B 一个提交
+### 使用变基(Rebase)实现将 Bench A 多个提交合并到 Bench B 一个提交
 
 1. 启动 SourceTree 应用程序。
 2. 在 SourceTree 中，找到并检出（Checkout）分支A。（预先准备用于测试的3个提交）
@@ -384,7 +384,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/285614837755219.png)
 
-### 3.6. 参考资料
+### 参考资料
 
 > Git 客户端 SourceTree 使用教程参考：
 >
@@ -392,13 +392,13 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 > - http://blog.cocoachina.com/article/71732
 > - [【全网最全面】SourceTree使用教程详解（连接远程仓库，克隆，拉取，提交，推送，新建/切换/合并分支，冲突解决，提交PR）](https://zhuanlan.zhihu.com/p/533052453)
 
-## 4. TortoiseGit
+## TortoiseGit
 
 > TortoiseGit 网址：https://tortoisegit.org/
 
-### 4.1. windows 版本安装
+### windows 版本安装
 
-#### 4.1.1. 安装步骤
+#### 安装步骤
 
 使用版本：TortoiseGit-2.6.0.0-64bit.msi
 
@@ -424,7 +424,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/257953309258760.jpg)
 
-#### 4.1.2. 安装中文语言包
+#### 安装中文语言包
 
 安装中文语言包并不是必选项，可以根据个人情况来选择安装。安装包：TortoiseGit-LanguagePack-x.x.x.x-64bit-zh_CN.msi
 
@@ -438,7 +438,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/409033210231106.jpg)
 
-### 4.2. 创建 Git 本地仓库
+### 创建 Git 本地仓库
 
 使用 TortoiseGit 时只需要在目录中点击右键菜单选择“在这里创建版本库”
 
@@ -450,7 +450,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/402213410236051.jpg)
 
-### 4.3. 添加文件
+### 添加文件
 
 在 D:\git_repo 目录下创建一个 test.txt 文件
 
@@ -466,7 +466,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/443781711230907.jpg)
 
-### 4.4. 提交文件
+### 提交文件
 
 在 mytest.txt 上再次点击右键选择“提交”，此时将文件保存至版本库中。
 
@@ -475,9 +475,9 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/441581811248036.jpg) ![](images/500051811249331.jpg)
 
-### 4.5. 修改文件
+### 修改文件
 
-#### 4.5.1. 提交修改
+#### 提交修改
 
 被版本库管理的文件不可避免的要发生修改，此时只需要直接对文件修改即可。修改完毕后需要将文件的修改提交到版本库。
 
@@ -485,13 +485,13 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/195232011250333.jpg)
 
-#### 4.5.2. 查看修改日志
+#### 查看修改日志
 
 在开发过程中可能会经常查看代码的修改历史，或者叫做查看代码的修改日志。用来查看某个版本是谁修改的，什么时间修改的，修改了哪些内容。可以在文件上点击右键选择“显示日志”来查看文件的修改历史。
 
 ![](images/72002111250510.jpg) ![](images/141502111236062.jpg)
 
-#### 4.5.3. 比较差异
+#### 比较差异
 
 当文件内容修改后，需要和修改之前对比一下修改了哪些内容此时可以使用“比较差异功能”
 
@@ -505,7 +505,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/373162311232484.jpg)
 
-#### 4.5.4. 还原修改
+#### 还原修改
 
 当文件修改后不想把修改的内容提交，还想还原到未修改之前的状态。此时可以使用“还原”功能。
 
@@ -515,13 +515,13 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 > Notes: <font color=red>**此操作会撤销所有未提交的修改，所以当做还原操作是需要慎重！！！**</font>
 
-#### 4.5.5. 检查已修改
+#### 检查已修改
 
 当项目提交之前先检查哪些文件发生了改变，再比较差异，决定是否提交。
 
 ![](images/200322611247650.jpg) ![](images/274582611240509.jpg)
 
-### 4.6. 重命名文件
+### 重命名文件
 
 右键文件选择『更名...』
 
@@ -533,7 +533,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/48290412261937.jpg)
 
-### 4.7. 删除文件
+### 删除文件
 
 需要删除无用的文件时可以使用 git 提供的删除功能直接将文件从版本库中删除。
 
@@ -544,7 +544,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 > Tips: **删除文件以后，需要再次提交**
 
-### 4.8. Java工程提交到版本库
+### Java工程提交到版本库
 
 - 第一步：创建 java 工程后，复制到工作目录中
 
@@ -570,7 +570,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 - 第四步：提交代码。将代码添加到 master 分支上，其中 `.gitignore` 文件也需要添加到暂存区，然后提交到版本库。
 
-### 4.9. 导出指定版本
+### 导出指定版本
 
 第一步：显示所有版本日志信息
 
@@ -586,7 +586,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/222481712243474.jpg)
 
-### 4.10. 还原文件到指定版本
+### 还原文件到指定版本
 
 第一步：选中指定版本号与需要还原的文件
 
@@ -596,9 +596,9 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/590871812240356.jpg)
 
-### 4.11. Github 远程仓库操作
+### Github 远程仓库操作
 
-#### 4.11.1. 同步 Github 仓库
+#### 同步 Github 仓库
 
 第一步：查看网络中的SSH客户端：ssh.exe
 
@@ -618,7 +618,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/471612112233650.jpg)
 
-#### 4.11.2. 克隆 Github 仓库
+#### 克隆 Github 仓库
 
 在任意目录点击右键：
 
@@ -626,25 +626,25 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/229542412232457.jpg)
 
-#### 4.11.3. 拉取 Github 代码
+#### 拉取 Github 代码
 
 使用 TortoiseGit 可以从右键菜单中点击【拉取】（pull）或者【获取】（fetch）
 
 ![](images/413522512230903.jpg)
 
-### 4.12. 分支管理
+### 分支管理
 
 在每次的提交，Git 都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在 Git 里，这个分支叫主分支，即 master 分支。HEAD 指针用来指向目前操作的 master 分支，master 分支才是提交的。
 
 ![](images/384402712260721.jpg)
 
-#### 4.12.1. 创建分支
+#### 创建分支
 
 在本地仓库文件夹中点击右键，然后从菜单中选择“创建分支”：
 
 ![](images/162732912239655.jpg) ![](images/236912912239557.jpg)
 
-#### 4.12.2. 切换分支
+#### 切换分支
 
 如果想创建完毕后直接切换到新分支可以勾选“切换到新分支”选项或者从菜单中选择“切换/检出”来切换分支：
 
@@ -658,7 +658,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/335613212258061.jpg)
 
-#### 4.12.3. 合并分支
+#### 合并分支
 
 将 dev 分支合并到 master 分支，需先切换到 master 分支。再从右键菜单中选择合并。
 
@@ -670,7 +670,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/544203512237344.jpg)
 
-### 4.13. 解决冲突
+### 解决冲突
 
 两个分支中编辑的内容都是相互独立互不干扰的，那么如果在两个分支中都对同一个文件进行编辑，然后再合并，就有可能会出现冲突。
 
@@ -707,15 +707,15 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/578264712250569.jpg)
 
-## 5. Eclipse 集成 Git 客户端
+## Eclipse 集成 Git 客户端
 
-### 5.1. 安装 egit 插件
+### 安装 egit 插件
 
 说明：若 Eclipse 版本自带此 egit 插件，则无须安装。
 
-### 5.2. 提交代码到本地仓库
+### 提交代码到本地仓库
 
-#### 5.2.1. 项目加入忽略文件
+#### 项目加入忽略文件
 
 加入检入时需要忽略的文件 `.gitignore`，文件内容如下：
 
@@ -727,13 +727,13 @@ target
 bin
 ```
 
-#### 5.2.2. 分享项目选择使用Git
+#### 分享项目选择使用Git
 
 ![](images/442991414242455.jpg)
 
 ![](images/525241414235581.jpg)
 
-#### 5.2.3. 将项目移到工作目录
+#### 将项目移到工作目录
 
 第一步：创建新的本地仓库
 
@@ -743,7 +743,7 @@ bin
 
 ![](images/525151514244546.jpg)
 
-#### 5.2.4. 提交代码到暂存区
+#### 提交代码到暂存区
 
 第一步：切换到 java 视图
 
@@ -753,11 +753,11 @@ bin
 
 ![](images/524761614247559.jpg)
 
-#### 5.2.5. Commit 提交代码
+#### Commit 提交代码
 
 ![](images/262971714263054.jpg) ![](images/325601714255241.jpg)
 
-### 5.3. push 分支代码到远程仓库
+### push 分支代码到远程仓库
 
 ![](images/369101914241938.jpg) ![](images/468221914236152.jpg)
 
@@ -773,17 +773,17 @@ bin
 
 ![](images/118532214253544.jpg) ![](images/208652214247156.jpg)
 
-### 5.4. push 同步代码到远程仓库
+### push 同步代码到远程仓库
 
 ![](images/133522314235448.jpg) ![](images/195622314261730.jpg)
 
-### 5.5. pull 更新代码到本地仓库
+### pull 更新代码到本地仓库
 
 ![](images/155482414235254.jpg) ![](images/206442414260273.jpg)
 
 注意：Commit 提交的作用是把代码提交到本地。Push 的作用是把本地的代码提交到远程的 git 服务器。
 
-### 5.6. clone 克隆远程仓库到本地
+### clone 克隆远程仓库到本地
 
 第一步：进入 git 仓库界面
 
@@ -801,7 +801,7 @@ bin
 
 ![](images/444532614232921.jpg)
 
-### 5.7. 导入项目到 Eclipse
+### 导入项目到 Eclipse
 
 ![](images/41502814262288.jpg) ![](images/116082814253001.jpg)
 
@@ -813,13 +813,13 @@ bin
 
 ![](images/405892914259360.jpg)
 
-### 5.8. 协同开发
+### 协同开发
 
 开启两个 Eclipse，模拟两个程序员同步代码与更新代码。
 
 ![](images/73913114257539.jpg)
 
-### 5.9. 解决冲突
+### 解决冲突
 
 第一步：两个程序员修改了同一个文件中的同一行代码，提交时
 

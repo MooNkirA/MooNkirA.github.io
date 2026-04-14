@@ -1,14 +1,14 @@
-## 1. Spring Cloud Security 概述
+## Spring Cloud Security 概述
 
 > [Spring Cloud Security 官方文档](https://spring.io/projects/spring-cloud-security)
 
 Spring Cloud Security 为构建安全的应用程序和分布式服务提供了一套解决方案。在 Spring Boot 和 Spring Security OAuth2 的基础上，可以快速创建系统，实现单点登录、令牌中继和令牌交换等常见模式。
 
-## 2. Spring Cloud Security 环境介绍与搭建
+## Spring Cloud Security 环境介绍与搭建
 
 Spring Security OAuth 是对 OAuth2.0 协议的一种实现，并且跟 Spring Security 相辅相成，与 Spring Cloud 体系的集成也非常便利，因为使用 Spring Cloud Security 实现分布式认证授权解决方案
 
-### 2.1. OAuth2.0 服务
+### OAuth2.0 服务
 
 OAuth2.0 的服务提供方涵盖两个服务，即**授权服务 (Authorization Server，也叫认证服务) **和**资源服务 (Resource Server)**，使用 Spring Security OAuth2 的时候可以选择把它们在同一个应用程序中实现，也可以选择建立使用同一个授权服务的多个资源服务。
 
@@ -21,7 +21,7 @@ OAuth2.0 的服务提供方涵盖两个服务，即**授权服务 (Authorization
 
 - `OAuth2AuthenticationProcessingFilter` 用来对请求给出的身份令牌解析鉴权。
 
-### 2.2. 示例概述
+### 示例概述
 
 以下示例分别创建 uaa 授权服务（也可叫认证服务）和 order 订单资源服务
 
@@ -34,9 +34,9 @@ OAuth2.0 的服务提供方涵盖两个服务，即**授权服务 (Authorization
 3. 客户端携带令牌 Token 请求资源服务。
 4. 资源服务校验令牌的合法性，合法即返回资源信息。
 
-### 2.3. 环境搭建
+### 环境搭建
 
-#### 2.3.1. 创建父工程
+#### 创建父工程
 
 创建 maven 聚合工程 spring-cloud-security-greenwich，添加依赖如下：
 
@@ -176,7 +176,7 @@ OAuth2.0 的服务提供方涵盖两个服务，即**授权服务 (Authorization
 </project>
 ```
 
-#### 2.3.2. 创建 UAA 授权服务工程
+#### 创建 UAA 授权服务工程
 
 - 创建授权服务工程 spring-security-uaa，添加如下依赖：
 
@@ -382,7 +382,7 @@ management:
 
 ![](images/341131923238596.png)
 
-#### 2.3.3. 创建 Order 资源服务工程
+#### 创建 Order 资源服务工程
 
 本工程为 Order 订单服务工程，访问本工程的资源需要认证通过。此工程的目的主要是测试认证授权的功能，所以不涉及订单管理相关业务。
 
@@ -536,9 +536,9 @@ public class OrderServer {
 
 ![](images/407603808220171.png)
 
-## 3. 授权服务器配置
+## 授权服务器配置
 
-### 3.1. @EnableAuthorizationServer
+### @EnableAuthorizationServer
 
 在授权服务工程中，使用 `@EnableAuthorizationServer` 注解并继承 `AuthorizationServerConfigurerAdapter` 来配置 OAuth2.0 授权服务器。
 
@@ -551,7 +551,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 }
 ```
 
-### 3.2. AuthorizationServerConfigurerAdapter
+### AuthorizationServerConfigurerAdapter
 
 查看 `AuthorizationServerConfigurerAdapter` 源码，发现里面重写的方法都是没有任何逻辑，这就需要使用者按要求配置以下方法形参的几个类，这几个类是由 Spring 创建的独立的配置对象，它们会被 Spring 传入 `AuthorizationServerConfigurer` 中进行配置。
 
@@ -579,7 +579,7 @@ public class AuthorizationServerConfigurerAdapter implements AuthorizationServer
 - `AuthorizationServerEndpointsConfigurer`：用来配置令牌（token）的访问端点和令牌服务(token services)
 - `AuthorizationServerSecurityConfigurer`：用来配置令牌端点的安全约束
 
-### 3.3. 配置客户端详细信息（ClientDetailsServiceConfigurer）
+### 配置客户端详细信息（ClientDetailsServiceConfigurer）
 
 `ClientDetailsServiceConfigurer` 类能够使用内存或者 JDBC 来实现客户端详情服务（`ClientDetailsService`），`ClientDetailsService` 负责查找 `ClientDetails`，而 `ClientDetails` 有几个重要的属性如下列表：
 
@@ -619,7 +619,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 }
 ```
 
-### 3.4. 管理令牌（AuthorizationServerTokenServices）
+### 管理令牌（AuthorizationServerTokenServices）
 
 `AuthorizationServerTokenServices` 接口定义了一些操作方法，可以对令牌进行一些必要的管理，令牌可以被用来加载身份信息，里面包含了这个令牌的相关权限。
 
@@ -658,7 +658,7 @@ public interface AuthorizationServerTokenServices {
 }
 ```
 
-#### 3.4.1. DefaultTokenServices 抽象实现类
+#### DefaultTokenServices 抽象实现类
 
 可以自定义创建 `AuthorizationServerTokenServices` 接口的实现，通常都需要继承 `DefaultTokenServices` 抽象类。此类中包含了一些有用方法实现，可以使用它来修改令牌的格式和令牌的存储。默认的，当它尝试创建一个令牌的时候，是使用随机值来进行填充的，除了持久化令牌是委托一个 `TokenStore` 接口来实现以外，这个类几乎完成了所有的事情。
 
@@ -668,7 +668,7 @@ public class DefaultTokenServices implements AuthorizationServerTokenServices, R
 }
 ```
 
-#### 3.4.2. TokenStore 接口
+#### TokenStore 接口
 
 `TokenStore` 接口主要是用于持久化令牌，该接口有一个默认的实现是 `InMemoryTokenStore`，此实现的所有令牌是被保存在了内存中。除了使用这个实现类以外，还可以使用一些其他的框架提供的实现类，以下是默认提供的 `TokenStore` 接口实现：
 
@@ -678,7 +678,7 @@ public class DefaultTokenServices implements AuthorizationServerTokenServices, R
 - `JdbcTokenStore`：这是一个基于 JDBC 的实现版本，令牌会被保存进关系型数据库。使用这个版本的实现时，可以在不同的服务器之间共享令牌信息，使用这个版本的时候请注意把"spring-jdbc"依赖加入到项目中
 - `JwtTokenStore`：这个版本的全称是 JSON Web Token（JWT），它可以把令牌相关的数据进行编码（因此对于后端服务来说，它不需要进行存储，这将是一个重大优势），但是它有一个缺点，那就是撤销一个已经授权令牌将会非常困难，所以它通常用来处理一个生命周期较短的令牌以及撤销刷新令牌（refresh_token）。另外一个缺点就是这个令牌占用的空间会比较大，如果加入了比较多用户凭证信息。`JwtTokenStore` 不会保存任何数据，但是它在转换令牌值以及授权信息方面与 `DefaultTokenServices` 所扮演的角色是一样的
 
-#### 3.4.3. 令牌管理配置类
+#### 令牌管理配置类
 
 在 uaa 授权服务工程的 config 包下创建令牌专用的配置类 `TokenConfig`，目前暂时先使用 `InMemoryTokenStore`，生成一个普通的令牌。
 
@@ -728,11 +728,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 }
 ```
 
-### 3.5. 令牌访问端点配置（AuthorizationServerEndpointsConfigurer）
+### 令牌访问端点配置（AuthorizationServerEndpointsConfigurer）
 
 `AuthorizationServerEndpointsConfigurer` 这个对象的实例可以完成令牌服务以及令牌 endpoint (端点)配置。
 
-#### 3.5.1. 配置授权类型（Grant Types）
+#### 配置授权类型（Grant Types）
 
 `AuthorizationServerEndpointsConfigurer` 通过设定以下属性决定支持的授权类型（Grant Types）：
 
@@ -742,7 +742,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 - `implicitGrantService`：这个属性用于设置隐式授权模式，用来管理隐式授权模式的状态。
 - `tokenGranter`：当设置了这个东西（即 TokenGranter 接口实现），那么授权将会交由使用者来完全掌控，并且会忽略掉上面的这几个属性，这个属性一般是用作拓展用途的，即标准的四种授权模式已经满足不了需求的时候，才会考虑使用这个。
 
-#### 3.5.2. 配置授权端点的 URL（Endpoint URLs）
+#### 配置授权端点的 URL（Endpoint URLs）
 
 `AuthorizationServerEndpointsConfigurer` 这个配置类中，`pathMapping()` 方法用来配置端点 URL 链接，它有两个参数：
 
@@ -767,7 +767,7 @@ public AuthorizationServerEndpointsConfigurer pathMapping(String defaultPath, St
 
 <font color=red>**需要注意的是，授权端点这个 URL 应该被 Spring Security 保护起来只供授权用户访问**</font>
 
-#### 3.5.3. 配置令牌访问端点
+#### 配置令牌访问端点
 
 修改授权服务配置类 `AuthorizationServerConfig`，配置令牌访问端点
 
@@ -799,7 +799,7 @@ public AuthorizationCodeServices authorizationCodeServices() {
 }
 ```
 
-### 3.6. 令牌端点的安全约束
+### 令牌端点的安全约束
 
 `AuthorizationServerSecurityConfigurer` 用来配置令牌端点(Token Endpoint)的安全约束
 
@@ -821,7 +821,7 @@ public void configure(AuthorizationServerSecurityConfigurer security) throws Exc
 - `checkTokenAccess("permitAll()")`：表示 `oauth/check_token` 这个 endpoint 完全公开
 - `allowFormAuthenticationForClients()`：允许表单认证
 
-### 3.7. Spring Security 安全配置
+### Spring Security 安全配置
 
 在 uaa 工程中，创建 Spring Security 安全配置类 `WebSecurityConfig`，继承 `WebSecurityConfigurerAdapter` 类。配置创建认证管理器、密码编码器、安全拦截机制
 
@@ -864,7 +864,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 > 上面配置令牌访问端点的 `AuthenticationManager` 认证管理器，是在此安全配置类中初始化。因为为了使用 `WebSecurityConfigurerAdapter` 父类的 `authenticationManagerBean` 方法，所以配置在此类中。
 
-### 3.8. 自定义连接数据库认证 UserDetailService 接口实现
+### 自定义连接数据库认证 UserDetailService 接口实现
 
 授权服务需要进行改造。
 
@@ -872,7 +872,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 > 将 `spring-security-boot-2.1.x` 项目中的 dao、model、service 的代码复制到 uaa 项目中
 
-### 3.9. 授权服务配置总结
+### 授权服务配置总结
 
 授权服务配置分成三大块，可以关联记忆。
 
@@ -882,7 +882,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 至此，授权服务器已经搭建完成。
 
-## 4. OAuth2.0 支持的授权模式种类
+## OAuth2.0 支持的授权模式种类
 
 OAuth2.0 提供了 4 种授权模式，分别是：
 
@@ -893,13 +893,13 @@ OAuth2.0 提供了 4 种授权模式，分别是：
 
 > 其中**授权码模式**和**密码模式**应用较多，本次暂时使用授权码模式
 
-### 4.1. 授权码模式
+### 授权码模式
 
-#### 4.1.1. 授权码模式交互图
+#### 授权码模式交互图
 
 ![](images/124084522220171.png)
 
-#### 4.1.2. 授权码授权流程
+#### 授权码授权流程
 
 ![](images/273244609248972.jpg)
 
@@ -936,11 +936,11 @@ http://授权服务地址/uaa/oauth/token
 
 5. **授权服务器返回令牌(access_token)**
 
-#### 4.1.3. 适用场景
+#### 适用场景
 
 这种模式是四种模式中**安全级别最高**的一种模式。一般用于 client 是 Web 服务器端应用或第三方的原生 App 调用资源服务的时候。因为在这种模式中 access_token 不会经过浏览器或移动端的 App，而是直接从服务端去交换，这样就最大限度的减小了令牌泄漏的风险。
 
-#### 4.1.4. 测试
+#### 测试
 
 浏览器访问认证页面：
 
@@ -976,13 +976,13 @@ POST http://localhost:53020/uaa/oauth/token
 }
 ```
 
-### 4.2. 简化模式
+### 简化模式
 
-#### 4.2.1. 简化模式交互图
+#### 简化模式交互图
 
 ![](images/449202114235855.png)
 
-#### 4.2.2. 简化模式授权流程
+#### 简化模式授权流程
 
 ![](images/502111016248974.jpg)
 
@@ -1001,11 +1001,11 @@ http://授权服务地址/uaa/oauth/authorize?client_id=客户端准入id&respon
 
 > 注：fragment 主要是用来标识 URI 所标识资源里的某个资源，在 URI 的末尾通过 （`#`）作为 fragment 的开头，其中 `#` 不属于 fragment 的值。如 `https://domain/index#L18` 这个 URI 中 `L18` 就是 fragment 的值。使用者只需要知道 js 通过响应浏览器地址栏变化的方式能获取到 fragment 就行了。
 
-#### 4.2.3. 适用场景
+#### 适用场景
 
 一般来说，简化模式用于没有服务器端的第三方单页面应用，因为没有服务器端就无法接收授权码。
 
-#### 4.2.4. 测试
+#### 测试
 
 浏览器访问认证页面：
 
@@ -1019,13 +1019,13 @@ http://127.0.0.1:53020/uaa/oauth/authorize?client_id=c1&response_type=token&scop
 
 ![](images/80633716247093.png)
 
-### 4.3. 密码模式
+### 密码模式
 
-#### 4.3.1. 密码模式交互图
+#### 密码模式交互图
 
 ![](images/569983716244595.png)
 
-#### 4.3.2. 密码模式授权流程
+#### 密码模式授权流程
 
 ![](images/6971416257007.jpg)
 
@@ -1048,11 +1048,11 @@ http://授权服务地址/uaa/oauth/token
 
 3. **授权服务器将令牌（access_token）发送给 client**
 
-#### 4.3.3. 适用场景
+#### 适用场景
 
 这种模式十分简单，但是却意味着直接将用户敏感信息泄漏给了 client 端，因此密码模式一般用于自己开发的 client 端，第一方原生 App 或第一方单页面应用。
 
-#### 4.3.4. 测试
+#### 测试
 
 使用 postman 发送 post 请求
 
@@ -1064,13 +1064,13 @@ POST http://127.0.0.1:53020/uaa/oauth/token
 
 ![](images/540295516225836.png)
 
-### 4.4. 客户端模式
+### 客户端模式
 
-#### 4.4.1. 客户端模式交互图
+#### 客户端模式交互图
 
 ![](images/529535616248276.png)
 
-#### 4.4.2. 客户端模式授权流程
+#### 客户端模式授权流程
 
 ![](images/401751516246231.jpg)
 
@@ -1089,11 +1089,11 @@ http://授权服务地址/uaa/oauth/token
 - `client_secret`：客户端秘钥。
 - `grant_type`：授权类型，填写 `client_credentials` 表示客户端模式
 
-#### 4.4.3. 适用场景
+#### 适用场景
 
 这种模式是最方便但最不安全的模式。因此这就要求对 client 完全的信任，并且 client 本身也是安全的。因此这种模式一般用来提供给完全信任的服务器端服务。比如，合作方系统对接，拉取一组用户信息。
 
-#### 4.4.4. 测试
+#### 测试
 
 使用 postman 发送 post 请求
 
@@ -1105,21 +1105,21 @@ POST http://127.0.0.1:53020/uaa/oauth/token
 
 ![](images/36370417243412.png)
 
-### 4.5. 模式选择策略
+### 模式选择策略
 
 授权模式选择策略流程图：
 
 ![](images/7005716259865.jpg)
 
-## 5. 资源服务接入授权
+## 资源服务接入授权
 
 > 此示例的资源服务是指 order 服务工程
 
-### 5.1. 资源服务器配置
+### 资源服务器配置
 
 在 `spring-security-order` 工程中的 config 包下，创建资源服务的配置类
 
-#### 5.1.1. @EnableResourceServer 注解
+#### @EnableResourceServer 注解
 
 使用 `@EnableResourceServer` 注解标识在有 `@Configuration` 的配置类上，并且必须实现 `ResourceServerConfigurer` 接口来进行资源服务的配置，也可以选择继承自 `ResourceServerConfigurerAdapter` 抽象类，然后重写其中接口的方法，参数就是这个对象的实例
 
@@ -1130,7 +1130,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 }
 ```
 
-#### 5.1.2. ResourceServerConfigurer 接口
+#### ResourceServerConfigurer 接口
 
 此接口是定义了资源服务的配置文件，源码如下：
 
@@ -1157,7 +1157,7 @@ public interface ResourceServerConfigurer {
 }
 ```
 
-#### 5.1.3. ResourceServerConfigurerAdapter 抽象实现类
+#### ResourceServerConfigurerAdapter 抽象实现类
 
 此抽象类实现了 `ResourceServerConfigurer` 接口，通常资源服务的配置类都可以选择继承此抽象类
 
@@ -1174,7 +1174,7 @@ public class ResourceServerConfigurerAdapter implements ResourceServerConfigurer
 }
 ```
 
-#### 5.1.4. 资源服务相关配置
+#### 资源服务相关配置
 
 `ResourceServerSecurityConfigurer` 对象可以配置的属性：
 
@@ -1233,7 +1233,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
 > _其中 `ResourceServerTokenServices` 对象的配置说明详见下节_
 
-### 5.2. 验证 token
+### 验证 token
 
 `ResourceServerTokenServices` 是组成授权服务的另一半，如果授权服务和资源服务在同一个应用程序上的话，可以直接使用 `DefaultTokenServices`，这样的话，就不用考虑关于实现所有必要的接口的一致性问题。但如果资源服务器是分离开的，那么就必须要确保能够有匹配授权服务提供的 `ResourceServerTokenServices`，它知道如何对令牌进行解码。
 
@@ -1247,7 +1247,7 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
 ![](images/263201218230092.png)
 
-### 5.3. 编写资源
+### 编写资源
 
 在 controller 包下编写 `OrderController` 类，此类表示订单资源的访问类：
 
@@ -1262,7 +1262,7 @@ public class OrderController {
 }
 ```
 
-### 5.4. 添加安全访问控制
+### 添加安全访问控制
 
 在 config 包下创建 Spring Security 的安全配置类 `WebSecurityConfig`，添加如下配置：
 
@@ -1288,11 +1288,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 > _注：此安全配置类可以参考授权服务的配置_
 
-### 5.5. 测试
+### 测试
 
 启动 uaa 授权服务与 order 资源服务
 
-#### 5.5.1. 申请令牌
+#### 申请令牌
 
 本测试使用密码模式申请令牌。发送 post 请求
 
@@ -1314,7 +1314,7 @@ http://127.0.0.1:53020/uaa/oauth/token
 }
 ```
 
-#### 5.5.2. 请求资源
+#### 请求资源
 
 按照 oauth2.0 协议要求，请求资源需要携带 token，请求 url 如下：
 
@@ -1330,13 +1330,13 @@ http://127.0.0.1:53021/order/check/p1
 
 ![](images/510754118232073.png)
 
-## 6. OAuth2 整合 JWT 令牌
+## OAuth2 整合 JWT 令牌
 
 通过前面的测试可发现，当资源服务和授权服务不在一起时，资源服务使用 `RemoteTokenServices` 远程请求授权服务验证 token，如果访问量较大将会影响系统的性能。此问题的解决方法如下：
 
 令牌可以采用 JWT 格式即可解决前面的问题，用户认证通过会得到一个 JWT 令牌，JWT 令牌中已经包括了用户相关的信息，客户端只需要携带 JWT 访问资源服务，资源服务根据事先约定的算法自行完成令牌校验，无需每次都请求认证服务完成授权。
 
-### 6.1. 配置 JWT 令牌服务
+### 配置 JWT 令牌服务
 
 在 uaa 工程中配置 jwt 令牌服务，即可实现生成 jwt 格式的令牌。
 
@@ -1390,7 +1390,7 @@ public AuthorizationServerTokenServices tokenService() {
 }
 ```
 
-### 6.2. 生成 JWT 令牌测试
+### 生成 JWT 令牌测试
 
 启动 uaa 授权服务，使用密码模式请求测试生成 jwt 令牌
 
@@ -1398,7 +1398,7 @@ public AuthorizationServerTokenServices tokenService() {
 
 生成的令牌与前面的示例不一样
 
-### 6.3. 校验 JWT 令牌
+### 校验 JWT 令牌
 
 资源服务需要和授权服务拥有一致的签字、令牌服务等：
 
@@ -1453,13 +1453,13 @@ http://127.0.0.1:53020/uaa/oauth/token
 
 ![](images/488972109238668.png)
 
-## 7. 客户端信息存储到数据库
+## 客户端信息存储到数据库
 
 上面的示例中，客户端信息和授权码都是存储在内存中，现实项目生产环境中通常都会存储在数据库中，通过程序去配置与修改客户端信息和授权码等，下面来改造完善环境的配置：
 
-### 7.1. 创建授权认证相关的表
+### 创建授权认证相关的表
 
-#### 7.1.1. 自定义脚本
+#### 自定义脚本
 
 在 user_db 数据库中创建客户端信息表 `oauth_client_details`
 
@@ -1501,7 +1501,7 @@ CREATE TABLE `oauth_code` (
 ) ENGINE = INNODB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 ```
 
-#### 7.1.2. 使用官方示例提供的脚本
+#### 使用官方示例提供的脚本
 
 oauth2 官方表结构脚本：
 
@@ -1510,7 +1510,7 @@ oauth2 官方表结构脚本：
 
 修改脚本中 `LONGVARBINARY` 为 `BLOB`，导入脚本。
 
-### 7.2. 配置授权服务
+### 配置授权服务
 
 修改授权服务工程的配置类 `AuthorizationServerConfig`，`ClientDetailsService` 和 `AuthorizationCodeServices` 从数据库读取数据
 
@@ -1582,9 +1582,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 }
 ```
 
-### 7.3. 测试
+### 测试
 
-#### 7.3.1. 测试申请令牌
+#### 测试申请令牌
 
 使用密码模式申请令牌，观察客户端信息需要和数据库中的信息一致。
 
@@ -1594,7 +1594,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 ![](images/67214610246701.png)
 
-#### 7.3.2. 测试授权码模式
+#### 测试授权码模式
 
 浏览器访问认证页面：
 
@@ -1608,9 +1608,9 @@ http://127.0.0.1:53020/uaa/oauth/authorize?client_id=c1&response_type=code&scope
 
 ![](images/99931011239370.png)
 
-## 8. Spring Security 实现分布式系统授权
+## Spring Security 实现分布式系统授权
 
-### 8.1. 回顾分布式系统授权技术方案
+### 回顾分布式系统授权技术方案
 
 ![](images/32563412235925.png)
 
@@ -1619,7 +1619,7 @@ http://127.0.0.1:53020/uaa/oauth/authorize?client_id=c1&response_type=code&scope
 3. 网关负责鉴权客户端以及请求转发
 4. 网关将 token 解析后传给微服务，微服务进行授权。
 
-### 8.2. 服务注册中心
+### 服务注册中心
 
 所有微服务的请求都经过网关，网关从注册中心读取微服务的地址，将请求转发至微服务。本示例注册中心采用 Eureka
 
@@ -1675,7 +1675,7 @@ public class DiscoveryServer {
 }
 ```
 
-### 8.3. 网关服务
+### 网关服务
 
 网关整合 OAuth2.0 有两种思路：
 
@@ -1694,7 +1694,7 @@ API 网关在认证授权体系里主要负责：
 1. 用户授权拦截（看当前用户是否有权访问该资源）
 2. 将用户信息存储进当前线程上下文（有利于后续业务逻辑随时获取当前用户信息）
 
-#### 8.3.1. 创建工程
+#### 创建工程
 
 - 创建 maven 项目 `spring-security-gateway`，添加相关的依赖：
 
@@ -1853,7 +1853,7 @@ public class GatewayServer {
 }
 ```
 
-#### 8.3.2. token 配置类
+#### token 配置类
 
 资源服务器由于需要验证并解析令牌，往往可以通过在授权服务器暴露 check_token 的 Endpoint 来完成，而在授权服务器使用的是对称加密的 jwt，因此知道密钥即可，资源服务与授权服务本就是对称设计，那把授权服务的 `TokenConfig` 两个类拷贝过来就行 。
 
@@ -1883,7 +1883,7 @@ public class TokenConfig {
 }
 ```
 
-#### 8.3.3. 配置资源服务
+#### 配置资源服务
 
 创建资源服务配置类 `ResouceServerConfig`，主要配置的内容就是定义一些匹配规则，描述某个接入客户端需要什么样的权限才能访问某个微服务。
 
@@ -1948,7 +1948,7 @@ public class ResouceServerConfig {
 
 由于 res1 这个接入客户端，read 包括 ROLE_ADMIN,ROLE_USER,ROLE_API 三个权限。
 
-#### 8.3.4. Spring Security 安全配置
+#### Spring Security 安全配置
 
 配置放行所有请求，关闭跨域限制
 
@@ -1964,11 +1964,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-### 8.4. zuul 过滤器
+### zuul 过滤器
 
 通过 Zuul 过滤器的方式实现，目的是让下游微服务能够很方便的获取到当前的登录用户信息（明文 token）
 
-#### 8.4.1. 实现获取用户信息转发至微服务
+#### 实现获取用户信息转发至微服务
 
 创建 `AuthFilter` 实现 Zuul 前置过滤器，完成当前登录用户信息提取，并放入转发微服务的 request 中
 
@@ -2027,7 +2027,7 @@ public class AuthFilter extends ZuulFilter {
 }
 ```
 
-#### 8.4.2. zuul 网关配置类
+#### zuul 网关配置类
 
 创建网关配置类 `ZuulConfig`，在此配置中将自定义 filter 加入到 spring 容器
 
@@ -2058,11 +2058,11 @@ public class ZuulConfig {
 }
 ```
 
-### 8.5. 微服务用户鉴权拦截
+### 微服务用户鉴权拦截
 
 当微服务收到明文 token 时，需要自定义实现一个过滤器，用于解析明文的 token，增加微服务用户鉴权拦截功能
 
-#### 8.5.1. Spring Security 资源配置
+#### Spring Security 资源配置
 
 修改 `ResouceServerConfig` 配置类，开启方法保护，并增加 Spring 配置策略，除了 `/login` 方法不受保护(统一认证要调用)，其他资源全部需要认证才能访问。
 
@@ -2077,7 +2077,7 @@ public void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-#### 8.5.2. 自定义过滤器拦截 token
+#### 自定义过滤器拦截 token
 
 自定义 filter 拦截器，用于增加解析 token 对象，并填充用户身份到 token 对象，设置到 Spring Security 的 `Authentication` 对象
 
@@ -2122,7 +2122,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 UserDTO user = (UserDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 ```
 
-#### 8.5.3. 增加测试资源
+#### 增加测试资源
 
 - OrderController 增加以下 endpoint
 
@@ -2143,7 +2143,7 @@ public class OrderController {
 }
 ```
 
-### 8.6. 微服务集成测试
+### 微服务集成测试
 
 本案例测试过程描述：
 
@@ -2180,7 +2180,7 @@ POST http://127.0.0.1:53010/uaa/oauth/token
 }
 ```
 
-### 8.7. 扩展用户信息
+### 扩展用户信息
 
 上面示例 jwt 令牌存储了用户的身份信息、权限信息，网关将 token 明文化转发给微服务使用，目前用户身份信息仅包括了用户的账号，但实现项目中，可能还需要用户的其他重要信息，如用户的 ID、手机号等。
 
@@ -2193,7 +2193,7 @@ POST http://127.0.0.1:53010/uaa/oauth/token
 
 相比较而言，方案二比较简单并不用破坏 `UserDetails` 的结构，因此采用方案二。
 
-#### 8.7.1. 修改自定义 UserDetailService 接口实现
+#### 修改自定义 UserDetailService 接口实现
 
 修改 uaa 工程中的 `CustomUserDetailsService.loadUserByUsername` 方法，将原来从数据库查询到用户的信息后，将整个用户对象转成 json 存入 `UserDetails` 对象。
 
@@ -2213,7 +2213,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
 }
 ```
 
-#### 8.7.2. 修改资源服务过滤器
+#### 修改资源服务过滤器
 
 修改 order 资源服务的过滤器 `TokenAuthenticationFilter`。资源服务中的过滤器负责从 header 中解析 json-token，即可拿到网关放入的用户身份信息
 

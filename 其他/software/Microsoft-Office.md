@@ -1,10 +1,8 @@
-# Microsoft Office 系列教程
+## Microsoft Excel
 
-## 1. Microsoft Excel
+### 常用公式
 
-### 1.1. 常用公式
-
-#### 1.1.1. 合并单元格内容
+#### 合并单元格内容
 
 合并单元格内容的函数
 
@@ -18,7 +16,7 @@
 =PHONETIC(C1:C26)
 ```
 
-#### 1.1.2. ABS 函数-取绝对值
+#### ABS 函数-取绝对值
 
 ```excel
 =ABS(表达式)
@@ -26,12 +24,12 @@
 =ABS(B1-A1)
 ```
 
-#### 1.1.3. 输入 `√` 符号
+#### 输入 `√` 符号
 
 - 方式一：按住 Alt 键不放，再输入小数字键盘上的数字 `41420`，松开 Alt 键就 `\`
 - 方式二：输入 `×` 号的话就是按小键盘上的 `41409`
 
-#### 1.1.4. 身份证号码相关处理
+#### 身份证号码相关处理
 
 - 从身份证号中提取出生年月日
 
@@ -53,7 +51,7 @@
 =IF(MOD(MID(A2,17,1),2),"男","女")
 ```
 
-#### 1.1.5. 数字补零
+#### 数字补零
 
 数字按长度补 0，并转换为文本，单纯的改为数字（单元格格式，自定义，示例8个0），只是显示8位，实际导入数据库的时候还是实际的位数
 
@@ -66,36 +64,189 @@
 - 第一个参数是补位的内容
 - 第二个参数是需要补充的位数，即等于总位数-选择的单元格长度
 
-### 1.2. 快捷键大全
+### 快捷键大全
 
 > 参考：http://www.dayanzai.me/microsoft-excel-shortcuts.html
 
-#### 1.2.1. 常用的 Excel 快捷键
+#### 常用的 Excel 快捷键
 
 ![](images/257381622239472.png)
 
-#### 1.2.2. 将数据输入到表格中的 Microsoft Excel 快捷方式
+#### 将数据输入到表格中的 Microsoft Excel 快捷方式
 
 ![](images/14971822227339.png)
 
-#### 1.2.3. 功能键 Excel 快捷键
+#### 功能键 Excel 快捷键
 
 ![](images/464591822247505.png)
 
-#### 1.2.4. Office 加载项任务窗格 Excel 快捷方式
+#### Office 加载项任务窗格 Excel 快捷方式
 
 ![](images/445871322221046.png)
 
-## 2. Microsoft Word
+### 案例实践
 
-### 2.1. 快捷键大全
+#### Excel 将相同日期的多行内容合并并添加序号
+
+要将相同日期的多行内容合并成一个单元格，并在每行前添加序号（如"`1. xxx\n2. xxx`"），可以使用以下方法：
+
+> *目前应用在自己的每日工作清单，合并内容到日志表*
+
+##### 方法一：使用 TEXTJOIN 函数（Excel 2019/365 推荐）
+
+假设数据在 A2:B7 范围，在 D2 输入日期，在 E2 输入公式：
+
+```excel
+=TEXTJOIN(CHAR(10), TRUE,
+  LET(
+    filtered, FILTER(B$2:B$7, A$2:A$7=D2),
+    seq, SEQUENCE(ROWS(filtered)),
+    seq & ". " & filtered
+  )
+)
+```
+
+> Tips: *需要 Excel 365 或 2021 版本支持 `LET`、`FILTER` 和 `SEQUENCE` 函数*
+
+##### 方法二：使用 Power Query（适用于所有Excel版本）
+
+1. 选择数据 -> 获取和转换 -> 从表格/范围
+2. 在Power Query编辑器中：
+   - 选择"日期"列 -> 分组依据 -> 高级 -> 选择"工作内容"列，操作"所有行"
+   - 添加自定义列：
+
+```vba
+Text.Combine(
+List.Transform(
+    Table.Column([Grouped],"工作内容"),
+    each Text.From(List.PositionOf(Table.Column([Grouped],"工作内容"),_)+1) & ". " & _
+), 
+"#(lf)"
+)
+```
+
+3. 关闭并加载
+
+##### 方法三：使用VBA宏（批量处理）
+
+按 Alt+F11 打开 VBA 编辑器，插入模块，粘贴以下代码：
+
+```vba
+Sub MergeByDateWithNumbers()
+    Dim dict As Object, ws As Worksheet
+    Dim lastRow As Long, i As Long
+    Dim dateStr As String, content As String
+    Dim arr() As String, j As Integer
+    
+    Set dict = CreateObject("Scripting.Dictionary")
+    Set ws = ActiveSheet
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+    
+    '收集数据
+    For i = 2 To lastRow
+        dateStr = ws.Cells(i, 1).Value
+        content = ws.Cells(i, 2).Value
+        
+        If dict.exists(dateStr) Then
+            dict(dateStr) = dict(dateStr) & Chr(10) & content
+        Else
+            dict(dateStr) = content
+        End If
+    Next i
+    
+    '处理序号并输出
+    Dim outputWs As Worksheet
+    Set outputWs = Worksheets.Add(After:=ws)
+    outputWs.Range("A1").Value = "日期"
+    outputWs.Range("B1").Value = "合并内容"
+    
+    Dim rowNum As Integer: rowNum = 2
+    Dim key As Variant, items As Variant
+    
+    For Each key In dict.keys
+        items = Split(dict(key), Chr(10))
+        content = ""
+        
+        For j = LBound(items) To UBound(items)
+            content = content & (j + 1) & ". " & items(j) & IIf(j < UBound(items), Chr(10), "")
+        Next j
+        
+        outputWs.Cells(rowNum, 1).Value = key
+        outputWs.Cells(rowNum, 2).Value = content
+        outputWs.Cells(rowNum, 2).WrapText = True
+        rowNum = rowNum + 1
+    Next key
+    
+    outputWs.Columns("B").ColumnWidth = 50
+    MsgBox "处理完成，结果已输出到新工作表", vbInformation
+End Sub
+```
+
+运行此宏会将结果输出到新工作表。
+
+##### 方法四：辅助列+公式组合（适用于旧版 Excel）
+
+1. 添加辅助列 C，在 C2 输入以下公式，并向下填充，得到每行在相同日期中的序号。
+
+```excel
+=COUNTIF($A$2:A2,A2)
+```
+
+2. 在 E 列列出唯一日期（可使用删除重复项功能）
+3. 在 F2 输入数组公式（按Ctrl+Shift+Enter）：
+
+```excel
+=TEXTJOIN(CHAR(10),TRUE,IF($A$2:$A$7=E2,$C$2:$C$7&". "&$B$2:$B$7,""))
+```
+
+##### 案例
+
+**实践应用公式，使用 TEXTJOIN 函数（Excel 2019/365 推荐）**：
+
+```excel
+=IFERROR(TEXTJOIN(CHAR(10), TRUE,
+  LET(
+    filtered, FILTER(Work_List!$B:$B, Work_List!$A:$A=A3),
+    seq, SEQUENCE(ROWS(filtered)),
+    seq & ". " & filtered
+  )
+),"")
+```
+
+> Tips: `Work_List` 是具体内容表格，A列为日期，B列为具体的内容。最外层增加 `IFERROR` 函数，用于当出现任何错误时返回空字符串。
+
+**实践应用公式，辅助列+公式组合（适用于旧版 Excel）**：
+
+```excel
+=TEXTJOIN(CHAR(10),TRUE,IF(Work_List!$A:$A=A3,Work_List!$B:$B&". "&Work_List!$C:$C,""))
+```
+
+> Tips: 这个在工作清单列表中增加了用于辅助计算序号的列B，公式为 `=COUNTIF($A$2:A2,A2)`，A列为日期，C列为具体的内容。
+
+**最终效果**：
+
+|    日期     |                                             合并内容                                             |
+| ---------- | ----------------------------------------------------------------------------------------------- |
+| 2025-04-14 | 1. 测试与修改需求改造的一些问题<br>2. 思考新需求优化的解决方案                                        |
+| 2025-04-15 | 1. 修复场景页面小标题无显示的问题<br>2. 设计与新增占位替换相关的表结构<br>3. 修改用户最新反馈的内容(20%) |
+| 2025-04-16 | 1. 完成修改用户最新反馈的内容，并本地测试                                                            |
+
+**提示**：
+
+1. 合并后的单元格需要设置"自动换行"
+2. `CHAR(10)` 是换行符，确保单元格高度足够显示所有内容
+3. 对于大量数据，VBA 或 Power Query 方法效率更高
+
+## Microsoft Word
+
+### 快捷键大全
 
 > 快捷键参考：http://www.dayanzai.me/word-shortcuts.html
 
 1. 取消超链接快捷键：Ctrl+Shift+F9
 2. 取消代码模式 Alt+F9
 
-#### 2.1.1. 常用的 Microsoft Word 快捷键
+#### 常用的 Microsoft Word 快捷键
 
 |          操作          |   windows 快捷键    |        Mac 快捷键         |
 | :--------------------: | :----------------: | :----------------------: |
@@ -121,7 +272,7 @@
 |      调整缩放倍率       |    **Alt + W**     |      **Option + W**      |
 |      拆分文档窗口       | **Ctrl + Alt + S** | **Command + Option + S** |
 
-#### 2.1.2. 功能区面板快捷键
+#### 功能区面板快捷键
 
 |        操作         | windows 快捷键 |    Mac 快捷键    |
 | :----------------: | :------------: | :-------------: |
@@ -136,7 +287,7 @@
 |    打开审核选项卡    |  **Alt + R**   | **Option + R**  |
 |    打开视图选项卡    |  **Alt + W**   | **Option + W**  |
 
-#### 2.1.3. 导航文档的快捷键
+#### 导航文档的快捷键
 
 |                      操作                       |       windows 快捷键        |            Mac 快捷键             |
 | :---------------------------------------------: | :------------------------: | :------------------------------: |
@@ -162,7 +313,7 @@
 |                 显示“转到”对话框                 |        **Ctrl + G**        |     **Command + Option + G**     |
 |       循环浏览先前对文档所做的四个更改的位置        |     **Ctrl + Alt + Z**     |     **Command + Option + Z**     |
 
-#### 2.1.4. 选择文字和图形的快捷键
+#### 选择文字和图形的快捷键
 
 |        操作         |       windows 快捷键       |         Mac 快捷键          |
 | :----------------: | :-----------------------: | :------------------------: |
@@ -175,7 +326,7 @@
 |  粘贴文本到 Spike   |   **Ctrl + Shift + F3**   |   **Command + Shift +**    |
 
 
-#### 2.1.5. 对齐和格式化段落的快捷方式
+#### 对齐和格式化段落的快捷方式
 
 |         操作          |      windows 快捷键       |           Mac 快捷键           |
 | :------------------: | :----------------------: | :---------------------------: |
@@ -200,7 +351,7 @@
 | 显示“应用样式”任务窗格 |   **Ctrl + Shift + S**   |    **Command + Shift+ S**     |
 |    显示样式任务窗格    | **Ctrl + Alt +Shift +S** | **Command + Alt + Shift + S** |
 
-#### 2.1.6. 文本格式快捷键
+#### 文本格式快捷键
 
 |               操作                |     windows 快捷键      |         Mac 快捷键         |
 | :------------------------------: | :--------------------: | :-----------------------: |
@@ -223,7 +374,7 @@
 |          删除手动字符格式          |  **Ctrl + Spacebar**   |  **Command + Spacebar**   |
 |    将所选文本更改为 Symbol 字体     |  **Ctrl + Shift + Q**  |  **Command + Shift + Q**  |
 
-#### 2.1.7. 表格格式化快捷键
+#### 表格格式化快捷键
 
 |              操作               |         windows 快捷键         |            Mac 快捷键            |
 | :-----------------------------: | :---------------------------: | :-----------------------------: |
@@ -246,13 +397,13 @@
 | 移至行中的下一个单元格并选择其内容 |          **Tab 键**           |           **Tab 键**            |
 | 移至行中的上一个单元格并选择其内容 |        **Shift + Tab**        |         **Shift + Tab**         |
 
-## 3. Microsoft PowerPoint
+## Microsoft PowerPoint
 
-### 3.1. 快捷键大全
+### 快捷键大全
 
 > 参考：http://www.dayanzai.me/powerpoint-shortcut-keys.html
 
-#### 3.1.1. 常用的 PowerPoint 键盘快捷键
+#### 常用的 PowerPoint 键盘快捷键
 
 |              操作               |        快捷键        |                         |
 | :-----------------------------: | :-----------------: | :---------------------: |
@@ -276,7 +427,7 @@
 |          结束幻灯片放映          |       **Esc**       |         **Esc**         |
 |         关闭 PowerPoint         |    **Ctrl + Q**     |     **Command + Q**     |
 
-#### 3.1.2. 功能区 PowerPoint 快捷方式
+#### 功能区 PowerPoint 快捷方式
 
 |           操作           |      快捷键      |                    |
 | :----------------------: | :-------------: | :----------------: |
@@ -304,7 +455,7 @@
 |       移动到子菜单        |   **Alt + W**   |   **Option + W**   |
 | 获取有关当前所选命令的帮助 |   **Alt + C**   |   **Option + C**   |
 
-#### 3.1.3. PowerPoint 文本块快捷键
+#### PowerPoint 文本块快捷键
 
 |           操作           |        快捷键         |                         |
 | :----------------------: | :------------------: | :---------------------: |
@@ -324,7 +475,7 @@
 |       粘贴动画画家        | **Alt + Shift + V**  | **Command + Shift + V** |
 |    打开选择性粘贴对话框    |  **Ctrl + Alt + V**  |  **Command + Alt + V**  |
 
-#### 3.1.4. 用于处理表格的 PowerPoint 快捷键
+#### 用于处理表格的 PowerPoint 快捷键
 
 |       操作        |      快捷键      |                   |
 | :--------------: | :-------------: | :---------------: |
@@ -335,7 +486,7 @@
 | 在单元格中插入标签 | **Ctrl + Tab**  | **Command + Tab** |
 |   开始一个新段落   |    **Enter**    |    **Return**     |
 
-#### 3.1.5. 段落对齐键盘快捷键
+#### 段落对齐键盘快捷键
 
 |     操作     |    快捷键     |                 |
 | :---------: | :----------: | :-------------: |
@@ -344,7 +495,7 @@
 |  左对齐段落  | **Ctrl + L** | **Command + L** |
 |  右对齐段落  | **Ctrl + R** | **Command + T** |
 
-#### 3.1.6. 幻灯片的 PowerPoint 快捷键
+#### 幻灯片的 PowerPoint 快捷键
 
 |              操作               |        快捷键        |                                       |
 | :-----------------------------: | :------------------: | :-----------------------------------: |

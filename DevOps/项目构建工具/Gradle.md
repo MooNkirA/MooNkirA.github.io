@@ -2,11 +2,11 @@
 
 > 官网：https://gradle.org/
 
-## 1. Gradle 简介
+## Gradle 简介
 
 > 引用百度百科：Gradle是一个基于 Apache Ant 和 Apache Maven 概念的项目自动化构建开源工具。它使用一种基于 Groovy 的特定领域语言(DSL)来声明项目设置，目前也增加了基于 Kotlin 语言的 kotlin-based DSL，抛弃了基于 XML 的各种繁琐配置。
 
-### 1.1. Gradle 的优势
+### Gradle 的优势
 
 - 依赖管理：即将项目中的 jar 包管理起来，可以使用 Maven 或者 Ivy 的远程仓库、或者本地文件系统等
 - 编译打包：可以通过脚本实现花样打包，包括修改文件、添加抑或排除某些类或资源、采用指定 JDK 版本构建、打包后自动上传等等等等
@@ -15,11 +15,11 @@
 - 跨平台支持：gradle 是基于 jvm 的，只要有 jvm 就可以让 gradle 运行
 - 灵活的的脚本：可以使用 groovy 灵活的编写任务完成你想要做的任何事情
 
-### 1.2. 约定优于配置
+### 约定优于配置
 
 约定优于配置(convention over configuration)，简单而言就是遵循一定的固定规则从而可以避免额外的配置。虽然这一定程度上降低了灵活性，但却能减少重复的额外配置，同时也可以帮助开发人员遵守一定的规则。当然，约定并不是强制性约束，Gradle 提供了各种灵活的途径可以让你更改默认的配置。
 
-## 2. Gradle 安装说明
+## Gradle 安装说明
 
 > 引用官网的安装教程
 
@@ -60,13 +60,13 @@ Gradle 6.0.1
 ------------------------------------------------------------
 ```
 
-### 2.1. 下载 Gradle
+### 下载 Gradle
 
 从 Gralde 官方网站下载 Gradle 的最新发行包，Gradle 发行包是一个 ZIP 文件。需要 JDK8 及以上的版本。解压 Gradle 压缩包到无中文与空格的目录
 
 > 下载：https://gradle.org/install/
 
-### 2.2. 配置系统环境变量
+### 配置系统环境变量
 
 1. 新建系统变量，定义变量名为`GRADLE_HOME`，变量值为gradle安装包所在目录，如：`D:\development\gradle-6.9.1\`
 
@@ -80,11 +80,11 @@ Gradle 6.0.1
 
 ![](images/20211014232323625_6637.png)
 
-### 2.3. 配置 Gradle 本地仓库（本地缓存）
+### 配置 Gradle 本地仓库（本地缓存）
 
 配置 Gradle 本地仓库，用于下载与管理 jar 包，有如下几种配置方式
 
-#### 2.3.1. 方式1：配置环境变量（推荐）
+#### 方式1：配置环境变量（推荐）
 
 增加一个环境变量 `GRADLE_USER_HOME`，指定本地仓库的位置
 
@@ -92,7 +92,7 @@ Gradle 6.0.1
 
 > <font color=red>**注：变量的名称必须叫“`GRADLE_USER_HOME`”**</font>
 
-#### 2.3.2. 方式2：初始化配置文件并配置镜像
+#### 方式2：初始化配置文件并配置镜像
 
 在 Gradle 安装目录下的 `init.d` 文件夹下，新建一个 `init.gradle` 文件，在 repositories 节点中可以配置镜像源下载，具体配置如下：
 
@@ -129,7 +129,7 @@ allprojects {
 >
 > ![](images/363112009220842.png)
 
-#### 2.3.3. 方式3：在 gradle 启动脚本设置本地仓库位置
+#### 方式3：在 gradle 启动脚本设置本地仓库位置
 
 ~~进入 gradle 安装的 bin 目录，使用文本编辑器打开 gradle 启动脚本 `gradle.bat`，增加设置用户配置路径变量，在如图的位置添加以下语句~~（注：配置后无法使用全局命令，待研究）
 
@@ -139,7 +139,7 @@ set GRADLE_OPTS="-Dgradle.user.home=E:\deployment-environment\.gradle\"
 
 ![](images/20200411225208779_19640.png)
 
-#### 2.3.4. 方式4：IDEA 专用配置
+#### 方式4：IDEA 专用配置
 
 在 idea 中修改 gradle 用户目录，此方式只适用于使用 idea 进行开发。
 
@@ -154,7 +154,7 @@ set GRADLE_OPTS="-Dgradle.user.home=E:\deployment-environment\.gradle\"
 
 如果要更改 IDEA 的全局配置，选择【File】->【New Projects Setup】->【Settings for New Projects...】，和 【Settings】的相似，配置【Gradle user home】即可
 
-#### 2.3.5. 方式5：对指定项目设置缓存目录（不建议）
+#### 方式5：对指定项目设置缓存目录（不建议）
 
 此方式适用指定某个项目的本地仓库缓存目录。修改 Gradle 项目中的 gradle.properties 文件，增加以下语句。
 
@@ -166,9 +166,9 @@ gradle.user.home=E:\deployment-environment\.gradle\
 
 > PS. 但这种方法，需要每个项目文件都要改一遍，如果只是临时修改，可以采用这种方法，如果是针对所有项目的，不建议这种方法.
 
-## 3. build.gradle 构建脚本
+## build.gradle 构建脚本
 
-### 3.1. 配置说明
+### 配置说明
 
 build.gradle 是 Gradle 的构建脚本，包含如下内容（其中标明可选的都是可以不用配置）
 
@@ -242,7 +242,7 @@ ext {
 def bar = "bar"
 ```
 
-### 3.2. Gradle 插件
+### Gradle 插件
 
 Gradle 是一个通用工具。它可以通过脚本构建任何你想要实现的东西，真正实现开箱即用，但前提是需要在脚本中编写好代码。
 
@@ -253,7 +253,7 @@ Gradle 在提供了一些小但有用的功能，用于实现自动化功能。�
 - 向项目中添加依赖配置
 - 通过扩展对现有类型添加新的属性和方法
 
-#### 3.2.1. Java 插件
+#### Java 插件
 
 Java plugin 作为 Gradle 插件其中之一，提供了如编译，测试，打包等一些功能。
 
@@ -289,7 +289,7 @@ plugins {
 }
 ```
 
-### 3.3. 添加 Maven 仓库
+### 添加 Maven 仓库
 
 通常，一个 Java 项目拥有许多外部依赖，因此需要配置 Gradle 中 Jar 包存储的仓库位置。下面是以 Maven 仓库为例的配置，修改项目的 build.gradle 文件的 `repositories` 选项：
 
@@ -307,16 +307,16 @@ repositories {
 }
 ```
 
-### 3.4. 依赖管理
+### 依赖管理
 
 依赖管理包括两部分，对项目依赖的管理以及发布项目的管理
 
 - 项目依赖是指构建项目所需的构件（jar包等）
 - 发布项目是指项目产出的需要上传的项目产物
 
-#### 3.4.1. 声明依赖
+#### 声明依赖
 
-##### 3.4.1.1. 依赖坐标基础语法
+##### 依赖坐标基础语法
 
 仓库中构件（jar包）的坐标语法如下：
 
@@ -353,7 +353,7 @@ dependencies {
 }
 ```
 
-##### 3.4.1.2. 采用变量统一控制版本号
+##### 采用变量统一控制版本号
 
 ```groovy
 dependencies {
@@ -364,7 +364,7 @@ dependencies {
 }
 ```
 
-##### 3.4.1.3. 自动获取最新版本依赖
+##### 自动获取最新版本依赖
 
 如果需要某个库每次构建时都检查是否有新版本，将版本号修改为“`+`”即可，让 Gradle 在每次构建时都检查并应用最新版本的依赖。
 
@@ -374,7 +374,7 @@ dependencies {
 }
 ```
 
-#### 3.4.2. 依赖作用范围
+#### 依赖作用范围
 
 在引入依赖时，需要声明依赖的作用范围，关于各种作用范围的见下表：
 
@@ -394,9 +394,9 @@ dependencies {
 
 > Tips: 需要注意的是，`provided` 范围内的传递依赖也不会被打包
 
-#### 3.4.3. 依赖的分类
+#### 依赖的分类
 
-##### 3.4.3.1. 外部依赖
+##### 外部依赖
 
 Gradle 支持通过 map 方式或者 `g:a:v` 的简写方式传入依赖描述，这些声明依赖会去配置的 `repository` 查找
 
@@ -417,7 +417,7 @@ dependencies {
 }
 ```
 
-##### 3.4.3.2. 项目依赖
+##### 项目依赖
 
 此类依赖用多模块项目，语法如下：
 
@@ -429,7 +429,7 @@ dependencies {
 
 > 注：其中 `:` 是基于跟项目的相对路径描述符
 
-##### 3.4.3.3. 文件依赖
+##### 文件依赖
 
 依赖存在于本地文件系统中，即中央仓库与私服都没有的jar，，可以通过 `FileCollection` 接口及其子接口提供的方法加载这些依赖（支持文件通配符）
 
@@ -446,7 +446,7 @@ dependencies {
 }
 ```
 
-##### 3.4.3.4. 内置依赖
+##### 内置依赖
 
 跟随 Gradle 发行包或者基于 Gradle API 的一些依赖，通常在插件开发时使用，当前提供了如下三种：
 
@@ -463,7 +463,7 @@ dependencies {
 }
 ```
 
-#### 3.4.4. 传递依赖
+#### 传递依赖
 
 传递依赖特性可以通过 `transitive` 参数进行开启或关闭，也可以采用添加 `@jar` 的方式忽略该依赖的所有传递性依赖。
 
@@ -485,7 +485,7 @@ configurations.all {
 }
 ```
 
-#### 3.4.5. 排除依赖
+#### 排除依赖
 
 如需要排除一些传递性依赖中的某个模块，可以通过 `exclude` 来实现。`exclude` 可以接收 `group` 和 `module` 两个参数：
 
@@ -499,9 +499,9 @@ dependencies {
 }
 ```
 
-## 4. Gradle Java 项目构建
+## Gradle Java 项目构建
 
-### 4.1. 创建 Java 项目（IDEA）
+### 创建 Java 项目（IDEA）
 
 创建 Gradle 项目，选择 JDK 与相应的项目语言
 
@@ -513,9 +513,9 @@ dependencies {
 
 > 示例工程：java-technology-stack\java-stack-gradle\gradle-java
 
-### 4.2. Gradle 基础的目录结构
+### Gradle 基础的目录结构
 
-#### 4.2.1. 标准结构
+#### 标准结构
 
 Gradle 遵循 COC(convention over configuration 约定优于配置)的理念，默认情况下提供了与 maven 相同的项目结构配置。使用 IDEA 创建 Gradle 项目成功后，项目的基础目录结构如下：
 
@@ -541,7 +541,7 @@ gradle-demo
     └──settings.gradle    # Gradle 项目信息配置
 ```
 
-#### 4.2.2. 非标准结构配置
+#### 非标准结构配置
 
 在一些老项目上，可能目录结构并不是标准结构，然而一般开发人员又不好进行结构调整。此时可以通过修改 build.gradle 配置文件中的 `sourceSet` 项来指定目录结构
 
@@ -567,7 +567,7 @@ sourceSets {
 }
 ```
 
-### 4.3. gradle wrapper
+### gradle wrapper
 
 IDEA 默认会使用 gradle wrapper 来创建项目，其实无需安装 gradle 也可以正常运行。
 
@@ -579,7 +579,7 @@ gradle wrapper 的优点之一就是可以自定义下载的 gradle 的版本，
 
 ![](images/230925522227254.png)
 
-### 4.4. 创建 web 项目
+### 创建 web 项目
 
 与创建普通 java 项目一样，只需要在 src 目录下多新增一个 webapp 目录，然后再 build.gradle 配置中增加 war 包的插件
 
@@ -612,9 +612,9 @@ test {
 
 > 示例工程：java-technology-stack\java-stack-gradle\gradle-web
 
-### 4.5. 创建多模块项目
+### 创建多模块项目
 
-#### 4.5.1. 创建父模块
+#### 创建父模块
 
 与创建普通的项目一样，为了让其他子模块共享公共的配置，需要将配置放到 `allprojects` 闭包中
 
@@ -651,7 +651,7 @@ include 'gradle-multiple-service'
 include 'gradle-multiple-web'
 ```
 
-#### 4.5.2. 子模块配置
+#### 子模块配置
 
 > 示例工程：java-technology-stack\java-stack-gradle\gradle-multiple-modules
 
@@ -669,7 +669,7 @@ dependencies {
 
 > <font color=red>**Notes: 后面比较新的版本中，`compile` 语句已弃用，并已在 Gradle 7.0+ 中删除。新版本需要改用 `implementation` 或 `api`**</font>
 
-## 5. Gradle 配置与缓存目录
+## Gradle 配置与缓存目录
 
 在用户目录的 gradle 文件夹下看到 gradle 的相关配置和缓存。
 
@@ -681,9 +681,9 @@ dependencies {
 
 ![](images/283560223240089.png)
 
-## 6. 其他
+## 其他
 
-### 6.1. 查询 gradle 相关命令
+### 查询 gradle 相关命令
 
 使用命令`gradle -?`或`gradle -h`或`gradle --help`查询gradle相关命令与说明
 
@@ -735,7 +735,7 @@ dependencies {
 -x, --exclude-task        Specify a task to be excluded from execution.
 ```
 
-### 6.2. 参考资料
+### 参考资料
 
 - [Gradle 教程 - w3cschool](https://www.w3cschool.cn/gradle/)
 - [gradle使用教程，一篇就够](https://www.jianshu.com/p/7ccdca8199b8)

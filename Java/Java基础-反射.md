@@ -1,10 +1,10 @@
-## 1. 反射的概述
+## 反射的概述
 
-### 1.1. 动态语言的概念
+### 动态语言的概念
 
 动态语言指程序在运行时可以改变其结构的语言，比如新的属性或方法的添加、删除等结构上的变化。JavaScript、Ruby、Python 等都属于动态语言；C、C++ 不属于动态语言。从反射的角度来说，Java 属于半动态语言。
 
-### 1.2. 什么是反射
+### 什么是反射
 
 动态获取类和对象的信息，以及动态调用对象的方法的功能被称为 **Java 语言的反射机制**。
 
@@ -17,12 +17,12 @@
 
 > Notes: 反射的前提条件是，获得该类Class对象，就是字节码文件对象。
 
-### 1.3. 反射机制优缺点
+### 反射机制优缺点
 
 - 优点：运行期类型的判断，动态加载类，提高代码灵活度。
 - 缺点：性能瓶颈：反射相当于一系列解释操作，通知 JVM 要做的事情，性能比直接的java代码要慢很多
 
-### 1.4. 反射的应用
+### 反射的应用
 
 Java中的对象有两种类型：编译时类型和运行时类型。
 
@@ -43,9 +43,9 @@ Person person = new Student();
 - **伪泛型**：在编译时期的进行限制，但利用反射可以在运行时候进行操作。
 - 动态代理设计模式也采用了反射机制
 
-## 2. Class 类
+## Class 类
 
-### 2.1. 获取 Class 对象
+### 获取 Class 对象
 
 JDK 中有4种方式获取 `Class` 对象。值得注意的是，<font color=red>**4 种方式得到的类对象，是同一个对象**</font>，因为 Class 文件在 JVM 中只存在一份
 
@@ -78,7 +78,7 @@ ClassLoader.getSystemClassLoader().loadClass("com.moon.TargetObject");
 
 > Notes: 通过类加载器获取 Class 对象不会进行初始化，意味着不进行包括初始化等一系列步骤，静态代码块和静态对象不会得到执行
 
-#### 2.1.1. 番外：通过 IDE 获取类全限定名
+#### 番外：通过 IDE 获取类全限定名
 
 eclipse 中获取类全名的方法：右键类名 -> 选择 Copy Qualified Name
 
@@ -88,7 +88,7 @@ idea 中获取类全名的方法：右键类文件或者类名 -> 选择 Copy Re
 
 ![](images/293070317247330.png) ![](images/155710417239999.png)
 
-### 2.2. Class 类常用方法
+### Class 类常用方法
 
 ```java
 public String getName();
@@ -148,7 +148,7 @@ public InputStream getResourceAsStream(String name);
 - 如果资源文件和当前类在同一个文件夹下时，资源文件路径可以**省略/**，直接给文件名。
 - 返回与资源文件关联的字节输入流对象（**返回的对象：BufferedInputStream**）。
 
-### 2.3. 综合示例
+### 综合示例
 
 ```java
 public class Demo02 {
@@ -170,15 +170,15 @@ public class Demo02 {
 }
 ```
 
-## 3. AccessibleObject 类
+## AccessibleObject 类
 
-### 3.1. 概述
+### 概述
 
 对于公共成员、默认（打包）访问成员、受保护成员和私有成员，在分别使用 `Field`、`Method` 或 `Constructor` 对象来设置或获取字段、调用方法，或者创建和初始化类的新实例的时候，会执行访问检查。
 
 `AccessibleObject` 类是 `Field`、`Method` 和 `Constructor` 的父类。它提供了将反射的对象标记为在使用时取消默认 Java 语言访问控制检查的能力。
 
-### 3.2. 常用方法
+### 常用方法
 
 ```java
 public void setAccessible(boolean flag) throws SecurityException
@@ -196,11 +196,11 @@ public void setAccessible(boolean flag) throws SecurityException
 
 > Notes: **一般不推荐访问私有，因为破坏了程序的封装性，安全性**
 
-## 4. Constructor 类（构造方法）
+## Constructor 类（构造方法）
 
 在反射机制中，把类中的成员（构造方法、成员方法、成员变量）都封装成了对应的类进行表示。其中，构造方法使用 `Constructor` 类表示。每一个构造方法都是一个 `Constructor` 类的对象
 
-### 4.1. 获取构造方法实例
+### 获取构造方法实例
 
 **可通过 Class 类中提供的方法，获取一个或者多个 `Constructor` 构造方法对象**
 
@@ -237,7 +237,7 @@ public Constructor<?>[] getDeclaredConstructors();
 
 **注：基本类型与引用类型类对象：在Java 中int.class 和 Integer.class 是2 种不同的类型。所以如果参数类型不匹配，也无法得到相应的构造方法，会出现如下异常：`java.lang.NoSuchMethodException`**
 
-### 4.2. Constructor 类 newInstance 方法
+### Constructor 类 newInstance 方法
 
 **反射方式获取构造方法后，创建对象使用到 Constructor 类的方法**
 
@@ -247,7 +247,7 @@ public T newInstance(Object... initargs);
 
 - 指定构造方法的参数值(0~n)，创建一个 T 对象
 
-### 4.3. 反射调用构造方法创建对象的步骤
+### 反射调用构造方法创建对象的步骤
 
 通过反射方式，获取构造方法(私有)，创建对象，步骤如下：
 
@@ -256,7 +256,7 @@ public T newInstance(Object... initargs);
 3. 暴力访问, 通过 `setAccessible(boolean flag)` 方法（如果是私有）
 4. 通过构造方法类 `Constructor` 中的方法，创建对象;
 
-### 4.4. 反射创建对象案例
+### 反射创建对象案例
 
 反射获取构造方法创建对象(包含私有构造方法)
 
@@ -298,11 +298,11 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-## 5. Field 类（成员属性）
+## Field 类（成员属性）
 
 在反射机制中，把类中的成员变量使用类**Field**表示。可通过Class类中提供的方法获取成员变量：
 
-### 5.1. 获取类成员属性实例
+### 获取类成员属性实例
 
 通过 Class 类方法，返回一个成员变量
 
@@ -318,7 +318,7 @@ public Field getDeclaredField(String name);
 
 - 获取指定的任意变量
 
-### 5.2. Class 类方法，返回多个成员变量
+### Class 类方法，返回多个成员变量
 
 ```java
 public Field[] getFields();
@@ -332,7 +332,7 @@ public Field[] getDeclaredFields();
 
 - 获取所有的成员变量(包含private修饰)
 
-### 5.3. Field 类常用方法
+### Field 类常用方法
 
 **反射方式获取成员属性 Field 实例后，可以使用以下方法对属性值进行操作**
 
@@ -366,7 +366,7 @@ public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)
 
 - 继承自 `java.lang.reflect.AccessibleObject` 类的方法，判断当前字段对象上是否标识某个注解。是则返回 true，否则返回 false
 
-### 5.4. 反射操作类属性的步骤
+### 反射操作类属性的步骤
 
 通过反射，创建对象，获取指定的成员变量，进行赋值与获取值操作。步骤如下：
 
@@ -376,7 +376,7 @@ public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)
 4. 获取指定的成员变量（私有成员变量，通过 `setAccessible(boolean flag)` 方法暴力访问和修改）
 5. 通过方法，给指定对象的指定成员变量赋值或者获取值
 
-### 5.5. 反射获取类属性案例
+### 反射获取类属性案例
 
 通过反射方式，获取成员变量(私有成员变量)，并修改
 
@@ -432,11 +432,11 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-## 6. Method 类（成员方法）
+## Method 类（成员方法）
 
 **在反射机制中，把类中的成员方法使用 `Method` 类表示。**
 
-### 6.1. 获取 Method 实例
+### 获取 Method 实例
 
 可通过 `Class` 类中提供的方法获取成员方法
 
@@ -473,7 +473,7 @@ public Method[] getDeclaredMethods();
 
 获取本类中所有的方法(包含私有的，**但不包括继承的方法**)
 
-### 6.2. Method 类 invoke 方法
+### Method 类 invoke 方法
 
 通过 Method 类的 invoke方法，可以实现动态调用类或接口上某个方法及访问该方法的信息。比如可以动态传入参数及将方法参数化。
 
@@ -493,7 +493,7 @@ method对象.invoke(null(或该方法的所在的类对象), 方法的参数值)
 
 - 执行指定对象obj中，当前Method对象所代表的方法，方法要传入的参数通过args指定。返回值为当前调用的方法的返回值
 
-#### 6.2.1. 通过反射调用指定方法的步骤（包括private）
+#### 通过反射调用指定方法的步骤（包括private）
 
 获取成员方法（包括私有），步骤如下：
 
@@ -504,7 +504,7 @@ method对象.invoke(null(或该方法的所在的类对象), 方法的参数值)
 5. 开启暴力访问
 6. 执行找到的方法
 
-#### 6.2.2. 方法反射调用的案例
+#### 方法反射调用的案例
 
 通过反射方式获取成员方法(私有成员变量)，并调用
 
@@ -596,9 +596,9 @@ public class Student {
 }
 ```
 
-## 7. 反射获取超类
+## 反射获取超类
 
-### 7.1. Class 类获取超类的方法
+### Class 类获取超类的方法
 
 ```java
 public Type getGenericSuperclass()
@@ -608,7 +608,7 @@ public Type getGenericSuperclass()
 
 如果此 `Class` 对象是 `Object` 类、接口、基本类型或 void，则返回 null。如果此对象是一个数组类，则返回表示 `Object` 类的 `Class` 对象。 
 
-### 7.2. 反射获取泛型参数示例
+### 反射获取泛型参数示例
 
 假设某个类继承带泛型的类
 
@@ -628,13 +628,13 @@ if (type instanceof ParameterizedType ) {
 }
 ```
 
-## 8. Reflections 反射框架(待整理)
+## Reflections 反射框架(待整理)
 
 
 
-## 9. 反射与Properties案例
+## 反射与Properties案例
 
-### 9.1. 案例1
+### 案例1
 
 ```java
 import java.io.File;
@@ -749,19 +749,19 @@ public class MoonZero {
 }
 ```
 
-## 10. 代理模式
+## 代理模式
 
-### 10.1. 代理模式的概述
+### 代理模式的概述
 
 代理模式的作用：拦截对真实对象的直接访问，并增加一些功能。
 
-### 10.2. 代理模式的分类
+### 代理模式的分类
 
 代理模式分成静态代理和动态代理
 
 区别：**静态代理字节码文件已经生成；动态代理的字节码文件随用随加载**。
 
-#### 10.2.1. 静态代理模式
+#### 静态代理模式
 
 静态代理模式的优点：
 
@@ -772,23 +772,23 @@ public class MoonZero {
 - 一个真实对象必须对应一个代理对象，如果大量使用会导致类的数量急速增长。
 - 如果抽象对象中存在很多方法，则代理对象也要同样实现相应数量的方法。
 
-#### 10.2.2. 动态代理模式
+#### 动态代理模式
 
 动态代理模式特点：
 
 1. 动态生成代理对象，不用手动编写代理对象
 2. 不需要编写目标对象中所有同名的方法
 
-## 11. JDK 动态代理
+## JDK 动态代理
 
-### 11.1. 概述
+### 概述
 
 JDK 动态代理的核心主要涉及到 `java.lang.reflect` 包中的两个类：`Proxy` 和 `InvocationHandler`。
 
 - `InvocationHandler` 是一个接口，通过实现该接口来定义代理后的处理逻辑，并可以通过反射机制来调用目标类的原代码，动态将代理逻辑和原逻辑编制在一起。
 - `Proxy` 利用 `InvocationHandler` 动态创建一个符合某一接口的实例，生成目标类的代理对象。
 
-### 11.2. Proxy 类创建代理对象
+### Proxy 类创建代理对象
 
 创建 JDK 的动态代码对象，需要使用 `Proxy` 类的 `newProxyInstance` 方法。
 
@@ -806,7 +806,7 @@ public static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces,
 
 > 引用网络资料的解释：为什么jdk动态代理的对象必须实现一个统一的接口，其实可以大致理解为，代理类本身已经 extends 了 `Proxy`，如果传入的是父类，很可能出现这种情况：“`public class $Proxy1 extends Proxy extends 传入的父类`”；这个明显在 java 中是不允许的，Java 只支持单继承，但是实现接口是完全可以的。
 
-### 11.3. InvocationHandler 接口
+### InvocationHandler 接口
 
 `InvocationHandler`的`invoke`方法，**在这方法中实现对真实方法的增强或拦截**
 
@@ -829,7 +829,7 @@ public interface InvocationHandler {
 - 参数`Object[] args`：**代理对象调用方法时传递的参数，该参数会传递给真实对象的方法**。
 - 返回值 `Object`：**一般返回真实对象方法执行后的结果**。
 
-### 11.4. Class 类 getInterfaces 方法
+### Class 类 getInterfaces 方法
 
 ```java
 public Class<?>[] getInterfaces()
@@ -845,7 +845,7 @@ public class Demo implements A, B, C, …… {
 Class[] arr = Demo.class.getInterfaces();
 ```
 
-### 11.5. 动态代理模式的开发步骤(案例)
+### 动态代理模式的开发步骤(案例)
 
 1. 先明确要被代理的功能(方法)是什么
 2. 然后将需要被代理的(功能)方法定义的接口中
@@ -857,7 +857,7 @@ Class[] arr = Demo.class.getInterfaces();
 	- 回调处理对象，拦截对代理方法调用
 6. 通过代理对象调用相关方法，方法就会被回调处理对象拦截。其实是调用 `InvocationHandler` 接口中的 `invoke()` 方法，值得注意的是，接口中每个方法的调用都会触发 `InvocationHandler.invoke` 方法，可以在拦截的方法中执行相关的判断。
 
-#### 11.5.1. 示例 1
+#### 示例 1
 
 > 注：定义了个有参构造方法，传入被代理对象。也可以使用直接使用final修饰被代理的成员变量。
 
@@ -945,7 +945,7 @@ public interface Person {
 }
 ```
 
-#### 11.5.2. 示例 2
+#### 示例 2
 
 或者这样玩，在`InvocationHandler`接口的实现类中直接使用`Proxy`的`newProxyInstance`方法，返回一个代理对象。
 
@@ -1007,7 +1007,7 @@ public class MyHandler implements InvocationHandler {
 2. 可以实现AOP编程(面向切面编程)，实际上静态代理也可以实现，总的来说，AOP可以算作是代理模式的一个典型应用；
 3. 解耦，通过参数就可以判断真实类，不需要事先实例化，更加灵活多变。
 
-#### 11.5.3. 框架学习阶段时案例
+#### 框架学习阶段时案例
 
 ```java
 public interface IActor {
@@ -1085,9 +1085,9 @@ public class Client {
 }
 ```
 
-### 11.6. Proxy 类 newProxyInstance 生成代理对象的实现原理
+### Proxy 类 newProxyInstance 生成代理对象的实现原理
 
-#### 11.6.1. 模拟 JDK 的动态代理实现示例
+#### 模拟 JDK 的动态代理实现示例
 
 定义一个接口
 
@@ -1198,7 +1198,7 @@ public void testCustomProxy() {
 被代理类 DemoTarget.bar() 方法执行了...
 ```
 
-#### 11.6.2. InvocationHandler 接口的 invoke 方法的调用
+#### InvocationHandler 接口的 invoke 方法的调用
 
 `Proxy.newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)`方法，会生成一个代理对象，此代理对象名称叫`$Proxy0@xxx`。此代理对象会拥有一个属性`h`，该属性就是实现了`InvocationHandler`接口的实例（编写增强逻辑的类）。接口实现`h`有一个属性，就是待增强的类的实例。
 
@@ -1210,7 +1210,7 @@ public void testCustomProxy() {
 
 ![](images/20200616231804543_1488.png)
 
-#### 11.6.3. newProxyInstance 方法的执行过程
+#### newProxyInstance 方法的执行过程
 
 1. 首先会生成一个代理类，通过拼凑字符串的方法生成一个叫`$Proxy0`的类，以`.java`结尾
 2. 使用文件流将拼凑好的字符串生成`$Proxy0.java`文件到本地磁盘中
@@ -1220,7 +1220,7 @@ public void testCustomProxy() {
 
 
 
-### 11.7. JDK 动态代理注意事项
+### JDK 动态代理注意事项
 
 - JDK 的代理类是由 JDK 直接生成字节码文件，可以用 arthas 的 jad 工具反编译代理类查看源码
 - 代理类会继承 `Proxy` 类，该父类中有一个 `InvocationHandler h` 属性，通过接口回调的方式来实现代理增强的逻辑
@@ -1233,9 +1233,9 @@ public void testCustomProxy() {
     - 可使用 arthas 的 jad 工具反编译第 17 次调用生成的代理类，查看源码
     - > 注意：运行测试程序时须添加 `--add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/jdk.internal.reflect=ALL-UNNAMED`
 
-## 12. CGlib 动态代理
+## CGlib 动态代理
 
-### 12.1. 概述
+### 概述
 
 CGLIB(Code Generation Library) 是通过**继承**的方式动态创建子类方法的动态代理。如果某个类被标记为 `final`，那么它是无法使用 CGLIB 生成动态代理；同理对于 final 修饰的方法，无法进行代理。
 
@@ -1243,7 +1243,7 @@ CGLIB(Code Generation Library) 是通过**继承**的方式动态创建子类方
 
 > Tips: *在 Spring AOP 中，如果目标类没有实现接口，则会选择使用 CGLIB 来生成动态代理*
 
-### 12.2. CGlib 基础使用
+### CGlib 基础使用
 
 定义接口与实现类
 
@@ -1304,7 +1304,7 @@ public void testCglibBasic() {
 
 > 注意事项：通过 `MethodProxy` 调用目标方法，在 jdk >= 9 的情况下，在调用 `Object` 的方法会有问题，启动程序时需要设置：`--add-opens java.base/java.lang=ALL-UNNAMED`
 
-### 12.3. 模拟 CGlib 代理基础实现
+### 模拟 CGlib 代理基础实现
 
 定义用于测试的被代理类
 
@@ -1412,14 +1412,14 @@ public class CglibProxyMock extends Target {
 }
 ```
 
-### 12.4. MethodProxy 的实现原理
+### MethodProxy 的实现原理
 
 上面提及 `MethodProxy` 类可以避免反射调用目标方法，原理是当调用 `MethodProxy` 的 `invoke` 或 `invokeSuper` 方法时，会动态生成两个类，都会继承 `net.sf.cglib.reflect.FastClass` 抽象类
 
 - 其中一个类是配合代理对象一起使用，避免反射
 - 另外一个类是配合目标对象一起使用，避免反射 (Spring 框架底层使用此方式)
 
-#### 12.4.1. 配合目标对象的 FastClass 实现
+#### 配合目标对象的 FastClass 实现
 
 当第一次在 `MethodInterceptor` 实现中调用 `methodProxy.invoke(target, args)` 方法，cglib 就动态生成一个类，继承 `net.sf.cglib.reflect.FastClass` 抽象类。在初始创建时就记录了被代理的目标对象中方法与编号的对应关系，其中 `getIndex` 方法用于获取调用的方法的编号，`invoke` 方法则用于根据方法编号通过被代理的目标对象调用相应的方法
 
@@ -1512,7 +1512,7 @@ public void testTargetFastClass() throws InvocationTargetException {
 
 > 注：`Target` 是前面定义的用来测试的被代理类
 
-#### 12.4.2. 配合代理对象的 FastClass 实现
+#### 配合代理对象的 FastClass 实现
 
 当第一次在 `MethodInterceptor` 实现中调用 `methodProxy.invokeSuper(proxy, args)` 方法，cglib 就动态生成一个类，继承 `net.sf.cglib.reflect.FastClass` 抽象类。在初始创建时就记录了cglib 的代理对象中调用原目标方法与编号的对应关系，其中 `getIndex` 方法用于获取调用的方法的编号，`invoke` 方法则用于根据方法编号通过代理对象调用相应原目标的方法
 
@@ -1608,7 +1608,7 @@ public void testProxyFastClass() throws InvocationTargetException {
 > - <u>*此测试使用 `CglibProxyMock` 是前面自定义的模拟 cglib 代理实现，非 cglib 原生*</u>
 > - 上面模拟使用代理对象调用原被代理目标的方法，记得要调用自定义代理中的非增强的方法。**如果调用增强的方法，该方法中又会回调 `MethodInterceptor` 的 `intercept` 方法，就会出现无限的循环调用**
 
-### 12.5. CGlib 与 JDK 动态代理的区别
+### CGlib 与 JDK 动态代理的区别
 
 JDK 的动态代理通过 `Proxy` 类使用反射技术来实现，不需要导入其他依依赖。值得注意的是，<font color=red>**当方法被调用到一定的次数后，才会生成不通过反射调用的代理**</font>。
 
@@ -1618,9 +1618,9 @@ JDK 的动态代理通过 `Proxy` 类使用反射技术来实现，不需要导�
 
 另外 CgLib 创建的动态代理对象性能比 JDK 创建的动态代理对象的性能高，但是 CGLib 在创建代理对象时所花费的时间却比 JDK 多得多，所以对于单例的对象，由于无需频繁创建对象，用 CGLib 合适，反之，使用 JDK 方式要更为合适一些。
 
-## 13. Java SPI 机制
+## Java SPI 机制
 
-### 13.1. SPI 简述
+### SPI 简述
 
 SPI 全称 Service Provider Interface，是 Java 提供的一套用来被第三方实现或者扩展的 API，它可以用来启用框架扩展和替换组件
 
@@ -1634,7 +1634,7 @@ SPI 全称 Service Provider Interface，是 Java 提供的一套用来被第三�
 - 日志门面接口实现类加载，SLF4J 加载不同提供商的日志实现类
 - Spring 中大量使用了 SPI，比如：对 servlet3.0 规范对 `ServletContainerInitializer` 的实现、自动类型转换 Type Conversion SPI(Converter SPI、Formatter SPI) 等
 
-### 13.2. Java SPI 约定
+### Java SPI 约定
 
 要使用 Java SPI，需要遵循如下约定：
 
@@ -1643,7 +1643,7 @@ SPI 全称 Service Provider Interface，是 Java 提供的一套用来被第三�
 3. 程序通过` java.util.ServiceLoder` 动态装载实现模块，它通过扫描 `META-INF/services` 目录下的配置文件找到实现类的全限定名，把类加载到 JVM。
 4. SPI 的实现类必须有无参构造方法。
 
-### 13.3. 基础使用示例
+### 基础使用示例
 
 > 详情示例参考 dubbo-thought 示例工程（待迁移至 java api 工程）
 
@@ -1698,7 +1698,7 @@ public void testBaseSpi() {
 }
 ```
 
-### 13.4. 核心功能类
+### 核心功能类
 
 需要指出的是，java 之所以能够顺利根据配置加载这个实现类，完全依赖于 jdk 内的一个核心类：`java.util.ServiceLoader`
 

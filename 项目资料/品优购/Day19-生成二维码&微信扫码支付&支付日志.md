@@ -1,28 +1,26 @@
-# Day19 生成二维码&微信扫码支付&支付日志
+## 二维码
 
-## 1. 二维码
-
-### 1.1. 什么是二维码
+### 什么是二维码
 
 二维码又称QR Code，QR全称Quick Response，是一个近几年来移动设备上超流行的一种编码方式，它比传统的Bar Code条形码能存更多的信息，也能表示更多的数据类型。
 
 二维条码/二维码（2-dimensional bar code）是用某种特定的几何图形按一定规律在平面（二维方向上）分布的黑白相间的图形记录数据符号信息的；在代码编制上巧妙地利用构成计算机内部逻辑基础的“0”、“1”比特流的概念，使用若干个与二进制相对应的几何形体来表示文字数值信息，通过图象输入设备或光电扫描设备自动识读以实现信息自动处理：它具有条码技术的一些共性：每种码制有其特定的字符集；每个字符占有一定的宽度；具有一定的校验功能等。同时还具有对不同行的信息自动识别功能、及处理图形旋转变化点。
 
-### 1.2. 二维码优势
+### 二维码优势
 
 - 信息容量大, 可以容纳多达1850个大写字母或2710个数字或500多个汉字
 - 应用范围广, 支持文字,声音,图片,指纹等等...
 - 容错能力强, 即使图片出现部分破损也能使用
 - 成本低, 容易制作
 
-### 1.3. 二维码容错级别
+### 二维码容错级别
 
 - L级（低） 7％的码字可以被恢复。
 - M级（中） 的码字的15％可以被恢复。
 - Q级（四分）的码字的25％可以被恢复。
 - H级（高） 的码字的30％可以被恢复。
 
-### 1.4. 二维码生成插件qrious
+### 二维码生成插件qrious
 
 - qrious是一款基于HTML5 Canvas的纯JS二维码生成插件。通过qrious.js可以快速生成各种二维码，你可以控制二维码的尺寸颜色，还可以将生成的二维码进行Base64编码。
 - <font color="red">**缺点：不支持IE9以下版本的浏览器**</font>
@@ -62,18 +60,18 @@
 
 *注：baidu.com无法跳转，只能使用baidu.cn才能跳转。应该是百度内部有做其他的跳转处理*
 
-### 1.5. 二维码生成-Zxing框架
+### 二维码生成-Zxing框架
 
 - 参考资料【\资料\生成二维码\zxing框架\】
 - 如果使用的浏览器不支持qrious，可以使用此框架，此框架可以支持所有浏览器
 
-#### 1.5.1. 生成效果
+#### 生成效果
 
 利用zxing框架生成特色的二维码（参考代码在pyg-test项目的qrcode-test工程中），效果如下：
 
 ![生成二维码效果](images/20190319173325018_13262.png)
 
-#### 1.5.2. 开发步骤
+#### 开发步骤
 
 - 配置依赖jar包
 
@@ -213,9 +211,9 @@ public class BarCodeController {
 </html>
 ```
 
-## 2. 微信扫码支付简介
+## 微信扫码支付简介
 
-### 2.1. 微信扫码支付申请（了解）
+### 微信扫码支付申请（了解）
 
 - 微信扫码支付是商户系统按微信支付协议生成支付二维码，用户再用微信“扫一扫”完成支付的模式。该模式适用于PC网站支付、实体店单品或订单支付、媒体广告支付等场景。
 - 申请步骤：（了解）
@@ -230,7 +228,7 @@ public class BarCodeController {
     - **第五步：在线签署协议**
         - 本协议为线上电子协议，签署后方可进行交易及资金结算，签署完立即生效。
 
-### 2.2. 开发文档
+### 开发文档
 
 微信支付接口调用的整体思路：
 
@@ -248,7 +246,7 @@ public class BarCodeController {
     3.	partnerkey：商户密钥
     4.	sign: 数字签名，根据微信官方提供的密钥和一套算法生成的一个加密信息，就是为了保证交易的安全性
 
-### 2.3. 微信支付SDK
+### 微信支付SDK
 
 微信支付提供了SDK，下载后打开源码，install到本地仓库
 
@@ -273,7 +271,7 @@ public class BarCodeController {
     2. MAP转换为XML字符串（自动添加签名）：`WXPayUtil.generateSignedXml(param, partnerkey)`
     3. XML字符串转换为MAP：`WXPayUtil.xmlToMap(result)`
 
-### 2.4. HttpClientUtils工具类
+### HttpClientUtils工具类
 
 - <font color="red">**HttpClient**</font>是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的<font color="red">**支持HTTP协议的客户端编程工具包**</font>，并且它支持HTTP协议最新的版本和建议。HttpClient已经应用在很多的项目中，比如Apache Jakarta上很著名的另外两个开源项目Cactus和HTMLUnit都使用了HttpClient。
 - HttpClient通俗的讲就是模拟了浏览器的行为，如果需要在后端向某一地址提交数据获取结果，就可以使用HttpClient
@@ -288,7 +286,7 @@ HttpClientUtils httpClientUtils = new HttpClientUtils(true);
 String content = httpClientUtils.sendPost("请求URL", "xml格式参数");
 ```
 
-### 2.5. 工程搭建与准备工作
+### 工程搭建与准备工作
 
 - 创建pinyougou-pay支付服务聚合模块（pom类型），修改pom.xml文件配置tomcat插件，端口9008
 
@@ -458,23 +456,23 @@ orderquery=https://api.mch.weixin.qq.com/pay/orderquery
 
 拷贝资料\生成二维码\qrious框架\qrious.min.js 到pinyougou-cart-web的src/main/webapp/js目录中
 
-## 3. 微信支付二维码生成（商家的签名已过期，无法实现）
+## 微信支付二维码生成（商家的签名已过期，无法实现）
 
-### 3.1. 需求分析与实现思路
+### 需求分析与实现思路
 
-#### 3.1.1. 需求分析
+#### 需求分析
 
 在支付页面上生成支付二维码，并显示订单号和金额。用户拿出手机，打开微信扫描页面上的二维码，然后在微信中完成支付
 
-#### 3.1.2. 实现思路
+#### 实现思路
 
 - 通过HttpClientUtils工具类实现对远程支付接口的调用。
 - 接口链接：https://api.mch.weixin.qq.com/pay/unifiedorder
 - 具体参数参见“统一下单”API, 构建参数发送给统一下单的url，返回的信息中有支付url，根据url生成二维码，显示的订单号和金额也在返回的信息中。
 
-### 3.2. 后端部分
+### 后端部分
 
-#### 3.2.1. 订单服务-接口层与实现层
+#### 订单服务-接口层与实现层
 
 - pinyougou-pay-interface创建com.pinyougou.pay.service包，创建接口WeixinPayService
 - pinyougou-pay-service创建com.pinyougou.pay.service.impl包，创建类WeixinPayServiceImpl，实现调用微信支付接口
@@ -575,7 +573,7 @@ public class WeixinPayServiceImpl implements WeixinPayService {
 }
 ```
 
-#### 3.2.2. 购物车系统-控制层
+#### 购物车系统-控制层
 
 修改pinyougou-cart-web的OrderController.java，增加生成微信支付二维码的方法
 
@@ -602,9 +600,9 @@ public Map<String, String> genPayCode() {
 
 浏览器测试：http://127.0.0.1:9108/order/genPayCode
 
-### 3.3. 前端部分
+### 前端部分
 
-#### 3.3.1. 购物车系统-前端控制层
+#### 购物车系统-前端控制层
 
 修改pinyougou-cart-web的orderController.js，定义获取微信支付二维码的方法
 
@@ -629,7 +627,7 @@ $scope.genPayCode = () => {
 };
 ```
 
-#### 3.3.2. 购物车系统-前端页面
+#### 购物车系统-前端页面
 
 - 修改pay.html，引入js
 
@@ -676,23 +674,23 @@ $scope.genPayCode = () => {
 </div>
 ```
 
-## 4. 检测支付状态
+## 检测支付状态
 
-### 4.1. 需求分析及实现思路
+### 需求分析及实现思路
 
-#### 4.1.1. 需求分析
+#### 需求分析
 
 当用户支付成功后跳转到成功页面(paysuccess.html)，当返回异常时跳转到错误页面(payfail.html)。
 
-#### 4.1.2. 实现思路
+#### 实现思路
 
 - 通过HttpClientUtils工具类实现对远程支付接口的调用。
 - 接口链接：https://api.mch.weixin.qq.com/pay/orderquery
 - 具体参数参见“查询订单”API, 我们在前端页面采用js定时器间隔3秒发送请求查询订单，当后台返回状态为success时，前端自动跳转到支付成功页面。
 
-### 4.2. 检测支付状态-后端代码
+### 检测支付状态-后端代码
 
-#### 4.2.1. 支付服务-接口层与实现层
+#### 支付服务-接口层与实现层
 
 - pinyougou-pay-interface的WeixinPayService.java中新增queryPayStatus查询订单状态方法
 - pinyougou-pay-service的WeixinPayServiceImpl.java中实现方法
@@ -745,7 +743,7 @@ public Map<String, String> queryPayStatus(String outTradeNo) {
 }
 ```
 
-#### 4.2.2. 购物车系统-控制层
+#### 购物车系统-控制层
 
 pinyougou-cart-web的OrderController.java新增查询支付状态方法
 
@@ -781,9 +779,9 @@ public Map<String, Integer> queryPayStatus(String outTradeNo) {
 }
 ```
 
-### 4.3. 检测支付状态-前端代码
+### 检测支付状态-前端代码
 
-#### 4.3.1. 购物车系统-前端控制层
+#### 购物车系统-前端控制层
 
 修改orderController.js的genPayCode方法，引入$interval服务，定时发送查询支付状态请求
 
@@ -828,13 +826,13 @@ $scope.genPayCode = () => {
 };
 ```
 
-### 4.4. 支付成功页面显示金额
+### 支付成功页面显示金额
 
-#### 4.4.1. 问题分析
+#### 问题分析
 
 现在支付成功页面显示的是固定的值，怎么显示真正的支付金额呢？这里可以使用angularJS的页面传参来解决。
 
-#### 4.4.2. 购物车系统-前端部分
+#### 购物车系统-前端部分
 
 - 修改orderController.js的genPayCode方法，定时器查询支付状态成功跳转页面传递金额参数
 
@@ -906,9 +904,9 @@ app.controller('orderController', function ($scope, $controller,
 <p>支付金额：￥{{ getMoney() }}元</p>
 ```
 
-## 5. 支付日志
+## 支付日志
 
-### 5.1. 需求分析
+### 需求分析
 
 - 现在系统还有两个问题需要解决：
     1. 系统中无法查询到支付记录
@@ -918,7 +916,7 @@ app.controller('orderController', function ($scope, $controller,
     2. 生成的支付日志对象放入redis中，以用户ID作为key，这样在生成支付二维码时就可以从redis中提取支付日志对象中的金额和订单号。
     3. 当用户支付成功后，修改支付日志的支付状态为1（已支付），并记录微信支付传递给我们的交易流水号。根据订单ID（多个）修改订单的状态为2（已付款）。
 
-### 5.2. 表结构分析
+### 表结构分析
 
 tb_paylog 支付日志表
 
@@ -933,7 +931,7 @@ tb_paylog 支付日志表
 |    pay_type    | varchar  |  1   | 支付类型：1:微信 2:支付宝 3:网银 |
 |   order_list   | varchar  | 200  | 订单表ID串，用逗号分隔           |
 
-### 5.3. 插入日志记录（新增订单记录时）
+### 插入日志记录（新增订单记录时）
 
 修改pinyougou-order-service工程OrderServiceImpl.java的saveOrder方法。<font color="red">**判断如果支付方式为微信支付，向数据库插入支付日志记录，并放入redis存储**</font>
 
@@ -997,9 +995,9 @@ public void saveOrder(Order order) {
 }
 ```
 
-### 5.4. 读取支付日志
+### 读取支付日志
 
-#### 5.4.1. 订单服务接口与实现层
+#### 订单服务接口与实现层
 
 - pinyougou-order-interface工程的OrderService.java新增查询支付日志的方法
 - pinyougou-order-service工程的OrderServiceImpl.java实现方法
@@ -1025,7 +1023,7 @@ public PayLog findPayLogFromRedis(String userId) {
 }
 ```
 
-#### 5.4.2. 购物车系统-控制层
+#### 购物车系统-控制层
 
 修改pinyougou-cart-web工程OrderController.java的genPayCode方法。实现思路：调用获取支付日志对象的方法，得到订单号和金额
 
@@ -1051,9 +1049,9 @@ public Map<String, String> genPayCode(HttpServletRequest request) {
 }
 ```
 
-### 5.5. 修改订单状态
+### 修改订单状态
 
-#### 5.5.1. 订单服务接口与实现层
+#### 订单服务接口与实现层
 
 - pinyougou-order-interface的OrderService.java新增修改订单状态的方法
 - 在pinyougou-order-service工程OrderServiceImpl.java实现该方法，此方法需要完成三件事
@@ -1109,7 +1107,7 @@ public void updateOrderStatus(String outTradeNo, String transactionId) {
 }
 ```
 
-#### 5.5.2. 购物车系统-控制层
+#### 购物车系统-控制层
 
 修改pinyougou-cart-web的OrderController.java的queryPayStatus查询支付状态方法。在微信支付接口成功返回状态时，调用修改订单状态的方法
 
@@ -1138,7 +1136,7 @@ public Map<String, Integer> queryPayStatus(String outTradeNo) {
 }
 ```
 
-### 5.6. 登录用户信息
+### 登录用户信息
 
 - 修改购物车系统前端页面pay.html
 
@@ -1192,6 +1190,6 @@ public Map<String, Integer> queryPayStatus(String outTradeNo) {
 </ul>
 ```
 
-### 5.7. 支付日志显示（待实现！）
+### 支付日志显示（待实现！）
 
 需求：在运营商后台中，显示支付日志列表，实现按日期、状态、用户进行查询。

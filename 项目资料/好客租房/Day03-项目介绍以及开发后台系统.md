@@ -1,35 +1,33 @@
-# Day03-项目介绍以及开发后台系统
+## 好客租房
 
-## 1. 好客租房
-
-### 1.1. 项目背景
+### 项目背景
 
 详情查看项目资料
 
-### 1.2. 项目介绍
+### 项目介绍
 
 详情查看项目资料
 
-### 1.3. 技术架构
+### 技术架构
 
 - 后端架构：SpringBoot + StringMVC + Dubbo + Mybatis + ELK + 区块链
 - 前端架构：React.js + html5 + 百度地图 + 微信小程序
 
-### 1.4. 系统架构图
+### 系统架构图
 
 ![](images/20200410234304891_1926.png)
 
-## 2. 后台系统前端项目搭建
+## 后台系统前端项目搭建
 
 后台系统采用的是前后端分离开发模式，前端使用Ant Design Pro系统作为模板进行改造，后端采用的是SpringBoot+StringMVC+Dubbo+Mybatis的架构进行开发。
 
-### 2.1. 前端搭建
+### 前端搭建
 
 根据前面的Ant Design Pro的入门知识，参考《好客租房 PRD 文档 V1.0.0beat.docx》、《好客租房后台V1.0.0.rp》，将系统的菜单、页面等做改造。
 
 ![](images/20200411175913624_32081.png)
 
-#### 2.1.1. 创建工程
+#### 创建工程
 
 - 第一步，将资料文件中的haoke-manage-web.zip解压项目开发的目录
 - 第二步，导入到开发IDE中，本项目使用vsCode开发
@@ -46,7 +44,7 @@ npm start # 启动项目
 
 ![](images/20200411181717642_15142.png)
 
-#### 2.1.2. 关于此工程提交git报错问题的解决方法
+#### 关于此工程提交git报错问题的解决方法
 
 > ps: 如果提交到git的时候报错如下
 >
@@ -74,7 +72,7 @@ npm start # 启动项目
 
 ![](images/20200411184032171_27367.png)
 
-#### 2.1.3. 示例操作 - 修改logo以及版权信息
+#### 示例操作 - 修改logo以及版权信息
 
 - 全局的布局文件
 
@@ -126,7 +124,7 @@ const FooterView = () => (
 export default FooterView;
 ```
 
-#### 2.1.4. 编写左侧菜单
+#### 编写左侧菜单
 
 - 根据需求文档，修改左侧的菜单。（参考项目代码：\haoke-project-ui\haoke-manage-web\config\router.config.js）
 - 在src/pages目录下创建haoke文件夹，项目中的页面代码均放在此目录中
@@ -137,17 +135,17 @@ export default FooterView;
 
 ![](images/20200411191817142_19828.png)
 
-### 2.2. 新增房源
+### 新增房源
 
-#### 2.2.1. 数据结构
+#### 数据结构
 
 参考资料中的《前后端开发接口文档.md》文档
 
-#### 2.2.2. 编写页面
+#### 编写页面
 
 根据需求文档以及数据结构，找到对应的页面（src\pages\haoke\House\AddResource.js）进行编码，此部分主要认识一下表单组件的多种示例使用
 
-##### 2.2.2.1. form组件
+##### form组件
 
 开发时可以参考form组件官方文档：https://ant.design/components/form-cn/
 
@@ -162,16 +160,16 @@ export default FooterView;
 
 - from表单输入项校验：在getFieldDecorator的参数中可以增加校验规则
 
-##### 2.2.2.2. 表单提交
+##### 表单提交
 
 - 表单的提交通过submit按钮完成，通过onSubmit方法进行拦截处理
 - 通过`form.validateFieldsAndScroll()`对表单进行校验，通过`values`获取表单中输入的值。通过`dispatch()`调用model中定义的方法
 
-##### 2.2.2.3. 自动完成
+##### 自动完成
 
 - 功能实现参考官方文档：https://ant.design/components/auto-complete-cn/
 
-##### 2.2.2.4. 图片上传
+##### 图片上传
 
 - 图片上传通过自定义组件PicturesWall完成，在PicturesWall中，通过Upload组件实现。
 - 在代码实现中，需要解决的问题是：父组件如何获取子组件中的数据。
@@ -193,19 +191,19 @@ handleFileList = obj => {
 };
 ```
 
-## 3. 后台系统服务
+## 后台系统服务
 
 前端系统已经搭建完成，需要后台系统为其提供接口服务。如：新增房源、房源列表、房东列表等。
 
-### 3.1. 架构
+### 架构
 
 ![](images/20200412183834676_21884.png)
 
 说明：在后台服务的架构中，采用了RPC+微服务的架构思想，RPC采用dubbo框架作为服务治理框架，对外接口采用RESTful和GraphQL接口方式。
 
-### 3.2. dubbo框架介绍
+### dubbo框架介绍
 
-#### 3.2.1. 什么是dubbo?
+#### 什么是dubbo?
 
 - Apache Dubbo™ (incubating)是一款高性能Java RPC框架。官网：http://dubbo.apache.org/zh-cn/index.html
 - dubbo是由阿里团队开发的一款优秀的RPC框架，目前由Apache管理的框架
@@ -220,8 +218,8 @@ handleFileList = obj => {
 
 ![](images/20200412184940210_12330.png)
 
-#### 3.2.2. 框架说明
-##### 3.2.2.1. 背景
+#### 框架说明
+##### 背景
 
 随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。
 
@@ -243,7 +241,7 @@ handleFileList = obj => {
 
 当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键。
 
-##### 3.2.2.2. 需求
+##### 需求
 
 ![](images/20200412185655806_27094.png)
 
@@ -257,7 +255,7 @@ handleFileList = obj => {
 
 以上是 Dubbo 最基本的几个需求
 
-##### 3.2.2.3. Dubbo的架构
+##### Dubbo的架构
 
 ![](images/20200412225124541_20182.png)
 
@@ -282,7 +280,7 @@ handleFileList = obj => {
 
 Dubbo 架构具有以下几个特点，分别是连通性、健壮性、伸缩性、以及向未来架构的升级性。更多介绍参见：http://dubbo.apache.org/zh-cn/docs/user/preface/architecture.html
 
-### 3.3. 注册中心
+### 注册中心
 
 dubbo支持多种注册中心，推荐使用ZooKeeper。参考文档：http://dubbo.apache.org/zh-cn/docs/user/references/registry/introduction.html
 
@@ -306,7 +304,7 @@ Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支
 - 可通过 `<dubbo:registry group="dubbo" />` 设置 zookeeper 的根节点，不配置将使用默认的根节点。
 - 支持 `*` 号通配符 `<dubbo:reference group="*" version="*" />`，可订阅服务的所有分组和所有版本的提供者
 
-#### 3.3.1. 部署 ZooKeeper
+#### 部署 ZooKeeper
 
 本项目使用docker容器化技术进行部署ZooKeeper。之所以采用docker部署的形式，是考虑到微服务节点的部署，以及后续的集群扩展的便捷性。
 
@@ -314,7 +312,7 @@ Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支
 >
 > 参考资料中的《VMware Workstation 中安装 Ubuntu16.04 虚拟机.docx》文档进行安装，统一环境。
 
-#### 3.3.2. docker安装zookeeper的相关命令
+#### docker安装zookeeper的相关命令
 
 ```shell
 # 拉取zk镜像
@@ -331,11 +329,11 @@ docker start zk
 
 ![](images/20201001104718381_25865.png)
 
-## 4. dubbo快速入门示例
+## dubbo快速入门示例
 
-### 4.1. 聚合项目
+### 聚合项目
 
-#### 4.1.1. 创建工程，配置依赖
+#### 创建工程，配置依赖
 
 创建pom聚合项目sample-dubbo，修改pom.xml文件引用示例项目公共依赖
 
@@ -447,9 +445,9 @@ docker start zk
 
 > 注：这里的haoke-technology-stack-sample项目是整个好客租房技术栈示例项目的聚合工程，里面引入了`spring-boot-starter-parent`的依赖，版本为`2.1.0.RELEASE`
 
-### 4.2. 服务提供方工程
+### 服务提供方工程
 
-#### 4.2.1. 创建项目，配置依赖
+#### 创建项目，配置依赖
 
 创建`sample-dubbo-service`项目，打包方式选jar类型。修改maven项目pom.xml文件添加依赖
 
@@ -484,7 +482,7 @@ docker start zk
 
 > *注： 此示例为了简化重复依赖配置，将dubbo与zookeeper的依赖都配置在聚合工程中。实际项目会有很多其他模块、公共的工程，此时就不能将这些dubbo与zookeeper的依赖都配置在聚合工程中*
 
-#### 4.2.2. 创建实体对象
+#### 创建实体对象
 
 创建用于测试dubbo调用接口时传输的封装的实体类。<font color=red>**注：dubbo框架接口调用用来传输数据的对象必须实现序列化接口`java.io.Serializable`**</font>
 
@@ -500,7 +498,7 @@ public class User implements Serializable {
 }
 ```
 
-#### 4.2.3. 创建提供服务的接口与实现类
+#### 创建提供服务的接口与实现类
 
 - 创建UserService（接口）提供查询服务
 
@@ -545,7 +543,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-#### 4.2.4. 编写项目配置文件
+#### 编写项目配置文件
 
 编写SpringBoot项目的`application.properties`配置文件
 
@@ -567,7 +565,7 @@ dubbo.registry.address=zookeeper://192.168.12.134:2181
 dubbo.registry.client=zkclient
 ```
 
-#### 4.2.5. 编写启动类
+#### 编写启动类
 
 ```java
 @SpringBootApplication
@@ -585,9 +583,9 @@ public class DubboProvider {
 ![](images/20201001171726066_18539.png)
 
 
-### 4.3. 服务消费方工程
+### 服务消费方工程
 
-#### 4.3.1. 创建工程，配置依赖
+#### 创建工程，配置依赖
 
 创建`sample-dubbo-consumer`项目，打包方式选jar类型。修改maven项目pom.xml文件添加依赖
 
@@ -625,7 +623,7 @@ public class DubboProvider {
 </project>
 ```
 
-#### 4.3.2. 编写项目配置文件
+#### 编写项目配置文件
 
 编写SpringBoot项目的`application.properties`配置文件，增加项目与dubbo相关配置
 
@@ -640,7 +638,7 @@ dubbo.registry.address=zookeeper://192.168.12.134:2181
 dubbo.registry.client=zkclient
 ```
 
-#### 4.3.3. 编写测试用例
+#### 编写测试用例
 
 ```java
 @RunWith(SpringRunner.class)
@@ -665,7 +663,7 @@ public class UserServiceTest {
 
 运行测试，可以获取到数据，说明已经成功调用了service中提供的接口
 
-#### 4.3.4. 写代码时遇到的小坑
+#### 写代码时遇到的小坑
 
 因为消费者工程里只写了测试用例，没有编写启动类与配置类，但工程依赖了提供者工程，而提供者工程是有springboot的启动类，那里会默认扫描启动类所在包及其子包。
 
@@ -677,13 +675,13 @@ public class UserServiceTest {
 
 ![](images/20201001230419020_21405.png)
 
-## 5. Dubbo Admin
+## Dubbo Admin
 
-### 5.1. 概述
+### 概述
 
 Dubbo Admin 是 Dubbo 提供了可视化的界面管理工具，方便对服务进行管理。代码地址：https://github.com/apache/incubator-dubbo-ops
 
-### 5.2. 部署安装
+### 部署安装
 
 - 第一步，下载并且解压：
 
@@ -768,9 +766,9 @@ mvn --projects dubbo-admin-backend spring-boot:run
 
 ![](images/20201002090628513_11520.png)
 
-## 6. Dubbo 的服务负载均衡
+## Dubbo 的服务负载均衡
 
-### 6.1. Dubbo 框架的负载均衡策略
+### Dubbo 框架的负载均衡策略
 
 在集群负载均衡时，Dubbo 提供了多种均衡策略，缺省为 `random` 随机调用。
 
@@ -783,7 +781,7 @@ mvn --projects dubbo-admin-backend spring-boot:run
 
 > 相关具体说明，参考官网：http://dubbo.apache.org/zh-cn/docs/user/demos/loadbalance.html
 
-### 6.2. 负载均衡策略 - 轮询测试
+### 负载均衡策略 - 轮询测试
 
 - 修改消费方工程的测试代码
 
@@ -828,7 +826,7 @@ idea勾选可以多例运行
 
 ![](images/20201002092235228_11687.png)
 
-## 7. dubbo:// 协议
+## dubbo:// 协议
 
 Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据量大并发的服务调用，以及服务消费者机器数远大于服务提供者机器数的情况。
 

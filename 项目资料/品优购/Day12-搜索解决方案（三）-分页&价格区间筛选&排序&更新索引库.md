@@ -1,14 +1,12 @@
-# Day12 搜索解决方案（三）-分页&价格区间筛选&排序&更新索引库
+## 按价格区间筛选
 
-## 1. 按价格区间筛选
-
-### 1.1. 需求分析
+### 需求分析
 
 点击搜索面板上的价格区间，实现按价格筛选
 
-### 1.2. 价格筛选-前端部分
+### 价格筛选-前端部分
 
-#### 1.2.1. 前端控制层
+#### 前端控制层
 
 - 修改pinyougou-search-web的searchController.js搜索条件封装对象，增加价格price属性
 
@@ -37,7 +35,7 @@ $scope.removeSearchItem = (key) => {
 };
 ```
 
-#### 1.2.2. 页面
+#### 页面
 
 - 修改search.html，在价格的标签上调用方法(大约207行)
 
@@ -81,7 +79,7 @@ $scope.removeSearchItem = (key) => {
 </li>
 ```
 
-### 1.3. 价格筛选-后端部分
+### 价格筛选-后端部分
 
 - 修改pinyougou-search-service服务的ItemSearchServiceImpl现实类的search()方法，增加价格的过滤条件
 
@@ -131,13 +129,13 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-## 2. 搜索结果分页
+## 搜索结果分页
 
-### 2.1. 需求分析
+### 需求分析
 
 在上述功能基础上实现分页查询
 
-### 2.2. 分页搜索-后端部分
+### 分页搜索-后端部分
 
 修改pinyougou-search-service工程ItemSearchServiceImpl现实类的search()方法，增加分页搜索条件
 
@@ -223,9 +221,9 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-### 2.3. 分页搜索-前端部分
+### 分页搜索-前端部分
 
-#### 2.3.1. 初始化分页标签
+#### 初始化分页标签
 
 - 如果需要修改默认页码和每页记录数，可以修改searchController.js的searchParam对象，为搜索对象添加属性
 
@@ -331,7 +329,7 @@ $scope.search = function () {
 </div>
 ```
 
-#### 2.3.2. 提交页码查询
+#### 提交页码查询
 
 - 在searchController.js增加方法，点击分页导航，页码改变执行查询
 
@@ -378,7 +376,7 @@ $scope.pageSearch = function (page) {
 </div>
 ```
 
-#### 2.3.3. 显示省略号
+#### 显示省略号
 
 - 在初始化initPageNum方法中，增加分页省略号的处理
 
@@ -434,7 +432,7 @@ var initPageNum = function () {
 <li class="dotted" ng-if="lastDot"><span>...</span></li>
 ```
 
-#### 2.3.4. 页码不可用样式
+#### 页码不可用样式
 
 - 修改search.html页面(340行)，分别在第1页与最后1页时，上一页与下一页不可操作
 
@@ -461,7 +459,7 @@ var initPageNum = function () {
 </div>
 ```
 
-#### 2.3.5. 搜索起始页码处理
+#### 搜索起始页码处理
 
 测试：如果先按照“手机”关键字进行搜索，得出的页数是5页，点击第5页进行查询；然后再根据“小米”关键字搜索，会发现没有结果显示。是因为当前页仍然为5，而小米的结果只有2页，所以无法显示。因此需要在每次点击查询时将页码设置为1。
 
@@ -472,9 +470,9 @@ var initPageNum = function () {
         ng-click="searchParam.page=1;search();">搜索</button>
 ```
 
-## 3. 多关键字搜索
+## 多关键字搜索
 
-### 3.1. 多关键字搜索规则
+### 多关键字搜索规则
 
 之前测试都是使用单一的词（比如手机）来进行搜索，如果输入的关键字是一个复合的词组（比如手机小米），那solr如何进行搜索呢？
 
@@ -488,7 +486,7 @@ var initPageNum = function () {
 
 为什么不是并的关系而是或的关系呢？如果你是电商网站的运营者，肯定希望给用户更多的选择，因为如果采用并的关系来进行搜索时极有可能查询到很少的记录甚至查询不到任何记录。另外这里还有他智能的排序策略，就是按照关键字匹配度来进行排序，也就是说如果记录中同时包含了手机和小米，那么这部分数据会排列在前面显示，而只包含小米和只包含手机的记录会显示在后边。
 
-### 3.2. 多关键字搜索空格处理
+### 多关键字搜索空格处理
 
 有些用户会在关键字中间习惯性的输入一些空格，而这个空格输入后，很有可能查询不到结果了。我们测试输入“手机 小米”结果并没有查询到任何结果。所以我们还要对空格至于做一下处理，删除关键字中的空格
 
@@ -506,13 +504,13 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-## 4. 搜索排序
+## 搜索排序
 
-### 4.1. 按价格排序
+### 按价格排序
 
 实现价格的排序（升降序可切换）
 
-#### 4.1.1. 价格排序-后端部分
+#### 价格排序-后端部分
 
 pinyougou-search-service的ItemSearchServiceImpl的搜索方法，添加排序代码
 
@@ -550,7 +548,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-#### 4.1.2. 价格排序-前端部分
+#### 价格排序-前端部分
 
 - 修改searchController.js的查询对象searchParam，增加排序属性
 
@@ -606,7 +604,7 @@ $scope.sortSearch = function (sortField, sort) {
 </div>
 ```
 
-### 4.2. 按上架时间排序
+### 按上架时间排序
 
 修改search.html页面(296行)，给“新品”超链接绑定点击事件
 
@@ -617,25 +615,25 @@ $scope.sortSearch = function (sortField, sort) {
 </li>
 ```
 
-### 4.3. (!待完成)按销量排序（实现思路）
+### (!待完成)按销量排序（实现思路）
 
 1. 增加域item_salecount 用于存储每个SKU的销量数据。
 2. 编写定时器程序，用于更新每个SKU的销量数据（查询近1个月的销量数据，不是累计数据）。
 3. 定时器每天只需执行一次，可以设定为凌晨开始执行。
 
-### 4.4. (!待完成)按评价排序（实现思路）
+### (!待完成)按评价排序（实现思路）
 
 与按销量排序思路基本相同，有一个细节需要注意：
 
 评论分为好评、中评、差评，我们不能简单地将评论数相加，而是应该根据每种评论加权进行统计。比如好评的权重是3 ，中评的权重是1，而差评的权重是 -3，这样得出的是评价的综合得分。
 
-## 5. 隐藏品牌列表
+## 隐藏品牌列表
 
-### 5.1. 需求分析
+### 需求分析
 
 需求：如果用户输入的是品牌的关键字，则隐藏品牌列表
 
-### 5.2. 修改搜索系统前端部分
+### 修改搜索系统前端部分
 
 - 修改searchController.js，增加判断关键字是否包含品牌
 
@@ -665,15 +663,15 @@ $scope.keywordsIsBrand = function () {
 </div>
 ```
 
-## 6. 搜索页与首页对接
+## 搜索页与首页对接
 
-### 6.1. 需求分析
+### 需求分析
 
 用户在首页的搜索框输入关键字，点击搜索后自动跳转到搜索页查询
 
-### 6.2. 首页与搜索页传递搜索关键字
+### 首页与搜索页传递搜索关键字
 
-#### 6.2.1. 首页传入关键字
+#### 首页传入关键字
 
 - 修改pinyougou-portal-web工程的contentController.js增加搜索跳转的方法search()
 
@@ -698,7 +696,7 @@ $scope.search = function () {
 </div>
 ```
 
-#### 6.2.2. 搜索页接收关键字
+#### 搜索页接收关键字
 
 - 修改pinyougou-search-web的searchController.js，添加$location服务用于接收首页传递的参数
 
@@ -737,13 +735,13 @@ $scope.getkeywords = function () {
       ng-init="getkeywords();">
 ```
 
-## 7. 更新索引库
+## 更新索引库
 
-### 7.1. 需求分析
+### 需求分析
 
 在进行商品审核后更新到solr索引库,在商品删除后删除solr索引库中相应的记录.
 
-### 7.2. 查询审核商品（SKU）列表-服务接口层与实现层
+### 查询审核商品（SKU）列表-服务接口层与实现层
 
 - 修改pinyougou-sellergoods服务工程的GoodsService接口与GoodsServiceImpl实现类，新增根据SPU商品id查询所有SKU商品数据方法
 
@@ -778,9 +776,9 @@ public List<Item> findItemByGoodsIdAndStatus(Long[] ids, String status) {
 }
 ```
 
-### 7.3. 商品审批时更新到索引库
+### 商品审批时更新到索引库
 
-#### 7.3.1. 搜索服务pinyougou-search工程接口层与实现层
+#### 搜索服务pinyougou-search工程接口层与实现层
 
 修改pinyougou-search服务工程的ItemSearchService接口与ItemSearchServiceImpl现实类，增加添加或修改索引库的方法
 
@@ -806,7 +804,7 @@ public void saveOrUpdate(List<SolrItem> solrItemList) {
 }
 ```
 
-#### 7.3.2. 运营商后台pinyougou-manager-web控制层
+#### 运营商后台pinyougou-manager-web控制层
 
 - 修改pinyougou-manager-web的pom.xml配置文件，引入依赖pinyougou-search-interface工程
 
@@ -870,9 +868,9 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 }
 ```
 
-### 7.4. 商品删除同步索引数据
+### 商品删除同步索引数据
 
-#### 7.4.1. 搜索服务pinyougou-search工程接口层与实现层
+#### 搜索服务pinyougou-search工程接口层与实现层
 
 修改pinyougou-search服务工程ItemSearchService接口层与ItemSearchServiceImpl实现层，增加删除索引库指定商品的方法
 
@@ -906,7 +904,7 @@ public void delete(List<Long> ids) {
 }
 ```
 
-#### 7.4.2. 运营商后台pinyougou-manager-web控制层
+#### 运营商后台pinyougou-manager-web控制层
 
 修改pinyougou-manager-web的GoodsController原有deleteGoods()方法，增加删除索引库部分逻辑代码
 

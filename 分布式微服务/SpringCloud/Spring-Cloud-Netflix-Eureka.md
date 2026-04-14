@@ -1,10 +1,10 @@
 > **Eureka案例代码地址：`spring-cloud-note\spring-cloud-greenwich-sample\02-springcloud-eureka\`**
 
-## 1. Eureka 注册中心
+## Eureka 注册中心
 
 Eureka 是 Netflix 开发的服务发现框架，SpringCloud 将它集成在自己的子项目 spring-cloud-netflix 中，实现 Spring Cloud 的服务发现功能。Spring Cloud 提供了多种注册中心的支持，如：Eureka、ZooKeeper 等。推荐使用 Eureka。
 
-### 1.1. Eureka 的基本架构
+### Eureka 的基本架构
 
 ![](images/20201008123337857_27461.png)
 
@@ -15,7 +15,7 @@ Eureka 是 Netflix 开发的服务发现框架，SpringCloud 将它集成在自�
     - `Service Provider`：服务提供者，将自身服务注册到 Eureka，使服务消费方能够找到
     - `Service Consumer`：服务消费者，从 Eureka 获取注册服务列表，调用相应的服务
 
-### 1.2. Eureka 的交互流程与原理
+### Eureka 的交互流程与原理
 
 ![](images/20201008123931375_6484.png)
 
@@ -41,13 +41,13 @@ Eureka 是 Netflix 开发的服务发现框架，SpringCloud 将它集成在自�
 
 Eureka 通过心跳检查、客户端缓存等机制，确保了系统的高可用性、灵活性和可伸缩性。
 
-## 2. Eureka 注册中心使用示例
+## Eureka 注册中心使用示例
 
 > 案例代码：spring-cloud-note\spring-cloud-greenwich-sample\02-springcloud-eureka\
 >
 > 沿用上面`01-microservice-no-springcloud`项目的代码
 
-### 2.1. 引入 Spring Cloud 依赖
+### 引入 Spring Cloud 依赖
 
 修改聚合工程pom.xml文件，增加spring cloud Greenwich 版本的依赖
 
@@ -66,9 +66,9 @@ Eureka 通过心跳检查、客户端缓存等机制，确保了系统的高可�
 </dependencyManagement>
 ```
 
-### 2.2. 搭建Eureka注册中心(单节点版)
+### 搭建Eureka注册中心(单节点版)
 
-#### 2.2.1. 搭建Eureka服务中心
+#### 搭建Eureka服务中心
 
 1. 创建`shop-server-eureka`子模块，引入eureka服务端的依赖
 
@@ -124,15 +124,15 @@ public class EurekaServerApplication {
 }
 ```
 
-#### 2.2.2. 服务注册中心管理后台
+#### 服务注册中心管理后台
 
 访问`http://localhost:8761`即可进入EurekaServer内置的管理控制台
 
 ![](images/20201009103306998_27461.png)
 
-### 2.3. 服务注册到Eureka注册中心
+### 服务注册到Eureka注册中心
 
-#### 2.3.1. 商品服务注册
+#### 商品服务注册
 
 1. 在`shop-service-product`工程的pom.xml文件增加eureka client的相关坐标
 
@@ -177,11 +177,11 @@ public class ProductApplication {
 
 > <font color=red>**注：从Spring Cloud Edgware版本开始，`@EnableDiscoveryClient` 或 `@EnableEurekaClient` 可省略。只需加上相关依赖，并进行相应配置，即可将微服务注册到服务发现组件上。**</font>
 
-#### 2.3.2. 订单服务注册
+#### 订单服务注册
 
 和商品微服务一样，只需要引入坐标依赖，在工程的 `application.yml` 中添加Eureka Server的主机地址即可
 
-#### 2.3.3. @EnableDiscoveryClient 与 @EnableEurekaClient 的区别
+#### @EnableDiscoveryClient 与 @EnableEurekaClient 的区别
 
 两个注解的用法上基本一致。
 
@@ -193,9 +193,9 @@ public class ProductApplication {
 
 注解`@EnableEurekaClient`上有`@EnableDiscoveryClient`注解，可以说基本就是`@EnableEurekaClient`有`@EnableDiscoveryClient`的功能，另外上面的注释中提到，其实`@EnableEurekaClient`注解就是一种方便使用eureka的注解而已，可以说使用其他的注册中心后，都可以使用`@EnableDiscoveryClient`注解，但是使用`@EnableEurekaClient`的情景，就是在服务采用eureka作为注册中心的时候，使用场景较为单一
 
-## 3. Eureka 自我保护模式
+## Eureka 自我保护模式
 
-### 3.1. 概述
+### 概述
 
 微服务第一次注册成功之后，每30秒会发送一次心跳将服务的实例信息注册到注册中心。通知 Eureka Server 该实例仍然存在。默认情况下，如果 Eureka Server 在一定时间内没有接收到某个微服务实例的心跳，Eureka Server 将会注销该实例（默认90秒）。但是当网络分区故障发生时，微服务与 Eureka Server 之间无法正常通信，这就可能变得非常危险了。因为微服务本身是健康的，此时本不应该注销这个微服务。
 
@@ -207,7 +207,7 @@ Eureka Server 通过“自我保护模式”来解决这个问题。Eureka Serve
 
 > Notes: 验证完自我保护机制开启后，并不会马上呈现到 web 上，而是默认需等待5分钟（可以通过`eureka.server.wait-time-in-ms-when-sync-empty` 配置），即 5 分钟后才会看到上面的提示信息。
 
-### 3.2. 禁用自我保护模式
+### 禁用自我保护模式
 
 如果需要<u>**禁用自我保护模式**</u>，只需要在 eureka server 配置文件中添加配置：
 
@@ -228,9 +228,9 @@ eureka:
 
 ![](images/20201009153015124_9293.png)
 
-## 4. Eureka 中的元数据
+## Eureka 中的元数据
 
-### 4.1. 概念
+### 概念
 
 Eureka的元数据有两种：**标准元数据和自定义元数据**
 
@@ -270,7 +270,7 @@ public class EurekaTest {
 }
 ```
 
-### 4.2. 通过 Eureka 的元数据实现服务调用
+### 通过 Eureka 的元数据实现服务调用
 
 修改`shop-service-order`工程的`OrderController`，注入`DiscoveryClient`对象，获取商品服务的url，进行远程调用
 
@@ -308,7 +308,7 @@ public class OrderController {
 }
 ```
 
-## 5. Eureka Server 高可用集群
+## Eureka Server 高可用集群
 
 在单节点的Eureka Server的服务中，Eureka Client会定时连接Eureka Server，获取注册表中的信息并缓存到本地。微服务在消费远程API时总是使用本地缓存中的数据。因此一般来说，即使Eureka Server发生宕机，也不会影响到服务之间的调用。
 
@@ -318,13 +318,13 @@ public class OrderController {
 
 Eureka Server可以通过运行多个实例并相互注册的方式实现高可用部署，Eureka Server实例会彼此增量地同步信息，从而确保所有节点数据一致。事实上，节点之间相互注册是Eureka Server的默认行为
 
-### 5.1. 搭建 Eureka Server 高可用集群
+### 搭建 Eureka Server 高可用集群
 
 > 复用`spring-cloud-sample-eureka`工程的代码，在原有基础上增加集群部分配置。详细示例详见`spring-cloud-note\spring-cloud-sample-eureka-cluster\`
 
 *注：使用idea开启多个服务的方法有多种，下面是通过定义不同的profiles的方式，还有通过启动多个实例，直接修改配置文件；还有通过启动时定义配置文件的参数方式，详细参考学成项目的配置方式*
 
-#### 5.1.1. 修改相关配置
+#### 修改相关配置
 
 1. 修改本机host属性
 
@@ -380,7 +380,7 @@ eureka:
 
 <font color=purple>**说明：在配置文件中通过连字符（`---`）将文件分为三个部分，第一部分为应用名称，第二部分和第三部分是根据不同的`profiles`选项动态添加，可以在IDEA启动时进行激活配置**</font>
 
-#### 5.1.2. 启动服务
+#### 启动服务
 
 使用IDEA启动两次`EurekaServerApplicaion`分别激活`eureka01`和`eureka02`配置
 
@@ -390,7 +390,7 @@ eureka:
 
 ![](images/20201009235133859_20051.png)
 
-### 5.2. 服务注册到Eureka Server集群
+### 服务注册到Eureka Server集群
 
 如果需要将微服务注册到Eureka Server集群，只需要修改yml配置文件中的`eureka.client.service-url.defaultZone`属性，指定集群各个Eureka Server的地址，多个地址中间用“,”分隔
 
@@ -406,15 +406,15 @@ eureka:
       defaultZone: http://eureka01:8001/eureka/,http://eureka02:8002/eureka/
 ```
 
-## 6. Eureka中的常见细节问题
+## Eureka中的常见细节问题
 
-### 6.1. 服务注册慢
+### 服务注册慢
 
 默认情况下，服务注册到Eureka Server的过程较慢。SpringCloud官方文档中给出了详细的原因：
 
 大致含义：服务的注册涉及到心跳，默认心跳间隔为30s。在实例、服务器、客户端都在本地缓存中具有相同的元数据之前，服务不可用于客户端发现（所以可能需要3次心跳）。可以通过配置`eureka.instance.leaseRenewalIntervalInSeconds` (心跳频率)加快客户端连接到其他服务的过程。在生产中，最好使用默认值，因为在服务器内部有一些计算，官方开发团队对续约做出假设。
 
-### 6.2. 监控页面显示服务的ip
+### 监控页面显示服务的ip
 
 在Eureka Server的管控台中，显示的服务实例名称默认情况下是微服务定义的名称和端口。为了更好的对所有服务进行定位，微服务注册到Eureka Server的时候可以手动配置示例ID。
 
@@ -430,7 +430,7 @@ eureka:
 
 ![](images/20201010094344963_13130.png)
 
-### 6.3. 服务节点剔除问题
+### 服务节点剔除问题
 
 默认情况下，由于 Eureka Server 剔除失效服务间隔时间为 90s 且存在自我保护的机制。所以不能有效而迅速的剔除失效节点，开发或测试时希望可以马上剔除不用的服务。解决方案如下：
 
@@ -463,7 +463,7 @@ eureka:
       defaultZone: http://eureka01:8001/eureka/,http://eureka02:8002/eureka/
 ```
 
-### 6.4. 解决响应为xml格式的问题
+### 解决响应为xml格式的问题
 
 有些版本会出现请求响应返回数据会变成xml格式。
 
@@ -483,9 +483,9 @@ eureka:
 </dependency>
 ```
 
-### 6.5. 为 Eureka 添加用户认证(暂时有问题)
+### 为 Eureka 添加用户认证(暂时有问题)
 
-#### 6.5.1. Eureka服务端配置用户认证
+#### Eureka服务端配置用户认证
 
 添加用户认证，即需要密码才能访问查询注册中心的信息
 
@@ -541,7 +541,7 @@ eureka:
 2018-10-01 07:24:51.745  WARN 3652 --- [nfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SPRINGCLOUD-MICROSERVICE-ITEM/localhost:springcloud-microservice-item:8081 - registration failed Cannot execute request on any known server
 ```
 
-#### 6.5.2. 服务提供者注册时设置账户信息
+#### 服务提供者注册时设置账户信息
 
 服务注册到有认证需求的注册中心时，需要设置如下信息。例子：`http://USER:PASSWORD@127.0.0.1:8001/eureka/`
 
@@ -561,7 +561,7 @@ eureka:
 
 > TODO: 目前存在问题，在测试的eureka url 中加上账号密码还是一样提示无法注册，但排查
 
-## 7. Eureka 工作流程总结
+## Eureka 工作流程总结
 
 1. Eureka Server 启动成功，等待服务端注册。在启动过程中如果配置了集群，集群之间定时通过 Replicate 同步注册表，每个 Eureka Server 都存在独立完整的服务注册表信息。
 2. Eureka Client 启动时根据配置的 Eureka Server 地址去注册中心注册服务。
@@ -576,11 +576,11 @@ eureka:
 
 Eureka 的架构设计，完美地解决了注册中心的稳定性和高可用性。Eureka 为了保障注册中心的高可用性，容忍了数据的非强一致性，服务节点间的数据可能不一致， Client-Server 间的数据可能不一致。比较适合跨越多机房、对注册中心服务可用性要求较高的使用场景。
 
-## 8. Eureka源码解析
+## Eureka源码解析
 
-### 8.1. SpringBoot 中的自动装载原理(回顾)
+### SpringBoot 中的自动装载原理(回顾)
 
-#### 8.1.1. ImportSelector 接口
+#### ImportSelector 接口
 
 `ImportSelector`接口是Spring导入外部配置的核心接口，在SpringBoot的自动化配置和`@EnableXxx`(功能性注解)中起到了决定性的作用。当在`@Configuration`标注的Class上使用`@Import`引入了一个`ImportSelector`实现类后，会把实现类中定义所有标识`@Bean`注解的方法所返回的类实例都注册到Spring容器中。
 
@@ -602,7 +602,7 @@ public interface DeferredImportSelector extends ImportSelector
 
 而SpringBoot的`@EnableAutoConfiguration`注解中`@Import`引入的`AutoConfigurationImportSelector`就是实现了`DeferredImportSelector`接口
 
-#### 8.1.2. ImportSelector 基础使用示例
+#### ImportSelector 基础使用示例
 
 1. 定义Bean对象
 
@@ -687,7 +687,7 @@ public class ImportSelectorTest {
 
 > 示例结论：`UserConfiguration`类并没有使用Spring的相关的对象创建注解声明（`@Controller`，`@Service`，`@Repostiroty`等），而是使用编程的方式动态的载入bean
 
-#### 8.1.3. ImportSelector 接口的调用时机
+#### ImportSelector 接口的调用时机
 
 `ConfigurationClassParser`类的`processImports`方法中进行`ImportSelector`接口的处理
 
@@ -695,7 +695,7 @@ public class ImportSelectorTest {
 
 分析源码可以看到，`ImportSelector`接口的返回值会递归进行解析，把解析到的类全名按照`@Configuration`进行处理
 
-#### 8.1.4. Spring Boot 自动装载的实现
+#### Spring Boot 自动装载的实现
 
 SpringBoot开箱即用的特点（自动装载机制），是基于`ImportSelector`实现。
 
@@ -826,9 +826,9 @@ public final class SpringFactoriesLoader {
 }
 ```
 
-### 8.2. Eureka 服务注册核心源码解析
+### Eureka 服务注册核心源码解析
 
-#### 8.2.1. @EnableEurekaServer 注解的作用
+#### @EnableEurekaServer 注解的作用
 
 通过 `@EnableEurekaServer` 注解激活Eureka Server。
 
@@ -856,7 +856,7 @@ public class EurekaServerMarkerConfiguration {
 }
 ```
 
-#### 8.2.2. 自动装载核心配置类
+#### 自动装载核心配置类
 
 Spring Cloud 对 Eureka Server 做了封装。根据自动装载原则，Eureka Server项目的启动时，会在到`spring-cloud-netflix-eureka-server-x.x.x.RELEASE.jar`中找`META-INF/spring.factories`配置文件，加载此配置文件中定义的类
 
@@ -882,7 +882,7 @@ public class EurekaServerAutoConfiguration extends WebMvcConfigurerAdapter {
     - `InstanceRegistryProperties` 配置期望续约数量和默认的通信数量
 3. 通过`@Import(EurekaServerInitializerConfiguration.class)`引入启动配置类
 
-#### 8.2.3. EurekaServerInitializerConfiguration 启动配置类
+#### EurekaServerInitializerConfiguration 启动配置类
 
 `EurekaServerInitializerConfiguration`实现了`SmartLifecycle`，也就意味着Spring容器启动时会去执行`start()`方法。加载所有的Eureka Server的配置
 
@@ -916,7 +916,7 @@ public class EurekaServerInitializerConfiguration
 }
 ```
 
-#### 8.2.4. EurekaServerAutoConfiguration 自动配置类
+#### EurekaServerAutoConfiguration 自动配置类
 
 在此配置类中，主要实例化一些bean，其中有以下比较重要的bean实例化
 
@@ -997,13 +997,13 @@ public class EurekaServerAutoConfiguration extends WebMvcConfigurerAdapter {
 
 在 `jerseyApplication` 方法中，会往容器中存放了一个`jerseyApplication`对象，`jerseyApplication()`方法里的东西和Spring源码里扫描`@Component`逻辑类似，扫描`@Path`和`@Provider`标签，然后封装成BeanDefinition，封装到Application的set容器里。通过filter过滤器来过滤url进行映射到对象的Controller
 
-#### 8.2.5. 暴露的服务端接口
+#### 暴露的服务端接口
 
 集成了`Jersey`，可以找到在EurekaServer的依赖包中的 `eureka-core-x.x.x.jar`，可以看到一系列`XXXResource`的类。<font color=red>**这些类都是通过`Jersey`发布了供客户端调用的服务接口**</font>
 
 ![](images/20201011225911509_18018.png)
 
-##### 8.2.5.1. 服务端接受客户端的注册
+##### 服务端接受客户端的注册
 
 `ApplicationResource`类是处理客户端的注册，通过`addInstance()`方法中`this.registry.register(info, "true".equals(isReplication));`这一逻辑完成客户端的注册。具体的逻辑由`PeerAwareInstanceRegistryImpl`类实现
 
@@ -1124,7 +1124,7 @@ public abstract class AbstractInstanceRegistry implements InstanceRegistry {
 }
 ```
 
-##### 8.2.5.2. 服务端接受客户端的续约
+##### 服务端接受客户端的续约
 
 在`InstanceResource`类中，处理客户端的续约逻辑。通过`renewLease`方法中完成客户端的心跳（续约）处理
 
@@ -1233,7 +1233,7 @@ public abstract class AbstractInstanceRegistry implements InstanceRegistry {
 }
 ```
 
-#### 8.2.6. 服务剔除
+#### 服务剔除
 
 在`AbstractInstanceRegistry.postInit()`方法，在此方法里开启了一个每60秒调用一次`EvictionTask.evict()`的定时器
 
@@ -1304,15 +1304,15 @@ public void evict(long additionalLeaseMs) {
 }
 ```
 
-### 8.3. Eureka服务发现核心源码解析
+### Eureka服务发现核心源码解析
 
-#### 8.3.1. 自动装载
+#### 自动装载
 
 在服务消费者导入的坐标中，找到 `spring-cloud-netflix-eureka-client-x.x.x.RELEASE.jar` 包下的 `spring.factories`，里面配置了所有自动装载的配置类
 
 ![](images/20201012134905556_20327.png)
 
-#### 8.3.2. 客户端的创建
+#### 客户端的创建
 
 查看自动装载的配置类`EurekaClientAutoConfiguration`，里面的有一个创建`EurekaDiscoveryClient`类的方法，此类是就是Eureka Client客户端
 
@@ -1323,7 +1323,7 @@ public DiscoveryClient discoveryClient(EurekaClient client, EurekaClientConfig c
 }
 ```
 
-#### 8.3.3. 服务注册
+#### 服务注册
 
 在`eureka-client-x.x.x.jar`包中的`DiscoveryClient`类，其中`register()`就是实现了服务的注册
 
@@ -1349,7 +1349,7 @@ public class DiscoveryClient implements EurekaClient {
 }
 ```
 
-#### 8.3.4. 服务下架
+#### 服务下架
 
 在`eureka-client-x.x.x.jar`包中的`DiscoveryClient`类，其中`register()`就是实现了服务的注册
 
@@ -1391,7 +1391,7 @@ public class DiscoveryClient implements EurekaClient {
 }
 ```
 
-#### 8.3.5. 心跳续约
+#### 心跳续约
 
 在`com.netflix.discovery.DiscoveryClient.HeartbeatThread`中`renew()`方法，实现了续约的操作。具体的流程：首先向注册中心执行了心跳续约的请求，`StatusCode`为200成功，若为404则执行`register()`重新注册操作;
 
@@ -1433,7 +1433,7 @@ public class DiscoveryClient implements EurekaClient {
 }
 ```
 
-#### 8.3.6. Eureka 客户端流程总结
+#### Eureka 客户端流程总结
 
 1. 根据配置文件初始化bean，创建客户端实例信息类`InstanceInfo`
 2. 第一次全量拉取注册中心服务列表(`url=/apps`)，初始化周期任务：

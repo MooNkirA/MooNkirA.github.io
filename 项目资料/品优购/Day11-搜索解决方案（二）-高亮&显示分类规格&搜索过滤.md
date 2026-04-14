@@ -1,14 +1,12 @@
-# Day11 搜索解决方案（二）-高亮&显示分类规格&搜索过滤
-
 主要运行pinyougou-search服务与pinyougou-search-web搜索系统
 
-## 1. 搜索结果-高亮显示
+## 搜索结果-高亮显示
 
-### 1.1. 需求分析
+### 需求分析
 
 将用户输入的关键字在标题中以红色的字体显示出来，就是搜索中常用的高亮显示
 
-### 1.2. 高亮显示-后端部分
+### 高亮显示-后端部分
 
 修改pinyougou-search服务层现实类ItemSearchServiceImpl.java，增加solr高亮显示部分代码
 
@@ -94,7 +92,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-### 1.3. 前端代码
+### 前端代码
 
 测试后发现高亮显示的html代码原样输出
 
@@ -128,9 +126,9 @@ app.filter('trustHtml', function ($sce) {
 > 注意：商品标题文本太长，可使用用样式控制用省略号显示。在style样式中增加下面的属性：  
 > `style="line-height: 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"`
 
-## 2. 搜索业务规则分析
+## 搜索业务规则分析
 
-### 2.1. 需求分析
+### 需求分析
 
 在关键字搜索的基础上添加面板搜索功能。面板上有商品分类、品牌、各种规格和价格区间等条件
 
@@ -147,20 +145,20 @@ app.filter('trustHtml', function ($sce) {
 7. 当用户点击价格区间时，显示在以上结果的基础上，按价格进行筛选的结果
 8. 当用户点击搜索面板的相应条件时，隐藏已点击的条件
 
-### 2.2. 实现思路
+### 实现思路
 
 1. 搜索面板的商品分类需要使用Spring Data Solr的分组查询来实现
 2. 为了能够提高查询速度，我们需要把查询面板的品牌、规格数据提前放入redis
 3. 查询条件的构建、面板的隐藏需要使用angularJS来实现
 4. 后端的分类、品牌、规格、价格区间查询需要使用过滤查询来实现
 
-## 3. 查询分类列表
+## 查询分类列表
 
-### 3.1. 需求分析
+### 需求分析
 
 根据搜索关键字查询商品分类名称列表
 
-### 3.2. 后端代码-查询商品分类
+### 后端代码-查询商品分类
 
 - 在search查询方法中，增加根据关键字查询分类代码，并返回查询分类
     1. 有输入关键字，则返回根据关键字查询的分类
@@ -249,7 +247,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-### 3.3. 前端代码-显示商品分类
+### 前端代码-显示商品分类
 
 修改search.html，在页面遍历返回数据结果集，显示商品分类
 
@@ -267,15 +265,15 @@ public Map<String, Object> search(Map<String, Object> params) {
 </div>
 ```
 
-## 4. 缓存商品分类、品牌与规格数据
+## 缓存商品分类、品牌与规格数据
 
-### 4.1. 需求分析
+### 需求分析
 
 - 将商品分类数据、品牌数据、和规格数据都放入Redis存储。因为此部分数据变化频率小，在搜索经常使用，将放到缓存中，加强搜索的性能
     1. 在运营商后台商品分类管理页面新增【更新缓存】按钮，将商品分类数据放入缓存（Hash），以分类名称作为key，以模板ID作为值。
     2. 在运营商后台商品类型模板管理页面新增【更新缓存】按钮，分别将品牌数据和规格数据放入缓存（Hash），以模板ID作为key，以品牌列表和规格列表作为值
 
-### 4.2. 缓存商品分类数据
+### 缓存商品分类数据
 
 - 将商品分类表存入缓存，pinyougou-sellergoods-service工程需要引入pinyougou-common工程依赖，修改pom.xml文件
 
@@ -376,7 +374,7 @@ $scope.updateRedis = () => {
 
 ![配置缓存注意问题](images/20190208104701417_8426.jpg)
 
-### 4.3. 缓存品牌和规格列表数据
+### 缓存品牌和规格列表数据
 
 - 商品服务的TypeTemplateService接口与TypeTemplateServiceImpl实现类，增加数据保存到缓存中
 
@@ -465,19 +463,19 @@ $scope.updateRedis = () => {
 </button>
 ```
 
-### 4.4. 更新缓存数据
+### 更新缓存数据
 
 在linux系统启动redis，运行运营商管理后台，打开商品分类和类型模板管理页，点击【更新缓存】按钮即可将数据放入缓存中
 
-## 5. 显示品牌和规格数据
+## 显示品牌和规格数据
 
-### 5.1. 需求分析
+### 需求分析
 
 在搜索面板区域显示第一个分类的品牌和规格列表
 
 ![显示品牌和规格数据需求](images/20190209101706519_17651.jpg)
 
-### 5.2. 显示品牌和规格-后端部分
+### 显示品牌和规格-后端部分
 
 - 在pinyougou-search-service项目pom.xml增加common模块的依赖
 
@@ -564,9 +562,9 @@ public Map<String, Object> search(Map<String, Object> params) {
 }
 ```
 
-### 5.3. 显示品牌和规格-前端部分
+### 显示品牌和规格-前端部分
 
-#### 5.3.1. 获取品牌列表
+#### 获取品牌列表
 
 修改页面search.html，实现循环品牌列表
 
@@ -589,7 +587,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 </div>
 ```
 
-#### 5.3.2. 获取规格列表
+#### 获取规格列表
 
 修改页面search.html，实现循环规格列表
 
@@ -609,7 +607,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 </div>
 ```
 
-### 5.4. 注意问题
+### 注意问题
 
 因为之前在common公共模块中引入redis配置时，将读取属性文件的代码也写上，结果在搜索服务模块中配置加载属性文件时。会出现报错，说无法加载solr的配置文件。
 
@@ -631,17 +629,17 @@ public Map<String, Object> search(Map<String, Object> params) {
 
 ![solr配置导入注意问题4](images/20190210104028727_6707.jpg)
 
-## 6. 过滤条件构建
+## 过滤条件构建
 
-### 6.1. 需求分析
+### 需求分析
 
 - 点击搜索面板上的分类、品牌和规格，实现查询条件的构建。查询条件以面包屑的形式显示。
 - 当面包屑显示分类、品牌和规格时，要同时隐藏搜索面板对应的区域。
 - 用户可以点击面包屑上的X撤销查询条件。撤销后显示搜索面包相应的区域。
 
-### 6.2. 添加搜索项
+### 添加搜索项
 
-#### 6.2.1. 添加搜索项的方法
+#### 添加搜索项的方法
 
 - 当点击搜索面板上的分类、品牌和规格后，将点击的内容封装到搜索对象中
 - 修改pinyougou-search-web的searchController.js中json类型对象searchParam，定义多个属性用于封装页面的点击的搜索条件；定义增加搜索项的方法
@@ -660,7 +658,7 @@ $scope.addSearchItem = (key, value) => {
 };
 ```
 
-#### 6.2.2. 点击搜索项
+#### 点击搜索项
 
 - 修改pinyougou-search-web的search.html，为搜索面板的标签增加点击事件
 - search.html，修改点击商品分类标签
@@ -710,7 +708,7 @@ $scope.addSearchItem = (key, value) => {
 </div>
 ```
 
-#### 6.2.3. 显示面包屑搜索导航
+#### 显示面包屑搜索导航
 
 注意：到目前为止，只实现了点击后将搜索条件在面包屑搜索导航中，并将值增加到搜索条件对象中，并没有实现查询
 
@@ -746,11 +744,11 @@ $scope.addSearchItem = (key, value) => {
 </div>
 ```
 
-### 6.3. 删除搜索项
+### 删除搜索项
 
 删除已经选定的搜索条件
 
-#### 6.3.1. 删除搜索项方法
+#### 删除搜索项方法
 
 修改pinyougou-search-web工程searchController.js，定义删除的方法
 
@@ -772,7 +770,7 @@ $scope.removeSearchItem = (key) => {
 
 <font color="red">***注意：删除规格时，不能直接赋值为空字符串***</font>
 
-#### 6.3.2. 页面调用方法
+#### 页面调用方法
 
 修改pinyougou-search-web工程的search.html，增加点击事件，调用删除搜索条件方法
 
@@ -796,7 +794,7 @@ $scope.removeSearchItem = (key) => {
 </ul>
 ```
 
-### 6.4. 隐藏查询面板
+### 隐藏查询面板
 
 - 即点击搜索条件后，将对应的搜索条件所在的区域隐藏起来
 - 修改search.html，隐藏分类面板
@@ -821,13 +819,13 @@ $scope.removeSearchItem = (key) => {
      ng-repeat="spec in resultMap.specList">
 ```
 
-## 7. 过滤查询
+## 过滤查询
 
-### 7.1. 需求分析
+### 需求分析
 
 根据上一步构建的查询条件，实现分类、品牌和规格的过滤查询
 
-### 7.2. 分类、品牌、规格过滤查询实现
+### 分类、品牌、规格过滤查询实现
 
 **注意规格选项过滤查询实现思路：规格有多项，需要循环过滤。循环规格查询条件，根据key得到域名称，根据value设置过滤条件。**
 
@@ -881,7 +879,7 @@ HighlightPage highlightPage = solrTemplate
 ......
 ```
 
-### 7.3. 根据分类查询该分类下对应的品牌、规格数据
+### 根据分类查询该分类下对应的品牌、规格数据
 
 修改商品搜索服务实现类，ItemSearchServiceImp中的search()查询方法，增加对检索是否有分类名称进行判断
 
@@ -913,7 +911,7 @@ if (StringUtils.isNoneBlank(category)) {
 ......
 ```
 
-### 7.4. 提交查询
+### 提交查询
 
 修改searchController.js在添加和删除筛选条件时自动调用搜索方法$scope.search();
 

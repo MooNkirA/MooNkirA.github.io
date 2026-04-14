@@ -1,23 +1,23 @@
-## 1. Vue.js 与Webpack研究
+## Vue.js 与Webpack研究
 
 - 参考资料：学成在线-Vue.js与Webpack.pdf
 - Vue 框架相关内容详见[《Vue2.x 笔记》](/前端资料/Vue/Vue2.x-笔记)
 - Webpack 相关知识详见[《Webpack 笔记》](/前端资料/前端工程化工具/webpack)
 
-## 2. CMS 前端工程创建
+## CMS 前端工程创建
 
-### 2.1. 导入系统管理前端工程
+### 导入系统管理前端工程
 
 - CMS系统使用Vue-cli脚手架创建， Vue-cli是Vue官方提供的快速构建单页应用的脚手架，github地址：https://github.com/vuejs/vue-cli
 - 本项目使用的前端框架是对Vue-cli创建的工程进行二次封装
 
-#### 2.1.1. 工程结构
+#### 工程结构
 
 基于Vue-Cli创建的工程进行开发还需要在它基础上作一些封装，导入课程资料中提供Vue-Cli封装工程。将课程资料中的xc-ui-pc-sysmanage.7z拷贝到UI工程目录中，并解压，打开xc-ui-pc-sysmanage目录
 
 ![工程结构](images/20190515155829500_13380.png)
 
-#### 2.1.2. package.json
+#### package.json
 
 package.json记录了工程所有依赖，及脚本命令：
 
@@ -26,17 +26,17 @@ package.json记录了工程所有依赖，及脚本命令：
 - 开发使用：`npm run dev`
 - 打包使用：`npm run build`
 
-#### 2.1.3. webpack.base.conf.js
+#### webpack.base.conf.js
 
 - webpack.base.conf.js 就是 webpack 的 webpack.config.js 配置文件，在此文件中配置了入口文件及各种Loader。
 - webpack 是通过 vue-load 解析`.vue`文件，通过 css-load 打包 css 文件等。
 
-#### 2.1.4. main.js
+#### main.js
 
 - main.js 是工程的入口文件，在此文件中加载了很多第三方组件，如：Element-UI、Base64、VueRouter等。
 - index.html 是模板文件。
 
-#### 2.1.5. src目录
+#### src目录
 
 src目录下存放页面及js代码。目录结构如下
 
@@ -70,7 +70,7 @@ src目录下存放页面及js代码。目录结构如下
 └── package.json               # package.json
 ```
 
-### 2.2. 单页面应用介绍
+### 单页面应用介绍
 
 单页Web应用（single page web application，SPA），就是只有一张Web页面的应用。单页应用程序 (SPA) 是加载单个HTML 页面并在用户与应用程序交互时动态更新该页面的Web应用程序。浏览器一开始会加载必需的HTML、CSS和JavaScript，所有的操作都在这张页面上完成，都由JavaScript来控制。因此，对单页应用来说模块化的开发和设计显得相当重要。
 
@@ -83,9 +83,9 @@ src目录下存放页面及js代码。目录结构如下
 
 总结：本项目的门户、课程介绍不采用单页面应用架构去开发，对于需要用户登录的管理系统采用单页面开发。
 
-## 3. CMS 前端页面查询开发
-### 3.1. 页面原型
-#### 3.1.1. 页面结构
+## CMS 前端页面查询开发
+### 页面原型
+#### 页面结构
 
 在module目录创建 cms模块的目录结构
 
@@ -94,7 +94,7 @@ src目录下存放页面及js代码。目录结构如下
 - 在page目录新建page_list.vue，扩展名为.vue。
 - 注意：template内容必须有一个根元素，否则vue会报错，这里我们在template标签内定义一个div。
 
-#### 3.1.2. 页面路由
+#### 页面路由
 
 - 在cms目录下创建page_list.vue页面。
 - 现在先配置路由，实现url访问到页面再进行内容完善与调试。
@@ -138,12 +138,12 @@ npm uninstall --save node-sass # 先卸载
 npm install node-sass # 在安装
 ```
 
-#### 3.1.3. Element-UI介绍
+#### Element-UI介绍
 
 - 本项目使用Element-UI来构建界面，Element是一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库。
 - Element-UI官方站点：http://element.eleme.io/#/zh-CN/component/installation
 
-#### 3.1.4. Table 组件测试
+#### Table 组件测试
 
 - 本功能实现的页面列表，用户可以进行分页查询、输入查询条件查询，通过查看Element-UI库，需要Table 表格、Form表单 及Pagination 分页组件。
 - 进入Element-UI官方，找到Table组件，拷贝源代码到vue页面中，进行相应的修改
@@ -201,8 +201,8 @@ export default {
 </style>
 ```
 
-### 3.2. Api 调用
-#### 3.2.1. Api方法定义
+### Api 调用
+#### Api方法定义
 
 - 在cms模块的api目录定义cms.js，在cms.js中定义如下js方法，此方法实现http请求服务端页面查询接口。
 
@@ -217,7 +217,7 @@ export const page_list = (page, size, params) => {
 
 axios实现了http方法的封装，因为vue.js官方不再继续维护vue-resource，所以推荐使用 axios。
 
-#### 3.2.2. 页面 Api 调用
+#### 页面 Api 调用
 
 前端页面page_list.vue导入cms.js，调用js方法请求服务端页面查询接口。
 
@@ -239,7 +239,7 @@ query: function () {
 }
 ```
 
-### 3.3. 跨域问题解决
+### 跨域问题解决
 
 - 测试上边的代理 ，结果报错如下：
 
@@ -250,19 +250,19 @@ Access to XMLHttpRequest at 'http://localhost:31001/cms/page/list/1/2' from orig
 - 原因：浏览器的同源策略不允许跨域访问，所谓同源策略是指协议、域名、端口相同。
 - 解决：采用proxyTable解决。
 
-#### 3.3.1. proxyTable 简介
+#### proxyTable 简介
 
 vue-cli提供的解决vue开发环境下跨域问题的方法，proxyTable的底层使用了http-proxy-middleware（https://github.com/chimurai/http-proxy-middleware），它是 http代理中间件，它依赖node.js，基本原理是用服务端代理解决浏览器跨域：
 
 ![proxyTable跨域解决流程](images/20190516141628726_24474.png)
 
-#### 3.3.2. cms跨域解决原理
+#### cms跨域解决原理
 
 1. 访问页面http://localhost:11000/
 2. 页面请求http://localhost:11000/cms。由于url由http://localhost:31001/cms...改为 “http://localhost:11000/cms."，所以不存在跨域
 3. 通过proxyTable由node服务器代理请求 http://localhost:31001/cms。**服务端之间不存在跨域问题**
 
-#### 3.3.3. 具体项目配置 proxyTable
+#### 具体项目配置 proxyTable
 
 1. 修改cms.js中，api方法中url的定义。在请求前加/api前缀
 
@@ -291,7 +291,7 @@ export const page_list = (page, size, params) => {
 }
 ```
 
-### 3.4. 进入页面立即查询
+### 进入页面立即查询
 
 目前实现的功能是进入页面点击查询按钮向服务端表求查询，实际的需求是进入页面立即查询。
 
@@ -312,7 +312,7 @@ export default {
 }
 ```
 
-### 3.5. 分页查询测试
+### 分页查询测试
 
 1. 使用v-on监听分页组件，点击当前页事件
 
@@ -352,7 +352,7 @@ changePage(page) {
 }
 ```
 
-## 4. 前后端请求响应流程小结
+## 前后端请求响应流程小结
 
 ![前后端请求响应流程](images/20190516145514204_5146.png)
 

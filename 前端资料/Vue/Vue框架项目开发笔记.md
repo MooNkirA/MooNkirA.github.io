@@ -1,4 +1,4 @@
-## 1. 创建工程化 VUE 项目的方式
+## 创建工程化 VUE 项目的方式
 
 vue 官方提供了两种快速创建工程化的 SPA 项目的方式：
 
@@ -9,9 +9,9 @@ vue 官方提供了两种快速创建工程化的 SPA 项目的方式：
 
 ![](images/20211205143138888_21429.png)
 
-## 2. vue 脚手架工具(vue-cli)
+## vue 脚手架工具(vue-cli)
 
-### 2.1. 什么是 vue-cli
+### 什么是 vue-cli
 
 vue-cli 是 Vue.js 开发的标准工具。它简化了程序员基于 webpack 创建工程化的 Vue 项目的过程。
 
@@ -22,7 +22,7 @@ vue-cli 是 Vue.js 开发的标准工具。它简化了程序员基于 webpack �
 >
 > Vue CLI 的包名称由 `vue-cli` 改成了 `@vue/cli`。 如果你已经全局安装了旧版本的 `vue-cli` (1.x 或 2.x)，你需要先通过 `npm uninstall vue-cli -g` 或 `yarn global remove vue-cli` 卸载它。
 
-### 2.2. 安装命令
+### 安装命令
 
 - vue-cli 是 npm 上的一个全局包。如果程序运行的环境（电脑）第一次使用vue的脚手架工具，需要运行以下命令，安装脚手架到本地
 
@@ -53,9 +53,9 @@ npm update -g @vue/cli
 yarn global upgrade --latest @vue/cli
 ```
 
-### 2.3. 创建模版
+### 创建模版
 
-#### 2.3.1. 语法格式
+#### 语法格式
 
 > 注意:如果环境第一次使用CLI脚手架，必须进行了上一步操作后再可以创建模版
 
@@ -81,7 +81,7 @@ vue create 项目的名称
 
 > 注：创建模版后，项目的位置可以移动
 
-#### 2.3.2. 创建项目选择项解析
+#### 创建项目选择项解析
 
 选择【Manuallly select features】
 
@@ -119,20 +119,20 @@ vue create 项目的名称
 
 ![](images/20211203154444554_24626.png)
 
-### 2.4. 项目安装与运行命令
+### 项目安装与运行命令
 
 > 注：如果创建时没有选择创建后执行运行【npm install】命令，需要手动进行安装
 
 - 安装：`npm install`
 - 运行项目：`npm run dev`
 
-### 2.5. 安装依赖的命令
+### 安装依赖的命令
 
 使用命令：`npm install 依赖的名字`。或者一次安装多个的命令：`npm install 依赖的名字1 依赖的名字2 ...`
 
 如何安装在是devDependencies中，使用命令：`npm install 依赖的名字 --save-dev`
 
-### 2.6. vue 项目的运行流程
+### vue 项目的运行流程
 
 在工程化的项目中，vue 要做的事情很单纯：通过 `main.js` 把 `App.vue` 渲染到 `index.html` 的指定区域中。核心文件说明如下：
 
@@ -140,9 +140,9 @@ vue create 项目的名称
 - `index.html` 中需要预留一个 `el` 区域
 - `main.js` 把 `App.vue` 渲染到了 `index.html` 所预留的区域中
 
-## 3. vite 的基本使用
+## vite 的基本使用
 
-### 3.1. 创建 vite 的项目
+### 创建 vite 的项目
 
 按照顺序执行如下的命令，即可基于 vite 创建 vue 3.x 的工程化项目：
 
@@ -154,7 +154,7 @@ npm install
 npm run dev
 ```
 
-### 3.2. vite 项目结构
+### vite 项目结构
 
 使用 vite 创建的项目结构如下：
 
@@ -177,7 +177,7 @@ npm run dev
 - `index.css` 是项目的全局样式表文件
 - `main.js` 是整个项目的打包入口文件
 
-### 3.3. vite 项目的运行流程
+### vite 项目的运行流程
 
 在工程化的项目中，vue 要做的事情很单纯：通过 main.js 把 App.vue 渲染到 index.html 的指定区域中。
 
@@ -195,9 +195,9 @@ npm run dev
 
 ![](images/20211205143746264_13219.png)
 
-## 4. 项目的目录设计
+## 项目的目录设计
 
-### 4.1. 通常项目目录结构
+### 通常项目目录结构
 
 一般项目的目录都会创建公用部分目录【common】，组件目录会按页面不能的组件分开目录
 
@@ -213,13 +213,13 @@ npm run dev
 - 【router】：配置路由的js文件
 - 【store】：仓库文件
 
-### 4.2. vue-cli 创建的 vue2 项目目录结构
+### vue-cli 创建的 vue2 项目目录结构
 
 ![](images/20211207213428263_5106.png)
 
-## 5. 项目的相关配置
+## 项目的相关配置
 
-### 5.1. 配置文件.eslintrc.js，检查eslin语法
+### 配置文件.eslintrc.js，检查eslin语法
 
 - 配置检查eslin语法，设置rules属性里的'semi'属性
 - .eslintrc.js文件中配置不检查一些语法规则，在rules属性中，将规则名称做为属性，设置为“0”即可
@@ -239,7 +239,7 @@ rules: {
 }
 ```
 
-### 5.2. 部署时出现无法加载vue-style-loader
+### 部署时出现无法加载vue-style-loader
 
 ![无法加载vue-style-loader-1](images/_无法加载vuesty_1530959576_2600.png)
 
@@ -261,7 +261,7 @@ rules: {
 
 ![stylus无法加载的问题](images/_stylus无法加载_1531019884_16286.png)
 
-### 5.3. 设置相关路径的别名
+### 设置相关路径的别名
 
 如果配置后还出现错误
 
@@ -298,7 +298,7 @@ module.exports = {
 }
 ```
 
-### 5.4. 项目开发需要新增的依赖
+### 项目开发需要新增的依赖
 
 - "babel-runtime": "^6.26.0"
     - 会ES语法进行转义
@@ -309,13 +309,13 @@ module.exports = {
 - "jsonp": "^0.2.1"
     - 用于抓取网络数据
 
-## 6. proxy 跨域代理
+## proxy 跨域代理
 
 如果项目的 API 接口没有开启 CORS 跨域资源共享，因此默认情况下，前端请求后端服务的接口无法请求成功！
 
 ![](images/20211208104512244_6177.png)
 
-### 6.1. 通过代理解决接口的跨域问题
+### 通过代理解决接口的跨域问题
 
 通过 vue-cli 创建的项目在遇到接口跨域问题时，可以通过代理的方式来解决：
 
@@ -326,7 +326,7 @@ module.exports = {
 3. 代理把请求根路径替换为 `devServer.proxy` 属性的值，发起真正的数据请求
 4. 代理把请求到的数据，转发给 `axios`
 
-### 6.2. vue 项目中配置 proxy 代理
+### vue 项目中配置 proxy 代理
 
 步骤1：在 main.js 入口文件中，把 axios 的请求根路径改造为当前 web 项目的根路径：
 
@@ -355,15 +355,15 @@ module.exports = {
 > 2. 项目上线发布时，依旧需要 API 接口服务器开启 CORS 跨域资源共享
 > 3. 另外，如果是旧版本的vue-cli中，是在 `webpack.dev.conf.js` 文件中配置
 
-## 7. 框架常用知识点
+## 框架常用知识点
 
-### 7.1. vue文件编写注意点
+### vue文件编写注意点
 
 在编写vue与js文件时，字符串与引入的地址都使用单引号【'】
 
 ![](images/_vue文件编写注意点_1530960553_12948.png)
 
-### 7.2. Vuex 之理解 Store 的用法
+### Vuex 之理解 Store 的用法
 
 Vuex 就是提供一个仓库，Store 仓库里面放了很多对象。其中 state 就是数据源存放地，对应于与一般 Vue 对象里面的 data。
 
@@ -385,7 +385,7 @@ new Vuex.store({
 
 总结，Store 类就是存储数据和管理数据方法的仓库，实现方式是将数据和方法已对象形式传入其实例中。**要注意一个应用或是项目中只能存在一个 Store 实例！！**
 
-#### 7.2.1. vuex 相关属性
+#### vuex 相关属性
 
 vuex 就像一个无形的仓库，公共的状态我们会抽离出来放进里面。vuex 的核心主要包括以下几个部分
 
@@ -395,15 +395,15 @@ vuex 就像一个无形的仓库，公共的状态我们会抽离出来放进里
 - actions：就是 mutation 的加强版，它可以通过 commit mutations 中的方法来改变状态，最重要的是它可以进行异步操作。
 - modules：顾名思义，就是当用这个容器来装这些状态还是显得混乱的时候，我们就可以把容器分成几块，把状态和管理规则分类来装。这和我们创建 js 模块是一个目的，让代码结构更清晰。
 
-### 7.3. 使用 sessionStorage 解决 vuex 在页面刷新后数据被清除的问题
+### 使用 sessionStorage 解决 vuex 在页面刷新后数据被清除的问题
 
-#### 7.3.1. 问题描述
+#### 问题描述
 
 JavaScript代码是运行在内存中，代码运行时的所有变量，函数，也都是保存在内存中的。
 
 刷新页面后，之前申请的内存就被释放，重新加载脚本代码，变量重新赋值，所以这些数据需要储存在外部，如：Local Storage, Session Storage, IndexDB等。
 
-#### 7.3.2. 解决方法
+#### 解决方法
 
 HTML5 提供了两种客户端存储数据的方法（以下的都由cookie完成的，但cookie不适合大量灵气的存储，因为它们由每个对服务器的请求来传递，这会让cookie速度很慢而且效率不高）
 
@@ -443,7 +443,7 @@ isLogin (state) {
 
 总体的实现思路是让 vuex 中 story 的状态和 sessionStorage 保持一致（从 sessionStorage 取值）
 
-#### 7.3.3. 补充
+#### 补充
 
 vuex 存储和本地存储(localstorage、sessionstorage)的区别
 
@@ -453,7 +453,7 @@ vuex 存储和本地存储(localstorage、sessionstorage)的区别
 
 注：很多同学觉得用 localstorage 可以代替 vuex, 对于不变的数据确实可以，但是当两个组件共用一个数据源（对象或数组）时，如果其中一个组件改变了该数据源，希望另一个组件响应该变化时，localstorage 无法做到，原因就是区别1。
 
-### 7.4. vue 的 package.json 中 dependencies 和 devDependencies 区别
+### vue 的 package.json 中 dependencies 和 devDependencies 区别
 1. **dependencies**：应用能够正常运行所依赖的包。这种 dependencies 是最常见的，用户在使用 npm install 安装你的包时会自动安装这些依赖。
 2. **devDependencies**：开发应用时所依赖的工具包。通常是一些开发、测试、打包工具，例如 webpack、ESLint、Mocha。应用正常运行并不依赖于这些包，用户在使用 npm install 安装你的包时也不会安装这些依赖。
 3. **peerDependencies**：应用运行依赖的宿主包。最典型的就是插件，例如各种 jQuery 插件，这些插件本身不包含 jQeury，需要外部提供。用户使用 npm 1 或 2 时会自动安装这种依赖，npm 3 不会自动安装，会提示用户安装。
@@ -462,7 +462,7 @@ vuex 存储和本地存储(localstorage、sessionstorage)的区别
 
 从以上的定义可以看出，**dependencies 是程序运行依赖，devDependencies 一般是一些开发工具，peerDependencies 一般用于插件。**
 
-### 7.5. VUE+Webpack 实现懒加载的三种方式
+### VUE+Webpack 实现懒加载的三种方式
 
 方式1：
 
@@ -511,7 +511,7 @@ const router = new Router({
 })
 ```
 
-### 7.6. vue-cli为什么会用@来访问路径
+### vue-cli为什么会用@来访问路径
 
 使用vue-cli开发时，经常可以看到引用的路径里面，是@/xx/xx，那么@是表示什么？
 
@@ -528,7 +528,7 @@ alias: {
 
 如果还想要自定义一些路径的别名，也可在这里配置
 
-### 7.7. 取消ESLINT语法限制
+### 取消ESLINT语法限制
 
 因为eslint语法限制，每个import语句后面需要加“;”号，import的路径需要将.vue补全，如果需要取消这些语法限制
 
@@ -546,9 +546,9 @@ rules: [
   },
 ```
 
-## 8. 在 vue 中使用 vue-echarts
+## 在 vue 中使用 vue-echarts
 
-### 8.1. 用 npm 与 vue-loader 基于 ES Module 引入（推荐用法）
+### 用 npm 与 vue-loader 基于 ES Module 引入（推荐用法）
 
 ```js
   // 引入vue-echarts
@@ -583,7 +583,7 @@ rules: [
 
 这里之所以使用 require 而不是 import，是因为 require 可以直接从 node_modules 中查找，而 import 必须把路径写全。
 
-### 8.2. 按需引入的模块列表见
+### 按需引入的模块列表见
 
 ```js
 /*
@@ -669,9 +669,9 @@ require("zrender/lib/vml/vml");
 require("zrender/lib/svg/svg");
 ```
 
-## 9. 路由文件路径的拼接公共方法
+## 路由文件路径的拼接公共方法
 
-### 9.1. 编写拼接路由文件公共方法js文件
+### 编写拼接路由文件公共方法js文件
 
 创建`_import.js`文件（文件名随意命名）
 
@@ -683,7 +683,7 @@ module.exports = (file, path) => {
 }
 ```
 
-### 9.2. 路由配置文件中调用
+### 路由配置文件中调用
 
 页面
 
@@ -701,9 +701,9 @@ export default [{
 },
 ```
 
-## 10. vue框架7个技术分享
+## vue框架7个技术分享
 
-### 10.1. 善用watch的immediate属性
+### 善用watch的immediate属性
 
 例如有请求需要再也没初始化的时候就执行一次，然后监听他的变化，很多人这么写：
 
@@ -729,7 +729,7 @@ watch: {
 }
 ```
 
-### 10.2. 组件注册，值得借鉴
+### 组件注册，值得借鉴
 
 一般情况下，我们组件如下写：
 
@@ -792,7 +792,7 @@ requireComponent.keys().forEach(fileName => {
 </BaseButton>
 ```
 
-### 10.3. 精简vuex的modules引入
+### 精简vuex的modules引入
 
 对于vuex，我们输出store如下写：
 
@@ -844,7 +844,7 @@ export default new Vuex.Store({
 })
 ```
 
-### 10.4. 路由的延迟加载
+### 路由的延迟加载
 
 这一点，关于vue的引入，我之前在 vue项目重构技术要点和总结 中也提及过，可以通过require方式或者import()方式动态加载组件。
 
@@ -868,7 +868,7 @@ export default new Vuex.Store({
 
 加载路由。
 
-### 10.5. router key组件刷新
+### router key组件刷新
 
 下面这个场景真的是伤透了很多程序员的心...先默认大家用的是Vue-router来实现路由的控制。 假设我们在写一个博客网站，需求是从/post-haorooms/a，跳转到/post-haorooms/b。然后我们惊人的发现，页面跳转后数据竟然没更新？！原因是vue-router"智能地"发现这是同一个组件，然后它就决定要复用这个组件，所以你在created函数里写的方法压根就没执行。通常的解决方案是监听$route的变化来初始化数据，如下：
 
@@ -926,7 +926,7 @@ methods () {
 
 注：个人经验，这个一般应用在子路由里面，这样才可以不避免大量重绘，假设app.vue根目录添加这个属性，那么每次点击改变地址都会重绘，还是得不偿失的！
 
-### 10.6. 唯一组件根元素
+### 唯一组件根元素
 
 场景如下：
 
@@ -967,7 +967,7 @@ render(h, { props }) {
 }
 ```
 
-### 10.7. 组件包装、事件属性穿透问题
+### 组件包装、事件属性穿透问题
 
 当我们写组件的时候，通常我们都需要从父组件传递一系列的props到子组件，同时父组件监听子组件emit过来的一系列事件。举例子：
 
@@ -1006,7 +1006,7 @@ computed: {
 
 `$listeners`包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件。
 
-## 11. 路由懒加载
+## 路由懒加载
 
 路由懒加载应该是写大一点的项目都会用的一个功能，只有在使用这个component的时候才会加载这个相应的组件，这样写大大减少了初始页面 js 的大小并且能更好的利用游览器的缓存。
 
@@ -1023,9 +1023,9 @@ const _import = require('./_import_' + process.env.NODE_ENV);
 const Foo = _import('Foo');
 ```
 
-## 12. 跨域问题(前后端分离)
+## 跨域问题(前后端分离)
 
-### 12.1. 跨域解决方法总结（最常用的两种方式）
+### 跨域解决方法总结（最常用的两种方式）
 
 - 常用的方式就是**cors**全称为 Cross Origin Resource Sharing（跨域资源共享）。对应前端来说和平时发请求写法上没有任何区别，工作量基本都在后端这里。每一次请求浏览器必须先以 OPTIONS 请求方式发送一个预请求，从而获知服务器端对跨源请求所支持 HTTP 方法。在确认服务器允许该跨源请求的情况下，以实际的 HTTP 请求方法发送那个真正的请求。推荐的原因是只要第一次配好了，之后不管有多少接口和项目复用就可以了，一劳永逸的解决了跨域问题，而且不管是开发环境还是测试环境都能方便的使用。
 - 但总有后端觉得麻烦不想这么搞。那前端也是有解决方案的，在 dev 开发模式下可以下使用**webpack的proxy**使用也是很方便的看一下文档就会使用了，一些个人项目使用的该方法。但这种方法在生成环境是不适用的。在生产环境中需要使 用**Nginx反向代理**不管是 proxy 和 nginx 的原理都是一样的通过搭建一个中转服务器来转发请求规避跨域的问题。
@@ -1038,21 +1038,21 @@ const Foo = _import('Foo');
 |  proxy   |  nginx   |
 
 
-### 12.2. 使用CORS方式
+### 使用CORS方式
 
-#### 12.2.1. 同源策略简介
+#### 同源策略简介
 
 同源策略[same origin policy]是浏览器的一个安全功能，不同源的客户端脚本在没有明确授权的情况下，不能读写对方资源。 同源策略是浏览器安全的基石。
 
-##### 12.2.1.1. 什么是源
+##### 什么是源
 
 源[origin]就是协议、域名和端口号。例如：http://www.baidu.com:80这个URL。
 
-##### 12.2.1.2. 什么是同源
+##### 什么是同源
 
 若地址里面的协议、域名和端口号均相同则属于同源。
 
-##### 12.2.1.3. 是否是同源的判断
+##### 是否是同源的判断
 
 例如判断下面的`URL`是否与 http://www.a.com/test/index.html 同源
 
@@ -1061,18 +1061,18 @@ const Foo = _import('Foo');
 - https://www.a.com/test/index.html 不同源，协议不相同
 - http://www.a.com:8080/test/index.html 不同源，端口号不相同
 
-##### 12.2.1.4. 哪些操作不受同源策略限制
+##### 哪些操作不受同源策略限制
 
 1. 页面中的链接，重定向以及表单提交是不会受到同源策略限制的；
 2. 跨域资源的引入是可以的。但是JS不能读写加载的内容。如嵌入到页面中的`<script src="..."></script>`，`<img>`，`<link>`，`<iframe>`等。
 
-##### 12.2.1.5. 跨域
+##### 跨域
 
 受前面所讲的浏览器同源策略的影响，不是同源的脚本不能操作其他源下面的对象。想要操作另一个源下的对象就需要跨域。 在同源策略的限制下，非同源的网站之间不能发送 AJAX 请求。
 
-#### 12.2.2. Spring Boot 配置 CORS
+#### Spring Boot 配置 CORS
 
-##### 12.2.2.1. 使用`@CrossOrigin`注解实现
+##### 使用`@CrossOrigin`注解实现
 
 1. 如果想要对某一接口配置CORS，可以在方法上添加 `@CrossOrigin` 注解
 
@@ -1129,8 +1129,8 @@ public FilterRegistrationBean corsFilter() {
 }
 ```
 
-### 12.3. 其它跨域解决方法
-#### 12.3.1. 修改浏览器配置解决跨域
+### 其它跨域解决方法
+#### 修改浏览器配置解决跨域
 
 以Google Chrome为例，右键点击浏览器快捷方式，在目标中输入下述代码即可解决（不推荐）。
 
@@ -1138,7 +1138,7 @@ public FilterRegistrationBean corsFilter() {
 "C:\ProgramFiles(x86)\Google\Chrome\Application\chrome.exe" --disable-web-security--user-data-dir
 ```
 
-#### 12.3.2. 使用jsonp解决跨域
+#### 使用jsonp解决跨域
 
 - JQuery中的正常AJAX请求代码片段
 
@@ -1185,11 +1185,11 @@ http://www.xxx.com/Index/Test/crossDomain?callback=jQuery331015214102388989237_1
 - JSONP只支持GET请求。无法提交表单
 - 它只支持跨域HTTP请求
 
-## 13. 开发过程的问题
+## 开发过程的问题
 
-### 13.1. 使用 vue 实现拖拽效果
+### 使用 vue 实现拖拽效果
 
-#### 13.1.1. 拖拽几个相关的概念
+#### 拖拽几个相关的概念
 
 这两种获取鼠标坐标的方法，区别在于基于的对象不同：
 
@@ -1202,7 +1202,7 @@ http://www.xxx.com/Index/Test/crossDomain?callback=jQuery331015214102388989237_1
     5. `document.documentElement.clientHeight`：屏幕的可视高度
     6. `document.documentElement.clientWidth`：屏幕的可视高度
 
-#### 13.1.2. 实现使用Vue.js的自定义指令功能简介
+#### 实现使用Vue.js的自定义指令功能简介
 
 Vue支持自己开发一些使用方法类似内置指令（如v-show、v-for等）的自定义指令，通常用在一些对底层DOM操作的地方。简单介绍一下自定义指令的基本用法，并实现一个指令v-drag实现悬浮框拖动功能。
 
@@ -1227,17 +1227,17 @@ Vue支持自己开发一些使用方法类似内置指令（如v-show、v-for等
 - vnode： Vue 编译生成的虚拟节点。
 - oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
 
-### 13.2. vue + element + Spring mvc 文件上传案例（网络资源）
+### vue + element + Spring mvc 文件上传案例（网络资源）
 
-#### 13.2.1. 需求
+#### 需求
 
 Vue+ElementUI+SpringMVC实现图片上传和table回显
 
 ![效果](images/20190226124427974_27440.png)
 
-#### 13.2.2. 思路分析
+#### 思路分析
 
-##### 13.2.2.1. 图片上传和表单提交
+##### 图片上传和表单提交
 
 要明白图片上传和表单提交是两个功能，其对应不同的接口，表单中并不是保存了这个图片，而仅仅是保存了储存图片的路径地址。需要分析以下几点：
 
@@ -1249,13 +1249,13 @@ Vue+ElementUI+SpringMVC实现图片上传和table回显
 3. 如何提交表单
     - 说如何提交表单，这就显得很简单了，因为上面我们已经完成了：1、图片成功上传；2、获取到了图片在服务器上的储存地址。利用Vue的双向绑定思想，在图片成功上传的回调函数`on-success`中获取到后端返回的图片储存地址，将这个地址赋值给Vue实例`data(){}`中定义的表单对象。这样在提交表单的时候仅需要将这个表单对象发送给后端，保存到数据库就行了。
 
-##### 13.2.2.2. 图片在table的回显
+##### 图片在table的回显
 
 想要将图片回显到table表格中其实很简单，前提只要你在数据库中保存了正确的图片储存地址；在table表格中我们仅需要在`<td>`列中新定义一列`<td><img src="图片的地址"/></td>`即可完成图片回显。渲染table数据的时候循环给`<img>`中的src赋值数据库中保存的图片url即可。
 
-#### 13.2.3. 后端实现
+#### 后端实现
 
-##### 13.2.3.1. 图片上传接口
+##### 图片上传接口
 
 这里将文件上传和下载接口单独抽离在一个Controller类中
 
@@ -1343,7 +1343,7 @@ public class Result implements Serializable {
 }
 ```
 
-##### 13.2.3.2. 表单提交接口
+##### 表单提交接口
 
 表单提交，配合图片上传，仅仅是在实体类中多了一个字段存放图片的URL地址
 
@@ -1381,9 +1381,9 @@ public class InstrumentController {
 
 写Controller的时候定义了全局的`@RestController`注解，和`@Controller`注解的区别是，前者多了`@ResponseBod`y注解，这样整合Controller类返回的数据都将给自动转换成JSON格式。
 
-#### 13.2.4. 前端实现
+#### 前端实现
 
-##### 13.2.4.1. 实现图片上传
+##### 实现图片上传
 
 配合ElementUI的上传组件，我们会这样定义(这是form表单中的一部分)：
 
@@ -1425,7 +1425,7 @@ public class InstrumentController {
 - `:on-remove` 文件列表移除时的钩子函数
 - `:src` 图片上传的URL。
 
-##### 13.2.4.2. js部分
+##### js部分
 
 ```js
 //设置全局表单提交格式
@@ -1511,13 +1511,13 @@ new Vue({
 7. 如果点击图片中的删除按钮，就会触发`handleRemove()`函数，并删除此图片。
 8. 如果点击了已上传的文件列表，就会触发`handlePreview()`函数。
 
-##### 13.2.4.3. 实现表单提交
+##### 实现表单提交
 
 表单提交就比较简单了，就是触发对应的click事件，触发其中定义的函数，将已在`data(){}`中定义的表单数据发送给后端接口：
 
 ![提交表单](images/20190226133513581_24838.png)
 
-##### 13.2.4.4. 后端接口
+##### 后端接口
 
 ```java
 @RequestMapping("/save")
@@ -1534,7 +1534,7 @@ public Result save(Instrument instrument) {
 }
 ```
 
-#### 13.2.5. 实现table回显图片
+#### 实现table回显图片
 
 table回显图片也是很简单的，仅需要在列中增加一列
 
@@ -1562,82 +1562,82 @@ table回显图片也是很简单的，仅需要在列中增加一列
 
 后端就是正常的查询数据库数据即可了
 
-## 14. 图标字体制作
+## 图标字体制作
 
 网站：`https://icomoon.io/` 可以上传自定义的图标字体
 
-## 15. Vue 相关组件库
+## Vue 相关组件库
 
-### 15.1. 开源 Vue2 组件库
+### 开源 Vue2 组件库
 
-#### 15.1.1. v-page：vue.js的分页组件
+#### v-page：vue.js的分页组件
 
 官网：https://terryz.gitee.io/vue/#/page
 
-#### 15.1.2. Element 基于 Vue 2.0 的桌面端组件库
+#### Element 基于 Vue 2.0 的桌面端组件库
 
 Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库
 
 官网：https://element.eleme.cn/#/zh-CN
 
-#### 15.1.3. iView 基于Vue.js的UI组件库
+#### iView 基于Vue.js的UI组件库
 
 官网：http://v1.iviewui.com/
 
-#### 15.1.4. Mint UI 移动端组件库
+#### Mint UI 移动端组件库
 
 官网：http://mint-ui.github.io/#!/zh-cn
 
-#### 15.1.5. Vant 移动端组件库
+#### Vant 移动端组件库
 
 官网：https://vant-contrib.gitee.io/vant/#/zh-CN/
 
-### 15.2. 开源的 Vue3 组件库
+### 开源的 Vue3 组件库
 
-#### 15.2.1. element-plus
+#### element-plus
 
 经典中的经典，全面支持 Vue 3
 
 - 官方文档：https://element-plus.gitee.io/zh-CN/
 - github 仓库：https://github.com/element-plus/element-plus
 
-#### 15.2.2. tdesign-vue-next
+#### tdesign-vue-next
 
 鹅厂优质 UI 组件，配套工具完满，设计工整，文档清晰
 
-#### 15.2.3. arco-design-vue
+#### arco-design-vue
 
 字节跳动 UI 组件库开源，大厂逻辑，设计文档完美
 
-#### 15.2.4. ant-design-vue
+#### ant-design-vue
 
 蚂蚁前端 UI 库，面向企业级中后台
 
 - 官方文档：https://antdv.com/components/overview-cn
 - github 仓库：https://github.com/vueComponent/ant-design-vue
 
-#### 15.2.5. vant
+#### vant
 
 有赞团队开源移动 UI 组件库，全面支持 Vue 3
 
 - 官方文档：https://vant-contrib.gitee.io/vant/#/zh-CN
 - github 仓库：https://github.com/vant-ui/vant
 
-#### 15.2.6. naive-ui
+#### naive-ui
 
 一个 Vue 3 组件库。比较完整，主题可调，使用 TypeScript。宝藏 Vue UI 库，Vue UI 新星，从 Vue 3 起步
 
 - 官方文档：https://www.naiveui.com/zh-CN/os-theme
 - github 仓库：https://github.com/TuSimple/naive-ui
 
-#### 15.2.7. nutui
+#### nutui
 
 京东出品，移动端友好，面向电商业务场景
 
-#### 15.2.8. vuetify
+#### vuetify
 
 老牌 Vue UI ，基于谷歌的 Material Design 样式开发
 
-#### 15.2.9. varlet
+#### varlet
 
 Varlet 是一个基于 Vue3 开发的 Material 风格移动端组件库，全面拥抱 Vue3 生态，由社区建立起来的组件库团队进行维护。

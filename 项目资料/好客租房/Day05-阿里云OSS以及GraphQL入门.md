@@ -1,6 +1,4 @@
-# Day05-阿里云OSS以及GraphQL入门
-
-## 1. 图片存储解决方案
+## 图片存储解决方案
 
 在新增房源功能中，需要上传图片，其实在整个项目中有很多功能模块需要上传图片，所以，需要开发一个上传图片的服务。
 
@@ -21,21 +19,21 @@
 
 本项目采用第1、4种解决方案，第三方服务选用阿里云的OSS服务
 
-## 2. 阿里云OSS存储
+## 阿里云OSS存储
 
-### 2.1. OSS服务简介
+### OSS服务简介
 
 > 海量、安全、低成本、高可靠的云存储服务，提供99.9999999999%(12个9)的数据持久性。使用RESTful API 可以在互联网任何位置存储和访问，容量和处理能力弹性扩展，多种存储类型供选择全面优化存储成本。
 
 服务地址：https://www.aliyun.com/product/oss?spm=a2c4g.11186623.cloudEssentials.19.60f81c62VrnDMR
 
-### 2.2. 购买服务
+### 购买服务
 
 说明：OSS的上行流量是免费的，但是下行流量是需要购买的
 
-### 2.3. OSS基础使用
+### OSS基础使用
 
-#### 2.3.1. 创建Bucket
+#### 创建Bucket
 
 使用OSS，首先需要创建Bucket。登陆阿里云后进入控制台，https://oss.console.aliyun.com/overview
 
@@ -51,17 +49,17 @@
 
 ![](images/20201004123710662_25571.jpg)
 
-#### 2.3.2. 管理文件
+#### 管理文件
 
 可以通过在线的方式进行管理文件：
 
 ![](images/20201004123850426_8342.jpg)
 
-### 2.4. 代码实现图片上传到OSS（代码为示例，不能实现真实功能）
+### 代码实现图片上传到OSS（代码为示例，不能实现真实功能）
 
 在`haoke-manage-api-server`工程中实现图片上传功能，以供其他服务使用
 
-#### 2.4.1. 导入oss的sdk依赖
+#### 导入oss的sdk依赖
 
 修改`haoke-manage-api-server`工程有pom.xml文件，引入依赖
 
@@ -84,7 +82,7 @@
 </dependency>
 ```
 
-#### 2.4.2. 编写aliyun.properties配置文件
+#### 编写aliyun.properties配置文件
 
 > `accessKeyId`以及`accessKeySecret`获取参考官方文档：https://help.aliyun.com/knowledge_detail/48699.html
 
@@ -96,7 +94,7 @@ aliyun.bucketName=haoke
 aliyun.urlPrefix=http://haoke.oss-cn-qingdao.aliyuncs.com/
 ```
 
-#### 2.4.3. 编写oss的配置类
+#### 编写oss的配置类
 
 ```java
 package com.moon.haoke.dubbo.api.config;
@@ -145,7 +143,7 @@ public class AliyunConfig {
 }
 ```
 
-#### 2.4.4. 编写上传文件的响应实体类
+#### 编写上传文件的响应实体类
 
 创建`PicUploadResult`类，用于返回给前端的数据结构定义
 
@@ -170,7 +168,7 @@ public class PicUploadResult {
 }
 ```
 
-#### 2.4.5. 编写图片上传的业务类
+#### 编写图片上传的业务类
 
 创建`PicUploadOSSService`类，具体的上传逻辑实现，在该类中调用了OSS客户端的API
 
@@ -256,7 +254,7 @@ public class PicUploadOSSService {
 }
 ```
 
-#### 2.4.6. 编写文件上传的控制类
+#### 编写文件上传的控制类
 
 ```java
 package com.moon.haoke.dubbo.api.controller;
@@ -293,7 +291,7 @@ public class PicUploadController {
 }
 ```
 
-### 2.5. 上传图片测试
+### 上传图片测试
 
 ![](images/20201004162718043_27380.png)
 
@@ -301,7 +299,7 @@ public class PicUploadController {
 
 ![](images/20201004162730872_31230.png)
 
-### 2.6. 阿里云OSS服务 - 添加水印功能
+### 阿里云OSS服务 - 添加水印功能
 
 OSS提供了在线添加水印功能：
 
@@ -313,9 +311,9 @@ OSS提供了在线添加水印功能：
 
 访问地址(示例)：`https://haoke.oss-cn-abc.aliyuncs.com/images/2020/12/30/15423895180629907.jpg!shuiyin`
 
-## 3. 本地文件系统存储
+## 本地文件系统存储
 
-### 3.1. 编写本地文件存储业务类
+### 编写本地文件存储业务类
 
 在`haoke-manage-api-server`工程创建`PicUploadFileSystemService`类，用于处理存储上传文件到本地文件系统的逻辑。*逻辑与上传到阿里云oss处理大部一样，只是将调用sdk上传部分改成io写图片到硬盘中*
 
@@ -402,7 +400,7 @@ public class PicUploadFileSystemService {
 }
 ```
 
-### 3.2. 编写上传图片到本地存储的控制类
+### 编写上传图片到本地存储的控制类
 
 修改`PicUploadController`类，增加上传到本地文件存储系统的请求方法
 
@@ -427,7 +425,7 @@ public class PicUploadController {
 }
 ```
 
-### 3.3. 配置nginx访问图片目录
+### 配置nginx访问图片目录
 
 - 安装nginx（已安装则路过），修改配置文件，域名转发到图片文件目录，启动nginx
 
@@ -457,15 +455,15 @@ server {
 127.0.0.1  image.haoke.com
 ```
 
-### 3.4. 测试上传图片与域名访问
+### 测试上传图片与域名访问
 
 ![](images/20201004170323676_29881.png)
 
 访问响应的对象中的name（url），可以访问图片
 
-## 4. 整合新增房源前端实现图片上传
+## 整合新增房源前端实现图片上传
 
-### 4.1. 修改页面上传地址
+### 修改页面上传地址
 
 修改`haoke-manage-web`工程的`PicturesWall.js`文件中的图片上传的请求路径
 
@@ -481,7 +479,7 @@ server {
 </Upload>
 ```
 
-### 4.2. 修改新增房源的页面
+### 修改新增房源的页面
 
 - 修改AddResource.js中图片上传完成的变更方法
 
@@ -531,7 +529,7 @@ handleSubmit = e => {
   });
 ```
 
-### 4.3. 新增房源的测试
+### 新增房源的测试
 
 上传图片效果
 
@@ -541,9 +539,9 @@ handleSubmit = e => {
 
 ![](images/20201005000144869_27072.png)
 
-## 5. 房源列表服务
+## 房源列表服务
 
-### 5.1. 定义房源列表查询服务
+### 定义房源列表查询服务
 
 在`haoke-manage-server-house-resources-interface`工程中，定义用于返回的分页结果的`PageInfo`对象
 
@@ -600,7 +598,7 @@ public class PageInfo<T> implements java.io.Serializable {
 PageInfo<HouseResources> queryHouseResourcesList(int page, int pageSize, HouseResources queryCondition);
 ```
 
-### 5.2. 配置MyBatis-plus分页插件
+### 配置MyBatis-plus分页插件
 
 修改`haoke-manage-server-house-resources-service`工程的`MybatisConfig`配置类，创建MP的分页插件注册到ioc容器中
 
@@ -614,7 +612,7 @@ public PaginationInterceptor paginationInterceptor() {
 }
 ```
 
-### 5.3. 实现房源列表查询业务逻辑
+### 实现房源列表查询业务逻辑
 
 在`haoke-manage-server-house-resources-service`工程的`ApiHouseResourcesServiceImpl`，实现新增的列表查询接口方法
 
@@ -670,11 +668,11 @@ public PageInfo<HouseResources> queryHouseResourcesList(int page, int pageSize, 
 }
 ```
 
-### 5.4. 启动服务
+### 启动服务
 
 启动房源服务，观察是否注册成功
 
-### 5.5. 实现查询服务的RESTful接口
+### 实现查询服务的RESTful接口
 
 - 在`haoke-manage-api-server`工程，创建查询列表返回结果实体类`TableResult`与`Pagination`
 
@@ -774,9 +772,9 @@ public TableResult<HouseResources> queryList(HouseResources houseResources, Inte
 
 - 启动服务，请求接口测试
 
-### 5.6. 整合前端房源列表查询
+### 整合前端房源列表查询
 
-#### 5.6.1. 修改请求数据地址
+#### 修改请求数据地址
 
 修改sevices包下的`houseResource.js`，定义列表查询的方法
 
@@ -790,7 +788,7 @@ export async function queryResource(params) {
 }
 ```
 
-#### 5.6.2. 修改房源列表页面显示的字段结构
+#### 修改房源列表页面显示的字段结构
 
 修改pages/haoke/House包下的`Resource.js`，修改表格列的字段结构与格式化内容
 
@@ -854,7 +852,7 @@ columns = [
 ];
 ```
 
-#### 5.6.3. 图片显示
+#### 图片显示
 
 此图片显示做成组件`ShowPics.js`。使用Antd的走马灯组件来实现效果
 
@@ -910,16 +908,16 @@ class ShowPics extends React.Component {
 export default ShowPics;
 ```
 
-## 6. GraphQL 入门
+## GraphQL 入门
 
-### 6.1. GraphQL 简介
+### GraphQL 简介
 
 GraphQL 是由 Facebook 创造的用于描述复杂数据模型的一种查询语言。这里查询语言所指的并不是常规意义上的类似 sql 语句的查询语言，而是一种用于前后端数据查询方式的规范。
 
 - 官网（中文）：https://graphql.cn/
 - 规范地址：http://spec.graphql.cn/
 
-### 6.2. 分析RESTful存在的问题
+### 分析RESTful存在的问题
 
 RESTful是一套api通信的规范
 
@@ -959,11 +957,11 @@ GET http://127.0.0.1/card/8888
 }
 ```
 
-### 6.3. GraphQL 的用处
+### GraphQL 的用处
 
 GraphQL很好的解决了RESTful在使用过程中的不足
 
-#### 6.3.1. 按需索取数据，避免浪费
+#### 按需索取数据，避免浪费
 
 ![](images/20201005152405728_18382.png)
 
@@ -973,57 +971,57 @@ GraphQL很好的解决了RESTful在使用过程中的不足
 
 > 示例地址：http://graphql.cn/learn/schema/#type-system
 
-#### 6.3.2. 一次查询多个数据
+#### 一次查询多个数据
 
 ![](images/20201005152529381_25411.png)
 
 一次请求，不仅查询到了hero数据，而且还查询到了friends数据。节省了网络请求次数。
 
-#### 6.3.3. API的演进无需划分版本
+#### API的演进无需划分版本
 
 ![](images/20201005152818144_17221.jpg)
 
 当API进行升级时，客户端可以不进行升级，可以等到后期一起升级，这样就大大减少了客户端和服务端的耦合度
 
-## 7. GraphQL 的使用规范
+## GraphQL 的使用规范
 
 GraphQL定义了一套规范，用来描述语法定义
 
 > **说明：仅仅是规范，并不是具体实现，需要各种语言进行实现。**
 
-### 7.1. GraphQL 查询的规范
+### GraphQL 查询的规范
 
 更多的规范查看：http://graphql.cn/learn/queries/
 
-#### 7.1.1. 字段（Fields）
+#### 字段（Fields）
 
 在GraphQL的查询中，请求结构中包含了所预期结果的结构，这个就是字段。并且响应的结构和请求结构基本一致，这是GraphQL的一个特性，这样就可以让请求发起者很清楚的知道自己想要什么
 
 ![](images/20201005153552727_15838.png)
 
-#### 7.1.2. 参数（Arguments）
+#### 参数（Arguments）
 
 在查询数据时，离不开传递参数，在GraphQL的查询中，也是可以传递参数的，语法：`(参数名:参数值)`
 
 ![](images/20201005153621615_26921.png)
 
-#### 7.1.3. 别名（Aliases）
+#### 别名（Aliases）
 
 如果一次查询多个相同对象，但是值不同，这个时候就需要起别名了，否则json的语法就不能通过
 
 ![](images/20201005153644624_5428.png)
 
-#### 7.1.4. 片段（Fragments）
+#### 片段（Fragments）
 
 查询对的属相如果相同，可以采用片段的方式进行简化定义
 
 ![](images/20201005153702911_18873.png)
 
-### 7.2. GraphQL 的 Schema 和类型规范
+### GraphQL 的 Schema 和类型规范
 
 Schema 是用于定义数据结构的，比如说，User对象中有哪些属性，对象与对象之间是什么关系等。详细参考官网文档：http://graphql.cn/learn/schema/
 
-#### 7.2.1. Schema 定义结构
+#### Schema 定义结构
 
 ```
 schema { #定义查询
@@ -1039,7 +1037,7 @@ type User { #定义对象
 }
 ```
 
-#### 7.2.2. 标量类型（Scalar Types）
+#### 标量类型（Scalar Types）
 
 GraphQL规范中，默认定义了5种类型：
 
@@ -1051,7 +1049,7 @@ GraphQL规范中，默认定义了5种类型：
 
 规范中定义的这5种类型，显然是不能满足需求的，所以在各种语言实现中，都有对类型进行了扩充，也就是GraphQL支持自定义类型，比如在graphql-java实现中增加了：Long、Byte等。
 
-#### 7.2.3. 枚举类型
+#### 枚举类型
 
 枚举类型是一种特殊的标量，它限制在一个特殊的可选值集合内
 
@@ -1069,7 +1067,7 @@ type Human {
 }
 ```
 
-#### 7.2.4. 接口（interface）
+#### 接口（interface）
 
 跟许多类型系统一样，GraphQL 支持接口。一个接口是一个抽象类型，它包含某些字段，而对象类型必须包含这些字段，才能算实现了这个接口。
 
@@ -1098,7 +1096,7 @@ type Droid implements Character {
 }
 ```
 
-## 8. GraphQL的Java实现
+## GraphQL的Java实现
 
 GraphQL只是定义了规范并没有做实现，就需要有第三方来进行实现。关于GraphQL的java实现有几种，我们选择使用官方推荐的实现：`graphql-java`，通过该实现就可以编写
 GraphQL的服务端了。
@@ -1106,9 +1104,9 @@ GraphQL的服务端了。
 - 官网：https://www.graphql-java.com/
 - github：https://github.com/graphql-java/graphql-java
 
-### 8.1. 创建工程
+### 创建工程
 
-#### 8.1.1. 引入依赖
+#### 引入依赖
 
 创建jar类型工程`sample-graphql-java`。修改项目pom.xml文件，引入GraphQL的依赖
 
@@ -1169,7 +1167,7 @@ GraphQL的服务端了。
 </activeProfiles>
 ```
 
-#### 8.1.2. 创建实体类
+#### 创建实体类
 
 ```java
 public class User {
@@ -1180,9 +1178,9 @@ public class User {
 }
 ```
 
-### 8.2. 使用 Java 纯 API 实现
+### 使用 Java 纯 API 实现
 
-#### 8.2.1. 查询对象实现
+#### 查询对象实现
 
 本示例 GraphQL 的 Schema 定义
 
@@ -1333,7 +1331,7 @@ query:{user{id,name,age}}
 toSpecification 输出标准数据结构：{data={user={id=1, name=石原里美, age=30}}}
 ```
 
-#### 8.2.2. 设置查询参数
+#### 设置查询参数
 
 修改`createUserDefinition()`方法，增加查询参数的设置
 
@@ -1370,13 +1368,13 @@ query:{user(id:3){id,name,age}}
 toSpecification 输出标准数据结构：{data={user={id=3, name=新垣结衣的id:3, age=23}}}
 ```
 
-### 8.3. 使用SDL构建schema
+### 使用SDL构建schema
 
 graphql-java 提供了两种不同的方式来定义模式：以编程方式作为Java代码或通过特殊的graphql dsl（称为SDL）
 
 > 官方推荐使用：SDL方法
 
-#### 8.3.1. 创建graphqls文件
+#### 创建graphqls文件
 
 在`resources`目录下创建`user.graphqls`文件：
 
@@ -1398,7 +1396,7 @@ type User {
 
 ![](images/20201005173711486_30364.png)
 
-#### 8.3.2. 构建schema
+#### 构建schema
 
 ```java
 package com.moon.sample.graphql.demo;
@@ -1507,7 +1505,7 @@ query:{user(id:3){id,name,age}}
 toSpecification 输出标准数据结构：{data={user={id=3, name=新垣结衣的id:3, age=23}}}
 ```
 
-#### 8.3.3. 对象嵌套
+#### 对象嵌套
 
 创建一个Card对象，User和Card对象为一对一的关系。在`User`类中添加`Card`属性
 

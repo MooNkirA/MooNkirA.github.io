@@ -1,4 +1,4 @@
-## 1. HQL（Hibernate Query Language）概述
+## HQL（Hibernate Query Language）概述
 
 Hibernate 查询语言（HQL, Hibernate Query Language）是一种面向对象的查询语言，类似于 SQL，但不是去对表和列进行操作，而是面向对象和它们的属性，操作的是持久化对象。HQL 查询最终会被 Hibernate 翻译为传统的 SQL 查询从而对数据库进行操作。
 
@@ -6,9 +6,9 @@ Hibernate 查询语言（HQL, Hibernate Query Language）是一种面向对象�
 
 **关于大小写敏感性问题**：在 HQL 中一些关键字比如 SELECT，FROM 和 WHERE 等，是不区分大小写的，但是一些属性（比如 Java 类与属性的名称、表名、列名）是区分大小写。
 
-## 2. Query 接口
+## Query 接口
 
-### 2.1. 获取 Query 对象
+### 获取 Query 对象
 
 `org.hibernate.Query` 接口可以方便地对数据库及持久对象进行查询，它可以有两种表达方式：HQL 语言或本地数据库的 SQL 语句。Query 经常被用来绑定查询参数、限制查询记录数量，并最终执行查询操作。
 
@@ -22,7 +22,7 @@ public interface Query<R> extends TypedQuery<R>, CommonQueryContract
 Query query = session.createQuery(String queryString);
 ```
 
-### 2.2. Query 接口的常用方法
+### Query 接口的常用方法
 
 ```java
 List<R> list();
@@ -63,7 +63,7 @@ int executeUpdate();
 
 - 执行修改和删除的操作，返回成功执行的行数。继承自 `javax.persistence.Query`
 
-## 3. FROM 语句
+## FROM 语句
 
 FROM 语句用于在存储中加载一个完整并持久的对象。以下是 FROM 语句的一些简单的语法：
 
@@ -98,7 +98,7 @@ Query query2 = session.createQuery("select c from Customer c");
 List<Customer> list2 = query.list(query2);
 ```
 
-## 4. AS 语句
+## AS 语句
 
 在 HQL 中 AS 语句用于给类分配别名，尤其是在长查询的情况下。例如之前的例子：
 
@@ -114,7 +114,7 @@ Query query = session.createQuery("FROM Employee E");
 List results = query.list();
 ```
 
-## 5. SELECT 语句
+## SELECT 语句
 
 SELECT 语句比 FROM 语句提供了更多的对结果集的控制。如果只想得到对象的其中的几个属性而不是整个对象时，则需要使用 SELECT 语句。例如仅需要获取 Employee 对象的 first_name 字段：
 
@@ -125,7 +125,7 @@ List results = query.list();
 
 > Notes: 需要注意 `firstName` 是 `Employee` 对象的属性，而不是 `EMPLOYEE` 表的字段。
 
-## 6. WHERE 语句
+## WHERE 语句
 
 如果要精确地从数据库存储中返回特定对象，则需要使用 WHERE 语句。
 
@@ -134,7 +134,7 @@ Query query = session.createQuery("FROM Employee e WHERE e.id = 10");
 List results = query.list();
 ```
 
-## 7. ORDER BY 语句
+## ORDER BY 语句
 
 使用 ORDER BY 语句可以给 HQL 查询结果进行排序。可以利用任意一个属性对结果进行排序，包括升序或降序排序。
 
@@ -152,7 +152,7 @@ Query query = session.createQuery(hql);
 List results = query.list();
 ```
 
-## 8. GROUP BY 语句
+## GROUP BY 语句
 
 GROUP BY 语句允许 Hibernate 将从数据库中获取的数据基于某种属性的值来进行分组。通常，该语句会使用得到的结果来包含一个聚合值。
 
@@ -161,9 +161,9 @@ Query query = session.createQuery("SELECT SUM(e.salary), e.firtName FROM Employe
 List results = query.list();
 ```
 
-## 9. 动态参数
+## 动态参数
 
-### 9.1. ?（问号）占位符
+### ?（问号）占位符
 
 通过 `?` 占位符来动态设置参数值，通过 `setString(int position, String val) ` 方法根据占位符位置来设置参数值。
 
@@ -175,7 +175,7 @@ query.setString(0, "%剑%");
 List<Customer> list = query.list(query);
 ```
 
-### 9.2. 命名参数
+### 命名参数
 
 Hibernate 的 HQL 查询功能支持命名参数。声明一个命名参数，例如 `:name`(注意参数前有冒号 `:`)，通过 `setString(String name, String val)` 方法来设置参数值。注意：设置命名参数时，不用冒号。
 
@@ -192,7 +192,7 @@ query.setParameter("employee_id", 10);
 List results = query.list();
 ```
 
-## 10. 聚合函数
+## 聚合函数
 
 HQL 类似于 SQL，支持一系列的聚合函数，它们以同样的方式在 HQL 和 SQL 中工作。常用的聚合函数如下：
 
@@ -218,7 +218,7 @@ List results = query.list();
 
 > Notes: 聚合函数 `count(*)` 是一个固定写法，统计记录数，返回的是 Long 类型。
 
-## 11. 分页查询
+## 分页查询
 
 通过 `setFirstResult` 和 `setMaxResults` 方法进行分页查询。
 
@@ -233,7 +233,7 @@ query.setMaxResults(4);
 List<Customer> list = query.list();
 ```
 
-## 12. 投影查询（了解）
+## 投影查询（了解）
 
 当查询的记录不是所有字段，而是指定的字段。如果需要使用一个实体类接收，那么需要一个有参数的构造方法（包含这指定的字段）。这种<font color=purple>有构造方法参数的查询，称为投影查询</font>。
 
@@ -270,13 +270,13 @@ public void findCustomer2() {
 }
 ```
 
-## 13. 增删改操作
+## 增删改操作
 
 注意：HQL 是没有插入语法的，因为插入数据 `save()`/`saveOrUpdate()`/`update()` 不需条件判断，所以 Hibernate 没有实现 HQL 插入的语法。HQL 操作数据库的语法是更新和删除。
 
 HQL Hibernate 3 较 HQL Hibernate 2，新增了批量更新功能和选择性删除工作的功能。`org.hibernate.Query` 查询接口包含一个 `executeUpdate()` 方法，可以执行 HQL 的 UPDATE 或 DELETE 语句。
 
-### 13.1. UPDATE 语句
+### UPDATE 语句
 
 UPDATE 语句能够更新一个或多个对象的一个或多个属性。
 
@@ -302,7 +302,7 @@ public void update() {
 }
 ```
 
-### 13.2. DELETE 语句
+### DELETE 语句
 
 DELETE 语句可以用来删除一个或多个对象。
 
@@ -327,7 +327,7 @@ public void delete() {
 }
 ```
 
-### 13.3. INSERT 语句
+### INSERT 语句
 
 HQL 只有当记录从一个对象插入到另一个对象时才支持 INSERT INTO 语句。
 

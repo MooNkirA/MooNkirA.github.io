@@ -1,4 +1,4 @@
-## 1. 电商行业技术特点
+## 电商行业技术特点
 
 - 技术新
 - 技术范围广
@@ -8,27 +8,27 @@
 - 业务复杂
 - 系统安全
 
-## 2. 主要电商模式
+## 主要电商模式
 
-### 2.1. B2B--企业对企业
+### B2B--企业对企业
 
 B2B （ Business to Business）是指进行电子商务交易的供需双方都是商家（或企业、公司），她（他）们使用了互联网的技术或各种商务网络平台，完成商务交易的过程。电子商务是现代 B2B marketing的一种具体主要的表现形式。
 
 案例：阿里巴巴、慧聪网
 
-### 2.2. C2C--个人对个人
+### C2C--个人对个人
 
 C2C即 Customer（Consumer） to Customer（Consumer），意思就是消费者个人间的电子商务行为。比如一个消费者有一台电脑，通过网络进行交易，把它出售给另外一个消费者，此种交易类型就称为C2C电子商务。
 
 案例：淘宝、易趣、瓜子二手车
 
-### 2.3. B2C--企业对个人
+### B2C--企业对个人
 
 B2C是Business-to-Customer的缩写，而其中文简称为“商对客”。“商对客”是电子商务的一种模式，也就是通常说的直接面向消费者销售产品和服务商业零售模式。这种形式的电子商务一般以网络零售业为主，主要借助于互联网开展在线销售活动。B2C即企业通过互联网为消费者提供一个新型的购物环境——网上商店，消费者通过网络在网上购物、网上支付等消费行为。
 
 案例：唯品会、乐蜂网
 
-### 2.4. C2B--个人对企业
+### C2B--个人对企业
 
 C2B（Consumer to Business，即消费者到企业），是互联网经济时代新的商业模式。这一模式改变了原有生产者（企业和机构）和消费者的关系，是一种消费者贡献价值（Create Value）， 企业和机构消费价值（Consume Value）。
 
@@ -36,17 +36,17 @@ C2B模式和我们熟知的供需模式（DSM, Demand Supply Model）恰恰相�
 
 案例：海尔商城、 尚品宅配
 
-### 2.5. O2O--线上到线下
+### O2O--线上到线下
 
 O2O即Online To Offline（在线离线/线上到线下），是指将线下的商务机会与互联网结合，让互联网成为线下交易的平台，这个概念最早来源于美国。O2O的概念非常广泛，既可涉及到线上，又可涉及到线下,可以通称为O2O。主流商业管理课程均对O2O这种新型的商业模式有所介绍及关注。
 
 案例：美团、饿了吗
 
-### 2.6. F2C--工厂到个人
+### F2C--工厂到个人
 
 F2C指的是Factory to customer，即从厂商到消费者的电子商务模式。
 
-### 2.7. B2B2C -企业-企业-个人
+### B2B2C -企业-企业-个人
 
 B2B2C是一种电子商务类型的网络购物商业模式，B是BUSINESS的简称，C是CUSTOMER的简称，第一个B指的是商品或服务的供应商，第二个B指的是从事电子商务的企业，C则是表示消费者。
 
@@ -56,35 +56,35 @@ B2B2C的来源于目前的B2B、B2C模式的演变和完善，把B2C和C2C完美
 
 案例：京东商城、天猫商城
 
-## 3. 项目需求分析与系统设计
+## 项目需求分析与系统设计
 
-### 3.1. 品优购简介
+### 品优购简介
 
 品优购网上商城是一个综合性的 B2B2C 平台，类似京东商城、天猫商城。网站采用商家入驻的模式，商家入驻平台提交申请，有平台进行资质审核，审核通过后，商家拥有独立的管理后台录入商品信息。商品经过平台审核后即可发布。
 
 品优购网上商城主要分为网站前台、运营商后台、商家管理后台三个子系统
 
-#### 3.1.1. 网站前台
+#### 网站前台
 
 主要包括网站首页、商家首页、商品详细页、、搜索页、会员中心、订单与支付相关页面、秒杀频道等。
 
 ![项目网站图1](images/20181202085929533_28450.jpg)
 
-#### 3.1.2. 运营商后台
+#### 运营商后台
 
 运营商的运营人员的管理后台。主要包括商家审核、品牌管理、规格管理、模板管理、商品分类管理、商品审核、广告类型管理、广告管理、订单查询、商家结算等。
 
 ![项目网站图2](images/20181202085946437_24902.jpg)
 
-#### 3.1.3. 商家管理后台
+#### 商家管理后台
 
 入驻的商家进行管理的后台，主要功能是对商品的管理以及订单查询统计、资金结算等功能。
 
 ![项目网站图3](images/20181202090004346_9204.jpg)
 
-### 3.2. 系统架构
+### 系统架构
 
-#### 3.2.1. 什么是SOA架构
+#### 什么是SOA架构
 
 SOA是Service-Oriented Architecture的首字母简称，它是一种支持面向服务的架构样式。从服务、基于服务开发和服务的结果来看，面向服务是一种思考方式。其实SOA架构更多应用于互联网项目开发。
 
@@ -92,11 +92,11 @@ SOA是Service-Oriented Architecture的首字母简称，它是一种支持面向
 
 ***SOA架构是一种思想，实现的两种框架Dubbo和Spring Cloud***
 
-#### 3.2.2. 品优购架构分析
+#### 品优购架构分析
 
 ![项目架构](images/20181202090300856_10182.jpg)
 
-### 3.3. 数据库表结构
+### 数据库表结构
 
 |          表名称          |           含义           |
 | :---------------------: | :----------------------: |
@@ -118,24 +118,24 @@ SOA是Service-Oriented Architecture的首字母简称，它是一种支持面向
 |    tb_seckill_goods     |         秒杀商品          |
 |    tb_seckill_order     |         秒杀订单          |
 
-### 3.4. 框架组合
+### 框架组合
 
 品优购采用当前流行的前后端编程架构。
 
 - 后端框架采用：Spring + SpringMVC + MyBatis + Dubbo
 - 前端采用：angularJS + Bootstrap
 
-## 4. Dubbo 框架
+## Dubbo 框架
 
-### 4.1. Dubbo 简介
+### Dubbo 简介
 
 Dubbo 是一个分布式服务框架，是阿里巴巴开源项目Dubbo，被国内电商及互联网项目中使用。
 
 > 更多内容详见[《Dubbo 基础》笔记](/分布式微服务/Dubbo/Dubbo-基础)
 
-### 4.2. Zookeeper注册中心（Dubbo推荐使用）
+### Zookeeper注册中心（Dubbo推荐使用）
 
-#### 4.2.1. Zookeeper 介绍
+#### Zookeeper 介绍
 
 Dubbo 官方推荐使用 zookeeper 注册中心。注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。
 
@@ -144,7 +144,7 @@ Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支
 - **文件系统**：每个目录节点都可以存储数据
 - **监听通知机制**：客户端注册监听它关心的目录节点，当目录节点发生变化（数据改变、被删除、子目录节点增加删除）时，zookeeper 会通知客户端
 
-#### 4.2.2. Linux 系统安装 Zookeeper
+#### Linux 系统安装 Zookeeper
 
 - 安装参考：【资料\zookeeper\Linux安装zookeeper.docx】
 - 下载地址：http://www.apache.org/dyn/closer.cgi/zookeeper
@@ -228,18 +228,18 @@ systemctl stop firewalld.service
 systemctl disable firewalld.service
 ```
 
-### 4.3. Dubbo 监控中心
+### Dubbo 监控中心
 
 在开发时，需要知道注册中心都注册了哪些服务，以便我们开发和测试。我们可以通过部署一个管理中心来实现。其实管理中心就是一个web应用，部署到tomcat即可。
 
-#### 4.3.1. 监控中心安装
+#### 监控中心安装
 
 1. 编译源码，得到war包
     - dubbo-2.5.7.zip是dubbo的源码，可以使用maven命令编译源码得到“管理端”的war包
     - 将此压缩包解压，在命令符下进入dubbo-admin目录，输入maven命令：`mvn package -Dmaven.skip.test=true`
 2. 进入target文件夹，有dubbo-admin-2.5.7.war，在linux服务器上安装tomcat，将此war包上传到linux服务器的tomcat的webapps下。
 
-#### 4.3.2. Linux 部署 dubbo 监控中心
+#### Linux 部署 dubbo 监控中心
 
 部署监控中心参考：【`资料\dubbo\安装部署dubbo的监控中心monitor.docx`】
 
@@ -320,11 +320,11 @@ systemctl stop firewalld.service
 systemctl disable firewalld.service
 ```
 
-#### 4.3.3. 登录监控中心
+#### 登录监控中心
 
 打开浏览器，输入http://192.168.12.131:8080，登录用户名和密码均为root进入首页。 (192.168.12.131)是部署的linux主机地址。
 
-### 4.4. Dubbo 框架使用小结（待整理）
+### Dubbo 框架使用小结（待整理）
 
 ```
 一、服务提供者(pinyougou-sellergoods-service)：
@@ -404,9 +404,9 @@ systemctl disable firewalld.service
 			interface="com.pinyougou.sellergoods.service.BrandService"/>
 ```
 
-## 5. 项目搭建
+## 项目搭建
 
-### 5.1. 工程结构分析与设计
+### 工程结构分析与设计
 
 - 开发工具：IntelliJ IDEA
 - 版本控制：Git
@@ -420,13 +420,13 @@ systemctl disable firewalld.service
     - pinyougou-xxxxx-service   某服务层实现模块
     - pinyougou-xxxxx-web    某web模块
 
-### 5.2. 使用idea创建项目
+### 使用idea创建项目
 
 创建Maven工程步骤参考《IDEA 笔记》。注意：使用idea创建maven时选择的类型
 
 ![idea创建maven项目](images/20181209130432329_30524.jpg)
 
-#### 5.2.1. pinyougou聚合父项目(pom)
+#### pinyougou聚合父项目(pom)
 
 pom.xml文件：【资料\pinyougou-pom.xml】
 
@@ -771,11 +771,11 @@ pom.xml文件：【资料\pinyougou-pom.xml】
 </project>
 ```
 
-#### 5.2.2. 通用项目工程
+#### 通用项目工程
 
 分别创建 pinyougou-common通用工具类(jar)、pinyougou-pojo通用实体类(jar)、pinyougou-mapper通用数据访问(jar) 等三个 jar 类型的 maven 工程。*下面以 pinyougou-mapper 为例*
 
-##### 5.2.2.1. 相关配置文件
+##### 相关配置文件
 
 - 第一步：在pom.xml文件中添加依赖
 
@@ -927,7 +927,7 @@ jdbc.minIdle=5
 
 - 第五步：mappers/TestMapper.xml（暂时使用，后面再修改名称）
 
-##### 5.2.2.2. 配置文件的注意点
+##### 配置文件的注意点
 
 在MyBatis总配置文件中，使用了两个新的配置
 
@@ -940,7 +940,7 @@ applicationContext-mapper.xml文件是配置spring整合mapper和事务，本次
 
 配置开启事务注解驱动，由于dubbo用@service注解暴露服务，业务层需要加事务会产生代理对象，需设置proxy-target-class为true采用cglib产生代理
 
-#### 5.2.3. pinyougou-sellergoods商家服务聚合(pom)
+#### pinyougou-sellergoods商家服务聚合(pom)
 
 - pom.xml添加依赖，注意后面的<module>配置的子模块是后面创建子模块自动增加进去
 
@@ -979,7 +979,7 @@ applicationContext-mapper.xml文件是配置spring整合mapper和事务，本次
 </project>
 ```
 
-##### 5.2.3.1. pinyougou-sellergoods-interface商家服务接口(jar)
+##### pinyougou-sellergoods-interface商家服务接口(jar)
 
 - pom.xml添加依赖
 
@@ -1013,7 +1013,7 @@ applicationContext-mapper.xml文件是配置spring整合mapper和事务，本次
 </project>
 ```
 
-##### 5.2.3.2. pinyougou-sellergoods-service商家服务实现(war)
+##### pinyougou-sellergoods-service商家服务实现(war)
 
 - 第一步：pom.xml添加依赖
 
@@ -1133,7 +1133,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 </beans>
 ```
 
-##### 5.2.3.3. dubbo服务化接口配置说明
+##### dubbo服务化接口配置说明
 
 配置applicationContext-service.xml文件时，因为需要读取mapper，dao层配置文件。所以使用<import>标签导入数据访问配置文件applicationContext-mapper.xml。
 
@@ -1150,9 +1150,9 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 	<!-- 配置采用包扫描来暴露服务 -->
 ```
 
-#### 5.2.4. pinyougou-manager-web运营商管理后台(war)
+#### pinyougou-manager-web运营商管理后台(war)
 
-##### 5.2.4.1. 相关配置文件
+##### 相关配置文件
 
 - 第一步：pom.xml添加依赖
 
@@ -1335,7 +1335,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 </beans>
 ```
 
-##### 5.2.4.2. 配置相关说明
+##### 配置相关说明
 
 - pinyougou-manager-web-servlet.xml是springmvc的主配置文件，本次使用fastjson框架处理转json格式，效率相对jackson高。但需要在MVC注解驱动中配置
 - 配置dubbo服务消费者
@@ -1349,7 +1349,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 <dubbo:annotation package="com.pinyougou.manager.controller"/>
 ```
 
-#### 5.2.5. pinyougou-shop-web商家管理后台(war)
+#### pinyougou-shop-web商家管理后台(war)
 
 - 构建web模块pinyougou-shop-web与运营商管理后台的构建方式类似
     - pom.xml、web.xml、pinyougou-shop-web-servlet.xml、log4j.properties
@@ -1369,7 +1369,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 <dubbo:annotation package="com.pinyougou.shop.controller"/>
 ```
 
-### 5.3. 实体类与数据访问工程
+### 实体类与数据访问工程
 
 编写Brand.java、BrandMapper.java、BrandMapper.xml
 
@@ -1411,13 +1411,13 @@ public interface BrandMapper {
 </mapper>
 ```
 
-### 5.4. 品牌列表-后端代码
+### 品牌列表-后端代码
 
-#### 5.4.1. 需求分析
+#### 需求分析
 
 完成品牌管理的后端代码，在浏览器可查询品牌的数据（json格式）
 
-#### 5.4.2. 服务层
+#### 服务层
 
 - 服务层接口类，在pinyougou-sellergoods-interface 工程创建BrandService接口
 
@@ -1452,7 +1452,7 @@ public class BrandServiceImpl implements BrandService {
 
 ![开启事务设置](images/20181215220109415_12903.jpg)
 
-#### 5.4.3. 控制器类
+#### 控制器类
 
 - `@RestController`注解相当于`@ResponseBody` ＋ `@Controller`合在一起的作用
 - `@GetMapping("xxx")`注解相当于`@RequestMapping(value = "xxx", method = RequestMethod.GET)`
@@ -1476,7 +1476,7 @@ public class BrandController {
 }
 ```
 
-#### 5.4.4. 测试
+#### 测试
 
 1. 先将linux系统中的Zookeeper注册中心和dubbo服务开启
 2. 对linux快照（用于后期如果出现问题时恢复），每次将linux挂起，就不需要每次都开启以上两个服务
@@ -1495,9 +1495,9 @@ public class BrandController {
 
 ![](images/20181215221649120_29198.jpg)
 
-## 6. 附录：常见错误
+## 附录：常见错误
 
-### 6.1. 在注册中心找不到对应的服务
+### 在注册中心找不到对应的服务
 
 ```
 java.lang.IllegalStateException: Failed to check the status of the service com.pinyougou.sellergoods.service.BrandService. No provider available for the service com.pinyougou.sellergoods.service.BrandService from the url zookeeper://192.168.12.128:2181/com.alibaba.dubbo.registry.RegistryService?application=pinyougou-manager-web&dubbo=2.5.7&interface=com.pinyougou.sellergoods.service.BrandService&methods=update,get,delete,selectOptionList,add,getListByPage&pid=3980&revision=0.0.1-SNAPSHOT&side=consumer&timestamp=1501146823396 to the consumer 172.16.17.14 use dubbo version 2.5.7
@@ -1505,7 +1505,7 @@ java.lang.IllegalStateException: Failed to check the status of the service com.p
 
 这种错误是服务层代码没有成功注册到注册中心导致，请检查一下你的服务层代码是否添加了`@service`注解，并且该注解的包一定是`com.alibaba.dubbo.config.annotation`包，不是`org.springframework.stereotype.Service`，这个地方极容易出错。另外还有一个原因就是你的服务层工程由于某些原因没有正常启动，也无法注册到注册中心里。
 
-### 6.2. 无法连接到注册中心
+### 无法连接到注册中心
 
 ```
 org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 5000	org.I0Itec.zkclient.ZkClient.connect(ZkClient.java:876)	org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:98)	org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:92)	org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:80)
@@ -1514,6 +1514,6 @@ org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper
 
 请检查IP与端口是否填写正确，检查注册中心是否正常启动
 
-## 7. Git版本控制（idea）
+## Git版本控制（idea）
 
 参考[《Git 笔记 - 客户端使用篇》笔记](/DevOps/版本管理工具/Git-客户端)

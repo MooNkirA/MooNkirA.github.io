@@ -1,4 +1,4 @@
-## 1. Dubbo 源码构建
+## Dubbo 源码构建
 
 > dubbo源码仓库：https://github.com/apache/dubbo/
 
@@ -20,9 +20,9 @@ mvn clean source:jar install -Dmaven.test.skip
 >
 > ![](images/20210710212114868_3589.png)
 
-## 2. Dubbo 启动过程源码分析
+## Dubbo 启动过程源码分析
 
-### 2.1. Spring 框架知识回顾 - BeanDefinition
+### Spring 框架知识回顾 - BeanDefinition
 
 - 在Java中，一切皆对象。在JDK中使用java.lang.Class来描述类这个对象。
 - 而在Spring中，bean对象是操作核心。那么Spring也需要一个东西来描述bean这个对象，它就是BeanDefinition
@@ -52,7 +52,7 @@ demoService.sayHello("自定义bean注册");
 
 从示例可以看出，最后的spring动作`applicationContext.registerBeanDefinition`会在IOC容器内创建描述的bean对象。后续Dubbo的所有对象创建，皆以此形式委托给Spring来创建
 
-### 2.2. Dubbo 配置解析过程
+### Dubbo 配置解析过程
 
 dubbo的配置解析，不论是xml方式的配置，还是注解方式的配置，目标都是把配置的属性值提取出来，变成dubbo的组件bean（先由BeanDefinition描述，然后委托spring生成组件bean）
 
@@ -60,7 +60,7 @@ dubbo的配置解析，不论是xml方式的配置，还是注解方式的配置
 
 ![dubbo自定义标签与处理类关系图](images/20200202232758212_30866.jpg)
 
-#### 2.2.1. xml 配置的解析过程
+#### xml 配置的解析过程
 
 1. dubbo自定义了spring标签描述约束文件dubbo.xsd。在dubbo-config-spring模块下的 `src/main/resouce/META-INF`目录下
 2. 在spring.handlers、spring.schemas中指定标签解析类，将标签引入spring中管理
@@ -68,7 +68,7 @@ dubbo的配置解析，不论是xml方式的配置，还是注解方式的配置
 
 ![xml配置文件解析初始化流程](images/20200202233810397_13273.jpg)
 
-#### 2.2.2. 注解的解析过程
+#### 注解的解析过程
 
 Dubbo注解解析的目标，与xml一致，都是将配置信息变为BeanDefinition定义，交由spring生成组件bean
 
@@ -96,7 +96,7 @@ public @interface EnableDubbo {
 - `@EnableDubboConfig`：主要用于处理dubbo中全局性的组件配置，一般在`.properties`文件中的配置项，如Application/Registry/Protocol/Provider/Consumer
 - `@DubboComponentScan`：负责扫描项目源代码，处理业务类上的`@Reference`、`@Service`注解
 
-##### 2.2.2.1. @EnableDubboConfig 注解解析过程
+##### @EnableDubboConfig 注解解析过程
 
 `@EnableDubboConfig`注解主要用来解析属性文件中的配置，一般在springboot项目中比较常用，解析过程如下：
 
@@ -124,11 +124,11 @@ public class DubboConfigConfiguration {
 
 2. 此处为每个dubbo组件绑定了属性文件的前缀值。具体的处理过程在`@EnableDubboConfigBinding`注解中，最终引入到`DubboConfigBindingRegistrar`类来完成组件bean注册
 
-##### 2.2.2.2. @DubboComponentScan 注解解析过程
+##### @DubboComponentScan 注解解析过程
 
 `@DubboComponentScan`注解是用于解析标注在业务Service实现上的注解，主要是暴露业务服务的`@Service`和引入服务的`@Reference`。总入口在`DubboComponentScanRegistrar`类上。可以看到，两个注解是分开处理的
 
-###### 2.2.2.2.1. @Service注解
+###### @Service注解
 
 - `@Service`注解的处理，最终由`ServiceAnnotationBeanPostProcessor`来处理。dubbo会先调用spring扫描包处理
 
@@ -176,7 +176,7 @@ private void registerServiceBeans(Set<String> packagesToScan, BeanDefinitionRegi
 - servicebean有很多父级组件信息引入，这些组件已经在属性文件处理部分完成。
 - servicebean中将ref指向业务bean
 
-###### 2.2.2.2.2. @Reference注解
+###### @Reference注解
 
 - `@Reference`注解的处理，最终由`ReferenceAnnotationBeanPostProcessor`来处理。
 - `ReferenceAnnotationBeanPostProcessor`类继承于`AnnotationInjectedBeanPostProcessor`类，实现了`MergedBeanDefinitionPostProcessor`接口，方法`postProcessMergedBeanDefinition()`在创建bean实例前会被调用（用来找出bean中含有`@Reference`注解的Field和Method）
@@ -185,11 +185,11 @@ private void registerServiceBeans(Set<String> packagesToScan, BeanDefinitionRegi
 
 当Spring完成bean的创建后会调用`AbstractAutowireCapableBeanFactory#populateBean`方法完成属性的填充
 
-### 2.3. ServiceBean 与 ReferenceBean 关系图
+### ServiceBean 与 ReferenceBean 关系图
 
 ![](images/20200205114447730_30887.png)
 
-### 2.4. Dubbo 服务暴露过程
+### Dubbo 服务暴露过程
 
 > 源码导读参考官网：http://dubbo.apache.org/zh-cn/docs/source_code_guide/export-service.html
 
@@ -236,7 +236,7 @@ private void doExportUrlsFor1Protocol(ProtocolConfig protocolConfig, List<URL> r
 
 先将本地服务 ref 包装成 Invoker，然后由 protocol 网络协议将 invoker 连通到网络上。其核心，即是一旦有 protocol 网络传输过来的请求，则拉起 invoker 动作，并将动作传递到 ref 服务上进行响应。在这个整个过程中，dubbo 不希望每一个具体的协议 ptotocol 去关心目标服务是谁（耦合性太强），于是中间插入了一个 invoker 概念实体来解耦双方的绑定关系（重点）。
 
-#### 2.4.1. Dubbo 框架的 Invoker 机理
+#### Dubbo 框架的 Invoker 机理
 
 - 先明确 Dubbo 引入 Invoker 的目标，Invoker 的本义是，invoke 方法会转嫁到对象到目标 ref 上，接口定义如下
 
@@ -376,7 +376,7 @@ public class SimpleInvoker<T> implements Invoker<T> {
 }
 ```
 
-#### 2.4.2. 总结服务暴露调用过程
+#### 总结服务暴露调用过程
 
 1. protocol组件收到网络请求到来时，它需要将请求发向target目标服务（如果当前环境中有此服务就好了）。
 2. 因为当前环境中没有target对象，于是它创建了一个target的代理对象proxy，将请求转给了此代理proxy对象，而此proxy对象只会干一件事，将调用转给了invoker对象的invoke方法
@@ -384,7 +384,7 @@ public class SimpleInvoker<T> implements Invoker<T> {
 
 > **注：如果让protocol中持有target服务，直接转向请求到target要简单得多，但这样一来，每一个ptotocol服务要对接千千万万的业务service接口，耦合性太强。于是，dubbo专门设计了invoker实体来解开两者间的直接耦合（工作中可否借鉴？）**
 
-### 2.5. Dubbo 服务引入过程
+### Dubbo 服务引入过程
 
 > 源码导读参考官网：http://dubbo.apache.org/zh-cn/docs/source_code_guide/refer-service.html
 
@@ -469,7 +469,7 @@ public void protocol2Invoker() {
 
 > **注：Dubbo 中的 invoker 概念，作用不仅仅于此，它统一了 dubbo 中各组件间相互交流的规范，统一都用 invoker 进行粘合（书同文、车同轴）**
 
-## 3. Dubbo Monitor 实现原理
+## Dubbo Monitor 实现原理
 
 Consumer 端在发起调用之前会先调用 filter 链；provider 端在接收到请求时也是先调用 filter 链，然后才进行真正的业务逻辑处理。默认情况下，在 consumer 和 provider 的 filter 链中都会有 `Monitorfilter`。大致实现流程如下：
 
@@ -479,11 +479,11 @@ Consumer 端在发起调用之前会先调用 filter 链；provider 端在接收
 4. `SimpleMonitorService` 使用一个后台线程（线程名为：`DubboMonitorAsyncWriteLogThread`）将 queue 中的数据写入文件（该线程以死循环的形式来写）。
 5. `SimpleMonitorService` 还会使用一个含有 1 个线程（线程名字：`DubboMonitorTimer`）的线程池每隔 5min 钟，将文件中的统计数据画成图表。
 
-## 4. Dubbo 源码中使用的设计模式
+## Dubbo 源码中使用的设计模式
 
 Dubbo 框架在初始化和通信过程中使用了多种设计模式，可灵活控制类加载、权限控制等功能。
 
-### 4.1. 工厂模式
+### 工厂模式
 
 Provider 在 export 服务时，会调用 `ServiceConfig` 类的 `export` 方法。`ServiceConfig` 类中有个字段：
 
@@ -493,7 +493,7 @@ this.protocolSPI = (Protocol)this.getExtensionLoader(Protocol.class).getAdaptive
 
 以上也是一种工厂模式，只是实现类的获取采用了 JDK SPI 的机制。这种实现方式的优点是可扩展性强，想要扩展实现，只需要在 classpath 下增加个文件就可以了，代码零侵入。另外，像上面的 Adaptive 实现，可以做到调用时动态决定调用哪个实现，但是由于这种实现采用了动态代理，会造成代码调试比较麻烦，需要分析出实际调用的实现类。
 
-### 4.2. 装饰器模式
+### 装饰器模式
 
 Dubbo 在启动和调用阶段都大量使用了装饰器模式。以 Provider 提供的调用链为例，具体的调用链代码是在 `ProtocolFilterWrapper` 类的 `buildInvokerChain` 方法完成的，具体是将注解中含有 `group=provider` 的 Filter 实现，按照 order 排序，最后的调用顺序是：
 
@@ -503,10 +503,10 @@ EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> ExecuteLimi
 
 更确切地说，这里是装饰器和责任链模式的混合使用。例如，`EchoFilter` 的作用是判断是否是回声测试请求，是的话直接返回内容，这是一种责任链的体现。而像 `ClassLoaderFilter` 则只是在主功能上添加了功能，更改当前线程的 `ClassLoader`，这是典型的装饰器模式。
 
-### 4.3. 观察者模式
+### 观察者模式
 
 Dubbo 的 Provider 启动时，需要与注册中心交互，先注册本身提供的服务，再订阅其他暴露的服务。订阅时，采用了观察者模式，开启一个 listener。注册中心会每 5 秒定时检查是否有服务更新，如果有更新，向该服务的提供者发送一个 notify 消息，provider 接受到 notify 消息后，即运行 `NotifyListener` 的 `notify` 方法，执行监听器方法。
 
-### 4.4. 动态代理模式
+### 动态代理模式
 
 Dubbo 扩展 JDK SPI 的类 `ExtensionLoader` 的 Adaptive 实现是典型的动态代理实现。Dubbo 需要灵活地控制实现类，即在调用阶段动态地根据参数决定调用哪个实现类，所以采用先生成代理类的方法，能够做到灵活的调用。生成代理类的代码是 `ExtensionLoader` 的 `createAdaptiveExtensionClassCode` 方法。代理类的主要逻辑是，获取 URL 参数中指定参数的值作为获取实现类的 key。

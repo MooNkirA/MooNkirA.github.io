@@ -1,4 +1,4 @@
-## 1. RocketMQ 可靠消息最终一致性事务解决方案概述
+## RocketMQ 可靠消息最终一致性事务解决方案概述
 
 RocketMQ 是一个来自阿里巴巴的分布式消息中间件，于 2012 年开源，并在 2017 年正式成为 Apache 顶级项目。据了解，包括阿里云上的消息产品以及收购的子公司在内，阿里集团的消息产品全线都运行在 RocketMQ 之上，并且最近几年的双十一大促中，RocketMQ 都有抢眼表现。Apache RocketMQ 4.3之后的版本正式支持事务消息，为分布式事务实现提供了便利性支持。
 
@@ -6,7 +6,7 @@ RocketMQ 事务消息设计则主要是为了解决 Producer 端的消息发送�
 
 在 RocketMQ 4.3 后实现了完整的事务消息，实际上其实是对本地消息表的一个封装，将本地消息表移动到了 MQ 内部，解决 Producer 端的消息发送与本地事务执行的原子性问题。
 
-### 1.1. 事务消息执行流程图
+### 事务消息执行流程图
 
 ![](images/485341713249678.jpg)
 
@@ -20,7 +20,7 @@ RocketMQ 事务消息设计则主要是为了解决 Producer 端的消息发送�
 6. 发送方会检查本地的事务状态
 7. Broker 会根据事务回查的结果来决定 Commit 或 Rollback，这样就保证了消息发送与本地事务同时成功或同时失败。
 
-### 1.2. RocketMQ 本地事务执行与回查实现
+### RocketMQ 本地事务执行与回查实现
 
 以上主干流程已由 RocketMQ 实现，对用户侧来说，用户只需分别实现本地事务执行以及本地事务回查方法，因此只需关注本地事务的执行状态即可。
 
@@ -48,7 +48,7 @@ public interface RocketMQLocalTransactionListener {
 }
 ```
 
-### 1.3. RocketMQ 用于发送事务消息的 API
+### RocketMQ 用于发送事务消息的 API
 
 ```java
 TransactionMQProducer producer = new TransactionMQProducer("ProducerGroup");
@@ -60,9 +60,9 @@ producer.setTransactionListener(transactionListener);
 SendResult sendResult = producer.sendMessageInTransaction(msg, null);
 ```
 
-## 2. RocketMQ 事务消息快速入门
+## RocketMQ 事务消息快速入门
 
-### 2.1. 案例业务说明
+### 案例业务说明
 
 本实例通过 RocketMQ 可靠消息实现最终一致性，模拟两个账户的转账交易过程。两个账户分别在不同的银行(张三在bank1、李四在bank2)，bank1、bank2是两个相互独立的微服务。交易过程是，张三给李四转账指定金额。
 
@@ -80,9 +80,9 @@ SendResult sendResult = producer.sendMessageInTransaction(msg, null);
 2. Bank1 执行本地事务，扣减金额
 3. Bank2 接收消息，执行本地事务，添加金额
 
-### 2.2. 环境搭建
+### 环境搭建
 
-#### 2.2.1. 环境要求
+#### 环境要求
 
 - 数据库：MySQL 5.7.25
     - 两个数据库：bank1和bank2
@@ -94,7 +94,7 @@ SendResult sendResult = producer.sendMessageInTransaction(msg, null);
     - ensure-message-demo-bank1 服务，操作张三账户，连接数据库bank1
     - ensure-message-demo-bank2 服务，操作李四账户，连接数据库bank2
 
-#### 2.2.2. 数据库
+#### 数据库
 
 执行以下脚本，创建测试数据库、表与测试数据
 
@@ -149,7 +149,7 @@ CREATE TABLE `de_duplication`  (
 
 > 注：其中 de_duplication 交易记录表(去重表)，即是用于实现幂等性
 
-#### 2.2.3. 启动 RocketMQ
+#### 启动 RocketMQ
 
 > RocketMQ 详细教程详见[《分布式消息中件间 RocketMQ》笔记](/分布式微服务/消息中件间/RocketMQ)
 
@@ -166,9 +166,9 @@ start mqbroker.cmd -n 127.0.0.1:9876 autoCreateTopicEnable=true
 java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.namesrvAddr=127.0.0.1:9876
 ```
 
-### 2.3. 创建 Maven 示例工程
+### 创建 Maven 示例工程
 
-#### 2.3.1. 聚合工程
+#### 聚合工程
 
 - 创建 pom 聚合工程 ensure-message-demo，进行依赖管理
 
@@ -310,7 +310,7 @@ java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.nam
 </project>
 ```
 
-#### 2.3.2. 创建微服务
+#### 创建微服务
 
 - 创建 ensure-message-demo-bank1 工程，负责张三账户操作；创建 ensure-message-demo-bank2 工程，负责李四账户操作。同样引入以下依赖：
 
@@ -364,13 +364,13 @@ java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.nam
 </dependencies>
 ```
 
-### 2.4. 案例功能实现
+### 案例功能实现
 
 此部分两个微服务工程的具体实现
 
-#### 2.4.1. ensure-message-demo-bank1 消息发送方工程
+#### ensure-message-demo-bank1 消息发送方工程
 
-##### 2.4.1.1. 项目配置文件
+##### 项目配置文件
 
 - 项目配置 application.properties
 
@@ -393,7 +393,7 @@ rocketmq.producer.group=producer_ensure_bank1
 rocketmq.name-server=127.0.0.1:9876
 ```
 
-##### 2.4.1.2. 实体类
+##### 实体类
 
 - 定义封装转账消息的实体类
 
@@ -418,7 +418,7 @@ public class AccountChangeEvent implements Serializable {
 }
 ```
 
-##### 2.4.1.3. 持久层相关接口
+##### 持久层相关接口
 
 创建持久层接口，定义扣减账户余额、查询账户信息、查询事务记录、保存事务记录等4个方法
 
@@ -466,7 +466,7 @@ public interface AccountInfoDao {
 }
 ```
 
-##### 2.4.1.4. 实现发送转账消息
+##### 实现发送转账消息
 
 封装 RocketMQ 发送消息处理类，定义通过 `RocketMQTemplate` 发送转账消息的方法
 
@@ -489,7 +489,7 @@ public class BankMessageProducer {
 }
 ```
 
-##### 2.4.1.5. 业务层接口与实现
+##### 业务层接口与实现
 
 业务层接口，分别定义发送事务消息(`sendUpdateAccountBalanceMsg`)与本地事务扣减金额(`doUpdateAccountBalance`)方法
 
@@ -550,7 +550,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 }
 ```
 
-##### 2.4.1.6. RocketMQ 事务消息监听器
+##### RocketMQ 事务消息监听器
 
 创建 RocketMQ 事务消息监听器，需要实现 `org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener` 接口，并在类上标识 `@RocketMQTransactionListener` 注解，其中 `txProducerGroup` 属性是用于指定监听的消息分组名称
 
@@ -620,7 +620,7 @@ public class TransferTransactionListenerImpl implements RocketMQLocalTransaction
 }
 ```
 
-##### 2.4.1.7. 控制层
+##### 控制层
 
 定义请求控制层方法，发送事务消息
 
@@ -639,9 +639,9 @@ public class AccountInfoController {
 }
 ```
 
-#### 2.4.2. ensure-message-demo-bank2 消息接收方工程
+#### ensure-message-demo-bank2 消息接收方工程
 
-##### 2.4.2.1. 项目配置文件
+##### 项目配置文件
 
 - 项目配置 application.properties
 
@@ -664,7 +664,7 @@ rocketmq.producer.group=producer_ensure_bank2
 rocketmq.name-server=127.0.0.1:9876
 ```
 
-##### 2.4.2.2. 持久层与实体类
+##### 持久层与实体类
 
 持久层接口、数据库表实体、消息实体均与 ensure-message-demo-bank1 工程几乎一样，只修改了增加账户余额方法名称与sql
 
@@ -673,7 +673,7 @@ rocketmq.name-server=127.0.0.1:9876
 int addAccountBalance(@Param("accountNo") String accountNo, @Param("amount") Double amount);
 ```
 
-##### 2.4.2.3. 业务层接口与实现
+##### 业务层接口与实现
 
 业务层接口定义增加账户余额方法
 
@@ -713,7 +713,7 @@ public class AccountInfoServiceImpl implements AccountInfoService {
 }
 ```
 
-##### 2.4.2.4. RocketMQ 事务消息监听器
+##### RocketMQ 事务消息监听器
 
 创建消费 RocketMQ 事务消息监听器，需要实现 `org.apache.rocketmq.spring.core.RocketMQListener<T>` 接口，泛型 T 是消息的数据类型。在类上标识 `@RocketMQMessageListener` 注解，`topic` 属性指定消息的主题；`consumerGroup` 属性指定消息的分组
 
@@ -740,14 +740,14 @@ public class EnsureMessageConsumer implements RocketMQListener<String> {
 }
 ```
 
-### 2.5. 功能测试
+### 功能测试
 
 - bank1 和 bank2 都成功
 - bank1 执行本地事务失败，则 bank2 接收不到转账消息。（在`AccountInfoServiceImpl.doUpdateAccountBalance`方法中模拟异常）
 - bank1 执行完本地事务后，不返回任何信息，则 Broker 会进行事务回查。（在`TransferTransactionListenerImpl.executeLocalTransaction`方法返回结果前模拟异常）
 - bank2 执行本地事务失败，会进行重试消费。（在 bank2 工程 `AccountInfoServiceImpl.updateAccountBalance`方法中模拟异常）
 
-## 3. 总结
+## 总结
 
 可靠消息最终一致性就是保证消息从生产方经过消息中间件传递到消费方的一致性，本案例使用了 RocketMQ 作为消息中间件，RocketMQ 主要解决了两个功能：
 

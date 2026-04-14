@@ -1,4 +1,4 @@
-## 1. Git 下载网址
+## Git 下载网址
 
 Git 下载网址：https://git-scm.com/download
 
@@ -8,7 +8,7 @@ Git 下载网址：https://git-scm.com/download
 > - linux版本：git-2.16.2.tar.gz
 
 
-## 2. window 系统安装 Git 服务器
+## window 系统安装 Git 服务器
 
 > 示例使用Git-2.23.0-64-bit.exe
 
@@ -62,9 +62,9 @@ Git 下载网址：https://git-scm.com/download
 
 ![](images/20211212172250731_27477.png)
 
-## 3. Linux 系统搭建 Git 服务器
+## Linux 系统搭建 Git 服务器
 
-### 3.1. Git 服务器概述
+### Git 服务器概述
 
 远程仓库实际上和本地仓库没啥不同，纯粹为了7x24小时开机并交换大家的修改。GitHub就是一个免费托管开源代码的远程仓库。但一般公司都是搭建一台Git服务器作为私有仓库使用。
 
@@ -72,7 +72,7 @@ Git 下载网址：https://git-scm.com/download
 
 > 有安装所有软件的linux系统，用户名：root  密码：123456
 
-### 3.2. 安装依赖环境
+### 安装依赖环境
 
 ```bash
 yum -y install curl-devel expat-devel  openssl-devel zlib-devel 
@@ -125,7 +125,7 @@ yum list installed
 yum search 软件包名
 ```
 
-### 3.3. git 服务器安装步骤
+### git 服务器安装步骤
 
 - 使用 rz 命令上传 git-2.13.3.tar.gz 安装包
 
@@ -200,11 +200,11 @@ git version 2.16.2
 
 ![](images/397223316240086.jpg)
 
-### 3.4. 连接服务器
+### 连接服务器
 
 私有 git 服务器搭建完成后就可以像连接 Github 一样使用了，但是因为 git 服务器并没有配置密钥登录，所以每次连接时需要输入密码。
 
-#### 3.4.1. 使用命令连接
+#### 使用命令连接
 
 - 添加远程库：
 
@@ -220,7 +220,7 @@ git push -u mytest master
 
 > Notes: 其他操作部分参考其他 Git 笔记的基础篇与客户端使用篇
 
-#### 3.4.2. 使用 TortoiseGit 上传项目
+#### 使用 TortoiseGit 上传项目
 
 添加远程库：设置远端后，再右击项目选择【同步】
 
@@ -230,7 +230,7 @@ git push -u mytest master
 
 ![](images/470704016236641.jpg)
 
-#### 3.4.3. 使用 TortoiseGit 下载项目
+#### 使用 TortoiseGit 下载项目
 
 在需要下载项目的工作空间，右键
 

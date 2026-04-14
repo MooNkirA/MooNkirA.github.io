@@ -1,10 +1,10 @@
 # SpringMVC 注解驱动开发入门示例
 
-## 1. 基于Servlet3.0的环境搭建
+## 基于Servlet3.0的环境搭建
 
 > 注：此工程将包含所有Spring MVC的注解使用示例，而前端是使用古老的jsp技术，以后有时间再考虑要不要换成纯html+js的方式进行前端请求
 
-### 1.1. 导入坐标
+### 导入坐标
 
 - 使用maven创建war工程，导入以下相关依赖
 
@@ -40,7 +40,7 @@
 </dependencies>
 ```
 
-### 1.2. 编写控制器
+### 编写控制器
 
 - 创建一个基础的控制器`BasicController.java`
 
@@ -60,7 +60,7 @@ public class BasicController {
 }
 ```
 
-### 1.3. 编写配置类
+### 编写配置类
 
 - 创建Spring核心配置类`SpringConfiguration.java`，用于替代`applicationContext.xml`配置文件
 
@@ -201,7 +201,7 @@ public class WebConfig extends AbstractDispatcherServletInitializer {
 }
 ```
 
-### 1.4. 准备页面
+### 准备页面
 
 ```jsp
 <%@page contentType="text/html; UTF-8" language="java" pageEncoding="UTF-8" %>
@@ -223,7 +223,7 @@ public class WebConfig extends AbstractDispatcherServletInitializer {
 </html>
 ```
 
-### 1.5. 启动项目测试
+### 启动项目测试
 
 - 创建后的项目目录结构
 
@@ -237,15 +237,15 @@ public class WebConfig extends AbstractDispatcherServletInitializer {
 
 ![](images/20200917162518868_20928.png)
 
-## 2. 入门案例执行过程分析
+## 入门案例执行过程分析
 
 > 注：Spring MVC 案例执行过程分析详见《SpringMVC源码分析》
 
-## 3. (!整理中)Spring MVC 注解汇总清单
+## (!整理中)Spring MVC 注解汇总清单
 
 > TODO: 整理中！在《SpringMVC注解汇总-相关表格.xlsx》中，整理完成后转为图片形式放入笔记
 
-## 4. 注解示例源码说明
+## 注解示例源码说明
 
 各个注解的详细说明与用法详见源码项目`spring-note\Spring-Framework`，使用示例详见`spring-note\springmvc-sample\05-spring-mvc-annotation\`
 
@@ -253,15 +253,15 @@ public class WebConfig extends AbstractDispatcherServletInitializer {
 
 # SpringMVC 基础注解
 
-## 1. @Controller
+## @Controller
 
 `@Controller`注解是由`@Component`注解衍生出来。此注解用于修饰表现层控制器的。是spring框架的注解，非SpringMVC的注解，只是在web项目中，此注解会交给SpringMVC的容器管理
 
 > 具体用法详见《Spring注解汇总.md》
 
-## 2. @RequesetMapping
+## @RequesetMapping
 
-### 2.1. 作用与用法
+### 作用与用法
 
 - **作用**：用于建立请求URL和处理请求方法之间的对应关系
 - **用法**：
@@ -287,20 +287,20 @@ public class OrderController {
 }
 ```
 
-### 2.2. 相关属性
+### 相关属性
 
 ![](images/214451216249695.png)
 
 > **使用细节**：属性只要出现2个或以上时，他们的关系是“与”的关系。表示必须同时满足条件。*（name属性除外）*
 
-### 2.3. 衍生注解
+### 衍生注解
 
 `@RequestMapping`的衍生注解是：`@GetMapping`、`@PostMapping`、`@PutMapping`、`@DeleteMapping`、`@PatchMapping`，其衍生的注解的基础用法与`@RequestMapping`一样。但有以下注意细节：
 
 - 衍生注解只是将请求方式限定了，即没有与不用设置method属性，其他属性作用与用法与`@RequestMapping`一样
 - <font color=red>**衍生注解只能标识在方法上，而`@RequestMapping`注解可以分别标识在类与方法上**</font>
 
-### 2.4. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -350,9 +350,9 @@ public class RequestMappingController {
 }
 ```
 
-## 3. @RequestParam
+## @RequestParam
 
-### 3.1. 作用与用法
+### 作用与用法
 
 `@RequestParam` 是从请求正文中获取请求参数（包括请求上传文件），给控制器方法形参赋值的。参数值会被转换成声明方法形参的类型。
 
@@ -360,7 +360,7 @@ public class RequestMappingController {
 
 **注意：此注解只能出现在方法的参数上**
 
-### 3.2. 相关属性
+### 相关属性
 
 |     属性名      |                              作用                              |  取值/示例   |
 | :------------: | ------------------------------------------------------------- | ---------- |
@@ -369,7 +369,7 @@ public class RequestMappingController {
 |   `required`   | 指定参数是否请求时必须传递。默认值为true。当为true时，参数没有值时会报错； | true/false |
 | `defaultValue` | 设置请求参数的默认值。如果传递则使用实际的参数值。如果不传递则使用默认值    |            |
 
-### 3.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -416,16 +416,16 @@ public class RequestParamController {
 
 ![](images/20200918145148795_30866.png)
 
-## 4. @PathVariable
+## @PathVariable
 
-### 4.1. 作用与用法
+### 作用与用法
 
 `@PathVariable` 注解用于获取请求 url 映射中占位符对应的值（*在`@RequestMapping`的`value`属性中，指定url的占位符，其占位符格式：“`{xxx}`”*），是 SpringMVC 框架支持 rest 风格 url 的标识。使用时有以下两个注意点：
 
 - 如果使用`@PathVariable`注解修饰的方法的形参名称与占位符名称一致，则不需要指定value（或name）属性占位符名称
 - 如果使用`@PathVariable`注解修饰的方法的形参名称与占位符名称不一致，则通过指定value（或name）属性占位符名称
 
-### 4.2. 相关属性
+### 相关属性
 
 |   属性名    |                                         作用                                         |  取值/示例   |
 | :--------: | ----------------------------------------------------------------------------------- | ---------- |
@@ -433,7 +433,7 @@ public class RequestParamController {
 |   `name`   | 4.3.3版本新加入的属性。作用和value一样                                                    |            |
 | `required` | 4.3.3版本新加入的属性，用于指定是否必须有此占位符，默认值为true。当取默认值时，没有映射占位符则会报错 | true/false |
 
-### 4.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -488,21 +488,21 @@ public class PathVariableController {
 }
 ```
 
-## 5. @InitBinder
+## @InitBinder
 
-### 5.1. 作用与用法
+### 作用与用法
 
 `@InitBinder`用于初始化请求参数的数据绑定器。如请求参数有日期字符串的数据，是无法直接绑定到实体类中的`Date`属性，此时就需要使用该注解来初始化一些数据的转换器，转换成相应的类型封装到实体类中
 
 > <font color=red>**注意点：在某个Controller控制类中使用了`@InitBinder`注解进行数据转换绑定，只能对当前控制类生效，其他的控制类是不起作用**</font>
 
-### 5.2. 相关属性
+### 相关属性
 
 |  属性名  |          作用          | 取值/示例 |
 | :-----: | --------------------- | -------- |
 | `value` | 指定给哪些参数进行绑定操作 |          |
 
-### 5.3. 使用示例
+### 使用示例
 
 示例需求：将请求参数中的日期字符串转成日期类型，封装到对象属性中
 
@@ -537,7 +537,7 @@ public class InitBinderController {
 }
 ```
 
-### 5.4. 扩展注解 @DateTimeFormat
+### 扩展注解 @DateTimeFormat
 
 还一种方法实现上面的效果，在 Spring MVC 配置类`SpringMvcConfiguration.java`中增加 `@EnableWebMvc` 注解，开启 Spring MVC 配置
 
@@ -567,9 +567,9 @@ public class User implements Serializable {
 
 而使用`@DateTimeFormat`注解进行日期的转换，作用的范围比较大，凡是用到当前对象的都可以实现转换的效果，但缺点就是功能单一。
 
-## 6. @ControllerAdvice
+## @ControllerAdvice
 
-### 6.1. 作用与用法
+### 作用与用法
 
 `@ControllerAdvice`，是 Spring 3.2 版本提供的新注解，用于给控制器提供一个增强的通知。以保证可以在多个控制器之间实现增强共享。
 
@@ -583,7 +583,7 @@ public class User implements Serializable {
 > - Spring 4 之前，`@ControllerAdvice`在同一调度的 Servlet 中协助所有控制器。Spring 4 已经改变：`@ControllerAdvice`支持配置控制器的子集，而默认的行为仍然可以利用。
 > - 在 Spring 4 中，`@ControllerAdvice`通过`annotations()`, `basePackageClasses()`, `basePackages()`方法定制用于选择控制器子集。
 
-### 6.2. 相关属性
+### 相关属性
 
 |        属性名         |                         作用                          | 取值/示例 |
 | :------------------: | ---------------------------------------------------- | -------- |
@@ -593,7 +593,7 @@ public class User implements Serializable {
 |  `assignableTypes`   | 用于指定特定的类型提供增强                                 |          |
 |    `annotations`     | 用于指定给特定注解提供增强                                 |          |
 
-### 6.3. 基础使用示例
+### 基础使用示例
 
 ```java
 /**
@@ -660,7 +660,7 @@ public class GlobalExceptionHandler {
 
 *注：AjaxResult.error是自定义的一个方法，封装了一个返回的map，用来返回前端是一个json对象*
 
-### 6.4. 配合 @InitBinder 注解使用示例
+### 配合 @InitBinder 注解使用示例
 
 示例需求：实现全局所有控制器的请求日期字符串转成日期类型封装到实体类中，*将上面的`@InitBinder`示例的逻辑移动到`@ControllerAdvice`的增强通知类中即可*
 
@@ -728,19 +728,19 @@ public class InitBinderAdvice {
 }
 ```
 
-### 6.5. 配合 @ModelAttribute 注解使用示例（未整理）
+### 配合 @ModelAttribute 注解使用示例（未整理）
 
 > TODO: 待整理
 
-## 7. @RequestHeader
+## @RequestHeader
 
-### 7.1. 作用与用法
+### 作用与用法
 
 `@RequestHeader`注解是从请求消息头中获取消息头的值，并把值赋给控制器方法形参
 
 **注意：此注解只能出现在方法的参数上**
 
-### 7.2. 相关属性
+### 相关属性
 
 |     属性名      |                               作用                                |  取值/示例   |
 | :------------: | ---------------------------------------------------------------- | ---------- |
@@ -749,7 +749,7 @@ public class InitBinderAdvice {
 |   `required`   | 用于指定是否必须有此消息头。默认值为true，当为true时，请求没有此消息头时会报错 | true/false |
 | `defaultValue` | 用于指定消息头的默认值                                                |            |
 
-### 7.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -772,15 +772,15 @@ public class RequestHeaderController {
 }
 ```
 
-## 8. @CookieValue
+## @CookieValue
 
-### 8.1. 作用与用法
+### 作用与用法
 
 `@RequestHeader`注解是从请求消息头中获取Cookie的值，并把值赋给控制器方法形参
 
 **注意：此注解只能出现在方法的参数上**
 
-### 8.2. 相关属性
+### 相关属性
 
 |     属性名      |                             作用                              |  取值/示例   |
 | :------------: | ------------------------------------------------------------ | ---------- |
@@ -789,7 +789,7 @@ public class RequestHeaderController {
 |   `required`   | 用于指定是否必须有cookie。默认值为true。当为true时，没有cookie会报错。 | true/false |
 | `defaultValue` | 用于指定cookie不存在时，将默认值赋值给形参                           |            |
 
-### 8.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -813,16 +813,16 @@ public class CookieValueController {
 }
 ```
 
-## 9. @ModelAttribute
+## @ModelAttribute
 
-### 9.1. 作用与用法
+### 作用与用法
 
 `@ModelAttribute`注解可以用于修饰方法，或者是参数
 
 - 当修饰方法时，表示执行控制器方法之前，被此注解修饰的方法都会执行
 - 当修饰参数时，用于获取指定的数据给参数赋值
 
-### 9.2. 相关属性
+### 相关属性
 
 - `value`：指定的是 Model 存入时的 key
     - 当注解写在方法上，则表示存入时的名称。（值是方法的返回值）
@@ -830,7 +830,7 @@ public class CookieValueController {
 - `name`：4.3 版本新增的属性，与 `value` 属性作用一样
 - `binding`：4.3 版本中新增的属性，用于指定是否支持数据绑定，默认值 true。
 
-### 9.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -875,16 +875,16 @@ public class ModelAttributeController {
 }
 ```
 
-## 10. @SessionAttribute 和 @SessionAttributes
+## @SessionAttribute 和 @SessionAttributes
 
-### 10.1. 作用与用法
+### 作用与用法
 
 - `@SessionAttribute`注解用于方法形参上，作用是从会话域中获取数据，相当于`HttpSession`的`getAttribute`方法
 - `@SessionAttributes`注解用于类或者接口上，作用是把数据存入会话域，相当于`HttpSession`的`setAttribute`方法
 
-### 10.2. 相关属性
+### 相关属性
 
-#### 10.2.1. @SessionAttribute 属性
+#### @SessionAttribute 属性
 
 |   属性名    |                                  作用                                  |  取值/示例   |
 | :--------: | --------------------------------------------------------------------- | ---------- |
@@ -892,7 +892,7 @@ public class ModelAttributeController {
 |   `name`   | 和value属性互为引用                                                      |            |
 | `required` | 用于指定是否必须从会话域中获取到数据。默认值是true，表示如果指定名称不存在会报错。 | true/false |
 
-#### 10.2.2. @SessionAttributes  属性
+#### @SessionAttributes  属性
 
 |  属性名  |                    作用                    | 取值/示例 |
 | :-----: | ----------------------------------------- | -------- |
@@ -901,7 +901,7 @@ public class ModelAttributeController {
 | `types` | 指定可以存入会话域中的数据类型。               |          |
 
 
-### 10.3. 使用示例
+### 使用示例
 
 - 测试代码
 
@@ -973,19 +973,19 @@ public class SessionAttributesController {
 
 ![](images/20200919180446544_20401.png)
 
-## 11. @ExceptionHandler
+## @ExceptionHandler
 
-### 11.1. 作用与用法
+### 作用与用法
 
 `@ExceptionHandler` 注解用于修饰控制器类的方法，表明当前方法是该控制器执行产生异常后的处理方法
 
-### 11.2. 相关属性
+### 相关属性
 
 |  属性名  |          作用          | 取值/示例 |
 | :-----: | --------------------- | -------- |
 | `value` | 指定用于需要捕获的异常类型 |          |
 
-### 11.3. 基础使用示例
+### 基础使用示例
 
 - 在控制器类中使用 `@ExceptionHandler` 标识方法（方法名随意），如当前控制器相关请求方法出现异常时，就会触发该注解的方法
 
@@ -1012,7 +1012,7 @@ public ResponseEntity<String> handle(Exception ex) {
 }
 ```
 
-### 11.4. 配合 @ControllerAdvice 全局异常处理示例
+### 配合 @ControllerAdvice 全局异常处理示例
 
 - 创建自定义异常类
 
@@ -1093,21 +1093,21 @@ public class ExceptionHandlerController {
 
 # JSON 数据交互相关注解
 
-## 1. @RequestBody
+## @RequestBody
 
-### 1.1. 作用与用法
+### 作用与用法
 
 `@RequestBody` 注解用于修饰方法的形参，用于获取全部的请求体数据。<font color=red>**注：此注解主要是获取请求体的数据，并没有将json数据封装到实体对象的功能，具体由第三方的json组件或者自定义json转换来实现。**</font>
 
 GET 请求方式无请求体，所以使用 `@RequestBody` 无法接收数据，前端需要使用 POST 方式进行提交。
 
-### 1.2. 相关属性
+### 相关属性
 
 |   属性名    |                         作用                         |  取值/示例  |
 | :--------: | ---------------------------------------------------- | ---------- |
 | `required` | 用于指定是否必须有请求体，默认值true，表示请求必须有请求体 | true/false |
 
-### 1.3. 使用示例
+### 使用示例
 
 Spring MVC默认只能获取请求类型为“`Content-Type: application/form-data`”或者“`Content-Type: application/x-www-form-urlencoded`”并绑定到方法形参中
 
@@ -1156,9 +1156,9 @@ public String useRequestBody(@RequestBody User user) {
 }
 ```
 
-### 1.4. @RequestBody 扩展内容
+### @RequestBody 扩展内容
 
-#### 1.4.1. @RequestBody 和 @RequestParam 的用法比较
+#### @RequestBody 和 @RequestParam 的用法比较
 
 1. 当同时使用 `@RequestParam` 和 `@RequestBody` 时，`@RequestParam` 指定的参数可以是普通元素、数组、集合、对象等等
 	- 接收机制不一样。`@RequestBody` 接收的是**请求体里面的数据**，一般在请求中声明 `contentType: "application/json; charset=utf-8"`，也就是json数据或者xml数据；而 `@RequestParam` 接收的是**key-value 里面的参数**，通常请求中没有声明 contentType，为默认的 `x-www-form-urlencoded` 格式时，所以它会被切面进行处理从而可以用普通元素、数组、集合、对象等接收
@@ -1168,7 +1168,7 @@ public String useRequestBody(@RequestBody User user) {
 > 扩展：这里与 feign 消费服务时不同；feign 消费服务时，如果参数前什么也不写，那么会被默认是 `@RequestBody` 的
 4. 在同一个接收请求方法中，`@RequestBody` 与 `@RequestParam` 可以同时使用，此时原 Spring MVC 接收参数的机制不变。`@RequestBody` 最多只能有一个，而 `@RequestParam` 可以有多个
 
-#### 1.4.2. @RequestBody 修饰的对象接收数据的注意问题
+#### @RequestBody 修饰的对象接收数据的注意问题
 
 如果后端参数是一个对象，且该参数前是以 `@RequestBody` 修饰的，那么前端传递 json 参数时，必须满足以下要求
 
@@ -1177,20 +1177,20 @@ public String useRequestBody(@RequestBody User user) {
 3. json 字符串中，如果 value 为 null 的话，后端对应收到的值为 null
 4. 如果某个参数没有 value 的话，在传 json 字符串给后端时，要么干脆就不把该字段写到 json 字符串中；要么写 value 时，必须有值，`null` 或 `""` 均可。千万不能有类似『`"stature":`』的写法
 
-## 2. @ResponseBody
+## @ResponseBody
 
-### 2.1. 作用与用法
+### 作用与用法
 
 `@ResponseBody`注解用于使用流输出响应正文（数据），可以标识在类、方法上
 
 - 标识在类上，代表当前类所有方法都使用流输出响应正文（数据）
 - 标识在方法返回值前或者方法上，代表当前方法使用流输出响应正文（数据）
 
-### 2.2. 相关属性
+### 相关属性
 
 无
 
-### 2.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -1213,17 +1213,17 @@ public class ResponseBodyController {
 }
 ```
 
-## 3. @RestController
+## @RestController
 
-### 3.1. 作用与用法
+### 作用与用法
 
 `@RestController`注解只标识在类或接口上，相当于`@Controller`+`@ResponseBody`，它同时具备以上两个注解的全部功能
 
-### 3.2. 相关属性
+### 相关属性
 
 相关属性用法与说明，参照`@Controller`注解
 
-### 3.3. 使用示例
+### 使用示例
 
 ```java
 /**
@@ -1239,17 +1239,17 @@ public class RestControllerController {
 }
 ```
 
-## 4. @RestControllerAdvice
+## @RestControllerAdvice
 
-### 4.1. 作用与用法
+### 作用与用法
 
 `@RestControllerAdvice` 是 Spring 4.3 版本提供的新注解，是`@ControllerAdvice`与`@ResponseBody`的组合体。它同时具备以上两个注解的全部功能
 
-### 4.2. 相关属性
+### 相关属性
 
 相关属性用法与说明，参照`@ControllerAdvice`注解
 
-### 4.3. 使用示例
+### 使用示例
 
 - 创建一个测试使用控制器
 
@@ -1283,7 +1283,7 @@ public class ExceptionHandlerAdvice {
 
 # 跨域访问
 
-## 1. 关于跨域访问
+## 关于跨域访问
 
 跨域访问即跨站 HTTP 请求(Cross-site HTTP request)，它是指发起请求的资源所在域不同于该请求所指向资源所在的域的 HTTP 请求
 
@@ -1291,21 +1291,21 @@ public class ExceptionHandlerAdvice {
 
 在 Web 开发中，使用跨站 HTTP 请求加载各类资源（包括CSS、图片、JavaScript 脚本以及其它类资源），已经成为了一种普遍且流行的方式。
 
-## 2. @CrossOrigin
+## @CrossOrigin
 
-### 2.1. 作用与用法
+### 作用与用法
 
 `@CrossOrigin`注解用于指定是否支持跨域访问
 
-### 2.2. 相关属性
+### 相关属性
 
 ![](images/5681516237562.png)
 
-### 2.3. 使用示例
+### 使用示例
 
 > 创建一个新的web工程，用于发送ajax请求测试。工程代码详见`springmvc-sample-annotation\01-crossorigin-test`
 
-#### 2.3.1. 创建跨域测试的控制器
+#### 创建跨域测试的控制器
 
 在示例工程创建新的控制类
 
@@ -1336,7 +1336,7 @@ public class CrossOriginController {
 }
 ```
 
-#### 2.3.2. 使用过滤器的方式实现跨域访问
+#### 使用过滤器的方式实现跨域访问
 
 ```
 Access to XMLHttpRequest at 'http://www.moon.com:8080/useCrossOrigin' from origin 'http://www.moon.com:8085' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
@@ -1412,7 +1412,7 @@ public class WebConfig extends AbstractDispatcherServletInitializer {
 
 启动项目，测试请求成功
 
-#### 2.3.3. 使用@CrossOrigin注解实现跨域访问
+#### 使用@CrossOrigin注解实现跨域访问
 
 > 将上面示例的过滤器注册到web容器的配置注释
 
@@ -1432,7 +1432,7 @@ public String useCrossOrigin(@RequestBody(required = false) User user) {
 }
 ```
 
-#### 2.3.4. 测试图片、css等src属性导入的资源
+#### 测试图片、css等src属性导入的资源
 
 图片、css等src属性导入的资源不存在跨域的问题。
 
@@ -1493,9 +1493,9 @@ public void getCss(HttpServletRequest request, HttpServletResponse response) thr
 
 # Spring MVC 基于注解的其他相关内容
 
-## 1. 纯注解配置方式的项目配置引入静态资源
+## 纯注解配置方式的项目配置引入静态资源
 
-### 1.1. 引入静态资源的问题
+### 引入静态资源的问题
 
 - 在jsp页面引入jquery，用于发起ajax请求
 
@@ -1532,7 +1532,7 @@ $(function () {
 20-Sep-2020 09:09:03.048 警告 [http-nio-8080-exec-2] org.springframework.web.servlet.DispatcherServlet.noHandlerFound No mapping for GET /js/jquery-2.2.3.min.js
 ```
 
-### 1.2. 配置静态资源路径
+### 配置静态资源路径
 
 > 相关配置可以参考官方文档：https://docs.spring.io/spring-framework/docs/5.1.19.BUILD-SNAPSHOT/spring-framework-reference/web.html#spring-web
 
@@ -1563,13 +1563,13 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
 
 <font color=red>**注：配置类需要标识`@EnableWebMvc`注解开启web mvc的配置，添加的资源处理规则才生效**</font>
 
-## 2. Spring MVC 实现 JSON 数据封装成对象
+## Spring MVC 实现 JSON 数据封装成对象
 
 Spring MVC 相关注解并没有实现 JSON 数据封装成实体对象的功能，都是通过引入第三方 JSON 处理组件库，或者自定义 JSON 转换来实现的。
 
-### 2.1. 使用 jackson 类库实现
+### 使用 jackson 类库实现
 
-#### 2.1.1. 配置依赖
+#### 配置依赖
 
 配置pom.xml文件，加入jackson依赖。*注：springmvc 5.1.x+版本，需要使用jackson 2.9.0+的版本*
 
@@ -1599,7 +1599,7 @@ Spring MVC 相关注解并没有实现 JSON 数据封装成实体对象的功能
 </dependencies>
 ```
 
-#### 2.1.2. 配置类
+#### 配置类
 
 此示例使用纯注解配置方式，<font color=red>**配置类`SpringMvcConfiguration`确认标识`@EnableWebMvc`注解开启web mvc的注解支持**</font>，其他不需要增加任何配置，因为spring mvc 默认支持jackson
 
@@ -1607,15 +1607,15 @@ Spring MVC 相关注解并没有实现 JSON 数据封装成实体对象的功能
 
 ![](images/20200920113800611_9742.png)
 
-## 3. 自定义拦截器（基于纯注解方式）
+## 自定义拦截器（基于纯注解方式）
 
-### 3.1. 纯注解开发自定义拦截器实现步骤总结
+### 纯注解开发自定义拦截器实现步骤总结
 
 1. 编写一个普通类，实现`HandlerInterceptor`接口
 2. 使用注解，把拦截器存入IOC容器
 3. 修改配置类，将拦截器注册到`InterceptorRegistry`中
 
-### 3.2. 创建拦截器
+### 创建拦截器
 
 ```java
 /**
@@ -1667,7 +1667,7 @@ public class MyInterceptor1 implements HandlerInterceptor {
 }
 ```
 
-### 3.3. 修改配置类，注册自定义拦截器
+### 修改配置类，注册自定义拦截器
 
 修改Spring MVC配置类`SpringMvcConfiguration`，此配置类实现`WebMvcConfigurer`接口，实现`addInterceptors`方法进行拦截器的注册
 
@@ -1692,7 +1692,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
 }
 ```
 
-### 3.4. 创建请求的控制器
+### 创建请求的控制器
 
 ```java
 /**
@@ -1724,7 +1724,7 @@ public class CustomInterceptorController {
 }
 ```
 
-### 3.5. 创建相关测试页面
+### 创建相关测试页面
 
 创建login.jsp页面
 
@@ -1754,11 +1754,11 @@ public class CustomInterceptorController {
 <%System.out.println("message.jsp执行了");%>
 ```
 
-### 3.6. 测试
+### 测试
 
 ![](images/20200922144740055_7974.png)
 
-### 3.7. 多个拦截器执行顺序测试
+### 多个拦截器执行顺序测试
 
 > 注：多个拦截器的配置方法与单个拦截器配置方法一样，<font color=red>**需要注意是在`addInterceptors`方法中，注册到`InterceptorRegistry`时的顺序决定了多个拦截器的执行顺序**</font>。
 >
@@ -1766,13 +1766,13 @@ public class CustomInterceptorController {
 
 ![](images/20200922152943953_20761.jpg)
 
-## 4. 类型转换器(整理中)
+## 类型转换器(整理中)
 
 类型转换器，就是在处理请求前，对象一些数据进行类型的转换处理。
 
 实现类型转换的功能多种方式。如之前的示例中的`@InitBinder`可以进行数据预处理；或者spring mvc提供的内置转换器，如：`@DateTimeFormat`也能实现日期类型的转换
 
-### 4.1. Converter 接口
+### Converter 接口
 
 `Converter` 接口是 Spring 提供的用于处理类型转换的接口
 
@@ -1792,7 +1792,7 @@ public interface Converter<S, T> {
 }
 ```
 
-### 4.2. 自定义 Converter
+### 自定义 Converter
 
 自定义类型转换器需要实现`Converter`接口，实现`convert`方法，在方法中进行相关的类型转换的处理逻辑。
 
@@ -1828,7 +1828,7 @@ public class StringToDateConverter implements Converter<String, Date> {
 }
 ```
 
-### 4.3. 注册类型转换器
+### 注册类型转换器
 
 修改之前字符串转日期类型的全局切面通知类，修改注册自定义的日期转换器
 

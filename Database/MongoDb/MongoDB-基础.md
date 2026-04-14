@@ -1,8 +1,8 @@
-## 1. MongoDb 概述
+## MongoDb 概述
 
 MongoDB 是一个跨平台的，面向文档的数据库，是当前 NoSQL 数据库产品中最热门的一种。它介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库的产品。它支持的数据结构非常松散，是类似 JSON 的 BSON 格式，因此可以存储比较复杂的数据类型。
 
-### 1.1. MongoDB 特点
+### MongoDB 特点
 
 MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。它是一个面向集合的，模式自由的文档型数据库，具体特点总结如下：
 
@@ -16,7 +16,7 @@ MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点
 8. 支持 Python，PHP，Ruby，Java，C，C#，Javascript，Perl 及 C++语言的驱动程序，社区中也提供了对 Erlang 及.NET 等平台的驱动程序
 9. 文件存储格式为 BSON（一种 JSON 的扩展）
 
-### 1.2. 功能
+### 功能
 
 - 面向集合的存储：适合存储对象及 JSON 形式的数据。
 - 动态查询：Mongo 支持丰富的查询表达式。查询指令使用 JSON 形式的标记，可轻易查询文档中内嵌的对象及数组。
@@ -26,7 +26,7 @@ MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点
 - 高效的传统存储方式：支持二进制数据及大型对象（如照片或图片）
 - 自动分片以支持云级别的伸缩性：自动分片功能支持水平的数据库集群，可动态添加额外的机器
 
-### 1.3. 适用场景
+### 适用场景
 
 - 网站数据：Mongo 非常适合实时的插入，更新与查询，并具备网站实时数据存储所需的复制及高度伸缩性。
 - 缓存：由于性能很高，Mongo 也适合作为信息基础设施的缓存层。在系统重启之后，由 Mongo 搭建的持久化缓存层可以避免下层的数据源过载。
@@ -34,9 +34,9 @@ MongoDB 最大的特点是他支持的查询语言非常强大，其语法有点
 - 高伸缩性的场景：Mongo 非常适合由数十或数百台服务器组成的数据库。Mongo 的路线图中已经包含对 MapReduce 引擎的内置支持。
 - 用于对象及 JSON 数据的存储：Mongo 的 BSON 数据格式非常适合文档化格式的存储及查询。
 
-## 2. MongoDB 体系结构
+## MongoDB 体系结构
 
-### 2.1. 数据库的整体结构
+### 数据库的整体结构
 
 MongoDB 的逻辑结构是一种层次结构。主要由：数据库(database)、集合(collection)、文档(document)这三部分组成的。逻辑结构是面向用户的，用户使用 MongoDB 开发应用程序使用的就是逻辑结构。
 
@@ -67,7 +67,7 @@ MongoDB 的逻辑结构是一种层次结构。主要由：数据库(database)�
 
 > Notes: MongoDB 的文件单个大小不超过 4M ，新版本后可提升到 16M
 
-### 2.2. 存储对象的结构
+### 存储对象的结构
 
 MongoDB 中存储的对象是 BSON，是一种类似 JSON 的二进制文件，它是由许多的键值对组成。例如：
 
@@ -84,7 +84,7 @@ MongoDB 中存储的对象是 BSON，是一种类似 JSON 的二进制文件，�
 }
 ```
 
-### 2.3. MongoDB 中的 key 命名规则
+### MongoDB 中的 key 命名规则
 
 - `\0` 不能使用。
 - 带有 `.` 号、`_` 号和 `$` 号前缀的 Key 被保留，不能使用。
@@ -92,11 +92,11 @@ MongoDB 中存储的对象是 BSON，是一种类似 JSON 的二进制文件，�
 - 同一个文档不能有相同的 Key。
 - 除了上面几条规则外，其他所有 UTF-8 字符都可以使用。
 
-## 3. 连接 mongodb
+## 连接 mongodb
 
 mongodb 的使用方式是客户服务器模式，即使用一个客户端连接 mongodb 数据库（服务端）。
 
-### 3.1. 命令格式连接
+### 命令格式连接
 
 ```shell
 mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
@@ -120,7 +120,7 @@ mongodb://root:123456@localhost     # 使用用户名root密码为123456连接�
 mongodb://localhost,localhost:27018,localhost:27019    # 连接三台主从服务器，端口为27017、27018、27019
 ```
 
-### 3.2. 使用 mongodb 自带的 javascript shell（mongo.exe）连接
+### 使用 mongodb 自带的 javascript shell（mongo.exe）连接
 
 windows 版本的 mongodb 安装成功，在安装目录下的 bin 目录有 mongo.exe 客户端程序。进入 cmd 窗口执行 mongo.exe：
 
@@ -128,11 +128,11 @@ windows 版本的 mongodb 安装成功，在安装目录下的 bin 目录有 mon
 
 此时就可以输入命令来操作 mongodb 数据库了，javascript shell 可以运行 javascript 程序。
 
-### 3.3. 使用 studio3T 连接
+### 使用 studio3T 连接
 
 内容参考本笔记的[《MongoDB 安装与使用》](/Database/MongoDb/MongoDB-安装与使用)的《studio3t》章节
 
-### 3.4. 使用 java 程序连接
+### 使用 java 程序连接
 
 > 详细参数参考：http://mongodb.github.io/mongo-java-driver/3.4/driver/tutorials/connect-to-mongodb/
 
@@ -169,9 +169,9 @@ public void testConnection() {
 }
 ```
 
-## 4. 数据库操作
+## 数据库操作
 
-### 4.1. 查询数据库
+### 查询数据库
 
 - 查询全部数据库
 
@@ -185,7 +185,7 @@ show dbs
 db
 ```
 
-### 4.2. 创建/切换数据库
+### 创建/切换数据库
 
 - 命令格式：
 
@@ -201,7 +201,7 @@ use test02
 
 **注意：新创建的数据库不显示，需要至少包括一个集合。**
 
-### 4.3. 删除数据库（慎用！！！）
+### 删除数据库（慎用！！！）
 
 命令格式：
 
@@ -219,11 +219,11 @@ use test02
 db.dropDatabase()
 ```
 
-## 5. 集合操作
+## 集合操作
 
 集合相当于关系数据库中的表，一个数据库可以创建多个集合，一个集合是将相同类型的文档管理起来。
 
-### 5.1. 创建集合
+### 创建集合
 
 语法格式：
 
@@ -236,7 +236,7 @@ db.createCollection(name, options)
 - `name`: 新创建的集合名称
 - `options`: 创建参数
 
-### 5.2. 删除集合
+### 删除集合
 
 语法格式：
 
@@ -250,7 +250,7 @@ db.集合名称.drop()
 db.student.drop()
 ```
 
-### 5.3. 显示当前数据库中集合
+### 显示当前数据库中集合
 
 语法格式：
 
@@ -258,13 +258,13 @@ db.student.drop()
 show tables
 ```
 
-### 5.4. 给集合创建索引
+### 给集合创建索引
 
-#### 5.4.1. 命令语句创建
+#### 命令语句创建
 
 > TODO: 待整理
 
-#### 5.4.2. 使用 studio 3t 软件创建
+#### 使用 studio 3t 软件创建
 
 1. 右键点击需要增加索引的集合
 
@@ -280,9 +280,9 @@ show tables
 
 ![](images/20200420231441375_4007.png)
 
-## 6. 文档操作
+## 文档操作
 
-### 6.1. 插入文档
+### 插入文档
 
 mongodb 中文档的格式是 json 格式，下边就是一个文档，包括两个 key：`_id` 主键和 `name`
 
@@ -309,7 +309,7 @@ db.student.insert({"name":"moon","age":10})
 
 **注意：同一个集合中的文档的 key 名称与个数可以不相同！但是建议设置为相同的。**
 
-### 6.2. 更新文档
+### 更新文档
 
 - 命令格式：
 
@@ -323,7 +323,7 @@ db.COLLECTION_NAME.update(<query>, <update>, <options>)
 - `update`：更新文档内容
 - `options`：选项
 
-#### 6.2.1. 替换文档
+#### 替换文档
 
 将符合条件 `"name":"moon"` 的第一个文档替换为 `{"name":"斩月","age":10}`。
 
@@ -331,7 +331,7 @@ db.COLLECTION_NAME.update(<query>, <update>, <options>)
 db.student.update({"name":"moon"},{"name":"斩月","age":10})
 ```
 
-#### 6.2.2. $set 修改器
+#### $set 修改器
 
 - 使用 `$set` 修改器指定要更新的 key，key 不存在则创建，存在则更新。
 - 将符合条件 "name":"斩月" 的所有文档更新 name 和 age 的值。
@@ -342,9 +342,9 @@ db.student.update({"name":"斩月"},{$set:{"name":"天锁斩月","age":10}},{mul
 
 _注：参数 multi：false 表示更新第一个匹配的文档，true 表示更新所有匹配的文档_
 
-### 6.3. 删除文档
+### 删除文档
 
-#### 6.3.1. 语法格式
+#### 语法格式
 
 命令格式：
 
@@ -356,7 +356,7 @@ db.COLLECTION_NAME.remove(<query>)
 
 - `query`：删除条件，相当于 sql 语句中的 where
 
-#### 6.3.2. 示例
+#### 示例
 
 1. 删除所有文档
 
@@ -370,9 +370,9 @@ db.COLLECTION_NAME.remove({})
 db.COLLECTION_NAME.remove({"name":"moon"})
 ```
 
-### 6.4. 查询文档
+### 查询文档
 
-#### 6.4.1. 语法格式
+#### 语法格式
 
 命令格式：
 
@@ -385,7 +385,7 @@ db.COLLECTION_NAME.find(query, projection)
 - `query`：查询条件，可不填
 - `projection`：投影查询 key，可不填
 
-#### 6.4.2. 示例
+#### 示例
 
 1. 查询全部
 
@@ -409,9 +409,9 @@ db.COLLECTION_NAME.find({"name":"斩月"}, {name:1, age:1, _id:0})
 
 **注：1 代表显示，0 代表不显示**
 
-## 7. 用户
+## 用户
 
-### 7.1. 创建用户
+### 创建用户
 
 语法格式：
 
@@ -453,7 +453,7 @@ db.createUser(
 5. 所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase
 6. 超级用户角色：root
 
-### 7.2. 认证登录
+### 认证登录
 
 为了安全需要，Mongodb 要打开认证开关，即用户连接 Mongodb 要进行认证，其中就可以通过账号密码方式进行认证。
 
@@ -477,7 +477,7 @@ auth=true
 
 ![Studio 3T使用账户登陆](images/20190408154600799_31808.png)
 
-### 7.3. 查询用户
+### 查询用户
 
 查询当前库下的所有用户：
 
@@ -485,7 +485,7 @@ auth=true
 show users
 ```
 
-### 7.4. 删除用户
+### 删除用户
 
 - 语法格式：
 
@@ -499,7 +499,7 @@ db.dropUser("用户名")
 db.dropUser("test1")
 ```
 
-### 7.5. 修改用户
+### 修改用户
 
 - 语法格式：
 
@@ -534,7 +534,7 @@ use admin
 db.updateUser("test1",{roles:[{role:"readWriteAnyDatabase",db:"admin"}]})
 ```
 
-### 7.6. 修改密码
+### 修改密码
 
 - 语法格式：
 

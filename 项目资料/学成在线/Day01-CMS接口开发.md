@@ -1,10 +1,10 @@
-## 1. 项目的功能架构
+## 项目的功能架构
 
-### 1.1. 项目背景
+### 项目背景
 
 学成在线借鉴了 MOOC（大型开放式网络课程，即 MOOC（massive open online courses））的设计思想，是一个提供IT职业课程在线学习的平台
 
-### 1.2. 功能模块
+### 功能模块
 
 当前市场的在线教育模式多种多样，包括：B2C、C2C、B2B2C等业务模式，学成在线采用B2B2C业务模式，即向企业或个人提供在线教育平台提供教学服务，老师和学生通过平台完成整个教学和学习的过程
 
@@ -22,13 +22,13 @@
 | 教学管理中心 | 教师登录教学管理中心进行课程管理、资源管理、考试管理等教学活动。 |
 | 系统管理中心 | 系统管理员登录系统管理中心进行分类管理、运维管理等功能。     |
 
-### 1.3. 项目原型
+### 项目原型
 
 参考课堂资料的“界面原型”。
 
-## 2. 项目的技术架构
+## 项目的技术架构
 
-### 2.1. 技术架构
+### 技术架构
 
 学成在线采用当前流行的前后端分离架构开发，由用户层、UI层、微服务层、数据层等部分组成，为PC、App、H5等客户端用户提供服务。下图是系统的技术架构图
 
@@ -56,7 +56,7 @@
 |  7   | 外部系统接口 | 1）微信、QQ、微博登录接口，本系统和微信、QQ、微博系统对接，用户输入微信、QQ、微博的账号和密码即可登录本系统。2）微信、QQ、微博分享接口，本系统和微信、QQ、微博系统对接，可直接将本系统的课程资源信息分享到微信、QQ、微博。3）支付宝、微信、网银支付接口，本系统提供支付宝、微信、网银三种支付接口。4）短信接口，本系统与第三方平台对接短信发送接口。 5）邮件接口，本系统需要连接第三方的smpt邮件服务器对外发送电子邮件。 6）微信公众号，本系统与微信公众号平台接口，用户通过微信公众号访问H5页面。 7）点播、直播，前期视频点播与直播采用第三方服务方式，本系统与第三方点、直播服务对接，对外提供视频点播与直播服务。 8）OSS存储，前期静态资源文件的存储采用第三方服务方式，本系统与第三方提供的OSS存储服务对接，将系统的静态资源文件存储到第三方提供的OSS存储服务器上。 9）CDN，本系统与第三方CDN服务对接，使用CDN加速服务来提高本系统的访问速度。 |
 |  8   |    DevOps    | DevOps（英文Development和Operations的组合）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。本项目供了许多开发、运营、维护支撑的系统，包括： Eureka服务治理中心：提供服务治理服务，包括：服务注册、服务获取等。 Spring Cloud Config服务配置管理中心：提供服务配置管理服务，包括：配置文件更新、配置文件下发等。Hystrix Dashboard服务熔断监控：监控熔断的请求响应时间、成功率等 。 Zipkin服务追踪监控：监控服务调用链路健康情况。 Jenkins持续集成服务：提供系统持续集成服务。 Git/GitLab代码管理服务:提供git代码管理服务。 ELK日志分析服务:提供elk日志分析服务，包括系统运行日志分析、告警服务。 Docker容器化部署服务：将本系统所有服务采用容器化部署方式。 Maven项目管理工具：提供管理项目所有的Java包依赖、项目工程打包服务。 |
 
-### 2.2. 技术栈
+### 技术栈
 
 下图是项目技术架构的简图，了解项目所使用的技术栈。
 
@@ -71,7 +71,7 @@
 - 控制层：Spring MVC、FastJSON、RestTemplate、Spring Security Oauth2+JWT等
 - 微服务治理：Eureka、Zuul、Hystrix、Spring Cloud Config等
 
-### 2.3. 开发步骤
+### 开发步骤
 
 项目是基于前后端分离的架构进行开发，前后端分离架构总体上包括前端和服务端，通常是多人协作并行开发，开发步骤如下：
 
@@ -93,9 +93,9 @@
 
 最终前端调用服务端接口完成业务。
 
-## 3. CMS 需求分析
+## CMS 需求分析
 
-### 3.1. 什么是 CMS
+### 什么是 CMS
 
 1. CMS 是什么？
 
@@ -109,13 +109,13 @@
 
 本项目作为一个大型的在线教育平台，**对CMS系统的定位是对各网站（子站点）页面的管理，主要管理由于运营需要而经常变动的页面，从而实现根据运营需要快速进行页面开发、上线的需求**。
 
-### 3.2. 静态门户工程搭建
+### 静态门户工程搭建
 
 本项目CMS是对页面进行管理，对页面如何进行管理呢？首先搭建学成网的静态门户工程，根据门户的页面结构来分析页面的管理方案。
 
 门户，是一个网站的入口，一般网站都有一个对外的门户
 
-#### 3.2.1. 导入门户工程
+#### 导入门户工程
 
 1. 安装Nginx
     - 下载nginx：http://nginx.org/en/download.html
@@ -126,7 +126,7 @@
     - 将课程资料【\day01 搭建环境 CMS服务端开发\资料\资料备份\xc-ui-pc-static-portal.rar】中的门户工程解压拷贝到代码目录
     - 使用WebStorm或vsCode打开门户工程，后期会根据开发的推进进行扩充
 
-#### 3.2.2. 配置虚拟主机
+#### 配置虚拟主机
 
 1. 在nginx中配置虚拟主机，修改`\nginx-1.14.2-xc-edu\conf\nginx.conf`文件，在`alias`属性上增加静态门户工程的主目录：
 
@@ -152,7 +152,7 @@ server {
 
 测试输入：http://www.xuecheng.com
 
-### 3.3. SSI 服务端包含技术
+### SSI 服务端包含技术
 
 1. 页面内容多如何管理？
 
@@ -201,7 +201,7 @@ server {
 
 6. 测试，去掉某个#include查看页面效果。
 
-### 3.4. CMS 页面管理需求
+### CMS 页面管理需求
 
 这些页面的管理流程是什么？
 
@@ -219,9 +219,9 @@ server {
 
 页面发布成功，用户即可在浏览器浏览到最新发布的页面，整个页面添加、发布的过程由于软件自动执行，无需人工登录服务器操作。
 
-## 4. CMS 服务端工程搭建
+## CMS 服务端工程搭建
 
-### 4.1. 开发工具配置
+### 开发工具配置
 
 1. 复制课程资料准备好的工程代码【\day01 搭建环境 CMS服务端开发\资料\资料备份\基础工程\】到【D:\code\xc-edu-project\xc-edu-project-service\】
 2. 配置maven仓库
@@ -232,9 +232,9 @@ server {
     1. 修改idea64.exe.vmoptions（64位电脑选择此文件）
     2. 一个例子，电脑内存 8G，设置如：`-Xms1024m -Xmx4096m -XX:MaxPermSize=1024m -XX:ReservedCodeCacheSize=1024m`
 
-### 4.2. 导入基础工程
+### 导入基础工程
 
-#### 4.2.1. 工程结构
+#### 工程结构
 
 CMS及其它服务端工程基于maven进行构建，首先需要创建如下基础工程：
 
@@ -248,7 +248,7 @@ CMS及其它服务端工程基于maven进行构建，首先需要创建如下基
 
 基础工程代码及pom.xml配置参考课程资料“基础工程”。
 
-#### 4.2.2. 导入工程代码
+#### 导入工程代码
 
 1. 将课程资料中所有工程拷贝到代码目录
 2. 点击Import Model，选择parent工程目录，一直按next导入
@@ -263,22 +263,22 @@ CMS及其它服务端工程基于maven进行构建，首先需要创建如下基
 
 ![最终项目结构效果图](images/20190408100036482_12113.png)
 
-### 4.3. CMS系统数据存储选择 - MongoDB
+### CMS系统数据存储选择 - MongoDB
 
 CMS 采用 MongoDB 数据库存储 CMS 页面信息，CMS 选用 Mongodb 的原因如下：
 
 1. Mongodb 是非关系型数据库，存储Json格式数据，数据格式灵活。
 2. 相比课程管理等核心数据 CMS 数据不重要，且没有事务管理要求。
 
-#### 4.3.1. 安装MongoDB
+#### 安装MongoDB
 
 参考[《MongoDb-安装与使用》笔记](/Database/MongoDb/MongoDb-安装与使用) 或者 课程资料“mongodb安装及入门”文档安装 Mongodb Server 及 Studio 3T 客户端软件。
 
-#### 4.3.2. MongoDB入门
+#### MongoDB入门
 
 参考[《MongoDb-基础》笔记](/Database/MongoDb/MongoDb-基础) 或者 课程资料“mongodb安装及入门”文档
 
-### 4.4. 导入 CMS 数据库
+### 导入 CMS 数据库
 
 使用 Studio 3T 软件导入 cms 数据库
 
@@ -300,11 +300,11 @@ CMS 采用 MongoDB 数据库存储 CMS 页面信息，CMS 选用 Mongodb 的原�
 
 ![](images/20190408160255803_30043.png)
 
-## 5. 页面查询接口定义
+## 页面查询接口定义
 
-### 5.1. 定义模型
+### 定义模型
 
-#### 5.1.1. 需求分析
+#### 需求分析
 
 在梳理完用户需求后就要去定义前后端的接口，接口定义后前端和后端就可以依据接口去开发功能了。
 
@@ -316,7 +316,7 @@ CMS 采用 MongoDB 数据库存储 CMS 页面信息，CMS 选用 Mongodb 的原�
 2. 根据站点Id、模板Id、页面别名查询页面信息
 3. 接口基于Http Get请求，响应Json数据
 
-#### 5.1.2. 模型类介绍
+#### 模型类介绍
 
 - CmsSite：站点模型
 - CmsTemplate：页面模板
@@ -357,9 +357,9 @@ public class CmsPage {
 - `@Data`、`@ToString`：是Lombok提供的注解，Java的工具类，加上此注解则不需要提供getter、setter和toString()等方法。
 - `@Document`：是Spring Data mongodb提供的注解，最终CMS的开发会使用Mongodb数据库。
 
-### 5.2. Lombok 工具包
+### Lombok 工具包
 
-#### 5.2.1. 简介
+#### 简介
 
 Lombok是一个实用的java工具，使用它可以消除java代码的臃肿，Lombok提供一系列的注解，使用这些注解可以不用定义getter/setter、equals、构造方法等，它会在编译时在字节码文件自动生成这些通用的方法，简化开发人员的工作。
 
@@ -367,7 +367,7 @@ Lombok是一个实用的java工具，使用它可以消除java代码的臃肿，
 
 比如上节创建的UserTest模型，@Data注解可以自动生成getter/setter方法，@ToString生成tostring方法。
 
-#### 5.2.2. 使用方法
+#### 使用方法
 
 1. 在项目中添加Lombok的依赖
 
@@ -389,9 +389,9 @@ Lombok是一个实用的java工具，使用它可以消除java代码的臃肿，
 
 ![安装Lombok插件](images/20190408171258483_19185.png)
 
-### 5.3. 定义接口
+### 定义接口
 
-#### 5.3.1. 定义CMS系统的请求及响应类
+#### 定义CMS系统的请求及响应类
 
 1. 在xc-framework-model模块中，`com.xuecheng.framework.domain.cms.request`包下创建`QueryPageRequest`请求模型类，此模型作为查询条件类。为后期扩展需求，请求类型统一继承RequestData类。
 
@@ -422,7 +422,7 @@ public class QueryPageRequest extends RequestData {
 
 2. 响应结果类型，分页查询统一使用QueryResponseResult（提供的项目已创建）
 
-#### 5.3.2. 定义接口
+#### 定义接口
 
 在 Api接口工程专门定义接口，在Api工程单独定义接口的原因如下：
 
@@ -447,11 +447,11 @@ public interface CmsPageControllerApi {
 
 此接口编写后会在CMS服务工程编写Controller类实现此接口。
 
-## 6. 页面查询服务端开发
+## 页面查询服务端开发
 
-### 6.1. 创建CMS服务工程
+### 创建CMS服务工程
 
-#### 6.1.1. CMS工程结构
+#### CMS工程结构
 
 1. 创建maven工程， CMS工程的名称为 xc-service-manage-cms，父工程为xc-framework-parent。pom.xml配置如下：
 
@@ -628,7 +628,7 @@ public class ManageCmsApplication {
 
 ![工程结构图](images/20190514163812365_26348.png)
 
-#### 6.1.2. 测试Controller
+#### 测试Controller
 
 使用springMVC完成接口实现开发，这里暂时使用测试数据，稍后会让controller调用service来查询数据。
 
@@ -667,11 +667,11 @@ public class CmsPageController implements CmsPageControllerApi {
 }
 ```
 
-### 6.2. dao层
+### dao层
 
-#### 6.2.1. 分页查询测试
+#### 分页查询测试
 
-##### 6.2.1.1. 定义Dao接口
+##### 定义Dao接口
 
 本项目使用Spring Data Mongodb完成Mongodb数据库的查询，Spring Data Mongodb提供一套快捷操作mongodb的方法。
 
@@ -682,7 +682,7 @@ public interface CmsPageRepository extends MongoRepository<CmsPage, String> {
 }
 ```
 
-##### 6.2.1.2. 编写测试类，分页查询测试
+##### 编写测试类，分页查询测试
 
 - test下的包路径与main下的包路径保持一致，创建测试类com.xuecheng.manage_cms.dao.CmsPageRepositoryTest
 - 测试程序使用`@SpringBootTest`和`@RunWith(SpringRunner.class)`注解，启动测试类会从main下找springBoot启动类，加载spring容器。
@@ -712,11 +712,11 @@ public class CmsPageRepositoryTest {
 }
 ```
 
-#### 6.2.2. 基础方法测试
+#### 基础方法测试
 
 这里Dao接口继承了MongoRepository，在MongoRepository中定义了很多现成的方法，如save、delete等，通过下边的代码来测试这里父类方法。
 
-##### 6.2.2.1. 添加
+##### 添加
 
 ```java
 /**
@@ -744,7 +744,7 @@ public void testInsert() {
 }
 ```
 
-##### 6.2.2.2. 删除
+##### 删除
 
 ```java
 /**
@@ -757,7 +757,7 @@ public void testDelete() {
 }
 ```
 
-##### 6.2.2.3. 修改
+##### 修改
 
 注：修改是先查询数据，再进入插入操作。因为id一致的话，就会去更新。
 
@@ -779,14 +779,14 @@ public void testUpdate() {
 }
 ```
 
-##### 6.2.2.4. 关于Optional
+##### 关于Optional
 
 - Optional是jdk1.8引入的类型，Optional是一个容器对象，它包括了我们需要的对象，使用isPresent方法判断所包含对象是否为空，isPresent方法返回false则表示Optional包含对象为空，否则可以使用get()取出对象进行操作。
 - Optional的优点是：
     1. 提醒你非空判断。
     2. 将对象非空检测标准化。
 
-### 6.3. Service层
+### Service层
 
 定义页面查询方法，根据条件查询暂时不实现
 
@@ -846,7 +846,7 @@ public class PageService {
 }
 ```
 
-### 6.4. Controller层
+### Controller层
 
 使用springMVC完成接口实现开发
 
@@ -879,9 +879,9 @@ public class CmsPageController implements CmsPageControllerApi {
 
 使用浏览器测试，输入：http://localhost:31001/cms/page/list/1/10 查询第1页，每页显示10条记录。
 
-### 6.5. 接口开发规范
+### 接口开发规范
 
-#### 6.5.1. Api请求及响应规范
+#### Api请求及响应规范
 
 为了严格按照接口进行开发，提高效率，对请求及响应格式进行规范化。
 
@@ -890,26 +890,26 @@ public class CmsPageController implements CmsPageControllerApi {
 3. 响应结果统一信息为：是否成功、操作代码、提示信息及自定义数据。
 4. 响应结果统一格式为json。
 
-#### 6.5.2. Api定义约束
+#### Api定义约束
 
 Api 定义使用SpringMVC来完成，由于此接口后期将作为微服务远程调用使用，在定义接口时有如下限制：
 
 1. `@PathVariable` 统一指定参数名称，如：`@PathVariable("id")`
 2. `@RequestParam` 统一指定参数名称，如：`@RequestParam("id")`
 
-## 7. 页面查询接口测试
+## 页面查询接口测试
 
 上边的代码是基于服务端编写接口，如果前端人员等待服务端人员将接口开发完毕再去开发前端内容这样做效率是非常低下的，所以当接口定义完成，可以使用工具生成接口文档，前端人员查看接口文档即可进行前端开发，这样前端和服务人员并行开发，大大提高了生产效率。
 
 本章节介绍两种接口开发工具，Swagger和Postman。
 
-### 7.1. Swagger
+### Swagger
 
-#### 7.1.1. Swagger 介绍
+#### Swagger 介绍
 
 Swagger 的基础介绍与使用详见[《Swagger 接口文档工具》笔记](/后端框架/工具框架/Swagger)
 
-#### 7.1.2. Swagger 接口定义
+#### Swagger 接口定义
 
 修改接口工程中页面查询接口CmsPageControllerApi，添加Swagger注解
 
@@ -950,7 +950,7 @@ public class QueryPageRequest extends RequestData {
 }
 ```
 
-#### 7.1.3. Swagger 接口配置类
+#### Swagger 接口配置类
 
 创建 swagger 的配置类，配置生成接口文档的设置
 
@@ -998,7 +998,7 @@ public class Swagger2Configuration {
 }
 ```
 
-#### 7.1.4. Swagger接口测试
+#### Swagger接口测试
 
 Swagger 接口生成工作原理：
 
@@ -1017,7 +1017,7 @@ Swagger 接口生成工作原理：
 
 ![Swagger接口测试2](images/20190515145931467_12604.png)
 
-### 7.2. Postman
+### Postman
 
 Postman 是一款功能强大的http接口测试工具，使用 postman 可以完成http各种请求的功能测试。
 

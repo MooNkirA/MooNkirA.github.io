@@ -1,6 +1,6 @@
-## 1. Sentinel 概述
+## Sentinel 概述
 
-### 1.1. 简介
+### 简介
 
 随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel (分布式系统的流量防卫兵) 是阿里开源的一套用于服务容错的综合性解决方案。以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
 
@@ -13,15 +13,15 @@
 
 > 官网：https://sentinelguard.io/zh-cn/
 
-### 1.2. Sentinel 的构架图
+### Sentinel 的构架图
 
 ![](images/20201020160928442_20800.png)
 
-### 1.3. Sentinel 与 Hystrix 的区别
+### Sentinel 与 Hystrix 的区别
 
 ![](images/20201020161451416_30983.png)
 
-### 1.4. 迁移方案
+### 迁移方案
 
 Sentinel 官方提供了由 Hystrix 迁移到 Sentinel 的详细方法。详情参考 [Guideline: 从 Hystrix 迁移到 Sentinel](https://github.com/alibaba/Sentinel/wiki/Guideline:-从-Hystrix-迁移到-Sentinel)
 
@@ -32,7 +32,7 @@ Sentinel 官方提供了由 Hystrix 迁移到 Sentinel 的详细方法。详情�
 - 注解支持迁移方案：Sentinel 也提供注解支持，可以很方便地迁移，详见[此处](https://github.com/alibaba/Sentinel/wiki/Guideline:-从-Hystrix-迁移到-Sentinel#注解支持)
 - 开源框架支持迁移方案：Sentinel 提供 Servlet、Dubbo、Spring Cloud、gRPC 的适配模块，开箱即用；若之前使用 Spring Cloud Netflix，可迁移至 [Spring Cloud Alibaba](https://github.com/spring-cloud-incubator/spring-cloud-alibaba)
 
-### 1.5. Sentinel 组成部分
+### Sentinel 组成部分
 
 Sentinel 的使用可以分为两个部分:
 
@@ -41,15 +41,15 @@ Sentinel 的使用可以分为两个部分:
 
 > 核心库不依赖 Dashboard，但是结合 Dashboard 可以取得最好的效果。
 
-## 2. Sentinel 基本原理
+## Sentinel 基本原理
 
-### 2.1. Sentinel 功能和设计理念
+### Sentinel 功能和设计理念
 
 Sentinel 总体功能概述图：
 
 ![](images/20220102105526948_10032.jpg)
 
-#### 2.1.1. 流量控制
+#### 流量控制
 
 流量控制在网络传输中是一个常用的概念，它用于调整网络包的发送数据。然而，从系统稳定性角度考虑，在处理请求的速度上，也有非常多的讲究。任意时间到来的请求往往是随机不可控的，而系统的处理能力是有限的。需要根据系统的处理能力对流量进行控制。Sentinel 作为一个调配器，可以根据需要把随机的请求调整成合适的形状，如下图所示：
 
@@ -63,7 +63,7 @@ Sentinel 总体功能概述图：
 
 Sentinel 的设计理念是让开发者自由选择控制的角度，并进行灵活组合，从而达到想要的效果。
 
-#### 2.1.2. 熔断降级
+#### 熔断降级
 
 除了流量控制以外，降低调用链路中的不稳定资源也是 Sentinel 的使命之一。由于调用关系的复杂性，如果调用链路中的某个资源出现了不稳定，最终会导致请求发生堆积。
 
@@ -85,13 +85,13 @@ Sentinel 针对熔断降级设计，采取了两种手段:
 >
 > Hystrix 通过线程池的方式，来对依赖(在我们的概念中对应资源)进行了隔离。这样做的好处是资源和资源之间做到了最彻底的隔离。缺点是除了增加了线程切换的成本，还需要预先给各个资源做线程池大小的分配。
 
-#### 2.1.3. 系统负载保护
+#### 系统负载保护
 
 Sentinel 同时提供系统维度的自适应保护能力。当系统负载较高的时候，如果还持续让请求进入，可能会导致系统崩溃，无法响应。在集群环境下，网络负载均衡会把本应这台机器承载的流量转发到其它的机器上去。如果这个时候其它的机器也处在一个边缘状态的时候，这个增加的流量就会导致这台机器也崩溃，最后导致整个集群不可用。
 
 针对这个情况，Sentinel 提供了对应的保护机制，让系统的入口流量和系统的负载达到一个平衡，保证系统在能力范围之内处理最多的请求。
 
-### 2.2. Sentinel 的工作机制
+### Sentinel 的工作机制
 
 Sentinel 的主要工作机制如下：
 
@@ -99,7 +99,7 @@ Sentinel 的主要工作机制如下：
 - 根据预设的规则，结合对资源的实时统计信息，对流量进行控制。同时，Sentinel 提供开放的接口，方便开发者定义及改变规则。
 - Sentinel 提供实时的监控系统，方便开发者快速了解目前系统的状态。
 
-### 2.3. Sentinel 工作主流程
+### Sentinel 工作主流程
 
 在 Sentinel 里面，所有的资源都对应一个资源名称以及一个 Entry。Entry 可以通过对主流框架的适配自动创建，也可以通过注解的方式或调用 API 显式创建；每一个 Entry 创建的时候，同时也会创建一系列功能插槽（slot chain）。这些插槽有不同的职责，例如:
 
@@ -119,9 +119,9 @@ Sentinel 将 ProcessorSlot 作为 SPI 接口进行扩展（1.7.2 版本以前 Sl
 
 ![](images/333900822248869.png)
 
-## 3. Sentinel 管理控制台（Dashboard）
+## Sentinel 管理控制台（Dashboard）
 
-### 3.1. 概述
+### 概述
 
 Sentinel 提供一个轻量级的开源控制台，它提供机器发现以及健康情况管理、监控（单机和集群），规则管理和推送的功能。Sentinel 控制台包含如下功能：
 
@@ -132,15 +132,15 @@ Sentinel 提供一个轻量级的开源控制台，它提供机器发现以及�
 
 > Notes: Sentinel 控制台目前仅支持单机部署。以下示例不通常直接在生产环境中使用，若在生产环境使用可参考[官方文档](https://github.com/alibaba/Sentinel/wiki/%E5%9C%A8%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%AD%E4%BD%BF%E7%94%A8-Sentinel) 自行进行定制和改造。阿里云上提供企业级的 Sentinel 服务：[AHAS Sentinel 控制台](https://github.com/alibaba/Sentinel/wiki/AHAS-Sentinel-控制台)，包含多样化的监控及全自动托管的集群流控能力。
 
-### 3.2. 获取 Sentinel 控制台
+### 获取 Sentinel 控制台
 
-#### 3.2.1. 下载编译后 jar 包
+#### 下载编译后 jar 包
 
 可以官方仓库中的 release 页面，下载最新版本的编译后控制台 jar 包。
 
 > 下载地址：https://github.com/alibaba/Sentinel/releases/
 
-#### 3.2.2. 通过源码构建 jar 包
+#### 通过源码构建 jar 包
 
 也可以下载最新版本的源码自行构建 Sentinel 控制台。
 
@@ -151,13 +151,13 @@ Sentinel 提供一个轻量级的开源控制台，它提供机器发现以及�
 
 ![](images/167914422248797.png)
 
-#### 3.2.3. 版本选择
+#### 版本选择
 
 从 `spring-cloud-alibaba-dependencies` 的依赖中可以看到 Sentinel 的版本，因为选择控制台的版本尽量与其一致。本次示例使用v1.8.0版本
 
 ![](images/244152822230371.png)
 
-### 3.3. 启动 Sentinel 控制台
+### 启动 Sentinel 控制台
 
 进入 Sentinel jar 包所在的目录，直接使用 jar 命令启动项目(控制台本身是一个SpringBoot项目)。具体命令如下：
 
@@ -174,25 +174,25 @@ $ java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproje
 
 > 注：从 Sentinel 1.6.0 起，Sentinel 控制台引入基本的登录功能，默认用户名和密码都是`sentinel`。可以参考 [官方鉴权模块文档](https://sentinelguard.io/zh-cn/docs/dashboard.html#鉴权) 配置用户名和密码。启动Sentinel控制台需要JDK版本为1.8及以上版本。
 
-### 3.4. 访问 Sentinel 控制台
+### 访问 Sentinel 控制台
 
 通过浏览器访问 `http://127.0.0.1:部署的服务端口号` 进入控制台。默认用户名密码是 sentinel/sentinel
 
 ![](images/20220102124849717_12171.png)
 
-### 3.5. 扩展：了解控制台的使用原理
+### 扩展：了解控制台的使用原理
 
 Sentinel 的控制台其实就是一个 SpringBoot 编写的程序。只需要将相应的微服务程序注册到控制台上，即在微服务中指定控制台的地址，并且还要开启一个跟控制台传递数据的端口，控制台也可以通过此端口调用微服务中的监控程序获取微服务的各种信息。
 
 ![](images/20220102123008079_15584.png)
 
-## 4. Sentinel 快速开始
+## Sentinel 快速开始
 
 此部分主要介绍是核心库（Java 客户端）的基础使用示例。包括引入 Sentinel 依赖、定义服务保护的资源、配置参数、通过控制台查询信息等示例
 
-### 4.1. 微服务客户端接入 Sentinel 控制台
+### 微服务客户端接入 Sentinel 控制台
 
-#### 4.1.1. 方式1：依赖 Transport 模块
+#### 方式1：依赖 Transport 模块
 
 客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。可以通过 pom.xml 引入相关依赖
 
@@ -203,7 +203,7 @@ Sentinel 的控制台其实就是一个 SpringBoot 编写的程序。只需要�
 </dependency>
 ```
 
-#### 4.1.2. 方式2（推荐）：整合 Spring Cloud Alibaba
+#### 方式2（推荐）：整合 Spring Cloud Alibaba
 
 使用 Spring Cloud 整合了 Spring Cloud Alibaba 的方式来接入 Sentinel。
 
@@ -231,7 +231,7 @@ Sentinel 的控制台其实就是一个 SpringBoot 编写的程序。只需要�
 </dependency>
 ```
 
-### 4.2. 定义需要保护资源
+### 定义需要保护资源
 
 资源是 Sentinel 中的核心概念之一。最常用的资源是项目代码中的 Java 方法。在订单服务中，定义一些请求的方法。参考代码如下:
 
@@ -249,7 +249,7 @@ public class SentinelDemoController {
 
 在引入 Sentinel 客户端后，以上定义的这些请求方法，都会被保护起来
 
-### 4.3. 配置启动参数
+### 配置启动参数
 
 在相应工程的`application.yml`中添加开启`Sentinel`控制台配置信息，通过`spring.cloud.sentinel.transport.dashboard`属性配置控制台的请求路径。
 
@@ -264,7 +264,7 @@ spring:
       eager: true # 取消Sentinel控制台懒加载，当服务启动时立即加载到控制台中
 ```
 
-### 4.4. 通过 Sentinel 控制台查看机器列表以及健康情况
+### 通过 Sentinel 控制台查看机器列表以及健康情况
 
 默认情况下 Sentinel 会在客户端首次调用的时候才进行初始化，开始向控制台发送心跳包。也可以配置 `sentinel.eager=true`，取消Sentinel控制台懒加载。
 
@@ -274,9 +274,9 @@ spring:
 
 > 在控制台可以定义一些资源的保护规则，具体的规则分类、定义、使用等待详见《基本使用 - 资源与规则》章节
 
-## 5. Sentinel 基础使用
+## Sentinel 基础使用
 
-### 5.1. 资源
+### 资源
 
 资源是 Sentinel 的关键概念。它可以是 Java 应用程序中的任何内容，例如，由应用程序提供的一个服务、或由应用程序调用的其它应用提供的服务、或者是服务里的一个方法、甚至可以是一段代码。简而言之，**资源就是 Sentinel 要保护的东西**。
 
@@ -284,13 +284,13 @@ spring:
 
 只要通过 Sentinel API 定义的代码，就是资源，能够被 Sentinel 保护起来。大部分情况下，可以使用方法签名，URL，甚至服务名称作为资源名来标示资源。
 
-### 5.2. 规则
+### 规则
 
 **规则就是用来定义如何进行保护资源的**。作用在资源之上，定义以什么样的方式保护资源。Sentinel 支持围绕资源的实时状态设定的规则：流量控制规则、熔断降级规则、系统保护规则、来源访问控制规则和热点参数规则。
 
 > Notes: <font color=violet>**Sentinel 的所有规则可以动态实时调整**</font>。即规则都可以在内存态中动态地查询及修改，修改之后立即生效
 
-### 5.3. 资源保护步骤
+### 资源保护步骤
 
 在快速开始的章节中，已经实现了定义基础保护的资源，但是没有设置任何的保护规则。此章节主要介绍 Sentinel 核心库如何定义规则来进行资源保护，主要分为几个步骤：
 
@@ -300,15 +300,15 @@ spring:
 
 先把可能需要保护的资源定义好，之后再配置规则。也可以理解为，只要有了资源，我们就可以在任何时候灵活地定义各种流量控制规则。在编码的时候，只需要考虑这个代码是否需要保护，如果需要保护，就将之定义为一个资源。
 
-## 6. 定义资源
+## 定义资源
 
-### 6.1. 方式一：主流框架的默认适配
+### 方式一：主流框架的默认适配
 
 对大部分的主流框架，例如 Web Servlet、Dubbo、Spring Cloud、gRPC、Spring WebFlux、Reactor 等都做了适配。只需要引入对应的依赖即可方便地整合 Sentinel。
 
 > *注：快速开始章节的示例介绍就是属于这种默认适配方式*
 
-### 6.2. （待实践）方式二：抛出异常的方式定义资源
+### （待实践）方式二：抛出异常的方式定义资源
 
 `SphU` 类包含了 try-catch 风格的 API 方式，当资源发生了限流之后会抛出 `BlockException`。此时可以捕捉异常，进行限流之后的逻辑处理。示例代码如下：
 
@@ -346,7 +346,7 @@ try {
 
 > Notes: `SphU.entry(xxx)` 需要与 `entry.exit()` 方法成对出现，匹配调用，否则会导致调用链记录异常，抛出 `ErrorEntryFreeException` 异常。
 
-### 6.3. 方式三：返回布尔值方式定义资源
+### 方式三：返回布尔值方式定义资源
 
 `SphO` 类提供 if-else 风格的 API 方式，当资源发生了限流之后会返回 false，此时可以根据返回值，进行限流之后的逻辑处理。示例代码如下：
 
@@ -367,7 +367,7 @@ if (SphO.entry("自定义资源名")) {
 }
 ```
 
-### 6.4. 方式四：注解方式定义资源
+### 方式四：注解方式定义资源
 
 Sentinel 支持通过 `@SentinelResource` 注解定义资源，并可以配置 `blockHandler` 和 `fallback` 函数来进行限流之后的处理。示例：
 
@@ -386,7 +386,7 @@ public User blockHandlerForGetUser(String id, BlockException ex) {
 
 > 注意 `blockHandler` 函数会在原方法被限流/降级/系统保护的时候调用，而 `fallback` 函数会针对所有类型的异常。请注意 `blockHandler` 和 `fallback` 函数的形式要求，更多指引详见后面『`@SentinelResource` 注解』章节。
 
-### 6.5. （待实践）方式五：异步调用支持
+### （待实践）方式五：异步调用支持
 
 Sentinel 支持异步调用链路的统计。在异步调用中，需要通过 `SphU.asyncEntry(xxx)` 方法定义资源，并通常需要在异步的回调函数中调用 `exit` 方法。以下是一个简单的示例：
 
@@ -468,23 +468,23 @@ public void someAsync() {
 -----handleResultForAsync
 ```
 
-## 7. 定义规则
+## 定义规则
 
-### 7.1. 规则的种类
+### 规则的种类
 
 Sentinel 的所有规则都可以在内存态中动态地查询及修改，修改之后立即生效。同时 Sentinel 也提供相关 API，供您来定制自己的规则策略。
 
 Sentinel 支持以下几种规则：**流量控制规则**、**熔断降级规则**、**系统保护规则**、**来源访问控制规则**和**热点参数规则**。
 
-### 7.2. 流量控制规则 (FlowRule)
+### 流量控制规则 (FlowRule)
 
-#### 7.2.1. 定义
+#### 定义
 
 流量控制，其原理是监控应用流量的QPS(每秒查询率) 或并发线程数等指标，当达到指定的阈值时对流量进行控制，以避免被瞬时的流量高峰冲垮，从而保障应用的高可用性。
 
 > Notes: <font color=red>**同一个资源可以同时有多个限流规则。**</font>
 
-#### 7.2.2. 编程式定义流控规则
+#### 编程式定义流控规则
 
 重要属性：
 
@@ -513,7 +513,7 @@ private static void initFlowQpsRule() {
 }
 ```
 
-#### 7.2.3. 控制台规则设置界面介绍
+#### 控制台规则设置界面介绍
 
 点击簇点链路，就可以看到访问过的接口地址，然后点击对应的流控按钮，进入流控规则配置页面。新增流控规则界面如下
 
@@ -533,7 +533,7 @@ private static void initFlowQpsRule() {
 - **流控模式**(高级选项)：针对这个接口本身选择不同的控制模式
 - **流控效果**(高级选项)：选择控制的响应效果
 
-#### 7.2.4. 基于QPS/并发数的流控规则配置
+#### 基于QPS/并发数的流控规则配置
 
 设置阈值类型为QPS，单机阈值为3。即每秒请求量大于3的时候开始限流。
 
@@ -547,17 +547,17 @@ private static void initFlowQpsRule() {
 
 ![](images/20220102174508588_30609.png)
 
-#### 7.2.5. 配置流控模式
+#### 配置流控模式
 
 点击上面设置流控规则的编辑按钮，然后在编辑页面点击【高级选项】，会看到有流控模式一栏。Sentinel 共有三种流控模式，分别是：`直接`、`关联`、`链路`
 
 ![](images/20220102174842507_19646.png)
 
-##### 7.2.5.1. 直接流控
+##### 直接流控
 
 **直接流控模式（默认）**，是当指定的接口达到限流条件时，开启限流。直接流控模式是最简单的模式，*在基础配置的章节中就是这种模式*
 
-##### 7.2.5.2. 关联限流
+##### 关联限流
 
 **关联流控模式**：当指定接口A关联的资源（接口B）达到限流条件时，开启对指定接口A的限流（适合做应用让步）。简单来说，即某个接口自己没有设置限流规则，而受其他相关接口影响的而进行限流。
 
@@ -586,7 +586,7 @@ do curl -X GET "http://localhost:8001/demo/sentinel/message2" ;\
 done;
 ```
 
-##### 7.2.5.3. 链路限流
+##### 链路限流
 
 **链路流控模式**（**目前有问题，暂未实现**）：当从某个接口请求过来的资源（来源）达到限流条件时，开启限流。它的功能有点类似于针对来源配置项，区别在于：针对来源是针对上级微服务，而链路流控是针对上级接口，也就是说它的粒度更细。
 
@@ -697,17 +697,17 @@ do curl -X GET "http://localhost:8081/demo/sentinel/message4" ;\
 done;
 ```
 
-#### 7.2.6. 配置流控效果
+#### 配置流控效果
 
 在流控规则中【高级选项】中，可以配置『流控效果』，共有三种选择：
 
 ![](images/20220102181815268_9287.png)
 
-##### 7.2.6.1. 快速失败
+##### 快速失败
 
 **快速失败（默认）**: 直接失败，抛出异常，不做任何额外的处理，是最简单的效果
 
-##### 7.2.6.2. 预热 Warm Up
+##### 预热 Warm Up
 
 **Warm Up(预热)**：它从开始阈值到最大 QPS 阈值会有一个缓冲阶段，一开始的阈值是最大 QPS 阈值的 1/3，然后慢慢增长，直到最大阈值，此流控方式适用于将请求**一瞬间暴增**的流量转换为**缓步增**长的场景。
 
@@ -730,7 +730,7 @@ do curl -X GET "http://localhost:8001/hi" ;\
 done;
 ```
 
-##### 7.2.6.3. 排队等待
+##### 排队等待
 
 **排队等待**：让请求以均匀的速度通过，单机阈值为每秒通过数量，其余的排队等待； 它还会让设置一个超时时间，当请求超过超时间时间还未处理，则会被丢弃。
 
@@ -756,9 +756,9 @@ do curl -X GET "http://localhost:8001/hello?name=a" ;\
 done;
 ```
 
-### 7.3. 熔断降级规则 (DegradeRule)
+### 熔断降级规则 (DegradeRule)
 
-#### 7.3.1. 定义
+#### 定义
 
 除了流量控制以外，对调用链路中不稳定的资源进行**熔断降级**也是保障高可用的重要措施之一。
 
@@ -768,7 +768,7 @@ Sentinel 熔断降级会在调用链路中某个资源不正常时，对这个�
 
 > Tips: 本文档针对 Sentinel 1.8.0 及以上版本。1.8.0 版本对熔断降级特性进行了全新的改进升级，请使用最新版本以更好地利用熔断降级的能力。更多详情可以参考 [熔断降级](https://sentinelguard.io/zh-cn/docs/circuit-breaking.html)。
 
-#### 7.3.2. 熔断策略
+#### 熔断策略
 
 Sentinel 提供以下几种熔断策略：
 
@@ -776,7 +776,7 @@ Sentinel 提供以下几种熔断策略：
 - 异常比例 (`ERROR_RATIO`)：当单位统计时长（`statIntervalMs`）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 `[0.0, 1.0]`，代表 0% - 100%。
 - 异常数 (`ERROR_COUNT`)：当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。
 
-#### 7.3.3. 编程式定义熔断降级规则
+#### 编程式定义熔断降级规则
 
 熔断降级规则包含下面几个重要的属性：
 
@@ -806,7 +806,7 @@ private static void initDegradeRule() {
 }
 ```
 
-#### 7.3.4. 慢调用比例/平均响应时间(熔断策略配置)
+#### 慢调用比例/平均响应时间(熔断策略配置)
 
 点击【簇点链路】，可以看到访问过的接口地址，然后点击接口对应的【降级】按钮，进入降级规则配置页面。新增降级规则界面如下
 
@@ -826,7 +826,7 @@ private static void initDegradeRule() {
 
 > 注意：Sentinel 默认统计的 RT 上限是 `4900 ms`，超出此阈值的都会算作 `4900 ms`，若需要变更此上限可以通过启动配置项 `-Dcsp.sentinel.statistic.max.rt=xxx` 来配置。
 
-#### 7.3.5. 异常比例(熔断策略配置)
+#### 异常比例(熔断策略配置)
 
 定义请求方法模拟异常
 
@@ -853,7 +853,7 @@ public String getMessage5() {
 
 ![](images/137932812256910.jpg)
 
-#### 7.3.6. 异常数(熔断策略配置)
+#### 异常数(熔断策略配置)
 
 ![](images/20220102233815788_1195.png)
 
@@ -861,9 +861,9 @@ public String getMessage5() {
 
 ![](images/337613012249579.jpg)
 
-### 7.4. 热点规则 (ParamFlowRule)
+### 热点规则 (ParamFlowRule)
 
-#### 7.4.1. 定义
+#### 定义
 
 热点即经常访问的数据。很多时候希望统计某个热点数据中访问频次最高的 Top K 数据，并对其访问进行限制。比如：有 `/product/query?id=1&name=phone&price=100` 的接口，API 中包括 3 个参数，绝大部分请求都含有`name`参数，可以称其为**“热点参数”**。
 
@@ -875,7 +875,7 @@ Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌
 
 > Notes: 详情可以参考 [热点参数限流](https://sentinelguard.io/zh-cn/docs/parameter-flow-control.html)。
 
-#### 7.4.2. 编程式定义热点参数规则
+#### 编程式定义热点参数规则
 
 要使用热点参数限流功能，需要引入以下依赖：
 
@@ -917,7 +917,7 @@ rule.setParamFlowItemList(Collections.singletonList(item));
 ParamFlowRuleManager.loadRules(Collections.singletonList(rule));
 ```
 
-#### 7.4.3. 热点规则基础使用
+#### 热点规则基础使用
 
 - 编写资源，带有参数的请求方法
 
@@ -940,7 +940,7 @@ public String getMessage6(String name, Integer age) {
 
 ![](images/20220103170535312_32732.png)
 
-#### 7.4.4. 热点规则高级选项的使用
+#### 热点规则高级选项的使用
 
 在编辑热点规则中，有高级选项，可以对此参数的值进行特殊控制，例如参数值为`5`或者`10`时的阈值，根据值独立控制阈值。
 
@@ -956,22 +956,22 @@ public String getMessage6(String name, Integer age) {
 
 ![](images/20220103170919544_6649.png)
 
-#### 7.4.5. 热点规则配置注意事项
+#### 热点规则配置注意事项
 
 - 热点限流只支持`QPS 限流模式`
 - 针对参数值时，参数类型必须是基本类型（byte int long float double boolean char）或者 String
 - <font color=red>**通过导航栏的『热点规则』中配置，『资源名』必须是填写 `@SentinelResource` 注解标识的资源名称，否则无法生效！**</font>
 
-### 7.5. 访问控制规则（黑白名单 AuthorityRule）/授权规则（暂时有问题）
+### 访问控制规则（黑白名单 AuthorityRule）/授权规则（暂时有问题）
 
-#### 7.5.1. 定义
+#### 定义
 
 当需要根据调用方来限制资源是否通过，此时可以使用 Sentinel 的黑白名单控制的功能。黑白名单根据资源的请求来源（origin）限制资源是否通过，
 
 - 若配置白名单则只有请求来源位于白名单内时才可通过；
 - 若配置黑名单则请求来源位于黑名单时不通过，其余的请求通过。
 
-#### 7.5.2. 编程式定义访问控制规则
+#### 编程式定义访问控制规则
 
 黑白名单规则（`AuthorityRule`）主要有以下配置项：
 
@@ -989,7 +989,7 @@ rule.setLimitApp("appA,appB");
 AuthorityRuleManager.loadRules(Collections.singletonList(rule));
 ```
 
-#### 7.5.3. 基础使用
+#### 基础使用
 
 - 定义规则
 
@@ -1014,9 +1014,9 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 
 - 测试访问：http://127.0.0.1:8091/demo/sentinel/message1?client=pc
 
-### 7.6. 系统保护规则 (SystemRule)
+### 系统保护规则 (SystemRule)
 
-#### 7.6.1. 定义
+#### 定义
 
 之前的限流规则都是针对接口资源的，但有可能出现一种情况：每个资源的阈值都没有达到，但系统能力不足了。所以需要针对系统应用整体维度的情况来设置一定的规则，而不是资源维度的。
 
@@ -1024,7 +1024,7 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 
 > Notes: 更多详情可以参考 [系统自适应保护](https://sentinelguard.io/zh-cn/docs/system-adaptive-protection.html)。
 
-#### 7.6.2. 编程式定义系统规则
+#### 编程式定义系统规则
 
 系统规则包含下面几个重要的属性：
 
@@ -1048,7 +1048,7 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 }
 ```
 
-#### 7.6.3. 系统规则支持类型
+#### 系统规则支持类型
 
 系统保护规则是应用整体维度的，而不是资源维度的，并且**仅对入口流量生效**。入口流量指的是进入应用的流量（`EntryType.IN`），比如 Web 服务或 Dubbo 服务端接收的请求，都属于入口流量。系统规则支持以下的阈值类型：
 
@@ -1058,7 +1058,7 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 - **并发线程数**：当单台机器上所有入口流量的并发线程数达到阈值即触发系统保护。
 - **入口 QPS**：当单台机器上所有入口流量的 QPS 达到阈值即触发系统保护。
 
-#### 7.6.4. 系统规则基础设置与验证
+#### 系统规则基础设置与验证
 
 在左侧导航栏中，选择【系统规则】，可以新增系统保护规则。
 
@@ -1095,9 +1095,9 @@ public static void main(String[] args) {
 }
 ```
 
-### 7.7. 流控规则的针对来源
+### 流控规则的针对来源
 
-#### 7.7.1. 概述
+#### 概述
 
 在前面创建限流规则时，有一项【针对来源】一直都是使用默认值 `default`，就是不区分来源。
 
@@ -1109,7 +1109,7 @@ public static void main(String[] args) {
 
 此时可以使用规则配置中的『针对来源』选项，只对 Service B 进行特殊的限制。
 
-#### 7.7.2. 限流规则中区分来源实现步骤
+#### 限流规则中区分来源实现步骤
 
 Sentinel 提供了 `com.alibaba.csp.sentinel.adapter.servlet.callback.RequestOriginParser` 接口，只要 Sentinel 保护的接口资源被访问，Sentinel 就会调用 `RequestOriginParser` 的实现类去解析访问来源。因此，获取来源时只需要实现接口的 `parseOrigin` 方法即可。示例如下：
 
@@ -1141,9 +1141,9 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 1. Sentinel Console 中为 `/hello` 设置限流，针对来源设置为 `chrome`，阈值设为 1
 2. 此时如果访问接口是 `/hello?name=a&client=chrome`，应显示限流效果
 
-### 7.8. 自定义规则异常返回
+### 自定义规则异常返回
 
-#### 7.8.1. 概述
+#### 概述
 
 在前面的示例中，如果配置相关的规则被限流或者降级后，默认返回的提示信息都是：`Blocked by Sentinel (flow limiting)`。在实际生产环境中这种提示信息，会让开发者造成困惑，<u>到底是被限流了，还是被降级了呢？</u>。因此需要自定义针对不同的情况返回不同的提示信息。
 
@@ -1182,7 +1182,7 @@ public enum ResultCode {
 }
 ```
 
-#### 7.8.2. 旧版本（1.8以前版本）实现 UrlBlockHandler 的接口
+#### 旧版本（1.8以前版本）实现 UrlBlockHandler 的接口
 
 实现 `com.alibaba.csp.sentinel.adapter.servlet.callback.UrlBlockHandler` 接口，在 Sentinel 进行规则拦截时，会调用到接口的 `blocked` 方法。所以可以在此方法中，根据不同的异常类型自定义相应的返回内容。
 
@@ -1224,7 +1224,7 @@ public class ExceptionPageHandler implements UrlBlockHandler {
 }
 ```
 
-#### 7.8.3. 新版本（1.8版本）实现 BlockExceptionHandler 的接口
+#### 新版本（1.8版本）实现 BlockExceptionHandler 的接口
 
 ```java
 @Component
@@ -1264,9 +1264,9 @@ public class ExceptionPageHandler implements BlockExceptionHandler {
 }
 ```
 
-### 7.9. Sentinel 规则持久化
+### Sentinel 规则持久化
 
-#### 7.9.1. 概述
+#### 概述
 
 Sentinel 规则配置默认都是存在内存中的。即如果应用重启，这些规则就会失效，需要重新设置。在生产环境中，需要做好规则配置的持久化。
 
@@ -1276,7 +1276,7 @@ Sentinel 提供了丰富的数据源工具包，便于集成各类数据源。�
 - 结合 RDBMS、NoSQL、VCS 等来实现该规则
 - 配合 Sentinel Dashboard 使用
 
-#### 7.9.2. DataSource 扩展(Sentinel 规则推送模式)
+#### DataSource 扩展(Sentinel 规则推送模式)
 
 DataSource 扩展常见的实现方式有:
 
@@ -1289,7 +1289,7 @@ DataSource 扩展常见的实现方式有:
 
 ![](images/133303522230451.png)
 
-#### 7.9.3. 规则推送原理
+#### 规则推送原理
 
 本地文件数据源会定时轮询文件的变更，读取规则。这样既可以在应用本地直接修改文件来更新规则，也可以通过 Sentinel 控制台推送规则。以本地文件数据源为例，推送过程如下图所示：
 
@@ -1297,7 +1297,7 @@ DataSource 扩展常见的实现方式有:
 
 首先 Sentinel 控制台通过 API 将规则推送至客户端并更新到内存中，接着注册的写数据源会将新的规则保存到本地的文件中。
 
-#### 7.9.4. Sentinel 加载本地配置
+#### Sentinel 加载本地配置
 
 **一条限流规则主要由下面几个因素组成**：
 
@@ -1362,7 +1362,7 @@ spring.cloud.sentinel.datasource.ds1.file.rule-type=flow
 
 ![](images/20201022103834045_8987.png)
 
-#### 7.9.5. (!整理中)Sentinel 整合 Nacos 实现规则持久化流程
+#### (!整理中)Sentinel 整合 Nacos 实现规则持久化流程
 
 ![](images/323042017236115.png)
 
@@ -1386,7 +1386,7 @@ ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSou
 FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
 ```
 
-#### 7.9.6. 注册数据源
+#### 注册数据源
 
 通常需要调用以下方法将数据源注册至指定的规则管理器中：
 
@@ -1533,13 +1533,13 @@ public class DataSourceInitFunc implements InitFunc {
 
 当初次访问任意资源的时候，Sentinel 就可以自动去注册对应的数据源了。
 
-## 8. @SentinelResource 注解
+## @SentinelResource 注解
 
-### 8.1. 定义
+### 定义
 
 Sentinel 提供了 `@SentinelResource` 注解用于定义资源，并提供了 AspectJ 的扩展用于自动定义资源、处理 `BlockException` 等。
 
-### 8.2. 注解属性
+### 注解属性
 
 `@SentinelResource` 用于定义资源，并提供可选的异常处理和 `fallback` 配置项。 `@SentinelResource` 注解包含以下属性：
 
@@ -1568,9 +1568,9 @@ Sentinel 提供了 `@SentinelResource` 注解用于定义资源，并提供了 A
 
 特别地，若 `blockHandler` 和 `fallback` 都进行了配置，则被限流降级而抛出 `BlockException` 时只会进入 `blockHandler` 处理逻辑。若未配置 `blockHandler`、`fallback` 和 `defaultFallback`，则被限流降级时会将 `BlockException` **直接抛出**（若方法本身未定义 throws BlockException 则会被 JVM 包装一层 `UndeclaredThrowableException`）。
 
-### 8.3. 定义限流和降级后的处理方法
+### 定义限流和降级后的处理方法
 
-#### 8.3.1. 保护方法与处理方法定义在同一类中
+#### 保护方法与处理方法定义在同一类中
 
 ```java
 @Service
@@ -1629,7 +1629,7 @@ public class SentinelDemoServiceImpl implements SentinelDemoService {
 }
 ```
 
-#### 8.3.2. 处理方法定义在外部类中
+#### 处理方法定义在外部类中
 
 定义需要保护的方法
 
@@ -1685,17 +1685,17 @@ public class FallbackOutDemo {
 }
 ```
 
-## 9. Sentinel 进阶使用
+## Sentinel 进阶使用
 
-### 9.1. Sentinel 对通用资源保护
+### Sentinel 对通用资源保护
 
-#### 9.1.1. 基础说明
+#### 基础说明
 
 通用资源保护是指，无论是使用哪种远程调用的技术，只在需要被保护的方法上使用`@SentinelResource`注解进行熔断配置即可。与Hystrix不同的是，Sentinel对抛出异常和熔断降级做了更加细致的区分，通过`blockHandler`属性指定熔断降级方法；通过`fallback`属性指定触发异常执行的降级方法。
 
 <font color=red>**特别注意：若`blockHandler`和`fallback`都进行了配置，则被限流降级而抛出`BlockException`时只会进入`blockHandler`处理逻辑。若未配置`blockHandler`、`fallback`和`defaultFallback`，则被限流降级时会将`BlockException`直接抛出。**</font>
 
-#### 9.1.2. 使用示例
+#### 使用示例
 
 修改`shop-service-order-resttemplate`工程的`OrderController`，在方法上使用`@SentinelResource`注解增加熔断保护配置，并编写熔断、异常的降级方法
 
@@ -1752,7 +1752,7 @@ public class OrderController {
 }
 ```
 
-#### 9.1.3. 测试
+#### 测试
 
 直接通过控制台方式添加/修改降级规则如下：
 
@@ -1762,9 +1762,9 @@ public class OrderController {
 
 ![](images/20201022091446319_28012.png)
 
-### 9.2. RestTemplate 整合 Sentinel 实现熔断
+### RestTemplate 整合 Sentinel 实现熔断
 
-#### 9.2.1. 整合要点说明
+#### 整合要点说明
 
 RestTemplate 是服务调用的常用方式。Spring Cloud Alibaba Sentinel 也支持对 `RestTemplate` 的服务调用进行保护，只需如下配置即可：
 
@@ -1786,7 +1786,7 @@ resttemplate:
     enabled: true # 是否开启 sentinel 对象 resttemplate 支持（默认 true）
 ```
 
-#### 9.2.2. @SentinelRestTemplate 相关属性
+#### @SentinelRestTemplate 相关属性
 
 |        属性名        |       作用       |    取值     |
 | :-----------------: | --------------- | ---------- |
@@ -1821,7 +1821,7 @@ public class ExceptionUtil {
 }
 ```
 
-#### 9.2.3. 使用示例
+#### 使用示例
 
 1. 修改`shop-service-order-resttemplate`工程的配置类`HttpConfig`，在创建`RestTemplate`对象方法上增加``@SentinelRestTemplate`注解
 
@@ -1894,13 +1894,13 @@ public class ExceptionUtil {
 
 ![](images/20201022141019674_1083.png)
 
-#### 9.2.4. 整合步骤流程图
+#### 整合步骤流程图
 
 ![](images/534324012246134.png)
 
-### 9.3. Feign 整合 Sentinel 实现熔断
+### Feign 整合 Sentinel 实现熔断
 
-#### 9.3.1. 整合要点说明
+#### 整合要点说明
 
 Sentinel 适配了`OpenFeign`组件。如果想使用，除了引入 `sentinel-starter` 的依赖外还需要2个步骤：
 
@@ -1911,7 +1911,7 @@ Sentinel 适配了`OpenFeign`组件。如果想使用，除了引入 `sentinel-s
 >
 > 下面示例的`ProductFeginClient`接口中方法 `findById` 对应的资源名为 `GET:http://shop-service-product/product/{str}`
 
-#### 9.3.2. 使用示例
+#### 使用示例
 
 1. 引入依赖`openfeign`与`sentinel`的依赖
 
@@ -1974,7 +1974,7 @@ public interface ProductFeignClient {
 
 ![](images/20201022152754030_3953.png)
 
-#### 9.3.3. 从容错类中获取具体的错误信息
+#### 从容错类中获取具体的错误信息
 
 上面章节的容错方式在出现异常时，不能获取到异常的信息。如果需要获取容错发生时的具体的异常信息，则需要实现 Feign 提供的 `feign.hystrix.FallbackFactory` 接口。具体实现步骤如下：
 
@@ -2027,29 +2027,29 @@ public interface ProductFeignClient {
 
 <font color=red>**需要注意：`fallback` 和 `fallbackFactory` 只能使用其中一种方式**</font>
 
-#### 9.3.4. 整合步骤流程图
+#### 整合步骤流程图
 
 ![](images/238083014241888.png)
 
-### 9.4. 示例项目
+### 示例项目
 
-#### 9.4.1. spring-cloud-greenwich-sample 项目中的示例
+#### spring-cloud-greenwich-sample 项目中的示例
 
 参考`08-springcloud-hystrix-resttemplate`与`09-springcloud-hystrix-feign`工程，创建`10-springcloud-alibaba-sentinel`，删除hystrix组件部分内容，创建两个order服务，一个使用`RestTemplate`一个使用`Feign`
 
 具体项目代码参考`spring-cloud-note\spring-cloud-greenwich-sample\10-springcloud-alibaba-sentinel`
 
-#### 9.4.2. spring-cloud-alibaba-2.1.x-sample 项目中示例
+#### spring-cloud-alibaba-2.1.x-sample 项目中示例
 
 具体项目代码参考`spring-cloud-note\spring-cloud-alibaba-2.1.x-sample\service-order`
 
-## 10. 常用 API 说明
+## 常用 API 说明
 
-### 10.1. 资源规则工具类 SphU
+### 资源规则工具类 SphU
 
 Sentinel 提供了 `com.alibaba.csp.sentinel.SphU` 基础 Api，用于记录统计数据和执行资源的规则检查。
 
-### 10.2. 业务异常统计 Tracer
+### 业务异常统计 Tracer
 
 业务异常记录类 `com.alibaba.csp.sentinel.Tracer` 用于记录业务异常。相关方法：
 
@@ -2075,11 +2075,11 @@ public static void traceContext(Throwable e, int count, Context context)
 
 从 1.3.1 版本开始，注解方式定义资源支持自动统计业务异常，无需手动调用 `Tracer.trace(ex)` 来记录业务异常。Sentinel 1.3.1 以前的版本需要手动记录。
 
-### 10.3. 上下文工具类 ContextUtil
+### 上下文工具类 ContextUtil
 
 ContextUtil 是用于操作上下文的工具类，相关静态方法：
 
-#### 10.3.1. 标识进入调用链入口（上下文）
+#### 标识进入调用链入口（上下文）
 
 ```java
 public static Context enter(String contextName)
@@ -2097,7 +2097,7 @@ public static Context enter(String contextName, String origin)
 > - `ContextUtil.enter(xxx)` 方法仅在调用链路入口处生效，即仅在当前线程的初次调用生效，后面再调用不会覆盖当前线程的调用链路，直到 exit。`Context` 存于 ThreadLocal 中，因此切换线程时可能会丢掉，如果需要跨线程使用可以结合 `runOnContext` 方法使用。
 > - 流控规则中若选择“流控方式”为“链路”方式，则入口资源名即为上面的 `contextName`。
 
-#### 10.3.2. 退出调用链（清空上下文）
+#### 退出调用链（清空上下文）
 
 ```java
 public static void exit()
@@ -2105,7 +2105,7 @@ public static void exit()
 
 该方法用于退出调用链，清理当前线程的上下文。
 
-#### 10.3.3. 获取当前线程的调用链上下文
+#### 获取当前线程的调用链上下文
 
 ```java
 public static Context getContext()
@@ -2113,7 +2113,7 @@ public static Context getContext()
 
 获取当前线程的调用链路上下文对象。
 
-#### 10.3.4. 在某个调用链上下文中执行代码
+#### 在某个调用链上下文中执行代码
 
 ```java
 public static void runOnContext(Context context, Runnable f)

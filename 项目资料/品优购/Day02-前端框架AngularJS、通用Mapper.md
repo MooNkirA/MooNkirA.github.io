@@ -1,6 +1,4 @@
-# Day02 前端框架AngularJS、通用Mapper
-
-## 1. PageHelper 分页助手
+## PageHelper 分页助手
 
 - 在开发过程中对数据进行分页查询是很常见的功能；这里引入一个第三方开发的Mybatis分页插件PageHelper。
     - 详细见《mybatis框架相关.xmind》
@@ -9,7 +7,7 @@
 - 参考文档地址：
     - https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md
 
-### 1.1. 搭建测试项目
+### 搭建测试项目
 
 - 创建mybatis_db数据库并导入参考：资料\sql\notice测试数据.sql
 - 创建maven项目pyg-test父项目（pom），再创建mybatis-pager：分页模块(jar)
@@ -146,8 +144,8 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 
 在pojo包下创建实体类Notice.java，提供“NoticeMapper.xml” mybatis映射配置文件到resources/mapper/资源文件夹
 
-### 1.2. 使用PageHelper分页操作
-#### 1.2.1. 创建Mapper和映射文件
+### 使用PageHelper分页操作
+#### 创建Mapper和映射文件
 
 - NoticeMapper接口
 
@@ -172,7 +170,7 @@ public interface NoticeMapper {
 </mapper>
 ```
 
-#### 1.2.2. 添加PageHelper分页依赖
+#### 添加PageHelper分页依赖
 
 - 配置相关依赖jar包：pagehelper-5.0.0.jar、jsqlparser-0.9.5.jar
 - pom.xml添加依赖
@@ -186,7 +184,7 @@ public interface NoticeMapper {
 </dependency>
 ```
 
-#### 1.2.3. mybatis-config.xml配置pagehelper
+#### mybatis-config.xml配置pagehelper
 
 - 配置生成分页拦截器对象（com.github.pagehelper.PageInterceptor）
 - 分页拦截器常用属性
@@ -208,7 +206,7 @@ public interface NoticeMapper {
 </plugins>
 ```
 
-#### 1.2.4. 使用分页助手步骤
+#### 使用分页助手步骤
 
 - PageHelper分页助手在使用过程中比较简单；只需要在查询之前调用如下的代码即可：PageHelper.startPage(page, rows);
     - page表示页号，rows表示每页数据大小
@@ -313,19 +311,19 @@ public class NoticeMapperTest {
 }
 ```
 
-### 1.3. PageHelper相关api
-#### 1.3.1. `PageHelper` 类
+### PageHelper相关api
+#### `PageHelper` 类
 - `public static <E> com.github.pagehelper.Page<E> startPage(int pageNum, int pageSize)`
     - 静态方法，获取Page对象
     - 参数pageNum：当前页
     - 参数pageSize：每页显示数量
 
-#### 1.3.2. `Page<E>` 类
+#### `Page<E>` 类
 - `public <E> com.github.pagehelper.PageInfo<E> doSelectPageInfo(com.github.pagehelper.ISelect select)`
     - 指定执行分页的sql语句，返回PageInfo对象
     - 参数select：接口实现，实现doSelect方法
 
-#### 1.3.3. `PageInfo<T>` 类
+#### `PageInfo<T>` 类
 - `public PageInfo(java.util.List<T> list)`
     - 构造方法
     - 参数list：接口查询方法返回List集合
@@ -344,7 +342,7 @@ public class NoticeMapperTest {
 - `List<T> getList()`
     - 获取查询分页list数据
 
-## 2. 通用Mapper
+## 通用Mapper
 
 通用Mapper是封装一些通用Mapper接口的API，在开发过程中常见的CRUD代码可以省略不写，因为这些操作基本上比较固定和通用，所以对这些常用的操作进行了封装
 
@@ -352,11 +350,11 @@ public class NoticeMapperTest {
 
 特点：极其方便的使用MyBatis单表的增删改查，支持单表操作，不支持通用的多表联合查询
 
-### 2.1. 配置通用 Mapper
+### 配置通用 Mapper
 
 说明：把分页模块的拷贝到该模块中。（项目结构、log4j.properties、mybatis-config.xml、jdbc.properties）
 
-#### 2.1.1. 配置pom.xml添加依赖
+#### 配置pom.xml添加依赖
 
 ```xml
 <!-- 配置通用mapper -->
@@ -367,8 +365,8 @@ public class NoticeMapperTest {
 </dependency>
 ```
 
-### 2.2. 使用步骤(案例参考pyg-test)
-#### 2.2.1. 使用注解指定封装的实体类
+### 使用步骤(案例参考pyg-test)
+#### 使用注解指定封装的实体类
 
 通用Mapper所进行的也是将查询结果与具体的实体类进行映射，但如果是一般的数据库操作，它是不再需要写*Mapper.xml文件的；它通过jpa注解实现数据库表与实体类的结果映射。
 
@@ -388,7 +386,7 @@ public class Notice implements Serializable {
 }
 ```
 
-#### 2.2.2. 编写NoticeMapper继承Mapper
+#### 编写NoticeMapper继承Mapper
 
 接口不需要定义方法，需要继承Mapper(tk.mybatis.mapper.common.Mapper)
 
@@ -396,7 +394,7 @@ public class Notice implements Serializable {
 public interface NoticeMapper extends Mapper<Notice> {}
 ```
 
-#### 2.2.3. 将NoticeMapper添加到mybatis-config.xml总配置文件
+#### 将NoticeMapper添加到mybatis-config.xml总配置文件
 
 修改mybatis-config.xml，将原来的resource属性加载映射文件改成加载接口，原来的映射文件可以不需要
 
@@ -407,7 +405,7 @@ public interface NoticeMapper extends Mapper<Notice> {}
 </mappers>
 ```
 
-#### 2.2.4. 测试，整合使用分页查询
+#### 测试，整合使用分页查询
 
 - 使用通用mapper前需要注册接口，并设置指定使用那个mapper接口。初始化方法中增加注册需要使用的mapper接口
 
@@ -471,7 +469,7 @@ public void delete() {
 }
 ```
 
-### 2.3. 通用的Example查询对象-使用步骤
+### 通用的Example查询对象-使用步骤
 
 1. 创建示范对象，传入需要查询的pojo类
 
@@ -508,8 +506,8 @@ public void delete() {
 
     > 例：`xxxMapper.selectByExample(example);`
 
-### 2.4. 使用小结
-#### 2.4.1. 使用要点
+### 使用小结
+#### 使用要点
 
 1. 配置依赖jar包，mapper-3.4.0.jar、persistence-api-1.0.jar
 2. 实体加JPA注解(解决类与表之间的映射关系)
@@ -525,14 +523,14 @@ public void delete() {
     - `updateXxx()` 一批修改方法
     - `deleteXxx()` 一批删除方法
 
-#### 2.4.2. 关于通用Mapper方法中带Selective的说明：
+#### 关于通用Mapper方法中带Selective的说明：
 
 - 在通用Mapper的方法中：insert和insertSelective或者其它方法带有Selective的与没有带的是有区别的；
 - 区别就是：带有Selective的方法进行操作时如果属性为null则对应的属性不会进行操作。
 - 如：insertSelective插入一个对象时，如果对象中的name属性为null那么它在转为sql语句时，name字段是不会出现在sql语句中；而没有带Selective的则会出现。
 
-## 3. 集成通用Mapper和分页助手到项目
-### 3.1. 加入依赖
+## 集成通用Mapper和分页助手到项目
+### 加入依赖
 
 - 集成通用Mapper，需要给pojo加JPA注解，所以通用Mapper依赖需要加到pinyougou-pojo项目的pom.xml
 
@@ -558,8 +556,8 @@ public void delete() {
     </dependency>
     ```
 
-### 3.2. 修改配置文件
-#### 3.2.1. 分页助手配置
+### 修改配置文件
+#### 分页助手配置
 
 打开pinyougou-mapper/src/main/resources/mybatis-config.xml，添加如下配置信息：
 
@@ -575,7 +573,7 @@ public void delete() {
 </plugins>
 ```
 
-#### 3.2.2. 通用Mapper配置
+#### 通用Mapper配置
 
 打开pinyougou-mapper/src/main/resources/applicationContext-mapper.xml添加如下配置信息
 
@@ -587,18 +585,18 @@ public void delete() {
 </bean>
 ```
 
-#### 3.2.3. 拷贝实体、数据访问接口、SQL映射文件(准备好的资源)
+#### 拷贝实体、数据访问接口、SQL映射文件(准备好的资源)
 
 1. 将【资料\实体类】中所有的类 拷贝到pinyougou-pojo模块com.pinyougou.pojo下。
 2. 将【资料\数据访问接口类】中所有的类 拷贝到pinyougou-mapper模块com.pinyougou.mapper下。
 3. 将【资料\数据访问SQL映射文件】中所有的映射文件 拷贝到pinyougou-mapper模块src/main/resources/mappers下。
 
-### 3.3. 测试使用分页查询
-#### 3.3.1. 修改BrandMapper
+### 测试使用分页查询
+#### 修改BrandMapper
 
 在pinyougou-mapper项目编写BrandMapper接口 继承 Mapper<Brand>接口，删除findAll()方法。
 
-#### 3.3.2. 修改BrandServiceImpl
+#### 修改BrandServiceImpl
 
 将原来调用Mapper的findAll()方法换成通用mapper的查询方法
 
@@ -609,18 +607,18 @@ public List<Brand> findAll() {
 }
 ```
 
-## 4. 前端框架 AngularJS
+## 前端框架 AngularJS
 
-### 4.1. AngularJS 简介
+### AngularJS 简介
 
 - AngularJS  诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架。AngularJS有着诸多特性，最为核心的是：<font color="red">**MVC、模块化、自动化双向数据绑定、依赖注入**</font>等等
 - 官方网站：https://angularjs.org/
 - 下载地址：https://code.angularjs.org/
 
 
-### 4.2. AngularJS四大特征
+### AngularJS四大特征
 
-#### 4.2.1. MVC 模式
+#### MVC 模式
 
 - Angular遵循软件工程的MVC模式,并鼓励展现，数据，和逻辑组件之间的松耦合.通过依赖注入（dependency injection），Angular为客户端的Web应用带来了传统服务端的服务，例如独立于视图的控制。 因此，后端减少了许多负担，产生了更轻的Web应用。
 
@@ -630,25 +628,25 @@ public List<Brand> findAll() {
 - View: 数据的呈现,Html+Directive(指令);
 - Controller:操作数据,就是function,数据的增删改查;
 
-#### 4.2.2. 双向绑定
+#### 双向绑定
 
 AngularJS是建立在这样的信念上的：即声明式编程应该用于构建用户界面以及编写软件构建，而指令式编程非常适合来表示业务逻辑。框架采用并扩展了传统HTML，通过双向的数据绑定来适应动态内容，双向的数据绑定允许模型和视图之间的自动同步。因此，AngularJS使得对DOM的操作不再重要并提升了可测试性。
 
 ![AngularJS四大特征2](images/20181219224938398_26478.jpg)
 
-#### 4.2.3. 依赖注入
+#### 依赖注入
 
 依赖注入(Dependency Injection,简称DI)是一种设计模式, 指某个对象依赖的其他对象无需手工创建，则此对象在创建时，其依赖的对象由框架来自动创建并注入进来,其实就是最少知识法则;模块中所有的service和provider两类对象，都可以根据形参名称实现DI.
 
-#### 4.2.4. 模块化设计
+#### 模块化设计
 
 - 高内聚低耦合法则：
 	1. 官方提供的模块 ng、ngRoute、ngAnimate
 	2. 用户自定义的模块 `angular.module('模块名',[ ])`
 
-### 4.3. 基础指令
+### 基础指令
 
-#### 4.3.1. 构建web模块angularjs-test(war)用于测试
+#### 构建web模块angularjs-test(war)用于测试
 
 - 配置pom.xml依赖
 
@@ -714,7 +712,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 
 - 拷贝【\angularjs\angular.min.js】到src/main/webapp/js/目录下
 
-#### 4.3.2. 使用说明
+#### 使用说明
 
 - ng-app 指令定义了 AngularJS 应用的根元素，在根元素的所有子元素中用到指令，angularJs会自动识别。
 - ng-app 指令在网页加载完毕时会自动初始化应用中的angularJS的指令。
@@ -723,7 +721,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 
 <font color="red">*一般都定义在`<body>`标签中*</font>
 
-#### 4.3.3. 表达式
+#### 表达式
 
 - 表达式可以是变量或是运算式
 - 语法格式：`{{变量名}}` 或 `{{对象.变量名}}`
@@ -749,7 +747,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </html>
 ```
 
-#### 4.3.4. 双向绑定
+#### 双向绑定
 
 - ng-model 指令用于绑定变量,这样用户在文本框输入的内容会绑定到变量上，而表达式可以实时地输出变量
 - 语法格式：`ng-model="变量名"` 或 `ng-model="对象.变量名"`
@@ -767,7 +765,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.5. 初始化指令
+#### 初始化指令
 
 - 使用`ng-init`指令来对变量初始化，可以放置到任何`<>`标签中，
 - 语法格式：`ng-init="变量名1='变量值1';变量名2='变量值2';..."`
@@ -784,7 +782,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.6. 控制器
+#### 控制器
 
 - 定义模块语法格式：
     - `var 变量名 = angular.module("模块名", []);`
@@ -819,7 +817,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.7. 事件指令
+#### 事件指令
 
 - 语法格式：`ng-xxx="控制器中定义的方法名();"`
 - 事件指令列表：
@@ -867,7 +865,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.8. 循环数组/对象数组
+#### 循环数组/对象数组
 
 - `ng-repeat`指令用于循环数组变量
 - 语法格式：`ng-repeat="变量名 in 集合或数组"`
@@ -930,7 +928,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.9. 条件指令
+#### 条件指令
 
 语法格式：`ng-if="条件表达式";`
 
@@ -950,7 +948,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.10. 复选框
+#### 复选框
 
 - `ng-true-value="xx"`: 选中复选框，此时值为xx(可以是boolean、字符串、数字等)
 - `ng-false-value="yy"`: 未中复选框，此时值为yy(可以是boolean、字符串、数字等)
@@ -983,7 +981,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.3.11. 下拉列表框
+#### 下拉列表框
 - `ng-options="元素变量.键 as 元素变量.键 for 元素变量in 数组"`：选项值表达式绑定
     - 注：第1个变量是下拉框的值(value)，提交的值；
     - 第2个变量是下拉框显示的内容
@@ -1017,9 +1015,9 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-### 4.4. 内置服务
+### 内置服务
 
-#### 4.4.1. `$timeout`服务
+#### `$timeout`服务
 
 - `$timeout`服务对应了`window.setTimeout`函数，<font color="red">只执行一次</font>。如果想循环输出，需要放到函数里
 - 语法格式：`$timeout(函数, 间隔时间毫秒)`;
@@ -1052,7 +1050,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.4.2. `$interval`服务
+#### `$interval`服务
 
 - `$interval`服务对应了`window.setInterval`函数。循环执行
 - 语法格式：`$interval(函数,间隔时间毫秒,总调用次数);`
@@ -1083,7 +1081,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.4.3. `$watch`监听服务
+#### `$watch`监听服务
 
 - watch持续监听某变量的变化，更新界面
 - 语法格式：`$watch("监听的变量名", function(newVal, oldVal){});`
@@ -1110,13 +1108,13 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 </body>
 ```
 
-#### 4.4.4. `$location` 服务
+#### `$location` 服务
 
-##### 4.4.4.1. 简介
+##### 简介
 
 `$location`服务解析在浏览器地址栏中的URL（基于`window.location`）并且让URL在你的应用中可用。改变在地址栏中的URL会作用到`$location`服务，同样的，改变`$location`服务也会改变浏览器的地址栏。（可以使用`$location`进行重定向等操作）
 
-##### 4.4.4.2. $location服务
+##### $location服务
 
 - 暴露浏览器地址栏中的URL，让你可以：
     - 监察URL。
@@ -1127,13 +1125,13 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
     - 打开一个链接。
     - 将URL对象表示为一个方法集。 (protocol, host, port, path, search, hash)
 
-##### 4.4.4.3. 服务依赖
+##### 服务依赖
 
 - $browser
 - $sniffer
 - $rootElement
 
-##### 4.4.4.4. 内置方法
+##### 内置方法
 
 - `absUrl()`：只读；根据在RFC 3986中指定的规则，返回url，带有所有的片段。
 - `hash()`：读、写；当带有参数时，返回哈希碎片；当在带有参数的情况下，改变哈希碎片时，返回$location。
@@ -1145,12 +1143,12 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 - `search()`：读、写；当不带参数调用的时候，以对象形式返回当前url的搜索部分。
 - `url()`：读、写；当不带参数时，返回url；当带有参数时，返回$location。
 
-##### 4.4.4.5. 内置事件
+##### 内置事件
 
 - `$locationChangeStart`：在URL改变前发生。这种改变可以通过调用事件的preventDefault方法为阻止。查看`ng.$rootScope.Scope#$on`获得更多的细节。成功时触发`$locationChangeSuccess`事件。
 - `$locationChangeSuccess`：当URL改变后发生。
 
-##### 4.4.4.6. 使用方法
+##### 使用方法
 
 - 何时使用$location
 
@@ -1163,9 +1161,9 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 - 例子详见Day08，【商家后台-商品管理（商品修改）】的【基本信息读取-前端部分】
 - 例子2详见Day12，首页搜索传递关键字跳转到搜索系统
 
-#### 4.4.5. `$sce`服务
+#### `$sce`服务
 
-##### 4.4.5.1. 什么是SCE
+##### 什么是SCE
 
 SCE，即strict contextual escaping，是angularjs严格的控制上下文访问。
 
@@ -1173,7 +1171,7 @@ SCE，即strict contextual escaping，是angularjs严格的控制上下文访问
 
 这样做确实是安全了，避免一些跨站XSS，但是有时候我们自己想要加载特定的文件，这时候怎么办呢？
 
-##### 4.4.5.2. 常用的方法
+##### 常用的方法
 
 - `$sce.trustAs(type, name);`
 - `$sce.trustAsHtml(value);`
@@ -1193,7 +1191,7 @@ $sce.RESOURCE_URL //ng-include,src或者ngSrc，比如iframe或者Object
 $sce.JS
 ```
 
-##### 4.4.5.3. 案例-使用sce做成过滤器
+##### 案例-使用sce做成过滤器
 
 - angularJS为了防止html攻击采取的安全机制。无法正确显示后台返回的数据中带有各种各样的html标签。必须要使用$sce这个服务来解决的问题。
 - 所谓sce即“Strict Contextual Escaping”的缩写。翻译成中文就是“严格的上下文模式”也可以理解为安全绑定吧。
@@ -1253,11 +1251,11 @@ $sce.JS
 </html>
 ```
 
-#### 4.4.6. `$http`服务
+#### `$http`服务
 
 使用内置服务$http服务来实现异步请求后台，获取数据
 
-##### 4.4.6.1. `$http()`发送请求(待修改完善)
+##### `$http()`发送请求(待修改完善)
 
 - 语法格式：
 
@@ -1342,7 +1340,7 @@ public class CityController {
 }
 ```
 
-##### 4.4.6.2. `$http.get()`发送请求
+##### `$http.get()`发送请求
 
 - 语法格式：
 
@@ -1397,7 +1395,7 @@ $http.get(URL).then(function(response){ // 请求成功
 </table>
 ```
 
-##### 4.4.6.3. `$http.post()`发送请求
+##### `$http.post()`发送请求
 
 - 语法格式：
 
@@ -1449,11 +1447,11 @@ public Map<String, Object> user(@RequestBody Map<String, Object> map) {
 
 <font color="red">*注：post请求后端可以使用map集合接收，也可以使用实体类接收*</font>
 
-#### 4.4.7. `$event`对象用法
+#### `$event`对象用法
 
 在angularJs中，this指向`$scope`。但是可以`$event`配合使用`$(event.target)`实现
 
-##### 4.4.7.1. 获取鼠标事件
+##### 获取鼠标事件
 
 ```js
 import {Component, OnInit} from '@angular/core';
@@ -1487,7 +1485,7 @@ MouseEvent {isTrusted: true, screenX: 180, screenY: 207, clientX: 165,  clientY:
 
 当Angular在调用我们的事件处理函数时，会自动帮我们处理调用的参数。`$event`自动映射为触发的事件，与我们`Provider`中`Token`的作用类似。
 
-##### 4.4.7.2. 获取键盘事件
+##### 获取键盘事件
 
 ```js
 import {Component, OnInit} from '@angular/core';
@@ -1510,9 +1508,9 @@ import {Component, OnInit} from '@angular/core';
 以上代码中，`(keydown.enter)="onEnter($event, myInput.value)"`表达式表示监听键盘`Enter`键的按下事件，当按下键盘的`Enter`键时，将会调用组件类中定义的`onEnter()`方法。同样也可以通过`$event`来获取`KeyboardEvent`对象。
 
 
-### 4.5. 前端分层
+### 前端分层
 
-#### 4.5.1. 基础层
+#### 基础层
 
 - 创建js/base.js
 
@@ -1536,7 +1534,7 @@ app.service("cityService", function ($http) {
 });
 ```
 
-#### 4.5.2. 控制层
+#### 控制层
 
 - 创建js\controller\cityController.js
 
@@ -1559,7 +1557,7 @@ app.controller("cityController", function ($scope, cityService) {
 });
 ```
 
-#### 4.5.3. 视图层
+#### 视图层
 
 - 创建html页面
 

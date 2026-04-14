@@ -1,4 +1,4 @@
-## 1. Eclipse 概述
+## Eclipse 概述
 
 Eclipse 是一个开放源代码的、基于 Java 的可扩展开发平台。它是 Java 的集成开发环境（IDE），也可以作为其他开发语言的集成开发环境，如 C，C++，PHP，和 Ruby 等。
 
@@ -6,26 +6,22 @@ Eclipse 附带了一个标准的插件集，包括 Java 开发工具（Java Deve
 
 > Eclipse 官网：https://www.eclipse.org/
 
-### 1.1. Eclipse 各版本号
+### Eclipse 各版本号
 
-|        名称        | 版本号 |        名称        | 版本号 |        名称        | 版本号 |        名称        | 版本号 |
-| :---------------: | :---: | :---------------: | :---: | :---------------: | :---: | :---------------: | :---: |
-|  Eclipse Indigo   |  3.7  |   Eclipse Juno    |  4.2  |  Eclipse Kepler   |  4.3  |   Eclipse Luna    |  4.4  |
-|   Eclipse Mars    |  4.5  |   Eclipse Neon    |  4.6  |  Eclipse Oxygen   |  4.7  |  Eclipse Photon   |  4.8  |
-|  Eclipse 2018-09  |  4.9  |  Eclipse 2018-12  | 4.10  | Eclipse 2019-03-R | 4.11  | Eclipse 2019-06-R | 4.12  |
-| Eclipse 2019-09-R | 4.13  | Eclipse 2019-12-R | 4.14  | Eclipse 2020-03-R | 4.15  | Eclipse 2020-06-R | 4.16  |
-|  Eclipse 2020-09  | 4.17  |  Eclipse 2020-12  | 4.18  |  Eclipse 2021-03  | 4.19  |  Eclipse 2021-06  | 4.20  |
-|  Eclipse 2021-09  | 4.21  |  Eclipse 2021-12  | 4.22  |  Eclipse 2022-03  | 4.23  |  Eclipse 2022-06  | 4.24  |
-|  Eclipse 2022-09  | 4.25  |  Eclipse 2022-12  | 4.26  |  Eclipse 2023‑03  | 4.27  |  Eclipse 2023‑06   | 4.28  |
-|  Eclipse 2023‑09  | 4.29  |  Eclipse 2023-12  | 4.30  |  Eclipse 2024-03  | 4.31  |  Eclipse 2024-06  | 4.32  |
+|      名称       | 版本号 |     名称      | 版本号 |      名称       | 版本号 |      名称       | 版本号 |
+| :------------: | :---: | :----------: | :---: | :------------: | :---: | :------------: | :---: |
+| Eclipse Indigo |  3.7  | Eclipse Juno |  4.2  | Eclipse Kepler |  4.3  |  Eclipse Luna  |  4.4  |
+|  Eclipse Mars  |  4.5  | Eclipse Neon |  4.6  | Eclipse Oxygen |  4.7  | Eclipse Photon |  4.8  |
+
+Eclipse 4.9 版本后以`年-月`来命名，如: Eclipse 2018-09 (4.9 版本)
 
 > Notes: Eclipse Mars(4.5) 后版本必须要 JDK 1.7 以上
 
-### 1.2. 参考资料
+### 参考资料
 
 - [Eclipse 菜鸟教程](https://www.runoob.com/eclipse/eclipse-tutorial.html)
 
-## 2. Eclipse的主题颜色
+## Eclipse的主题颜色
 
 主题网站：http://www.eclipsecolorthemes.org/
 
@@ -37,29 +33,29 @@ Eclipse 附带了一个标准的插件集，包括 Java 开发工具（Java Deve
 - 控制台：window -- Preferences -- General -- Appearance -- Colors And Fonts -- Debug -- Console font
 - 其他文件：window -- Preferences -- General -- Appearance -- Colors And Fonts -- Basic -- Text Font
 
-### 2.1. eclipse 恢复默认的主题
+### eclipse 恢复默认的主题
 
-找到eclipse的工作空间目录，也就是workspace，找到这个目录下“`.metadata\.plugins\org.eclipse.core.runtime`”。这里也有`.setting`文件夹，把里面文件全部删除。【建议在改变主题之前，将此文件备份一份】
+找到 eclipse 的工作空间目录，也就是 workspace，找到这个目录下 `.metadata\.plugins\org.eclipse.core.runtime`。这里也有`.setting`文件夹，把里面文件全部删除。【建议在改变主题之前，将此文件备份一份】
 
-### 2.2. eclipse 黑色主题包
+### eclipse 黑色主题包
 
 一款与idea很接近的黑色主题。点选【Help】 --> 【Eclipse Marketplace】 --> 搜索Dark Theme，进行安装即可
 
 ![](images/20201010235053858_2773.jpg)
 
-### 2.3. 修改eclipse背景
+### 修改eclipse背景
 
 ![](images/20201010235147979_18533.jpg)
 
-### 2.4. 黑色主题下有高亮底色无查看内容的问题
+### 黑色主题下有高亮底色无查看内容的问题
 
 不勾选图中的高亮选项即可
 
 ![](images/20201010235229073_6435.jpg)
 
-## 3. Eclipse 快捷键
+## Eclipse 快捷键
 
-### 3.1. 查看快捷键
+### 查看快捷键
 
 Eclipse 的很多操作都提供了快捷键功能，可以通过键盘就能很好的控制 Eclipse 各个功能：
 
@@ -73,7 +69,7 @@ Eclipse 快捷键列表可通过快捷键 `Ctrl + Shift + L` 打开。
 
 ![](images/428302416258869.jpg)
 
-### 3.2. 设置快捷键
+### 设置快捷键
 
 Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供快捷键，此时就需要手动设置快捷键。通过点击【window】->【preferences】->【general】->【keys】（或直接搜索 `keys`），进入快捷键管理界面：
 
@@ -89,7 +85,7 @@ Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供
 
 完成以上操作，点击 OK 按钮即完成设置。
 
-### 3.3. 常用快捷键(待整理)
+### 常用快捷键(待整理)
 
 > 待整理《eclipse-快捷键.doc》
 
@@ -134,16 +130,16 @@ Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供
 
 **搜索**
 
-|    快捷键     |                                                                      描述                                                                      |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ctrl+K       | 参照选中的Word快速定位到下一个（如果没有选中word，则搜索上一次使用搜索的word）                                                                            |
-| Ctrl+Shift+K | 参照选中的Word快速定位到上一个                                                                                                                     |
-| Ctrl+J       | 正向增量查找（按下Ctrl+J后,你所输入的每个字母编辑器都提供快速匹配定位到某个单词,如果没有,则在状态栏中显示没有找到了,查一个单词时,特别实用,要退出这个模式，按escape建） |
-| Ctrl+Shift+J | 反向增量查找（和上条相同,只不过是从后往前查）                                                                                                         |
-| Ctrl+Shift+U | 列出所有包含字符串的行                                                                                                                            |
-| Ctrl+H       | 打开搜索对话框                                                                                                                                   |
-| Ctrl+G       | 工作区中的声明                                                                                                                                   |
-| Ctrl+Shift+G | 工作区中的引用                                                                                                                                   |
+|    快捷键     |                                                          描述                                                           |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Ctrl+K       | 参照选中的Word快速定位到下一个（如果没有选中word，则搜索上一次使用搜索的word）                                                      |
+| Ctrl+Shift+K | 参照选中的Word快速定位到上一个                                                                                              |
+| Ctrl+J       | 正向增量查找（按下Ctrl+J后,所输入的每个字母编辑器都提供快速匹配定位到某个单词；如果没有,则在状态栏中显示没有找到了。要退出这个模式，按escape建） |
+| Ctrl+Shift+J | 反向增量查找（和上条相同,只不过是从后往前查）                                                                                   |
+| Ctrl+Shift+U | 列出所有包含字符串的行                                                                                                     |
+| Ctrl+H       | 打开搜索对话框                                                                                                            |
+| Ctrl+G       | 工作区中的声明                                                                                                            |
+| Ctrl+Shift+G | 工作区中的引用                                                                                                            |
 
 **导航**
 
@@ -201,9 +197,9 @@ Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供
 | Ctrl+L    | 文本编辑器 转至行                                                                                     |
 | F2        | 显示工具提示描述                                                                                      |
 
-## 4. 常用设置（包含MyEclipse设置，与Eclipse设置基本通用）
+## 常用设置（包含MyEclipse设置，与Eclipse设置基本通用）
 
-### 4.1. 解决 eclipse 卡顿问题相关配置
+### 解决 eclipse 卡顿问题相关配置
 
 1. **去掉自动构建项目，改为手动**。在 eclipse 的菜单栏，选择 Project，看到下方的 Build Automatically，默认是勾选的，取消勾选就行。然后每次启动项目时，可以先 clean 所选项目，然后点击右键 Build Project，这样不仅可以缓解卡顿，也可以解决某些地方修改了代码后没生效的情况。
 2. **修改 eclipse.ini 文件的两个配置参数：Xms 和 Xmx**。
@@ -216,12 +212,12 @@ Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供
 5. **关闭自动更新和安装**。在 eclipse 菜单栏，选择【Window】->【Preferences】，点击后在弹出的选项框中，找到【Install/Update】，在右边的详细信息中，勾选【Show only the latest versions of available software】和【Ask me what to do when it happens】，点击右下的 Apply，点击确认。在【Install/Update】菜单下还有两个子菜单，【Automatic Updates】和【Available Software Sites】，根据实际情况来勾选或设置，完成后点击 Apply 确认按钮。
 6. **关闭保存后续动作**。在 eclipse 菜单栏，选择【Window】->【Preferences】，点击后在弹出的选项框中，找到【Java】->【Editor】】->【Save Actions】，在右边的详细信息中，去掉【perform the selected actions on save】选项的勾选，然后点击 Apply 确认按钮。
 
-### 4.2. Eclipse 统一默认编码
+### Eclipse 统一默认编码
 
 - 修改新建项目默认编码：Window -> Preferences -> General -> Workspace，修改 Text file encoding 将其修改为 UTF-8
 - ~~根据文件修改默认编码：windows -> preferences -> myeclipse -> file and editors下所有选项中的encoding 修改为 IS010646/Unicode(UTF-8) 即统一编码为UTF-8~~
 
-### 4.3. 设置 XML 代码编辑状态，需要设置默认打开方式为 XML Editor。
+### 设置 XML 代码编辑状态，需要设置默认打开方式为 XML Editor。
 
 1. Window -> Preferences -> General -> Editors -> File Associations，选择File types: `*.xml`，修改Associated editors: `XML Editor***` -> Default
 2. 在 Associated editors 选择框里点击“`XML Editor***`”，点击“Default”按钮。
@@ -229,11 +225,11 @@ Eclipse 系统提供的快捷键有的不好用，甚至有些根本没有提供
 
 ![](images/20201106095327201_12522.png)
 
-### 4.4. 关闭 updating indexes
+### 关闭 updating indexes
 
 Window -> Preferences -> Maven -> 禁用【Download repository index updates on startup】
 
-### 4.5. 关闭自动 validation
+### 关闭自动 validation
 
 validation有一堆，什么xml、jsp、jsf、js等等，没有必要全部都去自动校验一下，只是需要的时候才会手工校验一下，速度立马提升好几个档次
 
@@ -241,17 +237,17 @@ windows -> perferences -> validation，将 Build 下全部勾取消
 
 如果需要验证某个文件的时候，可以单独去验证它。方法是：在需要验证的文件上点击右键 -> MyEclipse -> Run Validation
 
-### 4.6. 去掉拼写检查（如果觉的有用可以不去）
+### 去掉拼写检查（如果觉的有用可以不去）
 
 拼写检查会给带来不少的麻烦，方法命名都会是单词的缩写，也会提示有错，所以最好去掉，没有多大的用处
 
 在 eclipse 菜单栏，选择【Window】->【Preferences】，点击后在弹出的选项框中，找到【General】->【Editors】->【Text Editors】->【Spelling】，在右边的详细信息中，去掉【Enable spell checking】勾选框，然后点击 Apply 确认按钮。
 
-### 4.7. 设置使用浏览器配置
+### 设置使用浏览器配置
 
 ![](images/20201106095856365_29735.png)
 
-### 4.8. 部分代码显示其他底色
+### 部分代码显示其他底色
 
 当你的myeclipse调了背景色后，发现js部分的代码依然是白色的背景，看起来十分不方便，下面就叫你怎么单独更改js代码部分的背景色
 
@@ -259,13 +255,13 @@ windows -> perferences -> validation，将 Build 下全部勾取消
 
 ![](images/20201106100442208_27823.png)
 
-### 4.9. 定制工具栏
+### 定制工具栏
 
 Window --> Customize Perspective
 
 ![](images/20201106100515457_27467.png)
 
-### 4.10. 设置不格式化注释
+### 设置不格式化注释
 
 注释中写点带格式的文字，format后全乱了，解决办法如下：
 
@@ -273,7 +269,7 @@ Windows -> Preferces -> java -> Code Style -> Formatter -> Edit -> Comments
 
 取消勾选 “Enable Javadoc comment formatting”、“Enable block comment formatting”、“Enable line comment formatting”
 
-### 4.11. 配置 Eclipse 中的编译和运行环境
+### 配置 Eclipse 中的编译和运行环境
 
 Eclipse 的运行版本要大于等于编译版本号：会出现bad version number版本问题
 
@@ -283,9 +279,9 @@ Eclipse 的运行版本要大于等于编译版本号：会出现bad version num
 - 编译环境的配置：project右键 -> Properties -> Java Complier
 - 运行环境的配置：project右键 -> Properties -> Java Build Path
 
-## 5. 加快代码提示与取消空格上屏（重点）
+## 加快代码提示与取消空格上屏（重点）
 
-### 5.1. 加快代码提示，根据需要可以修改CSS、HTML、JavaScript、XML
+### 加快代码提示，根据需要可以修改CSS、HTML、JavaScript、XML
 
 windows --> preferences --> 搜索“content assist”
 
@@ -303,7 +299,7 @@ windows --> preferences --> 搜索“content assist”
 
 <font color=red>**总结：首先第一步中的作用是指当输入一个字母的时候eclipse就会马上联想相关的单词并显示出来，并且那些联想的单词总是跟着，如果觉得比较烦的话，就改为默认的点号。第二步中才是重点，作用是就是当用`alt+/`快捷键的时候会联想出来的。**</font>
 
-### 5.2. 取消空格上屏
+### 取消空格上屏
 
 使用 Eclipse 与 MyEclipse 的代码提示功能时，按下空格键后 Eclipse 会自动将代码提示中的第一项上屏。这一点有时会变得相当讨厌，因为很多时候只是单纯的想要输入一个空格而已。然而这一特性是无法通过配置改变的。好在 Eclipse 是开源的，仍然可以通过修改相应的源代码来改变这一点。
 
@@ -401,7 +397,7 @@ MyEclipse 的修改方法与 Eclipse 完全一样，用修改好的 jar 包替�
 
 ![](images/20201106102222717_31625.png)
 
-### 5.3. eclipse SDK 版本
+### eclipse SDK 版本
 
 上面的SDK不是用来使用，只是为了拿到里面的源代码。只为了获得`org.eclipse.jface.text`的源代码去修改取消空格上屏而已。例如：
 
@@ -411,21 +407,21 @@ MyEclipse 的修改方法与 Eclipse 完全一样，用修改好的 jar 包替�
 
 > 更新版本详见前面章节《Eclipse 各版本号》
 
-## 6. eclipse 工作空间配置导出
+## eclipse 工作空间配置导出
 
-### 6.1. 方法一：使用 eclipse 的导出功能
+### 方法一：使用 eclipse 的导出功能
 
 工作目录中右键选择Export -> General -> Preference，这样可以导出epf文件，新的工作空间中可以用Import导入该配置文件，这个方法的确可以导入绝大多数的配置，但是并不全，导入后会丢失很多配置
 
 ![](images/20201106102359893_26221.png)
 
-### 6.2. 方法二：在切换工作空间的时候选择 other -> copy setting
+### 方法二：在切换工作空间的时候选择 other -> copy setting
 
 ![](images/20201106102429445_2757.png)
 
 ![](images/20201106102444381_12384.png)
 
-### 6.3. 方法三：推荐使用这种方法，导入的最全
+### 方法三：推荐使用这种方法，导入的最全
 
 将`workspace/.metadata/.plugins/org.eclipse.core.runtime`中的`.settings`文件夹拷贝出来，里面就是所有的配置文件，新建工作空间的时候将该`.settings`文件夹替换掉新工作空间中的`.settings`文件夹即可。另外导出界面上的工具栏对话框布局等：`.metadata.plugins\org.eclipse.e4.workbench.swt`将该文件夹保存起来即可
 
@@ -433,13 +429,13 @@ MyEclipse 的修改方法与 Eclipse 完全一样，用修改好的 jar 包替�
 
 ![](images/20201106102652064_9237.jpg)
 
-## 7. Eclipse 导出 API 帮助⽂档
+## Eclipse 导出 API 帮助⽂档
 
 eclipse 使用时，可以配合文档注释，导出对类的说明文档，从而供其他人阅读学习与使用。通过使用文档注释，将类或者方法进行注释用`@`简单标注基本信息。如`@author`作者、`@version`代码版本、`@param`方法参数、`@return`方法返回值等。
 
-## 8. eclipse Jar 包操作
+## eclipse Jar 包操作
 
-### 8.1. 导出 Jar 包步骤
+### 导出 Jar 包步骤
 
 工程右键 -> Export -> Java -> Jar file -> Next -> 选择要导出的类 -> 选择导出的路径 -> Finish
 
@@ -449,7 +445,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 ![](images/20201106102849714_26751.png)
 
-### 8.2. 导入 Jar 包步骤
+### 导入 Jar 包步骤
 
 1. 在项目中新建一个文件夹：lib（类库）
 2. 将要使用的第三方jar拷贝到lib目录下
@@ -465,7 +461,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 ![](images/20201106103159782_4577.png)
 
-### 8.3. 导入第三方源码
+### 导入第三方源码
 
 ![](images/20201106103232303_8256.png)
 
@@ -473,7 +469,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 ![](images/20201106103251215_4125.png)
 
-### 8.4. eclipse 自定义 library jar 包步骤
+### eclipse 自定义 library jar 包步骤
 
 右键点击项目 --> Build Path --> Add Libraries --> User Libraries
 
@@ -501,7 +497,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 ![](images/20201106103825907_20251.png)
 
-## 9. Tomcat 与 Eclipse 连接
+## Tomcat 与 Eclipse 连接
 
 打开Eclipse --> 点击Eclipse菜单栏【Window】-->【Preferences】，之后出现【Preferences】对话框面板，在对话框面板左边栏目里找到【Sever】选项点击下出现子选项【Audio】、【Launching】、【Overlays】、【Profiles】和【Runtime Environment】，这是选择点击【Runtime Environment】项，然后在原来打开的【Preferences】面板
 右面看到【Sever Runtime Environment】，选择【Add】之后显示以下界面：
@@ -514,7 +510,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 然后在【Tomcat installation directory】下面的空白文本框里面输入你对应安装的tomcat目录或者点击右边的【`Browse...`】来选择tomcat安装目录，例如：【D:\xampp\tomcat】，继续点击【Finish】就OK了。
 
-## 10. 创建代码模版
+## 创建代码模版
 
 点击Eclipse菜单栏【Window】-->【Preferences】 --> 搜索关键字“Templates”
 
@@ -522,7 +518,7 @@ eclipse 使用时，可以配合文档注释，导出对类的说明文档，从
 
 ![](images/20201106104045306_12808.png)
 
-## 11. 设置 JSP 页面的编码
+## 设置 JSP 页面的编码
 
 Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，如UTF-8，点击 Apply 后再点击 OK 保存配置。可以分别设置页面编码、页面内容编码
 
@@ -530,18 +526,14 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 ![](images/20201106104312363_3483.jpg)
 
-## 12. eclipse 中批量修改 Java 类文件中引入的 package 包路径
+## eclipse 中批量修改 Java 类文件中引入的 package 包路径
 
 - 方法一：Ctrl+h --> file serach --> 输入原包名(类型为`*.java`) --> Replace --> 找到后输入要替换的包名 然后自己选择是全部替换还是部分替换。通过该方法也可以批量修改配置文件。
 - 方法二(推荐)：直接修改出错的类所在的包的名称再改回来，这样就可以统一修改所有出错的类的package包名称
 
-## 13. 出现 "Repository registry initialization" 问题的解决办法
+## eclipse 关于 Spring 相关配置
 
-在更换了 eclipse 版本后，选择之前的工作空间时，可能会出现 An internal error occurred during: "Repository registry initialization". 的问题时，删除`.metadata/.plugins/org.eclipse.m2e.core/nexus/` 的目录，然后再重启 Eclipse，重新编译一下 maven 项目
-
-## 14. eclipse 关于 Spring 相关配置
-
-### 14.1. Spring 配置文件中提示配置信息
+### Spring 配置文件中提示配置信息
 
 > 本小节是针对旧版本 eclipse 对于 spring xml 配置文件无提示的问题。配置跟 hibernate 和 struts2 创建 xml 约束一样的操作
 
@@ -557,7 +549,7 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 > <font color=red>**注：约束文件的路径在【\spring-framework-4.2.4.RELEASE\schema\beans】，如果使用其他类型，就根据类型选择不同的文件夹**</font>
 
-### 14.2. 向 xml 文件中增加约束
+### 向 xml 文件中增加约束
 
 1. 切换到Design视图，右键点击 Beans 标签 【Edit Namespaces】
 
@@ -575,7 +567,7 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 ![](images/492934909239682.jpg)
 
-### 14.3. 创建 xml 文件时引入多个约束
+### 创建 xml 文件时引入多个约束
 
 1. 先选择导入一个基础的约束
 2. 再点击 add 新增一个约束（之后操作与生成文件增加约束操作一样，命名也一致）
@@ -586,41 +578,39 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 ![](images/16235309249871.jpg)
 
+## 常用插件安装与插件卸载
 
-
-## 15. 常用插件安装与插件卸载
-
-### 15.1. Spring Tool Suite 4 / 3.9.8
+### Spring Tool Suite 4 / 3.9.8
 
 Spring Tool Suite(STS) 是一个基于 Eclipse 针对 Spring 应用量身定制的开发环境。提供了开发 Spring 应用必须的编码、调试、运行和部署功能。STS 在最新的 Eclipse 发布版本基础上集成了 Pivotal tc 服务器、Pivotal Cloud Foundry、Git、Maven、AspectJ 等必要的工具。<font color=red>**两个版本都安装**</font>
 
 ![](images/20201106104504990_27193.png)
 
-安装：Help->Eclicpse Marketplace，搜索 spring-tool-suite，点击install
+安装：Help -> Eclicpse Marketplace，搜索 spring-tool-suite，点击 install
 
-查看是否安装成功：Window --> Preferences 之后出现Spring选项说明已经安装成功。
+查看是否安装成功：Window -> Preferences 之后出现 Spring 选项说明已经安装成功。
 
 ![](images/20201106104544278_29536.png)
 
 一、配置`*.xml`默认打开方式
 
-打开Eclipse-->偏好设置，如下图：
+打开 Eclipse -> 偏好设置，如下图：
 
 ![](images/20201106104635750_13460.jpg)
 
-找到File Associations，在File types中找到`*.xml`项，如果没有就点击Add来添加，选中`*.xml`然后在Associated editors中选中Spring Config Editor点击右边的Default就可以了
+找到 File Associations，在 File types 中找到 `*.xml` 项，如果没有就点击 Add 来添加，选中 `*.xml` 然后在 Associated editors 中选中 Spring Config Editor 点击右边的 Default 就可以了
 
-二、新建spring的xml配置文件
+二、新建 spring 的 xml 配置文件
 
-File --> new --> other,然后输入spring，选中spring Bean Configuration File
+File -> new -> other,然后输入spring，选中spring Bean Configuration File
 
 ![](images/20201106104716348_28144.png)
 
-选中spring约束类型，然后finish即可完成，spring配置文件。
+选中 spring 约束类型，然后 finish 即可完成，spring 配置文件。
 
 ![](images/20201106104744118_21027.png)
 
-### 15.2. Lombok插件
+### Lombok插件
 
 Lombok 是一种Java实用工具，可以帮助开发人员消除Java的冗长，具体看 lombok 的官网：http://projectlombok.org/
 
@@ -638,7 +628,7 @@ Lombok 是一种Java实用工具，可以帮助开发人员消除Java的冗长�
 4. 重启 eclipse
 5. 右键点击 project --> clean 清理项目
 
-### 15.3. 卸载插件
+### 卸载插件
 
 在菜单栏中点击【help】-【Eclipse MarketPlace】。点击Installed标签页，选择需要卸载的插件
 
@@ -648,7 +638,7 @@ Lombok 是一种Java实用工具，可以帮助开发人员消除Java的冗长�
 
 ![](images/20201106105105562_23741.jpg)
 
-### 15.4. 查看eclipse安装的插件
+### 查看 eclipse 安装的插件
 
 用于查看安装的那些插件与卸载安装
 
@@ -657,3 +647,84 @@ Lombok 是一种Java实用工具，可以帮助开发人员消除Java的冗长�
 ![](images/20201106105157654_20864.jpg)
 
 ![](images/20201106105205841_21569.jpg)
+
+## 常见问题处理
+
+### 出现 "Repository registry initialization" 问题的解决办法
+
+在更换了 eclipse 版本后，选择之前的工作空间时，可能会出现 An internal error occurred during: "Repository registry initialization". 的问题时，删除`.metadata/.plugins/org.eclipse.m2e.core/nexus/` 的目录，然后再重启 Eclipse，重新编译一下 maven 项目
+
+### 导入项目时提示：No projects are found to import
+
+如果发导入工程 import 的时候，出现『No projects are found to import』的提示，首先查看项目目录中是否有隐藏文件`.project`，还有目录结构也还要有一个隐藏文件`.classpath`。如果没有，可以参考以下方法：
+
+#### 方法1
+
+最直接的操作，可以把其它项目的`.project`, `.classpath`文件拷贝过来，修改相应的地方则可。
+
+1. `.project` 文件只需要修改 `<name>AboxTVExchange</name>` 这个项目名称则可
+2. `.classpath` 文件通常不用改，内容如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="src" path="gen"/>
+    <classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>
+```
+
+`kind= "… "` 是指这个目录在 project 中的类型。`kind="src"`为源文件目录，这个目录下的文件会被编译器编译。`kind="output"` 是 java 文件编译输出目录，src 目录下的文件会编译到这个目录下。当修改项目属性 -> java build path 时这个文件会被自动修改.
+
+#### 方式2
+
+将源码包移到非 workspace 目录下，然后 `new -> android project -> create project from exist source`，添加写工程名称则可。注意如果不移到非 workspace 目录下，出现如下错误信息：
+
+```
+Invalid project description
+——> detail: ->>> xxxx(project path) overlaps the location of another project: ‘xxxx’
+```
+
+eclipse 插件在创建项目的时候需要在 workspace 目录下创建一个同名的目录。但发现 workspace 目录下已存在对应的目录时，就会报上面的处错误信息了。
+
+### 项目检出 JRE 问题
+
+项目从 SVN 检出到工作空间后报了很多错误，其中很明显就是一些 jar 的问题，没有相关的 jar 或版本问题，看到最后的错误 `Unbound classpath container: 'JRE System Library [JavaSE-1.7]' in project 'idweb'`，就很明白是 JRE 问题了，解决办法如下：
+
+项目右键属性 -> Java Build Path -> Libraries
+
+如图：选中 JRE System Library [JavaS3E1.7] 然后 Remove 掉。
+
+![](images/50366207357035.png)
+
+删掉后再重新添加 JRE，如图：
+
+![](images/519935952213030.png)
+
+进入后如下图所示，可以选择工作空间默认的 JRE，也可以重新添加外部的，如果选择默认的点击完成即可，如果添加外部的，点击箭头指向的按钮，重新选择外部 JRE 路径地址即可
+
+![](images/330617437280331.png)
+
+完成后可看到如下图所示，JRE 没有在报错了，点击 OK 即可。
+
+![](images/16164851802257.png)
+
+### 提示输入 Scanner 没有关闭，设置不提示警告
+
+- Description -> Resource -> Path -> Location -> Type
+- Resource leak: 'input' is never closed
+
+![](images/223915580690045.png)
+
+eclipse 中 Window -> Preferences -> Java -> Compiler -> Errors/Warnings
+
+![](images/12936514962867.png)
+
+应该是：将这里面的的资源漏洞设置不提示就可以了解决了
+
+- potential programming problems(潜在的编程问题)
+- resource leak	(资源漏洞) -> 将 Warning 改成 Ignore
+
+![](images/589505415997995.png) ![](images/81927261048954.png)

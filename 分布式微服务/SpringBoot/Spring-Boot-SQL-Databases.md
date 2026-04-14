@@ -1,8 +1,8 @@
-## 1. Spring Boot 对关系型数据库、数据源、持久化等支持
+## Spring Boot 对关系型数据库、数据源、持久化等支持
 
 Spring Boot 对 SQL 关系型数据库提供了技术支持。主要包含三个层面：**数据源技术**、**持久化技术**和**数据库技术**。
 
-## 2. 数据源技术
+## 数据源技术
 
 Spring Boot 程序，如果不使用第三方数据源技术，运行程序可以在日志中找到如下初始化信息：
 
@@ -13,7 +13,7 @@ INFO 31820 --- [           main] com.zaxxer.hikari.HikariDataSource       : Hika
 
 从以上日志可以看出，Spring Boot 提供了内置的数据源 HikariDataSource
 
-### 2.1. Spring Boot 内嵌数据源
+### Spring Boot 内嵌数据源
 
 数据层技术是每一个企业级应用程序都会用到的，而其中必定会进行数据库连接的管理。Spring Boot 提供了 3 款内嵌数据源技术，分别如下：
 
@@ -22,7 +22,7 @@ INFO 31820 --- [           main] com.zaxxer.hikari.HikariDataSource       : Hika
     - 在引入 spring-boot-starter-web 依赖后，默认使用内嵌 tomcat，如果此时将 HikartCP 技术的坐标排除掉，则会使用到 tomcat 提供的 DataSource
 - **Commons DBCP**：此数据源使用的条件比较苛刻了，当既不使用 HikartCP 也不使用 tomcat 的 DataSource 时，默认才使用此数据源
 
-### 2.2. HikariCP 数据源配置
+### HikariCP 数据源配置
 
 使用默认的数据源 HikariCP，直接在 application.yml 文件配置数据库相关信息即可：
 
@@ -48,7 +48,7 @@ spring:
       maximum-pool-size: 50
 ```
 
-### 2.3. 测试
+### 测试
 
 > 参考 mybatis 或者 mybatis-plus 与 Spring Boot 整合的示例，搭建一个最简单的工程用于测试
 
@@ -64,11 +64,11 @@ INFO 10344 --- [           main] com.zaxxer.hikari.HikariDataSource       : Hika
 INFO 10344 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
 ```
 
-## 3. 内置数据库技术
+## 内置数据库技术
 
 Spring Boot 给开发者提供了内置的数据源解决方案和持久化解决方案，还提供了内置的数据库解决方案
 
-### 3.1. Spring Boot 内置数据库
+### Spring Boot 内置数据库
 
 Spring Boot 提供了3款内置的数据库：
 
@@ -78,7 +78,7 @@ Spring Boot 提供了3款内置的数据库：
 
 以上三款数据库底层都是使用 java 语言开发的。除了可以独立安装之外，还可以像是 tomcat 服务器一样，采用内嵌的形式运行在 spirng boot 容器中。在应用程序运行后，如果进行测试工作，此时测试的数据无需存储在磁盘上，直接运行在内存中，运行或者测试完成后，服务器一旦关闭，所有数据都清除，不用手动去清理因测试留下的历史数据。这也是内嵌数据库的最大优点，方便进行功能测试。
 
-### 3.2. H2 数据库简介
+### H2 数据库简介
 
 官方网址：http://www.h2database.com/html/main.html
 
@@ -101,11 +101,11 @@ jdbc:h2:mem:h2_test;MODE=MySQL;DATABASE_TO_LOWER=TRUE
 - `MODE=MySQL`：配置兼容MySQL
 - `DATABASE_TO_LOWER=TRUE`：设置数据库字符全为小写
 
-### 3.3. Spring Boot 内嵌 H2 数据库快速入门
+### Spring Boot 内嵌 H2 数据库快速入门
 
 以 H2 数据库为例，介绍使用这些内嵌数据库的方法
 
-#### 3.3.1. 引入依赖
+#### 引入依赖
 
 - h2 数据库的依赖
 
@@ -137,7 +137,7 @@ jdbc:h2:mem:h2_test;MODE=MySQL;DATABASE_TO_LOWER=TRUE
 
 > 注：因为 H2 数据库自带一个控制台访问程序，需要使用web访问，如果不需要使用其控制台或者只做测试，则选择 spring-boot-starter 依赖即可
 
-#### 3.3.2. 项目配置
+#### 项目配置
 
 修改 application.yml 配置文件，增加以下配置
 
@@ -191,7 +191,7 @@ INSERT INTO `user`(`id`, `name`, `age`) VALUES (1, 'Jone', 18),(2, 'Jack', 20),(
 >
 > 参考 [stackoverflow 的一个答复](https://stackoverflow.com/questions/38649370/how-to-make-mysql-database-schema-to-be-compatible-with-h2-database)
 
-#### 3.3.3. 使用测试
+#### 使用测试
 
 创建一个简单的 mybatis-plus 工程用来测试
 
@@ -207,9 +207,9 @@ INSERT INTO `user`(`id`, `name`, `age`) VALUES (1, 'Jone', 18),(2, 'Jack', 20),(
 
 当程序运行起来后，就可以正常对数据库进行 CRUD 操作，而当程序停止运行后，所有数据都从内存中移除。
 
-## 4. Spring Boot 整合 C3P0 数据源
+## Spring Boot 整合 C3P0 数据源
 
-### 4.1. 创建数据源实例
+### 创建数据源实例
 
 创建自定义配置类 `DataSourceConfiguration`，在类使用 `@Bean` 注解创建 `DataSource` 数据源实例
 
@@ -228,7 +228,7 @@ public class DataSourceConfiguration {
 }
 ```
 
-### 4.2. c3p0 配置
+### c3p0 配置
 
 在项目的 application.properties 文件中，配置 c3p0 相关属性
 
@@ -243,29 +243,29 @@ spring.datasource.c3p0.minPoolSize=10
 spring.datasource.c3p0.initialPoolSize=10
 ```
 
-## 5. Spring Boot 整合 Druid 数据源（待整理）
+## Spring Boot 整合 Druid 数据源（待整理）
 
-### 5.1. Druid 简介
+### Druid 简介
 
 Druid 是一个非常优秀的连接池，非常好的管理了数据库连接，可以实时监控数据库连接对象和应用程序的数据库操作记录
 
 [Druid常见问题](https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
 
-### 5.2. 项目准备
+### 项目准备
 
-#### 5.2.1. 项目依赖
+#### 项目依赖
 
 修改 pom.xml 文件，引入相关依赖
 
-## 6. Spring Boot 整合 Jdbc
+## Spring Boot 整合 Jdbc
 
 Spring Boot 除可以整合行业内常用的关系型数据库持久化技术框架之外，还内置了一套现成的数据层技术，此技术是是由 Spring 提供的 `JdbcTemplate`，此技术其实就是回归到 jdbc 最原始的编程形式来进行数据层的开发
 
-### 6.1. 环境准备
+### 环境准备
 
 > 为了方便测试，直接使用 Spring Boot 内嵌 H2 数据库内存模式
 
-#### 6.1.1. 引入依赖
+#### 引入依赖
 
 Spring Boot 整合 Jdbc 引入的核心依赖是 spring-boot-starter-jdbc
 
@@ -300,7 +300,7 @@ Spring Boot 整合 Jdbc 引入的核心依赖是 spring-boot-starter-jdbc
 </dependencies>
 ```
 
-#### 6.1.2. 项目配置
+#### 项目配置
 
 - 创建 spring boot 项目配置文件 application.yml
 
@@ -333,7 +333,7 @@ CREATE TABLE `tb_book`(
 );
 ```
 
-#### 6.1.3. 工程基础代码
+#### 工程基础代码
 
 - 创建数据库表相应的实体类
 
@@ -358,7 +358,7 @@ public class JdbcApplication {
 }
 ```
 
-### 6.2. 整合功能测试
+### 整合功能测试
 
 编写测试用例，分别测试使用 JdbcTepmlate 进行增删改查。_这里只作最基础的使用示例，更详细用法详见其他笔记_
 
@@ -416,9 +416,9 @@ public class JdbcTemplateTest {
 }
 ```
 
-## 7. Spring Boot 整合 MyBatis（待整理更新）
+## Spring Boot 整合 MyBatis（待整理更新）
 
-### 7.1. 环境准备
+### 环境准备
 
 - **第一步：导入数据库表**
 - **第二步：加入 MyBatis 的启动器依赖**
@@ -575,12 +575,12 @@ mybatis:
 
 **注：传统的 ssm 框架中，mybatis 的总配置文件是 mybatis-config.xml，但 spring boot 推荐少用配置文件，所以，可以将 mybatis-config.xml 的相关配置写在 application.properties(或 application.yml)中**
 
-### 7.2. application 文件相关配置
+### application 文件相关配置
 
 - 任何其他 Spring Boot 应用程序一样，MyBatis-Spring-Boot-Application 配置参数存储在 application.properties（或 application.yml）中。
 - MyBatis 使用前缀 mybatis 作为其属性
 
-#### 7.2.1. 可用的属性
+#### 可用的属性
 
 |           属性            |                                                              描述                                                              |
 | :----------------------: | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -593,7 +593,7 @@ mybatis:
 | configuration-properties | MyBatis 配置的外部化属性。指定的属性可以用作 MyBatis 配置文件和 Mapper 文件的占位符                                                     |
 |      configuration       | MyBatis 相关配置 bean。关于可用属性，与 mybatis-config.xml 配置文件的 settings 配置属性一致。**注意此属性不能 config-location 同时使用** |
 
-#### 7.2.2. 配置案例
+#### 配置案例
 
 ```properties
 # application.properties
@@ -616,7 +616,7 @@ mybatis:
     default-statement-timeout: 30
 ```
 
-### 7.3. 整合开发 Demo
+### 整合开发 Demo
 
 - 使用 Spring Boot + Spring MVC + MyBatis 实现查询所有公告
 - 使用 Spring Boot + Spring MVC + MyBatis + EasyUI 实现公告分页查询
@@ -763,9 +763,9 @@ src/main/resources/static/images
     - 浏览器地址栏输入：http://localhost:8080/findAll
     - 浏览器地址栏输入：http://localhost:8080/show
 
-## 8. Spring Boot 整合 JPA（待整理更新）
+## Spring Boot 整合 JPA（待整理更新）
 
-### 8.1. 环境准备
+### 环境准备
 
 - **第一步：导入数据库表**：运行 SpringBoot\准备资料\springboot.sql 文件创建数据库表及表中数据
 - **第二步：加入 Spring-Data-JPA 的启动器**
@@ -842,7 +842,7 @@ spring:
         format_sql: true
 ```
 
-### 8.2. 整合开发
+### 整合开发
 
 案例：使用 Spring Boot + Spring MVC + Spring Data JPA 查询所有公告
 
@@ -928,13 +928,13 @@ public class NoticeController {
 - **第五步：编写启动类**
 - **第六步：测试**。浏览器地址栏输入：http://localhost:8080/findAll
 
-## 9. AbstractRoutingDataSource 多数据源管理方案
+## AbstractRoutingDataSource 多数据源管理方案
 
 现在的 Web 应用大都是读多写少。除了缓存以外还可以通过数据库“主从复制”架构，把读请求路由到从数据库节点上，实现读写分离，从而大大提高应用的吞吐量。
 
 Spring Jdbc 模块类提供了一个 `AbstractRoutingDataSource` 抽象类可以实现注入多个数据源。它本身也实现了 `DataSource` 接口，表示一个“可路由”的数据源。
 
-### 9.1. 概述
+### 概述
 
 `org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource` 抽象类部分核心代码：
 
@@ -986,17 +986,17 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource imple
 
 得到目标数据数据源后，返回真正的 Jdbc 连接。这一切对于使用到 Jdbc 的组件（`Repository`、`JdbcTemplate` 等）来说都是透明的。
 
-### 9.2. 多数据源实现思路
+### 多数据源实现思路
 
 1. 创建 `AbstractRoutingDataSource` 实现类。把它的默认数据源 `resolvedDefaultDataSource` 设置为主库，从库则保存到 `Map<Object, DataSource> resolvedDataSources` 中。
 2. 在 Spring Boot 应用中通常使用 `@Transactional` 注解来开启声明式事务，它的默认传播级别为 `REQUIRED`，也就是保证多个事务方法之间的相互调用都是在同一个事务中，使用的是同一个 Jdbc 连接。它还有一个 `readOnly` 属性表示是否是只读事务。因此可以通过 AOP 技术，在事务方法执行之前，先获取到方法上的 `@Transactional` 注解从而判断是读、还是写业务。并且把“读写状态”存储到线程上下文（`ThreadLocal`）中！
 3. 在 `AbstractRoutingDataSource` 的 `determineCurrentLookupKey` 方法中，可以根据当前线程上下文中的“读写状态”判断当前是否是只读业务，如果是，则返回从库 `resolvedDataSources` 中的 Key；反之则返回 `null` 表示使用默认数据源也就是主库。
 
-### 9.3. 示例
+### 示例
 
 > 示例代码详见 spring-boot-note\spring-boot-2.5.x-sample\spring-boot-multi-datasource
 
-#### 9.3.1. 初始化数据库
+#### 初始化数据库
 
 在本地创建 4 个不同名称的数据库，用于模拟“MYSQL 主从”架构。
 
@@ -1030,7 +1030,7 @@ INSERT INTO `demo_slave3`.`test` (`id`, `name`) VALUES (1, 'slave3');
 
 > 注：不同数据库节点下 `test` 表中的 `name` 字段不同，用于区别不同的数据库节点。
 
-#### 9.3.2. 创建应用
+#### 创建应用
 
 创建 Spring Boot 应用，添加 `spring-boot-starter-jdbc` 和 `mysql-connector-j`（MYSQL 驱动）依赖：
 
@@ -1054,7 +1054,7 @@ INSERT INTO `demo_slave3`.`test` (`id`, `name`) VALUES (1, 'slave3');
 
 > 注：aspectj 依赖是因为示例需要使用 AOP
 
-#### 9.3.3. 项目的配置
+#### 项目的配置
 
 在项目配置文件 application.yml 中定义上面创建好的所有主、从数据库。
 
@@ -1140,7 +1140,7 @@ public class RoutingDataSourceApp {
 }
 ```
 
-#### 9.3.4. 维护业务的“读写状态”
+#### 维护业务的“读写状态”
 
 创建 MasterSlaveDataSourceMarker，用于维护当前业务的“读写状态”。通过 `ThreadLocal<Boolean>` 在当前线程中保存当前业务的读写状态。如果 `get()` 状态标识返回 `null` 或者 `true` 则表示非只读，需要使用主库。反之则表示只读业务，使用从库。
 
@@ -1171,7 +1171,7 @@ public class MasterSlaveDataSourceMarker {
 }
 ```
 
-#### 9.3.5. 通过 AOP 标识业务状态
+#### 通过 AOP 标识业务状态
 
 创建 `MasterSlaveDataSourceAspect` 切面类，通过 `@Order(Ordered.HIGHEST_PRECEDENCE)` 注解保证它必须比声明式事务 AOP 更先执行。
 
@@ -1234,7 +1234,7 @@ public class MasterSlaveDataSourceAspect {
 
 > Tips: 除了通过`@Transactional`注解来判断方法“读写”业务状态，还可以通过自定义注解来标识方法的“读写”状态。
 
-#### 9.3.6. 创建 AbstractRoutingDataSource 的实现
+#### 创建 AbstractRoutingDataSource 的实现
 
 创建 `AbstractRoutingDataSource` 抽象类的实现 `MasterSlaveDataSource`。其中，定义了一个 `List<Object> slaveKeys` 字段，用于存储在配置文件中定义的所有从库的 Key。
 
@@ -1296,7 +1296,7 @@ public class MasterSlaveDataSource extends AbstractRoutingDataSource {
 }
 ```
 
-#### 9.3.7. 创建配置类
+#### 创建配置类
 
 创建 `MasterSlaveDataSourceConfiguration` 多数据源的 `@Configuration` 配置类，在类中创建 `MasterSlaveDataSource` 数据源 Bean。
 
@@ -1345,7 +1345,7 @@ public class MasterSlaveDataSourceConfiguration {
 }
 ```
 
-#### 9.3.8. 测试
+#### 测试
 
 创建用于测试的业务类。通过构造函数注入 `JdbcTemplate`（spring jdbc 模块自动配置的），在类中定义了 2 个方法：
 
@@ -1438,6 +1438,6 @@ public class MultiDatasourceTest {
 2024-02-15 13:58:17.584  INFO 10380 --- [           main] c.m.s.r.test.MultiDatasourceTest         : write=new name
 ```
 
-### 9.4. 总结
+### 总结
 
 通过 `AbstractRoutingDataSource` 可以不使用任何第三方中间件就可以在 Spring Boot 中实现数据源“读写分离”，但这种方式需要在每个业务方法上通过 `@Transactional` 注解（或者自定义注解）来明确定义是读还是写。

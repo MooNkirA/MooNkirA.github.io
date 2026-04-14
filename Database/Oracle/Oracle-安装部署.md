@@ -1,6 +1,6 @@
-## 1. Oracle 11g 安装教程
+## Oracle 11g 安装教程
 
-### 1.1. Oracle 11g 下载
+### Oracle 11g 下载
 
 到 Oracle 官方网站下载 Oracle 数据库。官网下载地址：https://www.oracle.com/cn/database/technologies/oracle-database-software-downloads.html
 
@@ -8,7 +8,7 @@
 
 ![](images/468685418272694.png)
 
-### 1.2. Oracle 11g 安装步骤
+### Oracle 11g 安装步骤
 
 Oracle 11g 下载完成后，解压到一个空的文件夹，然后双击 setup.exe 文件，开始安装 Oracle 数据库。
 
@@ -60,7 +60,7 @@ Oracle 11g 下载完成后，解压到一个空的文件夹，然后双击 setup
 
 ![](images/543450019255074.png)
 
-### 1.3. 验证安装情况
+### 验证安装情况
 
 如果上面安装步骤正常通过，在【开始】->【所有应用】将看到 Oracle 文件夹如下：
 
@@ -70,15 +70,15 @@ Oracle 11g 下载完成后，解压到一个空的文件夹，然后双击 setup
 
 ![](images/463170119242172.png)
 
-### 1.4. 安装问题
+### 安装问题
 
 安装时遇到 oracle 安装最后一步出错的解决方法
 
 ![](images/515880219260215.png)
 
-### 1.5. Oracle11g 卸载
+### Oracle11g 卸载
 
-#### 1.5.1. 卸载流程
+#### 卸载流程
 
 1. **关闭 oracle 所有的服务**。
     - Window7 用户可以在 windows的任务管理器 -> 服务内关闭以 oracle 开头的所有服务；
@@ -94,7 +94,7 @@ Oracle 11g 下载完成后，解压到一个空的文件夹，然后双击 setup
 7. 重启操作系统后各种 Oracle 相关的进程都不会加载了。删除 oracle 的安装目录，在这里就体现到了上面新建一个单独目录的好处了。可以直接把自定义的那个 oracle 文件夹直接删除。（数据库的东西好像删除起来也是很慢的）。如果没有按照自定义的话，找到默认的那个安装目录，删除。
 8. 删除开始菜单中的 oracle 项。
 
-#### 1.5.2. 补充网上完全卸载 Oracle 方法
+#### 补充网上完全卸载 Oracle 方法
 
 软件环境：Windows XP + Oracle 10g
 
@@ -127,11 +127,11 @@ oracle -delete -asmsid +asm7
         2. ORACLE_BASE 目录。
         3. `c:\Documents and Settings\系统用户名`、`LocalSettings\Temp` 目录下的临时文件。
 
-## 2. Oracle 12C 安装教程
+## Oracle 12C 安装教程
 
 Oracle 12c，全称 Oracle Database 12c，是 Oracle 11g 的升级版，新增了很多新的特性。
 
-### 2.1. Oracle 12C 下载
+### Oracle 12C 下载
 
 Oracle 的官方中文网站，选择相应的版本。下载地址：https://www.oracle.com/cn/database/technologies/oracle-database-software-downloads.html
 
@@ -145,7 +145,7 @@ Oracle 的官方中文网站，选择相应的版本。下载地址：https://ww
 
 双击 setup.exe 文件进行安装了。
 
-### 2.2. Oracle 12C 安装步骤
+### Oracle 12C 安装步骤
 
 1. 安装程序要求提供电子邮件地址以获取最新的安全问题和更新。可以单击下一步按钮跳过。
 
@@ -191,7 +191,7 @@ Oracle 的官方中文网站，选择相应的版本。下载地址：https://ww
 
 ![](images/77835118240794.png)
 
-### 2.3. 连接到 Oracle 数据库（SQL developer）
+### 连接到 Oracle 数据库（SQL developer）
 
 1. 启动由 Oracle 数据库提供的 SQL developer 应用程序。
 
@@ -209,7 +209,7 @@ Oracle 的官方中文网站，选择相应的版本。下载地址：https://ww
 
 ![](images/29835318245739.png)
 
-## 3. 在虚拟机中安装 Oracle
+## 在虚拟机中安装 Oracle
 
 在安装完成前将 scott 和 hr 的两个账号解锁，可以设置新口令，如果使用默认的口令是:tiger
 
@@ -220,7 +220,7 @@ Oracle 的官方中文网站，选择相应的版本。下载地址：https://ww
 
 ![](images/20190423101753908_2660.jpg)
 
-## 4. 虚拟网卡设置
+## 虚拟网卡设置
 
 本机和虚拟机之间能相互访问，它们的 IP 段必须相同，配置方式如下
 
@@ -272,7 +272,7 @@ Oracle 的官方中文网站，选择相应的版本。下载地址：https://ww
 
 ![测试](images/20190423101907105_22201.jpg)
 
-## 5. 个人测试本地安装 oracle 相关信息
+## 个人测试本地安装 oracle 相关信息
 
 - system口令：moon
 - SCOTT的口令:123456

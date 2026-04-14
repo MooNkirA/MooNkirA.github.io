@@ -3,9 +3,9 @@
 - 官网：https://eslint.org/
 - 国内官网翻译版网址：http://eslint.cn/
 
-## 1. 快速开始
+## 快速开始
 
-### 1.1. ESLint 配置文件
+### ESLint 配置文件
 
 运行 `eslint --init` 之后，会在项目根目录自动创建 `.eslintrc` 文件。可以在 `.eslintrc` 文件中配置相关的规则。如：
 
@@ -18,7 +18,7 @@
 }
 ```
 
-### 1.2. 了解 ESLint 常见的语法规则
+### 了解 ESLint 常见的语法规则
 
 ESLint 提供了许多**校验代码格式**的语法规则，常见的语法规则列表如下：
 
@@ -37,7 +37,7 @@ ESLint 提供了许多**校验代码格式**的语法规则，常见的语法规
 
 > **详细的 ESLint 语法规则列表，请参考官方文档** https://eslint.org/docs/rules/
 
-### 1.3. 自定义 ESLint 的 rules 规则
+### 自定义 ESLint 的 rules 规则
 
 如果希望修改 ESLint 默认的校验规则，可以在 `.eslintrc.js` 文件的 `rules` 节点下进行自定义。例如：
 
@@ -51,7 +51,7 @@ rules: {
 }
 ```
 
-### 1.4. 安装 vscode 的 ESLint 插件
+### 安装 vscode 的 ESLint 插件
 
 > 为了让开发者专注于业务功能的开发，推荐在 vscode 中安装并配置 ESLint 插件。它可以在保存文件的时候，遵循 ESLint 的语法规则，自动对代码进行格式化。
 

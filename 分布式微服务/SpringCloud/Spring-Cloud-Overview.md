@@ -1,10 +1,10 @@
-## 1. Spring Cloud 概述
+## Spring Cloud 概述
 
 微服务架构的系统是一个分布式系统，按业务领域划分为独立的服务单元，有自动化运维容错、快速演进的特点，它能够解决传统单体架构系统的痛点，同时也能满足复杂的业务需求。
 
 Spring Cloud 是 Java 语言的微服务框架，依赖于 Spring boot。
 
-### 1.1. Spring Cloud 框架的特点
+### Spring Cloud 框架的特点
 
 - 约定优于配置
 - 适用于各种环境。开发、部署在 PC Server 或各种云环境（如阿里云、AWS等）
@@ -15,7 +15,7 @@ Spring Cloud 是 Java 语言的微服务框架，依赖于 Spring boot。
 - 选型中立、丰富。支持使用 Eureka、Zookeeper 或 Consul 实现服务发现
 - 灵活。Spring Cloud 的组成部分是解耦的
 
-### 1.2. Spring Cloud 和 Spring Boot 的关系
+### Spring Cloud 和 Spring Boot 的关系
 
 - Spring boot 是 Spring 的一套快速配置脚手架，可以基于spring boot 快速开发单个微服务，Spring Cloud是一个基于Spring Boot实现的云应用开发工具；
 - Spring boot专注于快速、方便集成的单个个体，Spring Cloud是关注全局的服务治理框架；
@@ -23,7 +23,7 @@ Spring Cloud 是 Java 语言的微服务框架，依赖于 Spring boot。
 - Spring boot可以离开Spring Cloud独立使用开发项目，但是Spring Cloud离不开Spring boot，属于依赖的关系。
 - spring -> spring booot -> spring cloud 这样的关系。
 
-## 2. Spring Cloud 核心组件
+## Spring Cloud 核心组件
 
 Spring Cloud 的本质是在 Spring Boot 的基础上，增加了一堆微服务相关的规范，并对应用上下文（Application Context）进行了功能增强。目前 Spring Cloud 规范已有 Spring 官方，Spring Cloud Netflix，Spring Cloud Alibaba等实现。通过组件化的方式，Spring Cloud 将这些实现整合到一起构成全家桶式的微服务技术栈。主要组件如下：
 
@@ -63,7 +63,7 @@ Spring Cloud 的本质是在 Spring Boot 的基础上，增加了一堆微服务
 - Nacos：服务注册中心
 - Sentinel：客户端容错保护
 
-## 3. Spring Cloud 体系结构图
+## Spring Cloud 体系结构图
 
 ![](images/20201007121639484_27784.png)
 
@@ -76,15 +76,15 @@ Spring Cloud各个组件相互配合，合作支持了一套完整的微服务�
 - **链路追踪**技术可以将所有的请求数据记录下来，方便进行后续分析
 - 各个组件又提供了功能完善的**dashboard监控平台**,可以方便的监控各组件的运行状况
 
-## 4. Spring Cloud 版本说明
+## Spring Cloud 版本说明
 
-### 4.1. 版本命名说明
+### 版本命名说明
 
 - 多数Spring项目都是以【`主版本号.次版本号.增量版本号.里程碑版本号`】的形式命名版本号的。如：Spring Framework稳定版本4.3.5.RELEASE、里程碑版本5.0.0.M4等
 - 其中，主版本号表示项目的重大重构；次版本号表示新特性的添加和变化；增量版本号一般表示bug修复；里程碑版本号表示某版本号的里程碑
 - 而Spring Cloud采用了伦敦地铁站的名字，根据字母表的顺序来对应版本时间顺序。以此方式的命名，为了**避免与子项目版本号的重名误解**
 
-### 4.2. Spring Cloud 与 Spring Boot 版本选择示例
+### Spring Cloud 与 Spring Boot 版本选择示例
 
 - 在选择了 Spring Cloud 版本后，需要在官网上选择对应的子项目的版本。pom.xml 的依赖配置案例如下：
   - Spring Cloud 版本 Finchley.RELEASE 对应 Spring Boot 版本为 2.0.1.RELEASE
@@ -94,7 +94,7 @@ Spring Cloud各个组件相互配合，合作支持了一套完整的微服务�
 
 ![版本2](images/_版本2_1537092381_3809.jpg)
 
-### 4.3. Spring Cloud 对应的子项目版本
+### Spring Cloud 对应的子项目版本
 
 官网截图（2018.6.24）：https://projects.spring.io/spring-cloud/#quick-start
 
@@ -122,7 +122,7 @@ Spring Cloud各个组件相互配合，合作支持了一套完整的微服务�
 |    spring-cloud-vault     |                                                                                            |
 |   spring-cloud-gateway    | Spring Cloud网关相关的整合实现。                                                               |
 
-## 5. 微服务案例（不使用SpringCloud）
+## 微服务案例（不使用SpringCloud）
 
 > **此案例代码地址：`spring-cloud-note\microservice-no-springcloud\`**
 
@@ -135,7 +135,7 @@ Spring Cloud各个组件相互配合，合作支持了一套完整的微服务�
 
 ![](images/20201007163820362_13440.png)
 
-### 5.1. 准备数据库表
+### 准备数据库表
 
 创建`springcloud_sample_db`数据库，案例中所涉及的表完整建表语句在项目资料`spring-cloud-note\document\sql`中
 
@@ -184,7 +184,7 @@ PRIMARY KEY ( `id` )
 ) ENGINE = INNODB DEFAULT CHARSET = utf8;
 ```
 
-### 5.2. 搭建环境 - 聚合父工程
+### 搭建环境 - 聚合父工程
 
 创建聚合父工程`microservice-no-springcloud`，修改pom.xml文件引入相关依赖
 
@@ -266,9 +266,9 @@ PRIMARY KEY ( `id` )
 </build>
 ```
 
-### 5.3. 搭建公共模块
+### 搭建公共模块
 
-#### 5.3.1. 引入依赖
+#### 引入依赖
 
 创建`shop-service-common`工程模块，用于存放公共的实体类和工具类。*注：后面的order、product、user模块都会依赖common模块*
 
@@ -288,7 +288,7 @@ PRIMARY KEY ( `id` )
 </dependencies>
 ```
 
-#### 5.3.2. 创建实体类
+#### 创建实体类
 
 在`shop-service-common`工程中创建 `Product` 实体类
 
@@ -309,9 +309,9 @@ public class Product {
 }
 ```
 
-### 5.4. 搭建商品微服务模块
+### 搭建商品微服务模块
 
-#### 5.4.1. 引入依赖
+#### 引入依赖
 
 创建商品微服务模块`shop-service-product`，配置相关依赖
 
@@ -337,7 +337,7 @@ public class Product {
 </dependencies>
 ```
 
-#### 5.4.2. 编写dao接口
+#### 编写dao接口
 
 在`shop-service-product`中创建 `ProductDao` 接口
 
@@ -346,7 +346,7 @@ public class Product {
 public interface ProductDao extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> { }
 ```
 
-#### 5.4.3. 编写service层
+#### 编写service层
 
 在`shop-service-product`中创建 `ProductService` 业务接口与其实现
 
@@ -412,7 +412,7 @@ public class ProductServiceImpl implements ProductService {
 }
 ```
 
-#### 5.4.4. 编写controller层
+#### 编写controller层
 
 在`shop-service-product`中创建 `ProductController` 控制类
 
@@ -453,7 +453,7 @@ public class ProductController {
 }
 ```
 
-#### 5.4.5. 编写项目配置文件
+#### 编写项目配置文件
 
 在`resources`包下创建SpringBoot项目的核心配置文件`application.yml`
 
@@ -474,7 +474,7 @@ spring:
     open-in-view: true
 ```
 
-#### 5.4.6. 创建项目启动类
+#### 创建项目启动类
 
 在`shop-service-product`中创建 `ProductApplication` 控制类
 
@@ -488,15 +488,15 @@ public class ProductApplication {
 }
 ```
 
-### 5.5. 搭建其他微服务
+### 搭建其他微服务
 
 创建订单微服务模块 `shop-service-order` 与用户微服务模块 `shop-service-user`，搭建的步骤与商品微服务模块一致
 
-### 5.6. 服务的调用
+### 服务的调用
 
 多个基础的微服务中，在用户下单时需要调用商品微服务获取商品数据，此时需要调用商品微服务提供的HTTP接口。所以需要使用http请求的相关工具类完成，如常见的`HttpClient`、`OkHttp`、Spring提供的`RestTemplate`
 
-#### 5.6.1. RestTemplate 简介
+#### RestTemplate 简介
 
 Spring框架提供的`RestTemplate`类可用于在应用中调用rest服务，它简化了与http服务的通信方式，统一了RESTful的标准，封装了http链接，只需要传入url及返回值类型即可
 
@@ -504,11 +504,11 @@ RestTemplate类的设计原则与许多其他Spring 模板类(例如`JdbcTemplat
 
 RestTemplate类是为调用REST服务而设计的，因此它的主要方法与REST的基础紧密相连。后者是HTTP协议的方法：HEAD、GET、POST、PUT、DELETE和OPTIONS。例如，`RestTemplate`类具有`headForHeaders()`、`getForObject()`、`postForObject()`、`put()`和`delete()`等方法。
 
-#### 5.6.2. RestTemplate 方法介绍
+#### RestTemplate 方法介绍
 
 ![](images/20201008111041867_3376.png)
 
-#### 5.6.3. 通过RestTemplate调用微服务
+#### 通过RestTemplate调用微服务
 
 在`shop-service-order`工程，创建`HttpConfig`配置类，创建`RestTemplate`实例并注册到spring容器中
 
@@ -550,7 +550,7 @@ public class OrderController {
 
 启动商品与订单微服务，测试调用接口
 
-#### 5.6.4. 硬编码存在的问题
+#### 硬编码存在的问题
 
 上面示例已经可以通过`RestTemplate`调用商品微服务的RESTFul API接口，但把提供者的网络地址（ip，端口）等硬编码到了代码中，这种做法存在许多问题：
 
@@ -559,13 +559,13 @@ public class OrderController {
 
 **解决方法：通过注册中心动态的对服务注册和服务发现**
 
-## 6. Spring Cloud 不同组件的注册中心与服务调用对比总结
+## Spring Cloud 不同组件的注册中心与服务调用对比总结
 
 > **注：详细用法详见本系列中不同的章节笔记**
 
-### 6.1. 注册中心对比
+### 注册中心对比
 
-#### 6.1.1. Eureka
+#### Eureka
 
 **搭建注册中心**
 
@@ -578,7 +578,7 @@ public class OrderController {
 - 服务提供者引入 `spring-cloud-starter-netflix-eureka-client` 依赖
 - 通过 `eureka.client.serviceUrl.defaultZone` 配置注册中心地址
 
-#### 6.1.2. Consul
+#### Consul
 
 **搭建注册中心**
 
@@ -590,20 +590,20 @@ public class OrderController {
 - 服务提供者引入 `spring-cloud-starter-consul-discovery` 依赖
 - 通过 `spring.cloud.consul.host` 和 `spring.cloud.consul.port` 指定 Consul Server 的请求地址
 
-### 6.2. 服务调用对比
+### 服务调用对比
 
-#### 6.2.1. Ribbon
+#### Ribbon
 
 - 通过 Ribbon 结合 RestTemplate 方式进行服务调用只需要在声明 RestTemplate 的方法上添加注解 `@LoadBalanced` 即可
 - 可以通过 `服务名称.ribbon.NFLoadBalancerRuleClassName` 配置负载均衡策略
 
-#### 6.2.2. Feign
+#### Feign
 
 - 服务消费者引入 `spring-cloud-starter-openfeign` 依赖
 - 通过 `@FeignClient` 声明一个调用远程微服务接口
 - 启动类上通过 `@EnableFeignClients` 激活 Feign
 
-## 7. Spring Cloud 学习参考资源
+## Spring Cloud 学习参考资源
 
 - [Spring Cloud 官网](https://spring.io/projects/spring-cloud)
 - [Spring Cloud 中国社区](http://springcloud.cn/)

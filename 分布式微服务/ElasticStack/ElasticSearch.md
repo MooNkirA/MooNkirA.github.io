@@ -1,6 +1,6 @@
-## 1. ElasticSearch 分布式全文搜索引擎
+## ElasticSearch 分布式全文搜索引擎
 
-### 1.1. 概述
+### 概述
 
 ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于 RESTful web 接口。Elasticsearch 是用 Java 语言开发的，并作为 Apache 许可条款下的开放源码发布，是一种流行的企业级搜索引擎。ElasticSearch 用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。官方客户端在 Java、.NET（C#）、PHP、Python、Apache Groovy、Ruby 和许多其他语言中都是可用的。根据 DB-Engines 的排名显示，Elasticsearch 是最受欢迎的企业搜索引擎，其次是 Apache Solr，也是基于 Lucene
 
@@ -22,9 +22,9 @@ ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分�
 > 1. 如果公司现在用的 solr 可以满足需求就不要换了。
 > 2. 如果你司准备进行全文检索项目的开发，建议优先考虑 elasticsearch，因为像 Github 这样大规模的搜索都在用它。
 
-### 1.2. 原理与应用
+### 原理与应用
 
-#### 1.2.1. 索引结构
+#### 索引结构
 
 下图是 ElasticSearch 的索引结构，下边黑色部分是物理结构，上边黄色部分是逻辑结构，逻辑结构也是为了更好的去描述 ElasticSearch 的工作原理及去使用物理结构中的索引文件
 
@@ -46,7 +46,7 @@ ElasticSearch 是一个基于 Lucene 的搜索服务器。它提供了一个分�
 
 两个文档都匹配，但是第一个文档比第二个匹配度更高。如果使用仅计算匹配词条数量的简单相似性算法，那么可以说，对于查询的相关性来讲，第一个文档比第二个文档更佳
 
-#### 1.2.2. RESTful 应用方法
+#### RESTful 应用方法
 
 Elasticsearch 提供 RESTful Api 接口进行索引、搜索，并且支持多种客户端
 
@@ -57,9 +57,9 @@ Elasticsearch 提供 RESTful Api 接口进行索引、搜索，并且支持多�
 3. 项目服务端通过 Http RESTful 方式请求 ES 集群进行搜索
 4. ES集群从索引库检索数据
 
-## 2. ElasticaSearch 安装
+## ElasticaSearch 安装
 
-### 2.1. 下载地址
+### 下载地址
 
 - ES 更多版本：https://www.elastic.co/cn/downloads/past-releases
 - ES 最新版本：https://www.elastic.co/cn/downloads/elasticsearch
@@ -68,15 +68,15 @@ Elasticsearch 提供 RESTful Api 接口进行索引、搜索，并且支持多�
 
 > Notes: JDK8 只支持到 7.15.x 版本，更高的版本需要 JDK11
 
-### 2.2. 安装说明
+### 安装说明
 
-#### 2.2.1. 安装配置
+#### 安装配置
 
 1. 新版本要求至少 jdk1.8 以上。
 2. 支持 tar、zip、rpm 等多种安装方式。在 windows 下开发建议使用 ZIP 安装方式。
 3. 支持 docker 方式安装。更多详情参见：https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html
 
-#### 2.2.2. 目录结构
+#### 目录结构
 
 解压 elasticsearch-6.2.1.zip，目录结构如下：
 
@@ -93,9 +93,9 @@ Elasticsearch 提供 RESTful Api 接口进行索引、搜索，并且支持多�
 
 > Elasticsearch 版本和支持 JVM 版本关系详见：https://www.elastic.co/cn/support/matrix#matrix_jvm
 
-### 2.3. 配置文件
+### 配置文件
 
-#### 2.3.1. 三个配置文件
+#### 三个配置文件
 
 ES的配置文件的地址根据安装形式的不同而不同：
 
@@ -111,9 +111,9 @@ ES的配置文件的地址根据安装形式的不同而不同：
 - **jvm.options**：用于配置 Elasticsearch JVM 设置
 - **log4j2.properties**：用于配置 Elasticsearch 日志
 
-#### 2.3.2. elasticsearch.yml
+#### elasticsearch.yml
 
-##### 2.3.2.1. 配置格式说明
+##### 配置格式说明
 
 配置格式是YAML，可以采用如下两种方式
 
@@ -145,7 +145,7 @@ http.cors.allow-origin: /.*/
 
 > 注意`path.data`和`path.logs`路径配置正确
 
-##### 2.3.2.2. 常用的配置项说明
+##### 常用的配置项说明
 
 - `cluster.name`：配置elasticsearch的集群名称，默认是elasticsearch。建议修改成一个有意义的名称
 - `node.name`：节点名，通常一台物理服务器就是一个节点，es会默认随机指定一个名字，建议指定一个有意义的名称，方便管理。一个或多个节点组成一个cluster集群，集群是一个逻辑的概念，节点是物理概念
@@ -166,17 +166,17 @@ http.cors.allow-origin: /.*/
 - `http.cors.enabled`：开启 cors 跨域访问支持，默认为false
 - `http.cors.allow-origin`：跨域访问允许的域名地址，可以使用正则，如，允许所有域名 `/.*/`
 
-#### 2.3.3. jvm.options
+#### jvm.options
 
 - 设置最小及最大的JVM堆内存大小，修改jvm.options，设置`-Xms`和`-Xmx`：
 1. 两个值设置为相等
 2. 将 `Xmx` 设置为不超过物理内存的一半
 
-#### 2.3.4. log4j2.properties
+#### log4j2.properties
 
 日志文件设置，ES使用log4j，注意日志级别的配置
 
-#### 2.3.5. 系统配置(Linux系统)
+#### 系统配置(Linux系统)
 
 在linux上根据系统资源情况，可将每个进程最多允许打开的文件数设置大些
 
@@ -202,7 +202,7 @@ su elasticsearch
 elasticsearch ‐ nofile 65536
 ```
 
-### 2.4. 启动 ES
+### 启动 ES
 
 进入 ElasticSearch 根目录，进入 bin 目录，在 cmd 命令行中运行
 
@@ -234,7 +234,7 @@ elasticsearch.bat
 }
 ```
 
-### 2.5. head 插件安装
+### head 插件安装
 
 head 插件是 ES 的一个可视化管理插件，用来监视 ES 的状态，并通过 head 客户端和 ES 服务进行交互，比如创建映射、创建索引等，head 的项目地址在`https://github.com/mobz/elasticsearch-head`
 
@@ -289,13 +289,13 @@ http.cors.allow-origin: /.*/
 
 ![Elasticsearch-head插件运行界面](images/20191016183303996_21514.png)
 
-## 3. ES 快速入门
+## ES 快速入门
 
 ES作为一个索引及搜索服务，对外提供丰富的REST接口，此部分的示例使用head插件来测试，目的是对ES的使用方法及流程有个初步的认识
 
-### 3.1. 创建索引库
+### 创建索引库
 
-#### 3.1.1. 索引库概念
+#### 索引库概念
 
 ES 的索引库是一个逻辑概念，它包括了分词列表及文档列表，同一个索引库中存储了相同类型的文档。它就相当于 MySQL 中的表，或相当于 Mongodb 中的集合
 
@@ -309,7 +309,7 @@ ES 的索引库是一个逻辑概念，它包括了分词列表及文档列表�
 1. 如果相当于数据库就表示一个索引库可以创建很多不同类型的文档，这在 ES 中也是允许的。
 2. 如果相当于表就表示一个索引库只能存储相同类型的文档，ES 官方建议在一个索引库中只存储相同类型的文档。
 
-#### 3.1.2. 创建方式
+#### 创建方式
 
 1. 方式一：使用 postman 或 curl 这样的工具创建
 
@@ -343,9 +343,9 @@ ES 的索引库是一个逻辑概念，它包括了分词列表及文档列表�
 
 ![使用head插件创建索引库](images/20191017111224719_5980.png)
 
-### 3.2. 创建映射
+### 创建映射
 
-#### 3.2.1. 概念说明
+#### 概念说明
 
 在索引中每个文档都包括了一个或多个 field，创建映射就是向索引库中创建 field 的过程，下边是 document 和 field 与关系数据库的概念的类比
 
@@ -356,7 +356,7 @@ ES 的索引库是一个逻辑概念，它包括了分词列表及文档列表�
 
 > 注意：6.0 之前的版本有 type（类型）概念，type 相当于关系数据库的表，ES 官方将在 ES9.0 版本中彻底删除 type
 
-#### 3.2.2. 创建映射
+#### 创建映射
 
 创建映射方法：发送POST请求，`http://localhost:9200/索引库名称/类型名称/_mapping`
 
@@ -390,7 +390,7 @@ ES 的索引库是一个逻辑概念，它包括了分词列表及文档列表�
 
 ![创建映射](images/20191017133432459_10867.png)
 
-#### 3.2.3. 解决索引库只读不能创建映射的问题
+#### 解决索引库只读不能创建映射的问题
 
 如果创建索引映射报以下错误：
 
@@ -420,7 +420,7 @@ PUT http://127.0.0.1:9200/wanxinp2p_project/_settings
 
 ![](images/31362711231787.png)
 
-### 3.3. 创建文档
+### 创建文档
 
 ES中的文档相当于MySQL数据库表中的记录
 
@@ -442,21 +442,21 @@ ES中的文档相当于MySQL数据库表中的记录
 
 ![创建文档](images/20191017171728256_30249.png)
 
-### 3.4. 搜索文档
+### 搜索文档
 
-#### 3.4.1. 根据课程id查询文档
+#### 根据课程id查询文档
 
 发送get请求：http://localhost:9200/xc_course/doc/4028e58161bcf7f40161bcf8b77c0000
 
 ![搜索文档](images/20191017172108254_10813.png)
 
-#### 3.4.2. 查询所有记录
+#### 查询所有记录
 
 发送get请求：http://localhost:9200/xc_course/doc/_search
 
 ![查询所有记录](images/20191018090948558_2025.png)
 
-#### 3.4.3. 指定关键字查询相应的记录
+#### 指定关键字查询相应的记录
 
 1. 查询名称中包括spring关键字的记录
 
@@ -470,7 +470,7 @@ ES中的文档相当于MySQL数据库表中的记录
 
 ![条件查询](images/20191018094620683_30959.png)
 
-#### 3.4.4. 查询结果分析
+#### 查询结果分析
 
 分析上面查询的结果
 
@@ -513,9 +513,9 @@ ES中的文档相当于MySQL数据库表中的记录
 - _score：每个文档都有一个匹配度得分，按照降序排列。
 - _source：显示了文档的原始内容
 
-## 4. IK 分词器
+## IK 分词器
 
-### 4.1. 测试分词器
+### 测试分词器
 
 在添加文档时会进行分词，索引中存放的就是一个一个的词（term），当你去搜索时就是拿关键字去匹配词，最终找到词关联的文档
 
@@ -531,7 +531,7 @@ ES中的文档相当于MySQL数据库表中的记录
 
 ![分词器测试结果](images/20191018185047140_19620.png)
 
-### 4.2. 安装IK分词器
+### 安装IK分词器
 
 使用IK分词器可以实现对中文分词的效果。
 
@@ -550,7 +550,7 @@ ES中的文档相当于MySQL数据库表中的记录
 
 ![分词测试结果](images/20191018190116926_23266.png)
 
-### 4.3. 两种分词模式
+### 两种分词模式
 
 ik分词器有两种分词模式：`ik_max_word`和`ik_smart`模式。
 
@@ -566,7 +566,7 @@ ik分词器有两种分词模式：`ik_max_word`和`ik_smart`模式。
 }
 ```
 
-### 4.4. 自定义词库
+### 自定义词库
 
 如果要让分词器支持一些专有词语，可以自定义词库
 
@@ -609,17 +609,17 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 
 ![自定义分词后](images/20191019100456128_8035.png)
 
-## 5. 映射
+## 映射
 
 如果在索引和搜索时去使用ik分词器呢？如何指定其它类型的field，比如日期类型、数值类型等
 
-### 5.1. 映射维护方法
+### 映射维护方法
 
-#### 5.1.1. 查询所有索引的映射
+#### 查询所有索引的映射
 
 发送GET请求：http://localhost:9200/xc_course/_mapping
 
-#### 5.1.2. 创建映射
+#### 创建映射
 
 发送 POST 请求：http://localhost:9200/xc_course/doc/_mapping，以下是一个示例的请求参数
 
@@ -639,17 +639,17 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 }
 ```
 
-#### 5.1.3. 更新映射
+#### 更新映射
 
 与创建映射发送一样的 POST 请求。但需要注意的是，**只可以添加新字段，已有字段不允许更新。如果要更新已有字段，只能删除整个索引库，重新创建映射**
 
-#### 5.1.4. 删除映射
+#### 删除映射
 
 通过删除索引来删除映射。使用head图形化插件进去操作
 
 ![删除映射](images/20191019165901074_20150.png)
 
-### 5.2. 常用映射类型
+### 常用映射类型
 
 下图是ES6.2核心的字段类型如下
 
@@ -657,8 +657,8 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 
 字符串包括 `text` 和 `keyword` 两种类型
 
-#### 5.2.1. text 文本字段
-##### 5.2.1.1. analyzer 属性，通过analyzer属性指定分词器
+#### text 文本字段
+##### analyzer 属性，通过analyzer属性指定分词器
 
 示例：指定name的字段类型为text，使用ik分词器的ik_max_word分词模式
 
@@ -679,7 +679,7 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 }
 ```
 
-##### 5.2.1.2. index 属性，通过index属性指定是否索引
+##### index 属性，通过index属性指定是否索引
 
 - 默认为`index=true`，即要进行索引，只有进行索引才可以从索引库搜索到。
 - 但是也有一些内容不需要索引，比如：商品图片地址只被用来展示图片，不进行搜索图片，此时可以将index设置为false
@@ -695,11 +695,11 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 
 ![搜索无索引字段](images/20191019175104476_12798.png)
 
-##### 5.2.1.3. store 属性
+##### store 属性
 
 是否在source之外存储，每个文档索引后会在ES中保存一份原始文档，存放在"`_source`"中，一般情况下不需要设置store为true，因为在`_source`中已经有一份原始文档了
 
-##### 5.2.1.4. 测试
+##### 测试
 
 - 删除xc_course/doc下的映射
 - 创建新映射：Post http://localhost:9200/xc_course/doc/_mapping
@@ -747,11 +747,11 @@ iK分词器插件的config目录下有一个`main.dic`的文件，此文件为�
 
 通过测试发现：name和description都支持全文检索，pic不可作为查询条件
 
-#### 5.2.2. keyword 关键字字段
+#### keyword 关键字字段
 
 keyword字段为关键字字段，通常搜索keyword是按照整体搜索，所以**创建keyword字段的索引时是不进行分词**的，比如：邮政编码、手机号码、身份证等。keyword字段通常用于过滤、排序、聚合等
 
-##### 5.2.2.1. 测试
+##### 测试
 
 1. 创建新的索引库：PUT http://localhost:9200/text_keyword
 2. 创建创建映射：POST http://localhost:9200/text_keyword/doc/_mapping
@@ -784,7 +784,7 @@ keyword字段为关键字字段，通常搜索keyword是按照整体搜索，所
 
 name是keyword类型，所以查询方式是精确查询。所以搜索“name:java”，搜索不到记录
 
-#### 5.2.3. date 日期类型
+#### date 日期类型
 
 - 日期类型不用设置分词器
 - 通常日期类型的字段用于排序
@@ -811,7 +811,7 @@ name是keyword类型，所以查询方式是精确查询。所以搜索“name:j
 }
 ```
 
-#### 5.2.4. 数值类型
+#### 数值类型
 
 ES支持的数值类型如下图
 
@@ -850,7 +850,7 @@ ES支持的数值类型如下图
 }
 ```
 
-#### 5.2.5. 综合例子
+#### 综合例子
 
 - 创建映射：POST http://localhost:9200/xc_course/doc/_mapping
 
@@ -898,9 +898,9 @@ ES支持的数值类型如下图
 }
 ```
 
-## 6. 搭建 JAVA 实现 ES 客户端操作
+## 搭建 JAVA 实现 ES 客户端操作
 
-### 6.1. ES 客户端
+### ES 客户端
 
 ES提供多种不同的客户端：
 
@@ -925,7 +925,7 @@ ES提供多种不同的客户端：
 </dependency>
 ```
 
-### 6.2. 创建搜索工程
+### 创建搜索工程
 
 1. 创建搜索工程（maven工程）：xc-service-search，pom.xml文件中添加RestHighLevelClient依赖及junit依赖
 
@@ -1105,11 +1105,11 @@ public class SearchApplication {
 ```
 
 
-## 7. 索引管理
+## 索引管理
 
-### 7.1. 创建/删除索引库
+### 创建/删除索引库
 
-#### 7.1.1. API
+#### API
 
 - 创建索引：PUT `http://localhost:9200/索引名称`
 
@@ -1158,7 +1158,7 @@ public class SearchApplication {
 }
 ```
 
-#### 7.1.2. Java Client
+#### Java Client
 
 ```java
 package com.xuecheng.search;
@@ -1256,8 +1256,8 @@ public class TestIndex {
 }
 ```
 
-### 7.2. 添加文档
-#### 7.2.1. API
+### 添加文档
+#### API
 
 格式如下： `PUT请求 /{index}/{type}/{id}，请求参数：{ "field": "value", ... }`
 
@@ -1274,7 +1274,7 @@ public class TestIndex {
 }
 ```
 
-#### 7.2.2. Java Client
+#### Java Client
 
 ```java
 /**
@@ -1302,12 +1302,12 @@ public void testAddDoc() throws IOException {
 }
 ```
 
-### 7.3. 查询文档
-#### 7.3.1. API
+### 查询文档
+#### API
 
 格式如下： `GET请求 /{index}/{type}/{id}`
 
-#### 7.3.2. Java Client
+#### Java Client
 
 ```java
 /**
@@ -1329,9 +1329,9 @@ public void testGetDoc() throws IOException {
 }
 ```
 
-### 7.4. 更新文档
+### 更新文档
 
-#### 7.4.1. API
+#### API
 
 ES更新文档的顺序是：先检索到文档、将原来的文档标记为删除、创建新文档、删除旧文档，创建新文档就会重建索引
 
@@ -1358,7 +1358,7 @@ ES更新文档的顺序是：先检索到文档、将原来的文档标记为删
 }
 ```
 
-#### 7.4.2. Java Client
+#### Java Client
 
 使用 Client Api更新文档的方法同上边第二种局部更新方法。可以指定文档的部分字段也可以指定完整的文档内容
 
@@ -1382,8 +1382,8 @@ public void updateDoc() throws IOException {
 }
 ```
 
-### 7.5. 删除文档
-#### 7.5.1. API
+### 删除文档
+#### API
 
 - 根据id删除，格式：`发送DELETE请求 /{index}/{type}/{id}`
 - 搜索匹配删除，将搜索出来的记录删除，格式：`发送POST请求 /{index}/{type}/_delete_by_query`
@@ -1400,7 +1400,7 @@ public void updateDoc() throws IOException {
 }
 ```
 
-#### 7.5.2. Java Client
+#### Java Client
 
 搜索匹配删除还没有具体的api，可以采用先搜索出文档id，根据文档id删除
 
@@ -1422,17 +1422,17 @@ public void testDelDoc() throws IOException {
 }
 ```
 
-## 8. 搜索管理（DSL 搜索）
+## 搜索管理（DSL 搜索）
 
-### 8.1. 概述
+### 概述
 
 DSL(Domain Specific Language) 是 ES 提出的基于 json 的搜索方式，在搜索时传入特定的 json 格式的数据来完成不同的搜索需求。
 
 > Tips: DSL 比 URI 搜索方式功能强大，在项目中建议使用 DSL 方式来完成搜索。
 
-### 8.2. 准备环境
+### 准备环境
 
-#### 8.2.1. 创建映射
+#### 创建映射
 
 创建xc_course索引库，创建如下映射：`POST http://localhost:9200/xc_course/doc/_mapping`
 
@@ -1469,7 +1469,7 @@ DSL(Domain Specific Language) 是 ES 提出的基于 json 的搜索方式，在�
 
 > 参考 \day11 搜索服务\资料\搜索测试-初始化数据.txt
 
-#### 8.2.2. 插入原始数据
+#### 插入原始数据
 
 向 xc_course/doc 中插入以下数据，发送：
 
@@ -1505,7 +1505,7 @@ DSL(Domain Specific Language) 是 ES 提出的基于 json 的搜索方式，在�
 
 > 参考 \day11 搜索服务\资料\搜索测试-初始化数据.txt
 
-#### 8.2.3. 简单搜索
+#### 简单搜索
 
 - 简单搜索就是通过url进行查询，以get方式请求ES。
 - 语法格式：`发送GET请求 ../_search?q=.....`
@@ -1513,9 +1513,9 @@ DSL(Domain Specific Language) 是 ES 提出的基于 json 的搜索方式，在�
 
 > 例子：http://localhost:9200/xc_course/doc/_search?q=name:spring，搜索 name 中包括 spring 的文档
 
-### 8.3. 查询所有文档
+### 查询所有文档
 
-#### 8.3.1. HTTP 请求实现
+#### HTTP 请求实现
 
 - 查询所有索引库的文档。例如发送：`post http://localhost:9200/_search`
 
@@ -1551,7 +1551,7 @@ DSL(Domain Specific Language) 是 ES 提出的基于 json 的搜索方式，在�
 - `_score`：每个文档都有一个匹配度得分，按照降序排列
 - `_source`：显示了文档的原始内容。
 
-#### 8.3.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 package com.xuecheng.search;
@@ -1679,8 +1679,8 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-### 8.4. 分页查询
-#### 8.4.1. HTTP 请求实现
+### 分页查询
+#### HTTP 请求实现
 
 - ES支持分页查询，传入两个参数：`from`和`size`
     - `form`：表示起始文档的下标，从0开始
@@ -1701,7 +1701,7 @@ timestamp字段====2018-02-24T19:11:35
 }
 ```
 
-#### 8.4.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -1767,9 +1767,9 @@ price字段====38.6
 timestamp字段====2018-04-25T19:11:35
 ```
 
-### 8.5. Term Query 精确查询
+### Term Query 精确查询
 
-#### 8.5.1. HTTP 请求实现
+#### HTTP 请求实现
 
 - Term Query为精确查询，在搜索时会整体匹配关键字，不再将关键字分词，*即不会对搜索的内容分词*
 - 发送：`post http://localhost:9200/xc_course/doc/_search`
@@ -1792,7 +1792,7 @@ timestamp字段====2018-04-25T19:11:35
 
 ![Term Query 精确查询](images/20191101085623082_3996.png)
 
-#### 8.5.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -1851,9 +1851,9 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-### 8.6. 根据id精确匹配
+### 根据id精确匹配
 
-#### 8.6.1. HTTP 请求实现
+#### HTTP 请求实现
 
 - ES提供根据多个id值匹配的方法
 - 发送：`post http://127.0.0.1:9200/xc_course/doc/_search`
@@ -1871,7 +1871,7 @@ timestamp字段====2018-02-24T19:11:35
 
 ![根据id精确匹配](images/20191101131412143_12076.png)
 
-#### 8.6.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -1938,9 +1938,9 @@ price字段====68.6
 timestamp字段====2018-03-25T19:11:35
 ```
 
-### 8.7. matchQuery
+### matchQuery
 
-#### 8.7.1. 基本操作 - HTTP 请求实现
+#### 基本操作 - HTTP 请求实现
 
 - match Query即全文检索，它的搜索方式是先将搜索字符串分词，再使用各各词条从索引中搜索
 - `match query` 与 `Term query` 区别是`match query`在搜索前先将搜索关键字分词，再拿各各词语去索引中搜索
@@ -1967,7 +1967,7 @@ timestamp字段====2018-03-25T19:11:35
 >     2. 再使用spring和java两个词去匹配索引中搜索
 >     3. 由于设置了operator为or，只要有一个词匹配成功则就返回该文档
 
-#### 8.7.2. 基本操作 - JavaClient 实现
+#### 基本操作 - JavaClient 实现
 
 ```java
 /**
@@ -2033,7 +2033,7 @@ price字段====68.6
 timestamp字段====2018-03-25T19:11:35
 ```
 
-#### 8.7.3. minimum_should_match - HTTP 请求实现
+#### minimum_should_match - HTTP 请求实现
 
 - 上边基本使用的`operator = or`表示只要有一个词匹配上就得分，如果实现三个词至少有两个词匹配如何实现？
 - 使用minimum_should_match可以指定文档匹配词的占比，发送以下请求参数
@@ -2055,7 +2055,7 @@ timestamp字段====2018-03-25T19:11:35
 >
 > 设置"minimum_should_match": "80%"表示，三个词在文档的匹配占比为80%，即3*0.8=2.4，向上取整得2，表示至少有两个词在文档中要匹配成功
 
-#### 8.7.4. minimum_should_match - JavaClient 实现
+#### minimum_should_match - JavaClient 实现
 
 ```java
 // 设置搜索方式：MatchQuery，使用minimum_should_match匹配
@@ -2075,11 +2075,11 @@ price字段====38.6
 timestamp字段====2018-04-25T19:11:35
 ```
 
-### 8.8. multiQuery
+### multiQuery
 
 `termQuery` 和 `matchQuery` 一次只能匹配一个Field，`multiQuery` 一次可以匹配多个字段
 
-#### 8.8.1. 基本使用 - HTTP 请求实现
+#### 基本使用 - HTTP 请求实现
 
 单项匹配是在一个field中去匹配，**多项匹配是拿关键字去多个Field中匹配**
 
@@ -2097,7 +2097,7 @@ timestamp字段====2018-04-25T19:11:35
 }
 ```
 
-#### 8.8.2. 提升boost - HTTP 请求实现
+#### 提升boost - HTTP 请求实现
 
 匹配多个字段时可以提升字段的 boost（权重）来提高得分
 
@@ -2131,7 +2131,7 @@ timestamp字段====2018-04-25T19:11:35
 
 > “name^10” 表示权重提升10倍，执行上边的查询，发现name中包括spring关键字的文档排在前边
 
-#### 8.8.3. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -2198,9 +2198,9 @@ price字段====38.6
 timestamp字段====2018-04-25T19:11:35
 ```
 
-### 8.9. 布尔查询
+### 布尔查询
 
-#### 8.9.1. HTTP 请求实现
+#### HTTP 请求实现
 
 布尔查询对应于 Lucene 的 BooleanQuery 查询，实现将多个查询组合起来，主要包含以下三个参数
 
@@ -2271,7 +2271,7 @@ timestamp字段====2018-04-25T19:11:35
 }
 ```
 
-#### 8.9.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -2345,9 +2345,9 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-### 8.10. 过滤器
+### 过滤器
 
-#### 8.10.1. HTTP 请求实现
+#### HTTP 请求实现
 
 过滤是针对搜索的结果进行过滤，过滤器主要判断的是文档是否匹配，不去计算和判断文档的匹配度得分，所以过滤器性能比查询要高，且方便缓存，推荐尽量使用过滤器去实现查询或者过滤器和查询共同使用。
 
@@ -2401,7 +2401,7 @@ timestamp字段====2018-02-24T19:11:35
 > - 注意：range和term一次只能对一个Field设置范围过滤
 
 
-#### 8.10.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -2476,9 +2476,9 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-### 8.11. 排序
+### 排序
 
-#### 8.11.1. HTTP 请求实现
+#### HTTP 请求实现
 
 可以在字段上添加一个或多个排序，支持在keyword、date、float等类型上添加，text类型的字段上不允许添加排序
 
@@ -2518,7 +2518,7 @@ timestamp字段====2018-02-24T19:11:35
 
 
 
-#### 8.11.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -2598,9 +2598,9 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-### 8.12. 高亮显示
+### 高亮显示
 
-#### 8.12.1. HTTP 请求实现
+#### HTTP 请求实现
 
 高亮显示可以将搜索结果一个或多个字突出显示，以便向用户展示匹配关键字的位置。在搜索语句中添加highlight即可实现
 
@@ -2661,7 +2661,7 @@ timestamp字段====2018-02-24T19:11:35
 }
 ```
 
-#### 8.12.2. JavaClient 实现
+#### JavaClient 实现
 
 ```java
 /**
@@ -2778,9 +2778,9 @@ price字段====88.6
 timestamp字段====2018-02-24T19:11:35
 ```
 
-## 9. 集群管理
+## 集群管理
 
-### 9.1. 集群结构
+### 集群结构
 
 要解决海量数据检索、高并发、高可用等问题，就必须要引入分布式系统，集群模式下吞吐量和稳定性都能有保证。因此，ES 通常以集群方式工作，这样做不仅能够提高ES的搜索能力还可以处理大数据搜索的能力，同时也增加了系统的容错能力及高可用，ES可以实现PB级数据的搜索。
 
@@ -2798,11 +2798,11 @@ ES集群图涉及以下概念
 - 主结点：一个集群中会有一个或多个主结点，主结点的作用是集群管理，比如增加节点，移除节点等，主结点挂掉后 ES 会重新选一个主结点。
 - 结点转发：每个结点都知道其它结点的信息，可以对任意一个结点发起请求，接收请求的结点会转发给其它结点查询数据。
 
-### 9.2. 搭建集群
+### 搭建集群
 
 下边的例子实现创建一个2结点的集群，并且索引的分片我们设置2片，每片一个副本
 
-#### 9.2.1. 结点的三个角色
+#### 结点的三个角色
 
 - 主结点（Master Node）：master 节点主要用于集群的管理及索引。负责监控和协调工作，保证整个集群的稳定性，管事的节点。比如新增结点、分片分配、索引的新增和删除等。
 - 数据结点：data 节点上保存了数据分片，它负责索引和搜索操作。
@@ -2818,7 +2818,7 @@ ES集群图涉及以下概念
     - `master=true，data=false`：仅是主结点，不存储数据
     - `master=false，data=false`：即不是主结点也不是数据结点，此时可设置 ingest 为 true 表示它是一个客户端
 
-#### 9.2.2. 创建结点1
+#### 创建结点1
 
 解压 elasticsearch-6.2.1.zip 到 E:\deployment-environment\elasticsearch-6.2.1\
 
@@ -2861,7 +2861,7 @@ http.cors.enabled: true
 http.cors.allow-origin: /.*/
 ```
 
-#### 9.2.3. 创建结点2
+#### 创建结点2
 
 解压 elasticsearch-6.2.1.zip 到 E:\deployment-environment\elasticsearch-6.2.1-2\
 
@@ -2906,7 +2906,7 @@ http.cors.allow-origin: /.*/
 
 > 注：每个结点需要安装IK分词器
 
-#### 9.2.4. 创建索引库
+#### 创建索引库
 
 1. 使用head连上其中一个结点
 
@@ -2920,7 +2920,7 @@ http.cors.allow-origin: /.*/
 
 ![创建索引库](images/20191103174416505_5579.png)
 
-#### 9.2.5. 集群的健康
+#### 集群的健康
 
 通过访问 `GET /_cluster/health` 来查看Elasticsearch 的集群健康情况
 
@@ -2951,7 +2951,7 @@ Get请求：http://localhost:9200/_cluster/health，响应结果如下：
 }
 ```
 
-#### 9.2.6. 集群相关测试
+#### 集群相关测试
 
 1. 创建映射并写入文档，连接其中任意一台结点，创建映射写入文档。发送：`Post http://localhost:9200/xc_course/doc/3`
 
@@ -3002,9 +3002,9 @@ Get请求：http://localhost:9200/_cluster/health，响应结果如下：
 
 向结点3发起搜索请求：`Get http://127.0.0.1:9202/xc_course/doc/_search` 全部数据可被正常搜索到
 
-## 10. Elasticsearch 实现过程
+## Elasticsearch 实现过程
 
-### 10.1. 索引数据写入的过程
+### 索引数据写入的过程
 
 协调节点默认使用文档 id 计算分片所在位置，然后将请求转发到相应分片。默认计算方式：
 
@@ -3021,13 +3021,13 @@ shard = hash(document_id) % (num_of_primary_shards)
 
 > 特别说明：为了提高写数据性能，可以将写 translog 设置为异步写，但异常情况下可能会造成少量数据丢失。
 
-### 10.2. 更新和删除文档的过程
+### 更新和删除文档的过程
 
 1. 删除和更新也都是写操作，但是 Elasticsearch 中的文档是不可变的，因此不能被删除或者改动以展示其变更。
 2. 磁盘上的每个段都有一个相应的 `.del` 文件。当删除请求发送后，文档并没有真的被删除，而是在 `.del` 文件中被标记为删除。该文档依然能匹配查询，但是会在结果中被过滤掉。当段合并时，在 `.de`l 文件中被标记为删除的文档将不会被写入新段。
 3. 在新的文档被创建时，Elasticsearch 会为该文档指定一个版本号，当执行更新时，旧版本的文档在 `.del` 文件中被标记为删除，新版本的文档被索引到一个新段。旧版本的文档依然能匹配查询，但是会在结果中被过滤掉。
 
-### 10.3. 搜索的过程
+### 搜索的过程
 
 ![](images/112572610230669.png)
 

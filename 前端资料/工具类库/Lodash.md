@@ -2,13 +2,13 @@
 
 > 待整理参考资料：https://mp.weixin.qq.com/s/I4yfSto6BOaQqccudNN-HQ
 
-## 1. 简介
+## 简介
 
 一个一致性、模块化、高性能的 JavaScript 实用工具库。
 
 官网：https://www.lodashjs.com/
 
-### 1.1. 安装
+### 安装
 
 - 引入js
 
@@ -41,9 +41,9 @@ var at = require('lodash/at');
 var curryN = require('lodash/fp/curryN');
 ```
 
-## 2. 对象相关方法
+## 对象相关方法
 
-### 2.1. isEqual
+### isEqual
 
 ```js
 _.isEqual(value, other)

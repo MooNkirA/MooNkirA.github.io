@@ -1,15 +1,15 @@
-## 1. Hibernate 配置概述
+## Hibernate 配置概述
 
 Hibernate 需要一套相关数据库和其它相关参数的配置设置，这些映射信息定义了 Java 类怎样关联到数据库表。所有的核心配置信息有以下两种提供方式：
 
 - 作为一个标准的 Java 属性文件提供的，文件默认名称：hibernate.properties
 - 作为 XML 文件提供的，文件默认名称：hibernate.cfg.xml
 
-## 2. Hibernate 总配置
+## Hibernate 总配置
 
 总配置以 XML 格式文件 hibernate.cfg.xml 为例，核心配置主要是设置 `<hibernate-configuration>` -> `<session-factory>` -> `<property>` 标签的 `name` 属性
 
-### 2.1. 常用配置项
+### 常用配置项
 
 - `hibernate.connection.driver_class`：设置数据库驱动。例如 MySQL 的配置值是 `com.mysql.cj.jdbc.Driver`
 - `hibernate.connection.url`：数据库连接字符串。例如 `jdbc:mysql://localhost:3306/xxx`
@@ -49,14 +49,14 @@ Hibernate 需要一套相关数据库和其它相关参数的配置设置，这�
 - `hibernate.temp.use_jdbc_metadata_defaults`：因为 c3p0 和 hibernate 类型检查不兼容，会导致出现 `creation as createClob() method threw error` 异常，因此需要关闭 hibernate 的类型检查。由于方言的自动加载是基于 Hibernate 类型检查的。如果关闭了类型检查，导致无法自动加载方言。所以配置了关闭 hibernate 的类型检查，必须要手动设置方言，取值：`false`。
 - `hibernate.connection.provider_class`：设置连接的提供者。如，`org.hibernate.c3p0.internal.C3P0ConnectionProvider`。
 
-### 2.2. c3p0 连接池相关配置项
+### c3p0 连接池相关配置项
 
 - `hibernate.c3p0.max_size`：设置c3p0参数：最大连接数（如：10）
 - `hibernate.c3p0.min_size`：设置c3p0参数：设置启动连接池支持的连接数量（如：5）
 - `hibernate.c3p0.timeout`：设置c3p0参数：设置操作时间，单位：毫秒（如：300000）
 - `hibernate.c3p0.max_statements`：设置c3p0参数：最大操作数据statement,不能大于最大连接数，一般配置95%左右（如：9）
 
-### 2.3. 导入其他 xml 文件
+### 导入其他 xml 文件
 
 配置加载 xml 文件
 
@@ -70,9 +70,9 @@ Hibernate 需要一套相关数据库和其它相关参数的配置设置，这�
 <mapping resource="demo/entity/hbm/Customer.hbm.xml"/>
 ```
 
-## 3. Hibernate 实体类映射配置
+## Hibernate 实体类映射配置
 
-### 3.1. 映射文件
+### 映射文件
 
 在传统项目中，一个对象/关系型映射一般定义在 XML 文件中。映射文件指示 Hibernate 如何将已经定义的类或类组与数据库中的表对应起来。
 
@@ -135,7 +135,7 @@ Hibernate 默认情况下，需要以格式 `<classname>.hbm.xml` 保存映射�
 - 在`<id>` 标签中，包含的 `<generator>` 子标签用来自动生成主键值。标签中的 `class` 属性可以设置 `native`, `identity`, `sequence` 或 `hilo` 算法，会根据底层数据库的情况来创建主键。
 - `<property>` 标签用来将 Java 类的属性与数据库表的列匹配（除主键外的列）。标签中 `name` 属性引用的是类的性质，`column` 属性引用的是数据库表的列。`type` 属性保存 Hibernate 映射的类型，这个类型会将从 Java 转换成 SQL 数据类型。
 
-### 3.2. 主键生成策略
+### 主键生成策略
 
 主键生成策略，就是 Hibernate 提供了多种生成主键值的方法。常用的 Hibernate 的主键生成策略：
 
@@ -158,7 +158,7 @@ Hibernate 默认情况下，需要以格式 `<classname>.hbm.xml` 保存映射�
 </id>
 ```
 
-#### 3.2.1. increment
+#### increment
 
 increment 策略是指<font color=red>**不使用数据库本地的自增长策略**</font>，而是由 Hibernate 框架产生一个自增长的 ID 值，赋予数据库的主键。
 
@@ -171,7 +171,7 @@ increment 策略是指<font color=red>**不使用数据库本地的自增长策�
 
 应用场景：适合一些需要支持多种数据库的产品型项目。
 
-#### 3.2.2. identity（重要，一般用于 MySQL）
+#### identity（重要，一般用于 MySQL）
 
 identity 策略指定使用数据库里面的 ID 自增长策略。但只能用于有 ID 自增长功能的数据库，如:MySQL, SQLServer 等；不支持没有 ID 自增长策略的数据库，如 Oracle, DB2 等。
 
@@ -180,7 +180,7 @@ identity 策略指定使用数据库里面的 ID 自增长策略。但只能用�
 
 ![](images/17110415246642.jpg)
 
-#### 3.2.3. sequence（重要，一般用于 Oracle）
+#### sequence（重要，一般用于 Oracle）
 
 sequence 是使用序列的实现 ID 生成策略，主要用于有序列的数据库，如：Oracle, DB2 等；如果不支持序列的数据库（如：MYSQL），该策略会使用一个表模拟序列。
 
@@ -188,25 +188,25 @@ sequence 是使用序列的实现 ID 生成策略，主要用于有序列的数�
 
 <font color=red>**使用 SEQUENCE 策略可以设置每一个表对应的一个序列的参数，参数设置参数名！！！！**</font>
 
-#### 3.2.4. native
+#### native
 
 native 是使用数据库本地的策略，就是数据库里面使用怎么样的策略就用什么策略，HIbernate 不做任何的判断。如 MySQL 数据库使用了 `increment_auto`(自增长策略)；如果 Oracle 使用 native 则使用序列生成主键值。
 
 <font color=red>**注意：Oracle 使用 native 这种方式不好的地方是，序列名为 Hibernate_SEQUENCE.而且多个表使用一个序列。会导致序列断号。**</font>
 
-#### 3.2.5. uuid
+#### uuid
 
 uuid 主键策略就是使用一个唯一的字符串的来存储数据库的主键，这个唯一的字符串就是 UUID。**UUID 用于存储基础数据的表。所谓的基础数据，就是系统必须依赖的数据。**
 
 应用场景：如果几个不同开发人员一起开发一个项目，使用 UUID 可以确保 ID 的冲突。
 
-#### 3.2.6. assigned
+#### assigned
 
 assigned 就是不使用 ID 自动生成值的策略，需要手工写入 ID 的值。
 
 > Notes: 此策略创建的实体类对象必须提供 `setXxId(xx)` 方法，如果调用代码没有 ID 值，会报异常。
 
-### 3.3. 映射类型
+### 映射类型
 
 在 Hibernate 映射文件中，Java 数据类型会映射到相应的 RDBMS 数据格式。在映射文件中声明被使用的 types 不是 Java 数据类型，也不是 SQL 数据库类型。这种类型被称为 Hibernate 映射类型，可以从 Java 翻译成 SQL，反之亦然。
 

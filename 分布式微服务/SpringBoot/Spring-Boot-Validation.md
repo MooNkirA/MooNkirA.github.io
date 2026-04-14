@@ -1,8 +1,8 @@
-## 1. javax.validation 校验框架简介
+## javax.validation 校验框架简介
 
 JSR303 是一套 JavaBean 参数校验的标准，它定义了很多常用的校验注解，可以直接将这些注解加在 JavaBean 的属性上面(面向注解编程的时代)，就可以在需要校验的时候进行校验了。但是这只是一个接口，没有具体实现。
 
-### 1.1. hibernate-validator 概述
+### hibernate-validator 概述
 
 早期的网站，用户输入一个邮箱地址，需要将邮箱地址发送到服务端，服务端进行校验，校验成功后，给前端一个响应。有了 JavaScript 后，校验工作可以放在前端去执行。但服务端仍需要进行数据校验，因为前端传来的数据不可信。前端很容易获取到后端的接口，如果有人直接调用接口，就可能会出现非法数据，所以服务端也要数据校验。总的来说：
 
@@ -16,7 +16,7 @@ hibernate-validator 优势：
 - 验证逻辑与业务逻辑之间进行了分离，降低了程序耦合度
 - 统一且规范的验证方式，无需重复编写的验证代码
 
-### 1.2. maven 依赖坐标
+### maven 依赖坐标
 
 ```xml
 <!-- 导入JSR303规范（可选） -->
@@ -61,33 +61,33 @@ hibernate-validator 优势：
 
 ![](images/329863814220761.png)
 
-## 2. javax.validation 常用注解
+## javax.validation 常用注解
 
 hibernate-validator 提供的校验方式为在类的属性上加入相应的注解来达到校验的目的。hibernate-validator 常用的校验注解如下：
 
-### 2.1. 空检查
+### 空检查
 
 - `@Null`：验证对象是否为 null
 - `@NotNull`：验证对象是否不为 null，但可以为 empty，即无法查检长度为 0 的字符串（如：`""`,`" "`,`" "`）
 - `@NotBlank`：检查约束字符串是不是 Null，并且调用 `trim()` 方法后的长度是否大于 0，且会去掉前后空格，即必须有实际字符（*只能作用在 String 上*）
 - `@NotEmpty`：检查约束元素是否为 NULL 或者是 EMPTY 长度必须大于 0 (如：`" "`)
 
-### 2.2. Booelan检查
+### Booelan检查
 
 - `@AssertTrue`：验证 Boolean 对象是否为 true
 - `@AssertFalse`：验证 Boolean 对象是否为 false
 
-### 2.3. 长度检查
+### 长度检查
 
 - `@Size(min=, max=)`：验证对象（Array, Collection, Map, String）长度是否在给定的范围之内
 - `@Length(min=, max=)`：验证字符串的长度是否在给定的范围之内，包含两端（*Hibernate validator扩展注解*）
 
-### 2.4. 日期检查
+### 日期检查
 
 - `@Past`：验证 Date 和 Calendar 对象是否在当前时间之前
 - `@Future`：验证 Date 和 Calendar 对象是否在当前时间之后
 
-### 2.5. 数值检查
+### 数值检查
 
 - `@Min`：验证 `Number` 和 `String` 对象是否大等于指定的值
 - `@Max`：验证 `Number` 和 `String` 对象是否小等于指定的值
@@ -104,7 +104,7 @@ hibernate-validator 提供的校验方式为在类的属性上加入相应的注
 private BigDecimal wage;
 ```
 
-### 2.6. 其他类型检查
+### 其他类型检查
 
 - `@Valid`：是 Bean Validation 所定义，可以添加在普通方法、构造方法、方法参数、方法返回、成员变量上，递归的对关联对象进行校验，如果关联对象是个集合或者数组，那么对其中的元素进行递归校验；如果是一个 map，则对其中的值部分进行校验。(是否进行递归验证)
 - `@Validated`：是 Spring Validation 所定义，可以添加在类、方法参数、普通方法上，表示它们需要进行约束校验。
@@ -117,7 +117,7 @@ private BigDecimal wage;
 - `@URL(protocol=, host=, port=, regexp=, flags=)`：检查是否是一个有效的 URL，如果提供了 protocol，host 等，则该 URL 还需满足提供的条件
 - `@Pattern(regex=)`：验证 String 对象是否符合正则表达式的规则
 
-## 3. 普通参数校验
+## 普通参数校验
 
 > 以下示例使用 Spring Boot 2.5.x 的快速框架实现，选用了 hibernate-validator 为 javax.validation 具体实现
 
@@ -189,7 +189,7 @@ public class UserController {
 }
 ```
 
-## 4. @Validated 校验对象类型参数
+## @Validated 校验对象类型参数
 
 1. 创建请求接收实体类，在需要校验的属性上标识相应的校验注解
 
@@ -289,7 +289,7 @@ public class UserController {
 
 ![](images/593634615227054.png)
 
-## 5. 全局处理校验异常
+## 全局处理校验异常
 
 当校验校验出现异常时，浏览器页面直接报错，对于用户而言十分不友好。因此可以创建全局异常处理类，来统一处理 hibernate-validator 的校验异常。以下是简单的实现：
 
@@ -418,16 +418,16 @@ public class GlobalExceptionHandler {
 }
 ```
 
-## 6. 自定义参数校验注解
+## 自定义参数校验注解
 
-### 6.1. 实现步骤
+### 实现步骤
 
 自定义校验注解的实现步骤如下：
 
 1. 自定义注解需要引入 `@Constraint` 注解。
 2. 自定义 `Validator` 类，实现 `javax.validation.ConstraintValidator` 接口。
 
-### 6.2. 示例
+### 示例
 
 1. 自定义身份证校验注解。这个注解是作用在 Field 字段上，运行时生效，触发的是 `IdentityCardNumber` 这个验证类。注解主要包含以下字段：
     - message 定制化的提示信息，主要是从 ValidationMessages.properties 里提取，也可以依据实际情况进行定制
@@ -521,7 +521,7 @@ public class UserController {
 
 > Notes: <font color=red>**如果直接在普通类型的方法形参上使用，需要在当前控制类上标识 `@Validated` 注解**</font>
 
-### 6.3. 自定义注解校验原理
+### 自定义注解校验原理
 
 1. `org.springframework.validation.beanvalidation.MethodValidationPostProcessor` 是 Spring 提供的来实现基于方法的 JSR 校验的核心处理器，能让约束作用在方法入参、返回值上。关于校验方面的逻辑在切面 `MethodValidationInterceptor`。
 
@@ -680,7 +680,7 @@ public class SpringValidatorAdapter implements SmartValidator, javax.validation.
 }
 ```
 
-## 7. groups 分组校验
+## groups 分组校验
 
 VO（DTO）同一个对象一般都会复用，比如 `GoodsDTO` 在更新时候要校验 id 字段，在保存的时候不需要校验 id 字段，在两种情况下都要校验 name 字段，可以使用 `groups` 属性进行分组校验
 
@@ -749,7 +749,7 @@ public class GoodsController {
 
 ![](images/555504716247220.png)
 
-## 8. Service 层方法的参数校验
+## Service 层方法的参数校验
 
 除了在 Controller 层进行参数校验，其实更多情况下是需要对 Service 层的接口进行参数校验。
 
@@ -757,7 +757,7 @@ public class GoodsController {
 
 > Tips: 至于为什么只能写在接口处，其实是和 Bean Validation 的实现有关，可参考此类 `OverridingMethodMustNotAlterParameterConstraints`
 
-### 8.1. 普通参数校验
+### 普通参数校验
 
 如果入参是普通类型的，首先需要在父类/接口的方法入参里增加注解约束，然后用 `@Validated` 修饰相应的的实现类。
 
@@ -800,7 +800,7 @@ public class OrderController {
 
 ![](images/214541396551053.png)
 
-### 8.2. 对象参数校验
+### 对象参数校验
 
 在实际开发中，其实大多数情况下方法入参是个对象，而不是普通类型的参数。
 
@@ -855,7 +855,7 @@ public class OrderController {
 
 ![](images/68514927852098.png)
 
-## 9. 校验配置文件中设置项
+## 校验配置文件中设置项
 
 在 Spring Boot 中进行属性绑定时可以通过松散绑定规则，书写一些配置项名称不统一与不规范。由于无法感知模型类中的数据类型，就会出现类型不匹配的问题，比如代码中需要 `int` 类型，配置中给了非法的数值，例如写一个"a"，这种数据肯定无法有效的绑定，还会引发错误。
 
@@ -897,7 +897,7 @@ public class Person {
 
 ![](images/197152922220458.png)
 
-## 10. 快速失败返回模式
+## 快速失败返回模式
 
 ![](images/593634615227054.png)
 
@@ -974,7 +974,7 @@ public class ValidatorApplication {
 
 ![](images/19091822239187.png)
 
-## 11. ValidatorUtils 自定义校验类 - 较简洁的方式
+## ValidatorUtils 自定义校验类 - 较简洁的方式
 
 还可以创建通用自定义校验类，直接在需要校验的位置直接调用校验即可。
 

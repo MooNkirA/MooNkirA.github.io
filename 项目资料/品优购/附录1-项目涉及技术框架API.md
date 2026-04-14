@@ -1,7 +1,6 @@
-# 附录1：项目涉及技术框架API
+## RedisTemplate API
 
-## 1. RedisTemplate API
-### 1.1. RedisTemplate相关方法
+### RedisTemplate相关方法
 
 - `void delete(K key)`
     - 根据key删除所有的value，String类型、set类型、hash类型、list类型
@@ -14,14 +13,14 @@
 - `BoundHashOperations<K,HK,HV> boundHashOps(K key)`
     - 获取指定key的HashOperations操作对象，用于hash类型数据进行K-V操作
 
-### 1.2. BoundValueOperations：简单K-V操作
+### BoundValueOperations：简单K-V操作
 
 - `void set(V v);`
     - 设置BoundValueOperations对象的值
 - `V get();`
     - 获取BoundValueOperations对象的值
 
-### 1.3. BoundSetOperations：set类型数据操作
+### BoundSetOperations：set类型数据操作
 
 - `Long add(V... vs)`
     - 给指定key的BoundSetOperations操作对象的set集合增加值
@@ -30,7 +29,7 @@
 - `Set<V> members()`
     - 获取指定key的BoundSetOperations操作对象的set集合
 
-### 1.4. BoundListOperations：list类型的数据操作
+### BoundListOperations：list类型的数据操作
 
 - `Long rightPush(V v)`
     - 给指定key的BoundListOperations操作对象的List集合右压栈增加值，即后添加的对象排在后边
@@ -45,7 +44,7 @@
 - `V index(long l)`
     - 查询指定key的BoundListOperations操作对象的List集合中某个索引的元素值
 
-### 1.5. BoundHashOperations：hash类型的数据操作
+### BoundHashOperations：hash类型的数据操作
 
 - `void put(HK hk, HV hv)`
     - 设置指定key的BoundHashOperations操作对象的HashMap集合元素值，设置的值是Map<K, V>格式
@@ -58,12 +57,12 @@
 - `HV get(Object o)`
     - 获取获取指定key的BoundHashOperations操作对象的HashMap集合，指定key的值
 
-### 1.6. （！暂无整理）ZSetOperations：zset类型数据操作
+### （！暂无整理）ZSetOperations：zset类型数据操作
 
 ---
 
-## 2. Spring Data Solr的API
-### 2.1. SolrTemplate 操作对象
+## Spring Data Solr的API
+### SolrTemplate 操作对象
 
 - `UpdateResponse saveBean(Object obj)`
     - 添加或者修改对象到索引库，返回UpdateResponse响应对象
@@ -92,13 +91,13 @@
 - `void rollback()`
     - 回滚SolrTemplate操作
 
-### 2.2. UpdateResponse 响应对象
+### UpdateResponse 响应对象
 
 - `int getStatus()`
     - 获取操作索引库返回的响应状态码，0代表成功，-1代表成功
 
-### 2.3. Query接口 查询对象，继承SolrDataQuery接口
-#### 2.3.1. 实现类SimpleQuery
+### Query接口 查询对象，继承SolrDataQuery接口
+#### 实现类SimpleQuery
 
 - `<T extends Query> T setOffset(Integer var1)`
     - 设置分页查询的开始索引
@@ -113,7 +112,7 @@
 - `<T extends Query> T addSort(Sort sort)`
     - 设置排序条件，传入排序Sort对象
 
-### 2.4. Criteria 查询对象
+### Criteria 查询对象
 
 - `Criteria is(Object o)`
     - 设置查询条件：等于参数o的内容
@@ -122,7 +121,7 @@
 - `Crotch and(String fieldname)`
     - 增加and条件
 
-### 2.5. ScoredPage 分页对象
+### ScoredPage 分页对象
 
 `interface ScoredPage<T> extends Page<T>`
 
@@ -133,7 +132,7 @@
 - `List<T> getContent();`
     - 获取分页对象封装的所有数据集合
 
-### 2.6. HighlightQuery 高亮显示接口
+### HighlightQuery 高亮显示接口
 
 `interface HighlightQuery extends Query`
 
@@ -146,7 +145,7 @@
 - `<T extends SolrDataQuery> T addCriteria(Criteria criteria);`
     - 高亮查询对象，设置查询条件对象
 
-### 2.7. HighlightOptions 高亮显示选项类
+### HighlightOptions 高亮显示选项类
 
 - `HighlightOptions setSimplePrefix(String prefix)`
     - 设置高亮的html标签前缀
@@ -155,7 +154,7 @@
 - `HighlightOptions addField(String fieldname)`
     - 设置需要高亮的字段
 
-### 2.8. `HighlightPage<T>` 高亮分页接口
+### `HighlightPage<T>` 高亮分页接口
 
 `interface HighlightPage<T> extends Page<T>`
 
@@ -172,7 +171,7 @@
 - `int getTotalPages()`
     - 获取分页数据的总页数
 
-### 2.9. `HighlightEntry<T>` 高亮实体
+### `HighlightEntry<T>` 高亮实体
 
 `class HighlightEntry<T>`
 
@@ -188,7 +187,7 @@
 - `List<String> getSnipplets()`
     - 获取高亮内容
 
-### 2.10. GroupOptions 分组选项类
+### GroupOptions 分组选项类
 
 `class GroupOptions`
 
@@ -197,7 +196,7 @@
 - `GroupOptions addGroupByField(String fieldName)`
     - 设置分组的字段名称
 
-### 2.11. `GroupPage<T>` 分组分页接口
+### `GroupPage<T>` 分组分页接口
 
 `interface GroupPage<T> extends Page<T>`
 
@@ -206,7 +205,7 @@
 - `GroupResult<T> getGroupResult(String var1)`
     - 根据Field字段名称，获取分组结果集
 
-### 2.12. `GroupResult<T>` 分组结果集接口
+### `GroupResult<T>` 分组结果集接口
 
 `interface GroupResult<T>`分组结果集接口
 
@@ -215,7 +214,7 @@
 - `Page<GroupEntry<T>> getGroupEntries();`
     - 通过分组结果集获取分页对象
 
-### 2.13. `Page<T>` 分页接口
+### `Page<T>` 分页接口
 
 `interface Page<T> extends Slice<T>`	分页接口
 
@@ -224,7 +223,7 @@
 - `List<T> getContent()`
     - 获取分页选项集合
 
-### 2.14. `GroupEntry<T>` 分页选项接口
+### `GroupEntry<T>` 分页选项接口
 
 `interface GroupEntry<T>`	分页选项接口
 
@@ -233,14 +232,14 @@
 - `String getGroupValue();`
     - 获取指定的字段分组值
 
-### 2.15. FilterQuery 过滤查询接口
+### FilterQuery 过滤查询接口
 
 实现类：`class SimpleFilterQuery extends AbstractQuery implements FilterQuery`
 
 - `SimpleFilterQuery(Criteria criteria)`
     - 构造方法，传递查询对象。创建过滤查询对象
 
-### 2.16. Sort 排序类
+### Sort 排序类
 
 `class Sort implements Iterable<Sort.Order>, Serializable`
 

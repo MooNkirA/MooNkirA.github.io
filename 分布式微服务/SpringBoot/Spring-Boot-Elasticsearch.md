@@ -1,8 +1,8 @@
-## 1. Elasticsearch 简介
+## Elasticsearch 简介
 
 > Elasticsearch 介绍、安装及其使用的相关内容，详见[《ElasticSearch 分布式全文搜索引擎》笔记](/分布式微服务/ElasticStack/ElasticSearch)
 
-### 1.1. 概述
+### 概述
 
 ES（Elasticsearch）是一个**分布式全文搜索引擎**。全文搜索的条件不再是仅用于对某一个字段进行比对，而是在一条数据中使用搜索条件去比对更多的字段，只要能匹配上就列入查询结果，这就是全文搜索的目的。
 
@@ -18,25 +18,25 @@ ES（Elasticsearch）是一个**分布式全文搜索引擎**。全文搜索的�
 
 上述过程中分词结果关键字内容每一个都不相同，作用有点类似于数据库中的索引，是用来加速数据查询的。但是数据库中的索引是对某一个字段进行添加索引，而这里的分词结果关键字不是一个完整的字段值，只是一个字段中的其中的一部分内容。并且索引使用时是根据索引内容查找整条数据，全文搜索中的分词结果关键字查询后得到的并不是整条的数据，而是数据的id，要想获得具体数据还要再次查询，因此这里为这种分词结果关键字起了一个全新的名称，叫做<font color=red>**倒排索引**</font>。
 
-### 1.2. 安装
+### 安装
 
 windows 版安装包下载地址：https://www.elastic.co/cn/downloads/elasticsearch
 
 下载的安装包是解压缩就能使用的 zip 文件，解压缩到没有中文与空格目录即可
 
-### 1.3. 启动服务器
+### 启动服务器
 
 进入 ElasticSearch 安装位置的 bin 目录中，双击 elasticsearch.bat 文件即可启动 ES 服务器，默认服务端口 `9200`。
 
 通过浏览器访问 http://localhost:9200 看到相应的 json 数据，即 ES 服务器正常启动
 
-### 1.4. 基本操作
+### 基本操作
 
 ES 中保存有需要查询的数据，只不过格式和数据库存储数据格式不同而已。在 ES 中要先创建**倒排索引**，这个索引的功能又点类似于数据库的表，然后将数据添加到倒排索引中，添加的数据称为**文档**。所以要进行 ES 的操作要先创建索引，再添加文档，这样才能进行后续的查询操作。
 
 要操作 ES 可以通过 Restful 风格的请求来进行，也就是说发送一个请求就可以执行一个操作。比如新建索引，删除索引这些操作都可以使用发送请求的形式来进行。
 
-#### 1.4.1. 创建索引
+#### 创建索引
 
 > 注：下面所有其他示例，books 是索引名称，使用 Postman 等请求工具发送
 
@@ -78,7 +78,7 @@ PUT http://localhost:9200/books
 }
 ```
 
-#### 1.4.2. 查询索引
+#### 查询索引
 
 创建索引发送 GET 类型请求
 
@@ -142,7 +142,7 @@ GET http://localhost:9200/books
 }
 ```
 
-#### 1.4.3. 删除索引
+#### 删除索引
 
 删除索引发送 DELETE 类型请求
 
@@ -184,7 +184,7 @@ DELETE http://localhost:9200/books
 }
 ```
 
-#### 1.4.4. 创建索引并指定分词器
+#### 创建索引并指定分词器
 
 前面创建的索引是未指定分词器的，可以在创建索引时添加请求参数，设置分词器。目前国内较为流行的分词器是 IK 分词器，使用前先在下对应的分词器，然后使用。
 
@@ -284,7 +284,7 @@ PUT http://localhost:9200/books
 }
 ```
 
-#### 1.4.5. 添加文档
+#### 添加文档
 
 目前我们已经有了索引了，但是索引中还没有数据，所以要先添加数据，ES中称数据为文档，下面进行文档操作。
 
@@ -306,7 +306,7 @@ POST http://localhost:9200/books/_doc/1		# 使用指定id，不存在创建，�
 }
 ```
 
-#### 1.4.6. 查询文档
+#### 查询文档
 
 查询文档发送 GET 请求
 
@@ -321,7 +321,7 @@ GET http://localhost:9200/books/_search		 # 查询全部文档
 GET http://localhost:9200/books/_search?q=name:springboot	# q=查询属性名:查询属性值
 ```
 
-#### 1.4.7. 删除文档
+#### 删除文档
 
 删除文档发送 DELETE 请求
 
@@ -329,7 +329,7 @@ GET http://localhost:9200/books/_search?q=name:springboot	# q=查询属性名:�
 DELETE http://localhost:9200/books/_doc/1
 ```
 
-#### 1.4.8. 修改文档
+#### 修改文档
 
 修改文档发送 PUT 请求
 
@@ -365,11 +365,11 @@ POST http://localhost:9200/books/_update/1
 }
 ```
 
-## 2. Spring Boot 整合 Elasticsearch 低级别客户端
+## Spring Boot 整合 Elasticsearch 低级别客户端
 
 以下是整合 ES 早期操作使用的客户端，被称为 Low Level Client，这种客户端操作方式性能方面略显不足
 
-### 2.1. 引入依赖
+### 引入依赖
 
 导入 Spring Boot 整合 Elasticsearch 低级别客户端的坐标
 
@@ -380,7 +380,7 @@ POST http://localhost:9200/books/_update/1
 </dependency>
 ```
 
-### 2.2. 项目配置
+### 项目配置
 
 在 Spring Boot 项目配置文件 application.yml 中，设置 Elasticsearch 相关配置，主要配置 ES 服务器地址，端口 9200
 
@@ -391,7 +391,7 @@ spring:
       uris: http://localhost:9200
 ```
 
-### 2.3. 操作客户端
+### 操作客户端
 
 使用 Spring Boot 整合 ES 的专用客户端接口 `ElasticsearchRestTemplate` 来进行操作
 
@@ -404,11 +404,11 @@ public class ElasticsearchTest {
 }
 ```
 
-## 3. Spring Boot 整合 Elasticsearch 高级别客户端
+## Spring Boot 整合 Elasticsearch 高级别客户端
 
 上述示例操作形式是 ES 早期的 Low Level Client，后面 ES 开发了全新的客户端操作方式，称为 High Level Client。高级别客户端与 ES 版本同步更新，但是 Spring Boot 最初整合 ES 的时候使用的是低级别客户端，所以企业开发需要更换成高级别的客户端模式。
 
-### 3.1. 引入依赖
+### 引入依赖
 
 导入 Spring Boot 整合 Elasticsearch 高级别客户端的坐标
 
@@ -431,13 +431,13 @@ public class ElasticsearchTest {
 
 ![](images/215443423238894.png)
 
-### 3.2. 项目配置
+### 项目配置
 
 ES 高级别客户可以不需要与低级别客户一样，在 Spring Boot 项目配置文件 application.yml 中，设置 Elasticsearch 相关基础配置，因为在创建客户端时会指定服务器ip地址与端口
 
-### 3.3. 操作客户端示例
+### 操作客户端示例
 
-#### 3.3.1. 创建客户端对象
+#### 创建客户端对象
 
 使用编程的形式设置连接的 ES 服务器，并获取客户端对象。配置 ES 服务器地址与端口9200（*可以将地址与端口等写到配置文件中，再读取配置文件*），记得客户端使用完毕需要手工关闭。由于当前客户端是手工维护的，因此不能通过自动装配的形式加载对象。
 
@@ -468,7 +468,7 @@ public class ElasticsearchTest {
 }
 ```
 
-#### 3.3.2. 创建索引
+#### 创建索引
 
 高级别客户端操作是通过发送请求的方式完成所有操作的，ES 针对各种不同的操作，设定了各式各样的请求对象，在创建索引的对象是 `CreateIndexRequest`，其他操作也会有自己专用的 Request 对象。
 
@@ -521,7 +521,7 @@ public void testCreateIndexByIK() throws IOException {
 }
 ```
 
-#### 3.3.3. 添加文档
+#### 添加文档
 
 添加文档使用的请求对象是 `IndexRequest`
 
@@ -541,7 +541,7 @@ public void testCreateDoc() throws IOException {
 }
 ```
 
-#### 3.3.4. 批量添加文档
+#### 批量添加文档
 
 批量添加文档时，先创建一个 `BulkRequest` 的对象，可以将该对象理解为是一个保存 `IndexRequest` 对象的容器，将所有的请求都初始化好后，添加到 `BulkRequest` 对象中，再使用 `BulkRequest` 对象的 `bulk` 方法，一次性执行完毕。
 
@@ -570,7 +570,7 @@ public void testCreateDocBatch() throws IOException {
 }
 ```
 
-#### 3.3.5. 按id查询文档
+#### 按id查询文档
 
 根据 id 查询文档的请求对象是 `GetRequest`
 
@@ -585,7 +585,7 @@ public void testGet() throws IOException {
 }
 ```
 
-#### 3.3.6. 按条件查询文档
+#### 按条件查询文档
 
 按条件查询文档的请求对象是 `SearchRequest`，查询时调用 `SearchRequest` 对象的 `termQuery` 方法，指定查询的属性名，此处支持使用合并字段，也就是前面定义索引属性时添加的 `all` 属性。
 

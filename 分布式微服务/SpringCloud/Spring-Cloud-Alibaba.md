@@ -1,4 +1,4 @@
-## 1. Spring Cloud Alibaba 简介
+## Spring Cloud Alibaba 简介
 
 Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
 
@@ -7,7 +7,7 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 - 官网：https://spring.io/projects/spring-cloud-alibaba#overview
 - 官方文档：https://github.com/alibaba/spring-cloud-alibaba/wiki
 
-## 2. Spring Cloud Alibaba 主要功能
+## Spring Cloud Alibaba 主要功能
 
 - **服务限流降级**：默认支持 WebServlet、WebFlux， OpenFeign、RestTemplate、Spring Cloud Gateway， Zuul， Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
 - **服务注册与发现**：适配 Spring Cloud 服务注册与发现标准，默认集成了 Ribbon 的支持。
@@ -18,7 +18,7 @@ Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。�
 - **分布式任务调度**：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。
 - **阿里云短信服务**：覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。
 
-## 3. Spring Cloud Alibaba 相关组件
+## Spring Cloud Alibaba 相关组件
 
 Spring Cloud Alibaba 组件包括了：
 
@@ -32,9 +32,9 @@ Spring Cloud Alibaba 组件包括了：
 - **[Alibaba Cloud SMS](https://www.aliyun.com/product/sms)**: 覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。
 - **Alibaba Cloud ACM**：一款在分布式架构环境中对应用配置进行集中管理和推送的应用配置中心产品。
 
-## 4. 基础使用
+## 基础使用
 
-### 4.1. 引入依赖
+### 引入依赖
 
 如果需要使用已发布的版本，在 `dependencyManagement` 中添加如下配置。
 
@@ -54,7 +54,7 @@ Spring Cloud Alibaba 组件包括了：
 
 然后在 `dependencies` 中添加所需使用的依赖即可使用。
 
-### 4.2. 官方演示 Demo
+### 官方演示 Demo
 
 为了演示如何使用，Spring Cloud Alibaba 项目包含了一个子模块`spring-cloud-alibaba-examples`。此模块中提供了演示用的 example ，可以阅读对应的 example 工程下的 readme 文档，根据里面的步骤来体验。
 
@@ -69,11 +69,11 @@ Example 列表：
 - [Alibaba Cloud SMS Example](https://github.com/alibaba/aliyun-spring-boot/tree/master/aliyun-spring-boot-samples/aliyun-sms-spring-boot-sample)
 - [Alibaba Cloud SchedulerX Example](https://github.com/alibaba/aliyun-spring-boot)
 
-## 5. 版本说明(2021.12.22日更新)
+## 版本说明(2021.12.22日更新)
 
 > 官方说明地址：https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E
 
-### 5.1. 组件版本关系
+### 组件版本关系
 
 每个 Spring Cloud Alibaba 版本及其自身所适配的各组件对应版本如下表所示（注意，Spring Cloud Dubbo 从 2021.0.1.0 起已被移除出主干，不再随主干演进）：
 
@@ -94,11 +94,11 @@ Example 列表：
 | 2.1.1.RELEASE or 2.0.1.RELEASE or 1.5.1.RELEASE           | 1.7.0            | 1.1.4         | 4.4.0            | 2.7.3         | 0.9.0         |
 | 2.1.0.RELEASE or 2.0.0.RELEASE or 1.5.0.RELEASE           | 1.6.3            | 1.1.1         | 4.4.0            | 2.7.3         | 0.7.1         |
 
-### 5.2. 毕业版本依赖关系(推荐使用)
+### 毕业版本依赖关系(推荐使用)
 
 由于 Spring Boot 3.0，Spring Boot 2.7~2.4 和 2.4 以下版本之间变化较大，目前企业级客户老项目相关 Spring Boot 版本仍停留在 Spring Boot 2.4 以下，为了同时满足存量用户和新用户不同需求，社区以 Spring Boot 3.0 和 2.4 分别为分界线，同时维护 2022.x、2021.x、2.2.x 三个分支迭代。如果不想跨分支升级，如需使用新特性，请升级为对应分支的新版本。为了规避相关构建过程中的依赖冲突问题，我们建议可以通过 [云原生应用脚手架](https://start.aliyun.com/) 进行项目创建。
 
-#### 5.2.1. 2022.x 分支
+#### 2022.x 分支
 
 适配 Spring Boot 3.0，Spring Cloud 2022.x 版本及以上的 Spring Cloud Alibaba 版本按从新到旧排列如下表（最新版本用`*`标记）： *(注意，该分支 Spring Cloud Alibaba 版本命名方式进行了调整，未来将对应 Spring Cloud 版本，前三位为 Spring Cloud 版本，最后一位为扩展版本，比如适配 Spring Cloud 2022.0.0 版本对应的 Spring Cloud Alibaba 第一个版本为：2022.0.0.0，第个二版本为：2022.0.0.1，依此类推)*
 
@@ -106,7 +106,7 @@ Example 列表：
 | ---------------------------- | --------------------- | ------------------- |
 | 2022.0.0.0-RC`*`             | Spring Cloud 2022.0.0 | 3.0.0               |
 
-#### 5.2.2. 2021.x 分支
+#### 2021.x 分支
 
 适配 Spring Boot 2.4，Spring Cloud 2021.x 版本及以上的 Spring Cloud Alibaba 版本按从新到旧排列如下表（最新版本用`*`标记）：
 
@@ -116,7 +116,7 @@ Example 列表：
 | 2021.0.1.0                   | Spring Cloud 2021.0.1 | 2.6.3               |
 | 2021.1                       | Spring Cloud 2020.0.1 | 2.4.2               |
 
-#### 5.2.3. 2.2.x 分支
+#### 2.2.x 分支
 
 适配 Spring Boot 为 2.4，Spring Cloud Hoxton 版本及以下的 Spring Cloud Alibaba 版本按从新到旧排列如下表（最新版本用`*`标记）：
 
@@ -134,11 +134,11 @@ Example 列表：
 | 2.0.4.RELEASE(停止维护，建议升级) | Spring Cloud Finchley       | 2.0.X.RELEASE       |
 | 1.5.1.RELEASE(停止维护，建议升级) | Spring Cloud Edgware        | 1.5.X.RELEASE       |
 
-### 5.3. 依赖管理
+### 依赖管理
 
 Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE 版本）。
 
-#### 5.3.1. spring-cloud-alibaba-dependencies
+#### spring-cloud-alibaba-dependencies
 
 在 pom.xml 中的 `dependencyManagement` 中添加 spring-cloud-alibaba-dependencies 依赖项：
 
@@ -169,7 +169,7 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 </dependencyManagement>
 ```
 
-#### 5.3.2. aliyun-spring-boot-dependencies
+#### aliyun-spring-boot-dependencies
 
 如果想使用阿里云服务的 Spring Boot Starters，在 pom.xml 添加 Aliyun Spring Boot BOM 的依赖。
 
@@ -187,16 +187,16 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 </dependencyManagement>
 ```
 
-## 6. Spring Cloud Alibaba 示例微服务环境搭建准备
+## Spring Cloud Alibaba 示例微服务环境搭建准备
 
 此学习 Spring Cloud Alibaba 的示例项目，主要包含商品、订单、用户等模块
 
 > - 示例项目地址：https://github.com/MooNkirA/spring-cloud-note/spring-cloud-alibaba-2.1.x-sample
 > - 分支：feature-alibaba-2.1.x
 
-### 6.1. 示例项目说明
+### 示例项目说明
 
-#### 6.1.1. 后端技术栈
+#### 后端技术栈
 
 |         技术         |       版本        |     说明      |
 | -------------------- | ----------------- | ------------ |
@@ -207,7 +207,7 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 | mysql-connector-java | 5.1.48            |              |
 | fastjson             | 1.2.76            |              |
 
-#### 6.1.2. 项目开发环境
+#### 项目开发环境
 
 | 工具  | 版本  |    说明     |
 | ----- | ----- | ----------- |
@@ -216,7 +216,7 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 | maven | 3.8.4 | 项目构建工具 |
 | nacos | 2.0.3 | 服务注册中心 |
 
-#### 6.1.3. 涉及模块设计
+#### 涉及模块设计
 
 |           服务（项目）名            | 部署端口 |          说明          |
 | :-------------------------------: | :-----: | --------------------- |
@@ -232,9 +232,9 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 |  Nacos server   |  8848   | nacos 服务注册中心  |
 | Sentinel server |  8080   | Sentinel 微服务容错 |
 
-### 6.2. 示例项目初始化
+### 示例项目初始化
 
-#### 6.2.1. 创建聚合项目
+#### 创建聚合项目
 
 创建 pom 类型工程 spring-cloud-alibaba-2.1.x-sample，在pom.xml文件中添加相关依赖
 
@@ -279,7 +279,7 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 </dependencyManagement>
 ```
 
-#### 6.2.2. 创建公共模块
+#### 创建公共模块
 
 - 创建jar类型工程 modules-common，添加相关依赖
 
@@ -309,7 +309,7 @@ Spring Cloud Alibaba BOM 包含了它所使用的所有依赖的版本（RELEASE
 
 - 创建相应数据库表的实体类
 
-#### 6.2.3. 创建三个业务模块的微服务
+#### 创建三个业务模块的微服务
 
 分别创建用户、商品、订单三个微服务工程。三个工程的步骤一样，下面以创建用户`service-user`工程为示例：
 

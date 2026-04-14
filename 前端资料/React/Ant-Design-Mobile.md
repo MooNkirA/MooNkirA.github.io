@@ -1,12 +1,12 @@
-## 1. Ant Design Mobile 概述
+## Ant Design Mobile 概述
 
 - [Ant Design Mobile 官网](https://mobile.ant.design/zh)
 - [Ant Design Mobile 官网(国内镜像)](https://ant-design-mobile.antgroup.com/zh)
 - [Ant Design Mobile 在线示例（手机模式）](https://mobile.ant.design/gallery)
 
-## 2. 实践项目相关问题
+## 实践项目相关问题
 
-### 2.1. Tabs 组件设置标签的宽度
+### Tabs 组件设置标签的宽度
 
 需求：在使用 Ant Design Mobile 框架的 Tabs 组件时，标签的宽度默认是占满整个Tabs组件，现在需要自定义标签的宽度，不会出现只有一个标签的时候，整个标签都占满全部空间
 

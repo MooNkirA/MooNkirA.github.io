@@ -1,6 +1,4 @@
-# 品优购项目资料与整体架构配置笔记
-
-## 1. 项目文档
+## 品优购项目文档
 
 <ul class="docs">
   <li><a href="#/项目资料/品优购/Day01-分布式服务框架-Dubbo">Day01-分布式服务框架-Dubbo</a></li>
@@ -29,9 +27,9 @@
   <li><a href="#/项目资料/品优购/项目2整体架构配置笔记">项目整体架构配置笔记</a></li>
 </ul>
 
-## 2. 相关配置模块
+## 品优购相关配置模块
 
-### 2.1. linux系统部署服务
+### linux系统部署服务
 
 - 本机IP：192.168.12.1
 - 虚拟机对应的网卡（VMnet 8） - centOS练习安装
@@ -61,7 +59,7 @@
 	- 账号：admin
 	- 密码：admin
 
-### 2.2. 项目各模块配置url与域名
+### 项目各模块配置url与域名
 
 - 本机pinyougou-sellergoods  商家服务聚合模块
   - url：http://127.0.0.1:9001
@@ -131,11 +129,11 @@ nginx -s stop # 停止
 nginx -s reload # 重新启动
 ```
 
-## 3. 项目总结、技术列表
+## 项目总结、技术列表
 
-### 3.1. 项目总结
+### 项目总结
 
-#### 3.1.1. 电商行业
+#### 电商行业
 
 - 模式：
     - B2C: 商家对个人
@@ -154,7 +152,7 @@ nginx -s reload # 重新启动
     4. 集群：指的是将多台服务器集中在一起，完成同一业务。
     5. 负载均衡：集群中所有的节点都处于活动状态，它们分摊系统的工作负载。
 
-#### 3.1.2. DUBBO分布式服务框架
+#### DUBBO分布式服务框架
 
 - 连接方式: 注册中心(zookeeper)
 - 监控中心: 查看当前的服务(暴露的服务、引用的服务)
@@ -168,18 +166,18 @@ nginx -s reload # 重新启动
 - 采用的是二进制RPC协议，因为采用的是二进制协议，
 - 所以它很适合于发送二进制数据。
 
-#### 3.1.3. MyBatis相关
+#### MyBatis相关
 
 1. 通用Mapper(数据访问接口需继承`Mapper<T>`)，简化单表的CRUD操作
 2. 分页插件PageHelper
 
-#### 3.1.4. Nginx反向代理服务器
+#### Nginx反向代理服务器
 
 - 静态资源(服务器)
 - 负载均衡(集群)
     - 调度算法: 轮询、权重(weight)、ip哈希值(ip_hash)
 
-#### 3.1.5. FastDFS分布式文件服务器
+#### FastDFS分布式文件服务器
 
 1. tracker server 追踪服务器
 2. storage server 存储服务器
@@ -188,7 +186,7 @@ nginx -s reload # 重新启动
    - `storageClient.download_file()` 下载文件
    - `storageClient.delete_file()` 删除文件
 
-#### 3.1.6. Redis非关系型数据库(mongoDB)
+#### Redis非关系型数据库(mongoDB)
 
 1. redis是一个开源的高性能键值对数据库.
 2. 值的数据类型
@@ -207,12 +205,12 @@ nginx -s reload # 重新启动
         - 3台从服务器做备份，达到高可用
     - 最多可使用16384台Redis做集群(16384个节点)
 
-#### 3.1.7. Spring-Data-Redis整合Jedis
+#### Spring-Data-Redis整合Jedis
 
 1. 单机版配置
 2. 集群版配置
 
-#### 3.1.8. 单点登录(CAS)
+#### 单点登录(CAS)
 
 1. 实现登录功能
     1. 生成TGC存入Cookie
@@ -225,11 +223,11 @@ nginx -s reload # 重新启动
     3. 删除CAS服务端Session中TGT登录票据
     4. 删除所有客户端Session中的登录用户名
 
-#### 3.1.9. js跨域(ip或者端口不同)
+#### js跨域(ip或者端口不同)
 
 解决方案CORS(jsonp)
 
-#### 3.1.10. Solr(全文检索服务器)
+#### Solr(全文检索服务器)
 
 1. SolrHome: Solr存储所有引索库的目录(主目录).
 2. SolrCore: Solr存储一个索引库的目录.
@@ -241,7 +239,7 @@ nginx -s reload # 重新启动
     - 3台zookeeper通过选举选出1个leader(领袖)与2个follower(追随)，达到高可用. (至少3台zookeeper)
     - 4台Solr: 分成两片达到高并发，其中每一片都有主(master)、从(slave)达到高可用.
 
-#### 3.1.11. ActiveMQ消息队列(服务器与服务器之间通信)
+#### ActiveMQ消息队列(服务器与服务器之间通信)
 
 把一些耗时业务进行异步处理，提高系统的吞吐量。
 
@@ -257,19 +255,19 @@ nginx -s reload # 重新启动
     - 搜索系统实现商品的索引同步.
     - 商品详情系统实现商品的静态化页面同步.
 
-#### 3.1.12. FreeMarker模版引擎
+#### FreeMarker模版引擎
 
 1. freemarker可充当视图呈现技术使用
 2. 基本语法、表达式与运算符、内置指令、内置函数、处理空值
     - 说明：动态页面静态化，提高服务器的响应性能.
 
-#### 3.1.13. 购物车系统
+#### 购物车系统
 
 1. 登录状态实现购物车(将数据存储到redis中)
 2. 未登录实现购物车(将数据存储到Cookie中)
 3. 购物车数据合并
 
-### 3.2. 部署相关
+### 部署相关
 
 1. 一个子系统(一台tomcat)，并发数为：200-300/s(每秒)
     - 说明：如果要处理并数为2000/s (需用10台tomcat集群)
@@ -278,7 +276,7 @@ nginx -s reload # 重新启动
     - 第二台服务器：服务层(tomcat) + FastDFS + Solr: 8核 + 2T + 32G
     - 第三台服务器：表现层(tomcat) + Nginx: 8核 + 1T + 32G
 
-### 3.3. 技术列表
+### 技术列表
 
 1. Spring(4.3.10): JavaEE核心框架
 2. Spring MVC(4.3.10): MVC框架
@@ -305,7 +303,7 @@ nginx -s reload # 重新启动
 23. angular(1.6.9)：MVC前端框架
 24. jQuery(1.11.3): Ajax框架
 
-## 4. 项目在linux系统中软件启动命令
+## 项目在linux系统中软件启动命令
 
 ```shell
 1. dubbo注册中心zookeeper:
@@ -443,7 +441,7 @@ systemctl enable firewalld.service
 cat /etc/redhat-release
 ```
 
-## 5. 配置hosts文件
+## 配置hosts文件
 
 ```
 # 项目二配置域名
@@ -460,7 +458,7 @@ cat /etc/redhat-release
 127.0.0.1  seckill.moon.com
 ```
 
-## 6. 补充
+## 补充
 
 - day06 运营商后台-商品分类功能（新增、修改、删除）
 - day07 优化最后商品录入的逻辑，修改为不要循环插入数据
@@ -486,9 +484,9 @@ cat /etc/redhat-release
         - 商家提交秒杀商品申请，录入秒杀商品数据，主要包括：商品标题、原价、秒杀价、商品图片、介绍等信息。
         - 运营商审核秒杀申请，审核后在秒杀页面显示
 
-## 7. Git库-项目仓库相关分支说明
+## Git库-项目仓库相关分支说明
 
-### 7.1. Github仓库
+### Github仓库
 
 - shh://git@github.com:MooNkirA/pinyougou.git
     - master分支：空内容

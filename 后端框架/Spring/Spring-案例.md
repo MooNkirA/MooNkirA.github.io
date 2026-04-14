@@ -1,4 +1,4 @@
-## 1. （策略模式）一个接口多个实现类，如何根据外部条件来实时替换具体实现类
+## （策略模式）一个接口多个实现类，如何根据外部条件来实时替换具体实现类
 
 - 涉及的ApplicationContext的方法，语法如下：
 
@@ -10,13 +10,13 @@
 	1. 传入一个接口的Class 类型，获取这个class 的所有具体实现，不包括抽象类
 	2. 还可以将 applicationContext 单独设置一个值，写成一个工具类，结合ApplicationContext 类的其他方法，比如: getBean(String var1)
 
-### 1.1. 案例1：网络资料案例（待整理与优化）
+### 案例1：网络资料案例（待整理与优化）
 
-#### 1.1.1. 需求
+#### 需求
 
 定义了一个接口，来对外提供服务，这个接口下的方法不能随便改变，而接口有一系列实现，且实现还在不断添加，如何在传入外部不同的条件下，实现实时更换接口的实现类
 
-#### 1.1.2. 实现步骤
+#### 实现步骤
 
 1. 任何类实现 ApplicationContextAware 接口，实现setApplicationContext 方法，就会在启动时，向实现类的实现方法注入applicationContext对象。定义工具类，使用枚举，将所有实现类使用map进行封装
 
@@ -164,12 +164,12 @@ public class TestController {
 }
 ```
 
-### 1.2. 案例2：个人项目MoonSystem项目
-#### 1.2.1. 需求
+### 案例2：个人项目MoonSystem项目
+#### 需求
 
 定义一个公共查询数据字典查询接口，该接口有多个不同的实现类，根据请求参数中字典类型，调用不同的实现类中的查询不同的数据转换成数据字典返回
 
-#### 1.2.2. 实现步骤
+#### 实现步骤
 
 1. 定义字典枚举类，设置类型字符串值
 
@@ -475,23 +475,23 @@ public class CommonController implements CommonControllerApi {
 }
 ```
 
-## 2. 自定义扫描器
+## 自定义扫描器
 
 > 此示例源码位置：spring-note\spring-analysis-note\spring-source-study-2021\00-spring-extension\custom-scanner
 >
 > - 其他相同的示例（spring注解驱动开发案例工程）源码位置：spring-note\spring-analysis-note\spring-sample-annotation\07-annotation-import-importbeandefinitionregistrar
 > - 相应笔记的详见《02-Spring注解汇总.md》中的《自定义 ImportBeanDefinitionRegistrar》章节
 
-### 2.1. 需求
+### 需求
 
 - 案例实现的需求：如果出现大量类需要注册到Spring进行管理，但又不想每个类上都加上`@Component`等注解，实现指定包的路径即可将此包下所有bean扫描到并且实例化
 - 实现思路：可以通过实现`ImportBeanDefinitionRegistrar`（或者`ImportSelector`）接口来批量注册bean对象到容器中，再使用`@Import`注解引入其实现类即可
 
-### 2.2. 实现步骤
+### 实现步骤
 
 准备工作：创建一些测试使用的实体类
 
-#### 2.2.1. 创建自定义扫描器注解
+#### 创建自定义扫描器注解
 
 ```java
 package com.moon.spring.extenstion.annotation;
@@ -527,7 +527,7 @@ public @interface BeansScanner {
 }
 ```
 
-#### 2.2.2. 创建自定义扫描器
+#### 创建自定义扫描器
 
 自定义扫描器，继承Spring框架的扫描器`ClassPathBeanDefinitionScanner`，重写`doScan`方法，可以对其进行扩展（*但本示例没有做扩展*）
 
@@ -557,7 +557,7 @@ public class CustomBeanDefinitionScanner extends ClassPathBeanDefinitionScanner 
 }
 ```
 
-#### 2.2.3. 创建自定义注册器
+#### 创建自定义注册器
 
 自定义注册器，须实现 `ImportBeanDefinitionRegistrar` 接口，在`registerBeanDefinitions`方法中实现注册的相关逻辑
 
@@ -634,7 +634,7 @@ public class BeansScannerRegistrar implements ImportBeanDefinitionRegistrar {
 
 > 示例中也可以直接使用Spring提供的包扫描器
 
-#### 2.2.4. spring的配置类中使用
+#### spring的配置类中使用
 
 在配置类中，标识自定义扫描器注解
 
@@ -652,7 +652,7 @@ public class SpringConfiguration {
 }
 ```
 
-#### 2.2.5. 测试
+#### 测试
 
 ```java
 @Test

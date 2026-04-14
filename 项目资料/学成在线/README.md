@@ -1,6 +1,6 @@
 # 学成在线项目-整体架构配置笔记
 
-## 1. 项目文档
+## 项目文档
 
 <ul class="docs">
   <li><a href="#/项目资料/学成在线/Day01-CMS接口开发">Day01-CMS接口开发</a></li>
@@ -18,17 +18,17 @@
   <li><a href="#/项目资料/学成在线/Day18-用户授权">Day18-用户授权</a></li>
 </ul>
 
-## 2. 项目git库与分支管理
+## 项目git库与分支管理
 
-### 2.1. 项目后端git库
+### 项目后端git库
 
 - git库地址：git@github.com:MooNkirA/xc-edu-project-service.git
 
-### 2.2. 项目前端git库
+### 项目前端git库
 
 - git库地址：git@github.com:MooNkirA/xc-edu-project-ui.git
 
-### 2.3. 本项目的分支命名规范
+### 本项目的分支命名规范
 
 - `master`：主分支，永远是可用的、稳定的、可直接发布的版本，不能直接在该分支上开发。只有计划发布的版本功能在develop分支上全部完成，而且测试没有问题了才会合并到master上。
 - `develop`：开发主分支，代码永远是最新，所有新功能以这个分支来创建自己的开发分支，该分支只做只合并操作，不能直接在该分支上开发
@@ -40,32 +40,32 @@
 - develop开发分支
 - feature-dayxx功能分支，以每天的功能为单位做为分支
 
-## 3. 项目数据库与相关中间件
+## 项目数据库与相关中间件
 
-### 3.1. Nginx
+### Nginx
 
 - 本机安装：D:\development\nginx-1.14.2-xc-edu\
 
-### 3.2. mongodb 数据库
+### mongodb 数据库
 
-#### 3.2.1. 本机部署（已删除）
+#### 本机部署（已删除）
 
 - ~~本机部署地址：http://localhost:27017~~
 - ~~用户所属数据库：admin 用户名：root 密码：123~~
 
-#### 3.2.2. docker版部署（mongoDb 4.0.18）
+#### docker版部署（mongoDb 4.0.18）
 
 - 部署地址：http://192.168.12.132:27017
 - 用户所属数据库：admin 用户名：root 密码：123
 
-### 3.3. RabbitMQ
+### RabbitMQ
 
 - 部署地址（centOS练习虚拟机）：http://192.168.12.132:15672
 - 用户名/密码：guest/guest
 
-## 4. 项目各模块配置url与域名
+## 项目各模块配置url与域名
 
-### 4.1. 前端ui模块url与端口
+### 前端ui模块url与端口
 
 - 本机xc-ui-pc-static-portal 学成网静态门户页面
     - url：http://127.0.0.1:80
@@ -78,7 +78,7 @@
     - url：http://127.0.0.1:13000
     - 映射域名：ucenter.xuecheng.com
 
-### 4.2. 后端服务url与端口
+### 后端服务url与端口
 
 - 本机xc-service-manage-cms CMS管理微服务
     - url：http://127.0.0.1:31001
@@ -102,12 +102,12 @@
 - 本机xc-search-service 搜索服务
     - url: http://127.0.0.1:40100
 
-### 4.3. 注册中心Eureka
+### 注册中心Eureka
 
 - 本机eureka01：：http://127.0.0.1:50101
 - 本机eureka02：：http://127.0.0.1:50102
 
-### 4.4. 配置hosts文件
+### 配置hosts文件
 
 ```shell
 # 学成在线项目配置域名
@@ -117,13 +117,13 @@
 127.0.0.1  eureka02
 ```
 
-## 5. 待处理
-### 5.1. 未实现功能
+## 待处理
+### 未实现功能
 
 - day03 查看6.待完善功能
 
-### 5.2. 暂存数据
-#### 5.2.1. cms_config文档-首页轮播图原数据备份
+### 暂存数据
+#### cms_config文档-首页轮播图原数据备份
 
 ```json
 {
@@ -153,7 +153,7 @@
 3. 编写模板，在freemarker测试工程中新建模板index_banner.ftl
 
 
-#### 5.2.2. 文件系统已上传的图片
+#### 文件系统已上传的图片
 
 - group1/M00/00/00/wKgMhF1I8bKAK_sfAABgUAnk0N8760.jpg
 - group1/M00/00/00/wKgMhF1GLFWADYpFAAC8U7Yhv9Q90.jpeg

@@ -1,11 +1,11 @@
-## 1. JPA 概述
+## JPA 概述
 
 JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方制定的 ORM 标准。Hibernate 对 JPA 标准有两套支持：
 
 - **兼容性的支持**：操作的接口是 Hibernate 原来框架的，只有<font color=red>映射注解</font>使用 JPA 标准接口提供。
 - **完全性的支持**：<font color=red>操作的接口和映射的注解全部使用 JPA 的标准</font>。
 
-## 2. Hibernate JPA 兼容性的支持（了解）
+## Hibernate JPA 兼容性的支持（了解）
 
 操作的接口是 Hibernate 框架提供的，只有映射注解使用 JPA 标准接口提供。操作步骤如下：
 
@@ -17,11 +17,11 @@ JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方�
 <mapping class="com.moon.entity.Customer"/>
 ```
 
-## 3. Hibernate JPA 完全性的支持
+## Hibernate JPA 完全性的支持
 
 完全性的支持是指，操作的 API 和映射的注解全部使用 JPA 的标准。
 
-### 3.1. 配置流程说明
+### 配置流程说明
 
 ![](images/131585209240352.jpg)
 
@@ -30,7 +30,7 @@ JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方�
 3. 通过实体管理工厂的对象获得操作类对象，实体管理类对象。
 4. 操作类操作数据库表之前，必须要配置一个和数据表关联的实体类（有关联注解的），<font color=red>**不要忘了在总配置文件加载**</font>。
 
-### 3.2. 配置步骤示例（待补充测试用例）
+### 配置步骤示例（待补充测试用例）
 
 - **导入包**。除了 hibernate 核心包和 mysql 驱动包外，还需要导入 JPA 标准规则包。传统应用程序导入 hibernate-release-5.0.12.Final\lib\jpa；Maven 方式引入以下依赖：
 
@@ -136,7 +136,7 @@ public class Customer implements Serializable {
 
 - 操作测试（待补充）
 
-### 3.3. 使用 JPA 注解来替代配置文件
+### 使用 JPA 注解来替代配置文件
 
 <font color=red>JPA 注解的作用其实就是代替 XML 配置文件</font>，将程序的元数据写在代码上。而<font color=red>元数据就是，启动程序必须依赖的数据</font>。
 
@@ -147,7 +147,7 @@ public class Customer implements Serializable {
 - 如果属性名和数据库表的字段名相同，可以不配置 `@Column`。
 - 配置在属性上面的注解也可以配置 get 方法的上面（**建议放在属性上面**），并且要统一配置在属性或 get 方法。
 
-### 3.4. 将 Hibernate 配置的纯 JPA 的代码移植到 OpenJPA（了解）
+### 将 Hibernate 配置的纯 JPA 的代码移植到 OpenJPA（了解）
 
 如果代码使用纯 JPA 标准编写，不修改代码只修改一下配置文件，即可将 Hibernate 的代码移植到其他 OpenJPA 和 EclipseTOP 等 JPA 框架。
 
@@ -181,7 +181,7 @@ public class Customer implements Serializable {
 </persistence>
 ```
 
-## 4. JPA 映射注解汇总
+## JPA 映射注解汇总
 
 - `@Entity`：声明该类是一个 JPA 标准的实体类。标识此注解会在创建 SessionFactory 时，加载映射配置。
 - `@Table`：指定实体类关联的表。
@@ -232,9 +232,9 @@ public class Customer implements Serializable {
     - `cascade`：配置级联操作。
     - `fetch`：配置是否采用延迟加载。
     - `targetEntity`：配置目标的实体类。映射多对多的时候不用写。
-- `@Transient`：使用该注解标识的字段，不与数据库表字段进行映射。注，就算属性标识 `@Column` 的注解，也不会与数据库相应名字的字段进行映射。
+- `@Transient`：使用该注解标识的字段，不与数据库表字段进行映射。（<font color=red>**注：就算属性标识 `@Column` 的注解，也不会与数据库相应名字的字段进行映射。**</font>）
 
-### 4.1. 主键生成策略
+### 主键生成策略
 
 所谓的主键生成策略即使，自动生成 ID 列值的策略。JPA 提供了四种主键生成策略：
 
@@ -270,13 +270,32 @@ private BigInteger id;
 private BigInteger id;
 ```
 
-### 4.2. 自定义主键生成策略（待补充）
+### 自定义主键生成策略（待补充）
 
 > TODO: 参考项目一持久化类
 
-## 5. JPA 的增删改查（待完善）
+### @Transient
 
-### 5.1. 基础增删改查
+#### 核心作用
+
+在 JPA 的 Entity 中增加不映射到数据库表的字段，可以通过 `@Transient` 注解实现，它会告诉 JPA 忽略该字段的持久化。
+
+- 该字段不会出现在 JPA 生成的 SQL 中（查询 / 插入 / 更新都不会包含）
+- 数据库表中不会生成对应的列，仅作为 Entity 的内存临时字段使用。
+
+#### 使用方法
+
+- 加在字段上：要求 Entity 的注解策略是 FIELD（默认，或 `@Access(AccessType.FIELD)` ）
+- 加在 getter 方法上：要求注解策略是 PROPERTY（`@Access(AccessType.PROPERTY)`）。
+
+#### 注意事项
+
+1. **字段的初始化**：`@Transient` 字段不会从数据库读取值，需要自己在代码中（比如构造器、业务逻辑）手动赋值。（或通过 getter 自动计算）
+2. **框架兼容性**：如果用了 Hibernate 等实现，`@Transient` 是标准 JPA 注解，完全支持；若用 Lombok 的 `@Data`，也不会影响该字段的生成。
+
+## JPA 的增删改查（待完善）
+
+### 基础增删改查
 
 ```java
 // 获取JPA实体管理类对象
@@ -305,7 +324,7 @@ Customer c = em.getReference(Customer.class, 22L);
 
 <font color=red>**注意：使用 JPA 删除数据也必须使用持久化对象，否则报错**</font> `java.lang.IllegalArgumentException: Removing a detached instance day61.entity.Customer#24`
 
-### 5.2. JPQL 操作（删除，修改）
+### JPQL 操作（删除，修改）
 
 JPQL（Java Persistence Query Language）：Java 持久化查询语言。几乎等同 HQL，一样直接操作的是对象，不是表。
 
@@ -362,7 +381,7 @@ public class JPA_JPQLTest {
 }
 ```
 
-### 5.3. JPQL 查询
+### JPQL 查询
 
 ```java
 /**
@@ -459,7 +478,7 @@ public class JPA_JPQLTest2 {
 }
 ```
 
-### 5.4. Criteria 查询（了解）
+### Criteria 查询（了解）
 
 ```java
 // 1.通过Criteria查询所有客户的数据
@@ -484,7 +503,7 @@ public void findAll() {
 }
 ```
 
-## 6. JPA 多表关联查询（待整理）
+## JPA 多表关联查询（待整理）
 
 多表关联查询的作用就是，实现使用一个实体类操作或者查询多个表的数据。
 

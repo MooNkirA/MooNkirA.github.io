@@ -1,4 +1,4 @@
-## 1. Spring Boot 简介
+## Spring Boot 简介
 
 > 引子：
 >
@@ -16,7 +16,7 @@ Spring Boot 是全新的 Spring 开发框架，其设计的初衷是简化 Sprin
 
 使用 Spring Boot 创建 java 应用，可以直接使用 `java –jar` 命令启动它，或者采用传统的 war 部署方式。
 
-### 1.1. 核心功能
+### 核心功能
 
 - 核心能力：Spring容器、日志、<font color=red>**自动配置 AutoCongfiguration、Starters**</font>
 - web应用的能力：MVC、嵌入式容器
@@ -24,7 +24,7 @@ Spring Boot 是全新的 Spring 开发框架，其设计的初衷是简化 Sprin
 - 强大的整合其他技术的能力
 - 测试：强悍的应用测试
 
-### 1.2. 开发环境要求
+### 开发环境要求
 
 > Notes: 示例使用 Spring Boot 2.1.7.RELEASES 版本
 
@@ -34,11 +34,11 @@ Spring Boot 是全新的 Spring 开发框架，其设计的初衷是简化 Sprin
 
 Spring Boot 支持如下的嵌入式 Servlet 容器，Spring Boot 应用程序最低支持到 Servlet 3.1 的容器。
 
-### 1.3. 项目构建
+### 项目构建
 
 强烈推荐选择一个支持依赖管理的构建系统，可以使用它将 artifact 发布到 Maven Central 仓库。所以建议选择 Maven 或者 Gradle。
 
-### 1.4. Spring Boot 2.0 特性
+### Spring Boot 2.0 特性
 
 Spring Boot2.0 里面有一个重大的变化叫**响应式编程**，相比于传统的 Serviet API 阻塞的 API，引入到非阻塞的编程模式，主要目标是提升高并发程序的吞吐量，包括底层数据库对接等。
 
@@ -59,9 +59,9 @@ Spring Boot2.0 里面有一个重大的变化叫**响应式编程**，相比于�
 - 支持 Kotlin 1.2，支持性能监控 Micrometer 集成 Actuator
 - 其他开发、测试、部署的小改进
 
-## 2. Spring Boot 入门
+## Spring Boot 入门
 
-### 2.1. 环境准备
+### 环境准备
 
 - DataBase：MySQL
 - IDE：Eclipse/idea
@@ -79,13 +79,13 @@ Spring Boot2.0 里面有一个重大的变化叫**响应式编程**，相比于�
 
 ![](images/_重建索引2_1536458518_15991.png)
 
-### 2.2. 创建 Spring Boot 项目（eclipse 版）-已过时，有需要再更新！
+### 创建 Spring Boot 项目（eclipse 版）-已过时，有需要再更新！
 
-#### 2.2.1. 创建Maven工程
+#### 创建Maven工程
 
 ![](images/_创建maven工程_1536458626_13081.png)
 
-#### 2.2.2. 变更JDK版本(非必需)
+#### 变更JDK版本(非必需)
 
 - 默认情况下工程的JDK版本是1.6，但是通常使用的是1.7的版本
 
@@ -110,9 +110,9 @@ Spring Boot2.0 里面有一个重大的变化叫**响应式编程**，相比于�
 > - 虽然JDK1.6或者1.7都可以使用SpringBoot，但SpringBoot官方建议使用JDK1.8，要使用JDK1.8，首先必须要配置JDK1.8后，才可以使用上述方法设置。
 > - **如果是传统的maven项目，是需要配置jdk插件，但spring boot项目中，只需要配置`<properties>`属性即可**
 
-### 2.3. 创建 Spring Boot 项目（IDEA 版）
+### 创建 Spring Boot 项目（IDEA 版）
 
-#### 2.3.1. 方式1 - 基于 Spring Intialzr（需联网）
+#### 方式1 - 基于 Spring Intialzr（需联网）
 
 IDEA 可以直接通过 Spring Initializr 创建 Spring boot 项目。（注意，此创建方式需要联网）
 
@@ -152,7 +152,7 @@ IDEA 可以直接通过 Spring Initializr 创建 Spring boot 项目。（注意�
 
 ![idea创建spring boot4](images/_idea创建spri_1536460785_14977.jpg)
 
-#### 2.3.2. 方式2 - 官网在线创建
+#### 方式2 - 官网在线创建
 
 直接访问官网的 Spring Initializr 也可创建 Spring Boot 项目。网址：https://start.spring.io/
 
@@ -167,7 +167,7 @@ IDEA 可以直接通过 Spring Initializr 创建 Spring boot 项目。（注意�
 - 所有信息设置完毕后，点击下面左侧按钮，生成一个文件包并下载，该压缩包即是创建的 SpringBoot 工程文件夹
 - 解压缩此文件后，得到工程目录，在 idea 中导入即可使用，和之前创建的东西完全一样。
 
-#### 2.3.3. 方式3 - 选择阿里云创建
+#### 方式3 - 选择阿里云创建
 
 阿里在国内提供了一个创建 SpringBoot 项目的
 
@@ -181,7 +181,7 @@ IDEA 可以直接通过 Spring Initializr 创建 Spring boot 项目。（注意�
 
 > 注意：阿里云提供的工程创建地址初始化创建的工程，和 SpringBoot 官网创建出来的工程略有区别。主要是在配置文件的形式上有区别。
 
-#### 2.3.4. 方式4 - 基于手动创建 Maven 项目
+#### 方式4 - 基于手动创建 Maven 项目
 
 个人通常习惯通过手动创建 maven 项目的方式，来创建 SpringBoot 项目
 
@@ -199,9 +199,9 @@ IDEA 可以直接通过 Spring Initializr 创建 Spring boot 项目。（注意�
 
 - 最后就是手动创建项目结构与参照标准 SpringBoot 工程的 pom 文件，编写项目的 pom 文件即可。SpringBoot 重点就是在 pom.xml 引入 `spring-boot-starter-parent` 的依赖，详情参考下一章节。
 
-### 2.4. 创建 Spring Boot 项目（远程请求方式）
+### 创建 Spring Boot 项目（远程请求方式）
 
-#### 2.4.1. linux 环境
+#### linux 环境
 
 用以下命令即可获取 spring boot 的干净的骨架 pom.xml
 
@@ -215,13 +215,13 @@ curl -G https://start.spring.io/pom.xml -d dependencies=web,mysql,mybatis -o pom
 curl https://start.spring.io/
 ```
 
-#### 2.4.2. windows 环境
+#### windows 环境
 
 可以使用 postman 工具请求，命令与参数参考 linux 环境
 
 ![](images/457801318220651.png)
 
-### 2.5. 添加 maven 依赖
+### 添加 maven 依赖
 
 > 注：如果使用 Spring Initializr 创建的 SpringBoot 项目，通常都在 pom.xml 文件已经生成好相关依赖
 
@@ -254,7 +254,7 @@ curl https://start.spring.io/
 </dependencies>
 ```
 
-### 2.6. 启动类
+### 启动类
 
 创建 Application 启动类（类名随意命名）：
 
@@ -288,11 +288,11 @@ public class Application {
 
 > 可参考附录二的banner设置，可以通过修改配置文件制定自己的标识。
 
-### 2.7. 编写入门程序
+### 编写入门程序
 
 需求：使用 Spring MVC 实现 Hello World 输出
 
-#### 2.7.1. 以住的 Spring MVC 实现
+#### 以住的 Spring MVC 实现
 
 现在开始使用spring MVC 框架，实现json 数据的输出。如果按照以往的做法，需要在 web.xml 中添加一个 `DispatcherServlet` 的配置，还需要添加一个 spring 的配置文件，配置文件如下配置
 
@@ -325,7 +325,7 @@ web.xml加入配置
 
 还要编写 Controller。。。
 
-#### 2.7.2. SpringBoot 的实现
+#### SpringBoot 的实现
 
 不需要配置文件，直接编写Controller类即可
 
@@ -342,7 +342,7 @@ public class HelloController {
 
 > `@RestController` 注解：其实就是 `@Controller` 和 `@ResponseBody` 注解加在一起
 
-#### 2.7.3. 启动运行项目
+#### 启动运行项目
 
 - 启动方式一：直接右键启动编写的引导类即可
 - 启动方式二：使用 Maven 命令执行
@@ -357,7 +357,7 @@ spring-boot:run
 
 > Notes: 更多启动 Spring Boot 项目的方式详见《Spring Boot 项目部署运维篇》笔记
 
-### 2.8. 使用 Gradle 构建 Spring Boot 项目
+### 使用 Gradle 构建 Spring Boot 项目
 
 前面章节都是 Maven 的方式构建 Spring Boot 项目。若要了解如何使用 Gradle 来构建 Spring Boot，请参阅 Spring Boot 的 Gradle 插件文档：
 
@@ -365,7 +365,7 @@ spring-boot:run
 - 参考文档 ([HTML](https://docs.spring.io/spring-boot/docs/2.5.8/gradle-plugin/reference/htmlsingle/) and [PDF](https://docs.spring.io/spring-boot/docs/2.5.8/gradle-plugin/reference/pdf/spring-boot-gradle-plugin-reference.pdf))
 - [API](https://docs.spring.io/spring-boot/docs/2.5.8/gradle-plugin/api/)
 
-## 3. Spring Boot 项目基础组成分析
+## Spring Boot 项目基础组成分析
 
 根据快速入门案例，一个最基础的 SpringBoot 项目包括：
 
@@ -373,7 +373,7 @@ spring-boot:run
 - 自动配置（简化常用工程相关配置）
 - 辅助功能（内置服务器，……）
 
-### 3.1. spring-boot-starter-parent
+### spring-boot-starter-parent
 
 通常一个项目需要依赖各种不同的技术，而各个技术的依赖版本之间可能会存在冲突。而 SpringBoot 于是所有的技术版本的常见使用方案都给开发者整理了出来，以后开发者使用时直接用它提供的版本方案，不用担心版本冲突问题了，相当于 SpringBoot 做了无数个技术版本搭配的列表，这个技术搭配列表的名字叫做 `spring-boot-starter-parent`
 
@@ -381,7 +381,7 @@ spring-boot:run
 
 `spring-boot-starter-parent` 仅仅只是进行版本的统一管理，需要开发者导入相应的坐标依赖，
 
-#### 3.1.1. Spring Boot 依赖引入实现原理
+#### Spring Boot 依赖引入实现原理
 
 在项目的 pom.xm 文件中继承父工程 `spring-boot-starter-parent`，查阅 SpringBoot 的配置源码
 
@@ -420,16 +420,16 @@ spring-boot:run
 
 **总结：通过 maven 的依赖传递从而实现继承 spring boot 的父依赖后，可以依赖 spring boot 项目相关的 jar**
 
-#### 3.1.2. 小结
+#### 小结
 
 1. 开发 SpringBoot 程序需要继承 `spring-boot-starter-parent` 父项目
 2. `spring-boot-starter-parent` 中定义了各种技术的依赖管理
 3. 继承 parent 模块可以避免多个依赖使用相同技术时出现依赖版本冲突
 4. 继承 parent 的形式也可以采用 `<scope>` 引入依赖的形式实现效果（*详见《引入 SpringBoot 父工程依赖的方式》章节*）
 
-### 3.2. Spring Boot Application Starters
+### Spring Boot Application Starters
 
-#### 3.2.1. 概述
+#### 概述
 
 Spring Boot Application Starters 可以理解为启动器，是一组资源依赖描述，定义了某种技术各种依赖的固定搭配格式的集合，其格式一般为`spring-boot-starter-xxx`。*如：spring-boot-starter-web，里面定义了若干个具体依赖的坐标*
 
@@ -443,7 +443,7 @@ Starters 的作用主要是为不同的 Spring Boot 应用提供一站式服务�
 
 另外，Spring Boot 还提供了开发者自定义 starter 的功能，具体的详见后面的《自定义 starter 功能》章节
 
-#### 3.2.2. 实际开发应用方式
+#### 实际开发应用方式
 
 实际开发中如果需要用什么技术，先去找有没有这个技术对应的 starter
 
@@ -455,7 +455,7 @@ Starters 的作用主要是为不同的 Spring Boot 应用提供一站式服务�
 - 方式一：直接写坐标
 - 方式二：覆盖`<properties>`中定义的版本号
 
-#### 3.2.3. 常用的 starter 列表
+#### 常用的 starter 列表
 
 > 官方文档：https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.build-systems.starters
 
@@ -525,25 +525,25 @@ Table 3. Spring Boot technical starters
 | `spring-boot-starter-tomcat`        | 使用 Tomcat 作为嵌入式 servlet 容器的 Starter。是 `spring-boot-starter-web` 默认使用的 servlet 容器 |
 | `spring-boot-starter-undertow`      | 使用 Undertow 作为嵌入式 servlet 容器的 Starter。`spring-boot-starter-tomcat` 的替代方案           |
 
-#### 3.2.4. 小结
+#### 小结
 
 1. 开发 SpringBoot 程序需要导入某些技术时，通常导入对应的 starter 即可
 2. 每个不同的 starter 根据功能不同，通常包含多个依赖坐标
 3. 使用 starter 可以实现快速配置的效果，达到简化配置的目的
 
-##### 3.2.4.1. starter 与 parent 的区别
+##### starter 与 parent 的区别
 
 - starter 是一个坐标中定义了若干个坐标，引入一个坐标相当于引入多个坐标，是用来减少依赖配置的书写量的。
 - parent 是定义了几百个依赖版本号，由 SpringBoot 统一管理控制版本，是用来减少各种技术的依赖冲突
 
-##### 3.2.4.2. starter 命名规范
+##### starter 命名规范
 
 - SpringBoot 官方定义了很多 starter，命名格式：`spring-boot-starter-技术名称`。
 - 第三方 starter 则不能以 `spring-boot-*` 命名开头，一般建议命名格式是：`第三方技术名称-spring-boot-starter`，如 `mybatis-spring-boot-starter`。
 
-### 3.3. 引导类
+### 引导类
 
-#### 3.3.1. 概述
+#### 概述
 
 SpringBoot 引导类是指程序运行的入口，即快速开始案例中标识 `@SpringBootApplication` 注解，并带有 main 方法的那个类，运行这个类就可以启动 SpringBoot 工程，并创建了一个 Spring 容器对象。
 
@@ -572,14 +572,14 @@ public class Application {
 - `@EnableAutoConfiguration`：Spring Boot会自动根据你jar包的依赖来自动配置项目
 - `@ComponentScan`：告诉Spring 哪个packages 的用注解标识的类会被spring自动扫描并且装入bean 容器。
 
-#### 3.3.2. 小结
+#### 小结
 
 1. SpringBoot 工程提供引导类用来启动程序
 2. SpringBoot 工程启动后创建并初始化 Spring 容器
 
-### 3.4. 内嵌 web 容器（如 tomcat）
+### 内嵌 web 容器（如 tomcat）
 
-#### 3.4.1. 什么是嵌入式服务器
+#### 什么是嵌入式服务器
 
 首先回想一下在虚拟机上部署应用程序需要哪些步骤：
 
@@ -589,7 +589,7 @@ public class Application {
 
 而嵌入式服务就是为简化以上步骤，当创建一个可以部署的应用程序的时候，会将服务器（例如，tomcat）嵌入到可部署的服务器中。例如一个 Spring Boot 应用程序，就会生成一个包含 Embedded Tomcat 的应用程序 jar 文件，即可执行单元包含服务器的二进制文件（例如，tomcat.jar）。
 
-#### 3.4.2. 内嵌 tomcat 定义与运行原理概述
+#### 内嵌 tomcat 定义与运行原理概述
 
 SpringBoot 内嵌的 web 服务器，需要引入 `spring-boot-starter-web` 的依赖
 
@@ -645,7 +645,7 @@ starter 其中有引入 `spring-boot-starter-tomcat` 的依赖，具体如下：
 
 其中有一个核心的坐标，`tomcat-embed-core` 叫做 Tomcat 内嵌核心。就是此依赖把 Tomcat 功能引入到了程序中。而 Tomcat 服务器运行其实是以对象的形式保存到 Spring 容器，并在 SpringBoot 程序启动时运行起来。
 
-#### 3.4.3. 更换内嵌默认内嵌 web 服务器
+#### 更换内嵌默认内嵌 web 服务器
 
 SpringBoot 提供了 3 款内置的服务器
 
@@ -676,15 +676,15 @@ SpringBoot 提供了 3 款内置的服务器
 
 ![](images/20220111170242295_14539.png)
 
-#### 3.4.4. 小结
+#### 小结
 
 1. 内嵌 Tomcat 服务器是 SpringBoot 辅助功能之一
 2. 内嵌 Tomcat 工作原理是将 Tomcat 服务器作为对象运行，并将该对象交给 Spring 容器管理
 3. Spring Boot 提供可以配置替换默认 tomcat 内嵌服务器的功能
 
-### 3.5. 引入 SpringBoot 父工程依赖的方式
+### 引入 SpringBoot 父工程依赖的方式
 
-#### 3.5.1. 方式1 - 使用 parent 标签
+#### 方式1 - 使用 parent 标签
 
 在pom.xml中添加依赖，效果如下：
 
@@ -729,7 +729,7 @@ SpringBoot 提供了 3 款内置的服务器
 
 这些jar包被刚才加入的 spring-boot-starter-web 所引用了，所以添加 spring-boot-starter-web 后会自动把依赖传递过来。
 
-#### 3.5.2. 方式2 - 定义范围 scope 为 import
+#### 方式2 - 定义范围 scope 为 import
 
 在 SpringBoot 项目的 POM 文件中，可以通过在 POM 文件中继承 Spring-boot-starter-parent 来引用 Srping boot 默认依赖的 jar 包。但使用 parent 这种继承的方式，只能继承一个 spring-boot-start-parent。实际开发中，很可能需要继承自己公司的标准 parent 配置，此时可以使用 `<scope>import</scope>` 来实现多继承。如下例：
 
@@ -755,11 +755,11 @@ SpringBoot 提供了 3 款内置的服务器
 </dependencyManagement>
 ```
 
-## 4. 变更自动配置
+## 变更自动配置
 
 Spring Boot 支持对自动配置的流程做一些高级定制，比如禁用一些自动配置的加载。具体操作有如下几种方式：
 
-### 4.1. 方式1：配置文件排除
+### 方式1：配置文件排除
 
 通过修改 Spring Boot 配置文件的 `spring.autoconfigure.exclude` 选项，排除指定的自动配置处理类
 
@@ -770,7 +770,7 @@ spring:
       - org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration
 ```
 
-### 4.2. 方式2：注解属性排除
+### 方式2：注解属性排除
 
 通过 `@EnableAutoConfiguration` 排除指定的自动配置处理类
 
@@ -789,7 +789,7 @@ spring:
 )
 ```
 
-### 4.3. 方式3：排除坐标（应用面较窄）
+### 方式3：排除坐标（应用面较窄）
 
 此时可以通过检测条件的控制来管理自动配置是否启动。例如 web 程序启动时会自动启动 tomcat 服务器，可以通过排除坐标的方式，让加载 tomcat 服务器的条件失效。
 
@@ -816,19 +816,19 @@ spring:
 
 > 不过需要值得注意的是，如把 tomcat 排除掉，记得要增加一个新的可以运行的服务器依赖。
 
-## 5. Spring Boot 配置文件
+## Spring Boot 配置文件
 
 默认情况下，Spring Boot 会加载 resources 目录下的名称为 application.properties 或 application.yml 来获得配置的参数。
 
-### 5.1. Spring Boot 配置信息的查询
+### Spring Boot 配置信息的查询
 
 SpringBoot 的配置文件，主要的目的就是对配置信息进行修改的，而全部可配置项可以查阅 SpringBoot 的官方文档（当前最新版本）。
 
 文档网址：https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties
 
-### 5.2. Spring Boot 支持的配置文件类型
+### Spring Boot 支持的配置文件类型
 
-#### 5.2.1. properties 与 yml 类型配置
+#### properties 与 yml 类型配置
 
 SpringBoot 支持三种类型格式的配置文件，分别如下：
 
@@ -838,7 +838,7 @@ SpringBoot 支持三种类型格式的配置文件，分别如下：
 
 后缀为 `.yml` 是一种由 SpringBoot 框架自制的配置文件格式。yml后缀的配置文件的功能和properties后缀的配置文件的功能是一致的。
 
-#### 5.2.2. 不同类型的配置文件优先级
+#### 不同类型的配置文件优先级
 
 如果 SpringBoot 工程中，3种类型的配置文件同时存在，其加载的优先级顺序如下：
 
@@ -880,7 +880,7 @@ spring.main.banner-mode=off
 logging.level.root=debug
 ```
 
-#### 5.2.3. 番外 - xml 类型配置
+#### 番外 - xml 类型配置
 
 Spring Boot 推荐无 xml 配置，但实际项目中，可能有一些特殊要求必须使用 xml 配置，在引导类中通过 Spring 提供的 `@ImportResource` 来加载 xml 配置
 
@@ -894,15 +894,15 @@ public class SpringbootdemoApplication {
 }
 ```
 
-### 5.3. YAML 文件
+### YAML 文件
 
-#### 5.3.1. yml 配置文件简介
+#### yml 配置文件简介
 
 YML 文件格式是YAML (YAML Aint Markup Language)层级树键值对格式文件。YAML是一种直观的能够被电脑识别的的数据序列化格式，并且容易被人类阅读，容易和脚本语言交互的，可以被支持YAML库的不同的编程语言程序导入，比如： C/C++, Ruby, Python, Java, Perl, C#, PHP等。YML文件是以数据为核心的、重数据轻的格式，比传统的xml方式更加简洁。
 
 YML 文件的扩展名可以使用 `.yml` 或者 `.yaml`
 
-#### 5.3.2. YAML 基本语法
+#### YAML 基本语法
 
 - 大小写敏感
 - 数据值前边必须有空格，作为分隔符。（属性名与属性值之间使用 `冒号+空格` 作为分隔）
@@ -910,7 +910,7 @@ YML 文件的扩展名可以使用 `.yml` 或者 `.yaml`
 - 缩进的空格数目不重要，只要相同层级的元素左侧对齐即可
 - `#` 表示注释，从这个字符一直到行尾，都会被解析器忽略。
 
-##### 5.3.2.1. 常见的数据书写格式
+##### 常见的数据书写格式
 
 ```yml
 boolean: TRUE  						 # TRUE,true,True,FALSE,false，False均可
@@ -923,7 +923,7 @@ date: 2018-02-17        			 # 日期必须使用yyyy-MM-dd格式
 datetime: 2018-02-17T15:02:31+08:00  # 时间和日期之间使用T连接，最后使用+代表时区
 ```
 
-##### 5.3.2.2. 数据类型转换
+##### 数据类型转换
 
 某项目数据库配置如下：
 
@@ -946,9 +946,9 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 
 <font color=red>**总结两个注意点：第一，字符串标准书写加上引号包裹，养成习惯；第二，遇到 0 开头的数据多注意**</font>
 
-#### 5.3.3. YAML 数据语法格式
+#### YAML 数据语法格式
 
-##### 5.3.3.1. 配置普通数据
+##### 配置普通数据
 
 语法：`key: value`。注意：value之前有一个空格
 
@@ -963,7 +963,7 @@ msg1: 'hello \n world'  # 单引号忽略转义字符
 msg2: "hello \n world"  # 双引号识别转义字符
 ```
 
-##### 5.3.3.2. 配置对象数据
+##### 配置对象数据
 
 - 语法：
 
@@ -990,11 +990,11 @@ person: {name: haohao,age: 31,addr: beijing}
 
 - <font color=red>**注意：key1前面的空格个数不限定，在yml语法中，相同缩进代表同一个级别**</font>
 
-##### 5.3.3.3. 配置Map数据
+##### 配置Map数据
 
 **同上面的对象写法**
 
-##### 5.3.3.4. 配置数组（List、Set）数据
+##### 配置数组（List、Set）数据
 
 - 语法：
 
@@ -1050,7 +1050,7 @@ student: [{name: zhangsan, age: 18, score: 100}, {name: lisi, age: 28, score: 88
 
 - **注意：value1与之间的“`-`”之间存在一个空格**
 
-##### 5.3.3.5. 参数引用
+##### 参数引用
 
 通过`${}`可以引用yml内容定义的其他参数的值
 
@@ -1060,7 +1060,7 @@ person:
     name: ${name} # 引用上边定义的name值
 ```
 
-#### 5.3.4. YAML 文件缺点
+#### YAML 文件缺点
 
 值得注意的是：YAML 文件中的属性不能通过 `@PropertySource` 注解来导入。所以，如果项目中使用了一些自定义属性文件，建议不要用 YAML，改用 properties 类型文件。
 
@@ -1068,11 +1068,11 @@ person:
 
 ![](images/245284218220361.png)
 
-### 5.4. 读取项目配置文件
+### 读取项目配置文件
 
 > 注：以下读取的方法 properties 与 yml 文件通用。
 
-#### 5.4.1. 方式一：Environment 对象
+#### 方式一：Environment 对象
 
 SpringBoot 提供了`org.springframework.core.env.Environment` 类，此类能够将所有配置数据都封装到这一个实例中，通过该对象的 `getProperty()` 方法，可以获取到任意指定的配置项的值。
 
@@ -1111,7 +1111,7 @@ public class HelloController {
 
 ![](images/20220112160240723_1012.png)
 
-#### 5.4.2. 方式二：@Value 注解
+#### 方式二：@Value 注解
 
 还是上面的例子，可以使用 Spring 的 `@value` 注解，标识在指定的 Spring 管控的 bean 的属性名上，即可获取配置文件相应的内容。
 
@@ -1148,13 +1148,13 @@ public class HelloController {
 
 ![](images/20220112160451505_10777.png)
 
-#### 5.4.3. 方式三：@ConfigurationProperties 注解（将配置文件的属性值封装到实体类）
+#### 方式三：@ConfigurationProperties 注解（将配置文件的属性值封装到实体类）
 
 上面使用 `@Value` 注入每个配置在实际项目中麻烦。Spring Boot 提供了一个 `@ConfigurationProperties(prefix="配置文件中的key的前缀")` 注解，可以将配置文件中的某个指定前缀的配置项自动与实体进行映射。Spring Boot 将此方式称为：基于类型安全的配置方式，通过 `@ConfigurationProperties` 将 properties 属性和一个 Bean 及其属性关联，从而实现类型安全的配置
 
 **值得注意的是，要实现配置与实体类映射的前提条件是：该映射的类需要交 Spring 容器管理**。
 
-##### 5.4.3.1. 读取默认配置文件(yml 与 properties 格式均可用)
+##### 读取默认配置文件(yml 与 properties 格式均可用)
 
 - 在 pom.xml 文件引入 configuration-processor 的依赖
 
@@ -1246,7 +1246,7 @@ public class DemoController {
 }
 ```
 
-##### 5.4.3.2. 配合 @PropertySource 注解读取自定义的配置文件
+##### 配合 @PropertySource 注解读取自定义的配置文件
 
 上面方式1是写在默认配置文件 application.properties 中，如果属性太多，实际项目可能会根据模块去拆分一些配置，并配置在不同的自定义配置文件中。通过 Spring 的 `@PropertySource` 注解可以读取自定义的配置文件，<font color=red>**值得注意的是：此方式只能读取 properties 格式文件，该注解并不支持加载 yml 文件！**</font>
 
@@ -1344,7 +1344,7 @@ public class DemoController {
 >
 > `@EnableConfigurationProperties` 与 `@Component` 注解不能同时使用
 
-##### 5.4.3.3. 第三方 jar 包中 bean 加载配置属性值
+##### 第三方 jar 包中 bean 加载配置属性值
 
 上面都自定义的 bean 加载配置属性值，`@ConfigurationProperties` 注解是标识在类定义的上，而又不可能到第三方 jar 包中开发的 bean 源代码中去添加 `@ConfigurationProperties` 注解，那如何解决第三方 bean 加载配置属性值的问题？
 
@@ -1380,9 +1380,9 @@ public DruidDataSource datasource(){
 }
 ```
 
-### 5.5. @ConfigurationProperties 属性绑定的规则
+### @ConfigurationProperties 属性绑定的规则
 
-#### 5.5.1. 宽松绑定/松散绑定
+#### 宽松绑定/松散绑定
 
 在进行属性绑定时，可能会遇到如下情况，为了进行标准命名，开发者会将属性名严格按照驼峰命名法书写，在 yml 配置文件中将 `datasource` 修改为 `dataSource`，如下：
 
@@ -1442,7 +1442,7 @@ servers:
 
 > <font color=red>**值得注意：以上规则仅针对 springboot 中 `@ConfigurationProperties` 注解进行属性绑定时有效，对 `@Value` 注解进行属性映射无效。**</font>
 
-#### 5.5.2. 常用计量单位绑定
+#### 常用计量单位绑定
 
 在项目的配置中，经常需要一些数值类型配置值，但就会造成有些人理解的偏差，就这些数值的配置值单位是什么？比如线上服务器完成一次主从备份，配置超时时间240，这个240如果单位是秒就是超时时间4分钟，如果单位是分钟就是超时时间4小时。
 
@@ -1484,14 +1484,14 @@ public class ServerConfig {
 
 ![](images/576414717226751.png)
 
-### 5.6. 番外：关于项目配置文件实践的说明
+### 番外：关于项目配置文件实践的说明
 
-#### 5.6.1. @ConfigurationProperties 与 @Value 读取配置的区别
+#### @ConfigurationProperties 与 @Value 读取配置的区别
 
 - 使用 `@ConfigurationProperties` 方式可以进行配置文件与实体字段的自动映射，但需要字段必须提供 `setter` 方法才可以
 - 使用 `@Value` 注解修饰的字段不需要提供 `setter` 方法
 
-#### 5.6.2. 关于 spring-boot-configuration-processor 的说明
+#### 关于 spring-boot-configuration-processor 的说明
 
 在上面示例中，spring-boot-configuration-processor 此依赖非必须，不依赖也能实现属性映射功能，但 IDEA 会在使用了 `@ConfigurationProperties` 注解的类文件中出现以下提示信息
 
@@ -1518,7 +1518,7 @@ public class ServerConfig {
 </build>
 ```
 
-#### 5.6.3. 解决 IDEA 对 SpringBoot 配置文件无自动提示的问题
+#### 解决 IDEA 对 SpringBoot 配置文件无自动提示的问题
 
 无自动提示的原因是：IDEA 没有识别此文件是 SpringBoot 的配置文件
 
@@ -1546,9 +1546,9 @@ public class ServerConfig {
 
 ![](images/20220111233645435_29706.png)
 
-## 6. Spring Boot 日志配置
+## Spring Boot 日志配置
 
-### 6.1. 日志格式
+### 日志格式
 
 Spring Boot 默认日志输出类似于以下示例：
 
@@ -1566,11 +1566,11 @@ Spring Boot 默认日志输出类似于以下示例：
 
 > 注意：Logback 没有 `FATAL` 级别。该级别映射到 `ERROR`。
 
-### 6.2. 设置日志输出级别
+### 设置日志输出级别
 
 Spring Boot 默认日志配置会在写入时将消息回显到控制台。默认情况下，会记录 ERROR、WARN 和 INFO 级别的日志。
 
-#### 6.2.1. 命令行开启调试模式
+#### 命令行开启调试模式
 
 通过命令参数 `--debug` 来调整应用程序日志输出级别为调试模式
 
@@ -1582,7 +1582,7 @@ java -jar springboot-demo.jar --debug
 
 还可以通过使用 `--trace` 标志（或在 application.properties 中的设置 `trace=true`）启动应用程序来启用跟踪模式。这样做可以为选择的核心日志记录器（内嵌容器、Hibernate 模式生成和整个 Spring 组合）启用日志追踪。
 
-#### 6.2.2. 配置文件设置日志输出级别
+#### 配置文件设置日志输出级别
 
 通过项目的配置文件来指定日志输出级别
 
@@ -1642,7 +1642,7 @@ logging.level.fooGroup=debug
 logging.level.barGroup=warn
 ```
 
-### 6.3. 自定义日志输出格式
+### 自定义日志输出格式
 
 `logging.pattern.console` 可以配置日志输出的格式，示例如下：
 
@@ -1654,7 +1654,7 @@ logging:
 
 > 上面参数的意思是 `%d`：日期；`%m`：消息；`%n`：换行。
 
-### 6.4. 日志文件输出
+### 日志文件输出
 
 Spring Boot 对于日志文件的使用存在各种各样的策略，例如每日记录，分类记录，报警后记录等。需要设置 `logging.file` 或 `logging.path` 属性
 
@@ -1682,11 +1682,11 @@ logging:
       file-name-pattern: server.%d{yyyy-MM-dd}.%i.log
 ```
 
-## 7. 热部署
+## 热部署
 
 在开发中反复修改类、页面等资源，每次修改后都是需要重新启动才生效，这样每次启动都很麻烦，浪费了大量的时间。在修改程序代码后，不需要重启程序就能让修改的内容生效，称为热部署
 
-### 7.1. 热部署底层工作原理 - 重启与重载
+### 热部署底层工作原理 - 重启与重载
 
 一个 springboot 项目在运行时实际上是分两个过程进行的，根据加载的东西不同，划分成 **base 类加载器**与 **restart 类加载器**。
 
@@ -1695,9 +1695,9 @@ logging:
 
 当 springboot 项目启动时，base 类加载器执行，加载 jar 包中的信息后，restart 类加载器执行，加载开发者制作的内容。当执行构建项目后，由于 jar 中的信息不会变化，因此 base 类加载器无需再次执行，所以仅仅运行 restart 类加载即可，也就是将开发者自己制作的内容重新加载就行了，这就完成了一次热部署的过程，也可以说热部署的过程实际上是重新加载 restart 类加载器中的信息。
 
-### 7.2. 热部署配置
+### 热部署配置
 
-#### 7.2.1. 引入依赖
+#### 引入依赖
 
 1. 可以在 pom.xml 配置文件中添加 `spring-boot-devtools` 工具，就可以实现热部署功能
 
@@ -1739,7 +1739,7 @@ logging:
 
 > 将依赖关系标记为可选`<optional>true</optional>`是一种最佳做法，可以防止使用项目将devtools传递性地应用于其他模块。
 
-#### 7.2.2. IDEA 配置自动启动热部署
+#### IDEA 配置自动启动热部署
 
 在引入 spring-boot-devtools 依赖，此时修改代码后，项目是不会自动重启，需要手动点击菜单【Build】 -> 【Build Project】（或者使用快捷键 CTRL+F9）
 
@@ -1755,7 +1755,7 @@ logging:
 
 这样程序在运行的时候就可以进行自动构建了，实现了热部署的效果。但值得注意的是：IDEA 不会在每次修改都马上进行构建，<font color=red>**只在 IDEA 失去焦点5秒后进行热部署**</font>，即从 idea 切换到其他软件时进行热部署，比如改完程序需要到浏览器上去调试，这个时候 idea 就自动进行热部署操作。
 
-### 7.3. 排除静态资源文件
+### 排除静态资源文件
 
 在 Spring Boot 项目中某些资源在更改时不一定需要触发重启程序。例如 Thymeleaf 模板文件就可以实时编辑等。默认情况下，有些资源是不会触发重启，而是触发live reload（devtools内嵌了一个 LiveReload server，当资源发生改变时，浏览器刷新）。如下：
 
@@ -1783,7 +1783,7 @@ spring:
       exclude: static/**,public/**,config/application.yml
 ```
 
-### 7.4. 设置触发热部署的文件
+### 设置触发热部署的文件
 
 若不想每次修改都触发自动重启，可以在application.xml设置`spring.devtools.restart.trigger-file`指向某个文件，只有更改这个文件时才触发自动重启。示例如下：
 
@@ -1796,7 +1796,7 @@ spring:
       trigger-file: .trigger  # 文件所在路径是 /resources/META-INF/.trigger
 ```
 
-### 7.5. 全局设置
+### 全局设置
 
 可以通过向`$HOME`文件夹添加名为`.spring-boot-devtools.properties`的文件来配置全局devtools设置（请注意，文件名以“`.`”开头）。 添加到此文件的任何属性将适用于计算机上使用devtools的所有 Spring Boot应用程序。 例如，要配置重启始终使用触发器文件 ，可以添加以下内容：
 
@@ -1804,7 +1804,7 @@ spring:
 〜/ .spring-boot-devtools.properties
 ```
 
-### 7.6. Devtools 在 Spring Boot 中的可选配置
+### Devtools 在 Spring Boot 中的可选配置
 
 ```properties
 # Whether to enable a livereload.com-compatible server.
@@ -1838,7 +1838,7 @@ spring.devtools.restart.quiet-period=400ms
 spring.devtools.restart.trigger-file=
 ```
 
-### 7.7. 关闭热部署
+### 关闭热部署
 
 线上环境运行时是不可能使用热部署功能的，所以需要强制关闭此功能。可通过 Spring Boot 配置文件来关闭此功能，修改 application.yml 如下配置即可：
 
@@ -1863,15 +1863,15 @@ public class DemoApplication {
 
 **总结：线上环境的维护是不可能出现修改代码的操作，配置关闭热部署功能，最终的目的是降低线上程序的资源消耗**
 
-### 7.8. 其他热部署工具
+### 其他热部署工具
 
 由于Spring Boot应用只是普通的Java应用，所以JVM热交换（hot-swapping）也能开箱即用。不过JVM热交换能替换的字节码有限制，想要更**彻底的解决方案可以使用Spring Loaded项目或JRebel**。spring-boot-devtools 模块也支持应用快速重启(restart)。
 
-## 8. SpringBoot 监听机制（整理中）
+## SpringBoot 监听机制（整理中）
 
 SpringBoot 在项目启动时，会对几个内置的监听器进行回调，开发者可以实现这些监听器接口，在项目启动时完成一些操作。
 
-### 8.1. ApplicationContextInitializer(补充示例)
+### ApplicationContextInitializer(补充示例)
 
 如果想让这些监听器自动注册，不管应用程序是如何创建的，可以在项目中添加一个`META-INF/spring.plants`文件，并通过使用 `org.springframework.context.ApplicationListener` 键来指定相应的自定义监听器(`ApplicationContextInitializer`的实现类)，如下例：
 
@@ -1879,15 +1879,15 @@ SpringBoot 在项目启动时，会对几个内置的监听器进行回调，开
 org.springframework.context.ApplicationContextInitializer=com.moon.springboot.listener.MyApplicationContextInitializer
 ```
 
-### 8.2. SpringApplicationRunListener（补充示例）
+### SpringApplicationRunListener（补充示例）
 
 ```properties
 org.springframework.boot.SpringApplicationRunListener=com.moon.springboot.listener.MySpringApplicationRunListener
 ```
 
-### 8.3. CommandLineRunner 与 ApplicationRunner
+### CommandLineRunner 与 ApplicationRunner
 
-#### 8.3.1. 简介
+#### 简介
 
 如果需要在 `SpringApplication` 启动后运行一些特定的代码，可以实现 SpringBoot 提供的 `ApplicationRunner` 或 `CommandLineRunner` 接口。这两个接口的工作方式相同，并提供一个单一的运行方法，该方法会在 `SpringApplication.run(...)` 完成之前被调用。两者的区别是 `run` 方法都可以获取启动时命令行参数，但其中一个是封装成 `ApplicationArguments` 对象；另一个是封装成字符串数组。
 
@@ -1906,7 +1906,7 @@ public interface CommandLineRunner {
 
 > 注：这两个监听回调接口，适合运用在项目应用启动后做一些数据的预处理等工作。例如，将读取一些数据库的数据到 Redis 缓存中，完成数据的预热。
 
-#### 8.3.2. 基础使用
+#### 基础使用
 
 `CommandLineRunner` 接口的 `run` 方法入参是字符串数组，是应用程序的相关参数。
 
@@ -1936,14 +1936,14 @@ public class MyApplicationRunner implements ApplicationRunner {
 }
 ```
 
-#### 8.3.3. 使用注意事项
+#### 使用注意事项
 
 - 如果项目中定义多个 `CommandLineRunner` 与 `ApplicationRunner` 接口的实现。那需要注意它们这些实现的调用顺序，以免发生不可预测的问题。另外，可以通过实现 `org.springframework.core.Ordered` 接口或使用 `org.springframework.core.annotation.Order` 注解来指定实现类调用的顺序。
 - `CommandLineRunner` 与 `ApplicationRunner` 接口的实现不需要到`META-INF/spring.plants`进行配置相关映射。
 
-## 9. Spring Boot 视图
+## Spring Boot 视图
 
-### 9.1. 静态资源 html 视图
+### 静态资源 html 视图
 
 SpringBoot 默认有四个静态资源文件夹：
 
@@ -2010,7 +2010,7 @@ public class HelloController {
 }
 ```
 
-### 9.2. Jsp视图(不推荐)
+### Jsp视图(不推荐)
 
 - 第一步：创建Maven项目(war包)
 - 第二步：配置依赖
@@ -2129,13 +2129,13 @@ public class Application {
 
 访问地址：http://localhost:8080/item
 
-### 9.3. FreeMarker 视图
+### FreeMarker 视图
 
 详见《Spring Boot 整合 FreeMarker》笔记。
 
-## 10. Spring Boot 异常处理
+## Spring Boot 异常处理
 
-### 10.1. Spring MVC no handler 异常处理
+### Spring MVC no handler 异常处理
 
 当请求不存在时，Spring MVC 在处理 404 异常时，会自动返回如下内容：
 
@@ -2157,17 +2157,17 @@ spring.mvc.throw-exception-if-no-handler-found=true
 
 配置 `spring.mvc.throw-exception-if-no-handler-found` 为 true，Spring MVC 在 404 时就会抛出 `DispatcherServlet` 中的 `throwExceptionIfNoHandlerFound`。此时开发者可以在全局异常处理中利用`@ExceptionHandler` 注解捕获 `NoHandlerFoundException` 异常，再做自定义处理即可
 
-## 11. 自定义 starter 功能
+## 自定义 starter 功能
 
 自定义的 starter 开发规范，可以参考官方定义的 starter 或者一些其他框架整合的 starter
 
-### 11.1. starter 工程结构规范
+### starter 工程结构规范
 
 参考官方 starter 与其他第三方的 starter 会发现，有些第三方的 starter 不一定按约定的规范来命名；还有官方的 starter 依赖与自动配置类是分开两个包，但有些第三方的 starter 是放到同一个包中。因此自定义 starter 的可以参考选择以下的某种方式进行开发即可
 
 ![](images/404481116247472.png)
 
-### 11.2. 案例需求说明
+### 案例需求说明
 
 本自定义 starter 案例的功能是统计网站独立 IP 访问次数的功能，并将访问信息在后台持续输出。整体功能是在后台每 10 秒输出一次监控信息（格式：IP+访问次数），当用户访问网站时，对用户的访问行为进行统计。
 
@@ -2190,11 +2190,11 @@ spring.mvc.throw-exception-if-no-handler-found=true
     - 数据特征：累计数据 / 阶段数据，默认累计数据
     - 输出格式：详细模式 / 极简模式 
 
-### 11.3. 自定义 starter 功能实现
+### 自定义 starter 功能实现
 
 创建 maven 工程 counter-spring-boot-starter
 
-#### 11.3.1. 添加依赖
+#### 添加依赖
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -2225,7 +2225,7 @@ spring.mvc.throw-exception-if-no-handler-found=true
 </project>
 ```
 
-#### 11.3.2. 定义业务功能接口与实现
+#### 定义业务功能接口与实现
 
 创建功能接口，分别定义统计与输出数据的问题
 
@@ -2259,7 +2259,7 @@ public class IpCountServiceImpl implements IpCountService {
 }
 ```
 
-#### 11.3.3. 定义自动配置
+#### 定义自动配置
 
 自定义 starter 需要在导入当前模块的时候就要开启功能，因此需要编写自动配置类，在启动项目时自动加载功能。
 
@@ -2281,7 +2281,7 @@ public class IpCountAutoConfiguration {
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.tool.autoconfigure.IpCountAutoConfiguration
 ```
 
-#### 11.3.4. 使用配置属性设置功能参数
+#### 使用配置属性设置功能参数
 
 为了提高 IP 统计报表信息显示的灵活性，可以让调用者通过 yml 配置文件设置一些参数，用于控制报表的显示格式。
 
@@ -2348,7 +2348,7 @@ public class IpCountAutoConfiguration {
 }
 ```
 
-#### 11.3.5. 业务功能实现
+#### 业务功能实现
 
 - 实现统计功能。
 
@@ -2415,7 +2415,7 @@ public void print() {
 }
 ```
 
-#### 11.3.6. 功能测试
+#### 功能测试
 
 新建一个或者使用原有的 web 项目，由于当前 starter 的功能需要在对应的调用的工程进行坐标导入，因此必须保证本地仓库中具有当前开发的功能，所以每次原始代码修改后，需要重新编译并安装到仓库中。为防止问题出现，建议每次安装之前先 `clean` 然后 `install`，保障资源进行了更新。
 
@@ -2470,7 +2470,7 @@ tools:
 +--------------------+
 ```
 
-### 11.4. 示例功能优化1：使用配置设置定时器参数
+### 示例功能优化1：使用配置设置定时器参数
 
 按目前的代码，在使用属性配置中的显示周期数据时会出现问题，在 `@Scheduled` 注解如果要使用直接使用配置数据，则可能通过EL表达式 `#{}` 来读取 bean 属性值，但前提是要知道 bean 在 Spring 容器中的名称。如果不设置 bean 的访问名称，Spring 会使用自己的命名生成器生成bean的长名称(如：`xxx.xx.xx.Xxxx`)，在 `#{}` 中会将第一点开始后面都当成属性，因此无法实现属性的读取。所以，优化方案是放弃使用 `@EnableConfigurationProperties` 注解对应的功能，改成最原始的 bean 定义格式。
 
@@ -2507,7 +2507,7 @@ public void print() {
 
 重装安装 starter 工程到仓库，在 web 端程序中通过 yml 文件中的 `tools.ip.cycle` 属性配置参数对统计信息的显示周期进行控制，观察控制台日志输出的间隔
 
-### 11.5. 示例功能优化2：使用拦截器进行统计
+### 示例功能优化2：使用拦截器进行统计
 
 - 步骤一：编写拦截器，在前置拦截的方法中，调用功能业务类的统计方法
 
@@ -2557,9 +2557,9 @@ public class IpCountAutoConfiguration {
 
 > 使用拦截器实现统计后，可以移除上面测试中硬编码调用统计业务功能接口的代码
 
-### 11.6. 示例功能优化3：开启 yml/properties 配置文件提示功能
+### 示例功能优化3：开启 yml/properties 配置文件提示功能
 
-#### 11.6.1. 提示信息功能配置
+#### 提示信息功能配置
 
 在 Spring Boot 配置属性时，IDE 都会出现配置相关提示，Spring Boot 提供有专用的工具实现配置提示的功能，仅需要导入下列坐标。
 
@@ -2636,7 +2636,7 @@ public class IpCountAutoConfiguration {
 
 ![](images/262564921247011.png)
 
-#### 11.6.2. 注意问题
+#### 注意问题
 
 上述配置完成后，会出现提示信息重复的问题：
 
@@ -2644,13 +2644,13 @@ public class IpCountAutoConfiguration {
 
 这是因为打包时也生成一个 `spring-configuration-metadata.json` 文件，只需要打包发布是移除 `spring-boot-configuration-processor` 依赖即可。
 
-### 11.7. 最终效果测试
+### 最终效果测试
 
 在 web 程序端导入自定义 starter 后功能开启，去掉坐标后功能消失。
 
 自定义 stater 的开发其实就是创建独立模块，导出独立功能，在需要使用的工程中导入对应的 starter 即可。如果是在企业中开发，记得不仅需要将开发完成的 starter 模块 `install` 到本地仓库中，开发完毕后还要 `deploy` 到私服上，否则别人就无法使用了。
 
-## 12. Spring Boot 学习参考资源
+## Spring Boot 学习参考资源
 
 - [Spring boot 官网](https://spring.io/projects/spring-boot)
 - [Spring Boot 参考指南- 英文版](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)

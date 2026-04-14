@@ -1,16 +1,16 @@
-## 1. JPA 基础回顾
+## JPA 基础回顾
 
 > 详情 JPA 详见 [《Java基础-数据库编程》笔记](/Java/Java基础-数据库编程)
 
-### 1.1. 概述
+### 概述
 
 JPA 的全称是 Java Persistence API，即 Java 持久化 API，是 SUN 公司推出的一套基于 ORM 的规范，注意不是 ORM 框架——因为 JPA 并未提供 ORM 实现，它只是提供了一些编程的 API 接口。
 
 ![](images/270270223238668.png)
 
-### 1.2. JPA 基础使用
+### JPA 基础使用
 
-#### 1.2.1. 数据库环境
+#### 数据库环境
 
 ```sql
 -- 准备数据库，创建一张文章表备用
@@ -23,7 +23,7 @@ CREATE TABLE `article` (
 );
 ```
 
-#### 1.2.2. 创建工程
+#### 创建工程
 
 创建 maven 工程，导入相关依赖：
 
@@ -60,7 +60,7 @@ CREATE TABLE `article` (
 
 > 注：JPA 是一套 Java 持久化 API 的规范，是没有具体实现，所以此示例使用 hibernate 框架的实现
 
-#### 1.2.3. 创建数据库表映射实体类
+#### 创建数据库表映射实体类
 
 使用 `javax.persistence` 包中相应的注解，配置实体类与数据库表的映射关系
 
@@ -97,7 +97,7 @@ public class Article {
 }
 ```
 
-#### 1.2.4. JPA 的核心配置文件
+#### JPA 的核心配置文件
 
 在 maven 工程的 resources 路径下创建一个名为 `META-INF` 的文件夹，在文件夹下创建一个名为 `persistence.xml` 的配置文件。
 
@@ -148,7 +148,7 @@ public class Article {
 </persistence>
 ```
 
-#### 1.2.5. JPA 基础操作测试
+#### JPA 基础操作测试
 
 ```java
 public class HibernateJpaTest {
@@ -239,21 +239,21 @@ public class HibernateJpaTest {
 }
 ```
 
-## 2. Spring Data JPA 简介
+## Spring Data JPA 简介
 
 Spring Data JPA 是 Spring Data 全家桶的一员，是 Spring Data 对 JPA 的封装，目的在于简化基于 JPA 的数据访问技术。使用 Spring Data JPA 技术之后，开发者只需要声明 Dao 层的接口，不必再写实现类或其它代码，剩下的一切交给 Spring Data JPA 来实现。
 
-## 3. Spring Data JPA 快速开始
+## Spring Data JPA 快速开始
 
 此示例基于传统的 spring xml 配置方式实现
 
-### 3.1. 准备数据环境
+### 准备数据环境
 
 让 JPA 自动生成表结构
 
-### 3.2. 创建工程
+### 创建工程
 
-#### 3.2.1. 引入依赖
+#### 引入依赖
 
 创建 maven 工程，导入相关依赖：
 
@@ -316,7 +316,7 @@ Spring Data JPA 是 Spring Data 全家桶的一员，是 Spring Data 对 JPA 的
 </dependencies>
 ```
 
-#### 3.2.2. 创建数据库表映射实体类
+#### 创建数据库表映射实体类
 
 使用 `javax.persistence` 包中相应的注解，配置实体类与数据库表的映射关系
 
@@ -354,7 +354,7 @@ public class Article {
 }
 ```
 
-#### 3.2.3. 编写 dao 接口
+#### 编写 dao 接口
 
 使用 Spring Data JPA 操作数据库，只需要按照框架的规范定义 dao 接口，不需要提供在接口中定义方法，也不需要为接口提供实现类就能完成基本的数据库的增删改查等功能。
 
@@ -375,7 +375,7 @@ public interface ArticleDao extends JpaRepository<Article, Integer>, JpaSpecific
 }
 ```
 
-#### 3.2.4. Spring 整合 jpa 的配置文件
+#### Spring 整合 jpa 的配置文件
 
 在 resources 目录下创建 Spring 整合 jpa 的配置文件 applicationContext-jpa.xml
 
@@ -451,7 +451,7 @@ public interface ArticleDao extends JpaRepository<Article, Integer>, JpaSpecific
 </beans>
 ```
 
-### 3.3. 测试
+### 测试
 
 注入dao接口，进行基础的 crud 操作
 
@@ -522,11 +522,11 @@ public class SpringDataJpaTest {
 }
 ```
 
-## 4. Spring Data JPA 的多种查询方式
+## Spring Data JPA 的多种查询方式
 
-### 4.1. 父接口方法查询
+### 父接口方法查询
 
-#### 4.1.1. 概述
+#### 概述
 
 自定义的 Dao 接口可以直接使用其父接口 `JpaRepository` 提供的方法。
 
@@ -538,7 +538,7 @@ public class SpringDataJpaTest {
     - `deleteAll`：会先查询数据，再一条一条删除数据
     - `deleteInBatch`：不会查询数据，直接删除，并且只使用一条删除语句
 
-#### 4.1.2. 测试
+#### 测试
 
 ```java
 @Autowired
@@ -736,26 +736,26 @@ public void testFindAllWithPageAndPage() {
 }
 ```
 
-### 4.2. 方法命名规则查询
+### 方法命名规则查询
 
-#### 4.2.1. 概述
+#### 概述
 
 **方法命名规则查询**就是按照 Spring Data JPA 提供的方法命名规则，来定义查询方法的名称。Spring Data JPA 在程序执行的时候会根据方法名称进行解析，并自动生成查询语句进行查询。
 
 按照 Spring Data JPA 定义的规则，查询方法以 `findBy` 开头，涉及条件查询时，条件的属性用条件关键字连接，<font color=red>**值得注意的是：条件属性首字母需大写**</font>。框架在进行方法名解析时，会先把方法名多余的前缀截取掉，然后对剩下部分进行解析。
 
-#### 4.2.2. 命名规则
+#### 命名规则
 
 > 详情查询官方文档（示例是2.4.15版本）：https://docs.spring.io/spring-data/jpa/docs/2.4.15/reference/html/#jpa.query-methods.query-creation
 
 ![](images/371453219238669.jpg)
 
-#### 4.2.3. 方法命名规则查询的缺点
+#### 方法命名规则查询的缺点
 
 - 当要查询的条件比较多的时候，此时方法的名称就非常的长
 - 查询条件每个值只能通过形参一个个传递，不能使用实体类的方式来接收查询条件的值
 
-#### 4.2.4. 测试
+#### 测试
 
 - 在自定义 dao 接口增加相应的方法命名查询方法
 
@@ -849,7 +849,7 @@ public void testFindByCreateTimeAfter() {
 }
 ```
 
-### 4.3. JPQL 查询
+### JPQL 查询
 
 使用 Spring Data JPA 提供的查询方法已经可以解决大部分的应用场景，但是对于某些业务来说，还是需要灵活的构造查询条件，此就可以使用 `@Query` 注解，结合 JPQL 的语句方式完成查询。
 
@@ -961,7 +961,7 @@ public void testFindByCondition7() {
 }
 ```
 
-### 4.4. 本地（原生）SQL 查询
+### 本地（原生）SQL 查询
 
 使用原生的 SQL 查询，只需要在方法使用 `@Query` 注解，设置属性 `nativeQuery` 为 true。但实际项目基本不会使用，除非是出现非常复杂的业务情况导致 SQL 非常复杂，JPQL 搞不定的时候
 
@@ -988,7 +988,7 @@ public void testFindByNativeSql() {
 }
 ```
 
-### 4.5. Specifications 动态查询
+### Specifications 动态查询
 
 Spring Data JPA 中可以通过自定义 dao 继承 `JpaSpecificationExecutor` 接口，来实现实体类支柱动态条件查询。相比 JPQL，其优势是类型安全，更加的面向对象，缺点是书写比较麻烦。
 
@@ -1101,9 +1101,9 @@ public void testFindAllWithPageAndSort() {
 }
 ```
 
-## 5. Spring Data JPA 实现多表操作
+## Spring Data JPA 实现多表操作
 
-### 5.1. 多表关系分析回顾
+### 多表关系分析回顾
 
 ![](images/581081713249561.png)
 
@@ -1113,19 +1113,19 @@ public void testFindAllWithPageAndSort() {
 
 在实际开发中，数据库的表难免会有相互的关联关系，在操作表的时候就有可能会涉及到多张表的操作。而在这种实现了ORM思想的框架中（如 JPA），可以通过操作实体类就实现对数据库表的操作。
 
-### 5.2. 配置表间关联关系的步骤
+### 配置表间关联关系的步骤
 
 - 第一步：首先确定两张表之间的关系
 - 第二步：在实体类中描述出两个实体的关系
 - 第三步：配置出实体类和数据库表的关系映射（重点）
 
-### 5.3. 一对一关系
+### 一对一关系
 
-#### 5.3.1. 数据表结构
+#### 数据表结构
 
 ![](images/596303415220244.png)
 
-#### 5.3.2. 创建实体类配置表关系
+#### 创建实体类配置表关系
 
 - 创建文章实体类、文章详情实体类
 
@@ -1197,7 +1197,7 @@ public class ArticleData {
 }
 ```
 
-#### 5.3.3. 创建 dao 接口
+#### 创建 dao 接口
 
 创建 ArticleDao 接口
 
@@ -1206,7 +1206,7 @@ public interface ArticleDataDao extends JpaRepository<ArticleData, Integer>, Jpa
 }
 ```
 
-#### 5.3.4. 测试
+#### 测试
 
 ```java
 @Autowired
@@ -1236,13 +1236,13 @@ public void testSave() {
 
 ![](images/483581316238670.png)
 
-### 5.4. 一对多关系
+### 一对多关系
 
-#### 5.4.1. 数据表结构
+#### 数据表结构
 
 ![](images/413461416226537.png)
 
-#### 5.4.2. 创建实体类配置表关系
+#### 创建实体类配置表关系
 
 - 创建文章评论类 `Comment`，使用 `@ManyToOne` 注解多对一关系，并使用 `@JoinColumn` 注解维护表间关系
 
@@ -1287,7 +1287,7 @@ public class Article {
 }
 ```
 
-#### 5.4.3. 创建 dao 接口
+#### 创建 dao 接口
 
 - 添加 `CommentDao` 接口
 
@@ -1296,7 +1296,7 @@ public interface CommentDao extends JpaRepository<Comment, Integer>, JpaSpecific
 }
 ```
 
-#### 5.4.4. 测试
+#### 测试
 
 ```java
 @Autowired
@@ -1337,13 +1337,13 @@ public void testSave() {
 
 ![](images/429531017246703.png)
 
-### 5.5. 多对多关系
+### 多对多关系
 
-#### 5.5.1. 数据表结构
+#### 数据表结构
 
 ![](images/396511117239372.png)
 
-#### 5.5.2. 创建实体类配置表关系
+#### 创建实体类配置表关系
 
 - 创建文章类型类 `Type`，使用 `@ManyToMany` 注解多对多关系，并使用 `@JoinTable` 注解维护表间关系，创建多对多的中间表。
 
@@ -1396,7 +1396,7 @@ public class Article {
 
 
 
-#### 5.5.3. 创建 dao 接口
+#### 创建 dao 接口
 
 - 添加 `TypeDao` 接口
 
@@ -1405,7 +1405,7 @@ public interface TypeDao extends JpaRepository<Type, Integer>, JpaSpecificationE
 }
 ```
 
-#### 5.5.4. 测试
+#### 测试
 
 ```java
 @Autowired
@@ -1455,9 +1455,9 @@ public void testSave() {
 
 ![](images/191332917235927.png)
 
-## 6. Spring Data JPA 原理分析
+## Spring Data JPA 原理分析
 
-### 6.1. Spring Data JPA 中的几个重要 API 接口分析
+### Spring Data JPA 中的几个重要 API 接口分析
 
 Spring Data JPA 提供给用户使用的，主要有以下几个接口：
 
@@ -1471,7 +1471,7 @@ Spring Data JPA 提供的接口的类关系图：
 
 ![](images/213741310220244.jpg)
 
-### 6.2. 底层运行原理
+### 底层运行原理
 
 通过 debug 跟踪源码，分析底层运行原理：
 
@@ -1504,7 +1504,7 @@ Spring Data JPA 实现的是数据访问层解决方案，底层的实现就是�
 <jpa:repositories base-package="com.moon.dao"></jpa:repositories>
 ```
 
-### 6.3. Spring Data Jpa 与 Jpa 及 Hibernate 的关系
+### Spring Data Jpa 与 Jpa 及 Hibernate 的关系
 
 ![](images/37464110235927.png)
 

@@ -1,17 +1,17 @@
-## 1. Axios 网络请求库概述
+## Axios 网络请求库概述
 
 > 中文文档：https://www.axios-http.cn/
 
-### 1.1. 为什么要全局配置 axios
+### 为什么要全局配置 axios
 
 在实际项目开发中，几乎每个组件中都会用到 axios 发起数据请求。此时会遇到如下两个问题：
 
 1. 每个组件中都需要导入 axios（代码臃肿）
 2. 每次发请求都需要填写完整的请求路径（不利于后期的维护）
 
-## 2. vue 项目配置全局的 axios
+## vue 项目配置全局的 axios
 
-### 2.1. vue3 的项目中全局配置 axios（有问题，待确认）
+### vue3 的项目中全局配置 axios（有问题，待确认）
 
 在 main.js 入口文件中，通过 `app.config.globalProperties` 全局挂载 `axios`
 
@@ -46,7 +46,7 @@ vueApp.mount('#app')
 
 > TODO: 注：axios 0.24.0以上的版本，在配置时提示 axios 没有 `defaults.baseURL`的属性，问题待解决
 
-### 2.2. vue2 的项目中全局配置 axios
+### vue2 的项目中全局配置 axios
 
 需要在 main.js 入口文件中，通过 Vue 构造函数的 `prototype` 原型对象全局配置 axios：
 
@@ -70,7 +70,7 @@ new Vue({
 
 > 注：通常会将一些工具类库的配置按模块独立成一个文件
 
-## 3. 使用axios发送post请求，后端@RequestBody无法接收参数
+## 使用axios发送post请求，后端@RequestBody无法接收参数
 
 springboot会报错`Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported`。将`@RequestBody`换成`@RequestParam`就可以，这个暂时还搞不懂是什么回事？
 
@@ -88,11 +88,11 @@ public PageResult<JavMain> findByCondition(@RequestParam Map<String, Object> par
 }
 ```
 
-## 4. Axios 请求配置参数详解
+## Axios 请求配置参数详解
 
-### 4.1. axios API
+### axios API
 
-#### 4.1.1. axios 传递相关配置来创建请求
+#### axios 传递相关配置来创建请求
 
 - `axios(config)`
 
@@ -115,7 +115,7 @@ axios({
 axios('/user/12345');
 ```
 
-#### 4.1.2. 为所有支持的请求方法提供了别名
+#### 为所有支持的请求方法提供了别名
 
 - `axios.request(config)`
 - `axios.get(url[, config])`
@@ -127,12 +127,12 @@ axios('/user/12345');
 
 **注：在使用别名方法时， url、method、data这些属性都不必在配置中指定。**
 
-#### 4.1.3. 处理并发请求的助手函数
+#### 处理并发请求的助手函数
 
 - `axios.all(iterable)`
 - `axios.spread(callback)`
 
-### 4.2. 创建axios实例（用来创建自定义请求）
+### 创建axios实例（用来创建自定义请求）
 
 可以使用自定义配置新建一个 axios 实例
 
@@ -145,7 +145,7 @@ var instance = axios.create({
 });
 ```
 
-### 4.3. 实例方法
+### 实例方法
 
 以下是可用的实例方法。指定的配置将与实例的配置合并
 
@@ -157,7 +157,7 @@ var instance = axios.create({
 - `axios#put(url[, data[, config]])`
 - `axios#patch(url[, data[, config]])`
 
-### 4.4. 请求配置
+### 请求配置
 
 以下示例是创建请求时可以用的配置选项。其中 `url` 是必需的。如果没有指定 `method`，请求将默认使用 `GET` 方法。
 
@@ -324,7 +324,7 @@ var instance = axios.create({
 }
 ```
 
-### 4.5. 响应结构
+### 响应结构
 
 某个请求的响应包含以下信息
 
@@ -362,11 +362,11 @@ axios.get('/user/12345')
 
 在使用 `catch` 时，或传递 `rejection` `callback` 作为 `then` 的第二个参数时，响应可以通过 `error` 对象可被使用
 
-## 5. 配置的默认值
+## 配置的默认值
 
 可以指定将被用在各个请求的配置默认值
 
-### 5.1. 全局的 axios 默认值
+### 全局的 axios 默认值
 
 ```js
 axios.defaults.baseURL = 'https://api.example.com';
@@ -374,7 +374,7 @@ axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 ```
 
-### 5.2. 自定义实例默认值
+### 自定义实例默认值
 
 ```js
 // 创建实例时设置配置的默认值
@@ -386,7 +386,7 @@ var instance = axios.create({
 instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 ```
 
-### 5.3. 配置的优先顺序
+### 配置的优先顺序
 
 配置会以一个优先顺序进行合并。这个顺序是：在 lib/defaults.js 找到的库的默认值，然后是实例的 defaults 属性，最后是请求的 config 参数。后者将优先于前者。这里是一个例子：
 
@@ -405,9 +405,9 @@ instance.get('/longRequest', {
 });
 ```
 
-## 6. 拦截器
+## 拦截器
 
-### 6.1. 什么是拦截器
+### 什么是拦截器
 
 拦截器（英文：Interceptors）会在每次发起 ajax 请求和得到响应的时候自动被触发。
 
@@ -415,7 +415,7 @@ instance.get('/longRequest', {
 
 > 应用场景：Token 身份认证、请求时 Loading 效果、等等。。。
 
-### 6.2. 配置请求拦截器
+### 配置请求拦截器
 
 在请求或响应被 `then` 或 `catch` 处理前拦截它们
 
@@ -430,7 +430,7 @@ axios.interceptors.request.use(function (config) {
   });
 ```
 
-### 6.3. 配置响应拦截器
+### 配置响应拦截器
 
 ```js
 // 添加响应拦截器
@@ -445,7 +445,7 @@ axios.interceptors.response.use(function (response) {
   });
 ```
 
-### 6.4. 移除与添加拦截器
+### 移除与添加拦截器
 
 如果想在稍后移除拦截器，可以这样
 
@@ -461,7 +461,7 @@ const instance = axios.create();
 instance.interceptors.request.use(function () {/*...*/});
 ```
 
-## 7. 错误处理
+## 错误处理
 
 ```js
 axios.get('/user/12345')
@@ -503,9 +503,9 @@ axios.get('/user/12345')
   });
 ```
 
-## 8. 自定义封装axios请求示例
+## 自定义封装axios请求示例
 
-### 8.1. 示例1
+### 示例1
 
 ```js
 /* 封闭axios的请求，此封装方式后端可以使用@RequestBody注解对象接收参数 */
@@ -540,7 +540,7 @@ export default function (url, method, payload) {
 }
 ```
 
-### 8.2. 示例2
+### 示例2
 
 在vue的后台管理开发中，应需求，需要对信息做一个校验，需要将参数传递两份过去，一份防止在body中，一份防止在formdata中，axios请求会默认将参数放在formdata中进行发送。
 
@@ -692,11 +692,11 @@ export const getRequest = (url, data = '') => {
 
 Get请求的话是不需要进行设置的，因为get请求回默认将参数放在params中，post请求的话会有两个，所以这里post请求封装了两份。
 
-## 9. Axios 常见问题与处理方案
+## Axios 常见问题与处理方案
 
-### 9.1. axios 发送 post 请求上传文件(multipart/form-data)报错
+### axios 发送 post 请求上传文件(multipart/form-data)报错
 
-#### 9.1.1. 问题描述
+#### 问题描述
 
 问题场景：使用 axios http 请求库，发送 post 请求，将文件发送给后端接口。常规示例写法：
 
@@ -726,7 +726,7 @@ org.apache.tomcat.util.http.fileupload.FileUploadException: the request was reje
 
 原因大概是，后端无法识别到传递来的文件中的 boundary，从而无法区分一个文件的内容从报文的哪个地方开始，又从报文的哪个地方结束，最终导致文件上传失败。
 
-#### 9.1.2. 原因分析
+#### 原因分析
 
 分析以上这种情况的原因，是因为在发送请求时将请求头中 `Content-Type` 属性给写死为 `multipart/form-data`，浏览器无法自动给请求的报文添加 boundary。如果尝试将前端请求 config 中 headers 配置移除，如下：
 
@@ -746,7 +746,7 @@ async handleUploadFile(event) {
 
 再次发送请求，仍然没有请求成功。而服务器没有报错了，但是后端获取不到文件数据。继续分析请求报文，发现属性值变为 `application/x-www-form-urlencoded`，这是发送普通的表单，肯定是无法正确将文件送达的。
 
-#### 9.1.3. 解决方案
+#### 解决方案
 
 查阅相关资料得知，axios 在请求发送出去之前会进行一次拦截，自动给请求设置一些参数。上面示例会出现 `application/x-www-form-urlencoded` 这个参数就是因为 axios 设置了 post 请求的默认请求头，如果没有在 `config` 中指定其它请求头的话，就会使用默认的。然而，发送 `multipart/form-data` 格式的请求时，不需要自己指定 `Content-Type` 属性，由浏览器自动去设置。
 

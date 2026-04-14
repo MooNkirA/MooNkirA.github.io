@@ -1,4 +1,4 @@
-## 1. Hexo 简介
+## Hexo 简介
 
 Hexo 是一个快速、简洁且高效的博客框架，利用 Markdown 即可自动生成静态网页。
 
@@ -18,7 +18,7 @@ Hexo 是一个快速、简洁且高效的博客框架，利用 Markdown 即可�
 - 使用 hexo 部署到github：https://levblanc.github.io/2015/07/13/building-github-pages-blog-with-hexo/
 - hexo 部署到 github：https://www.jianshu.com/p/9ab44093364c
 
-## 2. Hexo 安装
+## Hexo 安装
 
 1. 安装
 
@@ -46,7 +46,7 @@ hexo s
 
 打开`localhost:4000`即可打开默认的博客主页
 
-## 3. Hexo 项目结构文件介绍
+## Hexo 项目结构文件介绍
 
 ```
 $ ll
@@ -66,8 +66,8 @@ drwxr-xr-x 1 R 1049089     0 十二 18 14:12 themes/
 - `source`：博客文章默认所在的目录；
 - `themes`：博客主题目录，默认：landscape；
 
-## 4. 使用说明
-### 4.1. 创建文章
+## 使用说明
+### 创建文章
 
 创建文章。输入以下命令。这样默认为 post 文章，或者直接复制草稿模板至 source/_posts 目录
 
@@ -81,11 +81,11 @@ hexo new "My New Post"
 2. title不要带空格，如果有空格，创建文件的时候文件名只会是最后一个空格后面的文字。它将会用在该post的url中，而且如果`_config.yml`中的post_asset_folder true（是否生成与每篇文章对应的资源文件夹，默认值为false），资源文件夹也会直接使用title值，所以建议最好使用英文来创建。真正的文章题目可以在md文件中修改。
 3. post创建成功后，在 `/source/_posts` 文件夹下，会生成一个新的markdown文件，文件名就是你刚刚的title。
 
-#### 4.1.1. 添加分类及标签
+#### 添加分类及标签
 
 参考网址：https://www.jianshu.com/p/e17711e44e00
 
-### 4.2. 生成静态网页
+### 生成静态网页
 
 ```bash
 hexo generate
@@ -112,7 +112,7 @@ drwxr-xr-x 1 R 1049089    0 十二 18 14:40 js/
 hexo clean
 ```
 
-### 4.3. 发布到服务器
+### 发布到服务器
 
 如果使用了 Github 的 Pages 托管服务，那么需要配置 _config.yml 中的如下配置
 
@@ -132,7 +132,7 @@ hexo deploy
 
 如果使用云服务器，将静态服务器的主目录设置为 public 这个目录即可
 
-### 4.4. 切换主题
+### 切换主题
 
 - 在 Hexo 的主题网站下载一个自己的主题，如选择主题是`icarus`。下载之后把它扔到`themes`目录，然后修改根目录的配置文件`_config.yml`中的默认主题即可。
 - 目前选择的主题：
@@ -145,8 +145,8 @@ theme: Fan
 
 也可以进入主题目录对这个主题进行自定义修改。
 
-## 5. 问题
-### 5.1. 在执行 `hexo deploy` 后,出现 `error deployer not found:github` 的错误
+## 问题
+### 在执行 `hexo deploy` 后,出现 `error deployer not found:github` 的错误
 
 尝试使用hexo搭建github pages，本地调试没什么问题，但是最后部署时报“error deployer not found:github”的错误，到网上原因，发现是hexo的版本升级导致的。
 
@@ -174,12 +174,12 @@ deploy:
 
 重新部署`hexo deploy`
 
-### 5.2. hexo引用本地图片无法显示
+### hexo引用本地图片无法显示
 
 https://blog.csdn.net/xjm850552586/article/details/84101345
 
-## 6. HEXO常用命令
-### 6.1. 单条指令
+## HEXO常用命令
+### 单条指令
 
 ```bash
 hexo new "postName" # 新建文章
@@ -192,7 +192,7 @@ hexo help # 查看帮助
 hexo version # 查看HEXO的版本
 ```
 
-### 6.2. 简写指令
+### 简写指令
 
 ```bash
 hexo n #等于hexo new
@@ -202,7 +202,7 @@ hexo s #等于hexo server
 hexo v #等于hexo version
 ```
 
-### 6.3. 复合指令
+### 复合指令
 
 ```bash
 hexo deploy -g #生成加部署

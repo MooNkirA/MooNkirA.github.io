@@ -1,18 +1,18 @@
-## 1. MySQL 关系模型
+## MySQL 关系模型
 
-### 1.1. 数据库服务器、数据库和表的关系
+### 数据库服务器、数据库和表的关系
 
 **一般在实际开发中，一个项目就对应一个数据库**。
 
 所谓数据库服务器，是指在机器上装了一个数据库管理程序，这个管理程序可以管理多个数据库，一般开发人员会针对每一个应用创建一个数据库。为保存应用中实体的数据，一般会在数据库创建多个表，以保存程序中实体的数据。
 
-### 1.2. MySQL 数据库创建顺序与管理
+### MySQL 数据库创建顺序与管理
 
 创建的顺序：创建数据库 -> 创建数据表 -> 存储数据
 
 一个数据库包含多个数据表。通过 SQL 语句对数据库(如：MySQL)进行管理。
 
-### 1.3. 数据库中的主要对象
+### 数据库中的主要对象
 
 1. 表(Table)：在数据库中存储数据记录的容器，一个表中包含多行数据记录。
 2. 视图(View)：是从一个或多个表导出的虚拟表，视图本身并不存储数据。
@@ -20,39 +20,39 @@
 4. 存储过程(Procedure)：一组为了完成特定功能的 SQL 语句集，存储在数据库中，经过第一次编译后再次调用不需要再次编译，用户通过指定存储过程的名字并给出参数来执行它。
 5. 触发器(Trigger)：触发器是一种特殊类型的存储过程，它在指定的表中的数据发生变化时自动生效。唤醒调用触发器以响应 INSERT、UPDATE 或 DELETE 语句。
 
-### 1.4. 实体类与表的对应关系
+### 实体类与表的对应关系
 
 1. 整个数据表可以看作为一个类
 2. 数据表中的每一列代表具体类一个成员变量
 3. 数据表的一行称之为一条纪录，对应一个类的对象
 
-## 2. SQL 语言
+## SQL 语言
 
 SQL，全称 Structured Query Language，是结构化查询语言，用于一种访问和处理数据库的标准的计算机语言。是一套操作关系型数据库的统一标准
 
 - 作用：用于存取数据、查询、更新和管理关系数据库系统。
 - 关系型数据库：使用表格存储数据的数据库
 
-### 2.1. SQL 特点
+### SQL 特点
 
 - 具有综合统一性，不同数据库的支持的 SQL 稍有不同
 - 非过程化语言
 - 语言简捷，用户容易接受
 - 以一种语法结构提供两种使用方式
 
-### 2.2. SQL 语法特点
+### SQL 语法特点
 
 - SQL 对关键字的大小写不敏感，但关键字建议使用大写
 - SQL 语句可以以单行或者多行书写，以分号结束
 - SQL 语句可以使用空格/缩进来增强语句的可读性
 
-### 2.3. SQL 和数据库管理系统的关系
+### SQL 和数据库管理系统的关系
 
 SQL 是一种用于操作数据库的语言，SQL 适用于所有关系型数据库。
 
 MySQL、Oracle、SQLServer 是一个数据库软件，这些数据库软件支持标准 SQL，也就是通过 SQL 语言可以操作这些数据库软件，不过每一个数据库系统会在标准 SQL 的基础上扩展自己的 SQL 语法。大部分的 NoSQL 数据库有自己的操作语言，对S QL 支持的并不好。
 
-### 2.4. SQL 语言的分类
+### SQL 语言的分类
 
 SQL语句，根据其功能，主要分为四类：DDL、DML、DQL、DCL。
 
@@ -63,27 +63,27 @@ SQL语句，根据其功能，主要分为四类：DDL、DML、DQL、DCL。
 | DQL        | Data Query Language        | 数据查询语言，用来查询数据库中表的记录               |
 | DCL        | Data Control Language      | 数据控制语言，用来创建数据库用户、控制数据库的访问权限 |
 
-#### 2.4.1. 数据定义语言：简称DDL(Data Definition Language)
+#### 数据定义语言：简称DDL(Data Definition Language)
 
 - 用来创建，修改，删除数据库中的各种对象：数据库，表，列等。
 - 【关键字】创建：`create`，更改：`alter`，移除：`drop`等
 
-#### 2.4.2. 数据操作语言：简称DML(Data Manipulation Language)
+#### 数据操作语言：简称DML(Data Manipulation Language)
 
 - 用来修改、删除、添加数据的语句。
 - 【关键字】插入：`insert`、删除：`delete`、更新：`update`
 
-#### 2.4.3. 数据控制语言：简称DCL(Data Control Language)
+#### 数据控制语言：简称DCL(Data Control Language)
 
 - 用来创建用户，分配用户权限、删除用户的语句，数据库的访问权限和安全级别。
 - 【包含两条命令】`grant`：授权；`revoke`：撒回
 
-#### 2.4.4. 数据查询语言：简称DQL(Data Query Language)
+#### 数据查询语言：简称DQL(Data Query Language)
 
 - 用来执行查询操作的语句。
 - 【关键字】`select`，`show`，`from`，`where`等
 
-### 2.5. MySQL 的 SQL 语句三种注释
+### MySQL 的 SQL 语句三种注释
 
 - 单行注释(MySQL特有)，`#` 号后可以不加空格
 
@@ -105,11 +105,11 @@ SQL语句，根据其功能，主要分为四类：DDL、DML、DQL、DCL。
 */
 ```
 
-## 3. MySQL 中的数据类型
+## MySQL 中的数据类型
 
 MySQL 中的数据类型有很多，主要分为三类：数值类型、字符串类型、日期时间类型。详细的数据类型如下(红色字体为常用数据类型)
 
-### 3.1. 数值类型
+### 数值类型
 
 |       类型        | 大小(byte) |                                                          说明                                                           |
 | :--------------: | :--------: | ---------------------------------------------------------------------------------------------------------------------- |
@@ -124,13 +124,13 @@ MySQL 中的数据类型有很多，主要分为三类：数值类型、字符�
 
 > Tips: 当字段用记录年龄时，因为不会存在负数与数值的范围不会太大，可以设置为 `age tinyint unsigned`
 
-#### 3.1.1. 整型类型的长度设置
+#### 整型类型的长度设置
 
 MySQL 中 `int(10)` 中的 10 表示的是显示数据的长度，不足 10 位以 0 填充。也就是说，<u>`int(1)` 和 `int(10)` 所能存储的数字大小以及占用的空间都是相同的</u>。
 
 > 关联知识：字符串类型 `char(10)` 的 10 表示的是存储数据的长度。
 
-#### 3.1.2. Decimal 类型和 Float、Double 等区别
+#### Decimal 类型和 Float、Double 等区别
 
 MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（即小数类型），但是 float 有个坏处，当给定的数据是整数的时候，那么它就以整数处理。这样在存取货币值的时候自然遇到问题，default 值为 0.00 而实际存储是 0，同样存取货币为 12.00，实际存储是 12。
 
@@ -138,7 +138,7 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 
 其中 Decimal 类型和 Float、Double 主要区别在于：float，double 等非标准类型，在 DB 中保存的是近似值；而 Decimal 则以字符串的形式保存数值。
 
-### 3.2. 字符串类型
+### 字符串类型
 
 |      类型       | 大小(byte) |                                说明                                |
 | :------------: | :--------: | ------------------------------------------------------------------ |
@@ -157,7 +157,7 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 
 > Notes: 其中 `TINYTEXT`、`TEXT`、`MEDIUMTEXT`、`LONGTEXT` 是非标准字符串类型
 
-#### 3.2.1. char 和 vachar 的区别
+#### char 和 vachar 的区别
 
 `char` 与 `varchar` 都可以描述字符串，两者主要有以下区别：
 
@@ -168,11 +168,11 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 
 总结：`char` 的性能会更高些。当存储的字符串长度是固定时，优先选择 `char` 类型。
 
-#### 3.2.2. 字符中的分隔字符处理
+#### 字符中的分隔字符处理
 
 `char`、`varchar` 和 `text` 等字符串类型都可以存储路径，但使用 `\` 会被过滤，所以路径中用 `/` 或 `\\` 来代替，MySQL 就不会自动过滤路径的分隔字符，完整的表示路径。
 
-#### 3.2.3. BLOB 和 TEXT 的区别
+#### BLOB 和 TEXT 的区别
 
 一般情况下，数据库中不直接存储图片和音频文件，而是存储图片与文件的路径。如果存储文件，则选择 `blob` 类型。
 
@@ -181,7 +181,7 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 
 两种类型之间的主要的区别是：**BLOB 值进行排序和比较时区分大小写；对 TEXT 值不区分大小写**。
 
-### 3.3. 日期类型
+### 日期类型
 
 |     类型     | 大小(byte) |                      范围                       |         格式         |                       说明                        |
 | :---------: | :--------: | ---------------------------------------------- | ------------------- | ------------------------------------------------ |
@@ -193,7 +193,7 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 
 > Notes: 尽量使用 timestamp，空间效率高于 datetime，用整数保存时间戳通常不方便处理。若需要存储微秒，可以使用 bigint 存储。其中 `DATETIME` 类型与时区无关；`TIMESTAMP` 显示依赖于所指定得时区，默认在第一个列行的数据修改时可以自动得修改
 
-### 3.4. 字段类型优先级选择
+### 字段类型优先级选择
 
 优先考虑数字类型，其次是日期或者二进制类型，最后是字符串类型，同级别得数据类型，应该优先选择占用空间小的数据类型
 
@@ -201,7 +201,7 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 整形 > date,time > enum,char > varchar > blob,text
 ```
 
-### 3.5. 关于 Null 类型的特别说明
+### 关于 Null 类型的特别说明
 
 MySQL 对 null 值的处理，有以下三种：
 
@@ -238,15 +238,15 @@ MySQL 专门提供了一个 `innodb_stats_method` 的系统变量，专门针对
 >
 > 有迹象表明，在 MySQL 5.7.22 以后的版本，对这个`innodb_stats_method`的修改不起作用，MySQL 把这个值在代码里写死为`nulls_equal`。也就是说 MySQL在进行索引列的数据统计行为又把 null 视为第二种情况（NULL 值在业务上就是代表没有，所有的 NULL 值和起来算一份），MySQL 对 Null 值的处理比较飘忽。所以总的来说，对于列的声明尽可能的不要允许为null。
 
-## 4. MySQL 的字符集
+## MySQL 的字符集
 
-### 4.1. 字符集概述
+### 字符集概述
 
 MySQL 服务器支持多种字符集，常用的字符集有 UTF8、UTF8MB4、UTF16、UTF32 等。在同一台服务器、同一个数据库、甚至同一个表的不同字段都可以指定使用不同的字符集。
 
 MySQL 的字符集包括字符集(CHARACTER)校对规则(COLLATION)等概念。
 
-#### 4.1.1. 查看支持的字符集
+#### 查看支持的字符集
 
 可以使用 `show character set` 命令查看所有 MySQL 支持的字符集：
 
@@ -299,15 +299,15 @@ mysql> show character set;
 +----------+---------------------------------+---------------------+--------+
 ```
 
-#### 4.1.2. Unicode、UTF8 和 UTF8MB4
+#### Unicode、UTF8 和 UTF8MB4
 
 Unicode（统一码、万国码、单一码）是计算机科学领域里的一项业界标准，包括字符集、编码方案等。Unicode 是为了解决传统的字符编码方案的局限而产生的，它为每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。UTF8、UTF16、UTF32 是 Unicode码 一种实现形式，都是属于 Unicode 编码。
 
 UTF8 和 UTF8MB4 是常用的两种字符集，根据业务情况而决定选那种类型。UTF8MB4 兼容 UTF8，比 UTF8 能表示更多的字符。一般情况下 UTF8 就满足需求，如果考虑到以后扩展，比如考虑到以后存储 emoji 表情，则选择 UTF8MB4，否则只是浪费空间。个人建议还是选择 UTF8MB4
 
-### 4.2. 校对规则(比较和排序规则)（COLLATE）
+### 校对规则(比较和排序规则)（COLLATE）
 
-#### 4.2.1. 概念
+#### 概念
 
 在 MySQL 中，`character set` 用于指定数据库默认的字符集；而 `collate` 是用于指定校对规则。
 
@@ -318,7 +318,7 @@ UTF8 和 UTF8MB4 是常用的两种字符集，根据业务情况而决定选那
 > - utf8_general_ci：按照普通的字母顺序，而且不区分大小写（比如：a B c D）
 > - utf8_bin：按照二进制排序（比如：A 排在 a 前面，B D a c）
 
-#### 4.2.2. 查看支持的校对规则
+#### 查看支持的校对规则
 
 通过 `show collation` 命令查看校对规则。
 
@@ -347,7 +347,7 @@ mysql> show collation like 'gbk%';
 
 > Tips: SQL 语句中的字符串一般都是使用单引号(`'`)括起。
 
-#### 4.2.3. UTF8MB4 常用的排序规则
+#### UTF8MB4 常用的排序规则
 
 UTF8MB4 常用的排序规则：utf8mb4_unicode_ci、utf8mb4_general_ci、utf8mb4_bin
 
@@ -364,7 +364,7 @@ UTF8MB4 常用的排序规则：utf8mb4_unicode_ci、utf8mb4_general_ci、utf8mb
 
 > Tips: 总而言之，utf8mb4_general_ci 和 utf8mb4_unicode_ci 是最常使用的排序规则。utf8mb4_general_ci 校对速度快，但准确度稍差；utf8_unicode_ci 准确度高，但校对速度稍慢。两者都不区分大小写，选择那种类型按具体情况而定
 
-### 4.3. 指定数据库的默认字符集与校对规则
+### 指定数据库的默认字符集与校对规则
 
 例如：指定数据库的默认字符集为 gbk 和校对规则 gbk_chinese_ci。
 
@@ -372,9 +372,9 @@ UTF8MB4 常用的排序规则：utf8mb4_unicode_ci、utf8mb4_general_ci、utf8mb
 create database db4 default character set gbk collate gbk_chinese_ci;
 ```
 
-### 4.4. 查看与修改当前字符集
+### 查看与修改当前字符集
 
-#### 4.4.1. 查看字符集
+#### 查看字符集
 
 语法：
 
@@ -403,7 +403,7 @@ mysql> show variables like 'character%';
 +--------------------------+-------------------------------------------------------+
 ```
 
-#### 4.4.2. 修改字符集
+#### 修改字符集
 
 以解决 DOS 命令行下汉字乱码的问题为例。DOS 命令行默认的字符集是 GBK，而数据库的字符集是 UTF-8，要将数据库中下列三项的字符集也改成 GBK。在命令行插入数据之前输入: `set names gbk;` 则等同于
 
@@ -442,13 +442,13 @@ mysql> show variables like 'character%';
 
 > Notes: <font color=purple>**上面只改变了本次运行时的数据库局部的字符集，重启后也会变回原来的模式**</font>。
 
-### 4.5. 字符集的选择原则
+### 字符集的选择原则
 
 建议在能够完全满足应用的前提下，尽量使用小的字符集。因为更小的字符集意味着能够节省空间、减少网络传输字节数，同时由于存储空间的较小间接的提高了系统的性能。
 
-## 5. MySQL 数据库的管理（DDL）
+## MySQL 数据库的管理（DDL）
 
-### 5.1. 查看数据库
+### 查看数据库
 
 查看所有数据库信息，分号结束。
 
@@ -456,7 +456,7 @@ mysql> show variables like 'character%';
 show databases;
 ```
 
-### 5.2. 查看正在使用的数据库
+### 查看正在使用的数据库
 
 查看正在使用的数据库(这个命令一般在DOS下操作才需要使用)
 
@@ -464,7 +464,7 @@ show databases;
 select database();
 ```
 
-### 5.3. 查看数据库定义
+### 查看数据库定义
 
 查看某个数据库在定义时的信息
 
@@ -478,11 +478,11 @@ show create database 数据库名;
 show create database day21_1;
 ```
 
-### 5.4. 创建数据库
+### 创建数据库
 
 在同一个数据库服务器中，不能创建两个名称相同的数据库，否则将会报错。
 
-#### 5.4.1. 语法
+#### 语法
 
 ```sql
 create database [ if not exists ] 数据库名 [ default charset 字符集 ] [ collate 排序规则 ] ;
@@ -490,7 +490,7 @@ create database [ if not exists ] 数据库名 [ default charset 字符集 ] [ c
 
 > Tips: 可以通过 `if not exists` 参数来解决创建两个数据库报错的问题，数据库不存在，则创建该数据库；如果存在，则不创建。
 
-#### 5.4.2. 示例
+#### 示例
 
 使用默认的字符集创建数据库。创建数据库，数据库中数据的编码采用的是**安装数据库时指定的默认编码UTF-8**
 
@@ -524,13 +524,13 @@ create database db2 default character set utf8;
 CREATE DATABASE IF NOT EXISTS 数据库名;
 ```
 
-#### 5.4.3. 使用图形化客户端创建
+#### 使用图形化客户端创建
 
 ![](images/329114008239275.png)
 
 创建数据库时，填写数据库名、选择字符集、排序规则即可。建议字符集选择 `utf8mb4`、排序规则选择 `utf8mb4_general_ci`，因为一些特殊字符（如微信表情等）需要此字符集才能存储
 
-### 5.5. 删除数据库
+### 删除数据库
 
 删除指定的数据库
 
@@ -546,7 +546,7 @@ drop database [ if exists ] 数据库名;
 drop database mydb;
 ```
 
-### 5.6. 修改数据库默认字符集
+### 修改数据库默认字符集
 
 修改数据库默认字符集
 
@@ -554,7 +554,7 @@ drop database mydb;
 alter database 数据库名 default character set 字符集;
 ```
 
-### 5.7. 切换 (选择要操作的) 数据库
+### 切换 (选择要操作的) 数据库
 
 要操作某一个数据库下的表时，需要通过以下指令，切换到指定的数据库，否则是不能操作的。
 
@@ -562,11 +562,11 @@ alter database 数据库名 default character set 字符集;
 use 数据库名称;
 ```
 
-## 6. MySQL 表的管理（DDL）
+## MySQL 表的管理（DDL）
 
-### 6.1. 查看表结构
+### 查看表结构
 
-#### 6.1.1. 查看数据库所有表格清单
+#### 查看数据库所有表格清单
 
 查看当前数据库中的所有表，显示表格的清单
 
@@ -596,7 +596,7 @@ mysql> show tables;
 +-----------------------------------------------+
 ```
 
-#### 6.1.2. 查看指定表的建表语句
+#### 查看指定表的建表语句
 
 以sql格式返回，查看指定表格的建表语句。而有部分参数在创建表的时候，并未指定也会查询到，因为这部分是数据库的默认值，如：存储引擎、字符集等。
 
@@ -606,7 +606,7 @@ show create table 表名;
 
 ![](images/20190403154958546_26352.jpg)
 
-#### 6.1.3. 查看指定表的结构
+#### 查看指定表的结构
 
 以表格格式返回，查看指定表格的结构。可以查看到表的字段，字段的类型、是否可以为 NULL，是否存在默认值等信息。
 
@@ -629,7 +629,7 @@ mysql> desc employee;
 +----------+-------------+------+-----+---------+-------+
 ```
 
-#### 6.1.4. 查询当前数据库的所有表
+#### 查询当前数据库的所有表
 
 查询当前数据库下所有表的状态与信息，包括表的引擎（Enginez）
 
@@ -639,7 +639,7 @@ show table status from 查询的数据库名称;
 
 ![](images/478831218231043.png)
 
-### 6.2. 创建表
+### 创建表
 
 **创建表完整语法格式：**
 
@@ -683,7 +683,7 @@ CREATE TABLE sort (
 > 1. 创建表之前，都需要先使用 `use 数据库名` 指定数据库
 > 2. 创建表，可以将表名写成 `数据库名.表名`，这样就指定了在哪个数据库下创建表
 
-### 6.3. 复制表
+### 复制表
 
 创建一个新表，复制旧表的结构(**没有内容，只有表结构**)
 
@@ -697,7 +697,7 @@ create table 新表名 like 旧表名;
 create table 新表名 as (select * from 要复制的表名);
 ```
 
-### 6.4. 删除表
+### 删除表
 
 删除一个或者多个表格，语法：
 
@@ -720,9 +720,9 @@ drop table s1, s2, s3;
 DROP TABLE IF EXISTS tb_user;
 ```
 
-### 6.5. 修改表结构
+### 修改表结构
 
-#### 6.5.1. 添加字段 add
+#### 添加字段 add
 
 给指定的表添加一个或多个字段的语法：
 
@@ -743,7 +743,7 @@ alter table student add a int, add b int;
 ALTER TABLE emp ADD nickname varchar(20) COMMENT '昵称';
 ```
 
-#### 6.5.2. 修改字段的类型(长度)或约束 modify
+#### 修改字段的类型(长度)或约束 modify
 
 修改指定表格中的指定字段的类型(长度)或约束，语法：
 
@@ -763,7 +763,7 @@ ALTER TABLE sort MODIFY sname VARCHAR(50) NOT NULL;
 
 > Notes: 修改字段是覆盖操作，如果字段原来有一些COMMENT、约束等等，修改时只指定字段的类型，那么COMMENT、约束等会信息会丢失。
 
-#### 6.5.3. 修改字段名称 change
+#### 修改字段名称 change
 
 将指定表格中的旧字段名改成新字段名，类型(长度)与约束也是可以同步修改。语法：
 
@@ -780,7 +780,7 @@ alter table student change gender sex varchar(2);
 ALTER TABLE emp CHANGE nickname username varchar(30) COMMENT '昵称';
 ```
 
-#### 6.5.4. 删除字段 drop
+#### 删除字段 drop
 
 删除指定表中的字段。**可以多个，每个字段前都要加 `drop` 关键字**）
 
@@ -794,7 +794,7 @@ ALTER TABLE 表名 DROP 字段名1, DROP 字段名2, ……;
 alter table student drop a, drop b;
 ```
 
-#### 6.5.5. 修改表名 rename
+#### 修改表名 rename
 
 将指定的表格名称修改成新表格名称。有两种语法格式：
 
@@ -814,7 +814,7 @@ alter table student rename stu;
 rename table sutdent to stu;
 ```
 
-#### 6.5.6. 修改表的字符集
+#### 修改表的字符集
 
 修改指定表格的字符集
 
@@ -828,7 +828,7 @@ ALTER TABLE 表名 CHARACTER SET 新字符集;
 alter table student character set gbk;
 ```
 
-#### 6.5.7. 表建立索引
+#### 表建立索引
 
 给指定的表建立索引
 
@@ -836,7 +836,7 @@ alter table student character set gbk;
 alter table 表名 add index(字段名);
 ```
 
-## 7. MySQL 数据的管理与操作 （DML）
+## MySQL 数据的管理与操作 （DML）
 
 DML 英文全称是 Data Manipulation Language(数据操作语言)，用来对数据库中表的数据记录进行增、删、改操作。
 
@@ -844,9 +844,9 @@ DML 英文全称是 Data Manipulation Language(数据操作语言)，用来对�
 - 修改数据（`UPDATE`）
 - 删除数据（`DELETE`）
 
-### 7.1. 插入数据 insert
+### 插入数据 insert
 
-#### 7.1.1. INSERT INTO 基础插入
+#### INSERT INTO 基础插入
 
 - 向表中插入一条数据（可以多条），指定所有列的值，语法：
 
@@ -879,7 +879,7 @@ INSERT INTO student(id,NAME,age,remark) VALUES(3,'jacky',27,'佛山人');
 - **字符和日期型数据应包含在单引号中。双引号也可以但不推荐**。
 - 不指定列或使用 `null`，表示插入空值。
 
-#### 7.1.2. INSERT INTO SELECT 语句
+#### INSERT INTO SELECT 语句
 
 将一张表的数据导入到另一张表中，可以使用 `INSERT INTO SELECT` 语句。语法：
 
@@ -892,7 +892,7 @@ insert into Table2 select * from Table1;
 
 > 注：上述语法要求保证目标表`Table2`必须存在。
 
-#### 7.1.3. INSERT ... ON DUPLICATE KEY 数据存在时更新操作，不存在时进行插入操作
+#### INSERT ... ON DUPLICATE KEY 数据存在时更新操作，不存在时进行插入操作
 
 `INSERT ... ON DUPLICATE KEY UPDATE`这个语法的目的是为了解决重复性，当数据库中存在某个记录时，执行这条语句会更新它，而不存在这条记录时，会插入它。
 
@@ -929,7 +929,7 @@ CREATE TABLE `t_stock_chg` (
 
 *注：这里的字段f_updatetime每次在更新数据时会自动更新，但是如果记录中存在某条数据，后来又更新它，而更新的数据和原数据一模一样，那么这个字段也不会更新，仍然是上一次的时间。此时`INSERT ... ON DUPLICATE KEY UPDATE`影响行数是0*。
 
-#### 7.1.4. replace into 插入数据
+#### replace into 插入数据
 
 `replace into` 跟 `insert` 功能类似，不同点在于：`replace into`首先尝试插入数据到表中
 
@@ -950,7 +950,7 @@ MySQL replace into 有三种形式：
 
 前两种形式用的多些。其中“into”关键字可以省略，不过最好加上“into”，这样意思更加直观。另外，对于那些没有给予值的列，MySQL将自动为这些列赋上默认值。
 
-#### 7.1.5. insert ignore into 插入数据
+#### insert ignore into 插入数据
 
 `INSERT IGNORE` 与 `INSERT INTO` 的区别就是`INSERT IGNORE`会忽略数据库中已经存在的数据，如果数据库没有数据，就插入新的数据；如果有数据的话就跳过这条数据（即执行这条插入语句时不会报错，只有警告，数据实际没有插入）。这样就可以保留数据库中已经存在数据，达到在间隙中插入数据的目的。
 
@@ -976,7 +976,7 @@ INSERT IGNORE INTO test(id, NAME, age) VALUES (2, 'aa', 18);
 
 *结论：执行INSERT时，如果不想报错(语法错误除外)，就用INSERT IGNORE，其它情况两者一样*
 
-### 7.2. 修改数据 update
+### 修改数据 update
 
 - 更新所有行的数据（**谨慎使用**），语法
 
@@ -1006,9 +1006,9 @@ UPDATE student SET gender='男';
 UPDATE student SET age=28,remark='韶关人' WHERE id=2;
 ```
 
-### 7.3. 删除数据 delete/truncate
+### 删除数据 delete/truncate
 
-#### 7.3.1. 删除数据 delete
+#### 删除数据 delete
 
 - 删除表的所有记录，相当清空表的内容
 
@@ -1039,7 +1039,7 @@ delete from student where id=3;
 3. 使用 `where` 子句准备指定删除内容。**正常情况下，严禁执行不带`where`条件的删除语句**
 4. 删除语句不能使用别名，如：`delete from student s where s.id=3;`会报语法错误。如果使用别名，正确的语法是：`delete s from student s where s.id=3;`
 
-#### 7.3.2. 删除所有数据 truncate
+#### 删除所有数据 truncate
 
 删除表的所有数据，与 `delete` 删除操作的区别是，`truncate` 相当于先 `drop` 删除原表后，再重新创建一个表，后面不能带条件(`where/having`)
 
@@ -1060,7 +1060,7 @@ truncate table student;
 3. 语句后面不能带条件
 4. 语句中的 `table` 关键字可以省略
 
-#### 7.3.3. delete、truncate、drop 的区别？
+#### delete、truncate、drop 的区别？
 
 - `delete`：删除所有数据时，不会影响自增长的值；可以通过事务回滚数据。
 - `truncate`：属于 DDL 语句（数据定义语言），执行后会自动提交，不可以通过事务回滚数据；删除数据时，先直接`drop`表，然后新建一张表，自增长的值从默认值开始。
@@ -1068,7 +1068,7 @@ truncate table student;
 
 > 一般来说，执行速度: `drop > truncate > delete`
 
-## 8. MySQL 数据查询（DQL）
+## MySQL 数据查询（DQL）
 
 DQL 英文全称是 Data Query Language(数据查询语言)，数据查询语言，用来查询数据库中表的记录。查询关键字: `SELECT`
 
@@ -1076,11 +1076,11 @@ DQL 英文全称是 Data Query Language(数据查询语言)，数据查询语言
 
 在一个正常的业务系统中，查询操作的频次是要远高于增删改等操作，而且在查询的过程中，可能还会涉及到条件、排序、分页等操作
 
-### 8.1. 查询语法格式
+### 查询语法格式
 
 mysql 查询数据有两种方式
 
-#### 8.1.1. SELECT 语法
+#### SELECT 语法
 
 语法格式如下：
 
@@ -1105,7 +1105,7 @@ LIMIT
 
 **sql的执行顺序：`from -> where -> group by -> having -> select -> order by`**
 
-#### 8.1.2. SELECT INTO 语法
+#### SELECT INTO 语法
 
 `select into` 通常用来把旧表数据插入到新表中，请求格式如下:
 
@@ -1119,9 +1119,9 @@ FROM
 	其他子句
 ```
 
-### 8.2. 查询数据 select
+### 查询数据 select
 
-#### 8.2.1. 查询所有列
+#### 查询所有列
 
 ```sql
 SELECT * FROM 表名;
@@ -1136,7 +1136,7 @@ SELECT * FROM 表名;
 SELECT * FROM student;
 ```
 
-#### 8.2.2. 查询指定列
+#### 查询指定列
 
 ```sql
 SELECT 列名1, 列名2, ……… FROM 表名;
@@ -1149,7 +1149,7 @@ SELECT 列名1, 列名2, ……… FROM 表名;
 SELECT NAME,gender FROM student;
 ```
 
-#### 8.2.3. 查询时指定列的别名
+#### 查询时指定列的别名
 
 ```sql
 SELECT 列名1 AS 别名1, 列名2 AS 别名2,…… FROM 表名;
@@ -1166,7 +1166,7 @@ SELECT NAME AS '姓名',gender AS '性别' FROM student;
 SELECT NAME '姓名',gender '性别' FROM student;
 ```
 
-#### 8.2.4. 合并列查询
+#### 合并列查询
 
 查询时可以对数值类型的列进行合并运算，并将结果新增一列。
 
@@ -1188,7 +1188,7 @@ SELECT *, (math+NAME) '总成绩' FROM student;
 SELECT uname,salary,(salary*12) AS '年薪' FROM users;
 ```
 
-#### 8.2.5. 查询时添加常量列
+#### 查询时添加常量列
 
 使用`''`单引号包裹的内容会当成常量列，在查询时新增一列到原表。语法如下：
 
@@ -1214,7 +1214,7 @@ SELECT *, 'JavaEE 就业班' AS '班级' FROM student;
 +----+------+------+------+---------+--------+
 ```
 
-#### 8.2.6. 去除重复数据
+#### 去除重复数据
 
 查询时使用 `DISTINCT` 关键字可以去除重复数据。
 
@@ -1242,9 +1242,9 @@ select distinct 列名1,列名2,…… from 表名;
 SELECT DISTINCT(address) FROM student;
 ```
 
-### 8.3. 条件查询 where
+### 条件查询 where
 
-#### 8.3.1. 基础语法
+#### 基础语法
 
 where语句表条件过滤。满足条件操作，不满足不操作，多用于数据的查询与修改。
 
@@ -1252,14 +1252,14 @@ where语句表条件过滤。满足条件操作，不满足不操作，多用于
 SELECT 字段列表 FROM 表名 WHERE 条件;
 ```
 
-#### 8.3.2. MySQL支持4种运算符
+#### MySQL支持4种运算符
 
 - 算术运算符
 - 比较运算符
 - 逻辑运算符
 - 位运算符
 
-#### 8.3.3. 算术运算符
+#### 算术运算符
 
 |  算术运算符   |       说明       |
 | :----------: | ---------------- |
@@ -1276,7 +1276,7 @@ select name,price + 10 as new_price from product;
 select pname,price * 1.1 as new_price from product;
 ```
 
-#### 8.3.4. 比较运算符
+#### 比较运算符
 
 |       比较运算符       |                                            说明                                             |
 | :-------------------: | ------------------------------------------------------------------------------------------ |
@@ -1314,7 +1314,7 @@ select greatest(10, 20, 30);
 select greatest(10, null, 30); -- 当比较值中有一个null值，则直接返回null
 ```
 
-##### 8.3.4.1. null 和空字符串的比较运算
+##### null 和空字符串的比较运算
 
 **null 和 空字符串的区别：**
 
@@ -1338,7 +1338,7 @@ SELECT * FROM student WHERE address IS NULL OR address='';
 SELECT * FROM student WHERE address IS NOT NULL AND address<>'';
 ```
 
-##### 8.3.4.2. 模糊查询：like
+##### 模糊查询：like
 
 相关字符的含义：
 
@@ -1362,7 +1362,7 @@ SELECT * FROM student WHERE NAME LIKE '%张%';
 SELECT * FROM student WHERE NAME LIKE '张__';
 ```
 
-##### 8.3.4.3. 模糊查询：in
+##### 模糊查询：in
 
 语法：
 
@@ -1377,7 +1377,7 @@ SELECT * FROM student WHERE id IN (1,3); -- 这种效率更高
 SELECT * FROM student WHERE id=1 OR id=3; -- 等价于上面的sql
 ```
 
-##### 8.3.4.4. 扩展 - 行行比较（SQL-92）
+##### 扩展 - 行行比较（SQL-92）
 
 SQL-92 中加入了行与行比较的功能。如 `=`、`<`、`>` 和 `IN` 等比较运算符就不再只是标量值了，还可以是值列表。
 
@@ -1397,7 +1397,7 @@ Mybatis 的动态 SQL 实现，类似如下
 
 总结：行行比较是 SQL 规范，不是某个关系型数据库的规范，即关系型数据库都应该支持这种写法。行行比较是 SQL-92 中引入的，SQL-92 是 1992 年制定的规范，即该写法不是新特性，而是很早就存在的基础功能！
 
-#### 8.3.5. 逻辑运算符
+#### 逻辑运算符
 
 |    逻辑运算符    |         说明          |
 | :-------------: | -------------------- |
@@ -1413,7 +1413,7 @@ SELECT * FROM student WHERE id=3 AND gender='男';
 SELECT * FROM student WHERE id=3 OR gender='男';
 ```
 
-#### 8.3.6. 位运算符(了解)
+#### 位运算符(了解)
 
 | 位运算符 |        说明         |
 | :-----: | ------------------ |
@@ -1435,7 +1435,7 @@ select 3<<1; -- 位右移
 select ~3;   -- 位取反
 ```
 
-### 8.4. 排序查询 order by
+### 排序查询 order by
 
 `order by` 语句的作用是根据指定的列内容排序，排序的列可以是表中的列名，也可以是 `select` 语句后指定的列名。
 
@@ -1470,7 +1470,7 @@ select * from product order by price desc,category_id asc;
 select distinct price from product order by price desc;
 ```
 
-#### 8.4.1. 以表中的列名排序
+#### 以表中的列名排序
 
 按表中的列名排序，如果不写(`asc`/`desc`)则默认是顺序(`asc`)
 
@@ -1487,7 +1487,7 @@ SELECT * FROM student ORDER BY math;
 SELECT *, (math+english) AS 总分 FROM student ORDER BY 总分 DESC;
 ```
 
-#### 8.4.2. 以 select 语句后指定的列名排序
+#### 以 select 语句后指定的列名排序
 
 按新的列名排序，如果出现 `where` 条件查询，则 `ORDER BY` 子句应位于 `SELECT` 语句的结尾。
 
@@ -1502,7 +1502,7 @@ select *,(列名1+列名2+……) as 别名 from 表名 order by 别名 asc/desc
 SELECT *, (math+english) AS 总分 FROM student WHERE NAME LIKE '张%' ORDER BY 总分;
 ```
 
-#### 8.4.3. order by 排序内部原理
+#### order by 排序内部原理
 
 MySQL 会为每个线程分配一个内存（sort-buffer）用于排序，该内存大小为参数 `sort_buffer_size` 的值。
 
@@ -1511,9 +1511,9 @@ MySQL 会为每个线程分配一个内存（sort-buffer）用于排序，该内
     - rowid 排序：通过控制排序的行数据的长度来让 sort_buffer 中尽可能多的存放数据。
 - 如果数据量很大，内存中无法存下这么多，就会使用磁盘临时文件来辅助排序，称为**外部排序**。MySQL 会分成多份单独的临时文件来存放排序后的数据，一般是在磁盘文件中进行归并，然后将这些文件合并成一个大文件。
 
-### 8.5. 聚合查询
+### 聚合查询
 
-#### 8.5.1. 定义与语法
+#### 定义与语法
 
 聚合函数查询是纵向查询，它是对一列的值进行计算，然后返回一个单一的值。语法：
 
@@ -1526,7 +1526,7 @@ select 聚合函数名称(数值列名) from 表名;
 > - <font color=red>**聚合函数会排除空值(`null`)的数据**</font>。
 > - 按聚合函数的结果来查询，列必须是数值列（`COUNT`函数除外），如果不是数值列，则结果为0
 
-#### 8.5.2. 常用的聚合函数
+#### 常用的聚合函数
 
 |  聚合函数  |                            作用                            |
 | :-------: | --------------------------------------------------------- |
@@ -1536,7 +1536,7 @@ select 聚合函数名称(数值列名) from 表名;
 |  `min()`  | 计算指定列的最小值，如果指定列是字符串类型，那么使用字符串排序运算； |
 |  `avg()`  | 计算指定列的平均值，如果指定列类型不是数值类型，那么计算结果为0     |
 
-#### 8.5.3. 聚合查询示例
+#### 聚合查询示例
 
 ```sql
 -- 1. 需求： 查询所有学生 english 的总分
@@ -1567,15 +1567,15 @@ select min(price) from product;
 select avg(price) from product where category_id = 'c002';
 ```
 
-#### 8.5.4. 聚合查询对 NULL 值的处理
+#### 聚合查询对 NULL 值的处理
 
 - `count` 函数对 `null` 值的处理逻辑是，如果`count`函数的参数为星号（`*`），则统计所有记录的个数。而如果参数为某字段，则统计不为`null`值的记录个数。
 - `sum` 和 `avg` 函数是忽略 `null` 值的存在，就好象该条记录不存在一样。
 - `max` 和 `min` 函数也同样忽略 `null` 值的存在。
 
-### 8.6. 分页查询 limit
+### 分页查询 limit
 
-#### 8.6.1. 语法
+#### 语法
 
 `limit` 关键字，用于分页查询数据。语法：
 
@@ -1598,7 +1598,7 @@ select * from 表名 limit m, n;
 > - **如果分页同时要进行排序，`limit` 语句要放在 `order by` 的后面。**
 > - <font color=red>**分页查询是数据库的方言，不同的数据库有不同的实现**</font>，MySQL 中是 `LIMIT`
 
-#### 8.6.2. 分页查询示例
+#### 分页查询示例
 
 ```sql
 SELECT * FROM student;
@@ -1610,7 +1610,7 @@ SELECT * FROM student LIMIT 2,2;
 SELECT * FROM student LIMIT 4,2;
 ```
 
-#### 8.6.3. 分页计算规律总结
+#### 分页计算规律总结
 
 观察分页的开始索引，其实是等差数列。如：`0,2,4`。因此开始索引的计算公式如下：
 
@@ -1624,9 +1624,9 @@ startIndex = (curPage-1)*pageSize
 - `curPage`：当前页
 - `startIndex`：查询的起始号
 
-### 8.7. 分组查询 group by
+### 分组查询 group by
 
-#### 8.7.1. 语法规则
+#### 语法规则
 
 `group by` 关键字可以将查询结果按某个字段或多个字段进行分组。字段中值相等的为一组。语法：
 
@@ -1662,7 +1662,7 @@ GROUP BY
 	c.`NAME`
 ```
 
-#### 8.7.2. 分组条件筛选 (having)
+#### 分组条件筛选 (having)
 
 `having` 关键字作用：用来对分组信息进行过滤，用法与`where`一样。但分组之后对统计结果进行筛选的话必须使用 `having`，不能使用 `where`。
 
@@ -1682,14 +1682,14 @@ SELECT address,COUNT(address) '人数' FROM student GROUP BY address HAVING COUN
 select category_id ,count(*) from product group by category_id having count(*) > 1;
 ```
 
-#### 8.7.3. where 和 having 的区别
+#### where 和 having 的区别
 
 - 执行时机不同：`where` 是分组之前进行过滤，不满足 `where` 条件，不参与分组；而 `having` 是分组之后对结果进行过滤。
 - 判断条件不同：`where` 是对行记录进行筛选过滤，`where` 后**不能跟聚合函数**的(如:`count(*)`)；而 `having` 是对组信息进行筛选过滤，`having` 后**可以跟聚合函数**的。(如:`count(*)`)
 
 > Notes: 执行顺序是 where -> 聚合函数 -> having
 
-#### 8.7.4. with rollup 关键字
+#### with rollup 关键字
 
 `with rollup` 关键字的作用是，在查询结果最后加上一条记录，并且该记录是上面所有分组记录的汇总。
 
@@ -1715,7 +1715,7 @@ mysql> SELECT sex, GROUP_CONCAT(name) FROM employee GROUP BY sex WITH ROLLUP;
 
 上面示例中，最后一条记录 `NULL` 就是上面各个分组记录的汇总。
 
-#### 8.7.5. GROUP BY 使用规定
+#### GROUP BY 使用规定
 
 - **GROUP BY 子句必须出现在 WHERE 子句之后，ORDER BY 子句之前**。
 - 使用 GROUP BY 子句进行分组，则 `SELECT` 子句之后，只能出现分组的字段和统计函数，其他的字段不能出现。
@@ -1723,13 +1723,13 @@ mysql> SELECT sex, GROUP_CONCAT(name) FROM employee GROUP BY sex WITH ROLLUP;
 - 如果分组列中具有 NULL 值，则 NULL 将作为一个分组返回。如果列中有多行 NULL 值，它们将分为一组。
 - GROUP BY 子句可以包含任意数目的列。这使得能对分组进行嵌套，为数据分组提供更细致的控制。
 
-### 8.8. 正则表达式
+### 正则表达式
 
 正则表达式(regular expression)描述了一种字符串匹配的规则，正则表达式本身就是一个字符串，使用这个字符串来描述、用来定义匹配规则，匹配一系列符合某个句法规则的字符串。在开发中，正则表达式通常被用来检索、替换那些符合某个规则的文本。
 
 MySQL通过 `REGEXP` 关键字支持正则表达式进行字符串匹配。
 
-#### 8.8.1. 语法规则
+#### 语法规则
 
 |    模式     |                                             描述                                              |
 | :--------: | -------------------------------------------------------------------------------------------- |
@@ -1744,7 +1744,7 @@ MySQL通过 `REGEXP` 关键字支持正则表达式进行字符串匹配。
 |   `{n}`    | n 是一个非负整数。匹配确定的 n 次。例如，'`o{2}`' 不能匹配 "Bob" 中的 'o'，但是能匹配 "food" 中的两个 o。  |
 |  `{n,m}`   | m 和 n 均为非负整数，其中`n <= m`。最少匹配 n 次且最多匹配 m 次。                                     |
 
-#### 8.8.2. 示例
+#### 示例
 
 ```sql
 -- ^ 在字符串开始处进行匹配
@@ -1804,9 +1804,9 @@ SELECT 'xababy' REGEXP 'x(ab)*y';
 SELECT 'xababy' REGEXP 'x(ab){1,2}y';
 ```
 
-### 8.9. 查询 SQL 语句的执行顺序
+### 查询 SQL 语句的执行顺序
 
-#### 8.9.1. 执行顺序说明
+#### 执行顺序说明
 
 DQL 语句在执行的顺序如下：
 
@@ -1826,7 +1826,7 @@ DQL 语句在执行的顺序如下：
 
 综上所述，DQL 语句的执行顺序为：`from -> where -> group by -> having -> select -> order by -> limit`
 
-#### 8.9.2. 验证过程
+#### 验证过程
 
 ```sql
 -- 查询年龄大于15的员工姓名、年龄，并根据年龄进行升序排序。
@@ -1861,15 +1861,15 @@ select e.name ename, e.age eage from emp e where e.age > 15 order by eage asc;
 
 结果执行成功。那么也就验证了：order by 是在 select 语句之后执行的。
 
-## 9. MySQL 的多表操作
+## MySQL 的多表操作
 
 实际开发中，一个项目通常需要很多张表才能完成，且这些表的数据之间存在一定的关系。
 
-### 9.1. 多表关系
+### 多表关系
 
 MySQL多表之间的关系可以概括为：一对一、一对多/多对一关系，多对多
 
-#### 9.1.1. 一对一(1:1)
+#### 一对一(1:1)
 
 在实际的开发中应用不多，因为一对一可以创建成一张表。有两种建表原则：
 
@@ -1908,7 +1908,7 @@ create table s7(
 
 > Tips: 其中设置从表的外键为唯一的(`UNIQUE`)是关键
 
-#### 9.1.2. 一对多(1:n)(重点)
+#### 一对多(1:n)(重点)
 
 - 常见实例：客户和订单，分类和商品，部门和员工。
 - 一对多建表原则：在从表(多方)创建一个字段，字段作为外键指向主表(一方)的主键。
@@ -1951,7 +1951,7 @@ select * from student;
 
 ![1:n表关系图](images/20190404102511245_26673.jpg)
 
-#### 9.1.3. 多对多(n:n)
+#### 多对多(n:n)
 
 - 常见实例：学生和课程、用户和角色。
 - 多对多关系建表原则
@@ -2067,15 +2067,15 @@ select stu.*,course.cname as '学科名',stu_tea_cou.score as '得分',teacher.t
 
 ![n:n表关系图（三个）](images/20190404102946118_1242.jpg)
 
-### 9.2. 多表连接查询
+### 多表连接查询
 
-#### 9.2.1. 多表连接查询概述
+#### 多表连接查询概述
 
 单表查询是从一张表中查询数据，而**多表查询**就是从多张有关联的表中查询数据。
 
 > Notes: N 张表的连接查询，至少要有 N-1 个连接条件
 
-#### 9.2.2. 多表连接类型
+#### 多表连接类型
 
 - 交叉连接查询[产生笛卡尔积，了解]
 - 内连接查询
@@ -2088,7 +2088,7 @@ select stu.*,course.cname as '学科名',stu_tea_cou.score as '得分',teacher.t
 
 ![](images/20190404112841616_605.jpg)
 
-#### 9.2.3. 多表连接查询的步骤
+#### 多表连接查询的步骤
 
 1. 首先确定要查询的数据有哪些
 2. 再确定要查询的数据来自哪些表
@@ -2096,15 +2096,15 @@ select stu.*,course.cname as '学科名',stu_tea_cou.score as '得分',teacher.t
 
 > Tips: **多表连接查询必须使用`表名(或表别名).列名`才进行查询，因为需要区分该列是属于哪个表的，一旦设置了别名后，就必须用`别名.列名`，用原来`表名.列名`会报错。**
 
-### 9.3. 交叉连接查询（笛卡尔积）
+### 交叉连接查询（笛卡尔积）
 
-#### 9.3.1. 交叉查询概述
+#### 交叉查询概述
 
 - 当查询记录数等于多个表的记录数乘积时，该查询则称为交叉查询。
 - 交叉查询的结果称为笛卡尔积，即多张表记录的乘积
 - 在实际开发中，笛卡尔积的结果一般没有任何意义，一般都会在笛卡尔积基础上加上过滤条件，得出的结果才会有意义。
 
-#### 9.3.2. 交叉查询格式
+#### 交叉查询格式
 
 这种查询会产生笛卡尔积，就是两个表的所有记录的乘积。语法格式：
 
@@ -2150,9 +2150,9 @@ SELECT e.*, d.* FROM employee e, dept d;
 |  a2  |  b2  |  c2  |  c4  |  d3  |
 |  a3  |  b3  |  c3  |  c4  |  d3  |
 
-### 9.4. 内连接查询( inner join …… on )
+### 内连接查询( inner join …… on )
 
-#### 9.4.1. 内连接概述
+#### 内连接概述
 
 只有满足连接条件的记录才会被查询出来，实际开发使用频率最高。连接条件：主表的主键与从表的外键值进行相等匹配查询
 
@@ -2166,13 +2166,13 @@ FROM
 INNER JOIN Table_B B ON A. KEY = B. KEY
 ```
 
-#### 9.4.2. 内连接语法格式
+#### 内连接语法格式
 
 ```sql
 SELECT * FROM 表1 [INNER | CROSS] JOIN 表2 [ON 连接条件] [WHERE 普通过滤条件];
 ```
 
-#### 9.4.3. 内连接查询的分类
+#### 内连接查询的分类
 
 - 隐式内连接：使用where语句(在笛卡尔积的基础上使用)
 - 显式内连接：使用语法格式 `inner join …… on`（inner 可以省略）
@@ -2189,13 +2189,13 @@ SELECT * FROM t1, t2;
 
 > <font color=red>**注：在内连接查询中，`on`子语句与`where`子语句的作用是一样的。**</font>
 
-#### 9.4.4. 内连接的驱动表与被驱动表
+#### 内连接的驱动表与被驱动表
 
 对于内连接来说，由于凡是不符合`ON`子句或`WHERE`子句中的条件的记录都会被过滤掉，其实也就相当于从两表连接的笛卡尔积中过滤了不符合条件的记录，所以对于内连接来说，驱动表和被驱动表是可以互换的，并不会影响最后的查询结果。
 
 但是对于外连接来说，由于驱动表中的记录即使在被驱动表中找不到符合`ON`子句条件的记录时也要将其加入到结果集，所以此时驱动表和被驱动表的关系就很重要了，也就是说左外连接和右外连接的驱动表和被驱动表不能轻易互换。
 
-#### 9.4.5. 显式内连接：使用 inner join ... on
+#### 显式内连接：使用 inner join ... on
 
 - 显式内连接格式：
 
@@ -2216,7 +2216,7 @@ select s.sname,c.sub from student s inner join class c on s.class_id=c.cid;
 |  a1  |  b1  |  c1  |  c1  |  d1  |
 |  a2  |  b2  |  c2  |  c2  |  d2  |
 
-#### 9.4.6. 隐式内连接：使用 where 子句（笛卡尔积再过滤）
+#### 隐式内连接：使用 where 子句（笛卡尔积再过滤）
 
 隐式内连接格式：
 
@@ -2230,7 +2230,7 @@ select 表名1.*,表名2.* from 表名1,表名2 where 表名1.列名=表名2.列
 select s.sname,c.sub from student s,class c where s.class_id=c.cid;
 ```
 
-#### 9.4.7. 扩展：内连接3个以上数据表
+#### 扩展：内连接3个以上数据表
 
 - **INNER JOIN 连接三个数据表的用法：**
 
@@ -2292,9 +2292,9 @@ AND 表1.字段号 = 表5.字段号;
 - **使用内连接前，搞清楚需要输出那些字段，字段在那些表中，各自表的主外键的关系。**
 - 在建立数据表时，如果一个表与多个表联接，那么这一个表中的字段必须是“数字”数据类型，而多个表中的相同字段必须是主键，而且是“自动编号”数据类型。否则，很难联接成功。
 
-### 9.5. 左(外)连接( left join …… on )
+### 左(外)连接( left join …… on )
 
-#### 9.5.1. 左外连接概述
+#### 左外连接概述
 
 - **左外连接定义**：用左表的记录去匹配右表的记录，如果条件满足，则右边显示右表的记录；否则右表显示 `null`。**（左表和右表取决于定义在实际语句的位置）**
 - **左外连接特点**：左边的表的记录一定会全部显示完整
@@ -2310,7 +2310,7 @@ FROM
 LEFT JOIN Table_B B ON A. KEY = B. KEY
 ```
 
-#### 9.5.2. 左外连接语法格式
+#### 左外连接语法格式
 
 ```sql
 SELECT * FROM 表1 LEFT [OUTER] JOIN 表2 ON 连接条件 [WHERE 普通过滤条件];
@@ -2332,9 +2332,9 @@ select s.sname,c.sub from student s left join class c on s.class_id=c.cid;
 |  a2  |  b2  |  c2  |  c2  |  d2  |
 |  a3  |  b3  |  c3  |      | null |
 
-### 9.6. 右(外)连接( right join …… on )
+### 右(外)连接( right join …… on )
 
-#### 9.6.1. 右外连接概述
+#### 右外连接概述
 
 - **右外连接定义**：用右表的记录去匹配左表的记录，如果条件满足，则左边显示左表的记录；否则左边显示 null。**（左表和右表取决于定义在实际语句的位置）**
 - **右外连接特点**：如果右外连接，右边的表的记录一定会全部显示完整
@@ -2350,7 +2350,7 @@ FROM
 RIGHT JOIN Table_B B ON A. KEY = B. KEY
 ```
 
-#### 9.6.2. 右外连接语法格式
+#### 右外连接语法格式
 
 ```sql
 SELECT * FROM 表1 RIGHT [OUTER] JOIN 表2 ON 连接条件 [WHERE 普通过滤条件];
@@ -2372,7 +2372,7 @@ select s.sname,c.sub from student s right join class c on s.class_id=c.cid;
 |  a2  |  b2  | c2  | c2  | d2  |
 | null | null |     | c4  | d3  |
 
-### 9.7. 连接查询的过滤条件 on 与 where 的区别总结
+### 连接查询的过滤条件 on 与 where 的区别总结
 
 在连接查询中，过滤条件分为两种`on`与`where`，根据过滤条件使用的不同的关键字有不同的语义
 
@@ -2383,9 +2383,9 @@ select s.sname,c.sub from student s right join class c on s.class_id=c.cid;
 
 <font color=red>*一般情况下，都把只涉及单表的过滤条件放到`WHERE`子句中，把涉及两表的过滤条件都放到`ON`子句中，也一般把放到`ON`子句中的过滤条件也称之为连接条件。*</font>
 
-### 9.8. 自连接查询
+### 自连接查询
 
-#### 9.8.1. 自关联表概述
+#### 自关联表概述
 
 一张表，自关联一对多，数据表的外键列引用自身的主键列，自关联一般针对多级关系的使用
 
@@ -2393,7 +2393,7 @@ select s.sname,c.sub from student s right join class c on s.class_id=c.cid;
 >
 > 老板 --> 总经理 --> 部门经理 --> 主管 --> 组长 --> 员工
 
-#### 9.8.2. 自关联表格式（创建外键）
+#### 自关联表格式（创建外键）
 
 **创建表同时自关联主外键：**
 
@@ -2429,7 +2429,7 @@ CREATE TABLE AREA(
 ALTER TABLE AREA ADD CONSTRAINT FOREIGN KEY (parent_id) REFERENCES AREA(id);
 ```
 
-#### 9.8.3. 自连接查询的概念
+#### 自连接查询的概念
 
 自连接查询：在数据查询时需要进行对表自身进行关联查询，即一张表自己和自己关联，一张表当成多张表来用。
 
@@ -2439,7 +2439,7 @@ ALTER TABLE AREA ADD CONSTRAINT FOREIGN KEY (parent_id) REFERENCES AREA(id);
 > - <font color=red>**自连接查询其实不需要依赖自关联表的外键约束的创建，无自关联外键约束也是可以进行自连接查询**</font>
 > - <font color=red>**注意自关联查询表时，必须给表起别名。**</font>
 
-#### 9.8.4. 自连接查询的格式
+#### 自连接查询的格式
 
 1. 先创建自关联表
 2. 使用内连接(左连接、右连接)
@@ -2473,9 +2473,9 @@ FROM
 LEFT JOIN emp b ON e.parent_id = b.id;  -- 连接条件
 ```
 
-### 9.9. 联合查询 UNION [ALL]
+### 联合查询 UNION [ALL]
 
-#### 9.9.1. 概述
+#### 概述
 
 对于 union 查询，就是把多次查询的结果合并起来，形成一个新的查询结果集。语法格式如下：
 
@@ -2485,7 +2485,7 @@ UNION [ ALL ]
 SELECT 字段列表 FROM 表B ....;
 ```
 
-#### 9.9.2. 基础使用示例
+#### 基础使用示例
 
 示例需求：将薪资低于 5000 的员工，和年龄大于 50 岁的员工全部查询出来
 
@@ -2511,20 +2511,20 @@ SELECT * FROM emp WHERE age > 50;
 
 而 `union` 联合查询，会对查询出来的结果进行去重处理。
 
-#### 9.9.3. 联合查询注意事项
+#### 联合查询注意事项
 
 对于联合查询的多张表的列数必须保持一致，字段类型也需要保持一致。否则在进行`union`/`union all`联合查询时，将会报错。如：
 
 ![](images/263832416227135.png)
 
-#### 9.9.4. union 与 union all 区别
+#### union 与 union all 区别
 
 - `union all`：直接合并多个结果集，不会去除重复记录。
 - `union`：合并多个结果集，去除重复，所以执行效率会较差。
 
-### 9.10. 全外连接查询（MySql 暂不支持，Oracle 支持、了解）
+### 全外连接查询（MySql 暂不支持，Oracle 支持、了解）
 
-#### 9.10.1. full join 语法定义
+#### full join 语法定义
 
 ```sql
 select r.*,s.* from r full join s on r.c=s.c
@@ -2537,7 +2537,7 @@ select r.*,s.* from r full join s on r.c=s.c
 |  a3  |  b3  |  c3  |      | null |
 | null | null |      |  c4  |  d3  |
 
-#### 9.10.2. 使用 union 关键字实现全表连接查询
+#### 使用 union 关键字实现全表连接查询
 
 语法格式：
 
@@ -2549,9 +2549,9 @@ select * from 表2 right outer join 表1 on 表2.字段名 = 表1.字段名;
 
 > 注：`union` 关键字会去掉两个结果集的重复记录
 
-### 9.11. SQL 的其他 join 用法(网上资料)
+### SQL 的其他 join 用法(网上资料)
 
-#### 9.11.1. OUTER JOIN（外连接）
+#### OUTER JOIN（外连接）
 
 ![表连接查询图5](images/20190404113125064_29354.jpg)
 
@@ -2563,7 +2563,7 @@ FROM
 FULL OUTER JOIN Table_B B ON A. KEY = B. KEY
 ```
 
-#### 9.11.2. LEFT JOIN EXCLUDING INNER JOIN（左连接-内连接）
+#### LEFT JOIN EXCLUDING INNER JOIN（左连接-内连接）
 
 ![表连接查询图6](images/20190404113134408_30772.jpg)
 
@@ -2577,7 +2577,7 @@ WHERE
 	B. KEY IS NULL
 ```
 
-#### 9.11.3. RIGHT JOIN EXCLUDING INNER JOIN（右连接-内连接）
+#### RIGHT JOIN EXCLUDING INNER JOIN（右连接-内连接）
 
 ![表连接查询图7](images/20190404113146671_88.jpg)
 
@@ -2591,7 +2591,7 @@ WHERE
 	A. KEY IS NULL
 ```
 
-#### 9.11.4. OUTER JOIN EXCLUDING INNER JOIN（外连接-内连接）
+#### OUTER JOIN EXCLUDING INNER JOIN（外连接-内连接）
 
 ![表连接查询图8](images/20190404113204071_7635.jpg)
 
@@ -2606,9 +2606,9 @@ WHERE
 OR B. KEY IS NULL
 ```
 
-### 9.12. straight_join 指定驱动表查询
+### straight_join 指定驱动表查询
 
-#### 9.12.1. 概述
+#### 概述
 
 `straight_join` 关键字功能与 `join` 关键字类似，区别在于，`straight_join` 可以指定左边的表来驱动右边的表，改变 MySQL 优化器对于联表查询的执行顺序。
 
@@ -2618,15 +2618,15 @@ select * from t2 straight_join t1 on t2.a = t1.a;
 
 以上语句代表指定 t2 表作为驱动表。
 
-#### 9.12.2. 注意事项
+#### 注意事项
 
 `straight_join` 只适用于 `inner join` 的情况，并不适用于 `left join`，`right join`。（因为`left join`，`right join`已经指定了表的执行顺序，哪个表做为驱动表）
 
 > Tips: 建议少使用此关键字，尽可能使用优化器去选择的执行顺序，因为大部分情况下人为指定的执行顺序并不一定会比优化引擎选择的要更优。
 
-## 10. 子查询
+## 子查询
 
-### 10.1. 子查询概述
+### 子查询概述
 
 一条 SQL 语句(子查询)的查询结果做为另一条SQL语句(父语句)的条件或查询结果，这种操作则称为**子查询**。多条 SQL 语句嵌套使用，内部的 SQL 查询语句称为子查询。简单理解就是*包含select嵌套的查询*。
 
@@ -2634,11 +2634,11 @@ select * from t2 straight_join t1 on t2.a = t1.a;
 
 子查询外部的语句可以是`INSERT`/`UPDATE`/`DELETE`/`SELECT`的任何一个。
 
-### 10.2. 子查询语法使用位置
+### 子查询语法使用位置
 
 子查询可以在一个外层查询的各种位置出现。
 
-#### 10.2.1. SELECT 子句
+#### SELECT 子句
 
 出现在`select`语句中
 
@@ -2646,7 +2646,7 @@ select * from t2 straight_join t1 on t2.a = t1.a;
 SELECT (SELECT col FROM table LIMIT 1);
 ```
 
-#### 10.2.2. FROM 子句
+#### FROM 子句
 
 出现在`from`子句中，可以把子查询的查询结果当作是一个表，但这种表与正常的创建的表不一样，MySQL 把这种由子查询结果集组成的表称之为**派生表**。
 
@@ -2654,7 +2654,7 @@ SELECT (SELECT col FROM table LIMIT 1);
 SELECT m, n FROM (SELECT m2 + 1 AS m, n2 AS n FROM table2 WHERE m2 > 2) AS t;
 ```
 
-#### 10.2.3. WHERE 或 ON 子句
+#### WHERE 或 ON 子句
 
 子查询可放在外层查询的`WHERE`子句或者`ON`子句中
 
@@ -2664,11 +2664,11 @@ SELECT * FROM table1 WHERE m1 IN (SELECT m2 FROM table2);
 
 > 示例查询表明想要将`(SELECT m2 FROM table2)`这个子查询的结果作为外层查询的`IN`语句参数，整个查询语句逻辑是找table1表中的某些记录，这些记录的 m1 列的值能在 table2 表的 m2 列找到匹配的值。
 
-#### 10.2.4. ORDER BY 子句、GROUP BY 子句
+#### ORDER BY 子句、GROUP BY 子句
 
 子查询也可以出现ORDER BY 子句、GROUP BY 子句中。虽然语法支持，但没有意义。
 
-### 10.3. 按返回的结果集区分子查询类型
+### 按返回的结果集区分子查询类型
 
 子查询本身也算是一个查询，所以可以按照它们返回的不同结果集类型，可以把这些子查询分为不同的类型：
 
@@ -2677,7 +2677,7 @@ SELECT * FROM table1 WHERE m1 IN (SELECT m2 FROM table2);
 - 多行单列（列子查询）：返回多行记录之中同一列的内容，相当于给出了一个操作范围；
 - 多行多列（表子查询）：查询返回的结果是一张临时表
 
-#### 10.3.1. 标量子查询
+#### 标量子查询
 
 只返回一个单一值的子查询称之为标量子查询。这些标量子查询可以作为一个单一值或者表达式的一部分出现在查询语句的各个地方。父查询可以使用 `=`、 `<`、 `>` 等比较运算符
 
@@ -2707,7 +2707,7 @@ WHERE
 	);
 ```
 
-#### 10.3.2. 单行（多列）子查询
+#### 单行（多列）子查询
 
 返回一条记录的子查询，不过这条记录需要包含多个列（只包含一个列就成了标量子查询了）
 
@@ -2717,7 +2717,7 @@ SELECT * FROM e1 WHERE (m1, n1) = (SELECT m2, n2 FROM e2 LIMIT 1);
 
 > sql语句的含义就是要从 e1 表中找一些记录，这些记录的 m1 和 n1 列分别等于子查询结果中的m2 和 n2 列。
 
-#### 10.3.3. 单列（多行）子查询
+#### 单列（多行）子查询
 
 多行子查询查询结果是多行单列的值，类似于一个数组（只包含一条记录就成了标量子查询了）。父查询使用 `in` 关键字的使用结果
 
@@ -2812,7 +2812,7 @@ WHERE
 	);
 ```
 
-#### 10.3.4. 表（多行多列）子查询
+#### 表（多行多列）子查询
 
 表子查询返回结果是一个多行多列的值，类似于一张虚拟表。不能用于 where 条件，用于 select 子句中做为子表。
 
@@ -2858,13 +2858,13 @@ WHERE
 	e.join_date > '2011-01-01';
 ```
 
-### 10.4. 按与外层查询关系来区分子查询类型
+### 按与外层查询关系来区分子查询类型
 
-#### 10.4.1. 不相关子查询
+#### 不相关子查询
 
 如果子查询可以单独运行出结果，而不依赖于外层查询的值，就可以把这个子查询称之为不相关子查询。*上面示例基本上都是不相关子查询*
 
-#### 10.4.2. 相关子查询
+#### 相关子查询
 
 如果子查询的执行需要依赖于外层查询的值，就可以把这个子查询称之为相关子查询。
 
@@ -2874,7 +2874,7 @@ SELECT * FROM e1 WHERE m1 IN (SELECT m2 FROM e2 WHERE n1 = n2);
 
 > 其中子查询`(SELECT m2 FROM e2 WHERE n1 = n2)`的查询条件n1是外层查询的列。也就是说子查询的执行需要依赖于外层查询的值，所以这个子查询就是一个相关子查询。
 
-### 10.5. [NOT] IN/ANY/SOME/ALL/EXISTS 子查询
+### [NOT] IN/ANY/SOME/ALL/EXISTS 子查询
 
 对于列子查询和表子查询来说，它们的结果集中包含很多条记录，这些记录相当于是一个集合，所以就不能单纯的和另外一个操作数使用操作符来组成布尔表达式了，MySQL 通过下面的语法来支持某个操作数和一个集合组成一个布尔表达式：
 
@@ -2884,7 +2884,7 @@ SELECT * FROM e1 WHERE m1 IN (SELECT m2 FROM e2 WHERE n1 = n2);
 - `IN`/`NOT IN` 关键字
 - `EXISTS` 关键字
 
-#### 10.5.1. IN 或者 NOT IN
+#### IN 或者 NOT IN
 
 语法格式：
 
@@ -2898,7 +2898,7 @@ select * from 表 where 字段名 [NOT] IN (子查询);
 SELECT * FROM e1 WHERE (m1, n1) IN (SELECT m2, n2 FROM e2);
 ```
 
-#### 10.5.2. ANY/SOME（ANY 和 SOME 是同义词）
+#### ANY/SOME（ANY 和 SOME 是同义词）
 
 语法格式：
 
@@ -2925,7 +2925,7 @@ SELECT * FROM e1 WHERE m1 > (SELECT MIN(m2) FROM e2);
 
 另外，`=ANY`相当于判断子查询结果集中是否存在某个值和给定的操作数相等，它的含义和`IN`是相同的。
 
-#### 10.5.3. ALL
+#### ALL
 
 语法格式：
 
@@ -2949,9 +2949,9 @@ SELECT * FROM e1 WHERE m1 > ALL(SELECT m2 FROM e2);
 SELECT * FROM e1 WHERE m1 > (SELECT MAX(m2) FROM e2);
 ```
 
-#### 10.5.4. EXISTS 子查询
+#### EXISTS 子查询
 
-##### 10.5.4.1. 基础使用
+##### 基础使用
 
 ```sql
 select * from 表A where exists(子查询语句);
@@ -2978,9 +2978,9 @@ select * from emp3 a where exists(select * from dept3 b where a.dept_id = b.dept
 
 对于子查询`(SELECT 1 FROM e2)`来说，如果并不关心这个子查询最后到底查询出的结果是什么，所以查询列表里填`*`、某个列名，或者其他内容都无所谓，真正关心的是子查询的结果集中是否存在记录。也就是说只要`(SELECT 1 FROM e2)`这个查询中有记录，那么整个`EXISTS`表达式的结果就为TRUE。
 
-##### 10.5.4.2. in 和 exists 子查询的区别
+##### in 和 exists 子查询的区别
 
-mysql 中的 in 语句是把外表和内表作 hash 连接，而 exists 语句是对外表作 loop循环，每次loop循环再对内表进行查询。exists 语句在某些条件下的执行效率比 in 语句高：
+mysql 中的 in 语句是把外表和内表作 hash 连接，而 exists 语句是对外表作 loop 循环，每次 loop 循环再对内表进行查询。exists 语句在某些条件下的执行效率比 in 语句高：
 
 1. 如果查询的两个表大小相当，那么用 in 和 exists 差别不大。
 2. 如果两个表中一个较小，一个是大表，则子查询表大的用 exists，子查询表小的用 in。
@@ -2988,24 +2988,24 @@ mysql 中的 in 语句是把外表和内表作 hash 连接，而 exists 语句�
 
 > Tips: 在实际开发中，特别是大数据量时，推荐使用 `EXISTS` 关键字
 
-### 10.6. 子查询的注意事项
+### 子查询的注意事项
 
 - 子查询语句一定要使用括号括起来，否则无法确定子查询语句什么时候结束。
 - 在`SELECT`子句中的子查询必须是标量子查询，如果子查询结果集中有多个列或者多个行，都不允许放在`SELECT`子句中，在想要得到标量子查询或者行子查询，但又不能保证子查询的结果集只有一条记录时，应该使用`LIMIT 1`语句来限制记录数量。
 - 对于`[NOT] IN/ANY/SOME/ALL`子查询来说，子查询中不允许有`LIMIT`语句，而且这类子查询中`ORDER BY`子句、`DISTINCT`语句、没有聚集函数以及`HAVING`子句的`GROUP BY`子句没有什么意义。因为子查询的结果其实就相当于一个集合，集合里的值排不排序等一点儿都不重要。
 - 不允许在一条语句中增删改某个表的记录时同时还对该表进行子查询。
 
-## 11. DCL语句使用(了解)
+## DCL语句使用(了解)
 
-### 11.1. DCL概述
+### DCL概述
 
 DCL 英文全称是 Data Control Language(数据控制语言)，用来管理数据库用户的创建和删除、控制用户的数据库访问权限。
 
 ![](images/207634615227063.png)
 
-### 11.2. 管理用户
+### 管理用户
 
-#### 11.2.1. 查询用户
+#### 查询用户
 
 mysql的用户信息保存在 `mysql.user`
 
@@ -3019,7 +3019,7 @@ select * from mysql.user;
 
 其中 Host 代表当前用户访问的主机，如果为 localhost，仅代表只能够在当前本机访问，是不可以远程访问的。User 代表的是访问该数据库的用户名。在 MySQL 中需要通过 Host 和 User 来唯一标识一个用户。
 
-#### 11.2.2. 创建用户
+#### 创建用户
 
 ```sql
 CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
@@ -3038,7 +3038,7 @@ create user 'moon'@'localhost' identified by '123456';
 create user 'zero'@'%' identified by '123456';
 ```
 
-#### 11.2.3. 修改用户密码
+#### 修改用户密码
 
 ```sql
 ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新密码';
@@ -3050,7 +3050,7 @@ ALTER USER '用户名'@'主机名' IDENTIFIED WITH mysql_native_password BY '新
 alter user 'moon'@'%' identified with mysql_native_password by '1234';
 ```
 
-#### 11.2.4. 删除用户
+#### 删除用户
 
 ```sql
 DROP USER '用户名'@'主机名';
@@ -3062,9 +3062,9 @@ DROP USER '用户名'@'主机名';
 drop user 'moon'@'localhost';
 ```
 
-### 11.3. 用户权限控制
+### 用户权限控制
 
-#### 11.3.1. 常用权限
+#### 常用权限
 
 MySQL 中定义了很多种权限，但是常用的就以下几种：
 
@@ -3081,7 +3081,7 @@ MySQL 中定义了很多种权限，但是常用的就以下几种：
 
 > 上述只是简单罗列了常见的几种权限描述，其他权限描述及含义，可以直接参考[MySQL 8.0 版本官方文档](https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html)
 
-#### 11.3.2. 查询用户权限
+#### 查询用户权限
 
 ```sql
 SHOW GRANTS FOR '用户名'@'主机名';
@@ -3094,7 +3094,7 @@ SHOW GRANTS FOR '用户名'@'主机名';
 show grants for 'zero'@'%';
 ```
 
-#### 11.3.3. 用户授权
+#### 用户授权
 
 创建用户之后，可以使用新用户进行登录，查看数据库只有系统自带的数据库，想要操作自己创建的数据库还需要root用户对新用户进行授权。语法：
 
@@ -3123,7 +3123,7 @@ grant all on *.* from 'moon'@'localhost';
 > - 多个权限之间，使用英文逗号`,`分隔
 > - 授权时，数据库名和表名均可使用`*`进行通配，代表所有
 
-#### 11.3.4. 撤销权限
+#### 撤销权限
 
 当需要限制新用户操作数据库的权限时，root 用户可以撤销已授予用户的某些权限。语法：
 
@@ -3144,9 +3144,9 @@ revoke delete on temp_db.* from 'zero'@'*';
 revoke all on temp_db.* from 'zero'@'*';
 ```
 
-## 12. 数据的约束
+## 数据的约束
 
-### 12.1. 数据约束概述
+### 数据约束概述
 
 约束（constraint），是作用于表中字段上的规则，实质就是对表中存储的数据进行限制，表在设计和创建的时候加入约束的目的就是为了保证表中的记录完整性、有效性和准确性。
 
@@ -3157,7 +3157,7 @@ revoke all on temp_db.* from 'zero'@'*';
 - 参照完整性：是指两个表的主关键字和外关键字的数据应一致，保证了表之间的数据的一致性，防止了数据丢失或无意义的数据在数据库中扩散。
 - 用户定义的完整性：不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性即是针对某个特定关系数据库的约束条件，它反映某一具体应用必须满足的语义要求。与表有关的约束：包括列约束(NOT NULL（非空约束）)和表约束(PRIMARY KEY、foreign key、check、UNIQUE) 。
 
-#### 12.1.1. 约束种类
+#### 约束种类
 
 |   约束    |                       描述                       |      关键字       |
 | -------- | ----------------------------------------------- | ---------------- |
@@ -3172,16 +3172,16 @@ revoke all on temp_db.* from 'zero'@'*';
 
 > 扩展：还有一种叫“检查约束”，但 MySQL 不支持，Oracle 支持
 
-#### 12.1.2. 约束添加时机
+#### 约束添加时机
 
 - 创建表结构的同时添加约束（推荐）
 - 创建完表结构之后添加（不推荐）。如果创建完之后再添加约束，可能会添加失败。因为已有的数据可能不符合即将要添加的约束。
 
-### 12.2. 默认值约束 (default)
+### 默认值约束 (default)
 
 默认约束，如果这个字段没有输入任何的值，则数据库使用默认的值
 
-#### 12.2.1. 定义与语法
+#### 定义与语法
 
 - 在创建表时，指定默认约束，关键字：`default`
 
@@ -3217,7 +3217,7 @@ insert into st1 values (10, '小猪', '珠海');
 insert into st1 values (10, '小猪', null);
 ```
 
-#### 12.2.2. 删除默认约束
+#### 删除默认约束
 
 删除默认约束只需要将默认值修改为`null`即可
 
@@ -3225,9 +3225,9 @@ insert into st1 values (10, '小猪', null);
 alter table 表名 modify column 字段名 数据类型(长度) default null;
 ```
 
-### 12.3. 非空约束 (not null)
+### 非空约束 (not null)
 
-#### 12.3.1. 定义非空约束
+#### 定义非空约束
 
 非空约束：约束某一列的值不能为空(`null`)，**必须有值，但可以插入空字符**。对于使用了非空约束的字段，如果用户在添加数据时没有指定值，数据库系统就会报错。
 
@@ -3261,11 +3261,11 @@ insert into s2 (id,gender) values (1,'女');
 select * from s2;
 ```
 
-#### 12.3.2. 删除非空约束
+#### 删除非空约束
 
 删除非空约束，其实就是使用`alter`关键字修改字段的约束，去掉`not null`即可
 
-#### 12.3.3. Mysql 允许 null 与 default 值
+#### Mysql 允许 null 与 default 值
 
 分为下面4种情况：
 
@@ -3274,7 +3274,7 @@ select * from s2;
 3. 不允许`null`，指定`default`值，不能指定`default`值为`null`，否则报错 `Invalid default value for xxx`
 4. 不允许`null`，不指定`default`值。这种情况，新增的时候，必须指定值。否则报错 `Field xxx doesn't have a default value`
 
-#### 12.3.4. 字段为什么建议定义为 not null
+#### 字段为什么建议定义为 not null
 
 > MySQL 官网说明:
 >
@@ -3282,9 +3282,9 @@ select * from s2;
 
 null 值会占用更多的字节，且会在程序中造成很多与预期不符的情况。
 
-### 12.4. 唯一约束 (unique)
+### 唯一约束 (unique)
 
-#### 12.4.1. 定义与语法
+#### 定义与语法
 
 唯一约束，是指所有记录中某一列的数据不允许出现重复值
 
@@ -3320,7 +3320,7 @@ insert into s3 values(3,null);
 insert into s3 values(4,null);
 ```
 
-#### 12.4.2. 删除唯一约束
+#### 删除唯一约束
 
 删除唯一约束的语法：
 
@@ -3330,14 +3330,14 @@ alter table 表名 drop index 唯一约束名;
 
 > 注：如果创建唯一约束时没有指定名称，则字段名就是唯一约束名称。
 
-#### 12.4.3. 注意事项
+#### 注意事项
 
 - 可以出现多个`null`，因为`null`是表示没有任何内容，就没有重复的说法
 - 不可以出现多个空字符，因为空字符也是有内容，所以不能同时出现多个空字符
 
-### 12.5. 主键约束 (primary key)
+### 主键约束 (primary key)
 
-#### 12.5.1. 概念
+#### 概念
 
 MySQL 主键约束是一个列或者多个列的组合，用于唯一标识表中的一条数据，方便在RDBMS中尽快的找到某一行。每一张表都最多只能允许有一个主键。
 
@@ -3354,7 +3354,7 @@ MySQL 主键约束是一个列或者多个列的组合，用于唯一标识表�
 - 主键列的值一般是由数据库或计算机生成。
 - 主键值生成后，一般不建议修改
 
-#### 12.5.2. 创建单列主键
+#### 创建单列主键
 
 创建单列主键有两种方式，一种是在定义字段的同时指定主键，一种是定义完字段之后指定主键
 
@@ -3378,7 +3378,7 @@ create table tablename(
 
 > 注：上面语法中 `constraint 主键名称` 是可以省略
 
-#### 12.5.3. 添加多列主键(联合主键）
+#### 添加多列主键(联合主键）
 
 联合主键，是由一张表中多个字段组成的。注意事项：
 
@@ -3395,7 +3395,7 @@ create table 表名(
 
 > 注：上面语法中 `constraint 主键名称` 是可以省略
 
-#### 12.5.4. 通过修改表结构添加主键
+#### 通过修改表结构添加主键
 
 主键约束不仅可以在创建表的同时创建，也可以在修改表结构时添加。
 
@@ -3403,7 +3403,7 @@ create table 表名(
 alter table 表名 add primary key(字段1, 字段2, ....);
 ```
 
-#### 12.5.5. 删除主键
+#### 删除主键
 
 一个表中不需要主键约束时，可以从表中将其删除。删除指定表格的主键语法：
 
@@ -3420,7 +3420,7 @@ alter table sort drop primary key;
 
 > Tips: 因为表只有一个主键，所以删除时不需要指定主键名
 
-#### 12.5.6. 设置主键自动增长
+#### 设置主键自动增长
 
 在 MySQL 中，当主键定义为自增长后，由数据库系统根据定义自动赋值。每增加一条记录，主键会自动以相同的步长进行增长。
 
@@ -3435,9 +3435,9 @@ CREATE TABLE sort (
 );
 ```
 
-### 12.6. 自增长字段 ( auto_increment )
+### 自增长字段 ( auto_increment )
 
-#### 12.6.1. 自增长约束
+#### 自增长约束
 
 - 创建表时，指定自增长约束的语法：
 
@@ -3463,7 +3463,7 @@ create table 表名 (
 alter table 表名 AUTO_INCREMENT = 新的起始值;
 ```
 
-#### 12.6.2. 自增长约束特点
+#### 自增长约束特点
 
 - 默认情况下，`auto_increment` 的初始值是 1，每新增一条记录，字段值自动加 1。
 - 一个表中只能有一个字段使用 `auto_increment` 约束，且该字段必须有唯一索引，以避免序号重复（即为主键或主键的一部分）。
@@ -3471,12 +3471,12 @@ alter table 表名 AUTO_INCREMENT = 新的起始值;
 - `auto_increment` 约束的字段只能是整数类型（`TINYINT`、`SMALLINT`、`INT`、`BIGINT` 等。
 - `auto_increment` 约束字段的最大值受该字段的数据类型约束，如果达到上限，`auto_increment` 就会失效。
 
-#### 12.6.3. delete 和 truncate 删除后自增列的变化
+#### delete 和 truncate 删除后自增列的变化
 
 - `delete` 数据之后自动增长从断点开始
 - `truncate` 数据之后自动增长从默认起始值开始
 
-### 12.7. 零填充
+### 零填充
 
 如果某一数值列的值不满指定的位数，可以设置在列的值前面使用零填充。在数据类型的后面使用 `zerofill` 关键字：
 
@@ -3491,9 +3491,9 @@ create table 表名 (
 
 > 注：当使用 `zerofill` 时，默认会自动加`unsigned`（无符号）属性，使用`unsigned`属性后，数值范围是原值的2倍，例如，有符号为-128~+127，无符号为0~256。
 
-### 12.8. 外键约束
+### 外键约束
 
-#### 12.8.1. 定义
+#### 定义
 
 MySQL 外键约束（FOREIGN KEY）是表的一个特殊字段，经常与主键约束一起使用。对于两个具有关联关系的表而言，相关联字段中主键所在的表就是主表（父表），外键所在的表就是从表（子表）。
 
@@ -3510,7 +3510,7 @@ MySQL 外键约束（FOREIGN KEY）是表的一个特殊字段，经常与主键
 - **优点**：由数据库自身保证数据一致性，完整性，更可靠，因为程序很难 100% 保证数据的完整性，而用外键即使在数据库服务器当机或者出现其他问题的时候，也能够最大限度的保证数据的一致性和完整性。有主外键的数据库设计可以增加 ER 图的可读性，这点在数据库设计时非常重要。外键在一定程度上说明的业务逻辑，会使设计周到具体全面。
 - **缺点**：可以用触发器或应用程序保证数据的完整性；过分强调或者说使用外键会增加开发难度，导致表过多，更改业务困难，扩展困难等问题；不用外键时数据管理简单，操作方便，性能高（导入导出等操作，在 insert, update, delete 数据的时候更快）。
 
-#### 12.8.2. 外键需遵守的规则
+#### 外键需遵守的规则
 
 定义一个外键时，需要遵守下列规则：
 
@@ -3526,7 +3526,7 @@ MySQL 外键约束（FOREIGN KEY）是表的一个特殊字段，经常与主键
 
 **注：定义外键的时候，外键的约束比较和主键完全一致才能成功关联**
 
-#### 12.8.3. 外键约束语法格式1(创建表时定义)
+#### 外键约束语法格式1(创建表时定义)
 
 在 `create table` 语句中，通过 `foreign key` 关键字来指定外键，具体的语法格式如下：
 
@@ -3555,7 +3555,7 @@ create table employee (
 )
 ```
 
-#### 12.8.4. 外键约束语法格式2(创建表后再定义)
+#### 外键约束语法格式2(创建表后再定义)
 
 外键约束也可以在修改表时添加，但是添加外键约束的前提是：从表中外键列中的数据必须与主表中主键列中的数据一致或者是没有数据。
 
@@ -3583,13 +3583,13 @@ create table if not exists emp2(
 alter table emp2 add constraint dept_id_fk foreign key(dept_id) references dept2 (deptno);
 ```
 
-#### 12.8.5. 在外键约束下的数据操作
+#### 在外键约束下的数据操作
 
 - **外键约束设计插入数据的顺序**：先插入主表、再插入副表
 - **外键约束设计更新数据的顺序**：先修改从表的外键数据，再修改主表的主键数据。
 - **外键约束设计删除数据的顺序**：先修改从表的外键数据，再修改主表的主键数据。
 
-#### 12.8.6. 删除外键约束
+#### 删除外键约束
 
 当一个表中不需要外键约束时，就需要从表中将其删除。外键一旦删除，就会解除主表和从表间的关联关系。语法：
 
@@ -3603,7 +3603,7 @@ alter table 表名 drop foreign key 外键约束名;
 alter table emp2 drop foreign key dept_id_fk;
 ```
 
-#### 12.8.7. 级联操作
+#### 级联操作
 
 在修改和删除主表的主键值时，同时更新或删除从表的外键值，称为级联操作。具体的删除/更新行为有以下几种:
 
@@ -3615,7 +3615,7 @@ alter table emp2 drop foreign key dept_id_fk;
 | `SET NULL`    | 当在父表中删除对应记录时，首先检查该记录是否有对应外键，如果有则设置子表中该外键值为null（这就要求该外键允许取null）。 |
 | `SET DEFAULT` | 父表有变更时，子表将外键列设置成一个默认的值 (Innodb不支持)                                                      |
 
-##### 12.8.7.1. CASCADE
+##### CASCADE
 
 `CASCADE` 外键级联操作(更新和删除)的语法格式：
 
@@ -3640,7 +3640,7 @@ constraint foreign key(外键名) references 主表(主键名) ON UPDATE CASCADE
 
 父表的数据删除成功了，相应子表中关联的记录也被级联删除了。
 
-##### 12.8.7.2. SET NULL
+##### SET NULL
 
 `SET NULL` 外键级联操作(更新和删除)的语法格式：
 
@@ -3661,11 +3661,11 @@ constraint foreign key(外键名) references 主表(主键名) on update set nul
 
 以上就是 `SET NULL` 这种删除/更新行为的级联效果。
 
-## 13. MySQL 扩展内容
+## MySQL 扩展内容
 
-### 13.1. 系统变量
+### 系统变量
 
-#### 13.1.1. 简介
+#### 简介
 
 系统变量又分为**全局变量**与**会话变量**
 
@@ -3676,7 +3676,7 @@ constraint foreign key(外键名) references 主表(主键名) on update set nul
 
 有些系统变量的值是可以利用语句来动态进行更改的，但是有些系统变量的值却是只读的，对于那些可以更改的系统变量，可以利用`set`语句进行更改。
 
-#### 13.1.2. 系统变量-全局变量
+#### 系统变量-全局变量
 
 由系统提供，在整个数据库有效。
 
@@ -3698,7 +3698,7 @@ set global sort_buffer_size = 40000;
 set @@global.sort_buffer_size = 40000;
 ```
 
-#### 13.1.3. 系统变量-会话变量
+#### 系统变量-会话变量
 
 由系统提供，当前会话（连接）有效
 
@@ -3720,11 +3720,11 @@ set session sort_buffer_size = 50000;
 set @@session.sort_buffer_size = 50000;
 ```
 
-### 13.2. MySQL 的 pymysql 操作
+### MySQL 的 pymysql 操作
 
 PyMySQL 是一个纯 Python 实现的 MySQL 客户端库，支持兼容 Python 3，用于代替 MySQLdb。
 
-#### 13.2.1. 查询示例
+#### 查询示例
 
 ```python
 import pymysql
@@ -3752,7 +3752,7 @@ cursor.close()
 conn.close()
 ```
 
-#### 13.2.2. 增删改示例
+#### 增删改示例
 
 ```python
 import pymysql
@@ -3784,26 +3784,26 @@ cursor.close()
 conn.close()
 ```
 
-### 13.3. MySQL 数据库的伪表 DUAL
+### MySQL 数据库的伪表 DUAL
 
 与 Oracle 数据库的伪表 DUAL 一样的用法
 
-### 13.4. 在 Unix 和 MySQL 时间戳之间进行转换
+### 在 Unix 和 MySQL 时间戳之间进行转换
 
 - `UNIX_TIMESTAMP` 是从 MySQL 时间戳转换为 Unix 时间戳的命令
 - `FROM_UNIXTIME` 是从 Unix 时间戳转换为 MySQL 时间戳的命令
 
-### 13.5. MySQL_fetch_array 和 MySQL_fetch_object 的区别
+### MySQL_fetch_array 和 MySQL_fetch_object 的区别
 
 - `MySQL_fetch_array` – 将结果行作为关联数组或来自数据库的常规数组返回。
 - `MySQL_fetch_object` – 从数据库返回结果行作为对象。
 
-### 13.6. 如何存储 IP 地址（待整理）
+### 如何存储 IP 地址（待整理）
 
 1. 使用字符串。此方式无法使用范围查询。
 2. 使用无符号整型。只占用 4 个字节的空间，并且此方式可以支持范围查询，传统的 IP 地址使用 `INET_ATON()` 和 `INET_NTOA()`；ipv6 使用 `INET6_ATON()` 和 `INET6_NTOA()`。
 
-### 13.7. SQL 注入
+### SQL 注入
 
 SQL 注入产生的原因：程序开发过程中不注意规范书写 sql 语句和对特殊字符进行过滤，导致客户端可以通过全局变量 POST 和 GET 提交一些 sql 语句正常执行。
 
@@ -3815,9 +3815,9 @@ SQL 注入产生的原因：程序开发过程中不注意规范书写 sql 语�
 - 执行 sql 语句时使用 `addslashes()` 进行 sql 语句转换。
 - 提高数据库表和字段的命名技巧，对一些重要的字段根据程序的特点命名，不易被攻击者猜中。
 
-### 13.8. MySQL 表结构导出 Excel
+### MySQL 表结构导出 Excel
 
-#### 13.8.1. 方式一：通过 SQL 输出表结构
+#### 方式一：通过 SQL 输出表结构
 
 在写设计文档时，经常需要把 MySQL 中的表结构按要求导出。但 MySQL 客户端默认的字段不满足需求时，可通过 MySQL 的 `information_schema.COLUMNS` 表，查询并按需求导出字段。
 
@@ -3855,7 +3855,7 @@ WHERE
 
 如果对表结构输出的字段没有特殊要求，可以直接使用 `DESC table_name` 命令输出，按上面一样导出到excel即可。
 
-#### 13.8.2. 方式二：具体导出 excel 格式功能的图形化客户端
+#### 方式二：具体导出 excel 格式功能的图形化客户端
 
 SQLyog 支持将表结构导出成 HTML 的样式，因此可以直接使用此导出表结构即可。
 

@@ -1,4 +1,4 @@
-## 1. Hmily 概述（TCC 分布式事务解决方案）
+## Hmily 概述（TCC 分布式事务解决方案）
 
 Hmily 是一款高性能，零侵入，金融级分布式事务解决方案，目前主要提供柔性事务的支持，包含 `TCC`, `TAC`(自动生成回滚SQL) 方案，未来还会支持 `XA` 等方案。
 
@@ -7,7 +7,7 @@ Hmily 是一款高性能，零侵入，金融级分布式事务解决方案，�
 > - Hmily 官方仓库：https://github.com/yu199195/hmily
 > - Hmily 官方文档：https://dromara.org/zh/projects/hmily/overview/
 
-### 1.1. 功能
+### 功能
 
 Hmily 是一个高性能分布式事务 tcc 开源框架。基于java语言来开发（JDK1.8），支持多种 rpc 框架进行分布式事务。它目前支持以下特性：
 
@@ -23,13 +23,13 @@ Hmily 利用 AOP 对参与分布式事务的本地方法与远程方法进行拦
 
 Hmily 不需要事务协调服务，但需要提供一个数据库(mysql/mongodb/zookeeper/redis/file)来进行日志存储。Hmily 实现的 TCC 服务与普通的服务一样，只需要暴露一个接口，也就是它的 Try 业务。Confirm/Cancel 业务逻辑，只是因为全局事务提交/回滚的需要才提供的，因此 Confirm/Cancel 业务只需要被 Hmily 事务框架发现即可，不需要被调用它的其他业务服务所感知。
 
-### 1.2. 使用必要前提
+### 使用必要前提
 
 - 必须使用 `JDK8+`
 - TCC 模式下，用户必须要使用一款 `RPC` 框架, 比如 : `Dubbo`, `SpringCloud`,`Motan`
 - TAC 模式下，用户必须使用关系型数据库, 比如：`mysql`, `oracle`, `sqlsever`
 
-### 1.3. TCC 模式
+### TCC 模式
 
 TCC模式是经典的柔性事务解决方案，需要使用者提供 `try`, `confirm`, `cancel` 三个方法， 真正的情况下会执行 `try`, `confirm`, 异常情况下会执行`try`, `cancel`。 `confirm` 方法并不是 必须的，完全依赖于用户的`try` 方法如何去写。 `confirm`, `cancel` 2个方法也需要用户去保证幂等性, 这会附加一定的工作量，由于在`try`方法完成之后，数据已经提交了，因此它并不保证数据的隔离性。但是这样，它的 性能相对较高，一个好的系统设计，是非常适用适用`TCC`模式。下面是`Hmily` 框架的 `TCC` 流程图
 
@@ -41,7 +41,7 @@ TCC模式是经典的柔性事务解决方案，需要使用者提供 `try`, `co
 - 在`confirm`, `cancel` 阶段，如果有任何异常会继续执行相应的阶段，如果超过最大重试次数还未成功，将不再进行重试，需要人工介入。
 - 在服务集群的情况下，`confirm`, `cancel` 2个方法用户去尽量保证其幂等性。
 
-### 1.4. TAC 模式
+### TAC 模式
 
 `TAC`模式其实是`TCC`模式的变种,顾名思义 `TAC` 模式被称为自动回滚,相比于 `TCC`模式，用户完全不用关心 回滚方法如何去写，减少了用户的开发量，对用户完全透明。
 
@@ -52,26 +52,26 @@ TCC模式是经典的柔性事务解决方案，需要使用者提供 `try`, `co
 - `TAC` 模式只适合于关系型数据库。
 - `TAC` 模式会拦截用户的 SQL 语句生成反向回滚 SQL，SQL 的兼容度也会是一大考验。
 
-## 2. Hmily 快速入门（Spring-Cloud 版本）
+## Hmily 快速入门（Spring-Cloud 版本）
 
 > 注：项目使用不同的分布式框架，其引入的依赖与配置有不一样，此示例是使用 Spring Cloud 框架。可参考 [官方文档 - SpringCloud用户指南](https://dromara.org/zh/projects/hmily/user-springcloud/)
 
-### 2.1. 案例业务说明
+### 案例业务说明
 
 本案例通过hmily框架实现 TCC 分布式事务，模拟两个账户的转账交易过程。两个账户分别在不同的银行(张三在bank1、李四在bank2)，bank1、bank2是两个微服务。对于交易过程中的每个操作，要么都成功，要么都失败。
  
 ![](images/414135215235948.jpg)
 
-### 2.2. 环境搭建
+### 环境搭建
 
-#### 2.2.1. 环境要求
+#### 环境要求
 
 - 数据库：MySQL 5.7.25+
 - JDK： jdk1.8+
 - 微服务：spring-boot-2.1.3、spring-cloud-Greenwich.RELEASE
 - hmily：hmily-springcloud.2.0.4-RELEASE
 
-#### 2.2.2. 数据库
+#### 数据库
 
 执行以下脚本，创建测试数据库、表与测试数据
 
@@ -112,9 +112,9 @@ INSERT INTO `account_info` VALUES (2, '李四', '2', NULL, 0);
 
 > <font color=purple>**Hmily 用来存储日志的数据表由它自动创建，在使用的过程中，会在项目的数据库中创建相应的表**</font>
 
-### 2.3. 创建 Maven 示例工程
+### 创建 Maven 示例工程
 
-#### 2.3.1. 聚合工程
+#### 聚合工程
 
 - 创建 pom 聚合工程 tcc-hmily-demo，进行依赖管理
 
@@ -231,7 +231,7 @@ INSERT INTO `account_info` VALUES (2, '李四', '2', NULL, 0);
 </build>
 ```
 
-#### 2.3.2. 服务注册中心
+#### 服务注册中心
 
 - 创建 hmily-demo-discover-server 工程，作为服务注册中心，引入相关依赖
 
@@ -296,7 +296,7 @@ public class DiscoveryServer {
 }
 ```
 
-#### 2.3.3. 创建微服务
+#### 创建微服务
 
 - 创建 hmily-demo-bank1 工程，负责张三账户操作；创建 hmily-demo-bank2 工程，负责李四账户操作。同样引入以下依赖：
 
@@ -354,13 +354,13 @@ public class DiscoveryServer {
 </dependencies>
 ```
 
-### 2.4. 功能实现
+### 功能实现
 
 此部分两个微服务工程的具体实现
 
-#### 2.4.1. hmily-demo-bank1 转出操作工程
+#### hmily-demo-bank1 转出操作工程
 
-##### 2.4.1.1. 项目配置文件
+##### 项目配置文件
 
 - 项目配置 application.yml，*重点关注 hmily 部分的配置*
 
@@ -412,7 +412,7 @@ ribbon:
   MaxAutoRetries: 1     # 对当前实例的重试次数 default 0
 ```
 
-##### 2.4.1.2. 持久层相关接口与实体类
+##### 持久层相关接口与实体类
 
 - 创建数据库表实体
 
@@ -442,7 +442,7 @@ public interface AccountInfoDao {
 }
 ```
 
-##### 2.4.1.3. feign 远程调用接口
+##### feign 远程调用接口
 
 - 创建 feign 远程调用接口 `Bank2Client`，使用分布式事务的接口需要标识 `@Hmily` 注解
 
@@ -457,7 +457,7 @@ public interface Bank2Client {
 }
 ```
 
-##### 2.4.1.4. Hmily 配置类
+##### Hmily 配置类
 
 - 创建 Hmily 配置类 `HmilyConfig`，创建 `HmilyTransactionBootstrap` 实例，设置配置文件中相关内容
 
@@ -487,7 +487,7 @@ public class HmilyConfig {
 }
 ```
 
-##### 2.4.1.5. 付款业务的 try、confirm、cancel 各个阶段实现
+##### 付款业务的 try、confirm、cancel 各个阶段实现
 
 - 创建业务接口，分别实现转账业务功能 `try` 方法、成功提交 `confirm` 方法、失败回滚 `cancel` 方法
 
@@ -540,7 +540,7 @@ public class AccountInfoTccServiceImpl implements AccountInfoTccService {
 
 > <font color=red>**注意：Try、Confirm、Cancel 的方法参数必须保持一致。**</font>
 
-##### 2.4.1.6. 请求控制类与启动类
+##### 请求控制类与启动类
 
 - 创建 bank1 的请求控制类，调用转账业务接口
 
@@ -575,9 +575,9 @@ public class Bank1HmilyServer {
 }
 ```
 
-#### 2.4.2. hmily-demo-bank2 转入操作工程
+#### hmily-demo-bank2 转入操作工程
 
-##### 2.4.2.1. 项目配置文件
+##### 项目配置文件
 
 - 项目配置 application.yml，*重点关注 hmily 部分的配置*
 
@@ -622,15 +622,15 @@ org:
         password: 123456
 ```
 
-##### 2.4.2.2. 持久层相关接口与实体类
+##### 持久层相关接口与实体类
 
 - 创建数据库表实体与数据库持久接口。*与 hmily-demo-bank1 工程一样*
 
-##### 2.4.2.3. Hmily 配置类
+##### Hmily 配置类
 
 - 创建 Hmily 配置类 `HmilyConfig`，创建 `HmilyTransactionBootstrap` 实例，设置配置文件中相关内容。*与 hmily-demo-bank1 工程一样*
 
-##### 2.4.2.4. 收款业务实现
+##### 收款业务实现
 
 - 创建业务接口，分别实现转账业务功能 `try` 方法、成功提交 `confirm` 方法、失败回滚 `cancel` 方法
 
@@ -685,7 +685,7 @@ public class AccountInfoTccServiceImpl implements AccountInfoTccService {
 
 > <font color=red>**注意：这里的业务方法加入 `@Transactional` 注解是为了解决本地更新数据后可能会出现的异常，让本地事务回滚，因为 hmily 只会回滚远程调用服务时出现的异常**</font>
 
-##### 2.4.2.5. 请求控制类与启动类
+##### 请求控制类与启动类
 
 - 创建 bank2 的请求控制类，调用业务接口
 
@@ -717,13 +717,13 @@ public class Bank2HmilyServer {
 }
 ```
 
-### 2.5. 功能测试场景
+### 功能测试场景
 
 - bank1与bank2都执行成功
 - bank1执行成功，bank2出现异常，此时bank1回滚
 
-## 3. 其他
+## 其他
 
-### 3.1. 与 feign 框架冲突的问题
+### 与 feign 框架冲突的问题
 
 这个问题在万信金融项目实战中发现，在项目中使用了 Hmily 保证分布式事务的一致性，但其他不需要使用 Hmily 的 Feign 接口调用时会报 NullPointerException，具体问题与解决方案详见 [《第05章 用户开户》笔记](/项目资料/万信金融/05-用户开户)

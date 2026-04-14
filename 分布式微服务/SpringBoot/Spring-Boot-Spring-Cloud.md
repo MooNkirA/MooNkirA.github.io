@@ -1,8 +1,8 @@
 # Spring Boot 整合 Spring Cloud
 
-## 1. 整合示例
+## 整合示例
 
-### 1.1. 创建Maven父工程（pom）
+### 创建Maven父工程（pom）
 
 - 采用Maven多Module的形式。创建Maven工程，在主Maven工和的pom文件引入Spring Boot的版本（根据需求定版本），Spring cloud版本（根据需求定版本），并可以指定一些公共的依赖，还有一些项目的公共属性（如项目的编码）
 - 其余的Module工程的pom文件继承主Maven工程，拥有父工程的公共的依赖和配置
@@ -108,11 +108,11 @@
 </project>
 ```
 
-### 1.2. 整合开发
+### 整合开发
 
 更多配置与开发详见 spring cloud 示例项目 https://github.com/MooNkirA/spring-cloud-note
 
-#### 1.2.1. RestTemplate 对象
+#### RestTemplate 对象
 
 从Spring3.0开始，Spring为创建Rest API提供了良好的支持。借助 RestTemplate，Spring应用能够方便地使用REST资源
 

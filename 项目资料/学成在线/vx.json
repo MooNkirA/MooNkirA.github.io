@@ -5,7 +5,7 @@
             "attachment_folder": "",
             "created_time": "2019-04-06T15:45:56Z",
             "id": "33",
-            "modified_time": "2023-11-09T14:10:01Z",
+            "modified_time": "2026-04-11T11:13:18Z",
             "name": "Day01-CMS接口开发.md",
             "signature": "63442604694974",
             "tags": [
@@ -15,7 +15,7 @@
             "attachment_folder": "",
             "created_time": "2019-05-15T07:00:31Z",
             "id": "34",
-            "modified_time": "2023-11-09T14:05:24Z",
+            "modified_time": "2026-04-11T11:13:17Z",
             "name": "Day02-CMS前端开发.md",
             "signature": "49556975427006",
             "tags": [
@@ -25,7 +25,7 @@
             "attachment_folder": "",
             "created_time": "2019-05-16T07:02:51Z",
             "id": "35",
-            "modified_time": "2023-11-09T14:07:21Z",
+            "modified_time": "2026-04-11T11:13:16Z",
             "name": "Day03-CMS页面管理开发.md",
             "signature": "8028936641982",
             "tags": [
@@ -35,7 +35,7 @@
             "attachment_folder": "",
             "created_time": "2019-05-20T02:57:45Z",
             "id": "36",
-            "modified_time": "2023-11-09T07:20:01Z",
+            "modified_time": "2026-04-11T11:13:15Z",
             "name": "Day04-页面静态化-freemarker.md",
             "signature": "85523031563710",
             "tags": [
@@ -45,7 +45,7 @@
             "attachment_folder": "",
             "created_time": "2019-05-26T05:30:14Z",
             "id": "37",
-            "modified_time": "2019-05-26T05:30:14Z",
+            "modified_time": "2026-04-11T11:13:11Z",
             "name": "Day05-消息中间件-RabbitMQ.md",
             "signature": "110240568352190",
             "tags": [
@@ -55,7 +55,7 @@
             "attachment_folder": "",
             "created_time": "2019-05-29T08:19:12Z",
             "id": "38",
-            "modified_time": "2019-05-29T08:19:12Z",
+            "modified_time": "2026-04-11T11:13:07Z",
             "name": "Day06-页面发布-课程管理（RabbitMQ实践）.md",
             "signature": "112954987683262",
             "tags": [
@@ -65,7 +65,7 @@
             "attachment_folder": "",
             "created_time": "2019-07-14T01:42:47Z",
             "id": "39",
-            "modified_time": "2019-07-14T01:42:47Z",
+            "modified_time": "2026-04-11T11:13:05Z",
             "name": "Day07-课程管理功能模块.md",
             "signature": "73166410653118",
             "tags": [
@@ -75,7 +75,7 @@
             "attachment_folder": "",
             "created_time": "2019-08-02T08:45:11Z",
             "id": "40",
-            "modified_time": "2019-08-02T08:45:11Z",
+            "modified_time": "2026-04-11T11:13:02Z",
             "name": "Day08-课程图片管理&分布式文件系统.md",
             "signature": "42496049192382",
             "tags": [
@@ -85,7 +85,7 @@
             "attachment_folder": "",
             "created_time": "2019-08-06T10:45:07Z",
             "id": "41",
-            "modified_time": "2019-08-06T10:45:07Z",
+            "modified_time": "2026-04-11T11:12:58Z",
             "name": "Day09-课程预览&Eureka、Feign、Ribbon使用.md",
             "signature": "123280089062846",
             "tags": [
@@ -95,7 +95,7 @@
             "attachment_folder": "",
             "created_time": "2019-11-03T10:28:55Z",
             "id": "45",
-            "modified_time": "2019-11-03T10:28:55Z",
+            "modified_time": "2026-04-11T11:12:54Z",
             "name": "Day11-搜索服务.md",
             "signature": "75906599787966",
             "tags": [
@@ -105,7 +105,7 @@
             "attachment_folder": "",
             "created_time": "2019-08-19T03:08:48Z",
             "id": "42",
-            "modified_time": "2022-01-31T03:12:17Z",
+            "modified_time": "2026-04-11T11:12:48Z",
             "name": "Day16-SpringSecurityOauth2认证方案&JWT研究.md",
             "signature": "102269109050814",
             "tags": [
@@ -115,7 +115,7 @@
             "attachment_folder": "",
             "created_time": "2019-08-19T07:58:49Z",
             "id": "43",
-            "modified_time": "2019-08-19T07:58:49Z",
+            "modified_time": "2026-04-11T11:12:47Z",
             "name": "Day17-用户认证&Zuul网关.md",
             "signature": "134528608411070",
             "tags": [
@@ -135,7 +135,7 @@
             "attachment_folder": "",
             "created_time": "2022-02-12T14:16:38Z",
             "id": "324",
-            "modified_time": "2022-09-11T08:53:33Z",
+            "modified_time": "2026-04-11T11:12:45Z",
             "name": "README.md",
             "signature": "79316805730630",
             "tags": [

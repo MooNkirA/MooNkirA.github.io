@@ -1,12 +1,10 @@
-# Day18 CORS跨域请求解决方案&结算页&保存订单
+## 商品详细页跨域请求
 
-## 1. 商品详细页跨域请求
-
-### 1.1. 需求分析
+### 需求分析
 
 从商品详细页点击“加入购物车”按钮，将当前商品加入购物车，并跳转到购物车页面。
 
-### 1.2. JS跨域请求
+### JS跨域请求
 
 js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。<font color="red">**只要协议、域名、端口有任何一个不同，都被当作是不同的域。**</font>
 
@@ -22,7 +20,7 @@ http://item.pinyougou.com:8080 --> http://item.pinyougou.com:8081 (跨域请求)
    1. CORS (跨域资源共享) html5
    2. JSONP
 
-### 1.3. 跨域调用测试
+### 跨域调用测试
 
 修改pinyougou-item-web的itemController.js，引入$http，修改addToCart方法：
 
@@ -52,9 +50,9 @@ $scope.addToCart = function () {
 
 ![跨域请求](images/20190318155023892_27611.png)
 
-### 1.4. 跨域解决方案CORS
+### 跨域解决方案CORS
 
-#### 1.4.1. CORS请求原理
+#### CORS请求原理
 
 CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin Resource Sharing）。CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。
 
@@ -70,7 +68,7 @@ Preflight Request(预检请求)：
 
 ![CORS接口流程3](images/20190318155351195_22576.jpg)
 
-#### 1.4.2. 配置购物车工程接收跨域请求
+#### 配置购物车工程接收跨域请求
 
 - 修改pinyougou-cart-web 的CartController.java的addCart方法，添加允许跨域的头部信息
 
@@ -113,7 +111,7 @@ $scope.addToCart = function () {
 
 测试后，可以实现跨域。CORS请求默认不发送Cookie和HTTP认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定`Access-Control-Allow-Credentials`字段。另一方面，开发者必须在AJAX请求中打开`withCredentials`属性。否则，即使服务器同意发送Cookie，浏览器也不会发送。或者，服务器要求设置Cookie，浏览器也不会处理
 
-### 1.5. SpringMVC跨域注解
+### SpringMVC跨域注解
 
 SpringMVC在**4.2或以上版本**，可以使用注解实现跨域，只需要在需要跨域的方法上添加注解`@CrossOrigin`即可(*在类上使用此注解，则类中所有方法都实现跨域*)：
 
@@ -126,18 +124,18 @@ public boolean addCart(Long itemId, Integer num) {
 }
 ```
 
-## 2. 结算页【收件人地址选择】
+## 结算页【收件人地址选择】
 
-### 2.1. 需求与数据库分析
+### 需求与数据库分析
 
 - 需求描述：在结算页实现收件人地址选择功能
 - 数据库结构分析：tb_address为地址表
 
 ![tb_address表字段](images/20190318162759764_29183.jpg)
 
-### 2.2. 初始化
+### 初始化
 
-#### 2.2.1. 创建与配置
+#### 创建与配置
 
 1. pinyougou-user-interface创建AddressService服务接口
 2. pinyougou-user-service创建AddressServiceImpl服务接口实现类
@@ -154,13 +152,13 @@ public boolean addCart(Long itemId, Integer num) {
 
 4. pinyougou-cart-web创建AddressController控制器
 
-#### 2.2.2. 拷贝页面资源
+#### 拷贝页面资源
 
 拷贝【`资料/order/getOrderInfo.html`】至pinyougou-cart-web的`webapp/order`目录下面
 
-### 2.3. 实现查询用户地址列表
+### 实现查询用户地址列表
 
-#### 2.3.1. 后端代码
+#### 后端代码
 
 - 修改用户服务接口pinyougou-user-interface的AddressService.java与pinyougou-user-service的AddressServiceImpl.java，增加实现根据用户编号查询地址的方法
 
@@ -229,7 +227,7 @@ public class AddressController {
 }
 ```
 
-#### 2.3.2. 前端代码
+#### 前端代码
 
 - 跳转到结算确认页面。修改pinyougou-cart-web的cart.html(154行)
 
@@ -308,7 +306,7 @@ app.controller('orderController', function ($scope, $controller, baseService) {
 </li>
 ```
 
-### 2.4. 地址选择
+### 地址选择
 
 - orderController.js增加选择地址的方法
 
@@ -350,7 +348,7 @@ $scope.isSelectedAddress = item => {
 </div>
 ```
 
-### 2.5. 默认地址显示
+### 默认地址显示
 
 修改cartController.js的findUserAddress方法，设置默认地址
 
@@ -374,19 +372,19 @@ $scope.findUserAddress = () => {
 };
 ```
 
-### 2.6. (！待实现)收件人地址增加、修改与删除
+### (！待实现)收件人地址增加、修改与删除
 
 > TODO: 待实现
 
-## 3. 结算页【支付方式选择】
+## 结算页【支付方式选择】
 
-### 3.1. 需求分析
+### 需求分析
 
 实现支付方式的选择，品优购支持两种支付方式：微信支付和货到付款
 
-### 3.2. 支付方式选择
+### 支付方式选择
 
-#### 3.2.1. 前端控制层
+#### 前端控制层
 
 修改orderController.js，定义order对象，用于封装订单的数据。初始化支付方式的属性，支付类型数据字典：1、在线支付，2、货到付款
 
@@ -399,7 +397,7 @@ $scope.selectPayType = type => {
 };
 ```
 
-#### 3.2.2. 前端页面
+#### 前端页面
 
 修改getOrderInfo.html(166行)，绑定点击事件
 
@@ -416,13 +414,13 @@ $scope.selectPayType = type => {
 </ul>
 ```
 
-## 4. 结算页【商品清单与金额显示】
+## 结算页【商品清单与金额显示】
 
-### 4.1. 需求分析
+### 需求分析
 
 显示购物车中的商品清单以及合计数量、金额
 
-### 4.2. 显示商品清单
+### 显示商品清单
 
 - 在getOrderInfo.html页面上初始化调用购物车控制层findCart方法
 
@@ -462,7 +460,7 @@ $scope.selectPayType = type => {
 </div>
 ```
 
-### 4.3. 显示合计金额
+### 显示合计金额
 
 修改 getOrderInfo.html(238行、252行)
 
@@ -475,15 +473,15 @@ $scope.selectPayType = type => {
 <div class="fc-price">应付金额:　<span class="price">¥{{ totalEntity.totalMoney.toFixed(2) }}</span></div>
 ```
 
-## 5. 保存订单【搭建订单服务】
+## 保存订单【搭建订单服务】
 
-### 5.1. 需求分析
+### 需求分析
 
-#### 5.1.1. 需求描述
+#### 需求描述
 
 点击订单结算页的提交订单 ，将购物车保存到订单表和订单明细表中，并将购物车数据清除
 
-#### 5.1.2. 数据库结构分析
+#### 数据库结构分析
 
 - tb_order订单主表
 
@@ -493,15 +491,15 @@ $scope.selectPayType = type => {
 
 ![tb_order_item订单明细表结构](images/20190319091927661_17585.jpg)
 
-### 5.2. 订单服务项目搭建与相关配置
+### 订单服务项目搭建与相关配置
 
-#### 5.2.1. 搭建框架
+#### 搭建框架
 
 - 创建pinyougou-order聚合模块（pom类型）
     - 创建pinyougou-order-interface子模块（jar类型）
     - 创建pinyougou-order-service子模块（war类型）
 
-#### 5.2.2. 项目配置
+#### 项目配置
 
 - pinyougou-order的pom.xml，配置tomcat插件
 
@@ -639,7 +637,7 @@ $scope.selectPayType = type => {
 
 - 创建pinyougou-order-service的log4j.properties文件
 
-#### 5.2.3. 创建基础的接口与现实类
+#### 创建基础的接口与现实类
 
 - 创建pinyougou-order-interface的OrderService服务接口
 - 创建pinyougou-order-service的OrderServiceImpl服务接口实现类，配置注解由spring容器管理此bean和开启事务注解
@@ -669,7 +667,7 @@ public class OrderController {
 }
 ```
 
-#### 5.2.4. 分布式ID生成器
+#### 分布式ID生成器
 
 生成分布式ID，采用开源的twitter(非官方中文惯称：推特.是国外的一个网站，是一个社交网络及微博客服务)的snowflake算法。
 
@@ -688,9 +686,9 @@ public class OrderController {
 </bean>
 ```
 
-### 5.3. 保存订单-后端部分
+### 保存订单-后端部分
 
-#### 5.3.1. 服务实现层（pinyougou-order）
+#### 服务实现层（pinyougou-order）
 
 修改pinyougou-order-interface的OrderService.java与pinyougou-order-service的OrderServiceImpl.java。实现保存订单的方法
 
@@ -795,7 +793,7 @@ public class OrderServiceImpl implements OrderService {
 }
 ```
 
-#### 5.3.2. 控制层（pinyougou-cart-web）
+#### 控制层（pinyougou-cart-web）
 
 pinyougou-cart-web的OrderController.java，创建保存订单的方法
 
@@ -826,9 +824,9 @@ public boolean saveOrder(@RequestBody Order order,
 }
 ```
 
-### 5.4. 保存订单-前端部分
+### 保存订单-前端部分
 
-#### 5.4.1. 控制层
+#### 控制层
 
 修改pinyougou-cart-web的orderController.js，定义保存订单的方法
 
@@ -860,7 +858,7 @@ $scope.saveOrder = () => {
 };
 ```
 
-#### 5.4.2. 前端页面
+#### 前端页面
 
 修改getOrderInfo.html(247行)，绑定点击事件
 

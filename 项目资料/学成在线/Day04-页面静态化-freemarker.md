@@ -1,4 +1,4 @@
-## 1. 页面静态化需求
+## 页面静态化需求
 
 1. 为什么要进行页面管理？
     - 本项目cms系统的功能就是根据运营需要，对门户等子系统的部分页面进行管理，从而实现快速根据用户需求修改页面内容并上线的需求
@@ -18,13 +18,13 @@
         4. 将静态化生成的html页面存放文件系统中
         5. 将存放在文件系统的html文件发布到服务器
 
-## 2. FreeMarker 模版引擎
-### 2.1. FreeMarker 介绍
+## FreeMarker 模版引擎
+### FreeMarker 介绍
 
 详细内容可参考“学成在线-freemarker.pdf”
 
-### 2.2. FreeMarker 快速入门
-#### 2.2.1. 创建测试工程
+### FreeMarker 快速入门
+#### 创建测试工程
 
 创建一个 freemarker 的测试工程专门用于freemarker的功能测试与模板的测试，配置pom.xml文件依赖
 
@@ -74,7 +74,7 @@
 </project>
 ```
 
-#### 2.2.2. 配置文件
+#### 配置文件
 
 配置application.yml 和 logback-spring.xml，从cms工程拷贝这两个文件进行更改，logback-spring.xml无需更改，application.yml内容如下：
 
@@ -90,7 +90,7 @@ spring:
       template_update_delay: 0  # 检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试
 ```
 
-#### 2.2.3. 创建模型类
+#### 创建模型类
 
 在freemarker的测试工程下创建模型类型用于测试
 
@@ -107,7 +107,7 @@ public class Student {
 }
 ```
 
-#### 2.2.4. 创建模板
+#### 创建模板
 
 - 在 src/main/resources下创建templates，此目录为freemarker的默认模板存放目录
 - 在templates下创建模板文件test1.ftl，模板中的${name}最终会被freemarker替换成具体的数据
@@ -125,7 +125,7 @@ Hello ${name}!
 </html>
 ```
 
-#### 2.2.5. 创建controller
+#### 创建controller
 
 创建Controller类，向Map中添加name，最后返回模板文件
 
@@ -154,7 +154,7 @@ public class FreemarkerController {
 }
 ```
 
-#### 2.2.6. 创建启动类
+#### 创建启动类
 
 ```java
 @SpringBootApplication
@@ -171,18 +171,18 @@ public class FreemarkerTestApplication {
 }
 ```
 
-#### 2.2.7. 测试
+#### 测试
 
 - 请求：http://localhost:8088/freemarker/test1
 - 屏幕显示： Hello 月の哀傷!
 
-### 2.3. FreeMarker 基础
+### FreeMarker 基础
 
 详细内容可参考“学成在线-freemarker.pdf”
 
 
-## 3. GridFS 持久化存储文件的模块
-### 3.1. GridFS介绍
+## GridFS 持久化存储文件的模块
+### GridFS介绍
 
 - GridFS是MongoDB提供的用于持久化存储文件的模块，CMS使用MongoDB存储数据，使用GridFS可以快速集成开发。
 - 工作原理：
@@ -190,8 +190,8 @@ public class FreemarkerTestApplication {
     - 从GridFS中读取文件要对文件的各块进行组装、合并。
 - 详细参考：https://docs.mongodb.com/manual/core/gridfs/
 
-### 3.2. GridFS 存取文件测试
-#### 3.2.1. 存储文件
+### GridFS 存取文件测试
+#### 存储文件
 
 在xc-service-manage-cms工程中，创建GridFsTest类，向测试程序注入GridFsTemplate，测试存储文件。
 
@@ -233,7 +233,7 @@ public class GridFsTest {
     - 此文件id是fs.files集合中的主键。
     - 可以通过文件id查询fs.chunks表中的记录，得到文件的内容。
 
-#### 3.2.2. 读取文件
+#### 读取文件
 
 1. 在config包中定义Mongodb的配置类，GridFSBucket用于打开下载流对象，配置如下
 
@@ -285,7 +285,7 @@ public void queryFile() throws IOException {
 }
 ```
 
-#### 3.2.3. 删除文件
+#### 删除文件
 
 ```java
 /**
@@ -298,8 +298,8 @@ public void testDelete() {
 }
 ```
 
-## 4. 页面静态化
-### 4.1. 页面静态化流程
+## 页面静态化
+### 页面静态化流程
 
 通过上边对FreeMarker的研究我们得出：**模板+数据模型=输出**，页面静态化需要准备数据模型和模板，先知道数据模型的结构才可以编写模板，因为在模板中要引用数据模型中的数据，本节将系统讲解CMS页面数据模型获取、模板管理及静态化的过程。
 
@@ -318,9 +318,9 @@ public void testDelete() {
 
 ![页面静态化流程](images/20190520112521775_582.png)
 
-### 4.2. 数据模型
-#### 4.2.1. 轮播图DataUrl接口
-##### 4.2.1.1. 需求分析
+### 数据模型
+#### 轮播图DataUrl接口
+##### 需求分析
 
 - CMS中有轮播图管理、精品课程推荐的功能，以轮播图管理为例说明：轮播图管理是通过可视化的操作界面由管理员指定轮播图图片地址，最后将轮播图图片地址保存在cms_config集合中，下边是轮播图数据模型
 
@@ -352,7 +352,7 @@ public void testDelete() {
 - 针对首页的轮播图信息、精品推荐等信息的获取统一提供一个Url供静态化程序调用，这样我们就知道了轮播图页面、精品课程推荐页面的DataUrl，管理在页面配置中将此Url配置在页面信息中。
 - 本小节开发一个查询轮播图、精品推荐信息的接口，此接口供静态化程序调用获取数据模型。
 
-##### 4.2.1.2. 接口定义
+##### 接口定义
 
 轮播图信息、精品推荐等信息存储在MongoDB的cms_config集合中
 
@@ -400,7 +400,7 @@ public interface CmsConfigControllerApi {
 }
 ```
 
-##### 4.2.1.3. Dao 层
+##### Dao 层
 
 定义CmsConfig的dao接口
 
@@ -412,7 +412,7 @@ public interface CmsConfigRepository extends MongoRepository<CmsConfig, String> 
 }
 ```
 
-##### 4.2.1.4. Service 层
+##### Service 层
 
 ~~创建CmsConfigService类，创建根据id查询CmsConfig信息~~
 
@@ -445,7 +445,7 @@ public class PageService {
 }
 ```
 
-##### 4.2.1.5. Controller 层
+##### Controller 层
 
 ```java
 /**
@@ -473,11 +473,11 @@ public class CmsConfigController implements CmsConfigControllerApi {
 }
 ```
 
-##### 4.2.1.6. 测试
+##### 测试
 
 使用postman测试接口，get请求：http://localhost:31001/cms/config/getmodel/5a791725dd573c3574ee333f
 
-#### 4.2.2. 远程请求接口（RestTemplate）
+#### 远程请求接口（RestTemplate）
 
 SpringMVC 提供 RestTemplate 请求http接口，RestTemplate的底层可以使用第三方的http客户端工具实现 http 的请求，常用的http客户端工具有Apache HttpClient、OkHttpClient等，本项目使用 OkHttpClient 完成http请求，原因也是因为它的性能比较出众
 
@@ -534,8 +534,8 @@ public class RestTemplateTest {
 }
 ```
 
-### 4.3. 模板管理
-#### 4.3.1. 模板管理业务流程
+### 模板管理
+#### 模板管理业务流程
 
 CMS提供模板管理功能，业务流程如下：
 
@@ -560,8 +560,8 @@ cms_template集合：数据结构如下：
 
 上边模板信息中templateFileId是模板文件的ID，此ID对应GridFS文件系统中文件ID
 
-#### 4.3.2. 模板制作
-##### 4.3.2.1. 编写模板文件
+#### 模板制作
+##### 编写模板文件
 
 1. 轮播图页面原型。在门户的静态工程目录有轮播图的静态页面，路径是：/include/index_banner.html
 2. 通过 http 请求获取到数据模型
@@ -669,7 +669,7 @@ cms_template集合：数据结构如下：
 </html>
 ```
 
-##### 4.3.2.2. 模板测试
+##### 模板测试
 
 在freemarker测试工程编写一个方法测试轮播图模板
 
@@ -703,13 +703,13 @@ public class FreemarkerController {
 
 请求：http://localhost:8088/freemarker/banner
 
-#### 4.3.3. 模板存储
+#### 模板存储
 
 根据模板管理的流程，最终将模板信息存储到MongoDB的cms_template中，将模板文件存储到GridFS中
 
 *模板管理功能此次暂时无实现，手动向cms_template及GridFS中存储模板*
 
-### 4.4. 静态化测试
+### 静态化测试
 
 测试整个页面静态化的流程如下：
 
@@ -719,7 +719,7 @@ public class FreemarkerController {
 4. 静态化程序获取页面的模板信息
 5. 执行页面静态化
 
-#### 4.4.1. 填写页面DataUrl
+#### 填写页面DataUrl
 
 修改页面管理模板代码，实现编辑页面DataUrl。*注意：此地址由程序员提供给系统管理员，由系统管理员录入到系统中。*
 
@@ -757,7 +757,7 @@ public CmsPageResult update(String id, CmsPage cmsPage) {
 }
 ```
 
-#### 4.4.2. 静态化程序
+#### 静态化程序
 
 1. 创建模版dao层接口
 
@@ -880,7 +880,7 @@ private Map getModelByPageId(String dataUrl) {
 }
 ```
 
-#### 4.4.3. 测试生成
+#### 测试生成
 
 创建测试类，调用生成getPageHtml方法
 
@@ -906,8 +906,8 @@ public class PageServiceTest {
 }
 ```
 
-## 5. 页面预览
-### 5.1. 需求分析
+## 页面预览
+### 需求分析
 
 页面在发布前增加页面预览的步骤，方便用户检查页面内容是否正确。页面预览的流程如下：
 
@@ -920,8 +920,8 @@ public class PageServiceTest {
 5. cms将静态化内容响应给浏览器
 6. 在浏览器展示页面内容，实现页面预览的功能
 
-### 5.2. 页面预览开发
-#### 5.2.1. 搭建环境
+### 页面预览开发
+#### 搭建环境
 
 - 在CMS服务中加入freemarker的依赖
 
@@ -942,11 +942,11 @@ spring:
       template_update_delay: 0
 ```
 
-#### 5.2.2. Service 层
+#### Service 层
 
 直接使用PageService的生成静态页面方法
 
-#### 5.2.3. Controller 层
+#### Controller 层
 
 - 调用service的静态化方法，将静态化内容通过response输出到浏览器显示
 - 创建CmsPagePreviewController类，用于页面预览
@@ -979,8 +979,8 @@ public class CmsPagePreviewController extends BaseController {
 }
 ```
 
-### 5.3. 页面预览测试
-#### 5.3.1. 配置Nginx代理
+### 页面预览测试
+#### 配置Nginx代理
 
 为了通过nginx请求静态资源（css、图片等），通过nginx代理进行页面预览
 
@@ -1013,7 +1013,7 @@ upstream cms_server_pool {
 
 在浏览器打开：http://www.xuecheng.com/cms/preview/5ce1f82e6ea6f722a0f1ebcc*注：5ce1f82e6ea6f722a0f1ebcc是轮播图页面的id*
 
-#### 5.3.2. 添加“页面预览”链接
+#### 添加“页面预览”链接
 
 在页面列表添加“页面预览”链接，修改page_list.vue:
 

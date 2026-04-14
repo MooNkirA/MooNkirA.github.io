@@ -1,10 +1,10 @@
-## 1. Oracle 概述
+## Oracle 概述
 
 Oracle Database，又名 Oracle RDBMS，简称 Oracle。Oracle 数据库系统是美国 Oracle 公司（甲骨文）提供的以分布式数据库为核心的一组软件产品，是目前最流行的客户/服务器（client/server）或B/S体系结构的数据库之一，比如 SilverStream 就是基于数据库的一种中间件。Oracle 数据库是目前世界上使用最为广泛的数据库管理系统，作为一个通用的数据库系统，它具有完整的数据管理功能；作为一个关系型数据库，它是一个完备关系的产品；作为分布式数据库它实现了分布式处理功能，只要在一种机型上学习了 操作 Oracle 的知识，便能在各种类型的机器上使用它。
 
 **Oracle默认的端口号是：1521**
 
-### 1.1. Oracle 主要版本
+### Oracle 主要版本
 
 Oracle 数据库主要有四个版本，如下所示：
 
@@ -13,7 +13,7 @@ Oracle 数据库主要有四个版本，如下所示：
 - 易捷版(XE)：它是轻量级，免费且有限的 Windows 和 Linux 版本。
 - Oracle Lite：专为移动设备而设计。
 
-### 1.2. Oracle 数据库的体系结构
+### Oracle 数据库的体系结构
 
 Oracle 数据库服务器体系结构包括两个主要部分：**文件(Oracle 数据库)**和**内存(Oracle 实例)**。Oracle 数据库服务器体系结构如下图：
 
@@ -29,13 +29,13 @@ Oracle 数据库服务器由一个数据库和至少一个数据库实例组成�
 - 表空间：一个表空间可以有多个数据文件，但是一个数据文件只属于一个表空间
 - 用户：用户操作表空间
 
-### 1.3. Oracle 数据库（database）的存储结构
+### Oracle 数据库（database）的存储结构
 
 Oracle 数据库是数据的物理存储，包括（数据文件 ORA 或者 DBF、控制文件、联机日志、参数文件）。其实 Oracle 数据库的概念和其它数据库不一样，**一个操作系统只有一个 oracle 数据库**。可以看作是 Oracle 就只有一个大数据库
 
 Oracle 数据库的一个基本任务是存储数据，可以分为物理和逻辑存储结构。
 
-#### 1.3.1. 物理存储结构
+#### 物理存储结构
 
 物理存储结构是存储数据的纯文件。当执行一个 `CREATE DATABASE` 语句来创建一个新的数据库时，将创建下列文件：
 
@@ -45,11 +45,11 @@ Oracle 数据库的一个基本任务是存储数据，可以分为物理和逻�
 
 除这些文件外，Oracle 数据库还包括如参数文件、网络文件、备份文件以及用于备份和恢复的归档重做日志文件等重要文件。
 
-##### 1.3.1.1. 数据文件与表空间的关系
+##### 数据文件与表空间的关系
 
 数据库的数据是存储在表空间中的，真正是在某一个或者多个数据文件中。而一个表空间可以由一个或多个数据文件组成，一个数据文件只能属于一个表空间。一旦数据文件被加入到某个表空间后，就不能删除这个文件，**如果要删除某个数据文件，只能删除其所属于的表空间才行**。
 
-#### 1.3.2. 逻辑存储结构
+#### 逻辑存储结构
 
 Oracle 数据库使用逻辑存储结构对磁盘空间使用情况进行精细控制。具体逻辑存储结构如下：
 
@@ -62,17 +62,17 @@ Oracle 数据库使用逻辑存储结构对磁盘空间使用情况进行精细�
 
 ![](images/493664519250197.jpg)
 
-##### 1.3.2.1. 表空间
+##### 表空间
 
 表空间是 Oracle 对物理数据库上相关数据文件（ORA 或者 DBF 文件）的逻辑映射。一个数据库在逻辑上被划分成一到若干个表空间，每个表空间包含了在逻辑上相关联的一组结构。每个数据库至少有一个表空间(称之为 system 表空间)。每个表空间由同一磁盘上的一个或多个数据文件组成，这些文件叫数据文件(datafile)。**一个数据文件只能属于一个表空间**。
 
-#### 1.3.3. 逻辑和物理存储结构之间的关系
+#### 逻辑和物理存储结构之间的关系
 
 ![](images/103904519257338.jpg)
 
-### 1.4. 实例（Oracle Instance）
+### 实例（Oracle Instance）
 
-#### 1.4.1. 概述
+#### 概述
 
 **一个计算机只有一个 Oracle 实例**。一个 Oracle 实例（Oracle Instance）有一系列的后台进程（Backguound Processes)和内存结构（Memory Structures)组成。一个数据库可以有 n 个实例。
 
@@ -85,7 +85,7 @@ Oracle 实例是客户端应用程序(用户)和数据库之间的接口。Oracl
 
 > DBWR 在后来允许多进程写 data file，所以改成 DBWn。
 
-#### 1.4.2. Oracle 数据库主要的后台进程
+#### Oracle 数据库主要的后台进程
 
 - PMON 是 Oracle 数据库中最活跃的一个进程，是调节所有其他进程的进程监视器。PMON 能够清理异常连接的数据库连接，并自动向侦听器进程注册数据库实例。
 - SMON 是执行系统级清理操作的系统监视进程。它有两个主要职责，包括在发生故障的情况下自动恢复实例，例如断电和清理临时文件。
@@ -100,7 +100,7 @@ Oracle 实例是客户端应用程序(用户)和数据库之间的接口。Oracl
 - MMAN 是自动管理 Oracle 数据库内存的内存管理器。
 - LREG 是监听器注册过程，它使用 Oracle Net Listener 在数据库实例和调度程序进程上注册信息。
 
-### 1.5. 用户
+### 用户
 
 用户是在实例下建立的。不同实例中可以建相同名字的用户。
 
@@ -114,16 +114,16 @@ SCOTT 与 HR 是 Oracle 初始的普通用户，这些用户下面都默认存�
 
 ![](images/20190423104343089_3407.jpg)
 
-### 1.6. 关于数据库语言的分类
+### 关于数据库语言的分类
 
 - DDL：数据库定义语言：create、drop
 - DML：数据库的操作语言：insert、update、delete
 - DQL：数据库的查询语言：select
 - DCL：数据库的控制语言：grant、revoke
 
-## 2. Oracle 的 SQL 语法
+## Oracle 的 SQL 语法
 
-### 2.1. SQL 简介
+### SQL 简介
 
 结构化查询语言(Structured Query Language)简称 SQL。结构化查询语言是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名
 
@@ -131,9 +131,9 @@ SCOTT 与 HR 是 Oracle 初始的普通用户，这些用户下面都默认存�
 - DDL(数据库定义语言): 其语句包括动词 `CREATE` 和 `DROP`。在数据库中创建新表或删除表（`CREAT TABLE` 或 `DROP TABLE`）；为表加入索引等。DDL 包括许多与人数据库目录中获得数据有关的保留字。它也是动作查询的一部分。
 - DCL(数据库控制语言): 它的语句通过 `GRANT` 或 `REVOKE` 获得许可，确定单个用户和用户组对数据库对象的访问。某些 `RDBMS` 可用 `GRANT` 或 `REVOKE` 控制对表单个列的访问。
 
-### 2.2. Oracle 语法注意事项
+### Oracle 语法注意事项
 
-#### 2.2.1. Oracle 语句大小写问题
+#### Oracle 语句大小写问题
 
 oracle 中分为两种情况，单纯的 sql 语句不区分大小写，但是如果查询某个字符的话就需要区分大小写。
 
@@ -150,7 +150,7 @@ SELECT * FROM EMP;
 select * from emp where ename='SMITH';
 ```
 
-#### 2.2.2. dual 伪表
+#### dual 伪表
 
 ***dual：是oracle提供的一张伪表，用于补全sql语法***
 
@@ -159,9 +159,9 @@ select upper('abc');  // 执行会报错
 select upper('abc') from dual;  // 这样才可以执行
 ```
 
-## 3. Oracle 查询操作
+## Oracle 查询操作
 
-### 3.1. Oracle 完整的查询 SQL 语法
+### Oracle 完整的查询 SQL 语法
 
 ```sql
 select
@@ -178,14 +178,14 @@ order by
     排序
 ```
 
-### 3.2. Select 语句的语法格式
+### Select 语句的语法格式
 
 ```sql
 select *|{[distinct column|expression [aliad],……]}
 		from table;
 ```
 
-#### 3.2.1. 查询语法
+#### 查询语法
 
 ```sql
 select *|列名 from 表名
@@ -200,7 +200,7 @@ select * from emp;
 select ename,job from emp;
 ```
 
-#### 3.2.2. 别名用法
+#### 别名用法
 
 在查询的结果列中可以使用别名，<font color=red>**后面的中文只能用双引号**</font>，一般的别名都不用中文
 
@@ -215,7 +215,7 @@ select 列名 别名, 列名 别名, …… from 表名;
 select ename "员工名称", job "工作内容" from emp;
 ```
 
-#### 3.2.3. 消除重复的数据
+#### 消除重复的数据
 
 使用 `distinct` 可以消除重复的行，如果查询多列的必须保证多列都重复才能去掉重复
 
@@ -230,7 +230,7 @@ select distinct *|列名, ... from 表名;
 select distinct ename from emp;
 ```
 
-#### 3.2.4. 查询中四则运算
+#### 查询中四则运算
 
 sql 中支持四则运算【`+`，`-`，`*`，`/`】
 
@@ -245,7 +245,7 @@ select ename, sal*12+comm from emp;
 select ename, sal*12+nvl(comm, 0) from emp;
 ```
 
-### 3.3. 空值
+### 空值
 
 空值是无效的，未指定的，未知的或不可预知的值。空值不是空格或者0。注意事项如下：
 
@@ -253,7 +253,7 @@ select ename, sal*12+nvl(comm, 0) from emp;
 2. 空值永远不等于空值
 3. 空值是oracle里面最大的
 
-### 3.4. 连接符 ||
+### 连接符 ||
 
 字符串的连接使用“`||`”。示例如下：
 
@@ -262,7 +262,7 @@ select ename, sal*12+nvl(comm, 0) from emp;
 select 'abc' || 'def' || 'ghi'  from dual;
 ```
 
-### 3.5. 使用 where 语句对结果进行过滤语法
+### 使用 where 语句对结果进行过滤语法
 
 ```sql
 select *|{[distinct column|expression [aliad],……]}
@@ -270,9 +270,9 @@ from table
 [where condition(s)]
 ```
 
-### 3.6. 运算符
+### 运算符
 
-#### 3.6.1. 比较运算符
+#### 比较运算符
 
 |   操作符    |      含义      |
 | :--------: | ------------- |
@@ -296,7 +296,7 @@ select * from emp where sal > 600 and comm > 0;
 select * from emp where sal >= 1500 and sal <= 3000;
 ```
 
-#### 3.6.2. 其他比较运算符
+#### 其他比较运算符
 
 |       操作符       |         含义         |
 | :---------------: | -------------------- |
@@ -310,7 +310,7 @@ select * from emp where sal >= 1500 and sal <= 3000;
 select * from emp where sal between 1500 and 3000;
 ```
 
-#### 3.6.3. 逻辑运算符
+#### 逻辑运算符
 
 | 操作符 |    含义     |
 | :---: | ----------- |
@@ -318,9 +318,9 @@ select * from emp where sal between 1500 and 3000;
 | `or`  | 逻辑或       |
 | `not` | 逻辑否       |
 
-### 3.7. where 语句
+### where 语句
 
-#### 3.7.1. 非空和空的限制
+#### 非空和空的限制
 
 只要字段中存在内容表示不为空，如果不存在内容就是 `null`，语法：
 
@@ -338,7 +338,7 @@ select * from emp where sal between 1500 and 3000;
 select * from emp where sal > 600 and comm is not null and comm > 0;
 ```
 
-#### 3.7.2. 范围限制
+#### 范围限制
 
 指定了查询范围，那么 sql 可以使用 `IN` 关键字。语法：
 
@@ -356,7 +356,7 @@ select * from emp where sal > 600 and comm is not null and comm > 0;
 select * from emp where deptno in(10, 20);
 ```
 
-#### 3.7.3. 模糊查询
+#### 模糊查询
 
 在 `LIKE` 关键字中主要使用以下两种通配符
 
@@ -373,9 +373,9 @@ select * from emp where ename like '%M%';
 select * from emp where ename like '_M%';
 ```
 
-### 3.8. 使用 order by 对结果排序
+### 使用 order by 对结果排序
 
-#### 3.8.1. 排序语法
+#### 排序语法
 
 在 sql 中可以使用 `ORDER BY` 对查询结果进行排序。语法如下：
 
@@ -400,7 +400,7 @@ select * from emp where sal > 400 order by comm asc nulls first;
 select * from emp where sal > 400 order by comm desc nulls last;
 ```
 
-#### 3.8.2. 排序中的空值问题
+#### 排序中的空值问题
 
 当排序时有可能存在 `null` 时就会产生问题，可以用 `nulls first` , `nulls last` 来指定 `null` 值显示的位置
 
@@ -409,15 +409,15 @@ select * from emp order by sal nulls first;
 select * from emp order by sal desc nulls last;
 ```
 
-### 3.9. Oracle 分页查询
+### Oracle 分页查询
 
-#### 3.9.1. Oracle 的伪列
+#### Oracle 的伪列
 
 分页操作需要伪列 `rownum`。
 
 注意：不能使用大于号，如`rownum > 6`，因为是每查询一行分配一个`rownum`，后面的还没有分配，所以得到的查询永远结果为空
 
-#### 3.9.2. Oracle 分页的语法
+#### Oracle 分页的语法
 
 ```sql
 select *
@@ -434,7 +434,7 @@ where xx > startIndex and xx <= maxResult;
     - `pageSize`: 每页大小
     - `maxResult`: 最大页数
 
-#### 3.9.3. 示例
+#### 示例
 
 ```sql
 -- =======对员工表的工资排序【降序】之后，取出第二页每页3条记录
@@ -457,11 +457,11 @@ select *
    where e.rnum>3 and e.rnum<=6;
 ```
 
-### 3.10. Oracle Fetch 子句
+### Oracle Fetch 子句
 
 FETCH 子句在 Oracle 中可以用来限制查询返回的行数。
 
-#### 3.10.1. Fetch 语法格式
+#### Fetch 语法格式
 
 ```sql
 [ OFFSET offset ROWS ]
@@ -485,7 +485,7 @@ FETCH FIRST 1 ROW
 
 **ONLY | WITH TIES 选项**：仅返回 `FETCH NEXT` (或 `FIRST`) 后的行数或行数的百分比。`WITH TIES` 返回与最后一行相同的排序键。值得注意的是，如果使用 WITH TIES，则必须在查询中指定一个 ORDER BY 子句，否则查询将不会返回额外的行。
 
-#### 3.10.2. FETCH 子句实例
+#### FETCH 子句实例
 
 > Notes: 以下查询语句仅能在Oracle 12c以上版本执行
 
@@ -558,16 +558,16 @@ OFFSET 10 ROWS
 FETCH NEXT 10 ROWS ONLY;
 ```
 
-### 3.11. 多表查询
+### 多表查询
 
-#### 3.11.1. Oracle 的连接条件的类型
+#### Oracle 的连接条件的类型
 
 - 等值连接
 - 不等值连接
 - 外连接
 - 自连接
 
-#### 3.11.2. 多表连接基本查询
+#### 多表连接基本查询
 
 使用一张以上的表做查询就是多表查询。语法：
 
@@ -623,7 +623,7 @@ select e.empno,e.ename,e.mgr,e.deptno,decode(s.grade,
        and e1.sal between s1.losal and s1.hisal;
 ```
 
-#### 3.11.3. 外连接（左右连接）
+#### 外连接（左右连接）
 
 **右连接**
 
@@ -661,15 +661,15 @@ select e.empno,e.ename,e.mgr,e1.empno,e1.ename
        on e.mgr=e1.empno;
 ```
 
-### 3.12. 子查询
+### 子查询
 
-#### 3.12.1. 子查询概述
+#### 子查询概述
 
 一条 SQL 语句(子查询)的查询结果做为另一条查询语句(父查询)的条件或查询结果，这种操作则称为子查询。
 
 多条 SQL 语句嵌套使用，内部的 SQL 查询语句称为子查询。
 
-#### 3.12.2. 子查询的语法
+#### 子查询的语法
 
 ```sql
 select select_list
@@ -684,11 +684,11 @@ select select_list
 - <font color=red>**子查询 (内查询) 在主查询之前一次执行完成。**</font>
 - <font color=red>**子查询的结果被主查询使用 (外查询)。**</font>
 
-#### 3.12.3. 子查询的类型
+#### 子查询的类型
 
 ![](images/20211220091000221_3904.png)
 
-#### 3.12.4. 单行子查询
+#### 单行子查询
 
 只返回一条记录。单行操作符
 
@@ -730,11 +730,11 @@ select e.ename,s.minsal,d.dname
        and e.sal=s.minsal;
 ```
 
-#### 3.12.5. 多行子查询
+#### 多行子查询
 
 返回了多条记录，多行操作符
 
-#### 3.12.6. 子查询中的 null 值问题
+#### 子查询中的 null 值问题
 
 多行子查询中 `null` 值需要注意的问题：查询结果为空，不会报错。
 
@@ -746,7 +746,7 @@ select e.ename,s.minsal,d.dname
 
 ![](images/20211220091428940_27892.png)
 
-#### 3.12.7. Exists 用法
+#### Exists 用法
 
 语法：
 
@@ -771,16 +771,16 @@ select * from dept d where d.deptno in (select  distinct deptno from emp);
 
 > <font color=red>如果是大数据量【百万级】的查询，建议使用 `exists`，使用 `in` 的话会全表查询</font>
 
-#### 3.12.8. Oracle 中的伪列
+#### Oracle 中的伪列
 
 oracle提供的两个伪列
 
 - `ROWNUM`：表示行号，实际上只是一个列，但是这个列是一个伪列，此列可以在每张表中出现。【先查询数据，再分配序号。找出一条数据，分配一个`rownum`】
 - `ROWID`：表中每行数据指向磁盘上的物理地址
 
-### 3.13. Oracle 查询综合示例
+### Oracle 查询综合示例
 
-#### 3.13.1. Oracle查询练习
+#### Oracle查询练习
 
 - 找到员工表中工资最高的前三名
 
@@ -830,7 +830,7 @@ from (select e.hdate,count(*) dcount
        group by e.hdate) t;
 ```
 
-#### 3.13.2. Oracle 综合查询
+#### Oracle 综合查询
 
 ```sql
 -- 建表语句和插入数据
@@ -958,9 +958,9 @@ select * from (
        where r>5 and r<=10;
 ```
 
-### 3.14. 集合运算
+### 集合运算
 
-#### 3.14.1. 什么是集合运算
+#### 什么是集合运算
 
 ![](images/20211220092343278_13673.png)
 
@@ -970,7 +970,7 @@ select * from (
 - `intersect` 交集
 - `minus` 差集
 
-#### 3.14.2. 并集，类似于or
+#### 并集，类似于or
 
 范例：工资大于 1500，或者是 20 号部门下的员工（并集）
 
@@ -987,7 +987,7 @@ union -- 使用union all包括重复部分
 select * from emp where deptno = 20;
 ```
 
-#### 3.14.3. 交集，类似于and
+#### 交集，类似于and
 
 范例：工资大于 1500，并且是 20 号部门下的员工（交集）
 
@@ -1003,7 +1003,7 @@ intersect
 select * from emp where deptno = 20;
 ```
 
-#### 3.14.4. 差集
+#### 差集
 
 范例：1981 年入职的普通员工（不包括总裁和经理）（差集）
 
@@ -1015,11 +1015,11 @@ select * from emp where job='MANAGER' or job = 'PRESIDENT'; -- b
 -- 如果a minus b,a 中没有在b 中的数据，全部显示
 ```
 
-#### 3.14.5. 集合运算的特征
+#### 集合运算的特征
 
 <font color=red>*集合运算两边查询的字段数量、字段类型、顺序必须一致*</font>
 
-### 3.15. 递归查询【了解】
+### 递归查询【了解】
 
 语法：
 
@@ -1044,24 +1044,24 @@ start with empno=7566
 connect by mgr=prior empno;
 ```
 
-## 4. SQL 函数
+## SQL 函数
 
-### 4.1. 定义
+### 定义
 
 ![](images/20211219210008168_421.png)
 
 注意：函数可以没有参数，但必须要有返回值
 
-### 4.2. 函数的类型
+### 函数的类型
 
 - 单行函数
 - 多行函数
 
 <font color=red>**注意：无论是单行函数还是多行函数，返回的结果都是一个**</font>
 
-### 4.3. 单行函数
+### 单行函数
 
-#### 4.3.1. 单行函数分类
+#### 单行函数分类
 
 1. 字符函数
 2. 数值函数
@@ -1069,7 +1069,7 @@ connect by mgr=prior empno;
 4. 转换函数
 5. 通用函数
 
-#### 4.3.2. 字符函数
+#### 字符函数
 
 **字符控制函数**
 
@@ -1127,11 +1127,11 @@ select substr('moonzero',2,3) from dual;
 select replace ('moonzero','oo','00') from dual;
 ```
 
-#### 4.3.3. 数值函数
+#### 数值函数
 
 用于操作数字
 
-##### 4.3.3.1. round：四舍五入
+##### round：四舍五入
 
 ```sql
 round(数字, 保留的小数位)
@@ -1139,7 +1139,7 @@ round(数字, 保留的小数位)
 
 如果不写参数，默认情况下，只保留整数位
 
-##### 4.3.3.2. trunc：截断，直接截断字符，不会进行四舍五入
+##### trunc：截断，直接截断字符，不会进行四舍五入
 
 ```sql
 trunc(数字, 保留的小数位)
@@ -1147,13 +1147,13 @@ trunc(数字, 保留的小数位)
 
 如果不写保留的小数位，默认是直接切断只保留整数位
 
-##### 4.3.3.3. mod：求余
+##### mod：求余
 
 ```sql
 mod(被除数，除数)
 ```
 
-##### 4.3.3.4. 示例
+##### 示例
 
 ```sql
 --操作数字
@@ -1169,23 +1169,23 @@ select trunc(58.8888, 2) from dual;
 select mod(1200, 500) from dual;
 ```
 
-#### 4.3.4. 日期函数
+#### 日期函数
 
 `sysdate`：当前数据库所在服务器的时间
 
-##### 4.3.4.1. Oracle的日期
+##### Oracle的日期
 
 Oracle 中的日期型数据实际含有两个值:日期和时间
 
 默认的日期格式是 `DD-MON-RR`
 
-##### 4.3.4.2. 日期的数学运算
+##### 日期的数学运算
 
 1. 在日期上加上或减去一个数字结果仍为日期。两个日期相减返回日期之间相差的天数，可以用数字除 24
 2. 获得两个时间段中的月数：`MONTHS_BETWEEN(date, date)`
 3. 获得几个月后的日期：`ADD_MONTHS(sysdate, num)`
 
-##### 4.3.4.3. 示例
+##### 示例
 
 ```sql
 -- sysdate : 当前数据库所在服务器的时间
@@ -1202,11 +1202,11 @@ select ename,round(months_between(sysdate,hiredate)) "入职月数" from emp;
 select add_months(sysdate, 3) from dual;
 ```
 
-#### 4.3.5. 转换函数
+#### 转换函数
 
 ![](images/20211219214204837_9289.png)
 
-##### 4.3.5.1. TO_CHAR 函数对日期的转换成字符串
+##### TO_CHAR 函数对日期的转换成字符串
 
 ```sql
 to_char(date, 'format_model')
@@ -1218,7 +1218,7 @@ to_char(date, 'format_model')
 
 > 注：在设置`'yyyy-mm-dd'`格式后，10 以下的月份前面被被补了前导零，可以使用 `fm` 去掉前导零
 
-##### 4.3.5.2. TO_CHAR 函数对数字的转换成字符串
+##### TO_CHAR 函数对数字的转换成字符串
 
 ```sql
 to_char(number, 'format_model')
@@ -1228,7 +1228,7 @@ to_char(number, 'format_model')
 
 ![](images/20211219214328810_25556.png)
 
-##### 4.3.5.3. TO_NUMBER 和 TO_DATE 函数
+##### TO_NUMBER 和 TO_DATE 函数
 
 使用`TO_NUMBER`函数将字符转换成数字，转换后的数字可以进行运算
 
@@ -1256,13 +1256,13 @@ select to_char(123) from dual;
 select to_number('123')+to_number('321') from dual;
 ```
 
-#### 4.3.6. 通用函数
+#### 通用函数
 
-##### 4.3.6.1. 通用函数的定义
+##### 通用函数的定义
 
 适用于任何数据类型，同时也适用于空值的函数
 
-##### 4.3.6.2. 常用的通用函数
+##### 常用的通用函数
 
 ```sql
 -- 如果expr1为空，则输出expr2。前后的数据类型要一致。
@@ -1279,13 +1279,13 @@ Code Dome:
 select ename,nvl(comm, 0) from emp;
 ```
 
-#### 4.3.7. 条件表达式
+#### 条件表达式
 
-##### 4.3.7.1. 条件表达式定义
+##### 条件表达式定义
 
 在 SQL 语句中使用 `IF-THEN-ELSE`
 
-##### 4.3.7.2. 实现方式1：case 表达式
+##### 实现方式1：case 表达式
 
 `CASE` 表达式：SQL99 的语法，类似 Basic，比较繁琐。语法如下：
 
@@ -1298,7 +1298,7 @@ case expr when comparison_expr1 then return_expr1
 end
 ```
 
-##### 4.3.7.3. 实现方式2：decode 函数（推荐）
+##### 实现方式2：decode 函数（推荐）
 
 `DECODE` 函数：Oracle 自己的语法，类似 Java，比较简洁。语法如下：
 
@@ -1310,7 +1310,7 @@ decode(条件,值1,翻译值1,值2,翻译值2,...值n,翻译值n,缺省值)
 - 参数：c1, c2, ...,cn,字符型/数值型/日期型，必须类型相同或 `null`
 - 注：值1……n 不能为条件表达式，这种情况只能用`case when then end`解决
 
-##### 4.3.7.4. 示例
+##### 示例
 
 ```sql
 -- 条件表达式
@@ -1330,9 +1330,9 @@ select ename,deptno,
        from emp;
 ```
 
-### 4.4. 多行函数
+### 多行函数
 
-#### 4.4.1. 多行函数的定义
+#### 多行函数的定义
 
 也叫组函数、分组函数，即聚合查询。分组函数作用于一组数据，并对一组数据返回一个值。
 
@@ -1340,7 +1340,7 @@ select ename,deptno,
 
 <font color=red>组函数会忽略空值；`NVL` 函数使分组函数无法忽略空值</font>
 
-#### 4.4.2. 常用的多行函数
+#### 常用的多行函数
 
 | 函数名称 |   作用    |
 | :-----: | --------- |
@@ -1356,7 +1356,7 @@ select ename,deptno,
 
 <font color=red>**`count(1)` 与 `count(*)` 效果完全一样，但 `count(1)` 效率更高。`count(1)` 就是将所有行都看成“1”，不行的数据，所以查询效率更高**</font>
 
-#### 4.4.3. 分组数据
+#### 分组数据
 
 可以使用 `group by` 子句将表中的数据分成若干组。语法格式：
 
@@ -1370,7 +1370,7 @@ select *|{[distinct column|expression [aliad],……]}
 
 > <font color=red>**注意：如果两个表关联使用分组查询，`group by` 后面的跟的条件是两个表的分组条件的列名。**</font>
 
-#### 4.4.4. 过滤分组数据
+#### 过滤分组数据
 
 ![](images/20211219212825409_14781.png)
 
@@ -1383,7 +1383,7 @@ select *|{[distinct column|expression [aliad],……]}
 > 1. 如果使用分组函数，SQL 只可以把 `GOURP BY` 分组条件字段和分组函数查询出来，不能有其他字段。
 > 2. 如果使用分组函数，不使用 `GROUP BY` 只可以查询出来分组函数的值
 
-#### 4.4.5. WHERE 和 HAVING 的区别
+#### WHERE 和 HAVING 的区别
 
 <font color=red>**最大区别在于：`where` 后面不能有聚合函数**</font>
 
@@ -1406,9 +1406,9 @@ select round(avg(sal)),decode(deptno,10,'开发部',20,'销售部',30,'运维部
        having avg(sal) > 2000;
 ```
 
-## 5. 使用 DDL 语句管理表
+## 使用 DDL 语句管理表
 
-### 5.1. 创建表空间
+### 创建表空间
 
 <font color=red>表空间：ORACLE 数据库的逻辑单元，oracle面向的是表空间。</font>
 
@@ -1441,9 +1441,9 @@ autoextend on
 next 10m
 ```
 
-### 5.2. 用户
+### 用户
 
-#### 5.2.1. 创建用户
+#### 创建用户
 
 ```sql
 -- 创建用户
@@ -1460,7 +1460,7 @@ default tablespace moonzero
 
 oracle 数据库与其它数据库产品的区别在于，表和其它的数据库对象都是存储在用户下的
 
-#### 5.2.2. 用户赋权限
+#### 用户赋权限
 
 新创建的用户没有任何权限，登陆后会提示没有权限，需要进行授权。
 
@@ -1489,7 +1489,7 @@ Oracle 中已存在三个重要的角色：connect 角色，resource 角色，db
 grant dba to 用户名
 ```
 
-#### 5.2.3. 回收权限
+#### 回收权限
 
 ```sql
 revoke connect,resource from 用户名;
@@ -1497,9 +1497,9 @@ revoke connect,resource from 用户名;
 
 多个权限，使用“`,`”分隔
 
-### 5.3. Oracle 数据类型
+### Oracle 数据类型
 
-#### 5.3.1. 字符串
+#### 字符串
 
 |     数据类型      |                                           说明                                           |
 | :--------------: | --------------------------------------------------------------------------------------- |
@@ -1507,27 +1507,27 @@ revoke connect,resource from 用户名;
 | `varchar2(size)` | 可变长的字符串数据，最大长度是4000字节；<br/>例：`name varchar2(10)`: 存储'xxxx'，实际占用4个字符 |
 |      `long`      | 存储字符串数据，最大为2G                                                                    |
 
-#### 5.3.2. 数字
+#### 数字
 
 |     数据类型     |                                             说明                                             |
 | :-------------: | ------------------------------------------------------------------------------------------- |
 | `number(p1,p2)` | 标识数字类型，可变长数值数据<br/>参数p1：指定数字的总长度（注：总长度包括小数位）<br/>参数p2：指定几位小数 |
 
-#### 5.3.3. 日期
+#### 日期
 
 |   数据类型   |                     说明                     |
 | :---------: | -------------------------------------------- |
 |   `date`    | 日期类型数据，区分到时分秒，类似mysql的`datatime` |
 | `timestamp` | 时间撮，区分到秒的后9位                         |
 
-#### 5.3.4. 大数据类型
+#### 大数据类型
 
 | 数据类型 |           说明            |
 | :-----: | ------------------------ |
 | `clob`  | 存储字符数据，最大可达到4G   |
 | `blob`  | 存储二进制数据，最大可达到4G |
 
-#### 5.3.5. 其它类型
+#### 其它类型
 
 |      数据类型       |               说明                |
 | :----------------: | -------------------------------- |
@@ -1535,7 +1535,7 @@ revoke connect,resource from 用户名;
 |      `bfile`       | 存储外部文件的二进制数据，最大可达到4G |
 |      `rowid`       | 行地址                            |
 
-### 5.4. uuid 生成值
+### uuid 生成值
 
 `sys_guid()` 函数，用于生成不同的uuid
 
@@ -1543,7 +1543,7 @@ revoke connect,resource from 用户名;
 select sys_guid() from dual;
 ```
 
-### 5.5. 创建表
+### 创建表
 
 创建表语法：
 
@@ -1574,7 +1574,7 @@ create table person(
 insert into person values (1,'剑圣',1,to_date('2018-2-2', 'yyyy-mm-dd'));
 ```
 
-### 5.6. 修改表
+### 修改表
 
 在 sql 中使用 `alter` 可以修改表
 
@@ -1613,7 +1613,7 @@ alter table person modify(address varchar2(20));
 alter table person rename column ddd to address;
 ```
 
-### 5.7. 删除表
+### 删除表
 
 语法：
 
@@ -1621,7 +1621,7 @@ alter table person rename column ddd to address;
 DROP TABLE 表名;
 ```
 
-### 5.8. 复制整个表
+### 复制整个表
 
 使用子查询可以复制整个表
 
@@ -1629,7 +1629,7 @@ DROP TABLE 表名;
 create table 新表名 as (select * from 要复制的表名);
 ```
 
-### 5.9. 约束
+### 约束
 
 在数据库开发中，约束是必不可少，使用约束可以更好的保证数据的完整性。在 Oracle 数据库中。约束的类型包括：
 
@@ -1639,7 +1639,7 @@ create table 新表名 as (select * from 要复制的表名);
 - 外键约束（Foreign Key）
 - 检查性约束（Check）
 
-#### 5.9.1. 主键约束
+#### 主键约束
 
 主键约束都是在 id 上使用，而且本身已经默认了内容不能为空，可以在建表的时候指定。关键字：`primary key`
 
@@ -1661,13 +1661,13 @@ create table person(
 );
 ```
 
-#### 5.9.2. 非空约束
+#### 非空约束
 
 使用非空约束，可以使指定的字段不可以为空。
 
 关键字：`not null`
 
-#### 5.9.3. 唯一约束（unique）
+#### 唯一约束（unique）
 
 表中的一个字段的内容是唯一的。关键字：`unique`
 
@@ -1677,7 +1677,7 @@ create table person(
 constraint person_name_uk unique(name)
 ```
 
-#### 5.9.4. 检查约束
+#### 检查约束
 
 使用检查约束可以来约束字段值的合法范围。关键字：`check(列名 in(值1,值2,...))`
 
@@ -1687,7 +1687,7 @@ constraint person_name_uk unique(name)
 constraint person_gender_ck check(gender in (1,2))
 ```
 
-#### 5.9.5. 外键约束
+#### 外键约束
 
 外键是两张表的约束，可以保证关联数据的完整性
 
@@ -1704,9 +1704,9 @@ constraint order_detail_order_id_fk foreign key(order_id)
 	references orders(order_id) on delete cascade
 ```
 
-## 6. 使用 DML 语句处理数据
+## 使用 DML 语句处理数据
 
-### 6.1. 插入数据
+### 插入数据
 
 语法：
 
@@ -1722,7 +1722,7 @@ insert into 表名 values(值 1，值 2，...)
 
 注意：使用简单的写法必须按照表中的字段的顺序来插入值，而且如果有为空的字段使用 null
 
-### 6.2. 更新数据
+### 更新数据
 
 语法：
 
@@ -1743,7 +1743,7 @@ update emp set sal=sal+100
              select deptno from dept where loc='NEW YORK');
 ```
 
-### 6.3. ORACLE 如果数据存在则执行更新，不存在则执行插入的方法
+### ORACLE 如果数据存在则执行更新，不存在则执行插入的方法
 
 MERGE语句是Oracle9i新增的语法，用来合并 `UPDATE` 和 `INSERT` 语句。通过MERGE语句，根据一张表或子查询的连接条件对另外一张表进行查询，连接条件匹配上的进行 `UPDATE`，无法匹配的执行`INSERT`。
 
@@ -1786,7 +1786,7 @@ WHEN NOT MATCHED THEN
     INSERT (a,b) VALUES(T2.a,T2.b);
 ```
 
-### 6.4. 删除数据
+### 删除数据
 
 语法:
 
@@ -1806,7 +1806,7 @@ delete from 表名 where 删除条件;
 
 <font color=red>**注意：插入、更新和删除会引起数据的变化。我们就必须考虑数据的完整性。**</font>
 
-### 6.5. Oracle 中的事务
+### Oracle 中的事务
 
 oracle 的事务对数据库的变更的处理，必须做提交事务才能让数据真正的插入到数据库中，在同样在执行完数据库变更的操作后还可以把事务进行回滚，这样就不会插入到数据库。如果事务提交后则不可以再回滚。
 
@@ -1835,9 +1835,9 @@ rollback to sp1;
 commit;
 ```
 
-## 7. 管理其他数据库对象
+## 管理其他数据库对象
 
-### 7.1. 视图
+### 视图
 
 视图，专门用于查询，里面不存储数据，数据都来源于真正的表。
 
@@ -1848,7 +1848,7 @@ commit;
 1. <font color=red>**视图就是封装了一条复杂查询的语句**</font>。视图是一个虚表。最大的优点就是简化复杂的查询。
 2. 用视图可以屏蔽一些敏感数据。
 
-#### 7.1.1. 创建视图的语法1
+#### 创建视图的语法1
 
 ```sql
 create [or replace] [force|noforce] view视图名称
@@ -1867,7 +1867,7 @@ create view empvd20 as select * from emp t where t.deptno=20;
 select * from empvd20;
 ```
 
-#### 7.1.2. 创建视图的语法2
+#### 创建视图的语法2
 
 ```sql
 create or replace view 视图名称 as 查询语句
@@ -1877,7 +1877,7 @@ create or replace view 视图名称 as 查询语句
 
 <font color=red>*不建议通过视图对表中的数据进行修改，因为会受到很多的限制。*</font>
 
-#### 7.1.3. 创建视图的语法3
+#### 创建视图的语法3
 
 ```sql
 create or replace view 视图名称 as 查询语句 with read only
@@ -1885,9 +1885,9 @@ create or replace view 视图名称 as 查询语句 with read only
 
 创建只读视图
 
-### 7.2. 序列【了解】
+### 序列【了解】
 
-#### 7.2.1. 概述
+#### 概述
 
 序列（Sequence）在 Oracle 中是一个数据库对象，用于生成唯一的数值。用途包括：
 
@@ -1896,7 +1896,7 @@ create or replace view 视图名称 as 查询语句 with read only
 
 在很多数据库中都存在一个自动增长的列，但如果现在要想在 oracle 中完成自动增长的功能，则只能依靠序列完成所有的自动增长操作，需要用户手工完成处理。并且 Oracle 将序列值装入内存可以提高访问效率。
 
-#### 7.2.2. 创建和使用序列【了解】
+#### 创建和使用序列【了解】
 
 创建序列语法：
 
@@ -1925,11 +1925,11 @@ create sequence sequence(序列名称)
 - 系统异常
 - 多个表共用一个序列
 
-### 7.3. 索引
+### 索引
 
 <font color=red>**索引是用于加速数据存取的数据对象，提高检索数据效率**</font>。合理的使用索引可以大大降低 i/o 次数,从而提高数据访问性能。
 
-#### 7.3.1. 单列索引
+#### 单列索引
 
 单列索引是基于单个列所建立的索引。语法：
 
@@ -1937,7 +1937,7 @@ create sequence sequence(序列名称)
 create index 索引名 on 表名(列名)
 ```
 
-#### 7.3.2. 复合索引
+#### 复合索引
 
 语法：
 
@@ -1961,7 +1961,7 @@ create index pname_index on person(name);
 create index pname_gender_index on person(name,gender);
 ```
 
-#### 7.3.3. 索引使用原则
+#### 索引使用原则
 
 1. 在数据量大表中使用索引
 2. 在经常使用字段上加索引
@@ -1976,7 +1976,7 @@ select * from person where address ='22'; 不会触发
 
 4. 一般在不经常修改，添加，删除的表上添加索引。因为这些操作会引起索引重构
 
-### 7.4. 同义词【了解】
+### 同义词【了解】
 
 同义词：给其他用户下的表起别名，在本用户下直接查询别名。属于跨库查询。
 
@@ -1997,9 +1997,9 @@ create public synonym emp for scott.emp;
 - 可以很方便的访问其它用户的数据库对象
 - 缩短了对象名字的长度
 
-## 8. 数据的导入导出
+## 数据的导入导出
 
-### 8.1. 使用 cmd 命令整库导出与导入
+### 使用 cmd 命令整库导出与导入
 
 在安装了 oracle 的电脑上执行。**整库导出命令**：
 
@@ -2033,7 +2033,7 @@ imp system/密码 full=y file= C:\文件名.dmp
 
 ![](images/20211220103450969_5261.png)
 
-### 8.2. 使用 cmd 命令按用户导出与导入
+### 使用 cmd 命令按用户导出与导入
 
 **按用户导出**
 
@@ -2047,7 +2047,7 @@ exp 用户名/密码 owner=用户名 file= c:\文件名.dmp
 imp 用户名/密码 file= c:\文件名.dmp fromuser=用户名1 touser=用户名2
 ```
 
-### 8.3. 使用 cmd 命令按表导出与导入
+### 使用 cmd 命令按表导出与导入
 
 **按表导出**
 
@@ -2063,7 +2063,7 @@ exp 用户名/密码 file=文件名.dmp tables=导入的表名
 imp 用户名/密码 file=文件名.dmp fromuser=用户名1 touser=用户名2 tables=导入的表名
 ```
 
-### 8.4. 使用 PLSQL Developer 导出数据
+### 使用 PLSQL Developer 导出数据
 
 1. Tools → Export User Objects...选项，导出 .sql 文件。说明：此操作导出的是建表语句
 2. Tools → Export Tables...导出表结构及数据
@@ -2074,7 +2074,7 @@ PL/SQL 工具包含三种方式导出 Oracle 表结构及数据，三种方式�
 - 第二种方式导出.sql 格式的文件，可用文本编辑器查看，通用性比较好，效率不如第一种，适合小数据量导入导出。尤其注意的是表中不能有大字段（blob,clob,long），如果有，会提示不能导出(提示如下： table contains one or more LONG columns cannot export in sql format,user Pl/sql developer format instead)。
 - 第三种方式导出.pde 格式的文件，.pde 为 PL/SQL Developer 自有的文件格式，只能用 PL/SQL Developer 工具导入导出，不能用文本编辑器查看。
 
-### 8.5. 使用 PLSQL Developer 导入数据
+### 使用 PLSQL Developer 导入数据
 
 导入数据之前最好把以前的表删掉，当然导入另外的数据库数据除外
 
@@ -2085,9 +2085,9 @@ PL/SQL 工具包含三种方式导出 Oracle 表结构及数据，三种方式�
 
 ![](images/20211220103847094_18223.png)
 
-## 9. PL/SQL 编程语言
+## PL/SQL 编程语言
 
-### 9.1. PL/SQL 概述
+### PL/SQL 概述
 
 PL/SQL（Procedure Language/SQL），是一组逻辑相关的PL/SQL程序单元的集合，如过程和函数。PLSQL 是 Oracle 对 sql 语言的过程化扩展，指在 SQL 命令语言中增加了过程处理语句（如分支、循环等），使 SQL 语言具有过程处理能力。把 SQL 语言的数据操纵能力与过程语言的数据处理能力结合起来，使得 PLSQL 面向过程但比过程语言简单、高效、灵活和实用。其优势包括：
 
@@ -2095,7 +2095,7 @@ PL/SQL（Procedure Language/SQL），是一组逻辑相关的PL/SQL程序单元�
 2. **性能**：可以提高代码执行效率。
 3. **封装性**：提供了更好的数据隐藏和封装。
 
-### 9.2. PL/SQL 的语法
+### PL/SQL 的语法
 
 ```sql
 declare
@@ -2113,7 +2113,7 @@ end;
 1. 如果不需要声明变量，`declare`可以省略
 2. 变量不能在`begin`内定义，必须在`declare`里声明
 
-### 9.3. 常量和变量的定义
+### 常量和变量的定义
 
 变量的类型(char, varchar2, date, number, boolean, long)
 
@@ -2153,7 +2153,7 @@ begin
 end;
 ```
 
-#### 9.3.1. 定义RECORD类型
+#### 定义RECORD类型
 
 与`%rowtype`不一样，`%rowtype`与表的字段类型一致，record是直接定义一个类型。语法：
 
@@ -2167,7 +2167,7 @@ type xxx is record(
 );
 ```
 
-### 9.4. if 分之语句
+### if 分之语句
 
 语法1：
 
@@ -2234,7 +2234,7 @@ begin
 end;
 ```
 
-### 9.5. loop 循环语句
+### loop 循环语句
 
 `while`循环语法：类似java中的`while`循环
 
@@ -2298,13 +2298,13 @@ begin
 end;
 ```
 
-### 9.6. 数组
+### 数组
 
 明确一个概念：Oracle中本是没有数组的概念的，数组其实就是一张表(Table),每个数组元素就是表中的一个记录。
 
 使用数组时，用户可以使用 Oracle 已经定义好的数组类型，或可根据自己的需要定义数组类型。
 
-#### 9.6.1. 使用 Oracle 自带的数组类型
+#### 使用 Oracle 自带的数组类型
 
 使用时需要进行初始化，语法格式：`变量名 array;`
 
@@ -2317,11 +2317,11 @@ begin
 end;
 ```
 
-#### 9.6.2. 自定义的数组类型
+#### 自定义的数组类型
 
 自定义数据类型时，建议通过创建 `Package` 的方式实现，以便于管理
 
-### 9.7. 游标（光标 Cursor）
+### 游标（光标 Cursor）
 
 在pl/sql中会用到多条记录（类似java程序中的集合概念），<font color=red>**使用游标可以存储查询返回的多条数据，结果集**</font>。
 
@@ -2460,7 +2460,7 @@ begin
 end;
 ```
 
-### 9.8. 异常【例外】
+### 异常【例外】
 
 异常是程序设计语言提供的一种功能，用来增强程序的健壮性和容错性。异常语法：
 
@@ -2545,9 +2545,9 @@ exception
 end;
 ```
 
-## 10. 存储过程
+## 存储过程
 
-### 10.1. 存储过程概述
+### 存储过程概述
 
 存储过程（Stored Procedure）是在大型数据库系统中，一组为了完成特定功能的 SQL 语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。存储过程是数据库中的一个重要对象，任何一个设计良好的数据库应用程序都应该用到存储过程
 
@@ -2558,7 +2558,7 @@ end;
 - 创建好的存储过程会存在当前用户的`Procedures`中
 - 创建好的存储函数会存在当前用户的`Functions`中
 
-### 10.2. 创建存储过程语法
+### 创建存储过程语法
 
 ```sql
 create [or replace] procedure 过程名[(参数名1 in/out 数据类型1, 参数名2 in/out 数据类型2, ......)]
@@ -2571,7 +2571,7 @@ end;
 
 > <font color=red>注：如果参数是输入类型*in*，可以省略不写</font>
 
-### 10.3. 调用存储过程
+### 调用存储过程
 
 方式1：不推荐，不能接收存储过程`out`的参数
 
@@ -2635,13 +2635,13 @@ begin
 end;
 ```
 
-### 10.4. 创建包与体的存储过程
+### 创建包与体的存储过程
 
-#### 10.4.1. 定义
+#### 定义
 
 包用于组合逻辑相关的过程和函数，它由包规范和包体两个部分组成。包规范用于定义公用的常量、变量、过程和函数，创建包规范可以使用CREATE PACKAGE命令，创建包体可以使用CREATE PACKAGE BODY
 
-#### 10.4.2. 语法
+#### 语法
 
 创建包规范
 
@@ -2679,7 +2679,7 @@ end PCKG_包名;
 /
 ```
 
-### 10.5. 关于oracle存储过程的若干问题备忘
+### 关于oracle存储过程的若干问题备忘
 
 1. 在oracle的存储过程中，数据表别名不能加`as`。也许，是怕和oracle中的存储过程中的关键字`as`冲突的问题吧
 
@@ -2693,13 +2693,13 @@ selecta.appname from appinfo as a;  -- 错误
 	可以在该语法之前，先利用 `select count(*) from` 查看数据库中是否存在该记录，如果存在，再利用 `select...into...`
 4. 在存储过程中，别名不能和字段名称相同，否则虽然编译可以通过，但在运行阶段会报错
 
-### 10.6. Oracle 中的 Packages 与 Packagebodies
+### Oracle 中的 Packages 与 Packagebodies
 
-#### 10.6.1. package 的作用
+#### package 的作用
 
 可以简化应用设计、提高应用性能、实现信息隐藏、子程序重载
 
-#### 10.6.2. packages 与 packagebodies 比较
+#### packages 与 packagebodies 比较
 
 定义:`packae`是一种将过程、函数和数据结构捆绑在一起的容器；
 
@@ -2717,13 +2717,13 @@ selecta.appname from appinfo as a;  -- 错误
 
 增加包中的过程或者修改包中过程的输入参数个数等也是要先改`package`再改`body`
 
-## 11. 存储函数
+## 存储函数
 
-### 11.1. 存储函数概述
+### 存储函数概述
 
 与存储过程类似，封装一些 sql 语句，事先编译好，存在数据库端，供其他程序员调用。
 
-### 11.2. 存储函数语法
+### 存储函数语法
 
 ```sql
 create [or replace] function 函数名(参数1 in|out 数据类型1, 参数2 in|out 数据类型2, ...) return 数据类型
@@ -2750,7 +2750,7 @@ public void methodName(params....){}
 public String methodName(params....){return "";}
 ```
 
-### 11.3. 调用存储函数
+### 调用存储函数
 
 ```sql
 declare
@@ -2810,7 +2810,7 @@ begin
 end;
 ```
 
-### 11.4. 存储过程和存储函数的区别
+### 存储过程和存储函数的区别
 
 1. 过程和函数最大的区别是：
     - 函数（function）总是向调用者返回数据，并且一般只返回一个值；
@@ -2855,15 +2855,15 @@ end;
 select ename,deptno,findDNameByDNo(deptno) from emp;
 ```
 
-## 12. Java程序调用存储过程
+## Java程序调用存储过程
 
-### 12.1. java 连接 oracle 的 jar 包
+### java 连接 oracle 的 jar 包
 
 在oracle的安装目录:\oracle\product\10.2.0\db_1\jdbc\lib
 
 找到 jar 包：ojdbc14.jar
 
-### 12.2. 数据库连接字符串
+### 数据库连接字符串
 
 数据库的连接要素可以在 hibernate-release-5.0.12.Final\project\etc\hibernate.propertie 找到
 
@@ -2876,7 +2876,7 @@ String username="scott";
 String password="123456";
 ```
 
-### 12.3. Connection 接口获取 CallableStatement
+### Connection 接口获取 CallableStatement
 
 ```java
 CallableStatement prepareCall(String sql)
@@ -2902,7 +2902,7 @@ CallableStatement prepareCall(String sql)
 - `procedure-name`：存储过程的名字
 - `arg1,arg2...`：过程的形式参数
 
-### 12.4. CallableStatement 接口
+### CallableStatement 接口
 
 用于执行 SQL 存储过程的接口。JDBC API 提供了一个存储过程 SQL 转义语法，该语法允许对所有 RDBMS 使用标准方式调用存储过程。
 
@@ -2950,7 +2950,7 @@ Object getObject(int parameterIndex)
 
 此方法返回一个 Java 对象，其类型对应于使用 registerOutParameter 方法为此参数注册的 JDBC 类型。
 
-### 12.5. JDBC调用Oracle对象-表
+### JDBC调用Oracle对象-表
 
 ```java
 /**
@@ -2994,7 +2994,7 @@ public class JdbcOracleDemo01 {
 }
 ```
 
-### 12.6. JDBC调用Oracle对象-过程：无返回
+### JDBC调用Oracle对象-过程：无返回
 
 ```java
 /**
@@ -3058,7 +3058,7 @@ begin
 end;
 ```
 
-### 12.7. JDBC调用Oracle对象-过程：有返回
+### JDBC调用Oracle对象-过程：有返回
 
 ```java
 /**
@@ -3118,7 +3118,7 @@ begin
 end;
 ```
 
-### 12.8. JDBC调用Oracle对象-函数
+### JDBC调用Oracle对象-函数
 
 ```java
 /**
@@ -3184,7 +3184,7 @@ begin
 end;
 ```
 
-### 12.9. JDBC调用存储过程返回：多个结果
+### JDBC调用存储过程返回：多个结果
 
 sys_refcursor
 
@@ -3260,13 +3260,13 @@ begin
 end;
 ```
 
-## 13. 触发器【了解】
+## 触发器【了解】
 
 触发器，监视器，监视表中记录，当对表中记录进行操作(增删改)触发器工作。
 
 数据库触发器是一个与表相关联的、存储的 PL/SQL 程序。每当一个特定的数据操作语句(`insert`,`update`,`delete`)在指定的表上发出时，Oracle 自动地执行触发器中定义的语句序列。
 
-### 13.1. 触发器作用
+### 触发器作用
 
 - 数据确认
     - 示例：员工涨后的工资不能少于涨前的工资
@@ -3275,13 +3275,13 @@ end;
 - 做审计，跟踪表上所做的数据操作等
 - 数据的备份和同步
 
-### 13.2. 触发器的类型
+### 触发器的类型
 
 - 行级触发器（FOR EACH ROW）：触发语句作用的每一条记录都被触发。在行级触发器中使用 old 和 new 伪记录变量，识别值的状态。
 - 语句级触发器：在指定的操作语句操作之前或之后执行一次，不管这条语句影响了多少行。
 - BEFORE 和 AFTER 触发器：分别在操作执行前后触发。
 
-### 13.3. 触发器的语法
+### 触发器的语法
 
 ```sql
 CREATE [or REPLACE] trigger 触发器名
@@ -3368,9 +3368,9 @@ end;
 insert into my_emp (ename) values ('jack');
 ```
 
-## 14. Oracle 其他知识
+## Oracle 其他知识
 
-### 14.1. 系统表user_tables/all_tables/dba_tables
+### 系统表user_tables/all_tables/dba_tables
 
 - user_tables、all_tables、dba_tables关系：
     - user_tables：可查询当前用户的表；
@@ -3378,13 +3378,13 @@ insert into my_emp (ename) values ('jack');
     - dba_tables：可查询包括系统表在内的所有表。需要DBA权限才能查询
 - 以上3个视图中，user_tables的范围最小，all_tables看到的东西稍多一些，而dba_tables看到最多的信息
 
-### 14.2. 数据库锁表
+### 数据库锁表
 
 `for update`：会对所查询到得结果集进行加锁，不允许其他程序修改
 `for update nowait`：也会对所查询到得结果集进行加锁，别的线程对结果集进行操作时会报错ORA-00054，提示：内容是资源正忙，但指定以 NOWAIT 方式获取资源。
 `select t.*,t.rowid from 表名`：用ROWID来定位记录是最快的，比索引还快，不加锁查询。不会锁表
 
-### 14.3. Oracle 的表分区
+### Oracle 的表分区
 
 表分区是 Oracle 数据库中一种将表和索引分解为更小、更易管理的部分的技术。其优势包括：
 
@@ -3392,7 +3392,7 @@ insert into my_emp (ename) values ('jack');
 2. **可管理性**：分区表更容易管理和维护。
 3. **高可用性**：分区有助于提高数据的可用性和恢复性能。
 
-### 14.4. Oracle 的索引组织表和堆组织表
+### Oracle 的索引组织表和堆组织表
 
 索引组织表（IOT）和堆组织表在 Oracle 中的区别主要包括：
 
@@ -3400,7 +3400,7 @@ insert into my_emp (ename) values ('jack');
 - **性能**：IOT 在某些查询上性能更好，特别是主键查找。
 - **使用场景**：IOT 适用于主键访问模式频繁的场景，而堆组织表适用于更广泛的场景。
 
-### 14.5. V$ 视图和 DBA_ 视图
+### V$ 视图和 DBA_ 视图
 
 `V$`视图和`DBA_`视图在 Oracle 中用于提供数据库的动态和静态信息：
 

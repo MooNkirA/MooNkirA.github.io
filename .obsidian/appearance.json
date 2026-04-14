@@ -1,0 +1,8 @@
+{
+  "theme": "moonstone",
+  "textFontFamily": "Cascadia Code",
+  "monospaceFontFamily": "Fira Code",
+  "enabledCssSnippets": [
+    "护眼编辑器背景2"
+  ]
+}

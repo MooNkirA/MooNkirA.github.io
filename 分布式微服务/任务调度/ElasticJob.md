@@ -1,9 +1,9 @@
-## 1. Elastic-Job 简介
+## Elastic-Job 简介
 
 > - 官网：https://shardingsphere.apache.org/elasticjob/index_zh.html
 > - 官方 github 地址：https://github.com/apache/shardingsphere-elasticjob
 
-### 1.1. 概述
+### 概述
 
 ElasticJob 是一个分布式调度解决方案，由当当网开源，它由 2 个相互独立的子项目 ElasticJob-Lite 和 ElasticJob-Cloud 组成。
 
@@ -17,7 +17,7 @@ ElasticJob 是一个分布式调度解决方案，由当当网开源，它由 2 
 
 使用 Elastic-Job 可以快速实现分布式任务调度。ElasticJob 的各个产品使用统一的作业 API，开发者仅需要一次开发，即可随意部署。
 
-### 1.2. 功能列表
+### 功能列表
 
 - **分布式调度协调**：在分布式环境中，任务能够按指定的调度策略执行，并且能够避免同一任务多实例重复执行。
 - **丰富的调度策略**：基于成熟的定时任务作业框架Quartz cron表达式执行定时任务。
@@ -30,9 +30,9 @@ ElasticJob 是一个分布式调度解决方案，由当当网开源，它由 2 
 - **Spring整合以及命名空间支持**：对 Spring 支持良好的整合方式，支持 spring 自定义命名空间，支持占位符。
 - **运维平台**：提供运维界面，可以管理作业和注册中心。
 
-### 1.3. 分布式任务调度相关重要概念
+### 分布式任务调度相关重要概念
 
-#### 1.3.1. 分片
+#### 分片
 
 任务的分布式执行，需要将一个任务拆分为多个独立的任务项，然后由分布式的服务器分别执行某一个或几个分片项。
 
@@ -40,13 +40,13 @@ ElasticJob 是一个分布式调度解决方案，由当当网开源，它由 2 
 
 如果分成10片，则作业遍历数据的逻辑应为：每片分到的分片项应为ID%10，而服务器A被分配到分片项0,1,2,3,4；服务器B被分配到分片项5,6,7,8,9，直接的结果就是服务器A遍历ID以0-4结尾的数据；服务器B遍历ID以5-9结尾的数据。
 
-#### 1.3.2. leader 选举
+#### leader 选举
 
 zookeeper 会保证在多台服务器中选举出一个 leader，leader 如果下线会触发重新选举，在选出下个 leader 前所有任务会被阻塞，leader 会以“协调者”角色负责分片。
 
-### 1.4. Elastic-Job 的分片策略
+### Elastic-Job 的分片策略
 
-#### 1.4.1. 平均分片策略（默认）
+#### 平均分片策略（默认）
 
 实现类全路径：`com.dangdang.ddframe.job.lite.api.strategy.impl.AverageAllocationJobShardingStrategy`
 
@@ -58,7 +58,7 @@ zookeeper 会保证在多台服务器中选举出一个 leader，leader 如果�
 
 > 注：此分片策略比较常用
 
-#### 1.4.2. 哈希值升降序分片策略
+#### 哈希值升降序分片策略
 
 实现类全路径：`com.dangdang.ddframe.job.lite.api.strategy.impl.OdevitySortByNameJobShardingStrategy`
 
@@ -74,7 +74,7 @@ zookeeper 会保证在多台服务器中选举出一个 leader，leader 如果�
 - 如果有3台服务器，分成2片，作业名称的哈希值为奇数，则每台服务器分到的分片是：1=[0], 2=[1], 3=[]
 - 如果有3台服务器，分成2片，作业名称的哈希值为偶数，则每台服务器分到的分片是：3=[0], 2=[1], 1=[]
 
-#### 1.4.3. 哈希值轮转分片策略
+#### 哈希值轮转分片策略
 
 实现类全路径：`com.dangdang.ddframe.job.lite.api.strategy.impl.RotateServerByNameJobShardingStrategy`
 
@@ -82,23 +82,23 @@ zookeeper 会保证在多台服务器中选举出一个 leader，leader 如果�
 
 - 根据作业名的哈希值对服务器列表进行轮转的分片策略。
 
-## 2. Elastic-Job 快速入门
+## Elastic-Job 快速入门
 
-### 2.1. 环境搭建
+### 环境搭建
 
-#### 2.1.1. 版本要求
+#### 版本要求
 
 - JDK 要求 1.7 及以上版本
 - Maven 要求 3.0.4 及以上版本
 - zookeeper 要求采用 3.4.6 及以上版本
 
-#### 2.1.2. Zookeeper 安装与运行
+#### Zookeeper 安装与运行
 
 zk 下载地址：https://zookeeper.apache.org/releases.html
 
 下载某版本 Zookeeper，并解压。把 conf 目录下的 zoo_sample.cfg 改为 zoo.cfg。修改相关配置。最后执行解压目录下的 `bin/zkServer.cmd` 启动 zk 服务
 
-#### 2.1.3. 数据库准备
+#### 数据库准备
 
 数据库：mysql-5.7.25
 
@@ -130,14 +130,14 @@ INSERT INTO `user` VALUES (5, 'Billie', 24, 'test5@moon.com');
 SET FOREIGN_KEY_CHECKS = 1;
 ```
 
-### 2.2. Elastic-job 集成 Spring Boot
+### Elastic-job 集成 Spring Boot
 
 > 此 Elastic-job 快速入门示例使用 spring boot 集成方式。示例代码位置如下：
 >
 > - 代码仓库：https://github.com/MooNkirA/java-technology-stack/tree/master/java-stack-elastic-job
 > - 本地：\code\java-technology-stack\java-stack-elastic-job\elastic-job-springboot
 
-#### 2.2.1. 导入 maven 依赖
+#### 导入 maven 依赖
 
 ```xml
 <parent>
@@ -179,7 +179,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 </dependencies>
 ```
 
-#### 2.2.2. 编写 spring boot 配置文件及启动类
+#### 编写 spring boot 配置文件及启动类
 
 spring boot 配置文件：
 
@@ -231,7 +231,7 @@ public class ElasticJobApp {
 }
 ```
 
-#### 2.2.3. 实体类与数据访问层
+#### 实体类与数据访问层
 
 用户表实体类
 
@@ -279,7 +279,7 @@ mapper 映射文件
 </mapper>
 ```
 
-#### 2.2.4. Elastic-Job 任务类
+#### Elastic-Job 任务类
 
 编写 Elastic-Job 任务类，需要实现 `com.dangdang.ddframe.job.api.simple.SimpleJob` 接口，其中 `execute` 方法在定时任务被调度时执行
 
@@ -312,7 +312,7 @@ public class MyJob implements SimpleJob {
 }
 ```
 
-#### 2.2.5. zookeeper 注册中心配置
+#### zookeeper 注册中心配置
 
 在 config 包中，创建 zookeeper 的配置类 `ZKRegistryCenterConfig`。
 
@@ -343,7 +343,7 @@ public class ZKRegistryCenterConfig {
 }
 ```
 
-#### 2.2.6. elastic-job 配置类
+#### elastic-job 配置类
 
 在 config 包中，创建 elastic-job 配置类，配置任务详细信息，包括：指定任务执行类、任务的执行策略等等
 
@@ -386,7 +386,7 @@ public class ElasticJobConfig {
 }
 ```
 
-#### 2.2.7. 功能测试
+#### 功能测试
 
 启动 zookeeper 服务。由于在配置文件中设置的分片数量为3，所以这里启动了三个微服务，各个服务启动过程中会向 zookeeper 进行注册。配置以下 VM options 参数，启动服务，服务的端口是 57081(默认)、57082、57083
 
@@ -398,6 +398,6 @@ public class ElasticJobConfig {
 
 ![](images/390624910220371.png)
 
-## 3. Elastic-Job 工作原理（待整理）
+## Elastic-Job 工作原理（待整理）
 
 > TODO: 待整理

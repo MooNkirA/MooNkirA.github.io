@@ -1,12 +1,13 @@
 # Day08 课程图片管理 & 分布式文件系统
 
-## 1. FastDFS 研究
+## FastDFS 研究
 
 - 参考资料：编程资料笔记\【07】分布式架构 & 微服务架构\05-FastDFS 分布式文件系统.md
 - 测试代码：xc-edu-project-service 工程的 test-fastdfs 模块
 
-## 2. 上传图片功能开发
-### 2.1. 需求分析
+## 上传图片功能开发
+
+### 需求分析
 
 在很多系统都有上传图片/上传文件的需求，比如：上传课程图片、上传课程资料、上传用户头像等，为了提供系统的可重用性专门设立文件系统服务承担图片/文件的管理，文件系统服务实现对文件的上传、删除、查询等功能进行管理。
 
@@ -28,7 +29,7 @@
     5. 课程管理前端请求课程管理进行保存课程图片信息到课程数据库。
     6. 课程管理服务将课程图片保存在课程数据库。
 
-### 2.2. 创建文件系统服务工程
+### 创建文件系统服务工程
 
 导入本项目提供的资料，xc-service-base-filesystem.zip工程
 
@@ -130,8 +131,8 @@ xuecheng:
     tracker_servers: 192.168.12.132:22122 # 多个 trackerServer中间以逗号分隔
 ```
 
-### 2.3. 后端API接口
-#### 2.3.1. 定义数据模型类
+### 后端API接口
+#### 定义数据模型类
 
 1. 系统的文件信息（图片、文档等小文件的信息）在mongodb中存储，在xc-framework-model工程创建文件信息的模型类
 
@@ -173,7 +174,7 @@ public class FileSystem {
     - metadata：文件相关的元信息。
 2. 在mongodb创建数据库xc_fs（文件系统数据库），并创建（collection）集合filesystem。
 
-#### 2.3.2. Api接口
+#### Api接口
 
 在xc-service-api工程下创建com.xuecheng.api.filesystem.FileSystemControllerApi接口
 
@@ -205,7 +206,7 @@ public interface FileSystemControllerApi {
 }
 ```
 
-#### 2.3.3. dao 层
+#### dao 层
 
 在xc-service-base-filesystem工程，定义FileSystemRepository接，将文件信息存入数据库，主要存储文件系统中的文件路径
 
@@ -222,7 +223,7 @@ public interface FileSystemRepository extends MongoRepository<FileSystem, String
 }
 ```
 
-#### 2.3.4. service 层
+#### service 层
 
 创建com.xuecheng.filesystem.service.FileSystemService类，增加上传文件的方法
 
@@ -376,7 +377,7 @@ public class FileSystemService {
 }
 ```
 
-#### 2.3.5. Controller 层
+#### Controller 层
 
 创建com.xuecheng.filesystem.controller.FileSystemController类，实现文件系统服务接口FileSystemControllerApi
 
@@ -423,19 +424,19 @@ public class FileSystemController implements FileSystemControllerApi {
 }
 ```
 
-#### 2.3.6. 测试
+#### 测试
 
 - swagger-ui：http://127.0.0.1:22100/swagger-ui.html
 - postman：http://127.0.0.1:22100/filesystem/upload
 
-### 2.4. 上传课程图片前端
-#### 2.4.1. 需求
+### 上传课程图片前端
+#### 需求
 
 上传图片界面如下图：点击“加号”上传图片，图片上传成功自动显示；点击“删除”将删除图片
 
 ![前端页面](images/20190806125609982_19479.png)
 
-#### 2.4.2. 页面
+#### 页面
 
 1. 创建src\module\course\page\course_manage\course_picture.vue，使用Element-UI的Upload上传组件实现需求的效果
 
@@ -539,10 +540,10 @@ export default {
 }
 ```
 
-#### 2.4.3. 测试，点击“加号”测试上传图片
+#### 测试，点击“加号”测试上传图片
 
-## 3. 保存课程图片
-### 3.1. 需求分析
+## 保存课程图片
+### 需求分析
 
 图片上传到文件系统后，其它子系统如果想使用图片可以引用图片的地址，课程管理模块使用图片的方式是将图片地址保存到课程数据库中
 
@@ -552,8 +553,8 @@ export default {
 2. 保存图片地址到课程管理服务，在课程管理服务创建保存课程与图片对应关系的表course_pic
 3. 保存图片成功后，参过course_pic表数据可查询某个课程图片信息
 
-### 3.2. 课程管理服务端开发
-#### 3.2.1. API接口
+### 课程管理服务端开发
+#### API接口
 
 课程管理需要使用图片，在xc-service-api工程的课程管理服务中CourseControllerApi接口要提供保存课程图片的api方法
 
@@ -562,7 +563,7 @@ export default {
 public ResponseResult addCoursePic(String courseId, String pic);
 ```
 
-#### 3.2.2. dao 层
+#### dao 层
 
 - 定义模型封装数据
 
@@ -596,7 +597,7 @@ public interface CoursePicRepository extends JpaRepository<CoursePic, String> {
 }
 ```
 
-#### 3.2.3. Service 层
+#### Service 层
 
 修改CourseService类，创建添加课程图片方法
 
@@ -636,7 +637,7 @@ public ResponseResult addCoursePic(String courseId, String pic) {
 }
 ```
 
-#### 3.2.4. Controller 层
+#### Controller 层
 
 修改CourseController类，实现新增图片addCoursePic方法
 
@@ -657,11 +658,11 @@ public ResponseResult addCoursePic(@RequestParam("courseId") String courseId,
 }
 ```
 
-### 3.3. 保存图片前端开发
+### 保存图片前端开发
 
 前端需要在上传图片成功后保存课程图片信息
 
-#### 3.3.1. 前端Api方法
+#### 前端Api方法
 
 修改course.js，增加保存课程图片地址数据方法
 
@@ -672,7 +673,7 @@ export const addCoursePic = (courseId, pic) => {
 }
 ```
 
-#### 3.3.2. 页面代码
+#### 页面代码
 
 1. 添加上传成功的钩子方法`:on-success="handleSuccess"`
 2. 在钩子方法中保存课程图片信息，如果保存图片失败则上传失败，清除文件列表
@@ -702,12 +703,12 @@ handleError(err, file, fileList) {
 },
 ```
 
-## 4. 课程图片查询
-### 4.1. 需求分析
+## 课程图片查询
+### 需求分析
 
 课程图片上传成功，再次进入课程上传页面应该显示出来已上传的图片
 
-### 4.2. API 接口
+### API 接口
 
 在课程管理服务的CourseControllerApi定义查询接口方法
 
@@ -716,12 +717,12 @@ handleError(err, file, fileList) {
 public CoursePic findCoursePic(String courseId);
 ```
 
-### 4.3. 课程管理服务商开发
-#### 4.3.1. dao 层
+### 课程管理服务商开发
+#### dao 层
 
 直接使用CoursePicRepository接口
 
-#### 4.3.2. Service 层
+#### Service 层
 
 修改CourseService类，定义根据课程id查询课程图片方法
 
@@ -742,7 +743,7 @@ public CoursePic findCoursePic(String courseId) {
 }
 ```
 
-#### 4.3.3. Controller 层
+#### Controller 层
 
 修改CourseController类，实现查询课程图片findCoursePic方法
 
@@ -760,8 +761,8 @@ public CoursePic findCoursePic(@PathVariable("courseId") String courseId) {
 }
 ```
 
-### 4.4. 查询图片前端开发
-#### 4.4.1. 定义API方法
+### 查询图片前端开发
+#### 定义API方法
 
 修改course.js，增加技术要求课程图片方法
 
@@ -772,7 +773,7 @@ export const findCoursePicList = courseId => {
 }
 ```
 
-#### 4.4.2. 页面代码
+#### 页面代码
 
 在课程图片页面的mounted钩子方法中查询课程图片信息，并将图片地址赋值给数据对象
 
@@ -805,7 +806,7 @@ ounted() {
 }
 ```
 
-#### 4.4.3. 测试
+#### 测试
 
 - 配置host映射
 
@@ -819,14 +820,14 @@ ounted() {
     1. 上传图片成功
     2. 进入上传图片页面，观察图片是否显示
 
-## 5. 课程图片删除
-### 5.1. 需求分析
+## 课程图片删除
+### 需求分析
 
 课程图片上传成功后，可以重新上传，方法是先删除现有图片再上传新图片
 
 *注意：此删除只删除课程数据库的课程图片信息，不去删除文件数据库的文件信息及文件系统服务器上的文件，由于课程图片来源于该用户的文件库，所以此图片可能存在多个地方共用的情况，所以要删除文件系统中的文件需要到图片库由用户确认后再删除*。
 
-### 5.2. 服务API接口
+### 服务API接口
 
 在课程管理服务CourseControllerApi接口添加删除课程图片api方法
 
@@ -835,8 +836,8 @@ ounted() {
 public ResponseResult deleteCoursePic(String courseId);
 ```
 
-### 5.3. 课程管理服务端开发
-#### 5.3.1. dao 层
+### 课程管理服务端开发
+#### dao 层
 
 CoursePicRepository父类提供的delete方法没有返回值，无法知道是否删除成功，所以在CoursePicRepository接口中自定义删除方法
 
@@ -852,7 +853,7 @@ public interface CoursePicRepository extends JpaRepository<CoursePic, String> {
 }
 ```
 
-#### 5.3.2. Service 层
+#### Service 层
 
 修改CourseService类，增加删除课程图片的方法
 
@@ -874,7 +875,7 @@ public ResponseResult deleteCoursePic(String courseId) {
 }
 ```
 
-#### 5.3.3. Controller 层
+#### Controller 层
 
 修改CourseController类，实现删除课程图片deleteCoursePic方法
 
@@ -892,8 +893,8 @@ public ResponseResult deleteCoursePic(@RequestParam("courseId") String courseId)
 }
 ```
 
-### 5.4. 删除图片前端开发
-#### 5.4.1. API 调用
+### 删除图片前端开发
+#### API 调用
 
 修改course.js，增加删除课程图片方法
 
@@ -904,7 +905,7 @@ export const deleteCoursePic = courseId => {
 }
 ```
 
-#### 5.4.2. 页面测试
+#### 页面测试
 
 - 定义上传组件中的before-remove钩子方法，在upload组件的before-remove钩子方法中实现删除动作
 
@@ -936,8 +937,8 @@ handleRemove(file, fileList) {
 },
 ```
 
-#### 5.4.3. promise异步调用
-##### 5.4.3.1. 删除测试
+#### promise异步调用
+##### 删除测试
 
 - 在handleRemove方法调用删除图片的api方法，根据后端返回标识，删除成功时return true，删除失败时return false
 
@@ -960,7 +961,7 @@ handleRemove(file, fileList) {
 - 在上边代码中将提交的课程id故意写错，按照我们预期应该是删除失败，而测试结果却是图片在页面上删除成功
 - 问题原因：通过查询deleteCoursePic方法的底层代码，deleteCoursePic最终返回一个promise对象
 
-##### 5.4.3.2. Promise 对象说明
+##### Promise 对象说明
 
 - Promise 是ES6提供的用于异步处理的对象，因为axios提交是异步提交，这里使用promise作为返回值
 - Promise对象在处理过程中有三种状态：
@@ -995,7 +996,7 @@ promise.catch(reason => {
 })
 ```
 
-##### 5.4.3.3. Promise 使用案例与修改删除图片的钩子方法
+##### Promise 使用案例与修改删除图片的钩子方法
 
 1. 定义一个方法，返回promise对象
 

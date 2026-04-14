@@ -1,10 +1,10 @@
-## 1. Nginx 官网与下载
+## Nginx 官网与下载
 
 Nginx 官网下载：https://nginx.org/en/download.html
 
 本次项目使用版本：nginx-1.13.12.zip
 
-### 1.1. 版本区别
+### 版本区别
 
 常用版本分为四大阵营
 

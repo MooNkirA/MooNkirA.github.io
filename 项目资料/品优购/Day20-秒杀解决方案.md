@@ -1,8 +1,6 @@
-# Day20 秒杀解决方案
+## 秒杀业务分析
 
-## 1. 秒杀业务分析
-
-### 1.1. 需求分析
+### 需求分析
 
 - 什么是秒杀：
     - 秒杀场景一般会在电商网站举行一些活动。对于电商网站中一些稀缺或者特价商品，电商网站一般会在约定时间点对其进行限量销售，因为这些商品的特殊性，会吸引大量用户前来抢购，并且会在约定的时间点同时在秒杀页面进行抢购。由于商品价格低廉，往往一上架就被抢购一空，有时只用一秒钟。
@@ -21,7 +19,7 @@
     - 秒杀下单成功，直接跳转到支付页面（微信扫码），支付成功，跳转到成功页，填写收货地址、电话、收件人等信息，完成订单。
     - 当用户秒杀下单5分钟内未支付，取消预订单，调用微信支付的关闭订单接口，恢复库存。
 
-### 1.2. 数据库表分析
+### 数据库表分析
 
 - tb_seckill_goods秒杀商品表
 
@@ -31,13 +29,13 @@
 
 ![tb_seckill_order秒杀订单表](images/20190321135621001_27895.jpg)
 
-### 1.3. 秒杀实现思路
+### 秒杀实现思路
 
 秒杀技术实现核心思想是运用缓存减少数据库瞬间的访问压力！读取商品详细信息时运用缓存，当用户点击抢购时减少缓存中的库存数量，当库存数为0时或活动期结束时，同步到数据库。产生的秒杀预订单也不会立刻写到数据库中，而是先写到缓存，当用户付款成功后再写入数据库。
 
-### 1.4. 工程搭建与准备
+### 工程搭建与准备
 
-#### 1.4.1. 工程模块搭建-秒杀服务接口与实现层
+#### 工程模块搭建-秒杀服务接口与实现层
 
 - 创建秒杀服务聚合模块pinyougou-seckill(pom类型)，配置pom.xml文件，设置tomcat端口9009
 
@@ -172,7 +170,7 @@
 
 - 创建log4j.properties文件
 
-#### 1.4.2. 工程模块搭建-秒杀表现层
+#### 工程模块搭建-秒杀表现层
 
 - 创建秒杀频道web模块pinyougou-seckill-web(war类型)，修改pom.xml文件，配置相关依赖与tomcat插件，端口为9109
 
@@ -442,7 +440,7 @@
 - 创建log4j.properties文件
 - 拷贝【资料\秒杀系统静态资源】目录下的文件到pinyougou-seckill-web项目webapp目录下
 
-#### 1.4.3. 基础代码创建
+#### 基础代码创建
 
 - 拷贝【资料\pojo】目录下的实体类到pinyougou-pojo工程中。
 - 拷贝【资料\mapper】目录下的数据访问接口与sql映射文件到pinyougou-mapper工程中。
@@ -451,7 +449,7 @@
 - 创建SeckillGoodsController控制器
 - 拷贝其他系统的LoginController控制器到pinyougou-seckill-web
 
-### 1.5. 配置域名访问
+### 配置域名访问
 
 - 修改hosts文件增加映射：`127.0.0.1 seckill.moon.com`
 - 修改nginx.conf文件
@@ -473,32 +471,32 @@ server {
 }
 ```
 
-### 1.6. 秒杀商品后台管理（！待完成）
+### 秒杀商品后台管理（！待完成）
 
 - 运营商系统web模块pinyougou-manager-web依赖pinyougou-seckill-interface
 - 商家系统web模块pinyougou-shop-web依赖pinyougou-seckill-interface
 
-#### 1.6.1. 商家后台
+#### 商家后台
 
 - 秒杀商品列表
 - 秒杀商品申请
 - 秒杀订单查询
 
-#### 1.6.2. 运营商后台
+#### 运营商后台
 
 - 待审核秒杀商品列表
 - 秒杀商品审核
 - 秒杀订单查询
 
-## 2. 品优购-秒杀频道首页
+## 品优购-秒杀频道首页
 
-### 2.1. 需求分析
+### 需求分析
 
 需求：秒杀频道首页，显示正在秒杀的商品（已经开始，未结束的商品）
 
-### 2.2. 后端部分
+### 后端部分
 
-#### 2.2.1. 秒杀服务接口与实现层
+#### 秒杀服务接口与实现层
 
 - pinyougou-seckill-interface的SeckillGoodsService.java，增加查询当前参与秒杀的商品
 
@@ -563,7 +561,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
 }
 ```
 
-#### 2.2.2. 秒杀系统-控制层
+#### 秒杀系统-控制层
 
 pinyougou-seckill-web的SeckillGoodsController.java，增加查询方法
 
@@ -592,9 +590,9 @@ public class SeckillGoodsController {
 }
 ```
 
-### 2.3. 前端部分
+### 前端部分
 
-#### 2.3.1. 秒杀系统前端控制器
+#### 秒杀系统前端控制器
 
 pinyougou-seckill-web创建seckillGoodsController.js，定义查询秒杀商品的方法
 
@@ -613,7 +611,7 @@ app.controller('seckillGoodsController', function ($scope, $controller, baseServ
 });
 ```
 
-#### 2.3.2. 秒杀系统前端页面
+#### 秒杀系统前端页面
 
 - 修改seckill-index.html，引入js
 
@@ -682,7 +680,7 @@ app.controller('seckillGoodsController', function ($scope, $controller, baseServ
 </div>
 ```
 
-### 2.4. 缓存处理
+### 缓存处理
 
 修改SeckillGoodsServiceImpl.java的findSeckillGoods方法，增加从redis查询秒杀商品列表与更新秒杀商品到redis缓存中
 
@@ -749,15 +747,15 @@ public List<SeckillGoods> findSeckillGoods() {
 }
 ```
 
-## 3. 品优购-秒杀详细页
+## 品优购-秒杀详细页
 
-### 3.1. 需求分析
+### 需求分析
 
 商品详细页显示秒杀商品信息。
 
-### 3.2. 显示详细页信息
+### 显示详细页信息
 
-#### 3.2.1. 秒杀系统-后端部分
+#### 秒杀系统-后端部分
 
 - 修改pinyougou-seckill-interface的SeckillGoodsService与pinyougou-seckill-service的SeckillGoodsServiceImpl.java，增加根据id查询秒杀商品的方法
 
@@ -798,7 +796,7 @@ public SeckillGoods findOne(Long id) {
 }
 ```
 
-#### 3.2.2. 秒杀系统-前端部分
+#### 秒杀系统-前端部分
 
 - pinyougou-seckill-web的seckillGoodsController.js，引入$location，获取url后面的参数
 
@@ -892,13 +890,13 @@ app.controller('seckillGoodsController', function ($scope, $controller,
 </div>
 ```
 
-### 3.3. 秒杀倒计时效果
+### 秒杀倒计时效果
 
-#### 3.3.1. `$timeout`服务简介
+#### `$timeout`服务简介
 
 使用Angular中`$timeout`延迟定时器服务，格式为：`$timeout(执行的函数, 间隔的毫秒数);`
 
-#### 3.3.2. 秒杀倒计时
+#### 秒杀倒计时
 
 - 修改seckillGoodsController.js，定义倒计时方法
 
@@ -970,15 +968,15 @@ app.controller('seckillGoodsController', function ($scope, $controller,
 <span class="overtime">距离结束：{{ timeStr }}</span>
 ```
 
-## 4. 品优购-秒杀下单
+## 品优购-秒杀下单
 
-### 4.1. 需求分析
+### 需求分析
 
 商品详细页点击立即抢购实现秒杀下单，**订单先存储到Redis**中减轻MySql数据库压力，**下单时扣减库存(Redis中缓存商品的库存)。当库存为0时修改数据库秒杀商品库存同时删除Redis中秒杀商品**。
 
-### 4.2. 秒杀系统-后端代码
+### 秒杀系统-后端代码
 
-#### 4.2.1. 秒杀服务接口层
+#### 秒杀服务接口层
 
 - pinyougou-seckill-interface创建SeckillOrderService.java，定义提交订单到redis的方法
 
@@ -997,7 +995,7 @@ public interface SeckillOrderService {
 }
 ```
 
-#### 4.2.2. 秒杀服务实现层
+#### 秒杀服务实现层
 
 - 修改applicationContext-service.xml配置文件，配置IdWorker分布式id生成器
 
@@ -1088,7 +1086,7 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 }
 ```
 
-#### 4.2.3. 秒杀系统控制层
+#### 秒杀系统控制层
 
 pinyougou-seckill-web创建SeckillOrderController.java
 
@@ -1128,9 +1126,9 @@ public class SeckillOrderController {
 }
 ```
 
-### 4.3. 秒杀系统-前端代码
+### 秒杀系统-前端代码
 
-#### 4.3.1. 秒杀系统-前端控制层
+#### 秒杀系统-前端控制层
 
 修改pinyougou-seckill-web的seckillGoodsController.js，定义下单方法
 
@@ -1157,7 +1155,7 @@ $scope.submitOrder = () => {
 };
 ```
 
-#### 4.3.2. 秒杀系统-前端页面
+#### 秒杀系统-前端页面
 
 修改seckill-item.html(265行)，“秒杀抢购”按钮绑定点击事件
 
@@ -1170,15 +1168,15 @@ $scope.submitOrder = () => {
 </ul>
 ```
 
-## 5. 品优购-秒杀支付
+## 品优购-秒杀支付
 
-### 5.1. 需求分析
+### 需求分析
 
 用户成功下单后，跳转到支付页面。支付页显示微信支付二维码。用户完成支付后，保存订单到数据库。
 
-### 5.2. 生成支付二维码
+### 生成支付二维码
 
-#### 5.2.1. 后端代码
+#### 后端代码
 
 - pinyougou-seckill-web工程引入pinyougou-pay-interface依赖
 
@@ -1249,7 +1247,7 @@ public Map<String, String> genPayCode(HttpServletRequest request) {
 }
 ```
 
-#### 5.2.2. 前端代码
+#### 前端代码
 
 - 复制pinyougou-cart-web工程的orderController.js到pinyougou-seckill-web工程，并重命名为：seckillOrderController.js
 
@@ -1326,9 +1324,9 @@ app.controller('seckillOrderController', function ($scope, $controller,
 <img id="qrious"/>
 ```
 
-### 5.3. 支付成功保存订单
+### 支付成功保存订单
 
-#### 5.3.1. 后端代码
+#### 后端代码
 
 - 修改pinyougou-seckill-interface的SeckillOrderService.java增加支付成功保存订单的方法，在pinyougou-seckill-service的SeckillOrderServiceImpl.java实现该方法
 
@@ -1413,7 +1411,7 @@ public Map<String, Integer> queryPayStatus(String outTradeNo,
 }
 ```
 
-#### 5.3.2. 前端代码
+#### 前端代码
 
 - 修改pay.html(参见pinyougou-cart-web工程)
 
@@ -1472,11 +1470,11 @@ public Map<String, Integer> queryPayStatus(String outTradeNo,
 	  ng-init="loadUsername();">
 ```
 
-### 5.4. 订单超时处理
+### 订单超时处理
 
 需求：当用户下单后5分钟尚未付款应该释放订单，增加库存。
 
-#### 5.4.1. 查询超时未支付订单
+#### 查询超时未支付订单
 
 - 修改pinyougou-seckill-interface的SeckillOrderService.java，增加查询超时未支付订单的方法
 
@@ -1521,7 +1519,7 @@ public List<SeckillOrder> findOrderByRedisTimeout() {
 }
 ```
 
-#### 5.4.2. 关闭微信订单
+#### 关闭微信订单
 
 - 修改pinyougou-pay-interface的WeixinPayService接口，增加关闭超时未支付的订单方法
 
@@ -1584,7 +1582,7 @@ public Map<String, String> closePayTimeout(String outTradeNo) {
 closeorder=https://api.mch.weixin.qq.com/pay/closeorder
 ```
 
-#### 5.4.3. 删除超时未支付订单
+#### 删除超时未支付订单
 
 - 修改pinyougou-seckill-interface的SeckillOrderService.java，增加从Redis删除超时的定单
 
@@ -1634,7 +1632,7 @@ public void deleteOrderFromRedis(SeckillOrder seckillOrder) {
 }
 ```
 
-#### 5.4.4. 定时调度服务
+#### 定时调度服务
 
 - pinyougou-seckill-web的com.pinyougou.seckill.task包下创建订单定时任务服务类OrderTaskService.java，使用spring框架的任务调度，使用注解`@Scheduled`配置任务执行的间隔
 

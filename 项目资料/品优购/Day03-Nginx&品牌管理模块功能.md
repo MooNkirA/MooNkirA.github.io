@@ -1,21 +1,21 @@
 > 将『资料\运营商管理后台静态资源』下的静态资源全部拷贝到 pinyougou-manager-web 的 src/main/webapp/ 目录下。其中 plugins 文件夹中包括了 angularJS 、bootstrap、JQuery 等常用前端库，将在项目中用到。
 
-## 1. 使用域名访问后台系统
+## 使用域名访问后台系统
 
-### 1.1. 不使用域名存在的问题
+### 不使用域名存在的问题
 
 1. 开发环境和测试环境的 ip 不一样，每次环境变化时，都需要修改访问地址；
 2. 页面加载资源文件，有可能使用 url 的全路径，一旦更换环境（ip 变了），资源文件则无法加载；
 3. ip 地址没有记忆意义，不容易记忆，用户不通过 ip 访问，一般通过域名访问。
 
-### 1.2. 配置域名访问
+### 配置域名访问
 
 - 可以修改`windows/system32/drivers/etc/hosts`文件，实现域名和ip地址的映射。
 - 使用域名访问后的流程为：
 
 ![域名访问流程](images/20181223093732302_9213.jpg)
 
-### 1.3. SwitchHosts工具
+### SwitchHosts工具
 
 - 手动修改hosts文件，如果以后ip多了以后配置和切换都比较麻烦；一般可以使用工具进行管理。而SwitchHosts则可以管理hosts文件；SwitchHosts安装文件在“资料\SwitchHosts.exe”中。
 - 功能说明：
@@ -24,9 +24,9 @@
 
 - 问题：ip不用输入了，但是端口还在。可使用nginx解决。
 
-## 2. Nginx 反向代理服务器
+## Nginx 反向代理服务器
 
-### 2.1. Nginx 简介
+### Nginx 简介
 
 1. Nginx ("engine x") 是一个高性能的 HTTP 和反向代理服务器；
 2. 支持的操作系统众多，windows、linux、MacOS X；
@@ -36,13 +36,13 @@
 
 反向代理（Reverse Proxy）方式是指以代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
 
-### 2.2. Nginx 官网与下载
+### Nginx 官网与下载
 
 - 官网：https://nginx.org/
 - 下载：https://nginx.org/en/download.html
 - 本次项目使用版本：nginx-1.13.12.zip
 
-### 2.3. Nginx 相关命令
+### Nginx 相关命令
 
 用 cmd 命令行工具进入 nginx 所在的根目录：
 
@@ -60,7 +60,7 @@
 netstat -ano | findstr "80"
 ```
 
-### 2.4. 安装与配置
+### 安装与配置
 
 - 直接解压【nginx-x.xx.xx.zip】；进入解压后目录
 - 【nginx-1.11.13\conf\nginx.conf】进行服务的配置。
@@ -85,7 +85,7 @@ server {
 }
 ```
 
-### 2.5. 修改本机host
+### 修改本机host
 
 - 方式一：打开`“C:\Windows\System32\drivers\etc\hosts”`文件添加如下内容：`127.0.0.1  manager.moon.com`
 - 方式二：使用转换Host工具“SwitchHosts”打开并添加。
@@ -94,13 +94,13 @@ server {
 
 - 请求地址：http://manager.moon.com/admin/index.html
 
-## 3. 运营商后台品牌列表模块功能
+## 运营商后台品牌列表模块功能
 
-### 3.1. 品牌列表查询（不分页）
+### 品牌列表查询（不分页）
 
-#### 3.1.1. 前端 - 品牌查询（brand.html）
+#### 前端 - 品牌查询（brand.html）
 
-##### 3.1.1.1. 引入js
+##### 引入js
 
 修改admin/brand.html，引入js：
 
@@ -109,7 +109,7 @@ server {
 <script src="/plugins/angularjs/angular.min.js"></script>
 ```
 
-##### 3.1.1.2. 指定模块和控制器
+##### 指定模块和控制器
 
 ```html
 <body class="hold-transition skin-red sidebar-mini"
@@ -120,7 +120,7 @@ server {
 - ng-controller 指令用于为你的应用添加控制器。
 - 在控制器中，可以编写代码，制作函数和变量，并使用 scope 对象来访问。
 
-##### 3.1.1.3. 编写JS代码发送异常请求查询后端
+##### 编写JS代码发送异常请求查询后端
 
 ```html
 <!-- 定义模块与控制器 -->
@@ -143,7 +143,7 @@ server {
 </script>
 ```
 
-##### 3.1.1.4. 页面循环显示表格数据
+##### 页面循环显示表格数据
 
 ```html
 <!--数据列表-->
@@ -174,7 +174,7 @@ server {
 <!--数据列表/-->
 ```
 
-##### 3.1.1.5. 初始化调用
+##### 初始化调用
 
 ```html
 <body class="hold-transition skin-red sidebar-mini"
@@ -182,17 +182,17 @@ server {
       ng-init="findAll();">
 ```
 
-#### 3.1.2. 后端 - 品牌查询（BrandController.java）
+#### 后端 - 品牌查询（BrandController.java）
 
 直接使用之前初始化项目的后台代码即可
 
-### 3.2. 品牌列表分页查询
+### 品牌列表分页查询
 
-#### 3.2.1. 需求分析
+#### 需求分析
 
 在品牌管理下方放置分页栏，实现分页功能
 
-#### 3.2.2. 后端-分页结果实体
+#### 后端-分页结果实体
 
 - 在pinyougou-common工程中创建com.pinyougou.common.pojo包，用于存放通用实体类，创建类PageResult
 - 定义两个属性，封装总记录数和分页数据
@@ -215,7 +215,7 @@ public class PageResult<T> implements Serializable {
 }
 ```
 
-#### 3.2.3. 后端-服务接口层
+#### 后端-服务接口层
 
 分页助手需要依赖？！pagehelper在mapper模块已经依赖，服务模块的实现类依赖了mapper模块，所以可以不加pagehelper的依赖
 
@@ -243,7 +243,7 @@ public class PageResult<T> implements Serializable {
 PageResult<Brand> findByPage(int pageNum, int pageSize);
 ```
 
-#### 3.2.4. 后端-服务实现层
+#### 后端-服务实现层
 
 实现类使用PageHelper（MyBatis分页插件）分页查询
 
@@ -282,7 +282,7 @@ public PageResult<Brand> findByPage(int pageNum, int pageSize) {
 }
 ```
 
-#### 3.2.5. 后端-控制层
+#### 后端-控制层
 
 - 控制层增加分页查询方法
 
@@ -312,7 +312,7 @@ public class BrandController {
 
 - 使用url进行测试：http://127.0.0.1:9101/brand/findByPage?page=1&rows=5
 
-#### 3.2.6. 前端-分页查询
+#### 前端-分页查询
 
 - 在admin/brand.html引入分页组件
 
@@ -346,7 +346,7 @@ var app = angular.module('pinyougou', ['pagination']);
 <tm-pagination conf="paginationConf"></tm-pagination>
 ```
 
-#### 3.2.7. 前端-分页组件配置
+#### 前端-分页组件配置
 
 - <font color="red">注意：使用分页查询前，在页面的body元素上去掉ng-init指令的调用</font>
 - paginationConf 变量各属性的意义：
@@ -393,9 +393,9 @@ $scope.search = function (page, rows) {
 }
 ```
 
-### 3.3. 新增品牌
+### 新增品牌
 
-#### 3.3.1. 后端-服务接口与实现层
+#### 后端-服务接口与实现层
 
 - 在pinyougou-sellergoods-interface服务接口层的BrandService.java添加新增方法
 
@@ -422,7 +422,7 @@ public void saveBrand(Brand brand) {
 }
 ```
 
-#### 3.3.2. 后端-控制器层
+#### 后端-控制器层
 
 在pinyougou-manager-web的BrandController.java中新增方法
 
@@ -442,7 +442,7 @@ public boolean save (@RequestBody Brand brand) {
 }
 ```
 
-#### 3.3.3. 前端brand.html页面JS代码
+#### 前端brand.html页面JS代码
 
 - 使用ng-model绑定页面输入的值到对象，给保存按钮增加点击事件`ng-click="saveOrUpdate()"`
 
@@ -496,11 +496,11 @@ $scope.saveOrUpdate = function () {
     <i class="fa fa-file-o"></i> 新建</button>
 ```
 
-### 3.4. 修改品牌
+### 修改品牌
 
 点击列表的修改按钮，弹出窗口，修改数据后点“保存”执行保存操
 
-#### 3.4.1. 后端-服务接口与实现层
+#### 后端-服务接口与实现层
 
 - 服务层接口pinyougou-sellergoods-interface的BrandService.java增加修改品牌方法
 
@@ -538,7 +538,7 @@ public void updateBrand(Brand brand) {
 }
 ```
 
-#### 3.4.2. 后端-控制层
+#### 后端-控制层
 
 控制层pinyougou-manager-web的BrandController.java增加修改的方法
 
@@ -562,7 +562,7 @@ public boolean update(@RequestBody Brand brand) {
 }
 ```
 
-#### 3.4.3. 前端页面
+#### 前端页面
 
 - 修改列表中的“修改”按钮，调用此方法执行表单数据绑定：将当前行的对象传入到方法中，不需要再去查询数据
 
@@ -610,11 +610,11 @@ $scope.saveOrUpdate = function () {
 }
 ```
 
-### 3.5. 删除品牌
+### 删除品牌
 
 点击列表前的复选框，点击删除按钮，删除选中的品牌
 
-#### 3.5.1. 后端-服务接口与实现层
+#### 后端-服务接口与实现层
 
 - 在pinyougou-sellergoods-interface的BrandService.java接口定义删除方法
 
@@ -653,7 +653,7 @@ public void deleteBrand(Long[] ids) {
 }
 ```
 
-#### 3.5.2. 后端-数据访问层mapper
+#### 后端-数据访问层mapper
 
 在mapper接口的方法形参中使用@Param("指定参数名称")，用注解来简化xml配置的时候,@Param注解的作用是给参数命名,参数命名后就能根据名字得到参数值,正确的将参数传入sql语句中
 
@@ -702,7 +702,7 @@ void deleteBrandByIds(@Param("ids") Long[] ids);
 </delete>
 ```
 
-#### 3.5.3. 后端-控制层
+#### 后端-控制层
 
 控制层新增删除方法
 
@@ -726,7 +726,7 @@ public boolean delete(Long[] ids) {
 }
 ```
 
-#### 3.5.4. 前端页面批量删除（处理选取多个id）
+#### 前端页面批量删除（处理选取多个id）
 
 - 主要思路：需要定义一个用于存储选中ID的数组，当点击复选框后判断是选择还是取消选择，如果是选择就加到数组中，如果是取消选择就从数组中移除。在点击删除按钮时需要用到这个存储了ID的数组。
 - 补充一下JS的关于数组操作的知识：
@@ -790,7 +790,7 @@ $scope.delete = function () {
 };
 ```
 
-#### 3.5.5. （！待完善）增加全选功能
+#### （！待完善）增加全选功能
 
 - 还有小bug，当全选后，再取消一个，再点击全选，刚刚取消的无法再选中？！
 - 给全选复选框增加选中属性，和点击事件，增加ng-model属性绑定，点击后可以改变ck取值，从而改变下面的复选框的ng-checked值
@@ -856,12 +856,12 @@ $scope.delete = function () {
 $scope.ck_all = $scope.ids.length == $scope.dataList.length;
 ```
 
-### 3.6. 多条件分页查询品牌
+### 多条件分页查询品牌
 
 - 实现品牌条件查询功能，输入品牌名称、首字母后查询，并分页
 - <font color="red">需要注意使用get方法传递中文查询条件时乱码的问题</font>
 
-#### 3.6.1. 后端-服务接口与实现层（修改原来分页查询方法）
+#### 后端-服务接口与实现层（修改原来分页查询方法）
 
 - 根据前端查询条件分析，可以直接使用品牌的实体类来封装查询条件即可
 - 在pinyougou-sellergoods-interface工程的BrandService.java修改findByPage分页方法，增加Brand对象，用来封装查询条件
@@ -899,7 +899,7 @@ public PageResult<Brand> findByPage(Brand brand, int pageNum, int pageSize) {
 }
 ```
 
-#### 3.6.2. 后端-数据访问层接口与映射文件
+#### 后端-数据访问层接口与映射文件
 
 - 在pinyougou-mapper工程BrandMapper.java增加方法，新增条件查询形参brand
 
@@ -938,14 +938,14 @@ List<Brand> findByWhere(@Param("brand") Brand brand);
 </select>
 ```
 
-##### 3.6.2.1. sql语句的CONCAT()函数
+##### sql语句的CONCAT()函数
 
 - 用于拼接字符串，用于代替直接编写字符串
 - 例：`select * from tb_brand where name like CONCAT('%', '米' ,'%');`
 
-#### 3.6.3. 后端-控制层
+#### 后端-控制层
 
-##### 3.6.3.1. 增加查询条件封装的Brand对象
+##### 增加查询条件封装的Brand对象
 
 - 修改之前的分页查询方法，增加封装查询条件
 
@@ -961,7 +961,7 @@ public PageResult<Brand> findByPage(Brand brand,
 }
 ```
 
-##### 3.6.3.2. 解决get请求中文乱码
+##### 解决get请求中文乱码
 
 1. 方式1：配置tomcat的插件，解决Get方法传递中文查询条件时乱码的问题
     - 修改pinyougou-manager-web/pom.xml配置文件
@@ -998,7 +998,7 @@ PageResult<Brand> pageResult = brandService.findByPage(brand, page, rows);
 return pageResult;
 ```
 
-#### 3.6.4. 前端页面
+#### 前端页面
 
 - 注：使用前端框架绑定参数，对象名可以随便定义，但属性的名称比较与传入后台用于封装的实体类属性一致
 - brand.html添加搜索条件框，绑定输入参数，还有查询按钮点击事件

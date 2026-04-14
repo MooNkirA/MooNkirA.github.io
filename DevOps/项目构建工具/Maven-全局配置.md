@@ -1,20 +1,20 @@
 > 官方参考文档：https://maven.apache.org/settings.html
 
-## 1. 全局配置 settings.xml 简介
+## 全局配置 settings.xml 简介
 
 是用来设置 maven 参数的配置文件。settings.xml 中包含类似本地仓储位置、修改远程仓储服务器、认证信息等配置。
 
 - settings.xml 是 maven 的全局配置文件
 - pom.xml 文件是本地项目配置文件
 
-### 1.1. settings.xml 文件位置
+### settings.xml 文件位置
 
 - 全局配置：`${maven.home}/conf/settings.xml`
 - 用户配置：`${user.home}/.m2/settings.xml`
 
 注意：用户配置优先于全局配置。`${user.home}`和和所有其他系统属性只能在 3.0+ 版本上使用。请注意 windows 和 Linux 使用变量的区别。
 
-### 1.2. 配置优先级
+### 配置优先级
 
 **局部配置优先于全局配置**
 
@@ -22,8 +22,8 @@
 
 如果这些文件同时存在，在应用配置时，会合并它们的内容，如果有重复的配置，优先级高的配置会覆盖优先级低的
 
-## 2. settings.xml 元素详解
-### 2.1. 顶级元素概览
+## settings.xml 元素详解
+### 顶级元素概览
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -43,7 +43,7 @@
 </settings>
 ```
 
-### 2.2. LocalRepository 标签
+### LocalRepository 标签
 
 - 作用：该值表示构建系统本地仓库的路径。
 - 其默认值：`~/.m2/repository`
@@ -52,7 +52,7 @@
 <localRepository>${user.home}/.m2/repository</localRepository>
 ```
 
-### 2.3. InteractiveMode 标签
+### InteractiveMode 标签
 
 - 作用：表示 maven 是否需要和用户交互以获得输入。
 - 如果 maven 需要和用户交互以获得输入，则设置成 true，反之则应为 false。默认为 true。
@@ -61,7 +61,7 @@
 <interactiveMode>true</interactiveMode>
 ```
 
-### 2.4. UsePluginRegistry 标签
+### UsePluginRegistry 标签
 
 - 作用：maven 是否需要使用 plugin-registry.xml 文件来管理插件版本。
 - 如果需要让 maven 使用文件`~/.m2/plugin-registry.xml` 来管理插件版本，则设为 true。默认为 false。
@@ -70,7 +70,7 @@
 <usePluginRegistry>false</usePluginRegistry>
 ```
 
-### 2.5. Offline 标签
+### Offline 标签
 
 - 作用：表示 maven 是否需要在离线模式下运行。
 - 如果构建系统需要在离线模式下运行，则为 true，默认为 false。
@@ -80,7 +80,7 @@
 <offline>false</offline>
 ```
 
-### 2.6. PluginGroups 标签
+### PluginGroups 标签
 
 - 作用：当插件的组织 id（groupId）没有显式提供时，供搜寻插件组织 Id（groupId）的列表。
 - 该元素包含一个 pluginGroup 元素列表，每个子元素包含了一个组织 Id（groupId）。
@@ -99,7 +99,7 @@
 </settings>
 ```
 
-### 2.7. Servers 标签
+### Servers 标签
 
 - 作用：一般，仓库的下载和部署是在 pom.xml 文件中的 repositories 和 distributionManagement 元素中定义的。然而，一般类似用户名、密码（**有些仓库访问是需要安全认证的**）等信息不应该在 pom.xml 文件中配置，这些信息可以配置在 settings.xml 中。
 
@@ -138,7 +138,7 @@
 </settings>
 ```
 
-### 2.8. Mirrors 标签
+### Mirrors 标签
 
 - 作用：为仓库列表配置的下载镜像列表。
 
@@ -168,7 +168,7 @@
 </settings>
 ```
 
-### 2.9. Proxies 标签
+### Proxies 标签
 
 - 作用：用来配置不同的代理。
 
@@ -202,7 +202,7 @@
 </settings>
 ```
 
-### 2.10. Profiles 标签
+### Profiles 标签
 
 - 作用：根据环境参数来调整构建配置的列表。
 - settings.xml 中的 profile 元素是 pom.xml 中 profile 元素的**裁剪版本**。
@@ -231,7 +231,7 @@
 </settings>
 ```
 
-#### 2.10.1. properties 标签
+#### properties 标签
 
 - 作用：对应profile的扩展属性列表。
 - maven 属性和 ant 中的属性一样，可以用来存放一些值。这些值可以在 pom.xml 中的任何地方使用标记`${X}`来使用，这里 X 是指属性的名称。属性有五种不同的形式，并且都能在 settings.xml 文件中访问。
@@ -251,7 +251,7 @@
 
 > 注：如果该 profile 被激活，则可以在pom.xml中使用`${user.install}`
 
-#### 2.10.2. Repositories 标签
+#### Repositories 标签
 
 - 作用：`<profiles>`标签的子标签。远程仓库列表，它是 maven 用来填充构建系统本地仓库所使用的一组远程仓库。
 
@@ -295,7 +295,7 @@
 </repositories>
 ```
 
-### 2.11. Activation 标签
+### Activation 标签
 
 - 作用：自动触发 profile 的条件逻辑。
 - 如 pom.xml 中的 profile 一样，profile 的作用在于它能够在某些特定的环境中自动使用某些特定的值；这些环境通过 activation 元素指定。
@@ -343,7 +343,7 @@
 
 > 注：在 maven 工程的 pom.xml 所在目录下执行 `mvn help:active-profiles` 命令可以查看中央仓储的 profile 是否在工程中生效。
 
-### 2.12. pluginRepositories 标签
+### pluginRepositories 标签
 
 - 作用：发现插件的远程仓库列表。
 - 和 repository 类似，只是 repository 是管理 jar 包依赖的仓库，pluginRepositories 则是管理插件的仓库。
@@ -371,7 +371,7 @@
 </pluginRepositories>
 ```
 
-### 2.13. ActiveProfiles 标签
+### ActiveProfiles 标签
 
 - 作用：手动激活 profiles 的列表，按照profile被应用的顺序定义activeProfile。
 - 该元素包含了一组 activeProfile 元素，每个 activeProfile 都含有一个 profile id。任何在 activeProfile 中定义的 profile id，不论环境设置如何，其对应的 profile 都会被激活。如果没有匹配的 profile，则什么都不会发生。

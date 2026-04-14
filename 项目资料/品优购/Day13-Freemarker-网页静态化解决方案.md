@@ -1,8 +1,6 @@
-# Day13 Freemarker-网页静态化解决方案
+## 网页静态化技术FreeMarker
 
-## 1. 网页静态化技术FreeMarker
-
-### 1.1. 为什么要使用网页静态化技术
+### 为什么要使用网页静态化技术
 
 网页静态化解决方案在实际开发中运用比较多，例如新闻网站，门户网站中的新闻频道或者是文章类的频道。
 
@@ -12,7 +10,7 @@
 
 另外我们如果将网页以纯静态化的形式展现，就可以使用Nginx这样的高性能的web服务器来部署。Nginx可以承载5万的并发，而Tomcat只有几百。
 
-### 1.2. 什么是Freemarker
+### 什么是Freemarker
 
 FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出。FreeMarker与Web容器无关，即在Web运行时，它并不知道Servlet或HTTP。它不仅可以用作表现层的实现技术，而且还可以用于生成XML，JSP或Java等。
 
@@ -20,11 +18,11 @@ FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成
 
 ![freemarker生成流程](images/20190212074041869_2233.png)
 
-### 1.3. FreeMarker入门示例
+### FreeMarker入门示例
 
 创建freemarker-test工程，选择jar类型。
 
-#### 1.3.1. 引入依赖
+#### 引入依赖
 
 ```xml
 <dependencies>
@@ -47,7 +45,7 @@ FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成
 </dependency>
 ```
 
-#### 1.3.2. 创建模板文件
+#### 创建模板文件
 
 模板文件中四种元素：
 
@@ -75,7 +73,7 @@ FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成
 
 > *说明：这里有文本、插值和注释*
 
-#### 1.3.3. 生成文件步骤
+#### 生成文件步骤
 
 使用步骤：
 
@@ -112,9 +110,9 @@ public void test1() throws IOException, TemplateException {
 
 > 执行后，生成E:\Downloads\hello.html文件
 
-### 1.4. freemarker API
+### freemarker API
 
-#### 1.4.1. Configuration 类
+#### Configuration 类
 
 `public class Configuration extends Configurable implements Cloneable, ParserConfiguration`
 
@@ -134,7 +132,7 @@ public void test1() throws IOException, TemplateException {
 - `public Template getTemplate(String name) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException`
     - 根据一个模版文件，创建模版对象，入参name是需要加载的模版名称
 
-#### 1.4.2. Template 类
+#### Template 类
 
 `public class Template extends Configurable`
 
@@ -145,9 +143,9 @@ public void test1() throws IOException, TemplateException {
         - 参数dataModel：模板使用的数据模型，可以是pojo也可以是map，一般是Map。
         - 参数out：文件输出流
 
-### 1.5. FTL指令
+### FTL指令
 
-#### 1.5.1. assign变量指令
+#### assign变量指令
 
 语法：`<#assign 变量名="xxx"/>` 或 `<#assign 变量名={属性1:值1, 属性2:值2, ...}/>`
 
@@ -170,7 +168,7 @@ public void test1() throws IOException, TemplateException {
 ${user.name} --> ${user.sex} --> ${user.age}
 ```
 
-#### 1.5.2. include包含指令
+#### include包含指令
 
 语法：`<#include "模版文件.ftl"/>`
 
@@ -189,7 +187,7 @@ ${user.name} --> ${user.sex} --> ${user.age}
 <#include "header.ftl"/>
 ```
 
-#### 1.5.3. if条件指令
+#### if条件指令
 
 语法：
 
@@ -230,7 +228,7 @@ ${user.name} --> ${user.sex} --> ${user.age}
 dataModel.put("success", true);
 ```
 
-#### 1.5.4. list迭代指令
+#### list迭代指令
 
 语法：`<#list 集合 as 变量名>`
 
@@ -280,11 +278,11 @@ dataModel.put("users", users);
 
 <font color="red">***说明：如果想在循环中得到索引，使用"循环变量_index"就可以得到。***</font>
 
-### 1.6. 内建函数
+### 内建函数
 
 内建函数语法格式：`变量?函数名称`
 
-#### 1.6.1. size函数：获取集合大小
+#### size函数：获取集合大小
 
 通常要得到某个集合的大小，可以使用size函数来实现
 
@@ -307,7 +305,7 @@ dataModel.put("users", users);
 共有${users?size}条记录！
 ```
 
-#### 1.6.2. eval函数：转换JSON字符串为对象
+#### eval函数：转换JSON字符串为对象
 
 将json字符串转换为对象
 
@@ -318,7 +316,7 @@ dataModel.put("users", users);
 ${data.bank} --> ${data.account}
 ```
 
-#### 1.6.3. date、time、datetime、string函数：日期格式化
+#### date、time、datetime、string函数：日期格式化
 
 - 在java代码中对变量赋值：
 
@@ -336,7 +334,7 @@ dataModel.put("today", new Date());
 日期格式化：  ${today?string("yyyy年MM月dd日 HH:mm:ss")}
 ```
 
-#### 1.6.4. c函数：数字转换为字符串
+#### c函数：数字转换为字符串
 
 说明：当需要将数字按原样输出，即不带“,”号
 
@@ -362,11 +360,11 @@ dataModel.put("point", 102920122);
 
 页面显示结果：`1092902200`
 
-### 1.7. 空值处理运算符
+### 空值处理运算符
 
 如果在模板中使用了变量但是在代码中没有对变量赋值，那么运行生成时会抛出异常。但是有些时候，有的变量确实是null，怎么解决这个问题呢？
 
-#### 1.7.1. `??`：判断某变量是否存在
+#### `??`：判断某变量是否存在
 
 语法格式：`variable??`；如果该变量`variable`存在，返回true否则返回false
 
@@ -378,7 +376,7 @@ dataModel.put("point", 102920122);
 </#if>
 ```
 
-#### 1.7.2. `!`：缺失变量默认值
+#### `!`：缺失变量默认值
 
 语法格式：`变量名!默认值`；除了可以判断是否为空值，也可以使用`!`对null值做转换处理
 
@@ -390,19 +388,19 @@ ${aaa!'默认值'}
 
 在代码中不对aaa赋值，也不会报错了，当aaa为null则返回`!`后边的内容"默认值"
 
-### 1.8. 运算符
+### 运算符
 
-#### 1.8.1. 算数运算符
+#### 算数运算符
 
 FreeMarker支持的算术运算符包括：`+、 -、 *、/、%`
 
-#### 1.8.2. 逻辑运算符
+#### 逻辑运算符
 
 - `&&`：逻辑与
 - `||`：逻辑或：
 - `!`：逻辑非：
 
-#### 1.8.3. 比较运算符
+#### 比较运算符
 
 - `==`：判断两个值是否相等
 - `!=`：判断两个值是否不等
@@ -423,9 +421,9 @@ ${(!(10 gt 10))?string('true','false')}
 <#-- 输出：true -->
 ```
 
-## 2. 商品详情页-数据显示
+## 商品详情页-数据显示
 
-### 2.1. 需求分析
+### 需求分析
 
 运用Freemarker技术来实现商品详细页动态展示。通过地址栏输入某地址，如下形式
 
@@ -433,9 +431,9 @@ ${(!(10 gt 10))?string('true','false')}
 
 访问路径：`http://item.moon.com/SPU商品goodsId.html`
 
-### 2.2. 搭建商品详情web工程
+### 搭建商品详情web工程
 
-#### 2.2.1. 工程配置
+#### 工程配置
 
 - 创建maven项目pinyougou-item-web，选项war类型。配置pom.xml引入相关依赖
 
@@ -631,7 +629,7 @@ ${(!(10 gt 10))?string('true','false')}
 	}
     ```
 
-#### 2.2.2. 商家服务工程(pinyougou-sellergoods)
+#### 商家服务工程(pinyougou-sellergoods)
 
 在pinyougou-sellergoods商家服务工程，GoodsService服务与GoodsServiceImpl实现类，增加获取商品
 
@@ -667,7 +665,7 @@ public Map<String, Object> getGoods(Long goodsId) {
 }
 ```
 
-#### 2.2.3. 商品详情工程控制层(pinyougou-item-web)
+#### 商品详情工程控制层(pinyougou-item-web)
 
 - 修改pinyougou-item-web工程中的ItemController，增加根据id查询商品信息的方法
 
@@ -717,9 +715,9 @@ public class ItemController {
 
 ---
 
-### 2.3. 商品详情页模板构建
+### 商品详情页模板构建
 
-#### 2.3.1. 模板模块化引入
+#### 模板模块化引入
 
 此时item.ftl内容较多，当编辑时不容易快速找到编辑的位置，所以将头部分拆分到header.ftl，将尾部拆分到footer.ftl，用include指令在item.ftl中引入。(静态页面参考：【资料\商品静态资源\static\三个html页面】)
 
@@ -735,7 +733,7 @@ public class ItemController {
 <#include "footer.ftl"/>
 ```
 
-#### 2.3.2. 生成基本数据
+#### 生成基本数据
 
 - 在模板中找到相应的位置，用插值替换静态文本item.ftl(66行)
 
@@ -778,7 +776,7 @@ public class ItemController {
 - 运行控制层代码，测试效果：
     - http://item.moon.com/149187842867997.html
 
-#### 2.3.3. 生成图片列表
+#### 生成图片列表
 
 - 编辑模板文件item.ftl(40行)，使用eval函数，将数据库返回的json字符串转成json对象
 
@@ -820,7 +818,7 @@ public class ItemController {
 </div>
 ```
 
-#### 2.3.4. 生成扩展属性列表
+#### 生成扩展属性列表
 
 - 修改模板，首先进行json转换(item.ftl 408行)
 
@@ -843,7 +841,7 @@ public class ItemController {
 </ul>
 ```
 
-#### 2.3.5. 生成规格列表
+#### 生成规格列表
 
 - 修改模板，转换规格列表为JSON对象(116行)
 
@@ -873,7 +871,7 @@ public class ItemController {
 </div>
 ```
 
-#### 2.3.6. 生成商品类型面包屑
+#### 生成商品类型面包屑
 
 - 修改服务层GoodsServiceImpl的getGoods()方法，读取三级商品分类名称，加入到数据模型中
 
@@ -924,11 +922,11 @@ public Map<String, Object> getGoods(Long goodsId) {
 </ul>
 ```
 
-## 3. 商品详情页-前端逻辑
+## 商品详情页-前端逻辑
 
-### 3.1. 购买数量加减操作
+### 购买数量加减操作
 
-#### 3.1.1. 前端控制层
+#### 前端控制层
 
 在js目录下创建controller文件夹，创建itemController.js。增加数量加减的方法
 
@@ -950,7 +948,7 @@ app.controller('itemController', function ($scope) {
 
 *说明：在方法中控制数量不能小于1*
 
-#### 3.1.2. 商品详情模板
+#### 商品详情模板
 
 - item.ftl中引入相关js、控制层js
 
@@ -981,13 +979,13 @@ app.controller('itemController', function ($scope) {
 </div>
 ```
 
-### 3.2. 规格选择
+### 规格选择
 
 最终需要实现的效果:
 
 ![规格选择显示效果](images/20190213094311965_22226.jpg)
 
-#### 3.2.1. 前端控制层
+#### 前端控制层
 
 修改itemController.js，定义选择规格方法
 
@@ -1015,7 +1013,7 @@ $scope.isSelected = function (name, value) {
 };
 ```
 
-#### 3.2.2. 商品详情模版
+#### 商品详情模版
 
 页面调用控制器的方法(128行)
 
@@ -1031,13 +1029,13 @@ $scope.isSelected = function (name, value) {
 </#list>
 ```
 
-## 4. 商品详情页-读取SKU信息
+## 商品详情页-读取SKU信息
 
 需求：当选择规格后，应该在页面上更新商品名称为SKU的商品标题，价格也应该为SKU的商品价格。
 
-### 4.1. 页面生成SKU列表变量
+### 页面生成SKU列表变量
 
-#### 4.1.1. 后端服务层
+#### 后端服务层
 
 修改pinyougou-sellergoods-service的GoodsServiceImpl的getGoods()方法，增加条件查询sku商品的数据
 
@@ -1067,7 +1065,7 @@ public Map<String, Object> getGoods(Long goodsId) {
 }
 ```
 
-#### 4.1.2. 模板页面
+#### 模板页面
 
 修改模板item.ftl，初始化sku商品数据
 
@@ -1078,9 +1076,9 @@ public Map<String, Object> getGoods(Long goodsId) {
 </script>
 ```
 
-### 4.2. 显示SKU标题和价格
+### 显示SKU标题和价格
 
-#### 4.2.1. 加载默认SKU信息
+#### 加载默认SKU信息
 
 - 修改itemController.js，增加加载默认的sku商品数据
 
@@ -1119,7 +1117,7 @@ $scope.loadSku = function () {
 </div>
 ```
 
-#### 4.2.2. 选择规格更新SKU
+#### 选择规格更新SKU
 
 - 修改itemController.js, 查询当前用户选择的SKU
 
@@ -1149,7 +1147,7 @@ $scope.selectedSpec = function (name, value) {
 };
 ```
 
-### 4.3. 添加商品到购物车
+### 添加商品到购物车
 
 修改itemController.js，增加添加到购物车方法
 
@@ -1173,9 +1171,9 @@ $scope.addToCart = function () {
 </ul>
 ```
 
-## 5. 系统模块对接
+## 系统模块对接
 
-### 5.1. 搜索系统与商品详细页对接
+### 搜索系统与商品详细页对接
 
 修改pinyougou-search-web工程的search.html，修改点击图片的链接为`http://item.pinyougou.com/{{item.goodsId}}.html`(330行)
 

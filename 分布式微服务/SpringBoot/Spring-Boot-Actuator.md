@@ -1,6 +1,6 @@
-## 1. Spring Boot Actuator 应用运行状态监控
+## Spring Boot Actuator 应用运行状态监控
 
-### 1.1. 监控的概念
+### 监控的概念
 
 最早的软件完成一些非常简单的功能，代码不多，错误也少。随着软件功能的逐步完善，软件的功能变得越来越复杂，功能不能得到有效的保障，这个阶段出现了针对软件功能的检测，也就是软件测试。
 
@@ -8,7 +8,7 @@
 
 **监控**就是通过软件的方式展示另一个软件的运行情况，运行的情况则通过各种各样的指标数据反馈给监控人员。例如网络是否顺畅、服务器是否在运行、程序的功能是否能够整百分百运行成功，内存是否够用等等。
 
-### 1.2. 监控的意义
+### 监控的意义
 
 对于现代的互联网程序来说，规模越来越大，功能越来越复杂，还要追求更好的客户体验，因此要监控的信息量也就比较大了。
 
@@ -19,7 +19,7 @@
 
 以上这些仅仅是从大的方面来思考监控这个问题，还有很多的细节点，例如上线了一个新功能，定时提醒用户续费，这种功能不是上线后马上就运行的，但是当前功能是否真的启动，如果快速的查询到这个功能已经开启，这也是监控中要解决的问题等等。
 
-### 1.3. 监控系统的基本流程
+### 监控系统的基本流程
 
 比如现在有3个服务支撑着一个程序的运行，每个服务都有自己的运行状态。
 
@@ -39,13 +39,13 @@
 
 被监控程序可以提供各种各样的指标数据给监控程序看，但是每一个指标都代表着公司的机密信息，并不是所有的指标都可以给任何人看的，乃至运维人员，所以对被监控指标的是否开放出来给监控系统看，也需要做详细的设定。
 
-## 2. Spring Boot Actuator 快速入门
+## Spring Boot Actuator 快速入门
 
-### 2.1. 简述
+### 简述
 
 Spring Boot 的 Actuator 提供了多个内置端点，通过访问端点就可以获取对应的运行状态监控信息，可以实现对程序内部运行情况监控，比如监控状况、Bean 加载情况、配置属性、日志信息等。Actuator 的监控数据可以通过 Rest、运程 shell 和 JMX 方式获得。也可以根据需要自定义端点信息。
 
-### 2.2. 引入 actuator 依赖
+### 引入 actuator 依赖
 
 ```xml
 <dependency>
@@ -54,7 +54,7 @@ Spring Boot 的 Actuator 提供了多个内置端点，通过访问端点就可�
 </dependency>
 ```
 
-### 2.3. 远程请求获取监控数据
+### 远程请求获取监控数据
 
 访问 `http://项目应用的地址:端口号/actuator`，可以查看 JSON 格式的监控数据
 
@@ -169,7 +169,7 @@ GET http://localhost:9100/actuator/health
 }
 ```
 
-## 3. Actuator 端点信息汇总说明
+## Actuator 端点信息汇总说明
 
 通过发送请求路径 `/actuator` 可以访问应用所有端点信息，如果端点中还有明细信息可以发送请求 `/actuator/端点名称` 来获取详细信息。以下列出了所有端点信息说明：
 
@@ -201,20 +201,20 @@ GET http://localhost:9100/actuator/health
 
 状态监控的数据都是以 json 格式返回，分析数据不太方便，*推荐使用基于 Actuator 开发的 Spring Boot Admin 状态监控开源项目*
 
-## 4. Spring Boot Admin 可视化监控平台
+## Spring Boot Admin 可视化监控平台
 
 - 官网：https://github.com/codecentric/spring-boot-admin
 - 官方文档：https://codecentric.github.io/spring-boot-admin/
 
-### 4.1. 为什么要使用 Spring Boot Admin
+### 为什么要使用 Spring Boot Admin
 
 Spring Boot Actuator 提供了对单个 Spring Boot 应用的监控，信息包含应用状态、内存、线程、堆栈等，比较全面的监控了 Spring Boot 应用的整个生命周期，可以有效的帮我解决众多服务的健康检查、指标监控问题、配置管理、日志聚合问题、异常排查问题等等。
 
-### 4.2. Spring Boot Admin 来源背景
+### Spring Boot Admin 来源背景
 
 codecentric 的 Spring Boot Admin 是一个社区项目，用于管理和监视 Spring Boot® 应用程序。这些应用程序在 Spring Boot Admin Client 中注册（通过HTTP），或者是通过Spring Cloud®（例如Eureka，Consul）发现的。UI 只是 Spring Boot Actuator 端点之上的 Vue.js 应用程序。
 
-### 4.3. Spring Boot Admin 功能介绍
+### Spring Boot Admin 功能介绍
 
 Spring Boot Admin 提供了很多服务治理方面的功能，利用它能节省很多在治理服务方面的时间和精力 Spring Boot Admin 提供了如下功能（包括但不限于）：
 
@@ -243,16 +243,16 @@ Spring Boot Admin 提供了很多服务治理方面的功能，利用它能节�
 - 状态变更通知（通过电子邮件，Slack，Hipchat 等，支持钉钉）
 - 状态更改的事件日志（非持久化）
 
-## 5. Spring Boot Admin 基础使用
+## Spring Boot Admin 基础使用
 
 Spring Boot Admin 有两个角色，客户端(Client)和服务端(Server)。
 
 - 应用程序作为 Spring Boot Admin Client 向为 Spring Boot Admin Server 注册
 - Spring Boot Admin Server 的 UI 界面将 Spring Boot Admin Client 的 Actuator Endpoint 上的一些监控信息。
 
-### 5.1. 服务端开发
+### 服务端开发
 
-#### 5.1.1. 引入依赖
+#### 引入依赖
 
 创建 maven 工程，在 pom.xml 文件中导入 Spring Boot Admin 服务端对应的 starter，版本与当前使用的 Spring Boot 主版本保持一致即可（如：2.5.x），并将工程其配置成 web 工程
 
@@ -274,7 +274,7 @@ Spring Boot Admin 有两个角色，客户端(Client)和服务端(Server)。
 
 ![](images/418292914220546.png)
 
-#### 5.1.2. 开启监控服务端功能
+#### 开启监控服务端功能
 
 在引导类上添加 `@EnableAdminServer` 注解，声明当前应用启动后作为 Spring Boot Admin 的服务器使用
 
@@ -288,7 +288,7 @@ public class AdminServerApplication {
 }
 ```
 
-#### 5.1.3. 登陆服务端管理界面
+#### 登陆服务端管理界面
 
 启动应用服务后，使用浏览器访问 http://127.0.0.1:8080/
 
@@ -298,9 +298,9 @@ public class AdminServerApplication {
 
 > 注：因为示例没有使用 application.yml 配置文件指定应用的端口，所以默认是8080，可按需修改，由于目前没有启动任何被监控的程序，所以里面暂无任何信息
 
-### 5.2. 客户端开发
+### 客户端开发
 
-#### 5.2.1. 引入依赖
+#### 引入依赖
 
 创建 maven 工程，在 pom.xml 文件中导入 Spring Boot Admin 客户端对应的 starter，版本与当前使用的 Spring Boot 主版本保持一致即可（如：2.5.x），并将工程其配置成 web 工程
 
@@ -322,7 +322,7 @@ public class AdminServerApplication {
 
 ![](images/201393014238972.png)
 
-#### 5.2.2. 配置客户端开放的信息
+#### 配置客户端开放的信息
 
 创建 application.yml 文件，配置客户端应用的信息发送给哪个 ip 地址的监控服务
 
@@ -337,9 +337,9 @@ spring:
         url: http://localhost:8080 # 指定当前客户端将监控信息上传到哪个服务器上
 ```
 
-### 5.3. 监控管理后台
+### 监控管理后台
 
-#### 5.3.1. 界面信息简介
+#### 界面信息简介
 
 客户端配置 `spring.boot.admin.client.url` 后，监控后台可以看到当前监控了1个程序
 
@@ -378,7 +378,7 @@ management:
 
 ![](images/290145622239674.png)
 
-#### 5.3.2. 监控原理
+#### 监控原理
 
 其实监控中显示的信息实际上是通过发送请求到 `/actuator` 开头的链接地址，得到响应的 JSON 数据后，然后通过 UI 界面展示出来。Spring Boot Admin 就是将这些数据汇总到一起组成了监控平台显示的所有数据。
 
@@ -387,7 +387,7 @@ management:
 ![](images/243400810220548.png)
 
 
-### 5.4. 配置多个客户端
+### 配置多个客户端
 
 与配置配置单个客户端的方式一样，在其他的 Spring Boot 程序中添加客户端坐标与配置开放那些监控信息，这样当前服务器就可以监控多个客户端程序了。每个客户端展示不同的监控信息。
 
@@ -411,7 +411,7 @@ management:
 
 ![](images/107290723248650.png)
 
-### 5.5. 使用步骤总结
+### 使用步骤总结
 
 admin-server 服务
 
@@ -429,9 +429,9 @@ admin-client 服务
 
 > <font color=violet>**注：server 与 client 工程必须均为 web 应用**</font>
 
-## 6. Spring Boot Admin 进阶使用
+## Spring Boot Admin 进阶使用
 
-### 6.1. 端点配置
+### 端点配置
 
 上述端点每一项代表被监控的指标，如果对外开放则监控平台可以查询到对应的端点信息，如果未开放则无法查询对应的端点信息。通过配置 `management.endpoint.端点名称.enabled` 属性来控制端点是否对外开放功能。<font color=red>**值得注意的是，其中 `health` 端点为默认端点，不能关闭。**</font>
 
@@ -486,11 +486,11 @@ management:
 
 > 端点描述了被监控的信息，除了系统默认的指标，还可以自行添加显示的指标
 
-### 6.2. 自定义 INFO 端点
+### 自定义 INFO 端点
 
 info 端点描述了当前应用的基本信息，可以通过以下两种形式快速配置 info 端点的信息
 
-#### 6.2.1. 配置式
+#### 配置式
 
 在项目的 application.yml 文件中，通过设置 `info` 节点的信息取可快速配置端点信息
 
@@ -510,7 +510,7 @@ info:
 
 ![](images/38470211226841.png)
 
-#### 6.2.2. 编程式
+#### 编程式
 
 通过配置的形式只能添加固定的数据，如果需要展示动态数据，则通过配置类的方式为 info 端点添加信息。此配置类需要 `org.springframework.boot.actuate.info.InfoContributor` 接口，在 `contribute` 方法中，通过 `Info.Builder` 对象设置 info 的信息
 
@@ -537,7 +537,7 @@ public class InfoConfig implements InfoContributor {
 
 > 此编程式的信息与配置式共存
 
-### 6.3. 自定义 Health 端点
+### 自定义 Health 端点
 
 health 端点描述当前应用的运行健康指标，即应用的运行是否成功。通过编程形式可以扩展健康指标信息。该配置类需要继承 `org.springframework.boot.actuate.health.AbstractHealthIndicator` 抽象类或者实现 `org.springframework.boot.actuate.health.HealthIndicator` 接口，在 `doHealthCheck` 方法中，进行一些逻辑处理，再通过来 `Health.Builder` 对象来设置应用的健康信息
 
@@ -574,7 +574,7 @@ public class HealthConfig extends AbstractHealthIndicator {
 
 > <font color=red>**注意：当任意一个组件状态不为 UP 时，整体应用对外服务状态为非 UP 状态，包含引入的第三方组件，比如 redis、RocketMQ 等等**</font>
 
-### 6.4. 自定义 Metrics 端点
+### 自定义 Metrics 端点
 
 metrics 端点描述了性能指标，除了系统自带的监控性能指标，还可以自定义性能指标。在需要被监控或者业务需要的类中，增加有参构造方法，其方法形参是 `MeterRegistry` 类型，此对象实例会进行自动注入，到业务方法操作此对象即可更新 Metrics 端点的数据
 
@@ -602,7 +602,7 @@ public class DemoServiceImpl implements DemoService {
 
 ![](images/340951514247007.png)
 
-### 6.5. 自定义端点
+### 自定义端点
 
 可以根据业务需要自定义端点，方便业务监控。自定义端点配置类，标识 `@Endpoint` 当前类为自定义端点，`@ReadOperation` 注解标识方法用于定义端点返回信息
 

@@ -1,6 +1,6 @@
-## 1. FastDFS 分布式文件系统概述
+## FastDFS 分布式文件系统概述
 
-### 1.1. FastDFS 是什么
+### FastDFS 是什么
 
 FastDFS 是用 C 语言编写的一款开源的分布式文件系统，它是由淘宝资深架构师余庆编写并开源。FastDFS 专为互联网量身定制，充分考虑了冗余备份、负载均衡、线性扩容等机制，并注重高可用、高性能等指标，使用 FastDFS 很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。
 
@@ -8,7 +8,7 @@ FastDFS 是用 C 语言编写的一款开源的分布式文件系统，它是由
 
 上边介绍的 NFS、GFS 都是通用的分布式文件系统，通用的分布式文件系统的优点的是开发体验好，但是系统复杂性高、性能一般，而专用的分布式文件系统虽然开发体验性差，但是系统复杂性低并且性能高。fastDFS 非常适合存储图片等那些小文件，fastDFS 不对文件进行分块，所以它就没有分块合并的开销，fastDFS 网络通信采用 socket，通信速度很快。
 
-### 1.2. fastDFS 架构
+### fastDFS 架构
 
 FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker server 进行文件上传、下载，通过 Tracker server 调度最终由 Storage server 完成文件上传和下载。
 
@@ -24,7 +24,7 @@ FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker
 3. **Storage状态收集**
     - Storage server会连接集群中所有的Tracker server，定时向他们报告自己的状态，包括磁盘剩余空间、文件同步状况、文件上传下载次数等统计信息
 
-### 1.3. 文件上传流程
+### 文件上传流程
 
 - 文件上传流程如下图（时序图）
 
@@ -37,7 +37,7 @@ FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker
 - **数据两级目录**：storage服务器在每个虚拟磁盘路径下创建的两级目录，用于存储数据文件。两级目录的范围都是 00~FF
 - **文件名**：与文件上传时不同。是由存储服务器根据特定信息生成，文件名包含：源存储服务器IP地址、文件创建时间戳、文件大小、随机数和文件拓展名等信息。
 
-### 1.4. 文件下载流程
+### 文件下载流程
 
 - 文件下载流程图
 
@@ -48,13 +48,13 @@ FastDFS 架构包括 Tracker server 和 Storage server。客户端请求 Tracker
     1. 通过组名tracker能够很快的定位到客户端需要访问的存储服务器组是group1，并选择合适的存储服务器提供客户端访问。
     2. 存储服务器根据“文件存储虚拟磁盘路径”和“数据文件两级目录”可以很快定位到文件所在目录，并根据文件名找到客户端需要访问的文件
 
-## 2. FastDFS 入门
+## FastDFS 入门
 
-### 2.1. FastDFS 安装与配置
+### FastDFS 安装与配置
 
 对 FastDFS 的安装过程参考资料：\07-编程工具资料\03-Java相关框架+源代码\FastDFS【分布式文件系统】\分布式文件系统研究.zip。资料中提供已经安装好的虚拟镜像，也有linux系统下安装fastDFS的文档
 
-#### 2.1.1. 导入资料中虚拟机及相关配置
+#### 导入资料中虚拟机及相关配置
 
 1. 使用Vmware打开虚拟机配置文件“CentOS 7 64 位.vmx”，提示如下图
 
@@ -80,7 +80,7 @@ DHCP配置：
 6. 启动虚拟机。用户名：root/密码：centos
 7. 导入的虚拟机已经安装了fastDFS，直接启动fastDFS即可使用
 
-#### 2.1.2. fastDFS 安装
+#### fastDFS 安装
 
 tracker和storage使用相同的安装包，fastDFS的下载地址在：https://github.com/happyfish100/FastDFS
 
@@ -88,7 +88,7 @@ tracker和storage使用相同的安装包，fastDFS的下载地址在：https://
 
 安装细节请参考 “\07-编程工具资料\03-Java相关框架+源代码\FastDFS【分布式文件系统】\分布式文件系统研究.zip 的 FastDFS安装教程.pdf”。
 
-#### 2.1.3. fastDFS 配置文件介绍
+#### fastDFS 配置文件介绍
 
 - fastDFS的配置文件所在目录：`/etc/fdfs`
 - 主要的配置文件：
@@ -97,7 +97,7 @@ tracker和storage使用相同的安装包，fastDFS的下载地址在：https://
 
 ![fastDFS 配置文件目录](images/20190802192644685_4471.png)
 
-#### 2.1.4. Tracker 配置
+#### Tracker 配置
 
 - tracker.conf 配置内容如下
     - 端口：`port=22122`
@@ -107,7 +107,7 @@ tracker和storage使用相同的安装包，fastDFS的下载地址在：https://
         - 如果store_lookup设置为“1”，则这里必须指定一个具体的group
     - tracker 基础目录：`base_path=/home/fastdfs`，tracker在运行时会向此目录存储storage的管理数据
 
-#### 2.1.5. storage 配置
+#### storage 配置
 
 - storage.conf配置内容如下
     - 组名：`group_name=group1`
@@ -126,7 +126,7 @@ tracker和storage使用相同的安装包，fastDFS的下载地址在：https://
     ....
     ```
 
-#### 2.1.6. 启动停止
+#### 启动停止
 
 fastDFS启动/停止脚本目录
 
@@ -144,8 +144,8 @@ fastDFS启动/停止脚本目录
 /usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart
 ```
 
-### 2.2. 文件上传下载测试
-#### 2.2.1. 环境搭建
+### 文件上传下载测试
+#### 环境搭建
 
 使用javaApi测试文件的上传，java版本的fastdfs-client地址在：https://github.com/happyfish100/fastdfs-client-java，参考此工程编写测试用例。
 
@@ -222,7 +222,7 @@ public class TestFastDFSApplication {
 }
 ```
 
-#### 2.2.2. 文件上传
+#### 文件上传
 
 ```java
 package com.xuecheng.test.fastdfs;
@@ -280,7 +280,7 @@ public class TestFastDFS {
 }
 ```
 
-#### 2.2.3. 文件查询
+#### 文件查询
 
 ```java
 /**
@@ -311,7 +311,7 @@ public void testQueryFile() throws IOException, MyException {
 }
 ```
 
-#### 2.2.4. 文件下载
+#### 文件下载
 
 ```java
 /**
@@ -362,9 +362,9 @@ public void testDownload() {
 }
 ```
 
-### 2.3. 搭建图片虚拟主机(!此部分按学成项目的资料暂未实现，但项目2的资料可以实现)
+### 搭建图片虚拟主机(!此部分按学成项目的资料暂未实现，但项目2的资料可以实现)
 
-#### 2.3.1. 在 storage 上安装 Nginx
+#### 在 storage 上安装 Nginx
 
 在 storage server 上安装 nginx 的目的是对外通过 http 访问 storage server 上的文 件。使用 nginx 的模块 FastDFS-nginx-module 的作用是通过 http 方式访问 storage 中 的文件，当 storage 本机没有要找的文件时向源 storage 主机代理请求文件。
 
@@ -372,7 +372,7 @@ public void testDownload() {
 
 安装完成启动 storage 上的 nginx
 
-## 3. 总结
+## 总结
 
 1. 分布式文件系统的概念及应用场景
     - 分布式文件系统是通过网络将单机上的文件系统组成一个网络文件系统

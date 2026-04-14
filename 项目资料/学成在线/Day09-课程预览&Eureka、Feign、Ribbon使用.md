@@ -1,14 +1,15 @@
 # Day09 课程预览 & Eureka、Feign、Ribbon使用
 
-## 1. Eureka 注册中心
-### 1.1. 需求分析
+## Eureka 注册中心
+
+### 需求分析
 
 - 在前后端分离架构中，服务层被拆分成了很多的微服务，微服务的信息如何管理？Spring Cloud中提供服务注册中心来管理微服务信息
 - 注册中心的作用
     1. 微服务数量众多，要进行远程调用就需要知道服务端的ip地址和端口，注册中心帮助我们管理这些服务的ip和端口
     2. 微服务会实时上报自己的状态，注册中心统一管理这些微服务的状态，将存在问题的服务踢出服务列表，客户端获取到可用的服务进行调用
 
-### 1.2. Eureka 介绍
+### Eureka 介绍
 
 Spring Cloud Eureka 是对Netflix公司的Eureka的二次封装，它实现了服务治理的功能，Spring Cloud Eureka提供服务端与客户端，服务端即是Eureka服务注册中心，客户端完成微服务向Eureka服务的注册与发现。服务端和客户端均采用Java语言编写。下图显示了Eureka Server与Eureka Client的关系
 
@@ -18,8 +19,8 @@ Spring Cloud Eureka 是对Netflix公司的Eureka的二次封装，它实现了�
 2. 在微服务上部署Eureka Client程序，远程访问Eureka Server将自己注册在Eureka Server
 3. 微服务需要调用另一个微服务时从Eureka Server中获取服务调用地址，进行远程调用
 
-### 1.3. Eureka Server 搭建
-#### 1.3.1. 单机环境搭建
+### Eureka Server 搭建
+#### 单机环境搭建
 
 1. 创建xc-govern-center工程
     - 包结构：`com.xuecheng.govern.center`
@@ -125,7 +126,7 @@ eureka:
 - Eureka Server有一种自我保护模式，当微服务不再向Eureka Server上报状态，Eureka Server会从服务列表将此服务删除，如果出现网络异常情况（微服务正常），此时Eureka server进入自保护模式，不再将微服务从服务列表删除
 - 在*开发阶段建议关闭自保护模式，生产环境下将`enable-self-preservation`设置为true*
 
-#### 1.3.2. 高可用环境搭建
+#### 高可用环境搭建
 
 Eureka Server 高可用环境需要部署两个Eureka server，它们互相向对方注册。如果在本机启动两个Eureka需要注意两个Eureka Server的端口要设置不一样，这里部署一个Eureka Server工程，将端口可配置，制作两个Eureka Server启动脚本，启动不同的端口，如下图
 
@@ -193,8 +194,8 @@ eureka:
 
 ![eureka server 2](images/20190807134622748_12484.png)
 
-### 1.4. 服务注册
-#### 1.4.1. 将 cms 服务注册到 Eureka Server
+### 服务注册
+#### 将 cms 服务注册到 Eureka Server
 
 1. 在 xc-service-manage-cms 服务工程中 pom.xml 文件添加依赖
 
@@ -239,7 +240,7 @@ public class ManageCmsApplication {
 
 ![查询注册情况](images/20190807184701959_25563.png)
 
-#### 1.4.2. 将 manage-course 服务注册到 Eureka Server
+#### 将 manage-course 服务注册到 Eureka Server
 
 服务注册的方法同上
 
@@ -247,7 +248,7 @@ public class ManageCmsApplication {
 2. 在application.yml配置eureka
 3. 在启动类上添加注解 `@EnableDiscoveryClient`
 
-## 2. Feign 远程调用
+## Feign 远程调用
 
 在前后端分离架构中，服务层被拆分成了很多的微服务，服务与服务之间难免发生交互，比如：课程发布需要调用CMS服务生成课程静态化页面，需要研究微服务远程调用所使用的技术
 
@@ -261,12 +262,12 @@ public class ManageCmsApplication {
 2. 课程管理服务从注册中心获取cms服务的地址
 3. 课程管理服务远程调用cms服务
 
-### 2.1. Ribbon
-#### 2.1.1. Ribbon介绍
+### Ribbon
+#### Ribbon介绍
 
 Ribbon是Netflix公司开源的一个负载均衡的项目（官网：https://github.com/Netflix/ribbon），它是一个基于 HTTP、TCP的客户端负载均衡器
 
-#### 2.1.2. 负载均衡
+#### 负载均衡
 
 负载均衡是微服务架构中必须使用的技术，通过负载均衡来实现系统的高可用、集群扩容等功能。负载均衡可通过硬件设备及软件来实现，硬件比如：F5、Array等，软件比如：LVS、Nginx等
 
@@ -274,7 +275,7 @@ Ribbon是Netflix公司开源的一个负载均衡的项目（官网：https://gi
 
 用户请求先到达负载均衡器（也相当于一个服务），负载均衡器根据负载均衡算法将请求转发到微服务。负载均衡算法有：轮训、随机、加权轮训、加权随机、地址哈希等方法，负载均衡器维护一份服务列表，根据负载均衡算法将请求转发到相应的微服务上，所以负载均衡可以为微服务集群分担请求，降低系统的压力
 
-#### 2.1.3. 客户端负载均衡
+#### 客户端负载均衡
 
 上图是服务端负载均衡，客户端负载均衡与服务端负载均衡的区别在于客户端要维护一份服务列表，Ribbon从Eureka Server获取服务列表，Ribbon根据负载均衡算法直接请求到具体的微服务，中间省去了负载均衡服务
 
@@ -283,7 +284,7 @@ Ribbon是Netflix公司开源的一个负载均衡的项目（官网：https://gi
 1. 在消费微服务中使用Ribbon实现负载均衡，Ribbon先从EurekaServer中获取服务列表
 2. Ribbon根据负载均衡的算法去调用微服务
 
-#### 2.1.4. Ribbon 引入依赖与配置
+#### Ribbon 引入依赖与配置
 
 Spring Cloud 引入 Ribbon 配合 restTemplate 实现客户端负载均衡。Java中远程调用的技术有很多，如：webservice、socket、rmi、Apache HttpClient、OkHttp等，互联网项目使用基于http的客户端较多，本项目使用OkHttp
 
@@ -316,7 +317,7 @@ ribbon:
   ReadTimeout: 6000 # 请求处理的超时时间
 ```
 
-#### 2.1.5. 负载均衡测试
+#### 负载均衡测试
 
 1. 启动两个cms服务，注意端口要不一致。启动完成观察Eureka Server的服务列表
 
@@ -399,7 +400,7 @@ public class TestRibbon {
 
 ![负载均衡结果测试](images/20190818130621710_16386.png)
 
-#### 2.1.6. 本实践项目遇到的问题（已解决，后来发现是文档中“-”的问题）
+#### 本实践项目遇到的问题（已解决，后来发现是文档中“-”的问题）
 
 > 一个在本项目使用ribbon实现负载均衡注意问题，服务名称不能用下划线或者中划线，如果需要对服务名称进行分隔，则使用驼峰命名，否则会报`java.lang.IllegalStateException: Request URI does not contain a valid hostname`
 
@@ -429,12 +430,12 @@ public ClientHttpResponse intercept(final HttpRequest request, final byte[] body
 }
 ```
 
-### 2.2. Feign
-#### 2.2.1. Feign介绍
+### Feign
+#### Feign介绍
 
 Feign是Netflix公司开源的轻量级rest客户端，使用Feign可以非常方便的实现Http 客户端。Spring Cloud 引入 Feign 并且集成了 Ribbon 实现客户端负载均衡调用 和 Hystrix 熔断器的依赖
 
-#### 2.2.2. Feign测试
+#### Feign测试
 
 1. 在客户端课程管理服务xc-service-manage-course，添加依赖
 
@@ -543,37 +544,37 @@ public class TestFeign {
 
 > 注：同样存在使用ribbon时的问题，如果cms服务名为“XC-SERVICE-MANAGE-CMS”，会出现调用报错，也是因为解析带中划线的url报错。检查服务名的“-”是否有问题
 
-#### 2.2.3. Feign 工作原理
+#### Feign 工作原理
 
 1. 启动类添加`@EnableFeignClients`注解，Spring会扫描标记了`@FeignClient`注解的接口，并生成此接口的代理对象
 2. `@FeignClient(value = XcServiceList.XC_SERVICE_MANAGE_CMS)`即指定了cms的服务名称xc-service-manage-cms，Feign会从注册中心获取cms服务列表，并通过负载均衡算法进行服务调用
 3. 在接口方法 中使用注解@GetMapping("/cms/page/get/{id}")，指定调用的url，Feign将根据url进行远程调用
 
-#### 2.2.4. Feign 注意点
+#### Feign 注意点
 
 - SpringCloud 对 Feign 进行了增强兼容了 SpringMVC 的注解 ，在使用SpringMVC的注解时需要注意
     1. feignClient 接口有参数时，必须在参数加`@PathVariable("XXX")`和`@RequestParam("XXX")`注解，并且必须要指定对应的参数值（原来SpringMVC是可以省略）
     2. feignClient 返回值为复杂对象时，其对象类型必须有无参构造函数
 
-## 3. 课程预览技术方案
-### 3.1. 需求分析
+## 课程预览技术方案
+### 需求分析
 
 课程预览是为了保证课程发布后的正确性，通过课程预览可以直观的通过课程详情页面看到课程的信息是否正确，通过课程预览看到的页面内容和课程发布后的页面内容是一致的
 
-### 3.2. 课程详情页面技术方案
+### 课程详情页面技术方案
 
 课程预览所浏览到的页面就是课程详情页面，需要先确定课程详情页面的技术方案后方可确定课程预览的技术方案
 
-#### 3.2.1. 技术需求
+#### 技术需求
 
 1. 课程详情页面是向用户展示课程信息的窗口，课程相当于电商网站的商品，本页面的访问量会非常大。此页面的内容设计不仅要展示出课程核心重要的内容而且用户访问页面的速度要有保证，有统计显示打开一个页面超过4秒用户就走掉了，所以本页面的性能要求是本页面的重要需求
 2. 本页面另一个需求就是SEO，要非常有利于爬虫抓取页面上信息，并且生成页面快照，利于用户通过搜索引擎搜索课程信息
 
-#### 3.2.2. 解决方案
+#### 解决方案
 
 如何在保证SEO的前提下提高页面的访问速度
 
-##### 3.2.2.1. 方案1
+##### 方案1
 
 对于信息获取类的需求，要想提高页面速度就要使用缓存来减少或避免对数据库的访问，从而提高页面的访问速度。下图是使用缓存与不使用缓存的区别
 
@@ -584,7 +585,7 @@ public class TestFeign {
 - 优点：使用redis作为缓存，速度有提升
 - 缺点：采用Servlet/jsp动态页面渲染技术，服务器使用Tomcat，面对高并发量的访问存在性能瓶颈
 
-##### 3.2.2.2. 方案2
+##### 方案2
 
 对于不会频繁改变的信息可以采用页面静态化的技术，提前让页面生成html静态页面存储在nginx服务器，用户直接访问nginx即可，对于一些动态信息可以访问服务端获取json数据在页面渲染
 
@@ -595,7 +596,7 @@ public class TestFeign {
 
 > 选择方案2作为课程详情页面的技术解决方案，将课程详情页面生成Html静态化页面，并发布到Nginx上
 
-### 3.3. 课程预览技术方案
+### 课程预览技术方案
 
 根据要求：课程详情页面采用静态化技术生成Html页面，课程预览的效果要与最终静态化的Html页面内容一致
 

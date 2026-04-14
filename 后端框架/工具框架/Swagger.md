@@ -1,4 +1,4 @@
-## 1. Swagger 接口文档工具简介
+## Swagger 接口文档工具简介
 
 > Swagger 官网：https://swagger.io/
 
@@ -8,7 +8,7 @@ Swagger 是全球最大的 OpenAPI 规范（OAS）API开发工具框架，支持
 
 使用 Swagger 只需要按照它的规范去定义接口及接口相关的信息。再通过 Swagger 衍生出来的一系列项目和工具，就可以做到生成各种格式的接口文档，生成多种语言的客户端和服务端的代码，以及在线接口调试页面等等。这样，如果按照新的开发模式，在开发新版本或者迭代版本的时候，只需要更新 Swagger 描述文件，就可以自动生成接口文档和客户端服务端代码，做到调用端代码、服务端代码以及接口文档的一致性。
 
-### 1.1. Springfox 概述
+### Springfox 概述
 
 Springfox 是一个开源的 API Doc 的框架，它的前身是 swagger-springmvc，可以将项目的 Controller 中的方法以文档的形式展现。
 
@@ -16,7 +16,7 @@ Springfox 是一个开源的 API Doc 的框架，它的前身是 swagger-springm
 
 Spring Boot 可以集成 Swagger，生成 Swagger 接口。
 
-### 1.2. knife4j 概述
+### knife4j 概述
 
 knife4j 是为 Java MVC 框架集成 Swagger 生成 Api 文档的增强解决方案，前身是 swagger-bootstrap-ui，后面取名为 knife4j 是希望它能像一把匕首一样小巧，轻量，并且功能强悍！其底层是对 Springfox 的封装，使用方式也和 Springfox 一致，只是对接口文档 UI 进行了优化。
 
@@ -32,9 +32,9 @@ knife4j 是为 Java MVC 框架集成 Swagger 生成 Api 文档的增强解决方
 
 > 建议：如果公司对 ui 要求不太高，可以使用这个文档生成工具，比较功能还是比较强大的。
 
-## 2. Swagger 依赖
+## Swagger 依赖
 
-### 2.1. Springfox
+### Springfox
 
 通过在项目中引入 Springfox，可以扫描相关的代码，生成描述文件，进而生成与代码一致的接口文档和客户端代码。Springfox 对应的 maven 坐标如下：
 
@@ -51,7 +51,7 @@ knife4j 是为 Java MVC 框架集成 Swagger 生成 Api 文档的增强解决方
 </dependency>
 ```
 
-### 2.2. knife4j
+### knife4j
 
 knife4j 对应的 maven 坐标如下：
 
@@ -63,17 +63,17 @@ knife4j 对应的 maven 坐标如下：
 </dependency>
 ```
 
-## 3. Swagger 配置
+## Swagger 配置
 
-### 3.1. Springfox Docket 对象各项配置属性
+### Springfox Docket 对象各项配置属性
 
 Springfox 提供了一个 `Docket` 对象，用于灵活的配置 Swagger 的各项属性。Docket 对象内提供了很多的方法来配置文档。常用的配置项如下：
 
-#### 3.1.1. select
+#### select
 
 `select()` 返回一个 `ApiSelectorBuilder` 对象，是使用 `apis()`、`paths()` 两个方法的前提，用于指定 Swagger 要扫描的接口和路径。
 
-#### 3.1.2. apis
+#### apis
 
 默认情况下，Swagger 会扫描整个项目中的接口，通过 `apis()` 方法，可以传入一个 `RequestHandlerSelector` 对象实例来指定要包含的接口所在的包路径。
 
@@ -87,7 +87,7 @@ public Docket docket(Environment environment) {
 }
 ```
 
-#### 3.1.3. paths
+#### paths
 
 仅将某些特定请求路径的 API 展示在 Swagger 文档中。例如路径中包含`/test`，可以使用 apis() 和 paths() 方法一起来过滤接口。
 
@@ -101,7 +101,7 @@ public Docket docket(Environment environment) {
 }
 ```
 
-#### 3.1.4. groupName
+#### groupName
 
 为生成的 Swagger 文档指定分组的名称，用来区分不同的文档组。
 
@@ -127,7 +127,7 @@ public Docket docket1(Environment environment) {
 }
 ```
 
-#### 3.1.5. apiInfo
+#### apiInfo
 
 设置 API 文档的基本信息，例如标题、描述、版本等。可以使用 ApiInfo 对象自定义信息。
 
@@ -156,7 +156,7 @@ private ApiInfo apiInfo() {
 }
 ```
 
-#### 3.1.6. enable
+#### enable
 
 启用或禁用 Swagger 文档的生成，有时测试环境会开放 API 文档，但在生产环境则要禁用，可以根据环境变量控制是否显示。
 
@@ -173,7 +173,7 @@ public Docket docket(Environment environment) {
 }
 ```
 
-#### 3.1.7. host
+#### host
 
 API 文档显示的主机名称或 IP 地址，即在测试执行接口时使用的 IP 或域名。
 
@@ -186,7 +186,7 @@ public Docket docket(Environment environment) {
 }
 ```
 
-#### 3.1.8. securitySchemes
+#### securitySchemes
 
 配置 API 安全认证方式，比如常见的在 `header` 中设置如 `Bearer`、`Authorization`、`Basic` 等鉴权字段，`ApiKey` 对象中字段含义分别是别名、鉴权字段 key、鉴权字段添加的位置。
 
@@ -208,7 +208,7 @@ public Docket docket(Environment environment) {
 
 ![](images/248515954455425.jpg)
 
-#### 3.1.9. securityContexts
+#### securityContexts
 
 `securitySchemes` 方法中虽然设置了鉴权字段，但此时在测试接口的时候不会自动在 header 中加上鉴权字段和值，还要配置 API 的安全上下文，指定哪些接口需要进行安全认证。
 
@@ -241,7 +241,7 @@ private SecurityContext securityContext() {
 
 ![](images/451007221796090.jpg)
 
-#### 3.1.10. tags
+#### tags
 
 为 API 文档中的接口添加标签，标签可以用来对 API 进行分类或分组，并提供更好的组织和导航功能。
 
@@ -253,7 +253,7 @@ public Docket docket(Environment environment) {
 }
 ```
 
-### 3.2. 文档注解
+### 文档注解
 
 在 Java 类中添加 Swagger 的注解即可生成 Swagger 接口文档，常用 Swagger 注解如下：
 
@@ -271,7 +271,7 @@ public Docket docket(Environment environment) {
 | `@ApiImplicitParam`  | 用在`@ApiImplicitParams`注解中，指定一个请求参数的各种说明 |
 | `@ApiImplicitParams` | 用在请求的方法上的多个请求参数，表示一组参数说明             |
 
-#### 3.2.1. @ApiIgnore
+#### @ApiIgnore
 
 在 Docket 配置对象可以根据指定路径或者包路径来提供 API，也可以使用粒度更细的 `@ApiIgnore` 注解，来实现某个 API 在文档中忽略。
 
@@ -283,13 +283,13 @@ public User test2(@PathVariable Integer id, @RequestBody User user) {
 }
 ```
 
-#### 3.2.2. @ApiModel
+#### @ApiModel
 
 在接口中，只要使用实体作为参数或响应体，Swagger 就会自动扫描到它们，但这些实体缺乏详细的描述信息。为了让使用者通俗易懂，需要使用 swagger 提供的注解为这些实体添加详细的描述。
 
 `@ApiModel` 注解的使用在实体类上，提供对 Swagger Model 额外信息的描述。
 
-#### 3.2.3. @ApiModelProperty
+#### @ApiModelProperty
 
 `@ApiModelProperty` 注解为实体类中的属性添加描述，提供了字段名称、是否必填、字段示例等描述信息。
 
@@ -308,7 +308,7 @@ public class User {
 }
 ```
 
-#### 3.2.4. @Api
+#### @Api
 
 `@Api` 注解用于标记一个控制器（`controller`）类，并提供接口的详细信息和配置项。
 
@@ -340,7 +340,7 @@ public class TestController {
 }
 ```
 
-#### 3.2.5. @ApiOperation
+#### @ApiOperation
 
 `@ApiOperation`该注解作用在接口方法上，用来对一个操作或 HTTP 方法进行描述。
 
@@ -381,11 +381,11 @@ public UserDto user1(@RequestBody User user) {
 }
 ```
 
-#### 3.2.6. @ApiImplicitParams
+#### @ApiImplicitParams
 
 `@ApiImplicitParams` 注解用在方法上，以数组方式存储，配合 `@ApiImplicitParam` 注解使用。
 
-#### 3.2.7. @ApiImplicitParam
+#### @ApiImplicitParam
 
 `@ApiImplicitParam` 注解对API方法中的单一参数进行注解。
 
@@ -415,7 +415,7 @@ public String user(String name) {
 }
 ```
 
-#### 3.2.8. @ApiParam
+#### @ApiParam
 
 `@ApiParam()` 也是对 API 方法中的单一参数进行注解，其内部属性和 `@ApiImplicitParam` 注解相似。
 
@@ -426,11 +426,11 @@ public String user4(@ApiParam(name = "主键ID", value = "@ApiParam注解测试"
 }
 ```
 
-#### 3.2.9. @ApiResponses
+#### @ApiResponses
 
 `@ApiResponses` 注解可用于描述请求的状态码，作用在方法上，以数组方式存储，配合 `@ApiResponse` 注解使用。
 
-#### 3.2.10. @ApiResponse
+#### @ApiResponse
 
 `@ApiResponse` 注解描述一种请求的状态信息。
 
@@ -451,9 +451,9 @@ public String user4(@ApiParam(name = "主键ID", value = "@ApiParam注解测试"
 }
 ```
 
-## 4. Swagger 入门案例
+## Swagger 入门案例
 
-### 4.1. 项目依赖
+### 项目依赖
 
 创建 maven 工程 swagger-demo 并配置 pom.xml 文件引入 swagger 的依赖
 
@@ -491,7 +491,7 @@ public String user4(@ApiParam(name = "主键ID", value = "@ApiParam注解测试"
 
 > Tips: swagger 文档项目需要是 web 工程
 
-### 4.2. swagger 配置
+### swagger 配置
 
 创建 Swagger 配置类，类标注 `@EnableSwagger2` 关键注解
 
@@ -537,7 +537,7 @@ public class SwaggerConfiguration {
 }
 ```
 
-### 4.3. 创建接口与实体类
+### 创建接口与实体类
 
 - 创建示例测试使用实体类User和Menu，增加相应 swagger 文档的注解
 
@@ -637,7 +637,7 @@ public class UserController {
 
 > Notes: 再创建一个接口类 MenuController，代码与上面一样即可，**但注意将该类放到 `com.moon.examples.swagger.controller.menu` 包，为了后面测试文档分组的功能**
 
-### 4.4. 运行测试
+### 运行测试
 
 创建启动类 SwaggerApplication
 
@@ -656,9 +656,9 @@ public class SwaggerApplication {
 
 可以在右上角的下拉框中，选择不同的文档分组
 
-### 4.5. 启动异常
+### 启动异常
 
-#### 4.5.1. 问题概述
+#### 问题概述
 
 启动时可能会报如下的错误，这是由于高版本的 Springboot 与 Swagger 版本使用的路径匹配策略冲突导致的。
 
@@ -683,7 +683,7 @@ org.springframework.context.ApplicationContextException: Failed to start bean 'd
 
 > Springfox 使用的路径匹配规则为 `AntPathMatcher` 的，而 SpringBoot2.7.6 使用的是 `PathPatternMatcher`，两者冲突了。
 
-#### 4.5.2. 解决方案
+#### 解决方案
 
 有以下4种解决方案：
 
@@ -745,11 +745,11 @@ public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
 }
 ```
 
-### 4.6. 授权登录
+### 授权登录
 
 出于对系统安全性的考虑，通常还会为 API 文档增加登录功能。
 
-#### 4.6.1. 引入 maven 依赖
+#### 引入 maven 依赖
 
 swagger 的安全登录是基于 security 实现的，引入相关的 maven 依赖。
 
@@ -760,7 +760,7 @@ swagger 的安全登录是基于 security 实现的，引入相关的 maven 依�
 </dependency>
 ```
 
-#### 4.6.2. 登录配置
+#### 登录配置
 
 在 application.yml 文件中配置登录 swagger 的用户名和密码。
 
@@ -776,9 +776,9 @@ spring:
 
 ![](images/405147390640373.png)
 
-## 5. knife4j 入门案例
+## knife4j 入门案例
 
-### 5.1. 项目依赖
+### 项目依赖
 
 创建 maven 工程 swagger-knife4j-demo 并配置 pom.xml 文件引入 knife4j 的依赖
 
@@ -816,15 +816,15 @@ spring:
 
 > Tips: swagger 文档项目需要是 web 工程
 
-### 5.2. 创建接口与实体类
+### 创建接口与实体类
 
 此步骤复用前面的《Swagger 入门案例》章节的代码即可
 
-### 5.3. knife4j 配置
+### knife4j 配置
 
 > Notes: knife4j 配置与 swagger 的配置几乎是一致，不过此示例做了一些配置上的优化，将原来硬编码的配置内容，修改为读取项目的 application.yml 配置文件
 
-#### 5.3.1. 配置属性映射类
+#### 配置属性映射类
 
 创建配置属性类，用于封装yml配置文件中关于 Swagger 接口文档相关的配置信息
 
@@ -879,7 +879,7 @@ public class SwaggerProperties {
 }
 ```
 
-#### 5.3.2. 配置文档属性
+#### 配置文档属性
 
 在项目 resources 目录中创建 application.yml 文件，参照配置属性映射类 `SwaggerProperties` 中的属性名称和结构，配置文档相关的属性值
 
@@ -901,7 +901,7 @@ example:
         base-package: com.moon.examples.knife4j.controller.menu
 ```
 
-#### 5.3.3. knife4j 配置类
+#### knife4j 配置类
 
 创建 Swagger 配置类，参考前面示例的配置类，将硬编码部分修改为读取配置属性类即可。*里面的代码逻辑还有优化的空间*^-^
 
@@ -1058,7 +1058,7 @@ public class Knife4jConfiguration implements BeanFactoryAware {
 }
 ```
 
-### 5.4. 运行测试
+### 运行测试
 
 创建启动类 Knife4jApplication
 
@@ -1089,9 +1089,9 @@ example:
 
 ![](images/17013109239187.png)
 
-## 6. 其他同类在线文档生成工具
+## 其他同类在线文档生成工具
 
-### 6.1. gitbook
+### gitbook
 
 github 地址：https://github.com/GitbookIO/gitbook
 
@@ -1102,7 +1102,7 @@ gitBook 是一款文档编辑工具。它的功能类似金山 WPS 中的 word �
 
 > 建议：如果对外的接口比较少，或者编写之后不会经常变动可以用这个。
 
-### 6.2. smartdoc
+### smartdoc
 
 gitee 地址：https://gitee.com/smart-doc-team/smart-doc
 
@@ -1113,7 +1113,7 @@ smart-doc 是一个 java restful api 文档生成工具，smart-doc 颠覆了传
 
 > 建议：如果实时生成文档，但是又不想打一些额外的注解，比如：使用 swagger 时需要打上 @Api、@ApiModel 等注解，就可以使用这个。
 
-### 6.3. redoc
+### redoc
 
 github 地址：https://github.com/Redocly/redoc
 
@@ -1124,7 +1124,7 @@ redoc 号称是一个最好的在线文档工具。它支持 swagger 接口数�
 
 > 建议：如果想快速搭建一个基于swagger的文档，并且不要求在线调试功能，可以使用这个。
 
-### 6.4. yapi
+### yapi
 
 github 地址：https://github.com/YMFE/yapi
 
@@ -1144,7 +1144,7 @@ yapi 是去哪儿前端团队自主研发并开源的，主要支持以下功能
 
 > 建议：如果不考虑插件安全的安全性问题，这个在线文档工具还是非常好用的，可以说是一个神器。
 
-### 6.5. apidoc
+### apidoc
 
 github 地址：https://github.com/apidoc/apidoc
 
@@ -1161,7 +1161,7 @@ apidoc 是一个简单的 RESTful API 文档生成工具，它从代码注释中
 
 > 建议：这种在线文档生成工具提供了另外一种思路，swagger 是在代码中加注解，而 apidoc 是在注解中加数据，代码嵌入性更小，推荐使用。
 
-### 6.6. showdoc
+### showdoc
 
 github 地址：https://github.com/star7th/showdoc
 

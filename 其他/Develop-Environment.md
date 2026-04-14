@@ -2,23 +2,23 @@
 
 > 本地开发搭建的环境信息资源信息（开发环境密码、连接地址、端口等信息）
 
-## 1. 本地开发软件
+## 本地开发软件
 
-### 1.1. MySQL
+### MySQL
 
-#### 1.1.1. MySQL Server 8.0.27.1（3306）
+#### MySQL Server 8.0.27.1（3306）
 
 - 安装位置：`D:\development\MySQL\MySQL Server 8.0\`
 - 端口号：3306
 - 用户名/密码：root/123456
 
-#### 1.1.2. MySQL Server 5.7.25 免安装版（3307）
+#### MySQL Server 5.7.25 免安装版（3307）
 
 - 安装位置：`D:\development\MySQL\mysql-5.7.25-winx64\`
 - 端口号：3307
 - 用户名/密码：root/123456
 
-### 1.2. Nacos 服务注册中心（8848）
+### Nacos 服务注册中心（8848）
 
 - 版本：2.0.3
 - 安装位置：`D:\deployment\nacos\`
@@ -35,7 +35,7 @@ startup.cmd -m standalone
 
 > 已配置使用本地mysql保存数据，保存的数据库是 `nacos`，需要启动 5.7 版本的 MySQL
 
-### 1.3. Sentinel 分布式服务架构的流量控制组件（9898）
+### Sentinel 分布式服务架构的流量控制组件（9898）
 
 - 版本：1.8.0
 - 安装位置：`D:\deployment\sentinel\`
@@ -50,7 +50,7 @@ cd /d D:\deployment\sentinel\
 java -Dserver.port=9898 -Dcsp.sentinel.dashboard.server=localhost:9898 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.8.0.jar
 ```
 
-### 1.4. redis (windows版 server)（6379）
+### redis (windows版 server)（6379）
 
 - 安装位置：`D:\development\Redis-x64-3.2.100\`1.4. - 端口：6379
 - 启动脚本：
@@ -60,7 +60,7 @@ cd /d D:\development\Redis-x64-3.2.100
 start call redis-server redis.windows.conf
 ```
 
-### 1.5. zipkin 日志数据收集（9411）
+### zipkin 日志数据收集（9411）
 
 - 版本：2.23.16
 - 安装位置：`E:\deployment\zipkin\`
@@ -72,7 +72,7 @@ start call redis-server redis.windows.conf
 java -jar E:\deployment\zipkin\zipkin-server-2.23.16-exec.jar
 ```
 
-### 1.6. ActiveMQ 消息中间件
+### ActiveMQ 消息中间件
 
 - 版本：5.15.3
 - 安装位置：`E:\deployment\apache-activemq-5.15.3\`
@@ -85,15 +85,15 @@ java -jar E:\deployment\zipkin\zipkin-server-2.23.16-exec.jar
 E:\deployment\apache-activemq-5.15.3\bin\win64\activemq.bat
 ```
 
-### 1.7. RocketMQ 消息中间件
+### RocketMQ 消息中间件
 
-#### 1.7.1. 服务端（9876）
+#### 服务端（9876）
 
 - 版本：4.9.2
 - 安装位置：`E:\deployment\RocketMQ\rocketmq-4.9.2\`
 - 端口：9876
 
-#### 1.7.2. 控制台（7777）
+#### 控制台（7777）
 
 - 版本：1.0.0
 - 安装位置：`E:\deployment\RocketMQ\rocketmq-console\target\`
@@ -107,7 +107,7 @@ java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.nam
 
 > 注：这是 spring boot 工程打包后的 jar，打包时没有指定端口号和 RocketMQ 服务地址，所以可能通过启动命令来修改相应的配置
 
-### 1.8. kafka 分布式的发布-订阅消息系统
+### kafka 分布式的发布-订阅消息系统
 
 > 注：放到 E 盘的 deployment 目录中，启动时会提示“输入行太长”，所以直接放到 E 盘根目录中
 
@@ -126,7 +126,7 @@ cd /d E:\kafka_2.13-2.8.1\
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 ```
 
-### 1.9. Seata 服务（9000）
+### Seata 服务（9000）
 
 - 版本：0.9.0
 - 安装位置：`E:\deployment\seata\`
@@ -134,9 +134,9 @@ cd /d E:\kafka_2.13-2.8.1\
 
 > 注：seata 配置了使用 nacos 作为注册与配置中心，所以需要先启动 nacos 服务。
 
-### 1.10. Apollo 配置中心
+### Apollo 配置中心
 
-#### 1.10.1. 基本信息
+#### 基本信息
 
 > 目前使用 v1.6.1 版本（学习apollo课程、万信金融项目使用，待转用高版本后删除），v1.9.1版本（未启用）
 
@@ -147,7 +147,7 @@ cd /d E:\kafka_2.13-2.8.1\
     - apollo/admin（默认）
     - moon/123456
 
-#### 1.10.2. 启动脚本
+#### 启动脚本
 
 > 在 apollo 目录下执行如下命令(根据实际情况修改)。可通过 `-Dserver.port=xxxx` 修改默认端口
 
@@ -183,7 +183,7 @@ start "adminService" java -Xms256m -Xmx256m -Dapollo_profile=github -Dspring.dat
 start "ApolloPortal" java -Xms256m -Xmx256m -Dapollo_profile=github,auth -Ddev_meta=http://localhost:8080/ -Dserver.port=8070 -Dspring.datasource.url=jdbc:mysql://%url%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file=.\logs\apollo-portal.log -jar .\apollo-portal-1.6.1.jar
 ```
 
-### 1.11. Nginx
+### Nginx
 
 - 版本：1.20.2
 - 安装位置：`D:\development\nginx-1.20.2\`
@@ -208,9 +208,9 @@ echo.关闭Nginx代理成功！
 pause
 ```
 
-### 1.12. ElasticStack
+### ElasticStack
 
-#### 1.12.1. ElasticSearch
+#### ElasticSearch
 
 - 版本：7.17.1
 - 安装位置：`E:\deployment\ElasticStack\elasticsearch-7.17.1\`
@@ -221,7 +221,7 @@ pause
 E:\deployment\ElasticStack\elasticsearch-7.17.1\bin\elasticsearch.bat
 ```
 
-#### 1.12.2. elasticsearch-head
+#### elasticsearch-head
 
 - 版本：0.0.0
 - 安装位置：`E:\deployment\ElasticStack\elasticsearch-head\`
@@ -234,7 +234,7 @@ cd /d E:\deployment\ElasticStack\elasticsearch-head\
 npm run start
 ```
 
-#### 1.12.3. logstash
+#### logstash
 
 - 版本：7.17.1
 - 安装位置：`E:\deployment\ElasticStack\logstash-7.17.1\`
@@ -245,7 +245,7 @@ cd /d E:\deployment\ElasticStack\logstash-7.17.1\bin\
 .\logstash.bat -f ..\config\mysql-es.conf
 ```
 
-### 1.13. ZooKeeper
+### ZooKeeper
 
 - 版本：3.6.3
 - 安装位置：`E:\deployment\apache-zookeeper-3.6.3-bin\`
@@ -261,7 +261,7 @@ zkServer.cmd
 
 > 注：Zookeeper 3.5 的新特性：会启动 Zookeeper AdminServer，默认使用 8080 端口，已修改为 9999
 
-### 1.14. Memcached 缓存服务
+### Memcached 缓存服务
 
 - 版本：1.4.4-14
 - 安装位置：`E:\deployment\memcached\`
@@ -284,18 +284,18 @@ E:\deployment\memcached\memcached.exe -d start
 E:\deployment\memcached\memcached.exe -d stop
 ```
 
-## 2. linux系统
+## linux系统
 
-### 2.1. 练习使用的linux系统（centOS）
+### 练习使用的linux系统（centOS）
 
-#### 2.1.1. 账号/IP/虚拟网卡
+#### 账号/IP/虚拟网卡
 
 - 用户名：root  密码：123456
 - 本机IP：192.168.12.1
 - 虚拟机IP：192.168.12.132
 - 虚拟机使用的网卡（VMnet 8）
 
-#### 2.1.2. redis（port: 6379）
+#### redis（port: 6379）
 
 - redis-4.0.12版本，安装位置：/usr/local/redis
 - redis (docker 版本) 脚本存放的位置（红包雨场景实战）：`/usr/local/script/redis.sh`
@@ -304,7 +304,7 @@ E:\deployment\memcached\memcached.exe -d stop
 docker run -id --name=redis -p 6379:6379 redis
 ```
 
-#### 2.1.3. zookeeper（port: 2181）
+#### zookeeper（port: 2181）
 
 - zookeeper (docker 版本)
     - 脚本存放的位置（红包雨场景实战）：`/usr/local/script/zookeeper.sh`
@@ -313,7 +313,7 @@ docker run -id --name=redis -p 6379:6379 redis
 docker run -id --name=zookeeper -v /opt/data/zksingle:/data -p 2181:2181 -e ZOO_LOG4J_PROP="INFO,ROLLINGFILE" zookeeper
 ```
 
-#### 2.1.4. RabbitMQ（prot: 4369）
+#### RabbitMQ（prot: 4369）
 
 - 【docker版本】rabbitmq:management。映射的端口0.0.0.0:4369->4369/tcp, 0.0.0.0:5671-5672->5671-5672/tcp, 0.0.0.0:15671-15672->15671-15672/tcp, 0.0.0.0:25672->25672/tcp
 
@@ -336,7 +336,7 @@ firewall-cmd --zone=public --add-port=4369/tcp --permanent
 
 管理界面地址：http://192.168.12.132:15672/#/
 
-#### 2.1.5. MySQL
+#### MySQL
 
 - 【docker版本】MySQL（port:3306）
 
@@ -366,7 +366,7 @@ docker run -id --name=mysql3307 -p 3307:3306 -v /usr/docker/mysql3307/data:/var/
 firewall-cmd --zone=public --add-port=3307/tcp --permanent
 ```
 
-##### 2.1.5.1. 安装时出现问题
+##### 安装时出现问题
 
 用docker创建MySQL无法访问的问题（WARNING: IPv4 forwarding is disabled. Networking will not work）
 
@@ -390,7 +390,7 @@ net.ipv4.ip_forward=1
 systemctl restart network
 ```
 
-#### 2.1.6. MongoDB(未安装)
+#### MongoDB(未安装)
 
 - 部署地址：http://192.168.12.132:27017
 - 使用docker安装，版本是4.0.18
@@ -398,12 +398,12 @@ systemctl restart network
 
 > ps. 相关的安装过程详见
 
-#### 2.1.7. RocketMQ
+#### RocketMQ
 
 - 安装目录：/usr/local/software/rocketmq-all-4.4.0-bin-release
 - 端口：9876
 
-#### 2.1.8. nginx（port: 80）
+#### nginx（port: 80）
 
 - 【docker版本】nginx
 
@@ -429,7 +429,7 @@ rm -rf nginx.conf/
 touch nginx.conf
 ```
 
-#### 2.1.9. Jenkins（未安装）
+#### Jenkins（未安装）
 
 yum 方式安装，安装命令如下：
 
@@ -437,7 +437,7 @@ yum 方式安装，安装命令如下：
 yum install jenkins
 ```
 
-### 2.2. 项目二linux部署地址（pinyougou）
+### 项目二linux部署地址（pinyougou）
 
 - 本机IP：192.168.12.1
 - 虚拟机对应的网卡（VMnet 8）
@@ -447,7 +447,7 @@ yum install jenkins
 
 > 注：镜像已上传到百度云盘与阿里云盘，本地已删除
 
-### 2.3. 练习使用的linux系统（CentOS 8）
+### 练习使用的linux系统（CentOS 8）
 
 - 本机IP：192.168.12.1
 - 虚拟机对应的网卡（VMnet 8）
@@ -455,7 +455,7 @@ yum install jenkins
   - 用户名2：moon 密码：123456
   - 虚拟机IP：192.168.12.133
 
-### 2.4. 好客租房项目使用的linux系统（Ubuntu(x64)-haoke）
+### 好客租房项目使用的linux系统（Ubuntu(x64)-haoke）
 
 - 本机IP：192.168.12.1
 - 虚拟机对应的网卡（VMnet 8）
@@ -463,7 +463,7 @@ yum install jenkins
   - 用户名2：moonkira 密码：123456
   - 虚拟机IP：192.168.12.134
 
-## 3. 常用软件默认端口号
+## 常用软件默认端口号
 
 - tomcat：8080
     - eclipse默认的tomcat端口（ports）：
@@ -485,7 +485,7 @@ yum install jenkins
 - RabbitMQ：15672
 - zipkin：9411
 
-## 4. 部署tomcat配置虚拟目录（图片）
+## 部署tomcat配置虚拟目录（图片）
 
 - 部署到tomcat服务器上：apache-tomcat-9.0.5_virtualPic
   - 部署的虚拟目录1：http://127.0.0.1:8000/pic
@@ -494,7 +494,7 @@ yum install jenkins
   - HTTP/1.1：8000
   - AJP/1.3：8009
 
-## 5. oracle
+## oracle
 
 - 口令：moon
   - SCOTT的口令:123456
@@ -507,7 +507,7 @@ yum install jenkins
   - 虚拟机XP系统设置
     - 子网IP:192.168.187.10	子网掩码:255.255.255.0
 
-## 6. SVN
+## SVN
 
 本地搭建的仓库地址：
 
@@ -519,18 +519,18 @@ yum install jenkins
 - username: moon
 - pw: 123456
 
-## 7. linux 系统远程 git 仓库
+## linux 系统远程 git 仓库
 
 - 地址：ssh://git@192.168.217.128/home/git/mytest.git
 - 用户名/密码：git/git
 
-## 8. 开启服务
+## 开启服务
 
 - MySQL 手动开启--服务名称：`MySQL`
 - nexus Maven 私服 手动开启--服务名称：`nexus-webapp`
 - VisualSVN Server 手动开启--服务名称：`VisualSVNServer`
 
-## 9. maven私服配置(setting.xml)
+## maven私服配置(setting.xml)
 
 - 说明：以下两个配置都需要在教室使用。
 
@@ -561,53 +561,53 @@ yum install jenkins
 
 # 工具jar包
 
-## 1. java第三方工具jar包
+## java第三方工具jar包
 
-### 1.1. BeanUtils 需要导入 jar 包
+### BeanUtils 需要导入 jar 包
 
 1. commons-beanutils-1.9.3.jar		工具核心包
 2. commons-logging-1.2.jar			日志记录组件
 3. commons-collections-3.2.2.jar	增强的集合包
 
-### 1.2. JUnit
+### JUnit
 
 使用Eclipse自带jar带，@Test再导入
 
-### 1.3. IO流工具包相关jar包
+### IO流工具包相关jar包
 
 - commons-io-2.4.jar（使用）
 - commons-io-2.6.jar (requires JDK 1.7+)
 
-### 1.4. DOM4J 导入 jar包
+### DOM4J 导入 jar包
 
 dom4j-1.6.1.jar
 
-### 1.5. MySQL驱动包相关jar包
+### MySQL驱动包相关jar包
 
 mysql-connector-java-5.1.44
 
-### 1.6. C3P0连接池相关jar包
+### C3P0连接池相关jar包
 
 - c3p0-0.9.5.2.jar
 - mchange-commons-java-0.2.11.jar
 
-### 1.7. DBCP连接池相关jar包
+### DBCP连接池相关jar包
 
 - commons-dbcp-1.4.jar	核心包
 - commons-pool-1.6.jar	连接池包
 
-### 1.8. DbUtils工具类相关jar包
+### DbUtils工具类相关jar包
 
 - commons-dbutils-1.7.jar  核心包
 - commons-logging-1.1.1.jar  日志记录包
 - 或 commons-logging-1.2.jar
 
-### 1.9. 处理文件上传的工具类jar包
+### 处理文件上传的工具类jar包
 
 - commons-io-1.4.jar
 - commons-fileupload-1.2.1.jar
 
-### 1.10. JSON-LIB 工具
+### JSON-LIB 工具
 
 - json-lib 是将 java 对象与 json 数据相互转换的工具。
     - 第三方工具，使用时需要导入 jar 包
@@ -615,16 +615,16 @@ mysql-connector-java-5.1.44
 - ezmorph-1.0.6.jar
 - json-lib-2.4-jdk15.jar
 
-### 1.11. Java连接Redis，需要导入jar包
+### Java连接Redis，需要导入jar包
 
 - commons-pool2-2.3.jar
 - jedis-2.7.0.jar
 
-### 1.12. Gson工具类，需要导入jar包
+### Gson工具类，需要导入jar包
 
 - gson-2.2.4.jar
 
-### 1.13. PDF文档处理java组件
+### PDF文档处理java组件
 
 - iText
     - iText是著名的开放源码的站点sourceforge一个项目，是用于生成PDF文档的一个java类库。通过iText不仅可以生成PDF或rtf的文档，而且可以将XML、Html文件转化为PDF文件
@@ -638,21 +638,21 @@ mysql-connector-java-5.1.44
 	- 从PDF页面创 建图片
 	- 打印PDF文档
 
-## 2. SSH框架相关jar包
+## SSH框架相关jar包
 
-### 2.1. Hibernate 导入核心jar包
+### Hibernate 导入核心jar包
 
 - 必须的支撑包：hibernate-release-5.0.12.Final\lib\required
 - JPA实现包：hibernate-release-5.0.12.Final\lib\jpa
 - 可选的组件（如：第三方缓存，连接池）：hibernate-release-5.0.12.Final\lib\optional
 - 数据库MySQL驱动的jar包：mysql-connector-java-5.1.44-bin.jar
 
-### 2.2. struts2 导入的核心jar包
+### struts2 导入的核心jar包
 
 - 在struts-2.3.32\apps\struts2-blank.war的空项目，里面lib的jar就是struts2框架的最小配置包
 - 支持注解的插件包:struts-2.3.32\lib\struts2-convention-plugin-2.3.32.jar
 
-### 2.3. spring 核心jar包
+### spring 核心jar包
 
 - 导入核心jar包(IOC)
 	- spring-beans-4.2.4.RELEASE.jar
@@ -675,7 +675,7 @@ mysql-connector-java-5.1.44
     - spring-orm-4.2.4.RELEASE.jar
     - spring-tx-4.2.4.RELEASE.jar
 
-### 2.4. Spring框架xml配置schema约束
+### Spring框架xml配置schema约束
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -696,7 +696,7 @@ mysql-connector-java-5.1.44
 </beans>
 ```
 
-### 2.5. SpringMVC框架xml配置schema约束
+### SpringMVC框架xml配置schema约束
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -715,35 +715,35 @@ mysql-connector-java-5.1.44
 </beans>
 ```
 
-## 3. JavaScript相关插件js
+## JavaScript相关插件js
 
-### 3.1. jQuery 相关JS文件
+### jQuery 相关JS文件
 
 - jquery-1.8.3.min.js
 - jquery-2.1.0.min.js
 
-### 3.2. 表单验证的validate插件
+### 表单验证的validate插件
 
 - jquery-1.8.3.min.js
 - jquery.validate.min.js 验证框架(在 dist 目录下)
 - messages_cn.js 一些默认的错误提示(在 dist\localization\目录下)
 
-### 3.3. Bootstrap
+### Bootstrap
 
 1. 复制三个文件夹(css、fonts、js)的内容到项目目录下
 2. 复制jQuery.js文件到项目中，建议使用1.9以上的版本
 
-### 3.4. 页面使用JSTL
+### 页面使用JSTL
 
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ```
 
-### 3.5. 页面使用OGNL
+### 页面使用OGNL
 
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-### 3.6. Bootstrap模板
+### Bootstrap模板
 
 ``` html
 <!DOCTYPE html>
@@ -762,7 +762,7 @@ mysql-connector-java-5.1.44
 </html>
 ```
 
-### 3.7. EasyUI的使用
+### EasyUI的使用
 
 下载程序库并导入EasyUI的CSS和Javascript文件到页面。
 
@@ -780,7 +780,7 @@ mysql-connector-java-5.1.44
     - js：jquery-1.11.3.min.js/jquery.easyui.min.js
     - themes文件夹
 
-### 3.8. zTree的使用
+### zTree的使用
 
 - 导入包：zTreeStyle.css/jquery-1.4.4.min.js/jquery.ztree.core-3.5.js/js/jquery.ztree.excheck-3.5.js
 

@@ -1,0 +1,14 @@
+{
+  "showLineNumber": true,
+  "spellcheck": false,
+  "newFileLocation": "current",
+  "openBehavior": "",
+  "attachmentFolderPath": "attachments",
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "trashOption": "local",
+  "readableLineLength": false,
+  "livePreview": false,
+  "showUnsupportedFiles": true,
+  "useMarkdownLinks": false
+}

@@ -1,12 +1,12 @@
-## 1. 原子操作
+## 原子操作
 
 假定有两个操作 A 和 B，如果从执行 A 的线程来看，当另一个线程执行 B 时，要么将 B 全部执行完，要么完全不执行 B，那么 A 和 B 对彼此来说是原子的。
 
 可以使用锁机制来实现原子操作，`synchronized` 关键字是基于阻塞的锁机制，也就是说当一个线程拥有锁的时候，访问同一资源的其它线程需要等待，直到该线程释放锁。
 
-## 2. CAS（Compare And Swap）
+## CAS（Compare And Swap）
 
-### 2.1. 概念
+### 概念
 
 CAS（Compare And Swap）指比较并交换。是现代 CPU 广泛支持的一种对内存中的共享数据进行操作的一种特殊指令。CAS 操作采用了乐观锁的思想，通过比较和交换保证共享变量赋值时的原子操作，这个原子操作直接由 CPU 保证。
 
@@ -20,7 +20,7 @@ CAS 算法包含 V,E,N 等 3 个参数：
 
 ![](images/300710522230261.png)
 
-### 2.2. CAS 与 volatile
+### CAS 与 volatile
 
 在 CAS 获取共享变量时，为了保证该变量的可见性，需要使用 `volatile` 修饰。通常 CAS 结合 `volatile` 可以实现无锁并发，适用于线程数少、竞争不激烈、多核 CPU 的场景。
 
@@ -32,32 +32,32 @@ CAS 算法包含 V,E,N 等 3 个参数：
 
 > Notes: volatile 仅仅保证了共享变量的可见性，让其它线程能够看到最新值，但不能解决指令交错问题（不能保证原子性）
 
-### 2.3. 无锁效率高的原因
+### 无锁效率高的原因
 
 无锁情况下，因为没有使用 `synchronized`，所以线程不会陷入阻塞，这是效率提升的因素之一。即使重试失败，线程始终在高速运行，没有停歇。而使用 synchronized 会让线程在没有获得锁的时候，发生上下文切换，进入阻塞，这个比无锁重试的花销更大。
 
 值得注意的是，无锁需要额外 CPU 的支持。因为线程要保持运行，如果超出 CPU 核心数时，虽然线程不会进入阻塞，但由于竞争激烈，线程没有分到时间片，仍然会进入可运行状态，还是会导致上下文切换，反而效率会受影响。
 
-## 3. CAS 实现原子操作存在的问题
+## CAS 实现原子操作存在的问题
 
-### 3.1. ABA 问题
+### ABA 问题
 
 CAS 需要在操作值的时候，检查值有没有发生变化，如果没有发生变化则更新，但是如果一个值原来是 A，变成了 B，又变成了 A，那么使用 CAS 进行检查时不会感知到该值已发生变化，但是实际上却变化了。
 
 **ABA 问题的解决思路就是使用版本号**。在变量前面追加上版本号，每次变量更新的时候把版本号加 1，那么 A -> B -> A 就会变成 1A -> 2B -> 3A。
 
-### 3.2. 循环时间长开销大
+### 循环时间长开销大
 
 CAS 操作如果长时间不成功，会导致一直自旋，会给 CPU 带来非常大的执行开销。
 
-#### 3.2.1. CAS 循环时间长占用资源大问题解决方案
+#### CAS 循环时间长占用资源大问题解决方案
 
 如果 JVM 能支持处理器提供的 `pause` 指令，那么效率会有一定的提升。
 
 1. 它可以延迟流水线执行指令(de-pipeline)，使 CPU 不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，有些处理器延迟时间是 0。
 2. 它可以避免在退出循环的时候因内存顺序冲突而引起的 CPU 流水线被清空，从而提高 CPU 执行效率。
 
-### 3.3. 只能保证一个共享变量的原子操作
+### 只能保证一个共享变量的原子操作
 
 当对一个共享变量执行操作时，可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，此时必须使用锁来保证。
 
@@ -65,15 +65,15 @@ CAS 操作如果长时间不成功，会导致一直自旋，会给 CPU 带来�
 
 > Tips: 从 Java 1.5 开始，JDK 提供了 `AtomicReference` 类来保证引用对象之间的原子性，就可以把多个变量放在一个对象里来进行 CAS 操作。
 
-## 4. JDK 的原子操作类
+## JDK 的原子操作类
 
-### 4.1. 概述
+### 概述
 
 在 JDK1.5 之前需要开发者通过同步技术自行实现原子操作。
 
 从 JDK1.5 开始，`java.util.concurrent` 包里面提供了一组原子类。其基本的特性就是在多线程环境下，当有多个线程同时执行这些类的实例包含的方法时，具有排他性，即当某个线程进入方法，执行其中的指令时，不会被其他线程打断，而让其他线程类似自旋锁一样，一直等到该方法执行完成，才由 JVM 从等待队列中选择一个另一个线程进入，从而实现原子操作。
 
-### 4.2. 原子整数
+### 原子整数
 
 在 J.U.C 并发包提供了整数类型数据的原子操作工具类，分别如下：
 
@@ -81,7 +81,7 @@ CAS 操作如果长时间不成功，会导致一直自旋，会给 CPU 带来�
 - `java.util.concurrent.atomic.AtomicInteger` 整型原子类
 - `java.util.concurrent.atomic.AtomicLong` 长整型原子类
 
-#### 4.2.1. 常用方法
+#### 常用方法
 
 列举 `AtomicInteger` 类常用的方法：
 
@@ -139,7 +139,7 @@ public final void lazySet(int newValue)
 
 - 最终设置为 newValue，使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。
 
-#### 4.2.2. 基础 API 使用示例
+#### 基础 API 使用示例
 
 以 `AtomicInteger` 为例，相关 API 的使用如下：
 
@@ -183,7 +183,7 @@ System.out.println(i.getAndAccumulate(10, (p, x) -> p + x));
 System.out.println(i.accumulateAndGet(-10, (p, x) -> p + x));
 ```
 
-#### 4.2.3. 通过 CAS 实现锁
+#### 通过 CAS 实现锁
 
 > Tips: 注意不要用于实际开发生产！
 
@@ -250,7 +250,7 @@ public void lockCasTest() throws InterruptedException {
 2023-03-13 17:15:43.236 [Thread-1] DEBUG com.moon.java.common.test.BasicTest - unlock...
 ```
 
-### 4.3. 原子引用
+### 原子引用
 
 在 J.U.C 并发包提供了引用类型数据的原子操作工具类，分别如下：
 
@@ -258,7 +258,7 @@ public void lockCasTest() throws InterruptedException {
 - `java.util.concurrent.atomic.AtomicStampedReference` 带有版本号的引用类型原子类。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。
 - `java.util.concurrent.atomic.AtomicMarkableReference` 原子更新带有标记的引用类型。该类将 boolean 标记与引用关联起来
 
-#### 4.3.1. AtomicReference
+#### AtomicReference
 
 引用对象不安全的实现示例：
 
@@ -318,7 +318,7 @@ public void atomicReferenceTest() {
 }
 ```
 
-#### 4.3.2. AtomicStampedReference
+#### AtomicStampedReference
 
 前面提过的 ABA 问题，如果希望感知到是否有其他线程对共享变量进行过「改动」，此时不能仅仅比较值，需要加一个版本号。
 
@@ -366,7 +366,7 @@ private static void other() throws InterruptedException {
 2023-02-21 12:18:33.605 [main] DEBUG com.moon.java.common.test.BasicTest - change A->C false
 ```
 
-#### 4.3.3. AtomicMarkableReference
+#### AtomicMarkableReference
 
 `AtomicMarkableReference` 类原子操作<u>只关注共享引用变量是否被改动过，而不关心引用变量更忙的次数</u>。示例代码如下：
 
@@ -426,7 +426,7 @@ class GarbageBag {
 2023-02-21 12:31:48.840 [main] DEBUG com.moon.java.common.test.BasicTest - com.moon.java.common.test.BasicTest$GarbageBag@57fffcd7 空垃圾袋
 ```
 
-### 4.4. 原子数组
+### 原子数组
 
 在 J.U.C 并发包提供了数组类型的原子操作工具类，分别如下：
 
@@ -434,7 +434,7 @@ class GarbageBag {
 - `java.util.concurrent.atomic.AtomicLongArray` 长整形数组原子类
 - `java.util.concurrent.atomic.AtomicReferenceArray` 引用类型数组原子类
 
-#### 4.4.1. 常用方法
+#### 常用方法
 
 以 `AtomicIntegerArray` 类为例，常用方法：
 
@@ -480,7 +480,7 @@ public final void lazySet(int i, int newValue)
 
 - 最终将 index=i 位置的元素设置为 newValue，使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。
 
-#### 4.4.2. 基础使用示例
+#### 基础使用示例
 
 数组不安全的操作示例：
 
@@ -554,7 +554,7 @@ public void AtomicIntegerArrayTest() {
 [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]
 ```
 
-### 4.5. 字段更新器
+### 字段更新器
 
 在 J.U.C 并发包提供了原子操作的字段更新器，分别如下：
 
@@ -591,13 +591,13 @@ public class BasicTest {
 }
 ```
 
-### 4.6. 原子累加器
+### 原子累加器
 
 在 J.U.C 并发包提供了专用于累加操作的原子累加器，其性能是高于使用原始原子整数操作类，分别如下：
 
 - `java.util.concurrent.atomic.LongAdder`
 
-#### 4.6.1. 累加器性能比较
+#### 累加器性能比较
 
 比较 `AtomicLong` 与 `LongAdder` 示例：
 
@@ -648,11 +648,11 @@ private <T> void increment(Supplier<T> supplier, Consumer<T> action) {
 
 原子累加器性能提升的原因很简单，就是在有竞争时，<font color=red>**设置多个累加单元**</font>，Therad-0 累加 Cell[0]，而 Thread-1 累加 Cell[1] ... 最后将结果汇总。这样它们在累加时操作的不同的 Cell 变量，因此减少了 CAS 重试失败，从而提高性能。
 
-## 5. Unsafe 类
+## Unsafe 类
 
 通过刚才 `AtomicInteger` 的源码可以看到，`Unsafe` 类提供了原子操作。
 
-### 5.1. 概述
+### 概述
 
 ```java
 public final class Unsafe {}
@@ -662,7 +662,7 @@ public final class Unsafe {}
 
 ![](images/231170922239684.png)
 
-### 5.2. Unsafe 的 CAS 操作
+### Unsafe 的 CAS 操作
 
 通过反射来获取 `Unsafe` 类对象
 
@@ -720,6 +720,6 @@ public static void main(String[] args) throws NoSuchFieldException {
 }
 ```
 
-### 5.3. Unsafe 实现 CAS 原理
+### Unsafe 实现 CAS 原理
 
 ![](images/399230922227551.png)

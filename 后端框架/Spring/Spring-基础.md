@@ -1,4 +1,4 @@
-## 1. Spring 概述
+## Spring 概述
 
 Spring 是一个开放源代码的设计层面框架。Spring 是分层的 Java SE/EE 应用 full-stack 轻量级开源框架，<font color=red>**以 IoC（Inverse Of Control：反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核**</font>，提供了展现层 SpringMVC 和持久层 Spring JDBC 以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的 Java EE 企业应用开源框架。
 
@@ -9,9 +9,9 @@ spring 是一站式框架
 - service 层：spring 的 ioc
 - dao 层：spring 的 jdbcTemplate
 
-### 1.1. 工厂模式
+### 工厂模式
 
-#### 1.1.1. 程序的耦合与解耦
+#### 程序的耦合与解耦
 
 以往在三层架构中，都使用 `new` 关键字来创建层与层之间的关系。`new` 关系字有很强的耦合性问题。以后在三层架构中创建依赖关系时不使用 `new` 对象。
 
@@ -19,15 +19,15 @@ spring 是一站式框架
 
 原来获取对象都是使得 `new` 方式，是主动；使用工厂为查找或者创建对象，是被动；这种被动接收方式获取对象的思想就是控制反转，是 spring 框架核心之一。它的作用只有一个：削减计算机程序的耦合。
 
-#### 1.1.2. 使用工厂模式解耦
+#### 使用工厂模式解耦
 
 使用工厂模式，是通过反射来解决耦合性的问题。工厂模式的特点：方法返回类型都是 `Object`，调用时按需进行强转。一般将一些参数写到配置文件中：xml 和 Properties。
 
 选择 xml 类型原因是其能够描述类的层级关系。
 
-#### 1.1.3. 工厂模式创建对象
+#### 工厂模式创建对象
 
-##### 1.1.3.1. 示例代码
+##### 示例代码
 
 - 创建实例工厂类，解析 xml 配置，根据配置值通过反射来创建对象实例，并存储到工厂类中一个 `Map` 类型容器中。
 
@@ -114,7 +114,7 @@ public class UserDaoImpl implements IUserDao {
 }
 ```
 
-##### 1.1.3.2. 示例编写时注意问题
+##### 示例编写时注意问题
 
 在编写代码时，出现的错误。具体错误描述：创建一个工厂类去读取自己写的xml配置文件，在view层使用工厂类创建service层对象时，可以创建。但service层使用工厂类获取dao层的对象时却是null
 
@@ -134,7 +134,7 @@ public class UserDaoImpl implements IUserDao {
 
 所以需要<font color=red>将 userDao 标签放到上面，才确保创建 userService 层时，xml 全部解析完。因为如果工厂类没有读取到 map 集合有对应的 id 时，是不会去创建对象的。</font>
 
-### 1.2. Spring Framework 的技术模块
+### Spring Framework 的技术模块
 
 ![](images/340260616230552.png)
 
@@ -153,13 +153,13 @@ public class UserDaoImpl implements IUserDao {
 - **控制反转（IOC）** - 将对象的创建交给 Spring，通过使用配置等方式创建类对象，Spring 通过一种称作控制反转（IoC）的技术促进了低耦合。当应用了 IoC，一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。可以认为IoC与JNDI相反，不是对象从容器中查找依赖，而是容器在对象初始化时不等对象请求就主动将依赖传递给它。
 - **面向切面编程（AOP）** - Spring 提供了面向切面编程的丰富支持，可以不通过修改源代码来实现扩展功能，允许通过分离应用的业务逻辑与系统级服务（例如审计（auditing）和事务（transaction）管理）进行内聚性的开发。应用对象只实现它们应该做的“完成业务逻辑”仅此而已。它们并不负责（甚至是意识）其它的系统级关注点，例如日志或事务支持。
 
-### 1.3. Spring 容器高层视图
+### Spring 容器高层视图
 
 Spring 启动时读取应用程序提供的 Bean 配置信息，并在 Spring 容器中生成一份相应的 Bean 配置注册表，然后根据这张注册表实例化 Bean，装配好 Bean 之间的依赖关系，为上层应用提供准备就绪的运行环境。其中 Bean 缓存池为 `HashMap` 实现
 
 ![](images/418180516236231.jpg)
 
-### 1.4. Spring 运行环境要求
+### Spring 运行环境要求
 
 Minimum requirements
 
@@ -167,7 +167,7 @@ Minimum requirements
 - JDK 6+ for Spring Framework 4.x
 - JDK 5+ for Spring Framework 3.x
 
-### 1.5. Spring 包结构
+### Spring 包结构
 
 Spring 系统的 lib 包中都是以基本 jar 包、文档、源代码三种结构存在，只需要导入基本包
 
@@ -187,7 +187,7 @@ Spring 系统的 lib 包中都是以基本 jar 包、文档、源代码三种结
 
 > <font color=red>**注：要使用 spring，其实只需要导入 spring-context-x.x.x.RELEASE 即可**</font>
 
-### 1.6. Spring 相关资源文档
+### Spring 相关资源文档
 
 - Spring 官网：https://spring.io/projects/spring-framework
 - Spring 最新版本官方文档：https://docs.spring.io/spring-framework/docs/current/reference/html/
@@ -196,9 +196,9 @@ Spring 系统的 lib 包中都是以基本 jar 包、文档、源代码三种结
 - [Spring Framework 5 中文文档](https://felord.cn/_doc/spring/5.x.RELEASE/_book/)
 - [Spring 实战(第 5 版)](https://potoyang.gitbook.io/spring-in-action-v5/)
 
-## 2. Spring IOC 容器
+## Spring IOC 容器
 
-### 2.1. 什么是 IOC
+### 什么是 IOC
 
 IoC（Inversion of Control），控制反转，就是把 new 对象的动作交给容器，所有的对象都被容器控制。依赖性注入（DI），即由 IoC 容器帮对象找相应的依赖对象并注入，而不是由对象主动去找。
 
@@ -215,13 +215,13 @@ IoC（Inversion of Control），控制反转，就是把 new 对象的动作交�
 
 在 Spring 构建的应用程序中，Spring IoC 容器管理的对象被称为 Bean。Bean 是一个由 Spring IoC 容器实例化、组装和管理的对象。
 
-### 2.2. 容器概述
+### 容器概述
 
 通常 Spring IoC 容器是指 `org.springframework.context.ApplicationContext` 接口，该接口负责实例化、配置和组装 bean。容器通过读取**配置元数据**来获得关于要实例化、配置和组装哪些对象。可以通过 XML 文件、Java 注解或 Java 代码配置元数据，告诉容器要实例化的对象及其依赖关系。在 `ApplicationContext` 被创建和初始化后，就有了一个完全配置好的可执行系统或应用程序。
 
 ![](images/476884009220554.png)
 
-#### 2.2.1. 配置元数据
+#### 配置元数据
 
 Spring IoC 容器通过使用者对 bean 配置元数据，从而知道如何实例化、配置和组装对象。
 
@@ -249,7 +249,7 @@ Spring IoC 容器通过使用者对 bean 配置元数据，从而知道如何实
 </beans>
 ```
 
-#### 2.2.2. IOC 容器创建（ApplicationContext 接口实现类）
+#### IOC 容器创建（ApplicationContext 接口实现类）
 
 IOC 容器的创建，即创建 `ApplicationContext` 接口实现类实例。如：
 
@@ -319,7 +319,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 }
 ```
 
-#### 2.2.3. ApplicationContext 常用方法（整理中!）
+#### ApplicationContext 常用方法（整理中!）
 
 - 继承于 `BeanFactory`，根据 bean 的名称获取实例对象
 
@@ -334,7 +334,7 @@ Object getBean(String name) throws BeansException;
 ```
 
 
-### 2.3. Bean 概述
+### Bean 概述
 
 JavaBean：是一种 Java 语言写成的可重用组件。一个 Spring IoC 容器管理着一个或多个 Bean。这些 Bean 都根据使用者提供给容器的配置元数据创建的（例如，以 XML 文件 `<bean/>` 标签定义的形式）。
 
@@ -347,20 +347,20 @@ JavaBean：是一种 Java 语言写成的可重用组件。一个 Spring IoC 容
 
 传统上，配置元数据是以简单直观的 XML 格式实现，Spring 2.5 引入了对基于注解的配置元数据的支持。从 Spring 3.0 开始，Spring JavaConfig 项目提供的许多功能成为 Spring 框架的核心部分。后面建议使用 Java 注解来配置 Bean 的元数据。（*具体详见后面 `@Configuration`、`@Bean`、`@Import` 和 `@DependsOn` 等相关内容*）
 
-### 2.4. IOC 底层原理（待整理或删除）
+### IOC 底层原理（待整理或删除）
 
 1. xml 配置文件（老旧）、注解
 2. dom4j 解决 xml（老旧）、解析注解
 3. 工厂设计模式
 4. 反射创建实例
 
-## 3. Spring Bean 的加载方式
+## Spring Bean 的加载方式
 
-### 3.1. 方式1：基于 xml 配置的 bean 标签
+### 方式1：基于 xml 配置的 bean 标签
 
 Spring 核心配置文件名称和位置不是固定的，只要名字不包含中文和空格即可。建议放到 src 根目录，官方建议：applicationContext.xml，也可以简单命名为 bean.xml
 
-#### 3.1.1. 引入 schema 约束
+#### 引入 schema 约束
 
 **导入约束需要导入一个 `beans` 名称空间下的约束，因为是第 1 个约束，可以省略前缀**
 
@@ -377,7 +377,7 @@ Spring 核心配置文件名称和位置不是固定的，只要名字不包含�
 
 ![](images/475965210220550.png)
 
-#### 3.1.2. 配置 bean 标签
+#### 配置 bean 标签
 
 在配置文件中定义 `<bean />` 标签即可创建对象，其中核心属性如下：
 
@@ -397,7 +397,7 @@ Spring 核心配置文件名称和位置不是固定的，只要名字不包含�
 </beans>
 ```
 
-#### 3.1.3. 获取 bean 实例
+#### 获取 bean 实例
 
 在测试用例中，使用实现类 `ClassPathXmlApplicationContext` 创建 spring 容器对象 `ApplicationContext`，读取 xml 文件，通过 `getBean(String id)` 方法获取配置的对象
 
@@ -418,22 +418,22 @@ public class BeanBasicTest {
 }
 ```
 
-## 4. Spring 的依赖注入(DI)
+## Spring 的依赖注入(DI)
 
-### 4.1. 概述
+### 概述
 
 DI (dependcy injection)：依赖注入，Spring 框架核心 IOC 的具体实现方式。即让框架自动把对象传入，不需要使用者自动去获取。
 
 依赖注入（DI）是一个过程，对象仅通过构造方法的形参、类属性、setter 方法来定义当前类依赖的其他对象。然后 Spring 容器在创建 Bean 时自动注入这些依赖关系的对象实例。这个过程本质是 Bean 本身调用构造方法创建实例时，会到 Spring 容器中查找其依赖的对象，找到的将其依赖的对象引用设置到当前实例化中的 Bean
 
-#### 4.1.1. IOC 和 DI 区别
+#### IOC 和 DI 区别
 
 - IOC：控制反转，把对象创建交给spring进行配置
 - DI：依赖注入，向类里面的属性中设置值
 
 IOC 和 DI 关系：依赖注入不能单独存在，需要在 IOC 基础之上完成操作
 
-#### 4.1.2. 依赖注入的方式
+#### 依赖注入的方式
 
 在 java 代码中给类的属性注入（就是给对象的属性设置值），有以下几种方式：
 
@@ -448,11 +448,11 @@ IOC 和 DI 关系：依赖注入不能单独存在，需要在 IOC 基础之上�
 3. 静态工厂注入
 4. 实例工厂注入
 
-### 4.2. 方式1：构造器注入
+### 方式1：构造器注入
 
 使用类中的构造函数，给成员变量赋值。赋值的操作是通过配置的方式，让 Spring 框架来注入。<font color=red>**注意，必须提供与配置文件对应配置的成员变量的有参构造方法**</font>
 
-#### 4.2.1. constructor-arg 标签
+#### constructor-arg 标签
 
 `<constructor-arg>` 标签代表是构造方法的参数，每一个标签代表一个参数。
 
@@ -466,7 +466,7 @@ IOC 和 DI 关系：依赖注入不能单独存在，需要在 IOC 基础之上�
 | `value` | 给成员变量赋值，包含基本数据类型和 String 类型                                                                |
 |  `ref`  | 给成员变量赋值为其他bean类型，值为其他bean的id，<font color=purple>**必须是在配置文件中配置过的bean对象**</font> |
 
-#### 4.2.2. 示例
+#### 示例
 
 构造器依赖注入 xml 配置：
 
@@ -504,11 +504,11 @@ public void testConstructor () {
 }
 ```
 
-### 4.3. 方式2：set 方法注入（实际开发中常用）
+### 方式2：set 方法注入（实际开发中常用）
 
 注意在类中提供需要注入的成员变量相应的 set 方法
 
-#### 4.3.1. property 标签
+#### property 标签
 
 |  属性名  |                             说明                              |
 | :-----: | ------------------------------------------------------------ |
@@ -516,7 +516,7 @@ public void testConstructor () {
 |  `ref`  | 给属性赋值是其他bean类型，必须是在配置文件中配置过的bean对象          |
 | `value` | 给属性赋值是基本数据类型和String类型                              |
 
-#### 4.3.2. 示例
+#### 示例
 
 set 方法依赖注入 xml 配置：
 
@@ -548,7 +548,7 @@ public void testProperty() {
 }
 ```
 
-#### 4.3.3. 使用p名称空间注入数据（了解）
+#### 使用p名称空间注入数据（了解）
 
 p名称空间注入，本质还是调用set方法，几乎不用。通过在 xml 中导入 p 名称空间，使用 `p:propertyName` 来注入数据，本质仍然是调用类中的set方法实现注入功能。示例配置如下：
 
@@ -580,7 +580,7 @@ public void testP() {
 }
 ```
 
-#### 4.3.4. 注入集合属性（复杂类型）
+#### 注入集合属性（复杂类型）
 
 给类中的集合成员传值，也是set方法注入的方式，只不过变量的数据类型都是集合。
 
@@ -653,7 +653,7 @@ public void testOther() {
 }
 ```
 
-#### 4.3.5. 内部 Bean 注入
+#### 内部 Bean 注入
 
 内部 Bean 注入，是指 Spring 的基于 XML 的配置元数据或提供给某个元素使用。即将 A 实例用作 B 实例的属性时，就能将 A 实例声明为内部 Bean。内部 bean 总是匿名的，它们总是作为原型。
 
@@ -686,7 +686,7 @@ xml 配置内部 bean 示例如下：
 </bean>
 ```
 
-### 4.4. 方式3：静态工厂注入
+### 方式3：静态工厂注入
 
 静态工厂注入是通过调用工厂类中定义的静态方法来获取需要的对象。为了让 Spring 管理所有对象，应用程序不能直接通过 `工厂类.静态方法()` 的方式来获取对象，而需要通过 Spring 注入的方式获取。
 
@@ -729,7 +729,7 @@ public class SpringFactoryMethodDemo {
 </bean>
 ```
 
-### 4.5. 方式4：实例工厂注入
+### 方式4：实例工厂注入
 
 实例工厂注入指的是获取对象实例的方法是非静态的，因此首先需要实例化一个工厂类对象，然后调用对象的方法来实例化对象。示例代码如下：
 
@@ -772,7 +772,7 @@ public class SpringFactoryMethodDemo {
 </bean>
 ```
 
-### 4.6. 自动装配（自动注入）
+### 自动装配（自动注入）
 
 Spring 的 Bean 属性依赖注入分成为手动装配和自动装配。上面介绍的 xml 配置与注解配置方法均为手动装配。自动装配是用来引导 Spring 容器自动完成依赖注入，具体有以下几种方式：
 
@@ -784,7 +784,7 @@ Spring 的 Bean 属性依赖注入分成为手动装配和自动装配。上面�
 
 > Notes: 基本数据类型的属性（如原数据类型，字符串和类）无法自动装配。 
 
-### 4.7. private final 字段的自动注入
+### private final 字段的自动注入
 
 对于 `private final` 修饰的字段自动注入，Spring 使用构造函数注入（Constructor Injection）方式来实现。
 
@@ -810,9 +810,9 @@ public class MyService {
 2. 在类的构造函数中接收依赖参数，并将其赋值给 `private final` 字段。
 3. Spring 会自动扫描并创建 Bean 实例，同时检测到带有 `private final` 字段的构造函数，会自动解析依赖并进行注入。
 
-## 5. Spring Bean 的作用范围
+## Spring Bean 的作用范围
 
-### 5.1. 概述
+### 概述
 
 Spring 创建的 Bean 对象的都有其作用范围。Spring 框架支持6种作用域，其中4种只有在 Web 环境的 `ApplicationContext` 容器中才可用，使用者也可以创建一个自定义作用域。内部支持以下作用域：
 
@@ -825,9 +825,9 @@ Spring 创建的 Bean 对象的都有其作用范围。Spring 框架支持6种�
 
 > 注：有些历史资料中提及有 `globalSession` 这种作用范围，目前 Spring 中已废弃
 
-### 5.2. 各种作用范围说明
+### 各种作用范围说明
 
-#### 5.2.1. singleton 单例对象
+#### singleton 单例对象
 
 一个应用只有一个共享的对象实例，无论有多少个 Bean 引用它，都始终指向同一个 Bean 对象。它的作用范围就是整个引用。<font color=red>**该模式在多线程下是不安全的**</font>。Singleton 作用域是 Spring 中的缺省作用域。**单例 bean 生命周期**如下：
 
@@ -849,7 +849,7 @@ public class SingletonScopeBean {}
 <bean id="foo" class="com.moon.foo" scope="singleton"/>
 ```
 
-#### 5.2.2. prototype 原型对象
+#### prototype 原型对象
 
 Prototype 是原型模式（又叫多例模式），每次通过 Spring 容器获取 prototype 定义的 bean 时，容器都将创建一个新的 Bean 实例，每个 Bean 实例都有自己的属性和状态。根据经验，对有状态的 bean 使用 prototype 作用域，而对无状态的 bean 使用 singleton 作用域。**原型模式 bean 生命周期**如下：
 
@@ -873,7 +873,7 @@ public class PrototypeScopeBean {}
 <bean id="foo" class="com.moon.foo" scope="prototype"/>
 ```
 
-#### 5.2.3. request 请求域对象
+#### request 请求域对象
 
 在一次 Http 请求中，容器会返回该 Bean 的同一实例。而对不同的 Http 请求则会产生新的 Bean，而且该 bean 仅在当前 Http Request 内有效，当前 Http 请求结束，该 bean 实例也将会被销毁。
 
@@ -901,7 +901,7 @@ public class LoginAction {
 <bean id="loginAction" class="com.moon.LoginAction" scope="request"/>
 ```
 
-#### 5.2.4. session 会话域对象
+#### session 会话域对象
 
 在一次 Http Session 中，容器会返回该 Bean 的同一实例。而对不同的 Session 请求则会创建新的实例，该 bean 实例仅在当前 Session 内有效。同 Http 请求相同，每一次 session 请求创建新的实例，而不同的实例之间不共享属性，且实例仅在自己的 session 请求内有效，请求结束，则实例将被销毁。
 
@@ -929,7 +929,7 @@ public class UserPreferences {
 <bean id="userPreferences" class="com.moon.UserPreferences" scope="session"/>
 ```
 
-#### 5.2.5. application 应用上下文对象
+#### application 应用上下文对象
 
 在一个全局的 Http Session 中，容器会返回该 Bean 的同一个实例，仅在使用 portlet context 时有效。
 
@@ -957,7 +957,7 @@ public class AppPreferences {
 <bean id="appPreferences" class="com.moon.AppPreferences" scope="application"/>
 ```
 
-#### 5.2.6. 作用范围测试
+#### 作用范围测试
 
 - 按上面创建不同作用范围的类，然后在每个类中都创建初始化后与销毁方法。
 
@@ -1024,9 +1024,9 @@ public class BeanScopesApplication {
 
 > 测试时需要注意：如果项目环境的 JDK >= 9，以上示例会涉及反射调用 jdk 中方法，程序会报错。此时需要运行时添加参数 `--add-opens java.base/java.lang=ALL-UNNAMED`
 
-### 5.3. singleton 注入其它 scope 失效问题
+### singleton 注入其它 scope 失效问题
 
-#### 5.3.1. 问题分析
+#### 问题分析
 
 下面以单例作用域对象注入多例作用域对象为例（其他类型作用域均一样）
 
@@ -1078,7 +1078,7 @@ com.moon.springsample.bean.PrototypeScopeBean1@1bb1fde8
 
 从测试结果可见，期望的是多例对象，但每次获取都是同一个对象。原因其实很简单，就是单例对象只会被初始化一次，依赖注入也只有一次，所有后续每次获取注入的对象都是初始化时注入的对象。解决作用域失效有以下几种方式，<font color=red>**其原理都是推迟其他作用域 bean 的获取时机**</font>
 
-#### 5.3.2. 解决方式1 - @Lazy 注解
+#### 解决方式1 - @Lazy 注解
 
 在注入的对象上标识 `@Lazy` 注解，此时单例对象实例化是注入的是代理对象，代理对象虽然还是同一个，但当每次使用代理对象的任意方法时，由代理创建新的多例对象
 
@@ -1088,7 +1088,7 @@ com.moon.springsample.bean.PrototypeScopeBean1@1bb1fde8
 private PrototypeScopeBean1 bean1;
 ```
 
-#### 5.3.3. 解决方式2 - 设置 proxyMode 属性
+#### 解决方式2 - 设置 proxyMode 属性
 
 在 `@Scope` 注解中使用 `proxyMode` 属性指定使用代理模式
 
@@ -1099,7 +1099,7 @@ public class PrototypeScopeBean2 {
 }
 ```
 
-#### 5.3.4. 解决方式3 - ObjectFactory 对象
+#### 解决方式3 - ObjectFactory 对象
 
 使用 `ObjectFactory` 将注入的多例对象进行包装，获取对象实例时调用其 `getObject` 方法
 
@@ -1112,7 +1112,7 @@ public PrototypeScopeBean3 getBean3() {
 }
 ```
 
-#### 5.3.5. 解决方式4 - 从容器中获取
+#### 解决方式4 - 从容器中获取
 
 注入 Spring 容器，直接从容器中获取实例对象
 
@@ -1125,9 +1125,9 @@ public PrototypeScopeBean4 getBean4() {
 }
 ```
 
-## 6. Spring Bean 的生命周期
+## Spring Bean 的生命周期
 
-### 6.1. 概述
+### 概述
 
 一个受 Spring 管理的 bean，生命周期主要阶段有：
 
@@ -1151,7 +1151,7 @@ graph LR
 
 > 自定义 Bean 初始化和销毁方法有多种方式。参考代码详见：`spring-note\spring-sample\39-annotation-lifecycle\`
 
-### 6.2. @Bean 注解方式实现生命周期回调
+### @Bean 注解方式实现生命周期回调
 
 - 创建自定义Bean
 
@@ -1249,7 +1249,7 @@ com.moon.springsample.bean.CustomBean@6b4a4e18
 
 > 分析：此情况在多例模式下，IOC 容器启动的时候并不会去创建对象，而是在每次获取的时候才会去调用方法创建对象，创建完对象后再调用初始化方法。但在容器关闭后，Spring 并没有调用相应的销毁方法，这是因为在多例模式下，容器不会管理这个组件（只负责在你需要的时候创建这个组件），所以容器在关闭的时候并不会调用相应的销毁方法。
 
-### 6.3. InitializingBean & DisposableBean 接口实现生命周期回调
+### InitializingBean & DisposableBean 接口实现生命周期回调
 
 除了上面注解方式指定初始化和销毁方法外，Spring 还提供了和初始化，销毁相对应的接口
 
@@ -1316,7 +1316,7 @@ UserService 实现 DisposableBean 接口实现销毁的 destroy() 方法执行�
 ************* 容器关闭完毕 *************
 ```
 
-### 6.4. @PostConstruct & @PreDestroy 注解方式实现生命周期回调
+### @PostConstruct & @PreDestroy 注解方式实现生命周期回调
 
 `@PostConstruct` 和 `@PreDestroy` 注解修饰方法来指定相应的初始化和销毁方法。<font color=purple>*注：这两个注解并非 Spring 提供，而是 JSR250 规范提供*</font>
 
@@ -1389,7 +1389,7 @@ LogUtil 基于 @PreDestroy 注解销毁前的方法执行了...
 ************* 容器关闭完毕 *************
 ```
 
-### 6.5. BeanPostProcessor 接口实现生命周期回调
+### BeanPostProcessor 接口实现生命周期回调
 
 Spring 提供了一个 `BeanPostProcessor` 接口，俗称 Bean 后置通知处理器，它提供了两个方法 `postProcessBeforeInitialization` 和 `postProcessAfterInitialization`
 
@@ -1467,9 +1467,9 @@ OrdinaryBean 构造方法执行了...
 
 <font color=red>**注：`BeanPostProcessor` 对 IOC 容器中所有组件（对象）都生效**</font>
 
-### 6.6. Bean 的生命周期总结
+### Bean 的生命周期总结
 
-#### 6.6.1. Spring Bean 不同初始化与销毁方式的执行顺序
+#### Spring Bean 不同初始化与销毁方式的执行顺序
 
 Spring 提供了以上多种初始化与销毁的方式，如果同一个 bean 同时使用了以上方式声明了 3 个初始化方法，那么它们的执行顺序是：
 
@@ -1483,7 +1483,7 @@ Spring 提供了以上多种初始化与销毁的方式，如果同一个 bean �
 2. `DisposableBean` 接口的销毁方法
 3. `@Bean(destroyMethod=xxx)` 指定的销毁方法
 
-#### 6.6.2. Spring Bean 全生命周期流程图
+#### Spring Bean 全生命周期流程图
 
 ![整合后删除](images/412481317230447.png)
 
@@ -1523,7 +1523,7 @@ Spring 提供了以上多种初始化与销毁的方式，如果同一个 bean �
 9. Destroy 过期自动清理阶段：当 Bean 不再需要时，会经过清理阶段，如果 Bean 实现了 DisposableBean 这个接口，会调用那个其实现的 destroy()方法；
 10. destroy-method 自配置清理：最后，如果这个 Bean 的 Spring 配置中配置了 destroy-method 属性，会自动调用其配置的销毁方法
 
-## 7. Spring Bean 的 Aware 接口
+## Spring Bean 的 Aware 接口
 
 Spring 框架提供了一系列的以 Aware 结尾的回调接口，可以让 Bean 注入相关 Spring 框架的功能依赖，一般名称表示依赖关系的类型。下表是 Spring 一些常用比较重要的 Aware 接口清单
 
@@ -1544,7 +1544,7 @@ Spring 框架提供了一系列的以 Aware 结尾的回调接口，可以让 Be
 
 以上所有接口的用法都一样，实现相应的接口，在容器某个时间点会执行该接口的回调方法，然后实现类可以在此回调方法中获取到相应的 Spring 框架功能的对象引用，从而进行功能处理
 
-### 7.1. ApplicationContextAware
+### ApplicationContextAware
 
 实现 `org.springframework.context.ApplicationContextAware` 接口的对象实例，该实例可以获取 `ApplicationContext` 容器的引用。
 
@@ -1568,7 +1568,7 @@ public class CustomApplicationContextAware implements ApplicationContextAware {
 }
 ```
 
-### 7.2. BeanNameAware
+### BeanNameAware
 
 实现 `org.springframework.beans.factory.BeanNameAware` 接口的对象实例，可以获取当前实例在 Spring 容器中引用的名称。
 
@@ -1612,7 +1612,7 @@ CustomBeanNameAware 类 @PostConstruct 修饰的方法执行...
 CustomBeanNameAware 实现 InitializingBean 接口的 afterPropertiesSet 方法执行...
 ```
 
-### 7.3. Aware 功能分析
+### Aware 功能分析
 
 Aware 接口是 Spring 提供了一种“内置”的注入手段，假如：
 
@@ -1621,13 +1621,13 @@ Aware 接口是 Spring 提供了一种“内置”的注入手段，假如：
 - `ApplicationContextAware` 注入 `ApplicationContext` 容器
 - `EmbeddedValueResolverAware` 注入 `${}` 解析器
 
-#### 7.3.1. 内置注入与 @Autowired 注入的区别
+#### 内置注入与 @Autowired 注入的区别
 
 Aware 系列接口注入 Spring 框架功能实例对象，同样也可以使用 `@Autowired` 注解方式的注入。但值得注意，使用 `@Autowired` 注解方式的注入是需要 Spring 框架中一些 `BeanPostProcessor` 后置处理器来实现，在某种情况影响下，可以会出现注入功能失效的问题
 
 而 Aware 系列接口与 `InitializingBean` 接口一样，都是编程式的调用，这种内置的注入不会受扩展功能的限制，不存在失效的问题
 
-#### 7.3.2. 配置类 @Autowired 失效分析
+#### 配置类 @Autowired 失效分析
 
 下面分析一下什么情况会导致 `@Autowired` 失效。比如在 Spring 项目中，出现以下代码：
 
@@ -1710,14 +1710,14 @@ public static BeanFactoryPostProcessor postProcessor() {
 }
 ```
 
-## 8. 容器扩展点
+## 容器扩展点
 
 Spring IoC 容器提供了一些特殊的后置处理器接口，并给定了一些实现类，用户也可以通过实现此类接口，来实现对全局的 Bean 相关功能的扩展。接口主要分为两大类：
 
 - 针对 Bean 工厂的 `BeanFactoryPostProcessor` 接口（它还有个子接口 `BeanDefinitionRegistryPostProcessor`），用于调整 Bean 工厂的属性、影响 Bean 定义。注意：此时还没有 Bean 进行实例化。
 - 针对 Bean 的 `BeanPostProcessor` 接口，直接的作用于 Bean 实例生成过程中的修改。
 
-### 8.1. BeanPostProcessor 接口扩展 Bean 功能
+### BeanPostProcessor 接口扩展 Bean 功能
 
 ```java
 public interface BeanPostProcessor {
@@ -1739,7 +1739,7 @@ public interface BeanPostProcessor {
 
 Spring 支持创建一个或多个自定义 `BeanPostProcessor` 实现。
 
-#### 8.1.1. 基础使用示例
+#### 基础使用示例
 
 - 创建 bean 与配置类
 
@@ -1813,15 +1813,15 @@ public void TestBasicBeanPostProcessor() {
 Cat(name=在 BeanPostProcessor 接口中设置的名称, age=2, color=pink)
 ```
 
-#### 8.1.2. 增强接口 InstantiationAwareBeanPostProcessor 示例（待整理）
+#### 增强接口 InstantiationAwareBeanPostProcessor 示例（待整理）
 
 `InstantiationAwareBeanPostProcessor` 继承 `BeanPostProcessor` 接口
 
-#### 8.1.3. 增强接口 DestructionAwareBeanPostProcessor 示例（待整理）
+#### 增强接口 DestructionAwareBeanPostProcessor 示例（待整理）
 
 `DestructionAwareBeanPostProcessor` 继承 `BeanPostProcessor` 接口
 
-#### 8.1.4. 内置的 BeanPostProcessor 后置处理器实现
+#### 内置的 BeanPostProcessor 后置处理器实现
 
 Spring 框架通常会将回调接口或注解与自定义 `BeanPostProcessor` 实现结合起来使用，从而扩展 Spring IoC 容器。如 Spring 的内置一些的 `BeanPostProcessor` 实现类，它们会在 Spring 容器创建时初始化，分别具有不同的扩展功能：
 
@@ -1831,7 +1831,7 @@ Spring 框架通常会将回调接口或注解与自定义 `BeanPostProcessor` �
 
 另外，ContextAnnotationAutowireCandidateResolver 接口负责获取 `@Value` 的值，解析 `@Qualifier`、泛型、`@Lazy` 等
 
-#### 8.1.5. 后置处理器排序
+#### 后置处理器排序
 
 配置多个 `BeanPostProcessor` 实现时，可以通过以下方式指定后置处理器的排序：
 
@@ -1946,7 +1946,7 @@ public void TestBeanPostProcessorOrder() {
 无指定排序的 BeanPostProcessor 实现 Bpp6
 ```
 
-### 8.2. BeanFactoryPostProcessor 接口
+### BeanFactoryPostProcessor 接口
 
 ```java
 @FunctionalInterface
@@ -1963,20 +1963,20 @@ public interface BeanFactoryPostProcessor {
 
 > TODO: 后面分析源码的时候再详细看看是什么区别
 
-#### 8.2.1. 内置的 BeanFactoryPostProcessor 实现
+#### 内置的 BeanFactoryPostProcessor 实现
 
 Spring 提供了一些内置的 `BeanFactoryPostProcessor` 实现类
 
 - `ConfigurationClassPostProcessor` 用于解析 `@ComponentScan`、`@Bean`、`@Import`、`@ImportResource`
 - `MapperScannerConfigurer` 用于解析 Mybatis 的 Mapper 接口
 
-#### 8.2.2. 自定义 BeanFactoryPostProcessor 实现
+#### 自定义 BeanFactoryPostProcessor 实现
 
 以下示例自定义 `BeanFactoryPostProcessor` 后置处理器实现，分别模拟 `@ComponentScan` 注解扫描注册实例、`@Bean` 生成实例、解析 Mybatis 的 Mapper 接口生成代理实例等功能。
 
 注：以下示例选择实现 `BeanFactoryPostProcessor` 子接口 `BeanDefinitionRegistryPostProcessor`，因为此接口的方法可以获取 `BeanDefinitionRegistry` 对象，此对象有注册 BeanDefinition 的方法
 
-##### 8.2.2.1. 模拟解析 @ComponentScan
+##### 模拟解析 @ComponentScan
 
 - 创建配置类
 
@@ -2058,7 +2058,7 @@ public class ComponentScanPostProcessor implements BeanDefinitionRegistryPostPro
 }
 ```
 
-##### 8.2.2.2. 模拟解析 @Bean
+##### 模拟解析 @Bean
 
 - 在配置类中创建一些使用 `@Bean` 注解实例化的方法
 
@@ -2131,7 +2131,7 @@ public class AtBeanPostProcessor implements BeanDefinitionRegistryPostProcessor 
 }
 ```
 
-##### 8.2.2.3. 模拟生成 MyBatis Mapper 接口代理
+##### 模拟生成 MyBatis Mapper 接口代理
 
 - 增加数据库操作相关依赖
 
@@ -2228,15 +2228,15 @@ public class MapperScanPostProcessor implements BeanDefinitionRegistryPostProces
 }
 ```
 
-### 8.3. FactoryBean 接口
+### FactoryBean 接口
 
-#### 8.3.1. 接口概述
+#### 接口概述
 
 `org.springframework.beans.factory.FactoryBean` 接口，是 Spring IoC 容器实例化逻辑的一个可插入点。作用是用于创建相对复杂的 bean，如 `SqlSessionFactory` 等。但使用 `@Bean` 的方式一样可以实现创建
 
 `FactoryBean` 接口调用的时机是在实例化和 IOC/DI 完成后，就会调用此类型接口重写的 `getObject()` 方法，可以返回自定义的 bean 类型，此 bean 实例会被 Spring 容器管理
 
-#### 8.3.2. API 概述
+#### API 概述
 
 `FactoryBean<T>` 接口提供了以下几个方法
 
@@ -2262,7 +2262,7 @@ default boolean isSingleton() {
 
 - 如果这个 `FactoryBean` 接口中的 `getObject()` 方法返回单例，则返回 true，若返回多例对象，则返回 false。方法的默认实现返回 true
 
-#### 8.3.3. 基础使用示例
+#### 基础使用示例
 
 示例如下：
 
@@ -2386,28 +2386,28 @@ public void test1() {
 }
 ```
 
-#### 8.3.4. 接口使用注意点
+#### 接口使用注意点
 
 - `FactoryBean` 类型的类本身与 `getObject()` 方法返回的实例都会被 Spring 容器管理，可以通过 `BeanFactory` 的 `getBean` 方法来获取相应的实例。因此假设有一个 beanName 为 `myBean` 的 `FactoryBean` 接口实现：
     - 若获取 `FactoryBean` 接口实现类实例本身，就必须在 beanName 前加上`&`符号，如：`getBean("&myBean")`
     - 若获取 `getObject()` 方法返回的实例，直接使用 beanName 即可，如：`getBean("myBean")`
 - 使用 `FactoryBean` 接口创建的实例，不会触发 Spring 的依赖注入、Aware 系列接口回调、`InitializingBean` 接口的 `afterPropertiesSet`、`BeanPostProcessor` 接口的 `postProcessBeforeInitialization` 等操作。但会执行 `BeanPostProcessor` 接口的 `postProcessAfterInitialization` 实例初始化后回调，也就是意味着创建的实例可以被代理增强
 
-#### 8.3.5. FactoryBean 接口与 @Bean 创建的对象的区别
+#### FactoryBean 接口与 @Bean 创建的对象的区别
 
 实现 `FactoryBean` 接口与 `@Bean` 这两种创建对象方式其实在大部分场景下都可以相互替换。但从实现原理来讲，使用 `@Bean` 注解定义的 Bean 是会经过完整的 Bean 生命周期的。而实现 `FactoryBean` 接口 `getObject()` 方法创建的 Bean 对象，Spring 只会对其进行**初始化后**的埋点增强。
 
 > Notes: 具体区别详见《Spring 源码分析》的笔记
 
-## 9. BeanFactory
+## BeanFactory
 
-### 9.1. 概述
+### 概述
 
 BeanFactory API 为 Spring 的 IoC 功能提供了底层基础。`BeanFactory` 及其相关的接口，例如：`BeanFactoryAware`，`InitializingBean`，`DisposableBean`，仍在 Spring 中保留，目的就是为了让大量的第三方框架和 Spring 集成时保持向后兼容。
 
 `BeanFactory` 表面上只有 `getBean` 方法，实际上控制反转、基本的依赖注入、直至 Bean 的生命周期的各种功能，都由它的实现类提供。Spring 大量使用了 `BeanPostProcessor` 后置处理器去扩展功能（以便使用代理等）。如果仅仅只使用简单的 `BeanFactory` 接口，很多的支持功能将不会有效
 
-### 9.2. 使用示例
+### 使用示例
 
 ```java
 @Test
@@ -2465,18 +2465,18 @@ public void test() {
 - `BeanPostProcessor`：解析 `@Bean`、`@ComponentScan` 等注解
 - `BeanFactoryPostProcessor`：解析 `@Autowired`、`@Resource` 等注解，并其添加到容器的顺序也影响到解析结果
 
-### 9.3. BeanFactory 和 FactoryBean 的区别（面试题）
+### BeanFactory 和 FactoryBean 的区别（面试题）
 
 - `BeanFactory`：管理 Bean 的容器，Spring 中生成的 Bean 相关方法都是由这个接口来定义与管理的。
 - `FactoryBean`：是用来由开发者来自定义创建比较复杂的 bean。一般的 bean 可以直接用 xml 或者注解配置，但如果一个 bean 的创建过程中涉及到很多其他的 bean 和复杂的逻辑，传统的配置方式比较麻烦，这时可以考虑使用 `FactoryBean` 并且可以隐藏实例化复杂 Bean 的细节。
 
 当配置文件中 `<bean>` 标签的 `class` 属性配置的实现类是 `FactoryBean`，或者在 `FactoryBean` 接口的实现类中标识 `@Component` 等注解时，此时通过 `getBean()` 方法返回的不是 `FactoryBean` 类本身，而是调用 `FactoryBean#getObject()` 方法所返回的对象（相当于 `getObject()` 代理了 `getBean()` 方法）。如果想得到 FactoryBean 实例本身，必须使用名称为 `'&' + beanName` 的方式获取。
 
-## 10. ApplicationContext
+## ApplicationContext
 
 正如前面章节介绍，`ApplicationContext` 接口继承了 `BeanFactory` 接口，它增加了更多特定功能：
 
-### 10.1. MessageSource 国际化
+### MessageSource 国际化
 
 `ApplicationContext` 接口继承了一个叫做 `MessageSource` 的接口，它也提供了国际化(i18n)的功能。接口定义3个常用获取国际化信息的方法
 
@@ -2506,13 +2506,13 @@ public interface MessageSource {
 }
 ```
 
-#### 10.1.1. MessageSource 常见3个实现类
+#### MessageSource 常见3个实现类
 
 - `ResourceBundleMessageSource`：这个是基于 Java 的 `ResourceBundle` 基础类实现，允许仅通过资源名加载国际化资源
 - `ReloadableResourceBundleMessageSource`：这个功能和第一个类的功能类似，多了定时刷新功能，允许在不重启系统的情况下，更新资源的信息
 - `StaticMessageSource`：它允许通过编程的方式提供国际化信息
 
-#### 10.1.2. 国际化使用步骤
+#### 国际化使用步骤
 
 - **步骤一：创建国际化文件**。国际化文件命名格式：`名称_语言_地区.properties`
 
@@ -2580,7 +2580,7 @@ public void testMessageSource() {
 }
 ```
 
-### 10.2. 访问资源
+### 访问资源
 
 `ApplicationContext` 接口继承了 `ResourceLoader` 接口，提供了用来读取资源的功能。比如，可以直接利用 `ApplicationContext` 获取某个文件的内容、一些网络资源、配置文件等：
 
@@ -2618,11 +2618,11 @@ public void testGetResources() throws IOException {
 }
 ```
 
-### 10.3. 标准和自定义事件
+### 标准和自定义事件
 
 `ApplicationContext` 继承 `ApplicationEventPublisher` 接口后具有发布事件的功能。而 `ApplicationEvent` 类和 `ApplicationListener` 接口提供了事件处理。如果一个 bean 实现了 `ApplicationListener` 接口并注册到 Spring 容器中，那么每次 `ApplicationEvent` 发布到 `ApplicationContext` 容器中时，bean 都会收到通知。本质上是观察者模型。
 
-#### 10.3.1. 内置事件
+#### 内置事件
 
 Spring 提供了一下的标准内置事件：
 
@@ -2633,7 +2633,7 @@ Spring 提供了一下的标准内置事件：
 - `RequestHandledEvent`：接受一个 HTTP 请求的时候，在请求完成后，会通知所有的 bean
 - `ServletRequestHandledEvent`：`RequestHandledEvent` 的一个子类，增加了 Servlet 特定的上下文信息。
 
-#### 10.3.2. 自定义事件
+#### 自定义事件
 
 - 创建自定义事件类
 
@@ -2657,7 +2657,7 @@ public class MyEvent extends ApplicationEvent {
 }
 ```
 
-#### 10.3.3. 发送事件
+#### 发送事件
 
 要发送事件，主要是要获取 `ApplicationEventPublisher` 对象。创建类实现 `ApplicationEventPublisherAware` 接口，在接口的 `setApplicationEventPublisher` 方法中获取 `ApplicationEventPublisher` 实例。然后在类中的其他方法中使用该实例发送事件即可
 
@@ -2688,7 +2688,7 @@ public class MyEventPublisher implements ApplicationEventPublisherAware {
 
 > Notes: <font color=red>**在默认情况下，事件监听器是同步接收事件的。`ApplicationEventPublisher.publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理**</font>。若修改为异步监听事件，详见下面的章节内容
 
-#### 10.3.4. 事件监听
+#### 事件监听
 
 创建事件监听器，有如下两种方式：
 
@@ -2734,7 +2734,7 @@ public class MyEventListener {
 }
 ```
 
-#### 10.3.5. 测试
+#### 测试
 
 测试代码：
 
@@ -2770,7 +2770,7 @@ public class SpringEventTest {
 [DEBUG] 16:03:36.957 [main] c.m.s.test.SpringEventTest - 主线业务执行结束... 
 ```
 
-### 10.4. 异步事件监听
+### 异步事件监听
 
 <font color=red>**值得注意，在默认情况下，事件监听器是同步接收事件的。这意味着上面的 `ApplicationEventPublisher` 事件发布器的 `publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理。**</font>
 
@@ -2809,11 +2809,11 @@ public class SpringConfiguration {
 [DEBUG] 15:50:39.239 [executor-3] c.m.s.listener.MyEventListener - 基于 @EventListener 注解实现的事件监听器。获取事件数据：com.moon.springsample.event.MyEvent[source={事件的数据}] 
 ```
 
-### 10.5. 异步事件（待整理!）
+### 异步事件（待整理!）
 
 > 暂未整理，整合 `@EnableAsync`，`@Async` 的用法
 
-#### 10.5.1. @Async 注解失效的情况
+#### @Async 注解失效的情况
 
 以下情况会使 `@Async` 注解失效
 
@@ -2823,9 +2823,9 @@ public class SpringConfiguration {
 - 类中需要使用 `@Autowired` 或 `@Resource` 等注解自动注入，不能自己手动 new 对象
 - 如果使用 SpringBoot 框架必须在启动类中增加 `@EnableAsync` 注解
 
-### 10.6. 番外：模拟实现事件监听器和事件发布器
+### 番外：模拟实现事件监听器和事件发布器
 
-#### 10.6.1. 模拟事件监听器
+#### 模拟事件监听器
 
 此示例简单模拟 Spring 的 `@EventListener` 注解实现事件监听器
 
@@ -2901,11 +2901,11 @@ public class SpringConfiguration {
 [DEBUG] 16:25:41.204 [executor-1] c.m.s.l.MyCustomEventListener - 基于自定义注解模拟实现的事件监听器。获取事件数据：com.moon.springsample.event.MyEvent[source={事件的数据}] 
 ```
 
-#### 10.6.2. 模拟事件发布器
+#### 模拟事件发布器
 
 此示例简单模拟 Spring 的实现事件发布器，需要实现 `org.springframework.context.event.ApplicationEventMulticaster` 接口
 
-##### 10.6.2.1. 基础实现
+##### 基础实现
 
 - 创建 `ApplicationEventMulticaster` 接口实现，此示例只实现其中两个方法
     - `addApplicationListenerBean` 负责收集容器中的监听器。方法中监听器会统一转换为 `GenericApplicationListener` 对象，以支持判断事件类型。*注意：此方法传入的都是通过实现 `ApplicationListener` 接口方式的监听器实例（待分析源码时再确认）*
@@ -2990,7 +2990,7 @@ public ApplicationEventMulticaster applicationEventMulticaster(ConfigurableAppli
 
 - 运行上面的测试程序，会使用自定义的事件发布器来发布事件。
 
-##### 10.6.2.2. 利用线程池进行异步事件处理优化
+##### 利用线程池进行异步事件处理优化
 
 - 修改自定义事件的实现，增加线程池属性，在收集创建监听器的 `onApplicationEvent` 方法，从线程池中获取线程，处理事件
 
@@ -3037,7 +3037,7 @@ public ApplicationEventMulticaster applicationEventMulticaster(ConfigurableAppli
 }
 ```
 
-### 10.7. 获取运行时环境
+### 获取运行时环境
 
 `ApplicationContext` 接口具有获取运行时环境功能，通过 `getEnvironment()` 方法获取到 `ConfigurableEnvironment` 对象，通过该对象可以再获取不同类型的环境对象。基础使用示例如下：
 
@@ -3066,18 +3066,18 @@ System.out.println(context.getEnvironment().getProperty("moon"));
 public class ConfigApp {}
 ```
 
-### 10.8. BeanFactory 和 ApplicationContext 的区别
+### BeanFactory 和 ApplicationContext 的区别
 
 两者创建对象的时间点不一样
 
 - `ApplicationContext`：只要读取到配置文件，默认情况下就会创建对象
 - `BeanFactory`：不会主动创建对象，当使用的时候才创建
 
-## 11. Spring 的类型转换
+## Spring 的类型转换
 
 Spring 3.0 后引入了 core.convert 包，提供了一个通用的类型转换模块。该模块定义了一个用于实现类型转换逻辑的 SPI 和一个用于在运行时执行类型转换的 API。在 Spring 容器中，可以使用这套实现作为JDK 原生的 `PropertyEditor` 类型转换器的替换品，将一些配置中字符串类型的属性值转换为 Bean 对象所需的属性类型。
 
-### 11.1. PropertyEditor
+### PropertyEditor
 
 `java.beans.PropertyEditor` 接口，是由 JDK 提供的类型转化工具
 
@@ -3134,7 +3134,7 @@ public class UserService {
 }
 ```
 
-### 11.2. Converter SPI 接口
+### Converter SPI 接口
 
 Spring 提供了 `org.springframework.core.convert.converter.Converter` 接口用于实现强数据类型转换，只需要重写 `convert` 方法，在方法中做数据转换的逻辑处理
 
@@ -3164,7 +3164,7 @@ public interface Converter<S, T> {
 
 ![](images/547264222220643.png)
 
-### 11.3. ConverterFactory 实现类型转换
+### ConverterFactory 实现类型转换
 
 Spring 的 `org.springframework.core.convert.converter.ConverterFactory` 接口
 
@@ -3217,7 +3217,7 @@ final class StringToEnumConverterFactory implements ConverterFactory<String, Enu
 }
 ```
 
-### 11.4. GenericConverter 实现类型转换
+### GenericConverter 实现类型转换
 
 当需要一个复杂的转换器时，可以使用 Spring 的 `org.springframework.core.convert.converter.GenericConverter` 接口，该接口支持在多个源类型和目标类型之间进行转换，此外还提供了可用的源字段和目标字段上下文，在实现转换逻辑时，可以使用。`GenericConverter` 的接口定义如下：
 
@@ -3230,11 +3230,11 @@ public interface GenericConverter {
 }
 ```
 
-### 11.5. ConversionService 接口
+### ConversionService 接口
 
 `ConversionService` 接口是 Spring 提供的类型转化服务统一的 API，用于在运行时执行类型转换逻辑。它比原生的 `PropertyEditor` 更强大
 
-#### 11.5.1. 接口相关方法
+#### 接口相关方法
 
 ```java
 package org.springframework.core.convert;
@@ -3251,7 +3251,7 @@ public interface ConversionService {
 }
 ```
 
-#### 11.5.2. 基础示例
+#### 基础示例
 
 创建字符串转对象的转换器
 
@@ -3286,7 +3286,7 @@ User value = conversionService.convert("1", User.class);
 System.out.println(value);
 ```
 
-#### 11.5.3. 自定义转换器的注册
+#### 自定义转换器的注册
 
 - xml 配置自定义转换器注册到 Spring 容器中
 
@@ -3312,7 +3312,7 @@ public ConversionServiceFactoryBean conversionService() {
 }
 ```
 
-### 11.6. TypeConverter 
+### TypeConverter 
 
 `org.springframework.beans.TypeConverter` 接口 Spring 底层使用，整合了 `PropertyEditor` 和 `ConversionService` 的功能
 
@@ -3347,13 +3347,13 @@ User value = typeConverter.convertIfNecessary("1", User.class);
 System.out.println(value);
 ```
 
-## 12. Resources 资源接口
+## Resources 资源接口
 
-### 12.1. 概述
+### 概述
 
 > TODO: 整理中
 
-### 12.2. Resource 接口
+### Resource 接口
 
 Spring 提供了 `org.springframework.core.io.Resource` 接口，是用于访问资源的抽象。
 
@@ -3396,7 +3396,7 @@ public interface InputStreamSource {
 }
 ```
 
-### 12.3. Resource 接口实现
+### Resource 接口实现
 
 Spring 内置了一些 `Resource` 接口实现类，用于通过不同方式读取资源文件，常用的实现类包括：
 
@@ -3408,7 +3408,7 @@ Spring 内置了一些 `Resource` 接口实现类，用于通过不同方式读�
 - `InputStreamResource`
 - `ByteArrayResource`
 
-#### 12.3.1. UrlResource
+#### UrlResource
 
 Spring 提供的 `UrlResource` 实现类用于访问 URL 类型的资源
 
@@ -3416,7 +3416,7 @@ Spring 提供的 `UrlResource` 实现类用于访问 URL 类型的资源
 Resource resource = new UrlResource("http://www.moon.com/code/demo.txt");
 ```
 
-#### 12.3.2. ClassPathResource
+#### ClassPathResource
 
 Spring 提供的 `ClassPathResource` 实现类用于访问类路径下的资源
 
@@ -3424,7 +3424,7 @@ Spring 提供的 `ClassPathResource` 实现类用于访问类路径下的资源
 Resource resource = new ClassPathResource("demo.txt");
 ```
 
-#### 12.3.3. FileSystemResource
+#### FileSystemResource
 
 Spring 提供的 `UrlResource` 实现类用于访问文件系统路径下的资源
 
@@ -3432,13 +3432,13 @@ Spring 提供的 `UrlResource` 实现类用于访问文件系统路径下的资�
 Resource resource = new FileSystemResource("c:/code/demo.txt");
 ```
 
-## 13. （！待整理整合的内容）基于 XML 的 IOC 配置（已过时）
+## （！待整理整合的内容）基于 XML 的 IOC 配置（已过时）
 
-### 13.1. bean 标签
+### bean 标签
 
 `<bean>` 标签是用于配置对象让 spring 来创建。**默认情况下它调用的是类中的无参构造方法**，如果没有无参构造方法则不能创建并抛出异常。
 
-#### 13.1.1. bean 标签的属性
+#### bean 标签的属性
 
 有两个 `init-method` 和 `destroy-method` 重要的属性，该属性可以自定义初始化和注销方法。与其相同作用的的注解是 `@PostConstruct` 和 `@PreDestroy`。
 
@@ -3446,11 +3446,11 @@ Resource resource = new FileSystemResource("c:/code/demo.txt");
 <bean id="" class="" init-method="初始化方法" destroy-method="销毁方法"/>
 ```
 
-## 14. （！待整理整合的内容）基于注解的 IOC 配置
+## （！待整理整合的内容）基于注解的 IOC 配置
 
 注解配置和 xml 配置要实现的功能都是一样的，都是要降低程序间的耦合。只是配置的形式不一样。根据不同公司的使用习惯，两种配置方式都有可能使用。
 
-### 14.1. 关于注解和 XML 的配置选择问题
+### 关于注解和 XML 的配置选择问题
 
 - 注解的优势：配置简单，维护方便（找到类，就相当于找到了对应的配置）
 - XML 的优势：修改时，不用改源码。不涉及重新编译和部署 

@@ -1,8 +1,8 @@
-## 1. XML 映射器配置
+## XML 映射器配置
 
 MyBatis 的真正强大在于它的语句映射，这是它的魔力所在。由于它的异常强大，映射器的 XML 文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近 95% 的代码。MyBatis 致力于减少使用成本，让用户能更专注于 SQL 代码。
 
-### 1.1. SQL 映射文件的元素
+### SQL 映射文件的元素
 
 SQL 映射文件的顶级元素（以下是按照应被定义的顺序列出）：
 
@@ -16,14 +16,14 @@ SQL 映射文件的顶级元素（以下是按照应被定义的顺序列出）�
 - `<delete>` – 映射删除语句。
 - `<select>` – 映射查询语句。
 
-### 1.2. 映射文件编写注意问题
+### 映射文件编写注意问题
 
 - 映射文件中，`<select>`标签体内的sql语句不能出现“`;`”结尾
 - `namespace`属性：命名空间，作用就是对 sql 进行分类化管理，理解为 sql 隔离；<font color=red>**注意：！！使用 mapper 代理方法开发，namespace 必须和 Mapper 代理接口的全限定名称一致**</font>
 
-## 2. select 查询映射
+## select 查询映射
 
-### 2.1. 标签作用与属性
+### 标签作用与属性
 
 `<select>`标签的作用是MyBatis对数据库表数据进行查询操作，用于定义sql查询映射
 
@@ -31,7 +31,7 @@ SQL 映射文件的顶级元素（以下是按照应被定义的顺序列出）�
 - `parameterType`属性：在映射文件中通过parameterType指定输入参数的类型
 - `resultType`属性：在映射文件中通过resultType指定输出结果的类型。【指定的是返回结构单条记录对应的java对象类型】
 
-### 2.2. 查询单个结果
+### 查询单个结果
 
 1. 创建实体类。实体类作为MyBatis进行sql映射使用，实体类通常与数据库表一一对应。
 
@@ -104,7 +104,7 @@ public class MybatisTest01 {
 }
 ```
 
-### 2.3. 查询多个结果
+### 查询多个结果
 
 1. 配置映射文件模糊查询多个结果。映射文件User.xml如下：
 
@@ -150,9 +150,9 @@ public void findUserByNameTest() throws IOException {
 }
 ```
 
-## 3. insert 新增映射
+## insert 新增映射
 
-### 3.1. 标签作用与属性
+### 标签作用与属性
 
 `<insert>`标签的作用是 MyBatis 对数据库表数据进行新增操作，用于添加映射
 
@@ -161,7 +161,7 @@ public void findUserByNameTest() throws IOException {
 
 > 标签体可以定义主键的返回，详见下面的小节
 
-### 3.2. 添加数据示例
+### 添加数据示例
 
 1. 配置映射文件添加数据，映射文件 User.xml 如下：
 
@@ -237,9 +237,9 @@ public void insertUserTest() throws IOException {
 
 > Tips: **数据库中的主键id是自动增长的，不需要传递，由数据库自己进行维护。需要配置获取到自动增长的主键id**。
 
-### 3.3. 获取自动生成的(主)键值
+### 获取自动生成的(主)键值
 
-#### 3.3.1. 通过 selectKey 获取主键
+#### 通过 selectKey 获取主键
 
 使用 `<insert>` 标签的 `<selectKey>` 子标签获取新增后的主键。涉及属性如下：
 
@@ -265,7 +265,7 @@ public void insertUserTest() throws IOException {
 </selectKey>
 ```
 
-#### 3.3.2. 通过 useGeneratedKeys 属性获取主键
+#### 通过 useGeneratedKeys 属性获取主键
 
 使用 `<insert>` 标签的 `useGeneratedKeys` 相关属性获取新增后的主键。涉及属性如下：
 
@@ -279,7 +279,7 @@ public void insertUserTest() throws IOException {
 </insert>
 ```
 
-#### 3.3.3. 示例1：设置自增主键返回
+#### 示例1：设置自增主键返回
 
 MySQL 数据库表设置自增主键，执行 insert 提交之前自动生成一个自增主键。通过 MySQL 的 `LAST_INSERT_ID()` 函数可以获取到刚插入记录的自增主键，需要在 insert 操作之后调用此函数。
 
@@ -301,7 +301,7 @@ MySQL 数据库表设置自增主键，执行 insert 提交之前自动生成一
 </insert>
 ```
 
-#### 3.3.4. 示例2：非自增主键返回（使用uuid()，多数用在oracle）
+#### 示例2：非自增主键返回（使用uuid()，多数用在oracle）
 
 使用 mysql 的`uuid()`函数生成主键，需要修改表中id字段类型为string，长度设置成35位。执行思路如下：
 
@@ -329,15 +329,15 @@ MySQL 数据库表设置自增主键，执行 insert 提交之前自动生成一
 </insert>
 ```
 
-## 4. update 更新映射
+## update 更新映射
 
-### 4.1. 标签作用与属性
+### 标签作用与属性
 
 `<update>`标签的作用是 MyBatis 对数据库表数据进行更新操作，用于更新映射。需要传入更新的记录的id，和记录的更新信息
 
 - `parameterType`指定实体类对象类型，包括id（主键）和更新的信息。**注意：id（主键）必须存在**
 
-### 4.2. 更新数据示例
+### 更新数据示例
 
 1. 配置映射文件更新数据。映射文件Customer.xml:
 
@@ -378,15 +378,15 @@ public void updateUserTest() throws IOException {
 }
 ```
 
-## 5. delete 删除映射
+## delete 删除映射
 
-### 5.1. 标签作用与属性
+### 标签作用与属性
 
 `<delete>` 标签的作用是 MyBatis 对数据库表数据进行删除操作，用于删除映射
 
 - `parameterType`属性：在映射文件中通过 parameterType 指定输入参数的类型
 
-### 5.2. 删除数据示例
+### 删除数据示例
 
 1. 配置映射文件删除数据。修改映射文件Customer.xml文件如下：
 
@@ -418,9 +418,9 @@ public void deleteUserTest() throws IOException {
 }
 ```
 
-## 6. insert, update, delete 标签总结
+## insert, update, delete 标签总结
 
-### 6.1. 标签元素的属性清单
+### 标签元素的属性清单
 
 - `id`：在命名空间中唯一的标识符，可以被用来引用这条语句。
 - `parameterType`：将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（`unset`）。
@@ -433,7 +433,7 @@ public void deleteUserTest() throws IOException {
 - `keyColumn`：（仅适用于 insert 和 update）设置生成键值在表中的列名，在某些数据库（像 PostgreSQL）中，当主键列不是表中的第一列的时候，是必须设置的。如果生成列不止一个，可以用逗号分隔多个属性名称。
 - `databaseId`：如果配置了数据库厂商标识（databaseIdProvider），MyBatis 会加载所有不带 databaseId 或匹配当前 databaseId 的语句；如果带和不带的语句都有，则不带的会被忽略。
 
-### 6.2. selectKey 子元素的属性清单
+### selectKey 子元素的属性清单
 
 - `keyProperty`：`selectKey` 语句结果应该被设置到的目标属性。如果生成列不止一个，可以用逗号分隔多个属性名称。
 - `keyColumn`：返回结果集中生成列属性的列名。如果生成列不止一个，可以用逗号分隔多个属性名称。
@@ -443,13 +443,13 @@ public void deleteUserTest() throws IOException {
     - 如果设置为 `AFTER`，那么先执行插入语句，然后是 `selectKey` 中的语句（这和 Oracle 数据库的行为相似），在插入语句内部可能有嵌入索引调用。
 - `statementType`：和前面一样，MyBatis 支持 `STATEMENT`，`PREPARED` 和 `CALLABLE` 类型的映射语句，分别代表 `Statement`, `PreparedStatement` 和 `CallableStatement` 类型。
 
-## 7. sql 标签(sql片段)（通过 include 标签引用）
+## sql 标签(sql片段)（通过 include 标签引用）
 
 `<sql>` 标签的作用是，提取公共的 SQL 语句片段，再通过使用 `<include>` 标签进行引用。
 
 ![](images/20200621121554299_14871.jpg)
 
-## 8. MyBatis 输入输出映射准备项目测试环境
+## MyBatis 输入输出映射准备项目测试环境
 
 1. 创建maven项目，修改pom.xml文件，添加MyBatis、数据库等依赖，配置jdk插件
 2. 准备数据库参数的配置文件db.properties；MyBatis总配置文件SqlMapConfig.xml；日志配置文件log4j.properties
@@ -458,11 +458,11 @@ public void deleteUserTest() throws IOException {
 
 ![](images/20190823154355771_8940.jpg)
 
-## 9. ~~parameterType（输入参数映射，已被废弃）~~
+## ~~parameterType（输入参数映射，已被废弃）~~
 
 > 官网：`parameterMap` – 老式风格的参数映射。此元素已被废弃，并可能在将来被移除！请使用行内参数映射。此文档中介绍是以前的使用方式。
 
-### 9.1. java 的简单类型（四类八种）
+### java 的简单类型（四类八种）
 
 示例：parameeterType为整形数据类型
 
@@ -472,7 +472,7 @@ public void deleteUserTest() throws IOException {
 </select>
 ```
 
-### 9.2. pojo 类型（对象类型）
+### pojo 类型（对象类型）
 
 示例：parameeterType是User封装的实体类型
 
@@ -486,7 +486,7 @@ public void deleteUserTest() throws IOException {
 </insert>
 ```
 
-### 9.3. pojo 包装类型
+### pojo 包装类型
 
 > - pojo包装类型：指的是在pojo中包含了其他的pojo。（即实体类的一个属性是引用其他的实体类）
 > - 一般在项目中用于接收综合查询条件
@@ -562,9 +562,9 @@ public void queryUserByConditionTest() {
 }
 ```
 
-## 10. resultType（输出结果映射）
+## resultType（输出结果映射）
 
-### 10.1. java的简单类型
+### java的简单类型
 
 - 需求：统计用户数量，这种情况输出映射是基本数据类型
 - 定义UserMapper.xml
@@ -604,15 +604,15 @@ public void countUsersTest() {
 }
 ```
 
-### 10.2. 输出pojo（对象）类型
+### 输出pojo（对象）类型
 
 参考上面的demo(待整理)
 
-## 11. resultMap（输出结果映射）
+## resultMap（输出结果映射）
 
 `resultMap` 元素是 MyBatis 中最重要最强大的元素。ResultMap 的设计思想是，对于简单的语句根本不需要配置显式的结果映射，而对于复杂一点的语句只需要描述它们的关系就行了
 
-### 11.1. ResultMap 的属性列表
+### ResultMap 的属性列表
 
 |     属性     |                                                         描述                                                         |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -622,9 +622,9 @@ public void countUsersTest() {
 
 > **【最佳实践】最好一步步地建立结果映射。单元测试可以在这个过程中起到很大帮助。如果尝试一次创建一个像上面示例那样的巨大的结果映射，那么很可能会出现错误而且很难去使用它来完成工作。从最简单的形态开始，逐步迭代。而且别忘了单元测试！使用框架的缺点是有时候它们看上去像黑盒子（无论源代码是否可见）。为了确保实现的行为和想要的一致，最好的选择是编写单元测试。提交 bug 的时候它也能起到很大的作用。**
 
-### 11.2. resultMap 基础使用示例
+### resultMap 基础使用示例
 
-#### 11.2.1. 使用 resultType 输出属性与表不一致时存在问题
+#### 使用 resultType 输出属性与表不一致时存在问题
 
 - 实体类
 
@@ -691,7 +691,7 @@ public void queryAllOrdersTest() {
 >     - 原因(注意事项)：使用resultType完成输出映射，要求sql语句中的字段名称，与java对象的属性名称（与set/get方法的后面部分）要一致。
 >     - 解决方法：使用返回值类型是resultMap
 
-#### 11.2.2. 使用 resultMap 映射查询结果
+#### 使用 resultMap 映射查询结果
 
 在mapper配置文件中，配置resultMap标签，配置对象与表的映射关系。在`<select>`标签引用`<resultMap>`，修改OrderMapper.xml配置文件
 
@@ -723,7 +723,7 @@ public void queryAllOrdersTest() {
 
 > 注：字段一样的属性可以不需要配置，但实际开发中建议配置，方便日后维护。
 
-### 11.3. resultMap 标签内部标签元素
+### resultMap 标签内部标签元素
 
 - `constructor` - 用于在实例化类时，注入结果到构造方法中
     - `idArg` - ID 参数；标记出作为 ID 的结果可以帮助提高整体性能
@@ -738,7 +738,7 @@ public void queryAllOrdersTest() {
     - `case` – 基于某些值的结果映射
     - 嵌套结果映射 – `case` 本身可以是一个 resultMap 元素，因此可以具有相同的结构和元素，或者从别处引用一个
 
-#### 11.3.1. id 和 result 标签
+#### id 和 result 标签
 
 ```xml
 <id property="id" column="post_id"/>
@@ -763,7 +763,7 @@ public void queryAllOrdersTest() {
 
 ![JDBC 类型](images/20190823160350628_31578.png)
 
-#### 11.3.2. constructor 构造
+#### constructor 构造
 
 通过构造方法进行注入。构造方法注入允许你在初始化时为类设置属性的值，而不用暴露出公有方法。
 
@@ -809,7 +809,7 @@ public class User {
 | resultMap   | 结果映射的 ID，可以将嵌套的结果集映射到一个合适的对象树中。它可以作为使用额外 select 语句的替代方案      |
 | name        | 构造方法形参的名字。从 3.4.3 版本开始，通过指定具体的参数名，可以以任意顺序写入 arg 元素               |
 
-#### 11.3.3. (！待整理) association 关联
+#### (！待整理) association 关联
 
 > 参考：http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#Result_Maps
 
@@ -822,7 +822,7 @@ public class User {
 
 关联（association）元素处理“有一个”类型的关系。
 
-#### 11.3.4. collection 集合
+#### collection 集合
 
 ```xml
 <collection property="posts" ofType="domain.blog.Post">
@@ -915,11 +915,11 @@ public class User {
 </resultMap>
 ```
 
-#### 11.3.5. （！待整理）discriminator 鉴别器
+#### （！待整理）discriminator 鉴别器
 
 > 参考：http://www.mybatis.org/mybatis-3/zh/sqlmap-xml.html#Result_Maps
 
-### 11.4. 高级结果映射示例
+### 高级结果映射示例
 
 ```xml
 <!-- 非常复杂的语句 -->
@@ -988,7 +988,7 @@ public class User {
 </resultMap>
 ```
 
-## 12. MyBatis 关联查询
+## MyBatis 关联查询
 
 - 一对一关联关系
 - 一对多关联关系
@@ -996,9 +996,9 @@ public class User {
 
 > 此部分主要使用了`<association>`标签和`<conllection>`标签，在上一节【resultMap（输出结果映射）】有相关的参数说明与用法
 
-### 12.1. association 标签（一对一关联查询）
+### association 标签（一对一关联查询）
 
-#### 12.1.1. 定义与属性
+#### 定义与属性
 
 `<association>`标签，用于配置一对一关联关系专用标签，有如下属性：
 
@@ -1014,7 +1014,7 @@ public class User {
 </association>
 ```
 
-#### 12.1.2. 使用示例
+#### 使用示例
 
 需求：查询订单数据，并且关联查询出订单所属的用户数据
 
@@ -1106,9 +1106,9 @@ public void queryOrdersAndUsersTest() {
 
 ![association标签测试](images/20190823171853829_25411.jpg)
 
-### 12.2. conllection 标签（一对多关联查询）
+### conllection 标签（一对多关联查询）
 
-#### 12.2.1. 定义与属性
+#### 定义与属性
 
 `<conllection>`标签：配置一对多关联关系标签。属性如下：
 
@@ -1116,7 +1116,7 @@ public void queryOrdersAndUsersTest() {
 - `javaType`：要映射的属性类型（可以指定，也可以不指定。建议指定）
 - `ofType`：集合中存放的类型（**必须要指定**）
 
-#### 12.2.2. 使用示例
+#### 使用示例
 
 需求：查询用户数据，并且关联查询出用户的所有订单数据
 
@@ -1204,16 +1204,16 @@ public void queryUsersAndOrdersTest() {
 
 ![conllection标签测试](images/20190823173829009_14236.jpg)
 
-## 13. 占位符 #{} 与字符串拼接符 ${}
+## 占位符 #{} 与字符串拼接符 ${}
 
-### 13.1. #{} 占位符
+### #{} 占位符
 
 `#{}`表示一个占位符号，用于预编译处理，`#{}`接收输入参数，类型可以是简单类型（八种基本类型+字符串String），pojo、hashmap。
 
 - <font color=red>**如果接收简单类型，`#{}`中可以写成value或其它名称**</font>。
 - 如果接收pojo对象值，通过OGNL读取对象中的属性值，如果实体类中属性是引用类型，通过`属性.属性.属性...`的方式获取对象属性值
 
-### 13.2. ${} 字符串拼接符
+### ${} 字符串拼接符
 
 `${}`表示一个拼接符号。`${}`接收输入参数，类型可以是简单类型，pojo、hashmap。
 
@@ -1222,7 +1222,7 @@ public void queryUsersAndOrdersTest() {
 
 > Notes: 通常不建议使用 `${}`，因为可能会引用 sql 注入的问题。虽然实际项目中会经过三层构架后可以将字符进行处理，但还是不建议使用。
 
-### 13.3. 区别
+### 区别
 
 占位符与字符串拼接符的重要区别是，`?`是独立时才算是占位符，不能写成`'%?%'`。如果这样操作最后的结果是没有赋值，而是`?`与其它拼接了：`'%?%'`，不再是一个占位符，会当前字符串处理
 
@@ -1230,7 +1230,7 @@ public void queryUsersAndOrdersTest() {
 
 ![](images/20200621114336039_6827.jpg)
 
-### 13.4. 应用案例 - 模糊查询like语句
+### 应用案例 - 模糊查询like语句
 
 1. 使用`${}`拼接，可能引起 SQL 注入，不推荐
 
@@ -1259,6 +1259,6 @@ select * from user where username like CONCAT('%', #{username}, '%')
 </select>
 ```
 
-## 14. 映射文件(Mapper.xml)主要配置总结
+## 映射文件(Mapper.xml)主要配置总结
 
 ![](images/83054214248885.png)
