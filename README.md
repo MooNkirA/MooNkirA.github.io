@@ -559,7 +559,7 @@ tags:
   <li><a href="#/并发编程/并发编程-设计模式篇">并发编程 - 设计模式篇</a></li>
 </ul>
 
-## Python
+## 🐍 Python
 
 <ul class="docs">
   <li><a href="#/Python/Python-基础">Python - 基础</a></li>
@@ -583,6 +583,7 @@ tags:
   <li><a href="#/其他/software/eclipse">Eclipse 使用教程</a></li>
   <li><a href="#/其他/software/Visual-Studio-Code">Visual Studio Code 使用教程</a></li>
   <li><a href="#/其他/software/PyCharm">PyCharm 使用教程</a></li>
+  <li><a href="#/其他/software/Development-Tools">常用开发工具</a></li>
 </ul>
 
 ### 🛠️ 编程辅助工具

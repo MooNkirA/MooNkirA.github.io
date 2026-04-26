@@ -3,6 +3,10 @@
   "textFontFamily": "Cascadia Code",
   "monospaceFontFamily": "Fira Code",
   "enabledCssSnippets": [
-    "护眼编辑器背景2"
-  ]
+    "extended-colorschemes"
+  ],
+  "interfaceFontFamily": "Cascadia Code",
+  "showRibbon": true,
+  "showViewHeader": true,
+  "cssTheme": "AnuPpuccin"
 }

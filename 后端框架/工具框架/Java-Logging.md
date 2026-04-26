@@ -670,6 +670,8 @@ log4j 的配置文件一般有 xml 格式或 properties 格式。
 # 指定 RootLogger 顶级父元素默认配置信息
 # 指定日志级别为 trace，使用的 apeender 为 console 与 rollingFile
 log4j.rootLogger=trace,console,rollingFile
+### set log levels - for more verbose logging change 'info' to 'debug' ###
+# 注：在开发环境下日志级别要设置成 debug，生产环境设置成 info 或 error
 
 # 自定义 logger 对象设置
 log4j.logger.com.moon.log=info,console

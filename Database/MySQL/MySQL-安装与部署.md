@@ -42,7 +42,7 @@ mysql> select version();
 
 ### Linux版本（待补充）
 
-
+> [!todo] 补充中...
 
 ### windows版本
 
@@ -609,11 +609,11 @@ SQLyog 是一个快速而简洁的图形化管理 MySQL 数据库的工具，它
 
 使用：输入用户名、密码，点击连接按钮，进行访问MySQL数据库进行操作
 
-![SQLyog工具1](images/20190403150510919_18228.jpg)
+![](images/20190403150510919_18228.jpg)
 
 在 Query 窗口中，输入 SQL 代码，选中要执行的 SQL 代码，按 F8/F9 键运行，或按执行按钮运行。
 
-![SQLyog工具2](images/20190403150517229_19216.jpg)
+![](images/20190403150517229_19216.jpg)
 
 #### SQLyog 常用快捷键
 
@@ -715,4 +715,3 @@ HeidiSQL 是免费软件，其目标是易于学习。“Heidi”让您可以从
 - MySQLDumper
 - MySQL GUI Tools
 - MySQL ODBC Connector
-

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "192d9e170089d354",
+        "id": "ee200645549a512f",
         "type": "tabs",
         "children": [
           {
-            "id": "d23295787ae0d181",
+            "id": "f121e26967d890c4",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -64,7 +64,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#typora-source",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -97,7 +97,7 @@
     "type": "split",
     "children": [
       {
-        "id": "d008cc864189165c",
+        "id": "655fcc458863be66",
         "type": "tabs",
         "children": [
           {
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Python/Python-基础.md",
+                "file": "其他/software/Obsidian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +116,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Python-基础 的反向链接列表"
+              "title": "Obsidian 的反向链接列表"
             }
           },
           {
@@ -125,12 +125,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Python/Python-基础.md",
+                "file": "其他/software/Obsidian.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Python-基础 的出链列表"
+              "title": "Obsidian 的出链列表"
             }
           },
           {
@@ -173,71 +173,85 @@
               "icon": "lucide-info",
               "title": "Python-基础的笔记属性"
             }
+          },
+          {
+            "id": "bf0a01a4183c2cbd",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
+            }
           }
         ],
         "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 448.5,
+    "width": 329.5,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
       "switcher:打开快速切换": false,
-      "graph:查看关系图谱": false,
-      "canvas:新建白板": false,
-      "daily-notes:打开/创建今天的日记": false,
       "command-palette:打开命令面板": false,
+      "canvas:新建白板": false,
       "bases:新建数据库": false,
       "templater-obsidian:Templater": false,
-      "header-enhancer:Header Enhancer": false
+      "oz-clear-unused-images:Clear Unused Images": false,
+      "header-enhancer:Header Enhancer": false,
+      "graph:查看关系图谱": true,
+      "table-editor-obsidian:Advanced Tables Toolbar": true
     }
   },
-  "active": "0b18f97d4457c32a",
+  "active": "f121e26967d890c4",
   "lastOpenFiles": [
-    "其他/OS.md",
+    "Python/images/20260426103457244.png",
+    "Python/images/20260426102857349.jpg",
+    "Python/images/20260426095709239.png",
     "Python/Python-基础.md",
-    "其他/software/images/475631598072869.png",
-    "其他/software/images/132971901358433.png",
-    "其他/编程资源分享.md",
-    "其他/tools/Markdown.md",
-    "其他/software/images/39427098208830.png",
-    "其他/software/Windows.md",
-    "其他/software/Obsidian.md",
-    "resources/attachments/IDE/PyCharm_ReferenceCard_win_2024.1.jpg",
-    "resources/attachments/IDE/IntelliJIDEA_ReferenceCard_win_2024.1.jpg",
-    "resources/attachments/IDE/IntelliJIDEA_ReferenceCard_mac_2024.1.jpg",
-    "resources/attachments/IDE",
-    "resources/attachments",
-    "DevOps/版本管理工具/Git-基础.md",
-    "DevOps/版本管理工具/Git-安装.md",
-    "DevOps/版本管理工具/GitHub.md",
-    "attachments/IDE/PyCharm_ReferenceCard_mac_2025.3.jpg",
-    "attachments/IDE/PyCharm_ReferenceCard_win_2025.3.jpg",
-    "resources/attachments/IDE/ReferenceCard_1.jpg",
-    "resources/attachments/IDE/ReferenceCardForMac_1.jpg",
-    "后端框架/Activiti/Activiti-基础.md",
-    "Index.md",
-    "JavaWeb/JavaWeb-Overview.md",
-    "Java/Java基础-JDK常用API.md",
-    "Java/Java基础-集合.md",
-    "Java/Java基础-语法.md",
-    "AI/人工智能训练师/人工智能训练师考试笔记.md",
-    "resources/attachments/IDE/~$IntelliJ IDEA 快捷键.xlsx",
-    "resources/attachments/API/MySQL/vx.json",
-    "vx_notebook/notebook.db-journal",
-    "resources/attachments/API/css/vx.json",
-    "resources/attachments/API/vx.json",
-    "resources/attachments/vx.json",
-    "resources/vx.json",
-    "resources/attachments/IDE/~$Eclipse 快捷键.xlsx",
-    "attachments/templates/font-red.md",
     "其他/software/Common-Software.md",
-    "其他/software/PyCharm.md",
+    "其他/software/Obsidian.md",
+    "其他/software/Web-Browser.md",
+    "其他/software/everything.md",
+    "其他/software/Development-Tools.md",
+    "其他/software/Windows.md",
+    "Index.md",
     "README.md",
-    "项目资料/自用信息管理系统/MoonSystem项目开发笔记.md",
-    "其他/software/eclipse.md",
-    "面试手册/MySQL数据库150道高频面试题.md"
+    "Database/MongoDb/MongoDB-基础.md",
+    "Database/MySQL/MySQL-安装与部署.md",
+    "Database/MySQL/MySQL-函数.md",
+    "Inbox/testing.md",
+    "Database/MySQL/MySQL-索引.md",
+    "分布式微服务/SpringBoot/Spring-Boot-基础篇.md",
+    "其他/software/images/20260424123901444.jpg",
+    "其他/software/images/20260424113529703.jpg",
+    "其他/software/images/20260424084840227.jpg",
+    "其他/software/images/20260424084608606.jpg",
+    "其他/software/images/20260424083909169.jpg",
+    "其他/software/images/265372022034046.png",
+    "其他/tools/Markdown.md",
+    "前端资料/Bootstrap/Bootstrap-基础.md",
+    "前端资料/CSS/CSS-常用样式手册.md",
+    "attachments/templates/font-red.md",
+    "attachments/templates/引用-todo.md",
+    "Inbox/images/Inbox/images/IMG-20260422170923413.jpg",
+    "Java/Java基础-对象与类.md",
+    "Inbox/images/Inbox/images/IMG-20260422170857011.png",
+    "Inbox/images/Inbox/images",
+    "Inbox/images/Inbox",
+    "Inbox/images",
+    "Inbox",
+    "未命名.md",
+    "其他/编程资源分享.md",
+    "其他/学习资源/Vue2相关知识点简介.md",
+    "其他/software/foobar2000.md",
+    "vx_recycle_bin/20260420/Inbox",
+    "vx_recycle_bin/20260420",
+    "vx_notebook/notebook.db-journal",
+    "Inbox/vx.json",
+    "Inbox",
+    "其他/software/_v_attachments/10933703932235"
   ]
 }

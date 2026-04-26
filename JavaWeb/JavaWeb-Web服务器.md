@@ -93,13 +93,13 @@ Web 容器就是指 Web 服务器，容器中存放的就是 Java 代码。后�
 
 常见的 JavaEE 规范有：JDBC、XML、JSP、Servlet、EJB 等。
 
-### Web服务器概述
+### Web 服务器概述
 
 <font color=red>**使用 Java 程序编写的 Web 容器**</font>，运行在服务器端，它可以调用 Java 程序 Servlet，对用户的请求做出处理，并且返回响应给浏览器。将服务器的资源发送给浏览器。
 
 Web 服务器：由 Java 语言编写。就是实现了JavaEE 规范的 Java 程序。可以调用放在自己容器内部的 Java 程序，如：Servlet。
 
-### 常见的Web服务器
+### 常见的 Web 服务器
 
 - Weblogic：大型服务器
 - WebSphere：大型服务器

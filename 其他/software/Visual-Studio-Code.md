@@ -19,7 +19,13 @@ https://az764295.vo.msecnd.net/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/V
 https://vscode.cdn.azure.cn/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/VSCode-win32-x64-1.72.0.zip
 ```
 
-### VSCode 修改扩展和用户文件夹目录位置(Windows) - 待整理
+### VSCode 插件目录
+
+```
+C:\Users\{用户名}\.vscode\extensions
+```
+
+### [待整理] VSCode 修改扩展和用户文件夹目录位置(Windows)
 
 > TODO: 参考 https://blog.csdn.net/weixin_53510183/article/details/126906182
 

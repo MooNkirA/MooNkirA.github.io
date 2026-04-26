@@ -16,7 +16,7 @@
   "yamlDefaultStartNumber": "1",
   "yamlDefaultSeparator": ".",
   "globalAutoNumberingEnabled": true,
-  "perDocumentStates": "{\"其他/software/Obsidian.md\":false,\"Python/Python-基础.md\":true,\"其他/software/Common-Software.md\":false}",
+  "perDocumentStates": "{\"其他/software/Obsidian.md\":false,\"Python/Python-基础.md\":false,\"其他/software/Common-Software.md\":false}",
   "isSeparateHeaderFont": false,
   "headerFontFamily": "inherit",
   "headerFontSize": "inherit",

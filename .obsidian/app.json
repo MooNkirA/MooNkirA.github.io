@@ -10,5 +10,8 @@
   "readableLineLength": false,
   "livePreview": false,
   "showUnsupportedFiles": true,
-  "useMarkdownLinks": false
+  "useMarkdownLinks": false,
+  "showInlineTitle": false,
+  "strictLineBreaks": true,
+  "useTab": false
 }

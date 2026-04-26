@@ -13,169 +13,6 @@ header-auto-numbering:
 - [Awesome-Linux-Software GitHub](https://github.com/luong-komorebi/Awesome-Linux-Software/blob/master/README_zh-CN.md)
 - [Awesome-MacOS GitHub](https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md)
 
-## 软件开发类
-
-### Google 搜索引擎使用技巧
-
-> Tips: 其他搜索引擎的使用方式也差不多
-
-#### 匹配多个关键字
-
-如果搜索的内容包含多个关键词，中间可以用「空格」来分隔。当然也可以使用 「and」，效果差不多
-
-#### 匹配一个关键字
-
-如果搜索的多个关键词只需包含其中一个即可，可以使用「竖线」，例如：“微服务 | RabbitMQ”。此方式搜索的结果比较多，很多都是无关的。这种模式适合一些资料比较少的场景，广撒网找灵感。
-
-![](images/391232408237563.jpg)
-
-#### 精确搜索
-
-搜索引擎之索引能从海量的资料中快速查找到需要的信息，是因为采用了倒排索引。将一篇文章提前做了分词，然后对每个词语做反向关联文档。
-
-查找时，关键词也会先分词，用多个词语并行去查询，再将返回结果去重合并、评分，按分数的高低排序后返回结果。有时<u>关闭分词</u>更有利于快速检索结果。可以采用**「双引号」**将关键词包裹起来，这样搜索出来的就是包含完整这段话的页面。  
-
-![](images/199742808257729.png)
-
-#### 模糊搜索
-
-如果搜索时，忘了单词怎么写了，可以后面加「`*`」，比如：`git comi*`
-
-![](images/396722908250398.png)
-
-#### 排除干扰
-
-搜索结果有很多内容是明确不需要的，可以对查询结果再做一层过滤。采用**「减号」**后面跟关键词。
-
-![](images/512353208246953.png)
-
-特别注意：**减号前面有空格，后面没有空格，直接拼接搜索词**。这种方式可以进一步精简搜索结果，避开很多干扰信息。
-
-![](images/131253408242707.png)
-
-#### 限标题搜
-
-一般搜索时，只要文章中有这个关键词都能被搜出来，不管是标题还是正文。如果只想搜索标题含有这个关键词，可以在搜索词前面加个指令，比如 `intitle:关键词`
-
-![](images/228223608260587.png)
-
-#### 限某网站搜
-
-很多垂直网站也都配置了站内搜索，提高用户体验。但是有些网站没有搜索功能怎么办？
-
-可以通过关键词 `site:网站域名`。比如：`高并发 site:csdn.net`，那等同在 CSDN 这个站点内搜索**「高并发」**关键词
-
-![](images/580383708258191.png)
-
-#### 搜索 pdf 文件
-
-如果想定向搜索某一类型的文件，可以在搜索词后面拼接 `filetype:文件后缀名`，比如：`“微博” "高并发" filetype:pdf`。其他类型文件也是一样，比如：
-
-```
-filetype:ppt
-filetype:doc
-```
-
-![](images/330564008255693.png)
-
-#### 搜索图书
-
-如果想搜索的内容指向性很强，例如是搜索一本图书，可以使用**「《》」**，比如：搜索 《如何成为学习高手》
-
-![](images/78814208236934.png)
-
-#### 限定时间范围
-
-- 如果想在指定时间之后，可以在搜索词后面拼接「`after:2021`」
-- 如果想在指定时间之前，后面拼接「`before:2021`」
-- 如果想在一段时间区间内，后面拼接「`in 2020….2021`」
-
-![](images/124044308259374.png)
-
-#### 寻找替代网站
-
-想要知道与某个网站相关的网站还有哪些，可以使用「`related:网站`」，比如 `related:github.com` 搜索引擎会列出许多相似的网站
-
-![](images/536584608254510.png)
-
-### AIXcoder 智能编程助手（未使用）
-
-> 官网：https://www.aixcoder.com/#/
-
-aiXcoder 极速本地版，智能编程助手。功能包括：代码智能补全、支持主流IDE、支持多编程语言、本地深度学习模型。支持多种主流IDE，包含 IntelliJ IDEA，Eclipse，PyCharm，Android Studio，PhpStorm，WebStorm、Clion，Visual Studio Code
-
-### SwitchHosts
-
-- 官网：https://github.com/oldj/SwitchHosts
-
-#### SwitchHosts 简介
-
-SwitchHosts! 是一款可以方便管理和一键切换多个 hosts 方案的免费开源工具，跨平台支持 Windows、macOS 和 Linux 系统。除了可以帮助你快速切换不同的 hosts 设置、编辑 hosts 文件外，它还有着一些很不错的特性，比如:
-
-- 免费、开源、支持三大操作系统
-- 系统托盘快速「一键切换」不同的 hosts 方案
-- 支持 hosts 文件语法高亮，可以方便用户更直观地阅读和修改 Hosts 内容;
-- 编辑 hosts 时，可以点击行号可以对行进行快速注释或取消注释
-- 支持远程 hosts，直接从指定网址读取 hosts 内容，方便多台机器同步 hosts 设置，这是一个很赞的特性！
-- 支持 hosts 配置的导入、导出备份
-- macOS 系统下可以支持 Alfred workflow 快速切换
-
-#### 解决 host 文件无法修改的问题
-
-1.	首先进入 Win 系统的 hosts 文件所在位置，我们直接输入`C:\Windows\System32\Drivers\etc`后回车就可以打开了，右键 hosts 文件，选择属性，如下图所示。
-
-![](images/164793825603524.jpg)
-
-2. 点击 hosts 属性对话框里的“高级”，如下图所示。
-
-![](images/2264877620234.jpg)
-
-3. 在 hosts 的高级安全设置界面点击更改权限，如下图所示。
-
-![](images/320054545521323.jpg)
-
-4. 在新弹出的对话框里点击添加按钮，如下图所示。
-
-![](images/68564227831566.jpg)
-
-5. 点击hosts的权限项目窗口下面的主体的“选择主体”，如下图所示。
-![](images/205183134378519.jpg)
-
-6. 点击进入选择用户或组界面，点击高级，如下图所示。
-
-![](images/91885299762823.jpg)
-
-7. 点击高级后，我们接着在点击理解查找，然后在查找结果里找到当前用户的账号，选中后点击确定，如下图所示。
-
-![](images/433476677839932.jpg)
-
-8. 在选择用户或组界面里点击确定，如下图所示。
-![](images/592124277962441.jpg)
-
-9. 将 hosts 的权限项目界面下的基本权限的所以项目都勾选上，然后点击确定，如下图所示。
-
-![](images/177543123775867.jpg)
-
-10. 权限添加成功后，直接点击确定，如下图所示。
-
-![](images/375146485171511.jpg)
-
-11. 点击后，系统提示你将要更改系统文件夹的权限设置，这样会降低计算机的安全性，并导致用户访问文件时出现问题。要继续吗？我们点击是。如下图所示。
-
-![](images/362514703113379.jpg)
-
-#### 修改 hosts 后不生效怎么解决？
-
-无论是手工修改 hosts 还是使用软件来修改，很多人都会遇到修改 hosts 后不生效的情况。其实，这一般是由于 DNS 缓存的原因导致的。因为系统为了加快用户打开网站的速度，在首次访问网站成功之后，会把 DNS 解析的结果暂时性地保存在本地缓存 (称为 DNS 缓存) 里一小段时间，如果浏览器在“这段时间里”再次打开同一个网址，则会自动从 DNS 缓存里取出结果，而不会请求远程的 DNS 服务器，也不会查询 hosts 文件，从而节省时间提高打开速度。因此用户会遇到有时修改了 hosts 文件但并不生效的情况，一般这时候我们想办法清空 (刷新) 一下系统的 DNS 缓存即可。
-
-怎样清空 DNS 缓存？
-
-- Windows 系统，在命令行执行：`ipconfig /flushdns`
-- macOS 系统，执行命令：`sudo killall -HUP mDNSResponder`
-- 如果使用 Chrome 浏览器，那么可以访问：`chrome://net-internals/#dns`，然后点击『Clear host cache』按钮来清空浏览器里的 DNS 缓存。
-
-> 如果这样还不生效，那么只能再试试重启电脑了，一般都OK了。要这样还是不行，可能就是的 hosts 写错了。
-
 ## 系统管理类
 
 ### Total Commander
@@ -207,7 +44,7 @@ Geek Uninstall 是一款高效快速，小巧便携，完全免费的程序卸�
 
 ### Everything
 
-> 详见[《Everything - 本地高效搜索神器》](/其他/software/everything)
+详见 [[everything|《Everything - 本地高效搜索神器》]]
 
 ## 文字编辑器
 
@@ -243,6 +80,22 @@ Typora 是一款 Markdown 文档编写工具，整个软件的界面感非常简
 ### Markdown Monster
 
 官网：https://markdownmonster.west-wind.com/
+
+### Markdown 阅读器（无编辑，小巧）
+
+#### Vesper（极度小巧）
+
+专为专注阅读设计的 Markdown 阅读器，无任何编辑功能，界面极简无干扰。单文件便携版（仅一个 exe），体积轻巧，启动速度极快，无需安装，不写入注册表。目前发现的缺点是无法记住使用设置，每次打开都是重置为默认。
+
+- [Vesper 官网](https://apps.lashman.live/vesper/)
+- [Vesper Source Code](https://git.lashman.live/lashman/vesper)
+
+#### Markdown Viewer
+
+Standalone Markdown Viewer. 绝对纯阅读，官方强调 “它只做一件事 - 渲染和显示 Markdown 文件，除此之外什么都不做！无直接编辑功能，无花哨笔记功能”。缺点还是有点“重”，安装包比Typora还大。
+
+- [Markdown Viewer Github](https://github.com/c3er/mdview)
+- [mdview-next Github](https://github.com/c3er/mdview-next) - Markdown Viewer (major restructuring project). Not for productive use. Temporary repository for a major restructuring of Markdown Viewer. This repository will be merged and archived after it reached feature parity with the existing latest release.
 
 ### Notepad++
 
@@ -512,9 +365,7 @@ FastStone 官方网站： http://www.faststone.org/
 
 > 官网：https://pixpinapp.com/
 
-PixPin 是目前市面上功能最全面的截图工具之一了！包括**截图、贴图、标注、编辑、文字识别、滚屏长截图、动图 GIF 录屏**等等，都是办公编辑时中非常需要用到的功能。PixPin 把它们全都集成在一起，变成一个非常高效实用的生产力利器！目前完全免费。
-
-> 异次元简介：https://www.iplaysoft.com/pixpin.html
+PixPin 是目前市面上功能最全面的截图工具之一了！包括**截图、贴图、标注、编辑、文字识别、滚屏长截图、动图 GIF 录屏**等等，都是办公编辑时中非常需要用到的功能。PixPin 把它们全都集成在一起，变成一个非常高效实用的生产力利器！
 
 ### 其他图像软件
 
@@ -528,6 +379,7 @@ PixPin 是目前市面上功能最全面的截图工具之一了！包括**截�
 - [PicView](https://picview.org/) - Free and customizable image viewer。据说 MAC 系统最好的看图软件？！
 - [Imagine](https://www.nyam.pe.kr/dev/imagine/) - Freeware Image & Animation Viewer for Windows
 - [ScreenToGif](https://www.screentogif.com/) - 屏幕、摄像头和画板录像，并有内置编辑器
+- [voidImageViewer](https://www.voidtools.com/forum/viewtopic.php?p=15321#p15321) - 比图片还小的免费“极速看图”神器 (出自 Everything 团队)
 
 ### Adobe Photoshop Lightroom Classic
 
