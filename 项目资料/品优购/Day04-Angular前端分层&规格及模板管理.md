@@ -1,14 +1,12 @@
-# Day04 Angular前端分层 & 规格及模板管理
+## 前端分层开发
 
-## 1. 前端分层开发
-
-### 1.1. 分层开发需求分析
+### 分层开发需求分析
 
 前端页面的JS和html都放在一起，并不利于后期的维护。可以在前端代码中也运用MVC的设计模式，将代码进行分离，提高程序的可维护性。
 
-### 1.2. 前端页面mvc分层
+### 前端页面mvc分层
 
-#### 1.2.1. 前端基础层
+#### 前端基础层
 
 - 在pinyougou-manager-web工程js目录下创建base.js
 
@@ -26,7 +24,7 @@ var app = angular.module('pinyougou', ['pagination']);
 
 - 说明：一个用于不需要分页功能的页面，一个用于需要分页功能的页面
 
-#### 1.2.2. 前端服务层
+#### 前端服务层
 
 - 在pinyougou-manager-web工程js文件夹下创建service文件夹，创建baseService.js
 
@@ -99,13 +97,13 @@ app.service('baseService', function ($http) {
 app.service('brandService', function ($http) {});
 ```
 
-### 1.3. 控制器继承
+### 控制器继承
 
 - 有些功能是每个页面都有可能用到的，比如分页，复选等等，如果再开发另一个功能，还需要重复编写。通过继承的方式来实现让这些通用的功能只写一次。
 - 语法格式：`$controller("baseController",{$scope:$scope});`
 - <font color="red">说明：`$controller`也是angular提供的一个服务，可以实现伪继承，实际上就是与BaseController共享`$scope`</font>
 
-#### 1.3.1. 前端控制层-创建父控制器
+#### 前端控制层-创建父控制器
 
 - 在pinyougou-manager-web的js/controller目录下建立baseController.js。
 - 将定义分页配置信息对象、reload()方法、定义ids数组封装删除的id放到父控制器中
@@ -176,7 +174,7 @@ app.controller('baseController', function ($scope) {
 });
 ```
 
-#### 1.3.2. 前端控制器层（例：品牌模块）
+#### 前端控制器层（例：品牌模块）
 
 修改brandController.js，指定继承baseController.js
 
@@ -271,7 +269,7 @@ app.controller('brandController', function ($scope, $controller, baseService) {
 });
 ```
 
-### 1.4. 修改原来brand.html页面
+### 修改原来brand.html页面
 
 将brand.html原来js代码删除，直接导入所有相关的js文件即可
 
@@ -284,7 +282,7 @@ app.controller('brandController', function ($scope, $controller, baseService) {
 <!-- 导入angular框架mvc分层后的js文件end -->
 ```
 
-## 2. 规格管理模块功能
+## 规格管理模块功能
 
 将商家商品服务相关代码【资料\准备代码】拷贝到工程
 
@@ -304,7 +302,7 @@ app.controller('brandController', function ($scope, $controller, baseService) {
 
 ![4](images/20190106214656452_12703.jpg)
 
-### 2.1. 需求及表格构分析
+### 需求及表格构分析
 
 实现规格管理功能
 
@@ -324,7 +322,7 @@ tb_specification_option 规格选项表
 |   spec_id   | bigint  |  30  |    规格ID    |
 |   orders    |   int   |  11  |     排序     |
 
-### 2.2. 规格列表显示-前端
+### 规格列表显示-前端
 
 - 修改pinyougou-manager-web工程的specification.html，引入js，复制品牌管理模块html修改代码
 
@@ -400,7 +398,7 @@ tb_specification_option 规格选项表
 </div>
 ```
 
-### 2.3. 规格列表显示-后端
+### 规格列表显示-后端
 
 - 根据品牌后台代码修改，规格管理控制层SpecificationController
 
@@ -517,9 +515,9 @@ List<Specification> findByWhere(@Param("specification") Specification specificat
 </select>
 ```
 
-### 2.4. 新增规格
+### 新增规格
 
-#### 2.4.1. 增加页面，新增行实现
+#### 增加页面，新增行实现
 
 - 给specification.html “新增规格选项” 按钮增加点击事件
 
@@ -572,7 +570,7 @@ $scope.addTableRow = function () {
 
 **注意**：要修改specification.html “新建”按钮，弹出窗口时对entity进行初始化，否则向集合添加数据时会报错！
 
-#### 2.4.2. 增加页面，删除行实现
+#### 增加页面，删除行实现
 
 - 实现思路：在每一行将索引值传递给集合，在集合中删除。
 - <font color="red">*注意：$index 用于获取ng-repeat指令循环中的索引。*</font>
@@ -595,7 +593,7 @@ $scope.deleteTableRow = function (index) {
 }
 ```
 
-#### 2.4.3. 增加页面，提交保存
+#### 增加页面，提交保存
 
 实现思路：将规格和规格选项数据合并成一个对象来传递，在业务逻辑中，得到对象中的规格和规格选项列表，插入规格返回规格ID，然后循环插入规格选项
 
@@ -616,7 +614,7 @@ $scope.deleteTableRow = function (index) {
         data-dismiss="modal" aria-hidden="true">保存</button>
 ```
 
-#### 2.4.4. 保存后台实现
+#### 保存后台实现
 
 - 修改pinyougou-pojo工程中Specification.java类，增加specificationOptions的List集合属性
 
@@ -696,9 +694,9 @@ public void saveSpecification(Specification specification) {
 </insert>
 ```
 
-### 2.5. 修改规格（不完善，修改时是批量删除所有规格再新增本次数据）
+### 修改规格（不完善，修改时是批量删除所有规格再新增本次数据）
 
-#### 2.5.1. 前端页面
+#### 前端页面
 
 - 修改specification.html，给修改按钮绑定点击事件
 
@@ -726,7 +724,7 @@ $scope.show = function(entity){
 };
 ```
 
-#### 2.5.2. 后端-获取规格数据
+#### 后端-获取规格数据
 
 - 实现思路：通过规格ID，到后端查询规格选项列表，然后返回结果
 - 控制层SpecificationController添加根据id查询规格，返回当前规格下的所有规格选项集合
@@ -788,7 +786,7 @@ public List<SpecificationOption> findOne(Long id) {
 List<SpecificationOption> findBySpecId(Long id);
 ```
 
-#### 2.5.3. 保存修改后的规格数据
+#### 保存修改后的规格数据
 
 - 控制层SpecificationController添加保存修改的方法
 
@@ -876,11 +874,11 @@ void deleteBySpecIds(@Param("ids") Long[] ids);
 
 注：为了兼容后面批量删除的功能，定义入参为id数组
 
-### 2.6. 删除规格
+### 删除规格
 
 实现思路：要删除规格的同时，还要记得将关联的规格选项删除掉
 
-#### 2.6.1. 后端部分
+#### 后端部分
 
 - 控制层SpecificationController添加批量删除方法
 
@@ -955,7 +953,7 @@ void deleteSpecification(@Param("ids") Long[] ids);
 
 - 规格选项mapper接口与映射文件（在修改规格时已编写好）
 
-#### 2.6.2. 前端页面
+#### 前端页面
 
 - 修改pinyougou-manager-web的specification.html，列表的复选框
 
@@ -974,9 +972,9 @@ void deleteSpecification(@Param("ids") Long[] ids);
 </button>
 ```
 
-## 3. 模版管理模块功能
+## 模版管理模块功能
 
-### 3.1. 需求及表结构分析
+### 需求及表结构分析
 
 需要理解模板的作用。模板主要有两个：
 
@@ -993,11 +991,11 @@ tb_type_template 模板表
 |       brand_ids        | varchar | 1000 | 关联品牌（json格式） |
 | custom_attribute_items | varchar | 2000 | 扩展属性（json格式） |
 
-### 3.2. 模板列表显示
+### 模板列表显示
 
 引入模板列表与规格模块代码一致
 
-#### 3.2.1. 模板列表查询显示-前端
+#### 模板列表查询显示-前端
 
 - type_template.html引入select2的JS与angular、controller
 
@@ -1070,7 +1068,7 @@ $scope.search = function(page, rows){
 </div>
 ```
 
-#### 3.2.2. 模板列表查询-后端
+#### 模板列表查询-后端
 
 - 修改TypeTemplateController，增加条件分页查询方法
 
@@ -1180,7 +1178,7 @@ List<TypeTemplate> findByWhere(@Param("typeTemplate") TypeTemplate typeTemplate)
 </select>
 ```
 
-### 3.3. 优化模板列表的显示
+### 优化模板列表的显示
 
 - 现在完成的列表中都是以JSON格式显示的，不利于用户的查询。需要将信息以更友好的方式展现出来
 
@@ -1224,13 +1222,13 @@ $scope.json2String = (jsonStr, key) => {
 </tr>
 ```
 
-### 3.4. 新增模板-品牌下拉列表
+### 新增模板-品牌下拉列表
 
 在弹出窗口中有个品牌下拉列表，要求品牌是可以选择多个，这与之前的单选的下拉列表是不同的。实现这个功能，需要使用<font color="red">**select2组件**</font>来完成
 
 ![select2 组件效果](images/20190118123348934_12592.jpg)
 
-#### 3.4.1. select2 组件使用相关配置
+#### select2 组件使用相关配置
 
 - select2需要的数据格式
 
@@ -1273,9 +1271,9 @@ $scope.json2String = (jsonStr, key) => {
 
 ![select2组件配置12](images/20190118082313836_19949.jpg)
 
-#### 3.4.2. 显示品牌下拉列表-后端返回数据
+#### 显示品牌下拉列表-后端返回数据
 
-##### 3.4.2.1. 查询品牌下拉数据-后端代码
+##### 查询品牌下拉数据-后端代码
 
 - 让下拉列表的数据从数据库中提取，修改后端pinyougou-manager-web工程的BrandController中增加查询所有品牌的方法
 
@@ -1337,7 +1335,7 @@ public List<Map<String, Object>> findAllByIdAnName() {
 List<Map<String, Object>> findAllByIdAnName();
 ```
 
-##### 3.4.2.2. 查询品牌下拉数据-前端代码
+##### 查询品牌下拉数据-前端代码
 
 - 修改pinyougou-manager-web的typeTemplateController.js，增加查询品牌请求方法
 
@@ -1360,11 +1358,11 @@ $scope.findBrandList = function () {
       ng-init="findBrandList();">
 ```
 
-#### 3.4.3. 规格下拉列表
+#### 规格下拉列表
 
 参照品牌下拉列表的实现步骤
 
-##### 3.4.3.1. 查询规格下拉列表-前端代码
+##### 查询规格下拉列表-前端代码
 
 ```js
 /** 定义查询规格方法 */
@@ -1388,7 +1386,7 @@ $scope.findSpecList = function () {
 </td>
 ```
 
-##### 3.4.3.2. 查询规格下拉列表-后端代码
+##### 查询规格下拉列表-后端代码
 
 ```java
 /**
@@ -1443,9 +1441,9 @@ public List<Map<String, Object>> findAllByIdAnName() {
 List<Map<String, Object>> findAllByIdAnName();
 ```
 
-### 3.5. 扩展属性
+### 扩展属性
 
-#### 3.5.1. 新增行
+#### 新增行
 
 - 在typeTemplateController.js中新增addTableRow()方法
 
@@ -1490,7 +1488,7 @@ $scope.addTableRow = () => {
 </tr>
 ```
 
-#### 3.5.2. 删除行
+#### 删除行
 
 - 实现思路：在每一行将索引值传递给集合，在集合中删除。
 - 修改typeTemplateController.js新增删除行的方法
@@ -1520,7 +1518,7 @@ $scope.deleteTableRow = index => {
 
 *说明：$index 用于获取ng-repeat指令循环中的索引。*
 
-### 3.6. 新增模板
+### 新增模板
 
 - 修改type_template.html，绑定文本框
 
@@ -1590,7 +1588,7 @@ public void saveTypeTemplate(TypeTemplate typeTemplate) {
 }
 ```
 
-### 3.7. 修改模板
+### 修改模板
 
 - 修改typeTemplateController.js，回显当前行数据
 
@@ -1666,7 +1664,7 @@ public void updateTypeTemplate(TypeTemplate typeTemplate) {
 }
 ```
 
-### 3.8. 删除模板(全选勾选功能未完成)
+### 删除模板(全选勾选功能未完成)
 
 - 修改type_template.html，表格中的复选框绑定点击事件
 

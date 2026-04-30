@@ -1,10 +1,10 @@
-## 1. Spring Boot 源码构建
+## Spring Boot 源码构建
 
 > 源码分析的笔记基于 spring-boot-2.2.2.RELEASE 版本
 >
 > 源码下载地址：https://github.com/spring-projects/spring-boot/releases
 
-### 1.1. 方式1：maven 命令编译项目
+### 方式1：maven 命令编译项目
 
 1. 进入到下载的源码目录执行如下命令：
 
@@ -17,7 +17,7 @@ mvn -Dmaven.test.skip=true clean install
 2. 如果出现报错找不到spring-javaformat插件 执行`mvn spring-javaformat:apply`命令即可。
 3. 如果再出现错误，执行`mvn -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true clean install`
 
-### 1.2. 使用 mvnwrapper 编译项目
+### 使用 mvnwrapper 编译项目
 
 1. 进入到下载的源码目录执行命令：`mvnw clean install -DskipTests -Pfast`
 
@@ -25,15 +25,15 @@ mvn -Dmaven.test.skip=true clean install
 
 2. 如果出现报错找不到 spring-javaformat 插件 执行 `mvn spring-javaformat:apply` 命令即可。命令执行成功后，再次执行指令：`mvnw clean install -DskipTests -Pfast`
 
-## 2. Spring Boot 自动配置原理分析
+## Spring Boot 自动配置原理分析
 
 Spring Boot 框架是一个将整合框架的整合代码都写好了的框架。所以要知道它的工作原理才能够找到各种整合框架可以配置的属性，以及属性对应的属性名。
 
-### 2.1. 准备阶段
+### 准备阶段
 
 Spring Boot 是一个可快速整合各种技术的框架，Spring Boot 会大量收录行业内相关技术的技术相关配置、技术初始化等信息，将其收集整理成一个依赖、配置、技术初始化的技术列表集合
 
-### 2.2. spring-boot-dependencies 父工程依赖管理原理
+### spring-boot-dependencies 父工程依赖管理原理
 
 创建 Spring Boot 项目，继承了 Spring Boot 的父工程 spring-boot-starter-parent 后，查看工程的依赖关系，父工程又依赖了 spring-boot-dependencies 模块，而此 spring-boot-denpendencies 模块中的 pom 文件，管理所有公共 Starter 与相关技术的依赖，并且通过 `<dependencyManagement>` 标签实现 jar 版本管理
 
@@ -41,9 +41,9 @@ Spring Boot 是一个可快速整合各种技术的框架，Spring Boot 会大�
 
 ![](images/20201006095224766_3600.png)
 
-### 2.3. spring-boot-starters 工程
+### spring-boot-starters 工程
 
-#### 2.3.1. starters 的原理
+#### starters 的原理
 
 starters 是依赖关系的整理和封装，是一套依赖坐标的整合。只要导入相关的 starter 即可该功能及其相关必需的依赖
 
@@ -55,14 +55,14 @@ starters 是依赖关系的整理和封装，是一套依赖坐标的整合。�
 
 ![](images/456984913226844.png)
 
-#### 2.3.2. 自定义 starter 的命名规范
+#### 自定义 starter 的命名规范
 
 - 官方的 starter 命名：`spring-boot-starter-*`
 - 非官方的 starter 命名：`thirdpartyproject-spring-boot-starter`
 
 官方提供的 starter 详见官方文档：https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/reference/html/using-spring-boot.html#using-boot-starter
 
-### 2.4. 自动配置信息位置说明
+### 自动配置信息位置说明
 
 每个 starter 都有相应自动配置处理在 spring-boot-autoconfigure 模块中，在此模块的 `src/main/resources/META-INF` 中定义了所有内置支持的技术框架及其相关的约定的默认配置：
 
@@ -85,11 +85,11 @@ starters 是依赖关系的整理和封装，是一套依赖坐标的整合。�
 
 ![](images/20201006150503441_32641.png)
 
-### 2.5. 自动配置流程分析
+### 自动配置流程分析
 
 查看启动类注解 `@SpringBootApplication`，可以跟踪自动配置加载的实现步骤
 
-#### 2.5.1. 自定义配置的注解
+#### 自定义配置的注解
 
 Spring Boot 启动注解 `@SpringBootApplication` 包含若干个注解，其中 `@SpringBootConfiguration` 与 `@ComponentScan` 均为 Spring 基础的注解，而实现自动配置的关键是 `@EnableAutoConfiguration` 注解
 
@@ -121,7 +121,7 @@ public @interface EnableAutoConfiguration {
 }
 ```
 
-#### 2.5.2. @AutoConfigurationPackage 注解
+#### @AutoConfigurationPackage 注解
 
 在 `@AutoConfigurationPackage` 注解中，通过 `@Import` 注解导入 `AutoConfigurationPackages.Registrar` 的内部类
 
@@ -151,7 +151,7 @@ public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionR
 
 ![](images/105952014239679.png)
 
-#### 2.5.3. AutoConfigurationImportSelector 类
+#### AutoConfigurationImportSelector 类
 
 在 `@EnableAutoConfiguration` 注解中，通过 `@Import` 注解引入自动配置处理类 `AutoConfigurationImportSelector`，该类实现了 `DeferredImportSelector` 接口，而 `DeferredImportSelector` 接口又继承了 `ImportSelector` 接口。Spring 容器初始化时会调用 `selectImports` 方法
 
@@ -218,7 +218,7 @@ public class RedisAutoConfiguration {
 
 ![](images/20201006152054124_172.png)
 
-#### 2.5.4. 小结
+#### 小结
 
 ![](images/418415816258589.png)
 
@@ -228,15 +228,15 @@ public class RedisAutoConfiguration {
 
 对于正常加载成 bean 的类，通常会通过 `@EnableConfigurationProperties` 注解初始化对应的配置属性类并加载对应的配置。而配置属性类上通常会通过 `@ConfigurationProperties` 加载指定前缀的配置，并且这些配置通常都有默认值。
 
-#### 2.5.5. Spring Boot 实现自动配置原理图解（网络资源）
+#### Spring Boot 实现自动配置原理图解（网络资源）
 
 ![](images/551005316236751.png)
 
-### 2.6. Spring Boot 常见的自动配置实现
+### Spring Boot 常见的自动配置实现
 
 > 以下常见的自动配置类选自 spring-boot-autoconfigure-x.x.x.jar!\META-INF\spring.factories 文件中
 
-#### 2.6.1. AopAutoConfiguration
+#### AopAutoConfiguration
 
 Spring Boot 是利用了自动配置类来简化了 aop 相关配置。AOP 自动配置类为 `org.springframework.boot.autoconfigure.aop.AopAutoConfiguration`。但可以通过 `spring.aop.auto=false` 配置，禁用 aop 自动配置
 
@@ -343,7 +343,7 @@ public abstract class AopConfigUtils {
 }
 ```
 
-#### 2.6.2. DataSourceAutoConfiguration
+#### DataSourceAutoConfiguration
 
 对应的自动配置类为：`org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration`。它内部采用了条件装配，通过检查容器的 bean，以及类路径下的 class，来决定该 `@Bean` 是否生效。简单说明一下，Spring Boot 支持两大类数据源：
 
@@ -390,7 +390,7 @@ public class DataSourceAutoConfiguration {
 
 其中 `@EnableConfigurationProperties(DataSourceProperties.class)` 用于封装 `spring.datasource` 数据源相关的配置
 
-#### 2.6.3. MybatisAutoConfiguration
+#### MybatisAutoConfiguration
 
 MyBatis 自动配置类为 `org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration`
 
@@ -422,7 +422,7 @@ public class MybatisAutoConfiguration implements InitializingBean {
 
 MyBatis 其实并非将接口交给 Spring 管理，而是每个接口会对应一个 `MapperFactoryBean`，是后者被 Spring 所管理，接口只是作为 `MapperFactoryBean` 的一个属性来配置
 
-#### 2.6.4. TransactionAutoConfiguration
+#### TransactionAutoConfiguration
 
 事务自动配置类有两个：
 
@@ -439,31 +439,31 @@ MyBatis 其实并非将接口交给 Spring 管理，而是每个接口会对应�
 
 > 注：如果使用者配置了 `DataSourceTransactionManager` 或是在引导类加了 `@EnableTransactionManagement`，则以自定义的配置为准
 
-#### 2.6.5. ServletWebServerFactoryAutoConfiguration
+#### ServletWebServerFactoryAutoConfiguration
 
 用于提供 `ServletWebServerFactory`
 
-#### 2.6.6. DispatcherServletAutoConfiguration
+#### DispatcherServletAutoConfiguration
 
 用于提供 `DispatcherServlet`、`DispatcherServletRegistrationBean`
 
-#### 2.6.7. WebMvcAutoConfiguration
+#### WebMvcAutoConfiguration
 
 用于配置 `DispatcherServlet` 的各项组件，如：多项 `HandlerMapping`、多项 `HandlerAdapter`、`HandlerExceptionResolver`
 
-#### 2.6.8. ErrorMvcAutoConfiguration
+#### ErrorMvcAutoConfiguration
 
 用于提供 `BasicErrorController`
 
-#### 2.6.9. MultipartAutoConfiguration
+#### MultipartAutoConfiguration
 
 提供了 `org.springframework.web.multipart.support.StandardServletMultipartResolver`，用来解析 `multipart/form-data` 格式的数据
 
-#### 2.6.10. HttpEncodingAutoConfiguration
+#### HttpEncodingAutoConfiguration
 
 Spring Boot 已经提供了 `org.springframework.boot.web.servlet.filter.OrderedCharacterEncodingFilter`，对应配置项为 `server.servlet.encoding.charset=UTF-8`，默认就是 UTF-8，只影响非 json 格式的数据。当 POST 请求参数如果有中文，无需特殊设置
 
-## 3. 条件装配实现原理
+## 条件装配实现原理
 
 <font color=red>**条件装配的底层是本质上是 `@Conditional` 注解与 `Condition` 接口配合应用**</font>。
 
@@ -503,9 +503,9 @@ static class AutoConfiguration {
 </dependency>
 ```
 
-## 4. SpringBoot 项目启动流程
+## SpringBoot 项目启动流程
 
-### 4.1. SpringBoot 应用启动流程图
+### SpringBoot 应用启动流程图
 
 ![](images/20211227162258538_26216.png)
 
@@ -515,7 +515,7 @@ Spring Boot 的启动流程，本质就是运行一个 Spring 容器的环境。
 - 系统配置（spring.factories）
 - 参数（Arguments、application.properties）
 
-#### 4.1.1. 阶段一：SpringApplication 构造
+#### 阶段一：SpringApplication 构造
 
 SpringApplication 构造方法中会完成以下的操作：
 
@@ -525,7 +525,7 @@ SpringApplication 构造方法中会完成以下的操作：
 4. 记录监听器
 5. 推断主启动类
 
-#### 4.1.2. 阶段二：执行 run 方法
+#### 阶段二：执行 run 方法
 
 1. 得到 `SpringApplicationRunListeners` 事件发布器，发布 application starting 事件
 2. 封装启动 args 参数
@@ -542,7 +542,7 @@ SpringApplication 构造方法中会完成以下的操作：
 10. refresh 容器，发布 application started 事件
 11. 执行 runner，发布 application ready 事件，若发生异常，则发布 application failed 事件
 
-### 4.2. ConfigurableApplicationContext 
+### ConfigurableApplicationContext 
 
 添加 Spring Boot 最基础的依赖与编写最基础的入口，启动后用于源码的断点跟踪。
 
@@ -583,7 +583,7 @@ public static ConfigurableApplicationContext run(Class<?>[] primarySources, Stri
 
 ![](images/49300310220553.jpg)
 
-### 4.3. SpringApplication
+### SpringApplication
 
 Spring Boot 启动流程的首先是通过 `SpringApplication` 类的构造函数，创建其对象，并加载各种配置信息，初始化各种配置对象；
 
@@ -612,7 +612,7 @@ public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySourc
 }
 ```
 
-#### 4.3.1. WebApplicationType 加载容器的类型
+#### WebApplicationType 加载容器的类型
 
 `WebApplicationType` 枚举类，定义 Spring Boot 容器的类型
 
@@ -648,7 +648,7 @@ public enum WebApplicationType {
 
 ![](images/316312610247012.png)
 
-#### 4.3.2. getSpringFactoriesInstances 方法
+#### getSpringFactoriesInstances 方法
 
 `getSpringFactoriesInstances` 是 `SpringApplication` 类的方法，在加载配置的过程中多次被调用
 
@@ -679,7 +679,7 @@ private <T> Collection<T> getSpringFactoriesInstances(Class<T> type, Class<?>[] 
 
 ![](images/547434610236236.png)
 
-#### 4.3.3. 自定义监听器
+#### 自定义监听器
 
 从上面的源码可以看到，在创建 `SpringApplication` 对象中的 `setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));` 这里会进行初始化监听器，同样是读取 spring.factories 文件中配置的实现，因此使用者可以自定义监听器的实现，并将监听器类全限名称配置到 spring.factories 文件中即可
 
@@ -709,11 +709,11 @@ org.springframework.context.ApplicationListener=com.moon.springboot.listener.Cus
 
 ![](images/282950811231990.png)
 
-### 4.4. 打印 banner
+### 打印 banner
 
 Spring Boot 在控制台输出 banner 具体由 `SpringApplicationBannerPrinter` 实现
 
-#### 4.4.1. 模拟实现示例
+#### 模拟实现示例
 
 banner 的数据是从环境对象中读取，然后 `SpringApplicationBannerPrinter` 的 `print` 方法进行输出打印
 
@@ -735,7 +735,7 @@ public void test() {
 }
 ```
 
-### 4.5. 初始化 Spring 容器
+### 初始化 Spring 容器
 
 在 `SpringApplication` 对象创建并加载配置信息、初始化各种配置对象后，然后调用对象的 `run(String... args)` 方法，用于初始化容器，并得到 `ConfigurableApplicationContext` 对象，这也是核心部分
 
@@ -803,11 +803,11 @@ public ConfigurableApplicationContext run(String... args) {
 }
 ```
 
-### 4.6. Spring Boot 监听机制
+### Spring Boot 监听机制
 
 Spring Boot 启动过程由于存在着不同的处理过程阶段，如果设计接口就要设计十余个标准接口，这样对开发者不友好，同时整体过程管理分散，十余个过程在不同地方调用，管理难度大，过程过于松散。然后 Spring Boot 采用了监听器设计模式来解决此问题
 
-#### 4.6.1. 内置监听器
+#### 内置监听器
 
 Spring Boot 将自身的启动过程当成一个大的事件，该事件是由若干个小的事件组成的。例如：
 
@@ -830,9 +830,9 @@ Spring Boot 将自身的启动过程当成一个大的事件，该事件是由�
 
 上述列出的仅仅是部分事件，当应用启动后走到某一个过程点时，监听器监听到某个事件触发，就会执行对应的事件。除了系统内置的事件处理，用户还可以根据需要自定义开发当前事件触发时要做的其他动作。
 
-## 5. Spring Boot 内嵌 Tomcat 容器
+## Spring Boot 内嵌 Tomcat 容器
 
-### 5.1. Tomcat 基本结构
+### Tomcat 基本结构
 
 ```
 Server
@@ -853,9 +853,9 @@ Server
                         web.xml
 ```
 
-### 5.2. 模拟内嵌 Tomcat 容器实现示例
+### 模拟内嵌 Tomcat 容器实现示例
 
-#### 5.2.1. 创建基础 tomcat
+#### 创建基础 tomcat
 
 - 引入相关依赖
 
@@ -924,7 +924,7 @@ public static void main(String[] args) throws LifecycleException, IOException {
 }
 ```
 
-#### 5.2.2. 集成 Spring 容器
+#### 集成 Spring 容器
 
 - 添加 Spring MVC 相关依赖
 

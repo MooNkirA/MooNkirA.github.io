@@ -3,13 +3,13 @@
 - 官网：https://momentjs.com/
 - 中文翻译版网址：http://momentjs.cn/
 
-## 1. Moment.js常见用法总结
+## Moment.js常见用法总结
 
 > Moment.js是一个轻量级的JavaScript时间库，它方便了日常开发中对时间的操作，提高了开发效率。
 
-### 1.1. 获取时间
+### 获取时间
 
-#### 1.1.1. Start of Time
+#### Start of Time
 
 - 语法
 
@@ -41,7 +41,7 @@ moment().startOf('isoWeek')
 moment().startOf('month')
 ```
 
-#### 1.1.2. End of Time
+#### End of Time
 
 - 语法：
 
@@ -73,7 +73,7 @@ moment().endOf('isoWeek')
 moment().endOf('month')
 ```
 
-#### 1.1.3. Days in Month
+#### Days in Month
 
 - 语法
 
@@ -87,7 +87,7 @@ moment().daysInMonth()
 moment().daysInMonth()
 ```
 
-#### 1.1.4. Timestamp
+#### Timestamp
 
 - 获取时间戳(以秒为单位)
 
@@ -103,7 +103,7 @@ moment().format('x') // 返回值为字符串类型
 moment().valueOf() // 返回值为数值型
 ```
 
-#### 1.1.5. Get Time
+#### Get Time
 
 - 获取年份
 
@@ -165,9 +165,9 @@ moment().toArray() // [years, months, date, hours, minutes, seconds, millisecond
 moment().toObject() // {years: xxxx, months: x, date: xx ...}
 ```
 
-### 1.2. 设置时间
+### 设置时间
 
-#### 1.2.1. Set Time
+#### Set Time
 
 - 语法：
 
@@ -229,7 +229,7 @@ moment().seconds(30)
 moment().set('seconds', 30)
 ```
 
-#### 1.2.2. Add Time
+#### Add Time
 
 - 语法：
 
@@ -281,7 +281,7 @@ moment().add(1, 'minutes')
 moment().add(1, 'seconds')
 ```
 
-#### 1.2.3. Subtract Time
+#### Subtract Time
 
 - 语法：
 
@@ -333,8 +333,8 @@ moment().subtract(1, 'minutes')
 moment().subtract(1, 'seconds')
 ```
 
-### 1.3. 格式化时间
-#### 1.3.1. Format Time
+### 格式化时间
+#### Format Time
 
 - 语法：
 
@@ -379,11 +379,11 @@ moment().format('X') // 返回值为字符串类型
 moment().format('x') // 返回值为字符串类型
 ```
 
-### 1.4. 比较时间
+### 比较时间
 
-#### 1.4.1. Difference
+#### Difference
 
-##### 1.4.1.1. 语法
+##### 语法
 
 ```js
 moment().diff(Moment|String|Number|Date|Array)
@@ -403,7 +403,7 @@ end_date.diff(start_date, 'days') // 7
 start_date.diff(end_date, 'days') // -7
 ```
 
-##### 1.4.1.2. 案例
+##### 案例
 
 ```js
 // 一：计算小时之间的差
@@ -421,7 +421,7 @@ const h = Math.floor(date3 / 60); // 相差的小时数
 const mm = date3 % 60; // 计算相差小时后余下的分钟数
 ```
 
-### 1.5. 转化为JavaScript原生Date对象
+### 转化为JavaScript原生Date对象
 
 - 语法：
 
@@ -440,6 +440,6 @@ let nativeDate2 = new Date(m)
 String(nativeDate1) === String(nativeDate2) // true
 ```
 
-## 2. Moment.js的官网相关的格式的字符
+## Moment.js的官网相关的格式的字符
 
 ![格拭字符列表](images/20190905112003145_13095.png)

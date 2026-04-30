@@ -1,4 +1,4 @@
-## 1. jQuery 概述
+## jQuery 概述
 
 jQuery 是一个 JS 框架，运行在 JS 之上。 **jQuery 就是一组 JS 编写的方法和功能，可以提高开发 JS 的效率，降低代码的开发难度**。JS 框架很多， jQuery 只是其中一个比较流行的框架。
 
@@ -16,7 +16,7 @@ jQuery 是一个 JS 框架，运行在 JS 之上。 **jQuery 就是一组 JS 编
 
 > Tips: 一些jQuery制作效果网站：www.17sucai.com
 
-### 1.1. jQuery 基础使用
+### jQuery 基础使用
 
 官网：www.jquery.com
 
@@ -62,18 +62,18 @@ Code Demo: jQuery的导入并测试是否成功
 <script src="js/xxx.js" type="text/javascript"></script>
 ```
 
-### 1.2. JavaScript 对象与 jQuery 对象的区别
+### JavaScript 对象与 jQuery 对象的区别
 
 如果使用 jQuery 框架的话，将使用的是 jQuery 对象，以前使用的是 JS 对象。jQuery 对象中的方法与 JS 对象中的方法是不同的。
 
-#### 1.2.1. 事件写法的区别
+#### 事件写法的区别
 
 两者的区别：
 
 - JS 中事件使用 `on` 开头属性，如：`onclick = funcation()`
 - JQ 中所有的事件是方法，如：`click(function())`
 
-#### 1.2.2. 加载次数的区别
+#### 加载次数的区别
 
 - 加载代码的编写方式：
     - JS：`window.onload = function()`
@@ -85,7 +85,7 @@ Code Demo: jQuery的导入并测试是否成功
     - JS 中只运行最后的 `onload` 方法 1 次
     - JQ 中每个`$()`都会执行
 
-### 1.3. jQuery 对象与 JS 对象之间的转换
+### jQuery 对象与 JS 对象之间的转换
 
 原则：如果使用 JQ 框架，尽量使用 JQ 方法和对象。如果是 JS 对象要使用 JQ 对象的方法的话，必须将 JS 对象转换成 JQ 对象；同样，如果 JQ 对象要调用 JS 方法也要进行转换。
 
@@ -105,20 +105,20 @@ JQ对象.get(0);
 
 > Notes: <font color=red>**JQ 对象在低层是一个 JS 数组对象，只需要取出第0个元素即可**</font>
 
-### 1.4. jQuery 对象与 DOM 对象之间的转换
+### jQuery 对象与 DOM 对象之间的转换
 
 在 jQuery 对象中无法使用 DOM 对象的任何方法。此时需要进行转换：
 
 - jQuery 对象转换成 DOM 对象：jquery 提供了两种方法将一个jquery对象转换成一个dom对象，即`[index]`和`get(index)`。因 jQuery 对象就是一个数组对象
 - DOM 对象转换成 jQuery 对象：对于一个 DOM 对象，只需要用`$()`把 DOM 对象包装起来，就可以获得一个 jQuery 对象了，即`var ele = $(dom对象);`
 
-## 2. jQuery 的选择器
+## jQuery 的选择器
 
-### 2.1. 选择器的作用
+### 选择器的作用
 
 JQ 中如果要对某个或一些元素进行操作，操作之前先要选择对哪些元素来操作，我们就使用选择器。选择器的功能就是用来选元素。类似于 CSS 中选择器
 
-### 2.2. jQuery常用的选择器
+### jQuery常用的选择器
 
 1. <font color=red>**基本选择器**</font>
 2. 层级选择器
@@ -126,7 +126,7 @@ JQ 中如果要对某个或一些元素进行操作，操作之前先要选择�
 4. 基本过滤选择器
 5. 表单属性选择器
 
-### 2.3. 基本选择器（重点）
+### 基本选择器（重点）
 
 - `$("标签名")`：标签选择器，选中所有同名的标签。
 - `$(".类名")`：类选择器，通过类名选中元素。
@@ -139,7 +139,7 @@ JQ 中如果要对某个或一些元素进行操作，操作之前先要选择�
 - `$("xx","xx",……)` 可以选择多个元素操作，不同元素使用逗号(`,`)隔开
 - <font color=red>**ID 名不能是`xx.xx`这种命名**</font>
 
-### 2.4. 层级选择器
+### 层级选择器
 
 - `$("A B")`：获得 A 元素内部的所有的 B 元素。<font color=red>**注意：A 与 B 之间有空格**</font>，B 元素是 A 元素的子孙元素。
 - `$("A>B")`：获得 A 元素下面的所有 B 子元素，<font color=red>**不包含孙元素**</font>。
@@ -148,7 +148,7 @@ JQ 中如果要对某个或一些元素进行操作，操作之前先要选择�
 - `元素.siblings()`：获得所有的兄弟元素。得到所有同级的兄弟元素，无论什么标签。
 - `元素.siblings("标签名")`：获得所有指定标签的兄弟元素。得到同级的同标签名的元素。
 
-### 2.5. 属性选择器
+### 属性选择器
 
 - `$("标签名[属性名]")`：获得指定 **属性名** 的元素
 - `$("标签名[属性名='属性值']")`：获得属性名 **等于值** 的元素
@@ -167,7 +167,7 @@ var txt = $("#city").val();
 $("input[value="+txt+"]").prop("checked","checked");
 ```
 
-### 2.6. 基本过滤选择器
+### 基本过滤选择器
 
 基本过滤选择器一般用于表格操作，**过滤选择器前面都有一个冒号(`:`)**。
 
@@ -184,7 +184,7 @@ $("input[value="+txt+"]").prop("checked","checked");
 
 > Notes: 如果选择多个情况进行 not 过滤，语法为 `$("标签名:not(:first):not(:last)")`，而不是将几个过滤条件写在括号内。
 
-### 2.7. 表单属性选择器
+### 表单属性选择器
 
 - `:enabled`：可用
 - `:disabled`：不可用
@@ -192,9 +192,9 @@ $("input[value="+txt+"]").prop("checked","checked");
 - `:selected`：选择(下拉列表`<select>`中的`<option>`标签)
 - `:hidden`：不可见元素
 
-## 3. jQuery 基础使用案例
+## jQuery 基础使用案例
 
-### 3.1. 倒计时器
+### 倒计时器
 
 在页面中有一个按钮，要求按钮默认不可点击，在规定时间后才可以点击这个按钮
 
@@ -242,7 +242,7 @@ $("input[value="+txt+"]").prop("checked","checked");
 </script>
 ```
 
-### 3.2. 表单操作
+### 表单操作
 
 案例需求：文本框中输入内容，下拉列表则选中该内容。
 
@@ -305,7 +305,7 @@ $(function(){
 })
 ```
 
-### 3.3. 级联下拉菜单
+### 级联下拉菜单
 
 案例需求：
 
@@ -361,13 +361,13 @@ $(function(){
 </script>
 ```
 
-## 4. jQuery 的 AJAX 使用
+## jQuery 的 AJAX 使用
 
 使用 jQuery 的 ajax 开发，大大提供开发效率，并且<font color=red>**具有浏览器兼容性**</font>。
 
-### 4.1. jQuery 的 AJAX 语法格式
+### jQuery 的 AJAX 语法格式
 
-#### 4.1.1. $.post()
+#### $.post()
 
 `$.post()` 用于以 post 请求方式发送 ajax。语法格式如下：
 
@@ -403,13 +403,13 @@ function(result) {
     - "text"，默认返回类型
     - "json"，服务器一般响应的一个字符串，默认 js 接收也是一个字符串，但是<font color=red>**如果设置 json，js 接收的就是 js 对象，如果是对象就可以调用属性**</font>。
 
-#### 4.1.2. $.get()
+#### $.get()
 
 `$.get()` 用于以 get 请求方式发送 ajax。除了请求方式不同，使用方式与 `$.post()` 完全一致。
 
 > Tips: 格式中`[]`代表可选内容
 
-#### 4.1.3. $.ajax
+#### $.ajax
 
 查看 Jquery API，ajax 请求一共有6种方式：
 
@@ -471,9 +471,9 @@ $.ajax({
 });
 ```
 
-### 4.2. jQuery 的 AJAX 使用注意事项
+### jQuery 的 AJAX 使用注意事项
 
-#### 4.2.1. 关于 name 属性
+#### 关于 name 属性
 
 原本表单的提交是需要 name 的属性，但使用 ajax 提交，不需要 name 的属性。因为使用 ajax 后，是直接走 ajax 发送请求。
 
@@ -482,7 +482,7 @@ $.ajax({
 var data = {username:$("#username").val()};
 ```
 
-#### 4.2.2. 关于 Servlet 响应的类型设定
+#### 关于 Servlet 响应的类型设定
 
 如果想发送的是 json 格式，servlet 使用 `setContentType` 是 text/html 的格式，前端 js 必须设置 `type="json"`;
 
@@ -496,23 +496,23 @@ response.setContentType("text/html;charset=utf-8");
 response.setContentType("application/json;charset=utf-8");
 ```
 
-#### 4.2.3. 同步与异步处理异常方式不同
+#### 同步与异步处理异常方式不同
 
 同步处理异常可以在dao数据访问层直接处理。
 
 <font color=red>**异步处理异常不能直接处理**</font>，因为页面不会刷新，如果在 dao 数据访问层处理后，页面完全不会接收到任何提示信息。所以需要在 dao 层抛出异常，最后<font color=red>**在 servlet 层进行捕获**</font>，再响应异常的信息到页面上。
 
-#### 4.2.4. AJAX不能直接进行页面的跳转
+#### AJAX不能直接进行页面的跳转
 
 不能在 servlet 里进行跳转的操作，需要在 JSP 页面的回调函数中，对返回的数据进行判断，再进行页面的跳转。
 
-#### 4.2.5. 使用拼接字符的方式生成json格式
+#### 使用拼接字符的方式生成json格式
 
 前端 js 的 ajax 代码获取服务器响应的 json 数据，key 必须使用双引号，value 除了 boolean 或数字也必须使用双引号。
 
-### 4.3. AJAX 案例
+### AJAX 案例
 
-#### 4.3.1. 基础使用
+#### 基础使用
 
 后端处理请求代码
 
@@ -609,7 +609,7 @@ public class HelloServlet extends HttpServlet {
 </script>
 ```
 
-#### 4.3.2. 异步用户名校验
+#### 异步用户名校验
 
 案例需求：
 

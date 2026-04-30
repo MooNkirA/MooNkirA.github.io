@@ -1,6 +1,6 @@
-## 1. MyBatis 框架概述
+## MyBatis 框架概述
 
-### 1.1. 原生 JDBC 存在问题
+### 原生 JDBC 存在问题
 
 1. 数据库连接，使用时就创建，不使用立即释放。对数据库进行频繁连接开启和关闭，造成数据库资源浪费，影响数据库性能
 
@@ -18,7 +18,7 @@
 
 > 解决方案：将查询的结果集，自动映射成java对象
 
-### 1.2. MyBatis 简介
+### MyBatis 简介
 
 MyBatis是一个持久层的框架，本是 apache 的一个开源项目 iBatis，2010 年这个项目由 apache software foundation 迁移到了google code，并且改名为 MyBatis。2013年11月迁移到Github
 
@@ -27,7 +27,7 @@ MyBatis 让程序将主要精力放在 sql 上，通过 MyBatis 提供的映射�
 > - Mybatis 源码仓库：https://github.com/mybatis/mybatis-3/releases
 > - Mybatis 中文文档：https://mybatis.org/mybatis-3/zh/index.html
 
-### 1.3. 使用 MyBatis 解决 JDBC 编程的问题
+### 使用 MyBatis 解决 JDBC 编程的问题
 
 1. 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。
 
@@ -45,17 +45,17 @@ MyBatis 让程序将主要精力放在 sql 上，通过 MyBatis 提供的映射�
 
 > MyBatis解决方案：Mybatis自动将sql执行结果映射至java对象，通过statement中的resultType定义输出结果的类型。
 
-## 2. MyBatis 基础使用
+## MyBatis 基础使用
 
-### 2.1. MyBatis 目录结构
+### MyBatis 目录结构
 
 ![](images/20200621084315586_13990.jpg)
 
 > 注：在搭建MyBatis环境时，记得加入MySQL/Oracle的驱动包
 
-### 2.2. MyBatis 基础使用步骤
+### MyBatis 基础使用步骤
 
-#### 2.2.1. log4j.properties
+#### log4j.properties
 
 log4j.properties文件的内容在MyBatis帮助文档可以查询
 
@@ -74,14 +74,14 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 ```
 
-#### 2.2.2. 搭建MyBatis开发环境
+#### 搭建MyBatis开发环境
 
 ![](images/20200621084622108_26087.jpg)
 
 - SqlMapConfig.xml是MyBatis全局配置文件
 - sqlmap包是存放mapper.xml映射配置文件
 
-#### 2.2.3. 引入 MyBatis 依赖
+#### 引入 MyBatis 依赖
 
 配置 pom.xml 文件
 
@@ -96,7 +96,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 
 > 注：在搭建MyBatis环境时，记得加入MySQL/Oracle的驱动包依赖
 
-#### 2.2.4. SqlMapConfig.xml（MyBatis全局配置文件）
+#### SqlMapConfig.xml（MyBatis全局配置文件）
 
 配置 mybatis 的运行环境，数据源、事务等。了解即可，因为在整合 Spring 的时候，这个配置文件的标签都不用了
 
@@ -143,7 +143,7 @@ SqlMapConfig.xml 示例：
 
 ![](images/20200621084845385_20266.jpg)
 
-#### 2.2.5. 映射文件(XxxMapper.xml)
+#### 映射文件(XxxMapper.xml)
 
 **映射文件命名格式**：
 
@@ -166,7 +166,7 @@ SqlMapConfig.xml 示例：
 </mapper>
 ```
 
-### 2.3. 快速入门程序开发步骤总结
+### 快速入门程序开发步骤总结
 
 1. 创建SqlSessionFactoryBuilder对象
 2. 加载SqlMapConfig.xml配置文件
@@ -175,9 +175,9 @@ SqlMapConfig.xml 示例：
 5. 执行SqlSession对象执行查询，获取结果
 6. 释放资源
 
-## 3. MyBatis 架构
+## MyBatis 架构
 
-### 3.1. MyBatis 执行流程图
+### MyBatis 执行流程图
 
 ![流程图-MyBatis框架执行流程.drawio](images/20200621084037450_14336.jpg)
 
@@ -194,7 +194,7 @@ SqlMapConfig.xml 示例：
     - 输出结果映射：输出结果类型可以是 java 基本数据类型、Map、List 等集合类型、自定义 POJO 类等。输出结果映射过程类似于 JDBC 对结果集的解析过程
 6. 操作数据库
 
-### 3.2. MyBatis 的框架设计
+### MyBatis 的框架设计
 
 ![](images/188733011248670.jpg)
 
@@ -206,7 +206,7 @@ SqlMapConfig.xml 示例：
 - 数据处理层：负责具体的 SQL 查找、SQL 解析、SQL 执行和执行结果映射处理等。它主要的目的是根据调用的请求完成一次数据库操作。
 - 基础支撑层：负责最基础的功能支撑，包括连接管理、事务管理、配置加载和缓存处理，这些都是共用的东西，将他们抽取出来作为最基础的组件。为上层的数据处理层提供最基础的支撑。
 
-### 3.3. MyBatis 的主要构件及其相互关系
+### MyBatis 的主要构件及其相互关系
 
 从 MyBatis 代码实现的角度来看，MyBatis 的主要的核心部件有以下几个：
 
@@ -223,9 +223,9 @@ SqlMapConfig.xml 示例：
 
 ![](images/558721412236537.jpg)
 
-## 4. MyBatis开发数据层
+## MyBatis开发数据层
 
-### 4.1. MyBatis 开发数据层两种方式
+### MyBatis 开发数据层两种方式
 
 使用 MyBatis 开发 Dao，通常有两种方式：
 
@@ -234,13 +234,13 @@ SqlMapConfig.xml 示例：
 
 > 企业项目开发，推荐 mapper 代理方式
 
-### 4.2. MyBaties 原始 dao 开发方式
+### MyBaties 原始 dao 开发方式
 
-#### 4.2.1. 原始 dao 开发的步骤
+#### 原始 dao 开发的步骤
 
 原始 DAO 开发方法需要编写 DAO 接口和 DAO 实现类
 
-#### 4.2.2. 原始 dao 开发方式 demo
+#### 原始 dao 开发方式 demo
 
 1. 编写映射文件。使用原来开发的映射配置文件即可，即 User.xml
 2. 编写 dao 接口与实现类
@@ -364,15 +364,15 @@ public class MyBatisTest02 {
 }
 ```
 
-#### 4.2.3. 原始 dao 开发问题总结
+#### 原始 dao 开发问题总结
 
 1. dao 接口实现类方法中存在大量模板方法，设想能否将这些代码提取出来，大大减轻程序员的工作量
 2. 调用 sqlsession 方法时将 statement 的 id 硬编码了
 3. 调用 sqlsession 方法时传入的变量，由于 sqlsession 方法使用泛型，即使变量类型传入错误，在编译阶段也不报错，不利于程序员开发
 
-### 4.3. MyBatis的Mapper动态代理方式开发数据层【重点】
+### MyBatis的Mapper动态代理方式开发数据层【重点】
 
-#### 4.3.1. Mapper 动态代理开发规则【重点】
+#### Mapper 动态代理开发规则【重点】
 
 Mapper 接口开发方法只需要编写Mapper接口（相当于Dao接口），由Mybatis框架根据接口定义创建接口的动态代理对象，代理对象的方法体同上边Dao接口实现类方法。
 
@@ -383,7 +383,7 @@ mybatis官方推荐使用mapper代理方法开发mapper接口，程序员不用�
 3. Mapper接口方法的**输入参数类型**和mapper.xml中定义的每个sql 的**parameterType的类型**相同
 4. Mapper接口方法的**输出参数类型**和mapper.xml中定义的每个sql的**resultType的类型**相同。如果返回值的类型是一个集合，此时ResultType指定的类型，是集合中存放的类型。
 
-#### 4.3.2. Mapper 动态代理方式开发步骤
+#### Mapper 动态代理方式开发步骤
 
 1. 定义 mapper 映射文件，UserMapper.xml 文件。必须配置 `<mapper>` 根标签的 `namepace` 属性，指定 UserMapper.xml 映射的对应**接口类全名**。如：`<mapper namespace="com.moon.mapper.UserMapper">`
 2. 编写数据层接口，命名规则一般为`XxxMapper.java`。与 MyBatis 原始 dao 开发接口一样
@@ -407,7 +407,7 @@ mybatis官方推荐使用mapper代理方法开发mapper接口，程序员不用�
 2. 要求mapper映射文件，与mapper接口要放在同一目录
 3. 要求mapper映射文件的名称，与mapper接口的名称要一致
 
-#### 4.3.3. Mapper动态代理方式开发数据层demo
+#### Mapper动态代理方式开发数据层demo
 
 1. UserMapper接口，不需要编写实现类，在mapper映射配置文件指定映射对应的
 
@@ -503,15 +503,15 @@ public class MyBatisTest03_Mapper {
 }
 ```
 
-## 5. 映射器注解（了解）
+## 映射器注解（了解）
 
 设计初期的 MyBatis 是一个 XML 驱动的框架。配置信息是基于 XML 的，映射语句也是定义在 XML 中的。而在 MyBatis 3 中，提供了其它的配置方式。MyBatis 3 构建在全面且强大的基于 Java 语言的配置 API 之上。它是 XML 和注解配置的基础。注解提供了一种简单且低成本的方式来实现简单的映射语句。
 
-### 5.1. mapper 接口注解清单
+### mapper 接口注解清单
 
 ![](images/344233022248670.png)
 
-### 5.2. 基础使用
+### 基础使用
 
 使用 MyBatis 提供 `@Select`、`@Insert`、`@Delete`、`@Update` 相关注解开发 dao 接口，直接在注解中定义相关的语句。定义 UserMapper 接口：
 
@@ -541,15 +541,15 @@ public void queryUserById_annotationTest() {
 
 > Tips: <font color=purple>*注解开发，实际开发中不推荐使用*</font>
 
-## 6. MyBatis 缓存
+## MyBatis 缓存
 
 MyBatis 包含一个非常强大的查询缓存特性，使用缓存可以使应用更快地获取数据，避免频繁的数据库交互。分成一级缓存和二级缓存
 
 ![](images/1820122230254.png)
 
-### 6.1. 一级缓存（sqlSession 级别缓存）
+### 一级缓存（sqlSession 级别缓存）
 
-#### 6.1.1. 实现步骤
+#### 实现步骤
 
 一级缓存是指 `SqlSession` 级别的缓存，当在同一个 `SqlSession` 中进行相同的 SQL 语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存 1024 条 SQL。<font color=red>**一级缓存默认开启，无需配置**</font>。测试代码如下：
 
@@ -574,7 +574,7 @@ public void oneCacheTest() {
 
 从上例日志可以看出，查询多次，只生成一句sql语句
 
-#### 6.1.2. 关闭一级缓存
+#### 关闭一级缓存
 
 要想关闭某个查询语句的一级缓存，只需要将`flushCache`属性设置为 true 即可
 
@@ -582,7 +582,7 @@ public void oneCacheTest() {
 <select ... flushCache="false"/>
 ```
 
-#### 6.1.3. 一级缓存原理（SqlSession 级别）
+#### 一级缓存原理（SqlSession 级别）
 
 第一次发出一个查询 sql，其查询结果写入 SqlSession 的一级缓存中，缓存使用的数据结构是 map，其中，key 是 `MapperID + offset + limit + Sql + 所有的入参`；value是用户查询的数据结果集。
 
@@ -590,9 +590,9 @@ public void oneCacheTest() {
 
 若使用不同的 SqlSession，因为不同的 SqlSession 是相互隔离的，所以不会使用一级缓存。
 
-### 6.2. 二级缓存（SqlSessionFactory 级别缓存）
+### 二级缓存（SqlSessionFactory 级别缓存）
 
-#### 6.2.1. 实现步骤
+#### 实现步骤
 
 二级缓存是指`SqlSessionFactory`级别缓存，在同一个`SqlSessionFactory`中多个sqlSession之间共享，开启此缓存的步骤如下：
 
@@ -667,7 +667,7 @@ public void secondCacheTest() {
 
 <font color=purple>**说明：MyBatis 框架的二级缓存，实际开发中不推荐使用，尤其在分布式项目中。原因是 MyBatis 的二级缓存不能实现细粒度的控制。如果使用缓存，推荐可以使用 Redis**</font>
 
-#### 6.2.2. 二级缓存原理
+#### 二级缓存原理
 
 二级缓存的范围是 mapper 级别（mapper同一个命名空间），mapper 以命名空间为单位创建缓存数据结构，结构是 Map 类型。其中 key为 `MapperID + offset + limit + Sql + 所有的入参`
 
@@ -679,7 +679,7 @@ Mybatis 的二级缓存是通过 `CacheExecutor` 实现的。`CacheExecutor` 其
 2. 在对应的 Mapper.xml 中配置 cache 节点
 3. 在对应的 select 查询节点中添加 `useCache=true`(*该配置为默认值*)
 
-### 6.3. 自定义缓存
+### 自定义缓存
 
 除了MyBatis提供的两种缓存机制，还可以实现自定义缓存，或为其他第三方缓存方案创建适配器，来完全覆盖二级缓存的行为。配置开启自定义缓存实现步骤与开启二级缓存一样。
 
@@ -810,11 +810,11 @@ public void testCustomCacheDiffSqlSessionFactory() throws IOException {
 }
 ```
 
-### 6.4. MyBatis 缓存机制示意图
+### MyBatis 缓存机制示意图
 
 ![](images/20210314161535846_7931.jpg)
 
-### 6.5. 缓存的注意事项
+### 缓存的注意事项
 
 请注意，缓存的配置和缓存实例会被绑定到 SQL 映射文件的命名空间中。因此，同一命名空间中的所有语句和缓存将通过命名空间绑定在一起。每条语句可以自定义与缓存交互的方式，或将它们完全排除于缓存之外，这可以通过在每条语句上使用两个简单属性来达成。默认情况下，语句会这样来配置：
 
@@ -827,13 +827,13 @@ public void testCustomCacheDiffSqlSessionFactory() throws IOException {
 
 鉴于上面的配置都是默认值，所以不应该再显式配置上述的默认属性。当想改变默认的行为，才需要设置 `flushCache` 和 `useCache` 属性。比如，某些情况下可能希望特定`select`语句的结果排除于缓存之外，或希望一条 select 语句清空缓存。类似地，也可能希望某些 update 语句执行时不要刷新缓存。
 
-## 7. MyBatis 插件开发快速入门
+## MyBatis 插件开发快速入门
 
-### 7.1. 示例需求
+### 示例需求
 
 此示例需求：开发一个记录慢查询的插件。通过该插件定义一个阈值，当查询操作运行时间超过这个阈值记录日志供运维人员定位慢查询。
 
-### 7.2. 插件实现步骤
+### 插件实现步骤
 
 1. 创建 MyBatis 的自定义插件类，必须实现 `Interceptor` 接口。该接口有如下三个方法：
 
@@ -942,17 +942,17 @@ public void testMyBatisPlugins() throws IOException {
 
 ![](images/20210612172212891_23237.png)
 
-### 7.3. Mybatis 的插件运行原理
+### Mybatis 的插件运行原理
 
 MyBatis 仅可以编写针对 `ParameterHandler`、`ResultSetHandler`、`StatementHandler`、`Executor` 这4种接口的插件，Mybatis 使用 JDK 的动态代理，为需要拦截的接口生成代理对象，以实现接口方法拦截功能。每当执行这4种接口对象的方法时，就会进入拦截方法，具体就是 `InvocationHandler` 的 `invoke()` 方法，并且只会拦截指定需要拦截的方法。
 
-## 8. MyBatis 与 Spring 整合
+## MyBatis 与 Spring 整合
 
-### 8.1. 官方资源
+### 官方资源
 
 - 官方说明文档：http://mybatis.org/spring/zh/
 
-### 8.2. 整合的思路
+### 整合的思路
 
 思路：把 MyBatis 框架对象，交给 Spring 管理
 
@@ -962,9 +962,9 @@ MyBatis 仅可以编写针对 `ParameterHandler`、`ResultSetHandler`、`Stateme
 4. 在 mapper 代理开发方法中，把 mapper 代理对象，交给 spring 管理
 5. 把数据源对象交给 spring 管理
 
-### 8.3. MyBatis-Spring 集成最佳实践
+### MyBatis-Spring 集成最佳实践
 
-#### 8.3.1. 简介
+#### 简介
 
 Mybatis-Spring 用于将 MyBatis 代码无缝地整合到 Spring 中，集成过程中的增强主要包括：
 
@@ -980,7 +980,7 @@ Mybatis-Spring 用于将 MyBatis 代码无缝地整合到 Spring 中，集成过
 |    **2.0**     |  3.5+   |       5.0+       |     4.0+     | Java 8+ |
 |    **1.3**     |  3.4+   |      3.2.2+      |     2.1+     | Java 6+ |
 
-#### 8.3.2. MyBatis-Spring 相关依赖
+#### MyBatis-Spring 相关依赖
 
 创建 maven 项目，配置 pom.xml 文件引入 mybatis-spring 相关依赖，具体清单如下：
 
@@ -1041,9 +1041,9 @@ pom.xml 依赖示例：
 </dependencies>
 ```
 
-### 8.4. 基于 xml 配置方式的整合
+### 基于 xml 配置方式的整合
 
-#### 8.4.1. 配置 pom 依赖
+#### 配置 pom 依赖
 
 > Tips: 以下配置版本比较老旧，只用于参考
 
@@ -1171,7 +1171,7 @@ pom.xml 依赖示例：
 </project>
 ```
 
-#### 8.4.2. 配置文件
+#### 配置文件
 
 在项目的 resource 目录中创建 MyBatis 总配置文件 sqlMapConfig.xml，配置如下内容：
 
@@ -1272,7 +1272,7 @@ Spring 框架的总配置文件 applicationContext.xml，配置如下内容：
 
 ![](images/428260016256703.jpg)
 
-#### 8.4.3. 传统 dao 开发方式
+#### 传统 dao 开发方式
 
 示例实现需求：1.根据用户id查询用户；2.新增用户
 
@@ -1394,11 +1394,11 @@ public void insertUserTest() {
 }
 ```
 
-#### 8.4.4. 使用 mapper 代理开发方式
+#### 使用 mapper 代理开发方式
 
 示例实现需求：	1.根据用户名称模糊查询用户；2.新增用户
 
-##### 8.4.4.1. mapper 代理对象配置方式一
+##### mapper 代理对象配置方式一
 
 根据上面示例配置搭建项目，只需要注意以下内容：
 
@@ -1490,7 +1490,7 @@ public class UserMapperTest {
 }
 ```
 
-##### 8.4.4.2. mapper 代理对象配置方式二（推荐使用）
+##### mapper 代理对象配置方式二（推荐使用）
 
 修改 spring 配置文件 applicationContext.xml，将配置创建 `MapperFactoryBean` 修改成创建 `MapperScannerConfigurer`，并配置扫描的包。具体说明如下：
 
@@ -1509,7 +1509,7 @@ public class UserMapperTest {
 </bean>
 ```
 
-### 8.5. 基于 xml 配置 + Mapper 接口的整合（较新版本的配置示例）
+### 基于 xml 配置 + Mapper 接口的整合（较新版本的配置示例）
 
 创建 spring 的总配置文件，主要配置包扫描与引入 mybatis 基础配置
 
@@ -1620,7 +1620,7 @@ public void testMyBatisSpringBasic() {
 }
 ```
 
-### 8.6. 基于纯注解配置方式的整合
+### 基于纯注解配置方式的整合
 
 - 创建数据源配置类（*定义在任意一个配置类中都可以*）
 
@@ -1730,15 +1730,15 @@ public void testMyBatisSpringAnnoBasic() {
 }
 ```
 
-## 9. MyBatis 常用 API
+## MyBatis 常用 API
 
-### 9.1. Resources 类
+### Resources 类
 
-#### 9.1.1. 简述
+#### 简述
 
 MyBatis提供的文件IO转换的工具类
 
-#### 9.1.2. 常用方法
+#### 常用方法
 
 ```java
 static InputStream getResourceAsStream(String resource)
@@ -1747,15 +1747,15 @@ static InputStream getResourceAsStream(String resource)
 - 作用：将指定的文件资源转成输入流对象。
 - 参数`resource`：需要转换的文件资源名称（路径）
 
-### 9.2. SqlSessionFactoryBuilder 类
+### SqlSessionFactoryBuilder 类
 
-#### 9.2.1. 简述
+#### 简述
 
 通过SqlSessionFactoryBuilder创建会话工厂SqlSessionFactory。将SqlSessionFactoryBuilder当成一个工具类使用即可，不需要使用单例管理SqlSessionFactoryBuilder
 
 在需要创建SqlSessionFactory时候，只需要new一次SqlSessionFactoryBuilder即可
 
-#### 9.2.2. 常用方法
+#### 常用方法
 
 ```java
 SqlSessionFactory build(InputStream inputStream);
@@ -1764,15 +1764,15 @@ SqlSessionFactory build(InputStream inputStream);
 - 作用：根据全局配置文件，创建SqlSessionFactory会话工厂。
 - 参数`inputStream`：MyBatis的配置文件输入流对象
 
-### 9.3. SqlSessionFactory 接口
+### SqlSessionFactory 接口
 
-#### 9.3.1. 简述
+#### 简述
 
 它是mybaties框架的核心对象，是线程安全的。通过SqlSessionFactory创建SqlSession，可以使用单例模式管理sqlSessionFactory（工厂一旦创建，使用一个实例）
 
 mybatis和spring整合后，使用单例模式管理sqlSessionFactory
 
-#### 9.3.2. 常用方法
+#### 常用方法
 
 <font color=violet>*说明：自动提交事务，只要sql语句一执行，就马上提交。如果同时有多个操作，如果有个操作失败，则之前的其他操作无法回滚，此时需要使用手动提交的方式*</font>
 
@@ -1789,9 +1789,9 @@ SqlSession openSession(boolean autoCommit);
 - 作用：开启会话并指定是否自动提交事务，返回SqlSession对象
 - 参数`autoCommit`：true开启自动提交/false关闭自动提交
 
-### 9.4. SqlSession 接口
+### SqlSession 接口
 
-#### 9.4.1. 简述
+#### 简述
 
 ```java
 public interface SqlSession extends Closeable
@@ -1801,7 +1801,7 @@ public interface SqlSession extends Closeable
 
 <font color=red>*SqlSession是线程不安全的*</font>。因此 **SqlSession 最佳应用场合在方法体内，定义成局部变量使用**
 
-#### 9.4.2. 常用方法
+#### 常用方法
 
 ```java
 void close()
@@ -1869,7 +1869,7 @@ int update(String statement, Object parameter)
 - 作用：获取指定的mapper接口动态代理对象
 - 参数`type`：指定的mapper接口的字节码对象
 
-#### 9.4.3. selectOne 和 selectList 区别
+#### selectOne 和 selectList 区别
 
 - `selectOne`表示查询出一条记录进行映射。如果使用`selectOne`可以实现使用`selectList`也可以实现（list中只有一个对象）。
 - `selectList`表示查询出一个列表（多条记录）进行映射。如果使用`selectList`查询多条记录，不能使用`selectOne`。
@@ -1880,17 +1880,17 @@ int update(String statement, Object parameter)
 
 注：在动态代理对象调用`selectOne`和`selectList`是根据mapper接口方法的返回值决定，如果返回list则调用`selectList`方法，如果返回单个对象则调用`selectOne`方法。
 
-## 10. 其他扩展
+## 其他扩展
 
-### 10.1. MyBatis 和 Hibernate 本质区别和应用场景（了解）
+### MyBatis 和 Hibernate 本质区别和应用场景（了解）
 
-#### 10.1.1. MyBatis 和 Hibernate 相同点
+#### MyBatis 和 Hibernate 相同点
 
 1. 对JDBC的封装
 2. 持久层的框架
 3. 用于dao层开发
 
-#### 10.1.2. MyBatis 和 Hibernate 区别
+#### MyBatis 和 Hibernate 区别
 
 1.	SQL支持
     - hibernate是封装了sql语句，支持数据库无关性，在项目需要支持多种数据库的情况下，代码开发量较少，sql语句优化困难。
@@ -1906,17 +1906,17 @@ int update(String statement, Object parameter)
 
 企业进行技术选型，以低成本高回报作为技术选型的原则，根据项目组的技术力量进行选择
 
-### 10.2. Mybatis 的预编译
+### Mybatis 的预编译
 
 <font color=red>**Mybatis 默认情况下，将对所有的 SQL 进行预编译**</font>。
 
 Mybatis 底层使用 `PreparedStatement` 和占位符来实现预编译。默认情况下，将对所有的 SQL 进行预编译，将 `#{}` 替换为占位符 `?`，然后将带有占位符`?`的 SQL 模板发送至数据库服务器，由服务器对此无参数的 SQL 进行编译后，将编译结果缓存，然后直接执行带有真实参数的 SQL。
 
-### 10.3. 逻辑比较符在 xml 配置文件中处理方式
+### 逻辑比较符在 xml 配置文件中处理方式
 
 在 mybatis 的 mapper 配置文件 sql 语句中，有时用到大于，小于等等的比较符，直接写在里面就被当做标签的开头来处理了，会报格式不正确的错。有2种解决方法：
 
-#### 10.3.1. `<![CDATA[ ]]>` 标识
+#### `<![CDATA[ ]]>` 标识
 
 ```xml
 <if test="menu.authority != null">
@@ -1926,7 +1926,7 @@ Mybatis 底层使用 `PreparedStatement` 和占位符来实现预编译。默认
 
 > 注：其中都能使用大于`>`，小于`<`，小于等于`<=`，大于等于`>=`，不等于`<>`
 
-#### 10.3.2. 转义
+#### 转义
 
 ```xml
 <if test="menu.authority != null">

@@ -1,4 +1,4 @@
-## 1. Sharding-JDBC 概述
+## Sharding-JDBC 概述
 
 > 官网：https://shardingsphere.apache.org/document/legacy/4.x/document/cn/manual/sharding-jdbc/
 
@@ -14,11 +14,11 @@
 
 ![](images/275671010226636.jpg)
 
-## 2. Sharding-JDBC 功能介绍
+## Sharding-JDBC 功能介绍
 
 Sharding-JDBC 可以进行分库分表，同时又可以解决分库分表带来的问题，它的核心功能是：**数据分片**和**读写分离**。
 
-### 2.1. 数据分片
+### 数据分片
 
 **数据分片**是 Sharding-JDBC 核心功能，它是指<u>按照某个维度将存放在单一数据库中的数据分散存放至多个数据库或表中</u>，以达到提升性能瓶颈以及可用性的效果。 数据分片的有效手段是对关系型数据库进行分库和分表。在使用 Sharding-JDBC 进行数据分片前，需要了解以下概念：
 
@@ -70,7 +70,7 @@ select p1.*,p2.商品描述 from 商品信息2 p1 inner join 商品描述2  p2 o
 
 > 注意：绑定表之间的分片键要完全相同。
 
-### 2.2. 读写分离
+### 读写分离
 
 面对日益增加的系统访问量以及高并发的情况，数据库的性能面临着巨大瓶颈。 数据库的“写”操作是比较耗时的(例如：写10000条数据到oracle可能要3分钟)，而数据库的“读”操作相对较快(例如：从oracle读10000条数据可能只要5秒钟)。在高并发的情况下，写操作会严重拖累读操作，这是单纯分库分表无法解决的。
 
@@ -86,22 +86,22 @@ select p1.*,p2.商品描述 from 商品信息2 p1 inner join 商品描述2  p2 o
 
 ![](images/331333110249660.png)
 
-## 3. Sharding-JDBC 入门案例
+## Sharding-JDBC 入门案例
 
-### 3.1. 案例需求描述
+### 案例需求描述
 
 使用 Sharding-JDBC 实现电商平台的商品列表展示，每个列表项中除了包含商品基本信息、商品描述信息之外，还包括了商品所属的店铺信息，如下所示：
 
 ![](images/212673510247264.png)
 
-### 3.2. 开发环境
+### 开发环境
 
 - 数据库：MySQL-5.7.25
 - JDK：1.8.0_201
 - 应用框架：spring-boot-2.1.3.RELEASE，Mybatis 3.5.0
 - Sharding-JDBC：sharding-jdbc-spring-boot-starter-4.0.0-RC1
 
-### 3.3. 案例数据库设计
+### 案例数据库设计
 
 此案例主体是商品表，按以下原则先做**垂直拆分**：
 
@@ -119,11 +119,11 @@ select p1.*,p2.商品描述 from 商品信息2 p1 inner join 商品描述2  p2 o
 
 为避免主键冲突，ID生成策略采用雪花算法来生成全局唯一ID，雪花算法类似于UUID，但是它能生成有序的ID，有利于提高数据库性能。
 
-### 3.4. MySQL 主从数据库搭建（windows）
+### MySQL 主从数据库搭建（windows）
 
 本示例使用 MySQL 数据库，并在 windows 环境中搭建主从架构。
 
-#### 3.4.1. MySQL 配置主从同步配置
+#### MySQL 配置主从同步配置
 
 因为个人本地安装了 5.7.25 版本的 MySQL，如果搭建第二个 MySQL 数据库，可以复制原来本地的 mysql 到其它目录，也可以使用免安装版本的压缩包的方式，现在选择使用免安装的方式
 
@@ -178,7 +178,7 @@ replicate_wild_ignore_table=information_schema.%
 replicate_wild_ignore_table=performance_schema.%
 ```
 
-#### 3.4.2. 安装 mysql 服务
+#### 安装 mysql 服务
 
 进入从库所在位置的 bin 目录，以<font color=red>**管理员身份**</font>运行命令行窗口，执行以下命令将从库安装为 windows 服务，<font color=red>**注意配置文件位置**</font>：
 
@@ -207,7 +207,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 > <font color=red>**请注意，如果使用复制的方式来搭建从库数据，在 data 目录下有个文件 auto.cnf，也要与主库不一样，建议直接删除掉，重启服务后将会重新生成。由于从库是从主库复制过来的，因此里面的数据完全一致，可使用原来的账号、密码登录。最后重启主库和从库即可使用**</font>
 
-#### 3.4.3. 授权主从复制专用账号
+#### 授权主从复制专用账号
 
 ```bash
 # 切换至主库bin目录，登录主库
@@ -224,7 +224,7 @@ show master status;
 
 > 注意：此文件名与位点每套环境安装部署都不一样，上图仅供参考。
 
-#### 3.4.4. 从库同步主库数据
+#### 从库同步主库数据
 
 切换至从库 bin 目录，登录从库
 
@@ -276,7 +276,7 @@ mysql> show slave hosts;
 
 > *注：通过以上配置后可能会发现从库比没有同步，主从同步的原理是从库开启一个线程去读取主库的bin-log 日志，此时因为要同步的数据库表没有发生变化，所以没有写入到 bin-log 日志中，所以从库没有进行同步。只需要让待同步的数据库发生变化即可，如：重新建库建表*
 
-#### 3.4.5. 初始化数据库
+#### 初始化数据库
 
 登录并连接主库，然后执行如下脚本：
 
@@ -410,9 +410,9 @@ CREATE TABLE `product_info_2` (
 
 ![](images/190524722231780.png)
 
-### 3.5. 分库分表功能实现
+### 分库分表功能实现
 
-#### 3.5.1. 工程依赖
+#### 工程依赖
 
 创建 maven 工程 sharding-jdbc-demo，在 pom 中引入相关依赖：
 
@@ -527,7 +527,7 @@ CREATE TABLE `product_info_2` (
 </build>
 ```
 
-#### 3.5.2. 项目配置
+#### 项目配置
 
 在 resources 目录创建 application.properties 配置文件，配置内容如下：
 
@@ -651,7 +651,7 @@ spring.shardingsphere.props.sql.show=true
 
 ![](images/229231311220344.png)
 
-#### 3.5.3. 持久层接口与业务功能
+#### 持久层接口与业务功能
 
 此部分代码与平常的单数据库单表操作一样。具体代码详见：`wanxinp2p-project\wanxinp2p\technology-stack-demo\sharding-jdbc-demo\`。
 
@@ -678,7 +678,7 @@ public interface ProductMapper {
 
 > 值得注意的是：在编号SQL语句时，<font color=red>**表名均为<u>逻辑表</u>的名称**</font>，非数据库真实存在的表，此处就是通过sql操作逻辑表，由 Sharding-JDBC 根据配置来决定具体操作哪些库、哪些真实表
 
-### 3.6. 功能测试
+### 功能测试
 
 启动两个 MySQL 服务，启动 sharding-jdbc-demo 工程，通过 postman 请求进行测试
 

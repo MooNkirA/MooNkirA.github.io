@@ -1,10 +1,10 @@
-## 1. XML 概述
+## XML 概述
 
 XML 的全称 Extensible Markup Language，中文：可扩展标记语言。XML 是一门语言，由 w3c 组织制定。
 
 XML 是使用标记来描述数据格式，标记又叫标签，元素。标签又分为开始标签和结束标签，比如`<name>`是开始标签，`</name>`是结束标签。
 
-### 1.1. 作用
+### 作用
 
 - 用于描述数据(关系型数据)，存储数据，可以当成一个小型数据库使用。
 - 作为框架的配置文件(structs.xml, hibernate.cfg.xml…)。好处是可以提升软件的灵活性。如：数据库的配置、JavaBean 的配置。使用时的数据可以查看不同的 xml 配置文件。
@@ -12,14 +12,14 @@ XML 是使用标记来描述数据格式，标记又叫标签，元素。标签�
 
 > XML 被设计用来描述数据，其焦点是数据的内容。HTML 被设计用来显示数据，其焦点是数据的外观。
 
-### 1.2. XML 的约束
+### XML 的约束
 
 XML 约束是用来规定 XML 文件中应该出现哪些标签，哪些属性，每个属性的取值有哪些。其作用是：
 
 - 约束XML文件结构
 - 让XML文档的书写更加规范
 
-#### 1.2.1. 约束文件分类
+#### 约束文件分类
 
 **DTD 约束文件**：
 
@@ -34,7 +34,7 @@ XML 约束是用来规定 XML 文件中应该出现哪些标签，哪些属性�
 - 应用场景：Spring 的配置文件：applicationContext.xml, tomcat 中的 web.xml 等
 - 文件后缀名：xsd
 
-## 2. XML 语法
+## XML 语法
 
 - xml 文件后缀名是`.xml`，可以使用浏览器去检查 xml 是否符合语法。因为浏览器内置了 xml 的解析引擎。
 - 格式良好的 XML 文档规则
@@ -47,11 +47,11 @@ XML 约束是用来规定 XML 文件中应该出现哪些标签，哪些属性�
     7. 对于特殊字符要进行处理
 - 一个 XML 文件分为几部分内容：文档声明、标签、属性、注释、转义字符、CDATA 区、处理指令。
 
-### 2.1. 文档声明
+### 文档声明
 
 在编写 XML 文档时，必须要有文档声明
 
-#### 2.1.1. 声明格式
+#### 声明格式
 
 在 XML 文档的首行声明
 
@@ -75,19 +75,19 @@ XML 约束是用来规定 XML 文件中应该出现哪些标签，哪些属性�
 > - 参数的顺序必须是：<font color=red>**version 在前，encoding 在后**</font>，否则会报错。
 > - 文档声明的语句必须牌XML文档的最左上角，不能有任何空格和换行。
 
-#### 2.1.2. 编码问题
+#### 编码问题
 
 用 encoding 属性说明文档的字符编码：`<?xml version="1.0" encoding="GBK" ?>`
 
 记事本默认是 ANSI 的编码，在简体中文 Windows 操作系统中，ANSI 编码代表 GBK 编码。XML 文件保存的编码要与 encoding 的编码相同，不然解析会出错。
 
-#### 2.1.3. xml 文档编码问题注意
+#### xml 文档编码问题注意
 
 ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的编码，所以在 eclipse 中编写 xml 文件通常不会有编码问题。但是如果使用记事本工具，那么注意保存 xml 文件的编码和文件声明的编码保持一致！
 
-### 2.2. 标签（元素）
+### 标签（元素）
 
-#### 2.2.1. 标签的格式
+#### 标签的格式
 
 ```xml
 <标签名>标签内容(数据部分)</标签名>
@@ -99,7 +99,7 @@ ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的�
 <student>张三</student>
 ```
 
-#### 2.2.2. 标签分类
+#### 标签分类
 
 **有主体标签**：
 
@@ -115,14 +115,14 @@ ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的�
 <a/>
 ```
 
-#### 2.2.3. 标签命名规范
+#### 标签命名规范
 
 - 标签名严格区分大小写，比如`<A>`和`<a>`是完全不同的标签。
 - 标签名不能以数字开头。只能以字母或下划线开头，可以是中文。
 - 标签名不能包含空格，比如`<name of>`。但是`<name >`写法是可以，但不推荐使用。
 - 标签名不能使用冒号(`:`)，是命名空间的特殊符号。
 
-#### 2.2.4. 标签的注意事项
+#### 标签的注意事项
 
 - 在一个 xml 文档中，只允许有一个根标签。
 - 标签中是可以有属性有多个，属性值必须使用引号括起来。
@@ -137,9 +137,9 @@ ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的�
 
 <font color=red>**对于 XML 标签中出现的所有空格和换行，XML 解析程序都会当作标签内容进行处理。**</font>
 
-### 2.3. 属性
+### 属性
 
-#### 2.3.1. 属性语法格式
+#### 属性语法格式
 
 ```xml
 <开始标签 属性名="属性值"  属性值 = '属性值'>标签内容(数据部分)</结束标签>
@@ -151,26 +151,26 @@ ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的�
 <name id="001">李四</name>
 ```
 
-#### 2.3.2. 注意事项
+#### 注意事项
 
 - 属性值必须放在双引号或单引号中，不能省略引号，也不能单双混用。
 - 属性必须放在开始标签中，不能写在结束标签中。
 - 在一个标签中，属性可以有多个，属性之前使用空格分隔即可。但不能出现同名的属性。
 
-### 2.4. 注释
+### 注释
 
-#### 2.4.1. 注释语法格式
+#### 注释语法格式
 
 ```xml
 <!-- xml 注释内容 -->
 ```
 
-#### 2.4.2. 注意事项
+#### 注意事项
 
 - 注释不能嵌套。
 - XML 注释不能出现在文档声明语句之上。
 
-### 2.5. xml 文件对特殊符号（&，<）的处理
+### xml 文件对特殊符号（&，<）的处理
 
 问题说明：在项目文件的配置或者用 xml 进行数据的存储或传输时，会遇到不能用一些特殊符号的问题，例如使用 c3p0 时配置 jdbcUrl 属性：
 
@@ -188,7 +188,7 @@ jdbc:mysql://localhost:3306/tempdb?characterEncoding=utf8&useSSL=false&serverTim
 - CDATA
 - 转义字符
 
-### 2.6. 转义字符
+### 转义字符
 
 有些符号在 XML 语言中是有特殊含义的，如果想原样输出 XML 中的特殊字符，那么就需要对其进行转义。
 
@@ -211,13 +211,13 @@ jdbc:mysql://localhost:3306/tempdb?characterEncoding=utf8&useSSL=false&serverTim
 </property>
 ```
 
-### 2.7. CDATA 区
+### CDATA 区
 
 XML 文档中的所有文本均会被解析器解析。比如 JavaScript 代码，包含大量 `<` 或 `&` 字符。为了避免错误，可以将脚本代码定义为 CDATA。
 
 而 CDATA 区的作用是：能够保证在 CDATA 区的字符数据能够原样输出，不会由 XML 解析器（或浏览器）进行解析。
 
-#### 2.7.1. 语法格式
+#### 语法格式
 
 CDATA 的语法格式是由 "`<![CDATA[`" 开始，由 "`]]>`" 结束，其内容可以换行
 
@@ -247,25 +247,25 @@ function matchwo(a,b)
 <property><![CDATA["&&&&&&<<<<<<<"]]></property>
 ```
 
-#### 2.7.2. 注意事项
+#### 注意事项
 
 - CDATA 部分不能包含字符串 "`]]>`"。也不允许嵌套的 CDATA 部分。
 - 标记 CDATA 部分结尾的 "`]]>`" 不能包含空格或换行。
 
-## 3. DTD 约束
+## DTD 约束
 
 DTD 全称：Document Type Definition 文档类型定义
 
-### 3.1. DTD 的分类
+### DTD 的分类
 
 按引用位置来分类：
 
 - 内部 DTD：约束直接写在XML文档中（不使用）
 - 外部 DTD：单独使用一个文件来写约束，通过引用来使用
 
-### 3.2. DTD 文档声明的两种形式（引用方式）
+### DTD 文档声明的两种形式（引用方式）
 
-#### 3.2.1. SYSTEM
+#### SYSTEM
 
 **含义**：表示该DTD约束是个人或是某个组织的，不公开的，私有的，使用范围比较窄
 
@@ -287,7 +287,7 @@ DTD 全称：Document Type Definition 文档类型定义
 - "../dtd/book.dtd" 在上一层目录的dtd文件夹中
 
 
-#### 3.2.2. PUBLIC
+#### PUBLIC
 
 **含义**：当前的 DTD 是公开的，可以广泛使用的，使用范围比较广。
 
@@ -304,7 +304,7 @@ DTD 全称：Document Type Definition 文档类型定义
                         "http://struts.apache.org/dtds/struts-2.1.dtd">
 ```
 
-#### 3.2.3. DTD 文件描述
+#### DTD 文件描述
 
 DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD 版本信息//语言`
 
@@ -314,9 +314,9 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 - `+`： 非 ISO 标准的 DTD，经过了改进
 - `-`： 非 ISO 标准的 DTD，没有改进过的
 
-### 3.3. DTD语法：元素约束
+### DTD语法：元素约束
 
-#### 3.3.1. 元素约束语法格式
+#### 元素约束语法格式
 
 ```xml
 <!ELEMENT 元素名(标签名) 元素类型或元素内容>
@@ -324,13 +324,13 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 
 上面三个要素必须要<font color=red>**空格分隔，空格不能省略**</font>。
 
-#### 3.3.2. 元素的类别（3种）
+#### 元素的类别（3种）
 
 - (#PCDATA)：Parsed Character Data 被解析的字符数据（文本内容）
 - EMPTY：空的(表示一个空的标签) 如： `<BR/>` 的 DTD 为：`<!ELEMENT BR EMPTY>`
 - ANY：任意的内容都可以
 
-#### 3.3.3. 元素的内容修饰符号
+#### 元素的内容修饰符号
 
 | 符号  |               描述                |           示例            |                                         |
 | :--: | -------------------------------- | ------------------------ | --------------------------------------- |
@@ -341,7 +341,7 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 | `|`  | 表明在列出的对象中选择一个             | `(title\|author\|price)` | 包含这一个子元素，三者选一。                 |
 | `,`  | 表示对象必须按指定的顺序出现           | `(title,author,price)`   | 包含这三个子元素，而且元素要依次出现，出现一次。 |
 
-#### 3.3.4. 元素约束示例
+#### 元素约束示例
 
 ```xml
 <!ELEMENT bookshelf (book+)>
@@ -351,9 +351,9 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 <!ELEMENT price (#PCDATA)>
 ```
 
-### 3.4. DTD语法：属性约束
+### DTD语法：属性约束
 
-#### 3.4.1. 语法格式
+#### 语法格式
 
 语法：
 
@@ -382,7 +382,7 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 | `#FIXED value` | 属性的值是固定的，只能取 value |
 | 默认值           | 直接写就是默认值              |
 
-#### 3.4.2. 属性约束示例
+#### 属性约束示例
 
 属性约束（两种写法）
 
@@ -400,7 +400,7 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 >
 ```
 
-### 3.5. DTD 综合案例
+### DTD 综合案例
 
 案例需求：
 
@@ -449,11 +449,11 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 </contactList>
 ```
 
-## 4. Schema 约束
+## Schema 约束
 
 Schema `/'ski:mə/`  概要，纲要
 
-### 4.1. Schema 约束概述
+### Schema 约束概述
 
 1. 扩展名(XML Schema Definition) XML 模式定义：xsd
 2. Schema 约束文件本身也是个 XML 文件，所以它也有根元素，根标签(元素)的名字叫 schema
@@ -465,15 +465,15 @@ Schema `/'ski:mə/`  概要，纲要
 
 > Notes: <font color=purple>**Schema 也被约束，被官方Schema约束文档所约束。**</font>
 
-### 4.2. Schema 的命名空间
+### Schema 的命名空间
 
-#### 4.2.1. 概述
+#### 概述
 
 由于 XML 中的元素名是预定义的，当两个不同的文档使用相同的元素名时，就会发生**命名冲突**的问题。
 
 Schema 命名空间的作用：用来描述实例文档使用的标签，属性是来自于哪一个模式文档。避免标签名、属性名冲突的问题。
 
-#### 4.2.2. 名称空间声明的一般形式
+#### 名称空间声明的一般形式
 
 名称空间声明的一般形式为：
 
@@ -486,7 +486,7 @@ Schema 命名空间的作用：用来描述实例文档使用的标签，属性�
 xmlns:xs="http://www.w3.org/2001/XMLSchema"
 ```
 
-#### 4.2.3. XML Namespace (xmlns) 属性
+#### XML Namespace (xmlns) 属性
 
 XML 命名空间属性被放置于某个元素的开始标签之中，并使用以下的语法：
 
@@ -498,7 +498,7 @@ xmlns:前缀="URI 地址"
 
 > Notes: <font color=red>**用于标示命名空间的地址不会被解析器用于查找信息。其唯一的作用是赋予命名空间一个唯一的名称。**</font>
 
-#### 4.2.4. 统一资源标示符（Uniform Resource Identifier (URI)）
+#### 统一资源标示符（Uniform Resource Identifier (URI)）
 
 统一资源标示符是一串可以标示因特网资源的字符。最常用的 URI	 是用来标示因特网域名地址的统一资源定位器(URL)。例如：
 
@@ -506,7 +506,7 @@ xmlns:前缀="URI 地址"
 http://www.baidu.com/xxx
 ```
 
-#### 4.2.5. 默认的命名空间（Default Namespaces）
+#### 默认的命名空间（Default Namespaces）
 
 默认命名空间格式：
 
@@ -520,7 +520,7 @@ xmlns="namespaceURI"
 <table xmlns="http://www.moonzero.com/html4">
 ```
 
-#### 4.2.6. 命名冲突解决方案
+#### 命名冲突解决方案
 
 **使用前缀来避免命名冲突**：
 
@@ -556,9 +556,9 @@ xmlns="namespaceURI"
 
 与仅仅使用前缀不同，可以为标签添加了一个 `xmlns` 属性，这样就为前缀赋予了一个与某个命名空间相关联的限定名称
 
-### 4.3. Schema 文档使用与解析
+### Schema 文档使用与解析
 
-#### 4.3.1. 使用示例
+#### 使用示例
 
 示例 Schema 模式文档：note.xsd：
 
@@ -594,7 +594,7 @@ xmlns="namespaceURI"
 </note>
 ```
 
-#### 4.3.2. Schema 元素解析说明
+#### Schema 元素解析说明
 
 1. schema 是每一个 XML 模式文档的根元素
 2. `<schema>` 元素包含属性 `xmlns:xs="http://www.w3.org/2001/XMLSchema"`
@@ -612,7 +612,7 @@ xmlns="namespaceURI"
 6. `<xs:sequence>` 表示其中的子元素要按顺序出现
 7. 其他元素 (to, from, heading, body) 是简易类型，因为它们没有包含其他元素。
 
-#### 4.3.3. Schema 使用说明
+#### Schema 使用说明
 
 **定义位置**：在模式文档的根标签中定义
 
@@ -634,7 +634,7 @@ xmlns="namespaceURI"
 
 ![](images/543030715248773.jpg)
 
-### 4.4. Schema 与DTD 的区别
+### Schema 与DTD 的区别
 
 1. XML: DTD 只是个普通的文本文件，并不是 XML 文件。而 Schema 本身也是一个 XML 文件。
 2. 数据类型： DTD 的类型比较单一，Schema 的数据类型丰富得多，可以指定如：integer、date、double。
@@ -642,29 +642,29 @@ xmlns="namespaceURI"
 4. 复杂度：比 DTD 要复杂。
 5. <font color=red>**可以多个 Schema 模式文档约束一个 XML 实例文档，而一个 DTD 文件只能约束一个 XML 文档**</font>。
 
-## 5. XML 解析
+## XML 解析
 
-### 5.1. XML 的解析概述
+### XML 的解析概述
 
 **XML 解析**是指，使用 Java 技术从 XML 文档中获取数据的过程。
 
-### 5.2. XML 解析的方式
+### XML 解析的方式
 
-#### 5.2.1. DOM 解析
+#### DOM 解析
 
 DOM 解析是直接将 XML 文档加载到内存中，在内存中生成一个 DOM 树。DOM 树上的每一个对象都是一个节点(Node)对象。DOM 解析优缺点如下：
 
 - 优点：xml 中的每个元素都是 dom 树上的一个节点，<font color=red>**可以在解析的过程中对结点上的每个元素进行增删改操作**</font>。一般使用在PC端开发。
 - 缺点：如果 XML 文档内容特别大，则会导致内存占用也比较大。
 
-#### 5.2.2. SAX 解析
+#### SAX 解析
 
 SAX 解析是指，从上往下一行一行解析，解析一行释放一行。SAX 解析优缺点如下：
 
 - 优点：占用内存空间小，一般使用客户端App开发。
 - 缺点：以只读的方式解析，不能对节点进行增删改操作。
 
-### 5.3. DOM4J（第三方解析工具）
+### DOM4J（第三方解析工具）
 
 DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom 的升级品，采用 dom 方式来解析 xml 文件（*Hibernate 框架就是使用 Dom4j 解析 XML*）。该框架具有性能优异、功能强大和极其易使用的特点，它的性能超过 sun 公司官方的dom 技术，同时它也是一个开放源代码的软件，可以在 SourceForge 上找到。
 
@@ -677,9 +677,9 @@ DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom �
 3. 在 jar 文件上点右键，选 Builder Path -> Add to Builder Path
 4. 在类中导包使用
 
-## 6. 使用 DOM4J 解析 XML
+## 使用 DOM4J 解析 XML
 
-### 6.1. DOM 树的组成元素
+### DOM 树的组成元素
 
 - 文档对象：Document
 - 节点：Node
@@ -687,14 +687,14 @@ DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom �
 - 属性：Attribute
 - 文本：Text
 
-#### 6.1.1. Document 文档对象
+#### Document 文档对象
 
 每一个 XML 文档加载到内存中后会生成一个 `Document` 对象，通过 `Document` 对象就可以获取 XML 文档中的所有内容。获得 `Document` 对象步骤如下：
 
 1. 创建一个 `SAXReader` 对象，用于读取 xml 文件。
 2. 通过 `SAXReader` 对象调用 `read` 方法，读取 xml 文件得到 `Document` 对象
 
-#### 6.1.2. Node 节点信息
+#### Node 节点信息
 
 <font color=red>**DOM 树中每个元素都抽象成一个节点对象 `Node`，节点是所有元素的父元素**</font>。
 
@@ -704,11 +704,11 @@ DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom �
 2. 通过迭代器对象就可以遍历当前元素节点下的所有 `Node` 对象
 3. 获取 `Node` 的对象后，通过判断 `Node` 对象的类型来筛选需要的对象
 
-#### 6.1.3. Element 标签信息
+#### Element 标签信息
 
 所有元素(标签)都是一个 `Element` 对象
 
-#### 6.1.4. Attribute 属性信息
+#### Attribute 属性信息
 
 每一个元素上的每一个属性都是一个 `Attribute` 对象。获得 `Attribute` 属性的前提，先获得标签 `Element` 对象。
 
@@ -717,7 +717,7 @@ DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom �
 - 先得到 `Attribute` 对象，再通过对象的方法得到属性名和属性值。
 - 直接通过属性的名字得到字符串类型的属性值。
 
-#### 6.1.5. Text 文本元素
+#### Text 文本元素
 
 Text 文本元素就是指标签体的内容，获取步骤如下：
 
@@ -726,9 +726,9 @@ Text 文本元素就是指标签体的内容，获取步骤如下：
 
 > Notes: 空格、换行、制表符：也是属于文本的一部分，所以在解析 xml 文件的时候，格式化 XML 文件要注意。
 
-### 6.2. DOM4J 工具包常用类
+### DOM4J 工具包常用类
 
-#### 6.2.1. SAXReader 类
+#### SAXReader 类
 
 ```java
 public Document read(String name);
@@ -742,7 +742,7 @@ public Document read(File file)
 
 - 返回一个 Document 对象，参数是一个 File 文件路径对象
 
-#### 6.2.2. Document 类
+#### Document 类
 
 ```java
 public Element getRootElement()
@@ -756,7 +756,7 @@ public void setRootElement(Element rootElement)
 
 - 将标签(元素)对象添加到该 document 对象中。(调用此方法的 Document 对象)
 
-#### 6.2.3. Node 类
+#### Node 类
 
 ```java
 public short getNodeType()
@@ -780,7 +780,7 @@ public void setText(String text)
 
 - 给当前的节点对象设置text文本内容
 
-#### 6.2.4. Element 类
+#### Element 类
 
 所有元素(标签)都是一个 Element 对象，是 Branch 的子类
 
@@ -788,7 +788,7 @@ public void setText(String text)
 public interface Element extends Branch
 ```
 
-##### 6.2.4.1. Element 类对节点 Node 的操作相关方法
+##### Element 类对节点 Node 的操作相关方法
 
 ```java
 public Iterator<Node> nodeIterator()
@@ -796,7 +796,7 @@ public Iterator<Node> nodeIterator()
 
 - Element继承父类的方法，方法返回当前标签下所有的子节点（Node对象）的迭代器，<font color=red>**获取的包含了注解、空白内容等等元素**</font>。
 
-##### 6.2.4.2. Element 类对元素（标签）Element 的操作相关方法
+##### Element 类对元素（标签）Element 的操作相关方法
 
 ```java
 public Iterator<Element> elementIterator()
@@ -861,7 +861,7 @@ public void setText(String text)
 
 - 继承父类(Node)方法，给当前的标签对象设置text文本内容
 
-##### 6.2.4.3. Element 类对属性 Attribute 的操作相关方法
+##### Element 类对属性 Attribute 的操作相关方法
 
 ```java
 public Attribute attribute(String name);
@@ -888,7 +888,7 @@ public Iterator<Attribute> attributeIterator();
 
 - 获得当前元素属性的迭代器对象。
 
-##### 6.2.4.4. Element类对文本Text的操作相关方法
+##### Element类对文本Text的操作相关方法
 
 ```java
 public String getText();
@@ -914,7 +914,7 @@ public String elementTextTrim(String name);
 
 - 通过元素对象根据子元素名name得到该元素的文本内容（<font color=red>**会自动去掉包括了左右空格，换行符等内容**</font>）
 
-#### 6.2.5. Attribute 类
+#### Attribute 类
 
 ```java
 public String getText();
@@ -934,9 +934,9 @@ public String getValue();
 
 - 得到属性的值。
 
-#### 6.2.6. XMLWriter 类
+#### XMLWriter 类
 
-##### 6.2.6.1. DocumentHelper 工具类
+##### DocumentHelper 工具类
 
 DocumentHelper 工具类可以用来创建文档对象，元素对象，属性对象...
 
@@ -958,7 +958,7 @@ public static Element createElement(String name)
 
 - 创建名称是 name 的 `Element` 对象
 
-##### 6.2.6.2. OutputFormat 类（格式化）
+##### OutputFormat 类（格式化）
 
 ```java
 public static OutputFormat createPrettyPrint()
@@ -974,7 +974,7 @@ public static OutputFormat createCompactFormat()
 - 静态方法，创建紧凑型格式化的对象，所有的内容一行显示
 > 原文档解释：A static helper method to create the default compact format. This format does not have any indentation or newlines after an alement and all other whitespace trimmed
 
-##### 6.2.6.3. XMLWriter 类
+##### XMLWriter 类
 
 ```java
 public XMLWriter(OutputStream out, OutputFormat format)
@@ -990,9 +990,9 @@ public void write(Document doc);
 
 - 将文档对象写出 XML 文件中
 
-### 6.3. 使用示例
+### 使用示例
 
-#### 6.3.1. DOM4J 常用方法练习
+#### DOM4J 常用方法练习
 
 示例 xml 文档
 
@@ -1140,7 +1140,7 @@ public class MoonZero {
 }
 ```
 
-#### 6.3.2. XML 数据的封装案例
+#### XML 数据的封装案例
 
 ```java
 import java.io.File;
@@ -1198,7 +1198,7 @@ public class MoonZero {
 }
 ```
 
-#### 6.3.3. XMLWriter 基础使用案例
+#### XMLWriter 基础使用案例
 
 ```java
 import java.io.FileOutputStream;

@@ -1,0 +1,10 @@
+/* 源码模式编辑器背景 */
+.markdown-source-view .cm-content {
+  background-color: #E3EDCD !important; /* 豆沙绿，替换为任意护眼色值 */
+  color: #333333 !important; /* 文字颜色，默认深灰，确保清晰 */
+}
+
+/* 预览模式编辑器背景 */
+.markdown-preview-view {
+  background-color: #E3EDCD !important;
+}

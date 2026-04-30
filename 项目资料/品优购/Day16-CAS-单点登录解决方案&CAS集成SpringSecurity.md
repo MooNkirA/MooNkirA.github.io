@@ -1,8 +1,6 @@
-# Day16 CAS-单点登录解决方案&CAS集成SpringSecurity
+## 单点登录系统CAS入门
 
-## 1. 单点登录系统CAS入门
-
-### 1.1. 单点登录简介
+### 单点登录简介
 
 单点登录（Single Sign On），简称为SSO，是目前比较流行的企业业务整合的解决方案之一。SSO的定义是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。
 
@@ -10,9 +8,9 @@
 
 ![单点登录流程](images/20190217230917311_21548.png)
 
-### 1.2. CAS-单点登录解决方案
+### CAS-单点登录解决方案
 
-#### 1.2.1. CAS简介
+#### CAS简介
 
 CAS 是 Yale 大学发起的一个开源项目，旨在为 Web 应用系统提供一种可靠的单点登录方法，CAS 在 2004 年 12 月正式成为 JA-SIG 的一个项目。CAS 具有以下特点
 
@@ -26,7 +24,7 @@ CAS 是 Yale 大学发起的一个开源项目，旨在为 Web 应用系统提�
 - ST（Service Ticket）：ST是CAS为用户签发的服务票据，回传给客户端(使用一次)
 - TGC（Ticket Grangting Cookie）：TGC是CAS在浏览器存储用户登录凭证的Cookie
 
-#### 1.2.2. CAS执行流程
+#### CAS执行流程
 
 下图是 CAS 最基本的协议过程：
 
@@ -45,7 +43,7 @@ SSO单点登录访问流程主要有以下步骤：
 
 <font color="red">***注：CAS服务端往用户浏览器端写入cookies(TGC)是写入到登陆时CAS服务的客户端，而不是写在各个子系统的cookies。如果登陆页面的TGC cookies被删除，其他所有子系统都需要重新登陆。***</font>
 
-#### 1.2.3. CAS官网
+#### CAS官网
 
 - 官方网站：https://www.apereo.org/projects/cas
 - 下载地址：https://www.apereo.org/projects/cas/download-cas
@@ -55,9 +53,9 @@ SSO单点登录访问流程主要有以下步骤：
 
 *注：本次项目使用的CAS版本是v4.2.7（2016.11.4）*
 
-### 1.3. CAS服务端部署与配置
+### CAS服务端部署与配置
 
-#### 1.3.1. CAS服务端部署
+#### CAS服务端部署
 
 CAS服务端其实就是一个war包。
 
@@ -71,11 +69,11 @@ CAS服务端默认登陆名：casuser，密码：Mellon。
 
 ![CAS服务端2](images/20190218093411108_18842.png)
 
-#### 1.3.2. CAS服务端核心配置文件
+#### CAS服务端核心配置文件
 
 CAS核心配置文件：/WEB-INF/cas.properties
 
-#### 1.3.3. 修改tomcat端口
+#### 修改tomcat端口
 
 如果不希望用8080端口访问CAS, 可以修改端口
 
@@ -98,7 +96,7 @@ CAS核心配置文件：/WEB-INF/cas.properties
 server.name=http://localhost:9107
 ```
 
-#### 1.3.4. 配置用户名与密码
+#### 配置用户名与密码
 
 修改WEB-INF/cas.properties(第270行)
 
@@ -106,7 +104,7 @@ server.name=http://localhost:9107
 accept.authn.users=admin::123456
 ```
 
-#### 1.3.5. 去除https认证
+#### 去除https认证
 
 CAS默认使用的是HTTPS协议，如果使用HTTPS协议需要SSL安全证书（需向特定的机构申请和购买）。如果对安全要求不高或是在开发测试阶段，可使用HTTP协议。这里讲解通过修改配置，让CAS使用HTTP协议。
 
@@ -155,7 +153,7 @@ warn.cookie.secure=false
 </c:if> -->
 ```
 
-#### 1.3.6. 配置域名访问
+#### 配置域名访问
 
 - 修改hosts：`127.0.0.1  sso.moon.com`
 - 修改nginx.conf：
@@ -177,9 +175,9 @@ server {
 }
 ```
 
-### 1.4. CAS客户端入门示例与配置
+### CAS客户端入门示例与配置
 
-#### 1.4.1. CAS客户端相关配置
+#### CAS客户端相关配置
 
 1. pom.xml文件，配置CAS核心依赖`cas-client-core`
 2. web.xml文件，配置CAS相关的过滤器
@@ -194,7 +192,7 @@ server {
     - 配置HttpServletRequest请求包裹过滤器`HttpServletRequestWrapperFilter`(可选配置)
         - 说明：此配置为了可以通过HttpServletRequest的getRemoteUser()方法获取SSO登录用户名
 
-#### 1.4.2. 客户端工程1搭建
+#### 客户端工程1搭建
 
 - 在pyg-test项目中创建Maven工程casclient01(war类型)，配置pom.xml相关依赖
 
@@ -345,7 +343,7 @@ server {
 
 说明：`request.getRemoteUser()`用于获取登录用户名
 
-#### 1.4.3. 客户端工程2搭建
+#### 客户端工程2搭建
 
 - 创建Maven工程 casclient02(war类型)，配置pom.xml相关依赖，相关配置与客户端1一样，修改设置当前工程的端口号*9002*
 
@@ -461,14 +459,14 @@ server {
 </html>
 ```
 
-#### 1.4.4. 单点登录测试
+#### 单点登录测试
 
 - 第一步：启动cas部署的tomcat
 - 第二步：启动客户端工程1和客户端工程2
 - 第三步：地址栏输入`http://localhost:9001/` 和 `http://localhost:9002/`，地址均会跳转到CAS登录页
 - 第四步：输入用户名和密码后，页面跳转回9002，再次访问9001也可以打开主页面
 
-#### 1.4.5. 单点退出登录
+#### 单点退出登录
 
 - 地址栏输入：http://sso.moon.com/logout，即可看到退出后的提示页面
 - 可以将这个链接添加到index.jsp
@@ -489,13 +487,13 @@ cas.logout.followServiceRedirects=true
 <br/><a href="http://sso.moon.com/logout?service=https://moonkira.github.io">退出登录</a>
 ```
 
-## 2. CAS服务端数据源设置
+## CAS服务端数据源设置
 
-### 2.1. 需求分析
+### 需求分析
 
 让用户名密码从品优购的user表里做验证
 
-### 2.2. 配置数据源
+### 配置数据源
 
 - 修改cas服务端中WEB-INF下`deployerConfigContext.xml`，在最后的地方添加如下配置。
     1. 配置数据源（ComboPooledDataSource），读取相应的数据库
@@ -542,21 +540,21 @@ cas.logout.followServiceRedirects=true
 
 说明：这四个jar包在【\Java编程工具资料\Java源代码\CAS【中央认证服务（单点登录）】\lib\】目录下，c3p0与mchange-commons的两个jar包cas项目中已自带不需要拷贝，用数据库中的用户名和密码进行测试。
 
-## 3. CAS服务端界面改造
+## CAS服务端界面改造
 
-### 3.1. 需求分析
+### 需求分析
 
 将CAS默认的登录页更改为品优购的登录页面
 
-### 3.2. 登录页面
+### 登录页面
 
-#### 3.2.1. 拷贝资源
+#### 拷贝资源
 
 - 将品优购的【资料\登录静态原型】登录页login.html拷贝到CAS服务系统的`WEB-INF\view\jsp\default\ui`目录下。
 - 将【资料\登录静态原型】css、img、plugins三个文件夹拷贝到CAS服务系统的ROOT目录下，进行合并。
 - 将原来的`casLoginView.jsp`改名（可以为之后的修改操作做参照），将`login.html`改名为`casLoginView.jsp`
 
-#### 3.2.2. 修改页面
+#### 修改页面
 
 - 添加指令(拷贝`includes/top.jsp`页面中的指令，复制`casLoginView.jsp`)
 
@@ -619,7 +617,7 @@ cas.logout.followServiceRedirects=true
 
 设置后访问客户端1与客户端2都跳转到自定义的登陆页面
 
-### 3.3. 错误提示
+### 错误提示
 
 - 在表单`<form:form>`内加入错误提示框
 
@@ -655,9 +653,9 @@ authenticationFailure.FailedLoginException=\u7528\u6237\u767b\u5f55\u5931\u8d25\
 
 ---
 
-## 4. CAS客户端与SpringSecurity集成
+## CAS客户端与SpringSecurity集成
 
-### 4.1. Spring Security测试工程搭建
+### Spring Security测试工程搭建
 
 - 创建Maven项目casclient03（war类型），配置pom.xml文件，引入spring依赖和spring secrity相关依赖，tomcat端口设置为9003
 
@@ -813,7 +811,7 @@ authenticationFailure.FailedLoginException=\u7528\u6237\u767b\u5f55\u5931\u8d25\
 
 *注：以上步骤参照以前项目：springsecurity-test*
 
-### 4.2. Spring Security与CAS集成
+### Spring Security与CAS集成
 
 - 修改pom.xml文件，引入Spring Security的依赖
 
@@ -982,7 +980,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 启动项目访问路径：http://localhost:9003/index.html
 
-### 4.3. 获取登录名
+### 获取登录名
 
 在处理后端逻辑需要获得登录名，那么如何获取单点登录的用户名呢? 其实和之前获得用户名的方式是完全相同的
 
@@ -1048,7 +1046,7 @@ public class UserController {
 
 - 地址栏输入：`http://localhost:9003/findLoginUser`看到登录名
 
-### 4.4. 退出登录
+### 退出登录
 
 - 修改applicationContext-security.xml，配置spring-security退出过滤器的跳转地址
 
@@ -1082,13 +1080,13 @@ public class UserController {
 
 ---
 
-## 5. 品优购用户中心
+## 品优购用户中心
 
-### 5.1. 需求分析
+### 需求分析
 
 用户中心实现单点登录。
 
-### 5.2. 用户中心实现单点登录
+### 用户中心实现单点登录
 
 拷贝【资料\用户中心原型】至 pinyougou-user-web的webapp目录下
 
@@ -1233,7 +1231,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 </bean>
 ```
 
-### 5.3. 页面显示用户名
+### 页面显示用户名
 
 - pinyougou-user-web工程创建LoginController.java，获取登陆的用户名
 
@@ -1307,7 +1305,7 @@ app.controller('indexController', function ($scope, baseService) {
 </li>
 ```
 
-### 5.4. 退出登录
+### 退出登录
 
 修改home-index.html页面，退出登录后，跳转到网站首页(164行)
 
@@ -1320,9 +1318,9 @@ app.controller('indexController', function ($scope, baseService) {
 
 ---
 
-## 6. 附录
+## 附录
 
-### 6.1. 附录A. Spring Security 内置过滤器表
+### 附录A. Spring Security 内置过滤器表
 
 |             别名              |                   Filter类                    |
 | :--------------------------: | :-------------------------------------------: |

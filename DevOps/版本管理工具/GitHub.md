@@ -1,18 +1,18 @@
-## 1. GitHub 概述
+## 1 GitHub 概述
 
 > 官网：https://github.com/
 
 GitHub 全球最大的开源社区，是一个面向开源及私有软件项目的托管平台。
 
-## 2. 创建 GitHub 仓库
+## 2 创建 GitHub 仓库
 
-### 2.1. 注册账号
+### 2.1 注册账号
 
 使用邮箱注册即可
 
 ![](images/464364117221070.png)
 
-### 2.2. 创建仓库
+### 2.2 创建仓库
 
 登录 github，选择【New repository】，创建一个仓库
 
@@ -28,7 +28,7 @@ GitHub 全球最大的开源社区，是一个面向开源及私有软件项目�
 
 Github 支持两种协议【https】和【ssh】。如果使用 https 很简单基本不需要配置就可以使用，但是每次提交代码和下载代码时都需要输入用户名和密码。而且如果是公司配置的私有 git 服务器一般不提供 https 方式访问，都采用 ssh
 
-### 2.3. SSH 密钥生成
+### 2.3 SSH 密钥生成
 
 SSH是英文Secure Shell的简写形式。通过使用SSH，它可以把所有传输的数据进行加密，这样可以防止DNS欺骗和IP欺骗。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。
 
@@ -44,7 +44,7 @@ SSH是英文Secure Shell的简写形式。通过使用SSH，它可以把所有�
 
 ![](images/502233817224819.jpg)
 
-### 2.4. 配置指定 SSH 密钥（非必须）
+### 2.4 配置指定 SSH 密钥（非必须）
 
 编辑 SSH 的配置文件 `~/.ssh/config`，并加入以下配置：
 
@@ -64,7 +64,7 @@ Host github.com
 - `IdentityFile /root/.ssh/xxx` 这一行非常关键，需要指定要使用那个 SSH 密钥文件，这里的密钥文件一定是私钥文件，不是有 pub 后缀的那个。
 - `IdentitiesOnly yes` 请配置为 yes。
 
-### 2.5. ssh 密钥配置
+### 2.5 ssh 密钥配置
 
 密钥生成后，需要在 github 上配置 ssh 的公钥，本地才可以使用 ssh 方式进行代码拉取与提交。
 
@@ -74,7 +74,7 @@ Host github.com
 
 ![](images/198073417226353.png)
 
-## 3. 常用操作含义
+## 3 常用操作含义
 
 - watch：会持续收到该项目的动态
 - fork，复制某个项目到自己的Github仓库中
@@ -82,7 +82,7 @@ Host github.com
 - clone，将项目下载至本地
 - follow，关注你感兴趣的作者，会收到他们的动态
 
-### 3.1. Fork
+### 3.1 Fork
 
 Fork 也是 git 服务网站的功能，用来简化协作流程。在没有 fork 的时候，如果想往开源项目里修 bug 或者加 feature，会需要这样的流程：
 
@@ -100,15 +100,15 @@ Fork 也是 git 服务网站的功能，用来简化协作流程。在没有 for
 
 虽然 fork 很有用，但这仍然不是 git 的一部分。它用到的是 git 的分布式能力。本质上，在 fork 的时候，它会克隆一份 repo，把原来的 repo 设置成上游。所以其实如果目标不是为了继续把 repo 放在网络服务上，那就克隆到本地即可。太多的人把 fork 当作 like 来用，根本就是错的。如果没打算改代码，fork 是没意义的。
 
-### 3.2. Merge request / Pull request
+### 3.2 Merge request / Pull request
 
 Github 上叫 Pull Request，gitlab 上叫 merge request，其实是一个东西的不同视角。这些都是 code review 和合并的流程，不是 git 的一部分。
 
 需要注意的是，它们的重点在“request”，而不是 merge 或者 pull。如果要把一个分支 merge 到自身，没必要开一个 MR 然后自己给自己通过。在本地 merge 就是了，更简单更快。
 
-## 4. Github 搜索技巧
+## 4 Github 搜索技巧
 
-### 4.1. 通过 in 关键词限制搜索范围
+### 4.1 通过 in 关键词限制搜索范围
 
 语法：
 
@@ -131,13 +131,13 @@ in:readme python
 repo:octocat/hello-world
 ```
 
-### 4.2. 通过辅助限定词查询项目
+### 4.2 通过辅助限定词查询项目
 
 可以通过限制 `项目大小(size)`、`拥护者数(followers)`、`fork数(forks)`、`stars数(stars)`、`创建时间(created)`、`更新时间(pushed)`、`项目所用语言(language)`、`topic标签(topic)`、`topic标签数(topics)`...来筛选项目
 
 辅助限定词可以多个并用，用空格隔开，可以搭配限定词使用，也可单独使用。通过通配符 `>`、`<`、`=` 指定搜索区间，区间范围内可通过`num1..num2`。
 
-#### 4.2.1. 根据 stars 或 fork 数量去查找
+#### 4.2.1 根据 stars 或 fork 数量去查找
 
 语法：
 
@@ -159,7 +159,7 @@ spring boot forks:100..200 stars:80..100
 in:name spring boot starts:>3000
 ```
 
-#### 4.2.2. 按照地区和语言进行搜索
+#### 4.2.2 按照地区和语言进行搜索
 
 语法：
 
@@ -179,7 +179,7 @@ location:China
 location:beijing language:java
 ```
 
-#### 4.2.3. 根据仓库大小搜索
+#### 4.2.3 根据仓库大小搜索
 
 语法：
 
@@ -200,7 +200,7 @@ in:name python size:<=1000
 size:50..120
 ```
 
-#### 4.2.4. 根据仓库更新与创建时间进行搜索
+#### 4.2.4 根据仓库更新与创建时间进行搜索
 
 语法：
 
@@ -216,7 +216,7 @@ pushed:>2020-01-03 Spring Boot
 created:<2023-01-01 wechat
 ```
 
-#### 4.2.5. 根据某个人或组织进行搜索
+#### 4.2.5 根据某个人或组织进行搜索
 
 语法：
 
@@ -235,7 +235,7 @@ org:spring
 followers:>1000
 ```
 
-#### 4.2.6. 根据仓库的 LICENSE 搜索
+#### 4.2.6 根据仓库的 LICENSE 搜索
 
 开源项目的 License（项目授权协议） 有的开源项目作者明确禁止商用。“非常友好”的协议，比较出名的有这几种：BSD、MPL（Mozilla）、Apache、MIT。这些协议不但允许项目的使用者使用开源库，有些还允许对开源库进行修改并重新分发。以下是详细介绍了各个License的区别：
 
@@ -252,7 +252,7 @@ followers:>1000
 license:apache-2.0 Spring Boot
 ```
 
-#### 4.2.7. 其他条件搜索
+#### 4.2.7 其他条件搜索
 
 语法：
 
@@ -276,13 +276,13 @@ is:public org:spring
 is:private spring
 ```
 
-### 4.3. awesome + 关键字
+### 4.3 awesome + 关键字
 
 Awesome 似乎已经成为不少 GitHub 项目喜爱的命名之一，Awesome 往往整合了大量的同一领域的资料。
 
 通过搜索和关键字匹配的优秀项目。如：`awesome springboot`，搜索优秀的 springboot 相关的项目，包括框架、教程等
 
-### 4.4. 分享项目中某一行的代码
+### 4.4 分享项目中某一行的代码
 
 只需要在具体的网址后面拼接`#Lxx`(xx为行数)
 
@@ -304,7 +304,7 @@ https://github.com/lxy-go/SpringBoot/blob/master/SpringBoot/DataJpaApplication.j
 
 ![分享项目中某一行的代码2](images/20190421130615530_6615.jpg)
 
-### 4.5. 项目内搜索
+### 4.5 项目内搜索
 
 打开想要搜索的项目，然后按一下【`T`】键。会跳转至一个新的网页，
 
@@ -316,7 +316,7 @@ https://github.com/lxy-go/SpringBoot/blob/master/SpringBoot/DataJpaApplication.j
 
 类似的页面内快捷键还有很多，常用的还有【`L`】, 在文件内跳转到多少行。更多快捷键可以查看官方文档：https://help.github.com/en/articles/using-keyboard-shortcuts
 
-### 4.6. 热门搜索（GitHub Trend 和 GitHub Topic）
+### 4.6 热门搜索（GitHub Trend 和 GitHub Topic）
 
 GitHub Trend 页面总结了每天/每周/每月周期的热门 Repositories 和 Developers，可以看到在某个周期处于热门状态的开发项目和开发者
 
@@ -326,29 +326,29 @@ GitHub Topic 展示了最新和最流行的讨论主题，在这里不仅能够�
 
 > https://github.com/topics
 
-## 5. 推荐一些 Github 插件（chrome浏览器插件）
+## 5 推荐一些 Github 插件（chrome浏览器插件）
 
-### 5.1. Octotree
+### 5.1 Octotree
 
 平时浏览github代码时，每个文件都需要点击才能查看，用了这个插件可以将项目的目录结构以树形结构显示，点击之后会自动跳转到相应的目录。墙裂推荐！
 
-### 5.2. OctoLinker
+### 5.2 OctoLinker
 
 该插件作用是：在浏览代码像ide那样可以链接跳转。只需要ctrl+点击变量名即可。
 
-### 5.3. Sourcegraph
+### 5.3 Sourcegraph
 
 一个可以在github上浏览和搜索代码的工具，安装好插件之后会出现一个view Repository的按钮。
 
 点击进去之后，可以随意在项目中搜索，可以查看变量和方法，以及进行跳转等等。
 
-## 6. GitHub 项目定时发布最新 Hosts
+## 6 GitHub 项目定时发布最新 Hosts
 
 项目地址：https://github.com/521xueweihan/GitHub520
 
 该项目会自动发布在指定的地址上，结合软件使用，可以完全自动化，无需持续更新
 
-### 6.1. 手动修改
+### 6.1 手动修改
 
 hosts 文件在每个系统的位置如下：
 
@@ -381,7 +381,7 @@ hosts 文件在每个系统的位置如下：
 数据更新时间：2020-07-25T20:14:26+08:00
 ```
 
-### 6.2. 激活生效
+### 6.2 激活生效
 
 大部分情况下是直接生效，如未生效可尝试下面的办法，刷新 DNS：
 
@@ -391,7 +391,7 @@ hosts 文件在每个系统的位置如下：
 
 Tips： 上述方法无效可以尝试重启机器。
 
-### 6.3. 自动修改方式
+### 6.3 自动修改方式
 
 Tip：推荐 SwitchHosts 工具管理 hosts。以 SwitchHosts 为例，自动修改配置参考下面：
 
@@ -400,41 +400,67 @@ Tip：推荐 SwitchHosts 工具管理 hosts。以 SwitchHosts 为例，自动修
 - URL: https://gitee.com/xueweihan/codes/6g793pm2k1hacwfbyesl464/raw?blob_name=GitHub520.yml
 - Auto Refresh: 最好选 1 hour
 
-## 7. Github 扩展内容
+## 7 Github 常用设置
 
-### 7.1. 解决 GitHub Pages 访问不了
+### 7.1 关闭 GitHub Copilot 使用个人数据训练大模型
+
+GitHub Copilot 宣布自 4 月 24 日起，将使用**个人交互数据来训练大模型**，被用于训练大模型的交互数据包括输入、输出、代码片段及相关上下文。受影响用户：
+
+- Copilot Free
+- Copilot Pro
+- Copilot Pro+
+
+主要是个人用户，Copilot Business 和 Copilot Enterprise 用户不受此次更新的影响。如果没用过 Copilot 就没事，如果用过 Copilot 的话，不管是 Copilot 个人付费用户，还是 Copilot 个人免费用户，所有交互数据都被默认用来训练模型了。
+
+> ⚠️Tips: 这个开关是<font color=red>**默认开启**</font>的，需要自己去个人设置中关闭。
+
+禁用大模型训练设置，进入 Copilot Features 菜单 `https://github.com/settings/copilot/features`。在 Privacy 中关闭 `Allow GitHub to use my data for AI model training` 选项，此选项默认是 `Enabled` 的，手动禁用即可。
+
+![](images/595917542180285.png)
+
+## 8 Github 扩展内容
+
+### 8.1 Github 登陆双重验证配置(configuring two factor authentication)
+
+> docs: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication
+
+1. 使用`Authenticator app`方式：手机下载app `Microsoft Authenticator`（不需要注册，用来实时扫码就行）
+    - 第一次 github2FA 扫码会生成一个`github-recovery-codes.txt`，保存到本地，用来恢复账号。
+2. 再次打开，使用`Security keys`方式：按提示输入一个`key name`，windows 用户直接用锁屏 pin 码验证即可。
+
+### 8.2 解决 GitHub Pages 访问不了
 
 GitHub正常访问，但GitHub Pages无法访问。尝试过修改hosts域名的映射，没有作用。后来直接修改网卡的DNS服务器地址为`114.114.114.114`可访问（*不确保百分百有效*）
 
 ![](images/20201105231308260_23184.png)
 
-### 7.2. 一键生成 Github 简历
+### 8.3 一键生成 Github 简历
 
 通过 http://resume.github.io/ 这个网站可以一键生成一个在线的 Github 简历。
 
-### 7.3. 个性化 Github 首页
+### 8.4 个性化 Github 首页
 
 创建一个和你的 Github 账户同名的仓库，然后自定义README.md的内容，该内容就展示在主页上。
 
 通过 `github-readme-stats` 这个开源项目，可以在 README 中展示动态生成的 GitHub 统计信息。
 
-### 7.4. 自定义项目徽章
+### 8.5 自定义项目徽章
 
 通过 https://shields.io/ 这个网站生成的，还可以动态读取你项目的状态并生成对应的徽章。
 
-### 7.5. Github 表情
+### 8.6 Github 表情
 
 表情素材参考：https://www.webfx.com/tools/emoji-cheat-sheet/
 
-### 7.6. 自动为 Markdown 文件生成目录
+### 8.7 自动为 Markdown 文件生成目录
 
 如果想为 Github 上的 Markdown 文件生成目录的话，通过 VS Code 的 Markdown Preview Enhanced 这个插件就可以了。
 
 生成的目录后，可以直接点击目录中的链接即可跳转到文章对应的位置，可以优化阅读体验。
 
-### 7.7. Github 项目无法通过 ssh 连接，无法 push pull
+### 8.8 Github 项目无法通过 ssh 连接，无法 push pull
 
-#### 7.7.1. 问题描述
+#### 8.8.1 问题描述
 
 2024年01月20日，最近这两天 github 遇到问题，就是以前正常使用的 git 项目，现在无法 push 或 pull 了。错误提示如下：
 
@@ -446,7 +472,7 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-#### 7.7.2. 解决方法
+#### 8.8.2 解决方法
 
 解决方案是修改 SSH 配置文件，通过端口 443 以 SSH 方式登录 git@ssh.github.com，则可以覆盖 SSH 设置，强制通过该服务器和端口连接 GitHub.com。（可以参考官方说明，[Using SSH over the HTTPS port](https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)）
 

@@ -2,21 +2,21 @@
 
 webpack 官网文档：https://www.webpackjs.com/concepts/
 
-## 1. 前端工程化
+## 前端工程化
 
 - **模块化**（js 的模块化、css 的模块化、资源的模块化）
 - **组件化**（复用现有的 UI 结构、样式、行为）
 - **规范化**（目录结构的划分、编码规范化、接口规范化、文档规范化、 Git 分支管理）
 - **自动化**（自动化构建、自动部署、自动化测试）
 
-### 1.1. 什么是前端工程化
+### 什么是前端工程化
 
 - 前端工程化指的是：在企业级的前端项目开发中，把前端开发所需的<font color=red>工具、技术、流程、经验等进行规范化、标准化</font>。
 - 工程化的好处：前端开发自成体系，有一套<font color=red>标准的开发方案和流程</font>。
 
 > 企业中的 Vue 项目和 React 项目，都是基于工程化的方式进行开发的。
 
-### 1.2. 前端工程化的解决方案
+### 前端工程化的解决方案
 
 早期的前端工程化解决方案：
 
@@ -28,9 +28,9 @@ webpack 官网文档：https://www.webpackjs.com/concepts/
 - webpack，官网：https://www.webpackjs.com/
 - parcel，官网：https://zh.parceljs.org/
 
-## 2. webpack介绍
+## webpack介绍
 
-### 2.1. 什么是 webpack
+### 什么是 webpack
 
 **概念**：Webpack 是一个前端资源的打包工具，它可以将js、image、css等资源当成一个模块进行打包。是前端项目工程化的具体解决方案。
 
@@ -40,7 +40,7 @@ webpack 官网文档：https://www.webpackjs.com/concepts/
 
 从图中可以看出，Webpack 可以将js、css、png等多种静态资源 进行打包，
 
-### 2.2. webpack 优缺点
+### webpack 优缺点
 
 **webpack 的好处**
 
@@ -65,13 +65,13 @@ webpack允许在开发中使用Sass 和 Less等原生CSS的扩展技术，通过
 
 > 注意：目前 Vue，React 等前端项目，基本上都是基于 webpack 进行工程化开发的。
 
-## 3. webpack 基础使用
+## webpack 基础使用
 
-### 3.1. 前提条件
+### 前提条件
 
 在开始之前，请确保安装了 Node.js 的最新版本。使用 Node.js 最新的长期支持版本(LTS - Long Term Support)，是理想的起步。使用旧版本，你可能遇到各种问题，因为它们可能缺少 webpack 功能以及/或者缺少相关 package 包。
 
-### 3.2. 安装 Node.js
+### 安装 Node.js
 
 webpack基于node.js运行，首先需要安装node.js
 
@@ -95,7 +95,7 @@ node -v
 
 会显示当前node的版本
 
-### 3.3. 安装 NPM
+### 安装 NPM
 
 npm全称Node Package Manager，是node包管理和分发的工具，使用NPM可以对应用的依赖进行管理，NPM 的功能和服务端项目构建工具maven差不多，通过 npm 可以很方便地下载js库，打包js文件。
 
@@ -103,17 +103,17 @@ node.js已经集成了npm工具，在命令提示符输入 `npm -v` 可查看当
 
 ![](images/20190407112957021_10443.png)
 
-#### 3.3.1. 删除模块包
+#### 删除模块包
 
 删除与安装相对应，也分为全局删除和本地删除
 
-##### 3.3.1.1. 全局删除
+##### 全局删除
 
 ```shell
 npm uninsatll <package-name> -g
 ```
 
-##### 3.3.1.2. 本地删除
+##### 本地删除
 
 对应的，本地删除也需要考虑是否再删除模块包的同时删除项目package.json中对应的信息，因此，利用npm本地删除模块包的命令也是三种，分别为：
 
@@ -128,9 +128,9 @@ npm uninstall <package-name> --save-dev
 # 删除模块包，并且将对应的模块包信息从项目package.json的devDependencies对象中删除；
 ```
 
-#### 3.3.2. 安装 cnpm（可选）
+#### 安装 cnpm（可选）
 
-##### 3.3.2.1. 连网环境安装 cnpm
+##### 连网环境安装 cnpm
 
 npm默认会去国外的镜像去下载js包，在开发中通常使用国内镜像，这里使用淘宝镜像。
 
@@ -160,7 +160,7 @@ cnpm -v
     - 输入命令 `npm install -g nrm`
     - 如果已经安装了cnpm，可以使用 `cnpm install -g nrm`
 
-##### 3.3.2.2. 非连网环境安装 cnpm
+##### 非连网环境安装 cnpm
 
 从本小节第3步开始就需要连网下载npm包，如果环境不能连网在课程的资料文件下有已经下载好的webpack相关包，下边是安装方法。
 
@@ -185,9 +185,9 @@ NODE_HOME = D:\Program Files\nodejs (node.js安装目录)
 cnpm -v
 ```
 
-### 3.4. 安装 webpack
+### 安装 webpack
 
-#### 3.4.1. 本地安装
+#### 本地安装
 
 ，安装 webpack 最新版本或特定版本。如果使用 webpack 4+ 版本，还需要安装 CLI。
 
@@ -218,7 +218,7 @@ npm install webpack@5.42.1 webpack-cli@4.7.2 -D
 
 > 当在本地安装 webpack 后，能够从 `node_modules/.bin/webpack` 访问它的 bin 版本。
 
-#### 3.4.2. 全局安装(不推荐)
+#### 全局安装(不推荐)
 
 以下的 NPM 安装方式，将使 webpack 在全局环境下可用：
 
@@ -228,9 +228,9 @@ npm install --global webpack
 
 > 不推荐全局安装 webpack。这会将项目中的 webpack 锁定到指定版本，并且在使用不同的 webpack 版本的项目中，可能会导致构建失败。
 
-### 3.5. 配置与启动 webpack
+### 配置与启动 webpack
 
-#### 3.5.1. webpack.config.js 文件的作用
+#### webpack.config.js 文件的作用
 
 `webpack.config.js` 是 webpack 的配置文件。webpack 在真正开始打包构建之前，会<font color=violet>先读取这个配置文件</font>，从而基于给定的配置，对项目进行打包。
 
@@ -250,7 +250,7 @@ module.exports = {
 
 <font color=red>**注意：凡是修改了 webpack.config.js 配置文件，或修改了 package.json 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效！**</font>
 
-#### 3.5.2. 启动
+#### 启动
 
 - 在 `package.json` 的 scripts 节点下，新增 dev 脚本如下：
 
@@ -262,7 +262,7 @@ module.exports = {
 
 - 在终端中运行 `npm run dev` 命令，启动 webpack 进行项目的打包构建
 
-## 4. webpack 的基本概念
+## webpack 的基本概念
 
 从 webpack v4.0.0 开始，可以不用引入一个配置文件。然而，webpack 仍然还是高度可配置的。相应的配置包含四个核心概念：
 
@@ -271,7 +271,7 @@ module.exports = {
 - loader
 - 插件(plugins)
 
-### 4.1. 入口(entry)
+### 入口(entry)
 
 入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。
 
@@ -283,7 +283,7 @@ module.exports = {
 };
 ```
 
-### 4.2. 出口(output)
+### 出口(output)
 
 output 属性告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 `./dist`。基本上，整个应用程序结构，都会被编译到你指定的输出路径的文件夹中。你可以通过在配置中指定一个 output 字段，来配置这些处理过程：
 
@@ -301,7 +301,7 @@ module.exports = {
 
 上例中，通过 `output.filename` 和 `output.path` 属性，来告诉 webpack bundle 的名称，以及想要 bundle 生成(emit)到哪里。
 
-### 4.3. loader
+### loader
 
 loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块，然后就可以利用 webpack 的打包能力，对它们进行处理。
 
@@ -329,7 +329,7 @@ module.exports = config;
 - `test` 属性，用于标识出应该被对应的 loader 进行转换的某个或某些文件。
 - `use` 属性，表示进行转换时，应该使用哪个 loader。
 
-### 4.4. 插件(plugins)
+### 插件(plugins)
 
 loader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。
 
@@ -353,7 +353,7 @@ const config = {
 module.exports = config;
 ```
 
-### 4.5. 模式(mode)
+### 模式(mode)
 
 通过选择 `development` 或 `production` 之中的一个，来设置 `mode` 参数，可以启用相应模式下的 webpack 内置的优化
 
@@ -363,7 +363,7 @@ module.exports = {
 };
 ```
 
-### 4.6. webpack 中的默认约定
+### webpack 中的默认约定
 
 在 webpack 4.x 和 5.x 的版本中，有如下的默认约定：
 
@@ -372,13 +372,13 @@ module.exports = {
 
 > 注意：可以在 `webpack.config.js` 中修改打包的默认约定
 
-## 5. 入口起点(entry points)
+## 入口起点(entry points)
 
 在 webpack 配置中有多种方式定义 `entry` 属性
 
-### 5.1. 配置语法
+### 配置语法
 
-#### 5.1.1. 单个入口（简写）语法
+#### 单个入口（简写）语法
 
 用法：`entry: string|Array<string>`
 
@@ -403,7 +403,7 @@ const config = {
 
 当向 `entry` 属性传入「文件路径(file path)数组」将创建“多个主入口(multi-main entry)”。在想要多个依赖文件一起注入，并且将它们的依赖导向(graph)到一个“chunk”时，传入数组的方式就很有用。
 
-#### 5.1.2. 对象语法
+#### 对象语法
 
 用法：`entry: {[entryChunkName: string]: string|Array<string>}`
 
@@ -421,9 +421,9 @@ const config = {
 
 > “可扩展的 webpack 配置”是指，可重用并且可以与其他配置组合使用。这是一种流行的技术，用于将关注点(concern)从环境(environment)、构建目标(build target)、运行时(runtime)中分离。然后使用专门的工具（如 webpack-merge）将它们合并。
 
-### 5.2. 常见场景
+### 常见场景
 
-#### 5.2.1. 分离 应用程序(app) 和 第三方库(vendor) 入口
+#### 分离 应用程序(app) 和 第三方库(vendor) 入口
 
 ```js
 // webpack.config.js
@@ -437,7 +437,7 @@ const config = {
 
 以上配置表示 webpack 从 app.js 和 vendors.js 开始创建依赖图(dependency graph)。这些依赖图是彼此完全分离、互相独立的（每个 bundle 中都有一个 webpack 引导(bootstrap)）。这种方式比较常见于，只有一个入口起点（不包括 vendor）的单页应用程序(single page application)中。
 
-#### 5.2.2. 多页面应用程序
+#### 多页面应用程序
 
 ```js
 // webpack.config.js
@@ -452,7 +452,7 @@ const config = {
 
 以上示例表示 webpack 需要 3 个独立分离的依赖图。在多页应用中，（译注：每当页面跳转时）服务器将为你获取一个新的 HTML 文档。页面重新加载新文档，并且资源被重新下载。
 
-#### 5.2.3. 自定义打包的入口示例
+#### 自定义打包的入口示例
 
 在 `webpack.config.js` 配置文件中，通过 `entry` 节点指定打包的入口。
 
@@ -466,11 +466,11 @@ module.exports = {
 }
 ```
 
-## 6. 输出(output)
+## 输出(output)
 
 配置 `output` 选项可以控制 webpack 如何向硬盘写入编译文件。<font color=red>**注意，即使可以存在多个入口起点，但只指定一个输出配置**</font>。
 
-### 6.1. 配置用法
+### 配置用法
 
 在 webpack 中配置 `output` 属性的最低要求是，将它的值设置为一个对象，包括以下两点：
 
@@ -491,7 +491,7 @@ module.exports = config;
 
 此配置将一个单独的 `bundle.js` 文件输出到 `/home/proj/public/assets` 目录中。
 
-### 6.2. 多个入口起点
+### 多个入口起点
 
 如果配置创建了多个单独的 "chunk"（例如，使用多个入口起点或使用像 CommonsChunkPlugin 这样的插件），则应该使用占位符(substitutions)来确保每个文件具有唯一的名称。
 
@@ -511,7 +511,7 @@ module.exports = config;
 
 以上示例代表写入到硬盘：`./dist/app.js`, `./dist/search.js`
 
-### 6.3. 自定义的打包的出口示例
+### 自定义的打包的出口示例
 
 在 `webpack.config.js` 配置文件中，通过 `output` 节点指定打包的出口
 
@@ -531,11 +531,11 @@ module.exports = {
 }
 ```
 
-## 7. 模式(mode)
+## 模式(mode)
 
 webpack 提供 `mode` 配置选项，告知 webpack 使用相应模式的内置优化。
 
-### 7.1. 配置用法
+### 配置用法
 
 配置文件中定义：
 
@@ -551,7 +551,7 @@ module.exports = {
 webpack --mode=production
 ```
 
-### 7.2. mode 的可选值
+### mode 的可选值
 
 |     选项      |                                                                                                            描述                                                                                                            |
 | :-----------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -569,7 +569,7 @@ webpack --mode=production
     - 会对打包生成的文件进行代码压缩和性能优化
     - <font color=red>**打包速度很慢**</font>，仅适合在项目发布阶段使用
 
-### 7.3. 示例
+### 示例
 
 `mode: development`
 
@@ -599,11 +599,11 @@ module.exports = {
 }
 ```
 
-## 8. 加载器(loader)
+## 加载器(loader)
 
 loader 用于对模块的源代码进行转换。loader 可以使你在 `import` 或"加载"模块时预处理文件。因此，loader 类似于其他构建工具中“任务(task)”，并提供了处理前端构建步骤的强大方法。loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript，或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 `import` CSS文件！
 
-### 8.1. loader 概述
+### loader 概述
 
 在实际开发过程中，webpack 默认只能打包处理以 `.js` 后缀名结尾的模块。其他非 `.js` 后缀名结尾的模块，webpack 默认处理不了，需要调用 loader 加载器才可以正常打包，否则会报错！
 
@@ -613,11 +613,11 @@ loader 加载器的作用：<font color=red>**协助 webpack 打包处理特定�
 - less-loader 可以打包处理 `.less` 相关的文件
 - babel-loader 可以打包处理 webpack 无法处理的高级 JS 语法
 
-### 8.2. loader 的调用过程
+### loader 的调用过程
 
 ![](images/20211112155127941_8203.png)
 
-### 8.3. loader 特性
+### loader 特性
 
 - loader 支持链式传递。能够对资源使用流水线(pipeline)。一组链式的 loader 将按照相反的顺序执行。loader 链中的第一个 loader 返回值给下一个 loader。在最后一个 loader，返回 webpack 所预期的 JavaScript。
 - loader 可以是同步的，也可以是异步的。
@@ -630,7 +630,7 @@ loader 加载器的作用：<font color=red>**协助 webpack 打包处理特定�
 
 loader 通过（loader）预处理函数，为 JavaScript 生态系统提供了更多能力。 用户现在可以更加灵活地引入细粒度逻辑，例如压缩、打包、语言翻译和其他更多。
 
-### 8.4. loader 的使用
+### loader 的使用
 
 有三种使用 loader 的方式：
 
@@ -638,7 +638,7 @@ loader 通过（loader）预处理函数，为 JavaScript 生态系统提供了�
 - 内联：在每个 `import` 语句中显式指定 loader。
 - CLI：在 `shell` 命令中指定它们。
 
-#### 8.4.1. 配置方式（推荐）
+#### 配置方式（推荐）
 
 `module.rules` 允许在 webpack 配置中指定多个 loader，同时可以对各个 loader 有个全局概览。示例如下：
 
@@ -661,7 +661,7 @@ module: {
 }
 ```
 
-#### 8.4.2. 内联方式
+#### 内联方式
 
 可以在 `import` 语句或任何等效于 "import" 的方式中指定 loader。使用 `!` 将资源中的 loader 分开。分开的每个部分都相对于当前目录解析。
 
@@ -671,7 +671,7 @@ import Styles from 'style-loader!css-loader?modules!./styles.css';
 
 通过前置所有规则及使用 `!`，可以对应覆盖到配置中的任意 loader。选项可以传递查询参数，例如 `?key=value&foo=bar`，或者一个 JSON 对象，例如 `?{"key":"value","foo":"bar"}`
 
-#### 8.4.3. CLI方式
+#### CLI方式
 
 通过 CLI 使用 loader：
 
@@ -681,9 +681,9 @@ webpack --module-bind jade-loader --module-bind 'css=style-loader!css-loader'
 
 以上示例是对 `.jade` 文件使用 jade-loader，对 `.css` 文件使用 style-loader 和 css-loader。
 
-### 8.5. 常用的loader
+### 常用的loader
 
-#### 8.5.1. 打包处理 css 文件
+#### 打包处理 css 文件
 
 - 运行以下命令，安装处理 css 文件的 loader
 
@@ -714,7 +714,7 @@ module.exports = {
 > - `use` 数组中指定的 loader 顺序是固定的
 > - 多个 loader 的调用顺序是：从后往前调用
 
-#### 8.5.2. 打包处理 less 文件
+#### 打包处理 less 文件
 
 - 运行以下命令，安装处理 less 文件的 loader
 
@@ -742,7 +742,7 @@ module.exports = {
 
 注意：上面示例的 less 是包含在 less-loader 中，添加规则只需要 less-loader 即可
 
-#### 8.5.3. 打包处理样式表中与 url 路径相关的文件
+#### 打包处理样式表中与 url 路径相关的文件
 
 - 运行以下命令，安装处理 url 路径相关的文件的 loader
 
@@ -773,15 +773,15 @@ module.exports = {
 - `limit` 用来指定图片的大小，单位是字节（byte）
 - 只有 `≤ limit` 大小的图片，才会被转为 base64 格式的图片
 
-#### 8.5.4. 打包处理 js 文件中的高级语法
+#### 打包处理 js 文件中的高级语法
 
-##### 8.5.4.1. 问题分析
+##### 问题分析
 
 webpack 只能打包处理一部分高级的 JavaScript 语法。对于那些 webpack 无法处理的高级 js 语法，需要借助于 babel-loader 进行打包处理。例如 webpack 无法处理下面的 JavaScript 代码：
 
 ![](images/20211113081738022_20595.png)
 
-##### 8.5.4.2. 安装与配置
+##### 安装与配置
 
 - 运行以下命令，安装处理高级 js 语法的 babel-loader 及对应的依赖包
 
@@ -821,11 +821,11 @@ module.exports = {
 
 > 详情请参考 Babel 的官网 https://babeljs.io/docs/en/babel-plugin-proposal-decorators
 
-## 9. 插件(plugins)
+## 插件(plugins)
 
 插件是 webpack 的支柱功能。通过安装和配置第三方的插件，可以拓展 webpack 的能力。插件目的在于解决 loader 无法实现的其他事。
 
-### 9.1. 配置语法
+### 配置语法
 
 插件可以携带参数/选项，必须在 webpack 配置中，向 `plugins` 属性传入 `new` 实例
 
@@ -858,13 +858,13 @@ const config = {
 module.exports = config;
 ```
 
-### 9.2. 常用插件 webpack-dev-server 热部署
+### 常用插件 webpack-dev-server 热部署
 
 webpack-dev-server 插件类似于 node.js 阶段用到的 nodemon 工具。每当修改了源代码，webpack 会自动进行项目的打包和构建
 
 webpack-dev-server 可以让 webpack 监听项目源代码的变化，从而进行自动打包构建。
 
-#### 9.2.1. 安装
+#### 安装
 
 运行如下的命令，即可在项目中安装 webpack-dev-server 插件：
 
@@ -872,7 +872,7 @@ webpack-dev-server 可以让 webpack 监听项目源代码的变化，从而进�
 npm install webpack-dev-server@3.11.2 -D
 ```
 
-#### 9.2.2. 配置 devServer 节点
+#### 配置 devServer 节点
 
 在 webpack.config.js 配置文件中，可以通过 `devServer` 节点对 webpack-dev-server 插件进行更多的配置
 
@@ -889,7 +889,7 @@ devServer: {
 
 > *注意：修改了 webpack.config.js 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效！*
 
-#### 9.2.3. 启动插件
+#### 启动插件
 
 1. 修改 `package.json` -> `scripts` 中的 `dev` 命令如下：
 
@@ -904,7 +904,7 @@ devServer: {
 
 > <font color=red>**注意：webpack-dev-server 会启动一个实时打包的 http 服务器**</font>
 
-#### 9.2.4. 打包生成的文件的存放位置
+#### 打包生成的文件的存放位置
 
 - 不配置 webpack-dev-server 的情况下，webpack 打包生成的文件，<font color=red>会存放到实际的物理磁盘上</font>
     - 严格遵守开发者在 `webpack.config.js` 中指定配置
@@ -913,18 +913,18 @@ devServer: {
     - 不再根据 output 节点指定的路径，存放到实际的物理磁盘上
     - 提高了实时打包输出的性能，因为内存比物理磁盘速度快很多
 
-#### 9.2.5. 生成到内存中的文件该如何访问
+#### 生成到内存中的文件该如何访问
 
 webpack-dev-server 生成到内存中的文件，默认放到了项目的根目录中，而且是虚拟的、不可见的。
 
 - 可以直接用 `/` 表示项目根目录，后面跟上要访问的文件名称，即可访问内存中的文件
 - 例如 `/bundle.js` 就表示要访问 webpack-dev-server 生成到内存中的 `bundle.js` 文件
 
-### 9.3. 常用插件 html-webpack-plugin
+### 常用插件 html-webpack-plugin
 
 html-webpack-plugin 是 webpack 中的 HTML 插件，可以通过此插件自定制 index.html 页面的内容。即会将 src 目录下的 index.html 首页，复制到项目根目录中一份！
 
-#### 9.3.1. 安装
+#### 安装
 
 运行如下的命令，即可在项目中安装 html-webpack-plugin 插件：
 
@@ -932,7 +932,7 @@ html-webpack-plugin 是 webpack 中的 HTML 插件，可以通过此插件自定
 npm install html-webpack-plugin@5.3.2 -D
 ```
 
-#### 9.3.2. 配置
+#### 配置
 
 修改 webpack.config.js 配置文件
 
@@ -956,12 +956,12 @@ module.exports = {
 }
 ```
 
-#### 9.3.3. 插件的实现原理
+#### 插件的实现原理
 
 1. 通过 html-webpack-plugin 插件复制到项目根目录中的 index.html 页面，也被放到了内存中
 2. html-webpack-plugin 插件在生成的 index.html 页面，自动注入了打包的 bundle.js 文件
 
-## 10. 打包发布
+## 打包发布
 
 项目开发完成之后，需要使用 webpack 对项目进行打包发布，主要原因有以下两点：
 
@@ -970,7 +970,7 @@ module.exports = {
 
 为了让项目能够在生产环境中高性能的运行，因此需要对项目进行打包发布。
 
-### 10.1. 配置 webpack 的打包发布
+### 配置 webpack 的打包发布
 
 在 package.json 文件的 `scripts` 节点下，新增 `build` 命令如下：
 
@@ -985,7 +985,7 @@ module.exports = {
 
 > 打包的命令可随意命名，以上示例是使用`build`
 
-### 10.2. 指定 JavaScript 文件统一生成到 js 目录中
+### 指定 JavaScript 文件统一生成到 js 目录中
 
 在 webpack.config.js 配置文件的 `output` 节点中，进行如下的配置：
 
@@ -999,34 +999,34 @@ output: {
 }
 ```
 
-### 10.3. 把图片文件统一生成到 image 目录中
+### 把图片文件统一生成到 image 目录中
 
 修改 webpack.config.js 中的 `url-loader` 配置项，新增 `outputPath` 选项即可指定图片文件的输出路径：
 
 ![](images/20211113225206680_19297.png)
 
-### 10.4. 自动清理 dist 目录下的旧文件
+### 自动清理 dist 目录下的旧文件
 
 为了在每次打包发布时自动清理掉 dist 目录中的旧文件，可以安装并配置 clean-webpack-plugin 插件：
 
 ![](images/20211113230256890_28494.png)
 
-### 10.5. Source Map
+### Source Map
 
-#### 10.5.1. 生产环境遇到的问题
+#### 生产环境遇到的问题
 
 前端项目在投入生产环境之前，都需要对 JavaScript 源代码进行压缩，从而减小文件的体积，提高文件的加载效率。此时就不可避免的产生了另一个问题：对压缩之后的代码除错（debug）是一件极其困难的事情。因为压缩后的代码：
 
 - 变量被替换成没有任何语义的名称
 - 空行和注释被剔除
 
-#### 10.5.2. Source Map 是什么
+#### Source Map 是什么
 
 Source Map 就是一个信息文件，里面储存着位置信息。也就是说，Source Map 文件中存储着压缩后的代码，所对应的转换前的位置。
 
 有了它，出错的时候，debug工具将直接显示原始代码，而不是转换后的代码，能够极大的方便后期的调试。
 
-#### 10.5.3. webpack 开发环境下的 Source Map
+#### webpack 开发环境下的 Source Map
 
 **在开发环境下，webpack 默认启用了 Source Map 功能**。当程序运行出错时，可以直接在控制台提示错误行的位置，并定位到具体的源代码：
 
@@ -1050,7 +1050,7 @@ module.exports = {
 }
 ```
 
-#### 10.5.4. webpack 生产环境下的 Source Map
+#### webpack 生产环境下的 Source Map
 
 在生产环境下，如果省略了 devtool 选项，则最终生成的文件中不包含 Source Map。这能够防止原始代码通过 Source Map 的形式暴露给别有所图之人。
 
@@ -1058,7 +1058,7 @@ module.exports = {
 
 ![](images/20211114150840054_30626.png)
 
-##### 10.5.4.1. 只定位行数不暴露源码
+##### 只定位行数不暴露源码
 
 在生产环境下，如果只想定位报错的具体行数，且不想暴露源码。此时可以将 `devtool` 的值设置为 `nosources-source-map`。实际效果如图所示：
 
@@ -1066,7 +1066,7 @@ module.exports = {
 
 ![](images/20211114150926167_15661.png)
 
-##### 10.5.4.2. 定位行数且暴露源码
+##### 定位行数且暴露源码
 
 在生产环境下，如果想在定位报错行数的同时，展示具体报错的源码。此时可以将 `devtool` 的值设置为 `source-map`。实际效果如图所示：
 
@@ -1076,7 +1076,7 @@ module.exports = {
 
 <font color=red>**使用此选项后：应该将服务器配置为，不允许普通用户访问 source map 文件！**</font>
 
-#### 10.5.5. Source Map 的最佳实践
+#### Source Map 的最佳实践
 
 开发环境下：
 

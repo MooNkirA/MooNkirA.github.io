@@ -1,4 +1,4 @@
-## 1. JVM 源码下载
+## JVM 源码下载
 
 下载地址：http://openjdk.java.net/
 
@@ -20,9 +20,9 @@
 
 > Tips: 下载 C 语言的IDE(Clion)，地址 https://www.jetbrains.com/
 
-## 2. synchronized 的源码分析
+## synchronized 的源码分析
 
-### 2.1. monitor 监视器锁
+### monitor 监视器锁
 
 无论是 synchronized 代码块还是 synchronized 方法，其线程安全的语义实现最终依赖一个 monitor。在 HotSpot 虚拟机中，monitor 是由 ObjectMonitor 实现的。其源码是用 c++ 来实现的，位于 HotSpot 虚拟机源码 ObjectMonitor.hpp 文件中(src/share/vm/runtime/objectMonitor.hpp)。ObjectMonitor 主要数据结构如下：
 
@@ -62,7 +62,7 @@ ObjectMonitor 的数据结构中包含：`_owner`、`_WaitSet`和`_EntryList`，
 
 ![](images/6841023236940.png)
 
-### 2.2. monitor 竞争
+### monitor 竞争
 
 1. 执行 monitorenter 时，会调用 InterpreterRuntime.cpp (位于：src/share/vm/interpreter/interpreterRuntime.cpp) 的 `InterpreterRuntime::monitorenter` 函数。具体代码可参见 HotSpot 源码。
 
@@ -156,7 +156,7 @@ void ATTR ObjectMonitor::enter(TRAPS) {
 3. 如果当前线程是第一次进入该 monitor，设置 recursions 为1，`_owner` 为当前线程，该线程成功获得锁并返回。
 4. 如果获取锁失败，则等待锁的释放。
 
-### 2.3. monitor 等待
+### monitor 等待
 
 竞争失败等待调用的是 ObjectMonitor 对象的 EnterI 方法（位于：src/share/vm/runtime/objectMonitor.cpp），源码如下所示：
 
@@ -260,7 +260,7 @@ int ObjectMonitor::TryLock (Thread * Self) {
 3. node 节点 push 到 `_cxq` 列表之后，通过自旋尝试获取锁，如果还是没有获取到锁，则通过 park 将当前线程挂起，等待被唤醒。
 4. 当该线程被唤醒时，会从挂起的点继续执行，通过 `ObjectMonitor::TryLock` 尝试获取锁。
 
-### 2.4. monitor 释放
+### monitor 释放
 
 当某个持有锁的线程执行完同步代码块时，会进行锁的释放，给其它线程机会执行同步代码，在 HotSpot 中，通过退出 monitor 的方式实现锁的释放，并通知被阻塞的线程，具体实现位于 `ObjectMonitor` 的 `exit` 方法中。（位于：src/share/vm/runtime/objectMonitor.cpp），源码如下所示：
 
@@ -455,7 +455,7 @@ if (_Responsible == Self || (SyncFlags & 1)) {
 if (TryLock(Self) > 0) break ;
 ```
 
-### 2.5. monitor 是重量级锁
+### monitor 是重量级锁
 
 可以看到 ObjectMonitor 的函数调用中会涉及到 `Atomic::cmpxchg_ptr`，`Atomic::inc_ptr` 等内核函数，执行同步代码块，没有竞争到锁的对象会 `park()` 被挂起，竞争到锁的线程会 `unpark()` 唤醒。这个时候就会存在操作系统用户态和内核态的转换，这种切换会消耗大量的系统资源。所以 `synchronized` 是 Java 语言中是一个重量级(Heavyweight)的操作。
 

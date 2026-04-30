@@ -1,9 +1,9 @@
-## 1. Spring Cloud Consul 基础入门
+## Spring Cloud Consul 基础入门
 
 > - 官网：https://www.consul.io/
 > - Spring Cloud Consul 官方文档：https://spring.io/projects/spring-cloud-consul
 
-### 1.1. consul 概述
+### consul 概述
 
 Consul 是 HashiCorp 公司推出的开源工具，用于实现分布式系统的服务发现与配置。与其它分布式服务注册与发现的方案，Consul 的方案更“一站式”，内置了服务注册与发现框架、分布一致性协议实现、健康检查、Key/Value 存储、多数据中心方案，不再需要依赖其它工具（比如 ZooKeeper 等）。使用起来也较 为简单。Consul 使用 Go 语言编写，因此具有天然可移植性(支持Linux、windows和Mac OS X)；安装包仅包含一个可执行文件，方便部署，与 Docker 等轻量级容器可无缝配合
 
@@ -22,11 +22,11 @@ Consul 是 HashiCorp 公司推出的开源工具，用于实现分布式系统�
 - Key/Value 存储
 - 多数据中心
 
-### 1.2. consul 下载与安装
+### consul 下载与安装
 
 Consul 不同于 Eureka 需要单独安装，访问 Consul 官网下载 Consul 的最新版本（本次示例安装 consul 1.5x 版）
 
-#### 1.2.1. Linux 系统安装 Consul
+#### Linux 系统安装 Consul
 
 输入以下命令
 
@@ -59,7 +59,7 @@ consul
 
 启动成功之后访问：`http://linux系统ip:8500`，可以看到 Consul 的管理界面
 
-#### 1.2.2. window 系统安装 Consul
+#### window 系统安装 Consul
 
 1. 将 window 版压缩包`consul_1.5.3_windows_amd64.zip`解压到没有中文和空格的目录
 2. 进入目录，运行命令行。输入以下命令，启动 consul 服务
@@ -73,13 +73,13 @@ consul agent -dev -client=0.0.0.0
 
 3. 启动成功后访问`http://127.0.0.1:8500`，进入 consul 管理界面
 
-### 1.3. consul 的基本使用
+### consul 的基本使用
 
 Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成服务注册，服务发现，以及K/V存储这些功能。以下是基于通过发送HTTP请求的形式来实现Consul的基础使用
 
 > *官方的API接口文档地址：https://www.consul.io/api/catalog.html#catalog_register*
 
-#### 1.3.1. 注册服务
+#### 注册服务
 
 通过postman发送PUT请求到`http://192.168.74.101:8500/v1/catalog/register`地址可以完成服务注册，请求参数如下：
 
@@ -101,7 +101,7 @@ Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成�
 }
 ```
 
-#### 1.3.2. 服务查询
+#### 服务查询
 
 通过postman发送GET请求到`http://192.168.74.101:8500/v1/catalog/services`查看所有的服务列表
 
@@ -111,7 +111,7 @@ Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成�
 
 ![](images/20201014144036460_8373.png)
 
-#### 1.3.3. 服务删除
+#### 服务删除
 
 通过postman发送PUT请求到`http://192.168.74.101:8500/v1/catalog/deregister`删除服务
 
@@ -123,7 +123,7 @@ Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成�
 }
 ```
 
-#### 1.3.4. Consul 的 K/V 存储
+#### Consul 的 K/V 存储
 
 可以参照Consul提供的KV存储的API完成基于Consul的数据存储
 
@@ -137,7 +137,7 @@ Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成�
 - value 的值经过了 base64_encode,获取到数据后 base64_decode 才能获取到原始值。数据不能大于 512Kb
 - 不同数据中心的 kv 存储系统是独立的，使用`dc=?`参数指定。
 
-### 1.4. Consul 的服务调用过程
+### Consul 的服务调用过程
 
 ![](images/174892409237555.jpg)
 
@@ -146,7 +146,7 @@ Consul 支持健康检查，并提供了 HTTP 和 DNS 调用的API接口完成�
 3. 当 Consumer 发送 GET 方式请求 /api/address 到 Producer 时，会先从 Consul 中拿到一个存储服务 IP 和 Port 的临时表，从表中拿到 Producer 的 IP 和 Port 后再发送 GET 方式请求 /api/address；
 该临时表每隔 10s 会更新，只包含有通过了健康检查的 Producer。
 
-### 1.5. 多数据中心
+### 多数据中心
 
 Consul 支持开箱即用的多数据中心，这意味着用户不需要担心需要建立额外的抽象层让业务扩展到多个区域。
 
@@ -160,11 +160,11 @@ Consul 支持开箱即用的多数据中心，这意味着用户不需要担心�
 
 集群内数据的读写请求既可以直接发到 Server，也可以通过 Client 使用 RPC 转发到 Server，请求最终会到达 Leader 节点，在允许数据延时的情况下，读请求也可以在普通的 Server 节点完成，集群内数据的读写和复制都是通过 TCP 的 8300 端口完成。
 
-### 1.6. 番外：ETCD
+### 番外：ETCD
 
 etcd 是一个 Go 言编写的分布式、高可用的一致性键值存储系统，用于提供可靠的分布式键值存储、配置共享和服务发现等功能。
 
-#### 1.6.1. ETCD 特点
+#### ETCD 特点
 
 - 易使用：基于 HTTP+JSON 的 API，使用 curl 就可以轻松使用；
 - 易部署：使用 Go 语言编写，跨平台，部署和维护简单；
@@ -175,7 +175,7 @@ etcd 是一个 Go 言编写的分布式、高可用的一致性键值存储系�
 - 安全：可选 SSL 客户认证机制；
 - ETCD 3.0：除了上述功能，还支持 gRPC 通信、watch 机制。
 
-#### 1.6.2. ETCD 框架
+#### ETCD 框架
 
 etcd 主要分为四个部分：
 
@@ -188,13 +188,13 @@ etcd 主要分为四个部分：
 
 通常，一个用户的请求发送过来，会经由 HTTP Server 转发给 Store 进行具体的事务处理，如果涉及到节点的修改，则交给 Raft 模块进行状态的变更、日志的记录，然后再同步给别的 etcd 节点以确认数据提交，最后进行数据的提交，再次同步。
 
-## 2. 基于 consul 的服务注册与发现示例
+## 基于 consul 的服务注册与发现示例
 
-### 2.1. 示例工程的准备
+### 示例工程的准备
 
 复用之前 eureka 单机版的示例项目`02-springcloud-eureka`，将里面 eureka 子模块、相关的配置与依赖都删除。命名为`05-springcloud-consul`
 
-### 2.2. 引入 consul 依赖
+### 引入 consul 依赖
 
 修改服务提供者与消费者微服务的`pom.xml`文件，添加SpringCloud提供的基于Consul的依赖
 
@@ -214,7 +214,7 @@ etcd 主要分为四个部分：
 - `spring-cloud-starter-consul-discovery` 是SpringCloud提供的对consul支持的相关依赖
 - `spring-boot-starter-actuator` 适用于完成心跳检测响应的相关依赖
 
-### 2.3. 配置服务注册
+### 配置服务注册
 
 修改服务提供者与消费者微服务的`application.yml`配置文件，添加consul服务注册的相关配置信息
 
@@ -246,13 +246,13 @@ spring:
     - `prefer-ip-address`：开启ip地址注册
     - `ip-address`：当前微服务的请求ip
 
-### 2.4. Consul 控制台查看服务列表
+### Consul 控制台查看服务列表
 
 启动相关的微服务，打开ConsulServer的管理控制台，相关的微服务已经全部注册到Consul中了
 
 ![](images/20201014155442987_9782.png)
 
-### 2.5. 基于 consul 的服务发现
+### 基于 consul 的服务发现
 
 由于 Spring Cloud 对 Consul 进行了封装。对于在消费者端获取服务提供者信息和 Eureka 是一致的。同样使用 `DiscoveryClient` 完成调用获取微服务实例信息，也可以使用 Ribbon 完成服务的调用。
 
@@ -260,7 +260,7 @@ spring:
 
 下面以 Ribbon 的方式完成服务的调用示例
 
-#### 2.5.1. 修改配置类增加负载均衡
+#### 修改配置类增加负载均衡
 
 修改消费者的配置类`HttpConfig`，给`RestTemplate`对象增加Ribbon组件的`@LoadBalanced`注解标识
 
@@ -272,7 +272,7 @@ public RestTemplate createRestTemplate() {
 }
 ```
 
-#### 2.5.2. 修改消费者请求方式
+#### 修改消费者请求方式
 
 修改消费者`OrderController`使用Ribbon请求方式
 
@@ -299,9 +299,9 @@ public String createOrder(@PathVariable Long id) {
 }
 ```
 
-## 3. consul 高可用集群
+## consul 高可用集群
 
-### 3.1. consul 集群架构图
+### consul 集群架构图
 
 ![](images/20201014160743484_12697.png)
 
@@ -334,9 +334,9 @@ server节点也作为WAN gossip Pool的一部分。这个Pool不同于LAN Pool�
 - `client`：用于高可用集群，是consul的代理，主要作用是和consul server进行交互。一般一个微服务会绑定一个client，相当于微服务和client部署到同一台机器上
 - `server`：用于高可用集群，所有操作都由此服务进行。官方建议一般部署3-5个server进行集群，如果过多server会因为数据的同步导致注册比较慢
 
-### 3.2. Consul 的核心知识
+### Consul 的核心知识
 
-#### 3.2.1. Gossip协议
+#### Gossip协议
 
 传统的监控，如ceilometer，由于每个节点都会向server报告状态，随着节点数量的增加server的压力随之增大。在所有的Agent之间（包括服务器模式和普通模式）运行着Gossip协议。服务器节点和普通Agent都会加入这个Gossip集群，收发Gossip消息。每隔一段时间，每个节点都会随机选择几个节点发送Gossip消息，其他节点会再次随机选择其他几个节点接力发送消息。这样一段时间过后，整个集群都能收到这条消息。示意图如下：
 
@@ -346,7 +346,7 @@ Gossip协议实现效果动态图如下：
 
 ![](images/20201014162817624_12895.gif)
 
-#### 3.2.2. RAFT协议（一致性算法）
+#### RAFT协议（一致性算法）
 
 ![](images/20201014171328705_9010.png)
 
@@ -362,7 +362,7 @@ Leader全权负责所有客户端的请求，以及将数据同步到Follower中
 
 > 关于RAFT一致性算法有一个经典的动画，其中详细介绍了选举，数据同步的步骤。网址：http://thesecretlivesofdata.com/raft/
 
-### 3.3. Consul 集群搭建
+### Consul 集群搭建
 
 ![](images/20201014171726368_29074.png)
 
@@ -372,7 +372,7 @@ Leader全权负责所有客户端的请求，以及将数据同步到Follower中
 
 在服务器Server6中Program D需要访问Service B，这时候Program D首先访问本机Consul Client提供的HTTP API，本机Client会将请求转发到Consul Server，Consul Server查询到Service B当前的信息返回
 
-#### 3.3.1. 准备环境
+#### 准备环境
 
 | 服务器ip       | consul类型 | Node（节点名称） | 序号 |
 | -------------- | ---------- | ---------------- | ---- |
@@ -384,7 +384,7 @@ Leader全权负责所有客户端的请求，以及将数据同步到Follower中
 - Agent 以 client 模式启动的节点。在该模式下，该节点会采集相关信息，通过 RPC 的方式向 server 发送。Client模式节点有无数个，官方建议搭配微服务配置
 - Agent 以 server 模式启动的节点。一个数据中心中至少包含 1 个 server 节点。不过官方建议使用 3 或 5 个 server 节点组建成集群，以保证高可用且不失效率。server 节点参与 Raft、维护会员信息、注册服务、健康检查等功能。
 
-#### 3.3.2. 安装consul并启动
+#### 安装consul并启动
 
 - 在每个consul节点上安装consul服务，下载安装过程和单节点一致。
 
@@ -429,7 +429,7 @@ consul agent -server -bootstrap-expect 2 -data-dir /etc/consul.d -node=server-3 
 consul agent -client=0.0.0.0  -data-dir /etc/consul.d -node=client-1
 ```
 
-#### 3.3.3. 每个节点加入集群
+#### 每个节点加入集群
 
 在s2，s3，s4 服务其上通过consul join 命令加入 s1中的consul集群中
 
@@ -438,7 +438,7 @@ consul agent -client=0.0.0.0  -data-dir /etc/consul.d -node=client-1
 consul join 192.168.74.101
 ```
 
-#### 3.3.4. 测试
+#### 测试
 
 在任意一台服务器中输入 `consul members` 查看集群中的所有节点信息
 
@@ -451,9 +451,9 @@ consul members
 
 ![](images/20201014172506497_25688.png)
 
-## 4. Consul 常见问题
+## Consul 常见问题
 
-### 4.1. 节点和服务注销
+### 节点和服务注销
 
 当服务或者节点失效，Consul 不会对注册的信息进行剔除处理，仅仅标记已状态进行标记（并且不可使用）。如果担心失效节点和失效服务过多影响监控，可以通过调用 HTTP API 的形式进行处理。节点和服务的注销可以使用 HTTP API：
 
@@ -462,7 +462,7 @@ consul members
 
 如果某个节点不继续使用了，也可以在本机使用`consul leave`命令，或者在其它节点使用 `consul force-leave` 节点Id
 
-### 4.2. 健康检查与故障转移
+### 健康检查与故障转移
 
 在集群环境下，健康检查是由服务注册到的 Agent 来处理的，那么如果这个 Agent 挂掉了，那么此节点的健康检查就处于无人管理的状态
 

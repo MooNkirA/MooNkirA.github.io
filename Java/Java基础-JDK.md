@@ -1,23 +1,23 @@
-## 1. Java 概述
+## Java 概述
 
-### 1.1. 什么是 Java
+### 什么是 Java
 
 Java 是一门面向对象的编程语言，不仅吸收了 C++ 语言的各种优点，还摒弃了 C++ 里难以理解的多继承、指针等概念，因此 Java 语言具有功能强大和简单易用两个特征。Java 语言作为静态面向对象编程语言的优秀代表，极好地实现了面向对象理论，允许程序员以优雅的思维方式进行复杂的编程。
 
-### 1.2. Java 语言的特点
+### Java 语言的特点
 
 - 面向对象（封装，继承，多态）。
 - 平台无关性，平台无关性的具体表现在于，Java 是『一次编写，到处运行（Write Once，Run any Where）』的语言，因此采用 Java 语言编写的程序具有很好的可移植性，而保证这一点的正是 Java 的虚拟机机制。在引入虚拟机之后，Java 语言在不同的平台上运行不需要重新编译。
 - 支持多线程。C++ 语言没有内置的多线程机制，因此必须调用操作系统的多线程功能来进行多线程程序设计，而 Java 语言却提供了多线程支持。
 - 编译与解释并存。
 
-## 2. JDK 概述
+## JDK 概述
 
 JDK (Java Development Kit) 是 Java 语言的软件开发工具包(SDK)，主要用于移动设备、嵌入式设备上的 Java 应用程序。JDK 是整个 Java 开发的核心，它包含了 JAVA 的运行环境（JVM+Java 系统类库）和 JAVA 工具。
 
 > JDK 官网：https://www.oracle.com/java/
 
-### 2.1. JDK 版本号的选择
+### JDK 版本号的选择
 
 Oracle JDK 8u211 及以上版本进行具有商业用途(盈利目的)的应用或工具的开发时是要收费的
 
@@ -33,7 +33,7 @@ Oracle JDK 补丁集更新 (PSUs) 包含相应 CPUs 中的所有修复以及其�
 
 所以，一般情况下只要下载奇数编号的最新版本更新就行了！但要记住：商业收费版本的不要用于商业用途！
 
-### 2.2. Oracle JDK 与 Open JDK
+### Oracle JDK 与 Open JDK
 
 Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技术可以去 Open JDK 官网学习。
 
@@ -41,9 +41,9 @@ Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技�
 
 JDK Enhancement Proposals(JDK增强建议)。通俗的讲JEP就是JDK的新特性
 
-## 3. windows 系统安装 JDK
+## windows 系统安装 JDK
 
-### 3.1. JDK变量环境配置
+### JDK变量环境配置
 
 最好的配置方式：将位置切割成两段，一段用`JAVA_HOME`保存，一段用\bin保存。如下例：
 
@@ -54,7 +54,7 @@ JAVA_HOME = C:\Program Files\Java\jdk1.8.0_91
 
 ![](images/20220114141342322_31662.jpg)
 
-### 3.2. 安装多个 JDK
+### 安装多个 JDK
 
 安装过程都一样。只是配置环境变量时改动一下。分别将多个不同版本的jdk设置一个环境变量，然后最终让`JAVA_HOME`指定当前需要使用的版本的变量即可
 
@@ -66,7 +66,7 @@ JAVA_HOME = %JAVA_HOME_8%
 
 ![](images/20220114152301619_11430.png)
 
-### 3.3. JDK 11 手动生成 jre 目录
+### JDK 11 手动生成 jre 目录
 
 许多java软件的运行需要依赖jre，但是在安装jdk11后，发现jdk11并没有自动安装jre环境。其实 jdk11 的安装包里是自带 jre 的，只不过没有自动安装，手动安装一下就可以了。
 
@@ -76,7 +76,7 @@ JAVA_HOME = %JAVA_HOME_8%
 bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
 ```
 
-### 3.4. 注意事项
+### 注意事项
 
 如果是安装版，请务必到以下位置删除这几个文件。(二者其一有)
 
@@ -91,13 +91,13 @@ C:\Program Files (x86)\Common Files\Oracle\Java\javapath
 C:\ProgramData\Oracle\Java\javapath
 ```
 
-## 4. Linux 系统安装 JDK
+## Linux 系统安装 JDK
 
 详见《Linux》相关的笔记
 
-## 5. 综合扩展
+## 综合扩展
 
-### 5.1. JRE、JDK、JVM 及 JIT 的区别
+### JRE、JDK、JVM 及 JIT 的区别
 
 - JRE（Java run-time） 是 Java 运行时环境，是运行 Java 程序所必须的。它是运⾏已编译 Java 程序所需的所有内容的集合，包括 Java 虚拟机（JVM），Java 类库，Java 命令和其他的⼀些基础构件。但是，它不能⽤于创建新程序。
 - JDK（Java development kit）是 Java 程序开发工具集。它拥有 JRE 所拥有的⼀切，还有 Java 编译器（javac）和⼯具（如 javadoc 和 jdb）。它能够创建和编译程序。
@@ -106,17 +106,17 @@ C:\ProgramData\Oracle\Java\javapath
 
 ![](images/101141418246449.png)
 
-### 5.2. javap 反编译工具（待整理）
+### javap 反编译工具（待整理）
 
 > 参考：[Java编程教程-理解javap工具](https://mp.weixin.qq.com/s/5iK2uuBtG6Amkc3b0SdQvw)
 
-### 5.3. 字节码
+### 字节码
 
-#### 5.3.1. 概述
+#### 概述
 
 所谓的字节码，就是 Java 程序经过编译之类产生的 .class 文件，字节码能够被虚拟机识别，从而实现 Java 程序的跨平台性。
 
-#### 5.3.2. Java 程序运行步骤
+#### Java 程序运行步骤
 
 Java 程序从源代码到运行主要有三步：
 
@@ -128,7 +128,7 @@ Java 程序从源代码到运行主要有三步：
 
 只需要把 Java 程序编译成 Java 虚拟机能识别的 Java 字节码，不同的平台安装对应的 Java 虚拟机，这样就可以可以实现 Java 语言的平台无关性。
 
-### 5.4. Java 语言“编译与解释并存”
+### Java 语言“编译与解释并存”
 
 高级编程语言按照程序的执行方式分为<u>**编译型**</u>和<u>**解释型**</u>两种。
 

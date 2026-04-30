@@ -1,19 +1,19 @@
-## 1. vue-router 概述
+## vue-router 概述
 
-### 1.1. 什么是 vue-router
+### 什么是 vue-router
 
 vue-router 是 vue.js 官方推荐的路由解决方案。它只能结合 vue 项目进行使用，能够轻松的管理 SPA 项目中组件的切换。
 
-### 1.2. vue-router 的版本
+### vue-router 的版本
 
 vue-router 目前有 3.x 的版本和 4.x 的版本。其中：
 
 - vue-router 3.x（只能结合 vue2 进行使用）官方文档地址：https://router.vuejs.org/zh/
 - vue-router 4.x（只能结合 vue3 进行使用）的官方文档地址：https://next.router.vuejs.org/zh/
 
-### 1.3. vue-router 安装
+### vue-router 安装
 
-#### 1.3.1. 直接下载 / CDN
+#### 直接下载 / CDN
 
 下载地址：https://unpkg.com/vue-router/dist/vue-router.js
 
@@ -24,7 +24,7 @@ vue-router 目前有 3.x 的版本和 4.x 的版本。其中：
 <script src="/path/to/vue-router.js"></script>
 ```
 
-#### 1.3.2. NPM 安装方式
+#### NPM 安装方式
 
 ```shell
 npm install vue-router -S
@@ -41,11 +41,11 @@ Vue.use(VueRouter)
 
 > 如果使用全局的 script 标签，则无须如此 (手动安装)。
 
-### 1.4. vue-router 基础使用步骤
+### vue-router 基础使用步骤
 
 用 Vue.js + Vue Router 创建单页应用，然后将组件 (components) 映射到路由 (routes)，配置 Vue Router 在哪里渲染它们。
 
-#### 1.4.1. 路由实例的创建和配置
+#### 路由实例的创建和配置
 
 ```js
 // 1. 如果使用模块化机制编程，导入Vue和VueRouter，用于调用 Vue.use(VueRouter)
@@ -77,7 +77,7 @@ const app = new Vue({
 
 > 注：正常的项目中，**路由对象的创建和配置都会独立到一个文件中（或一个模块中）**，建议在项目的src目录下创建router文件，在此目录下创建js文件，创建与配置路由实例并导出
 
-#### 1.4.2. 路由组件的渲染
+#### 路由组件的渲染
 
 只要在项目中安装和配置了 vue-router，即可使用内置组件 `<router-view>`，该组件用于 html 或 vue 文件中的模板页面中，该标签是路由出口，路由匹配到的组件将渲染此标签中，相当于页面渲染区域的“占位符”
 
@@ -96,13 +96,13 @@ const app = new Vue({
 
 > <font color=red>**注意：当 `<router-link>` 对应的路由匹配成功，将自动设置 `class` 属性值 `.router-link-active`。**</font>
 
-## 2. vue-router 基础用法
+## vue-router 基础用法
 
-### 2.1. 声明路由的匹配规则
+### 声明路由的匹配规则
 
 在 `new VueRouter()` 的构造器可以传入构建选项对象，有以下属性：
 
-#### 2.1.1. routes 属性
+#### routes 属性
 
 `routes` 属性类型: `Array<RouteConfig>`，用于定义路由的映射
 
@@ -127,7 +127,7 @@ interface RouteConfig = {
 }
 ```
 
-#### 2.1.2. mode 属性
+#### mode 属性
 
 用于配置路由模式
 
@@ -138,7 +138,7 @@ interface RouteConfig = {
     - `history`: 依赖 HTML5 History API 和服务器配置。查看 HTML5 History 模式。
     - `abstract`: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式。
 
-#### 2.1.3. base 属性
+#### base 属性
 
 用于配置应用的基路径。
 
@@ -147,21 +147,21 @@ interface RouteConfig = {
 
 > 例如，如果整个单页应用服务在 `/app/` 下，然后 `base` 就应该设为 "`/app/`"。
 
-#### 2.1.4. linkActiveClass 属性
+#### linkActiveClass 属性
 
 全局配置 `<router-link>` 默认的激活的 `class`
 
 - 类型: `string`
 - 默认值: "`router-link-active`"
 
-#### 2.1.5. linkExactActiveClass 属性
+#### linkExactActiveClass 属性
 
 全局配置 `<router-link>` 默认的精确激活的 `class`
 
 - 类型: `string`
 - 默认值: "`router-link-exact-active`"
 
-#### 2.1.6. scrollBehavior 属性
+#### scrollBehavior 属性
 
 - 类型: `Function`
 
@@ -178,13 +178,13 @@ type scrollBehaviorHandler = (
 ) => PositionDescriptor | Promise<PositionDescriptor>
 ```
 
-#### 2.1.7. parseQuery / stringifyQuery 属性
+#### parseQuery / stringifyQuery 属性
 
 提供自定义查询字符串的解析/反解析函数。覆盖默认行为。
 
 - 类型: `Function`
 
-#### 2.1.8. fallback 属性
+#### fallback 属性
 
 - 类型: `boolean`
 - 默认值: `true`
@@ -193,7 +193,7 @@ type scrollBehaviorHandler = (
 
 在 IE9 中，设置为 `false` 会使得每个 `<router-link>` 导航都触发整页刷新。它可用于工作在 IE9 下的服务端渲染应用，因为一个 `hash` 模式的 URL 并不支持服务端渲染。
 
-### 2.2. router-view 渲染视图组件
+### router-view 渲染视图组件
 
 `<router-view>` 组件是一个 functional 组件，渲染路径匹配到的视图组件。`<router-view>` 渲染的组件还可以内嵌自己的 `<router-view>`，根据嵌套路径，渲染嵌套组件。
 
@@ -209,18 +209,18 @@ type scrollBehaviorHandler = (
 
 `<router-view>` 组件的 Props 属性如下：
 
-#### 2.2.1. name 属性
+#### name 属性
 
 - 类型: `string`
 - 默认值: "`default`"
 
 如果 `<router-view>` 设置了名称，则会渲染对应的路由配置中 `components` 下的相应组件。
 
-### 2.3. 声明式导航
+### 声明式导航
 
 在浏览器中，点击链接实现导航的方式，叫做**声明式导航**。如：普通网页中点击 `<a>` 链接、vue 项目中点击 `<router-link>` 都属于声明式导航
 
-#### 2.3.1. router-link 导航组件
+#### router-link 导航组件
 
 `<router-link>` 组件支持用户在具有路由功能的应用中 (点击) 导航。 通过 `to` 属性指定目标地址，默认渲染成带有正确链接的 `<a>` 标签，可以通过配置 `tag` 属性生成别的标签。另外，当目标路由成功激活时，链接元素自动设置一个表示激活的 CSS 类名。
 
@@ -230,9 +230,9 @@ type scrollBehaviorHandler = (
 - 在 HTML5 history 模式下，`router-link` 会守卫点击事件，让浏览器不再重新加载页面。
 - 当你在 HTML5 history 模式下使用 `base` 选项之后，所有的 `to` 属性都不需要写 (基路径) 了
 
-#### 2.3.2. router-link 相关属性
+#### router-link 相关属性
 
-##### 2.3.2.1. to
+##### to
 
 - 类型: string | Location
 - required（必需）
@@ -261,7 +261,7 @@ type scrollBehaviorHandler = (
 <router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
 ```
 
-##### 2.3.2.2. replace
+##### replace
 
 - 类型: boolean
 - 默认值: false
@@ -272,7 +272,7 @@ type scrollBehaviorHandler = (
 <router-link :to="{ path: '/abc'}" replace></router-link>
 ```
 
-##### 2.3.2.3. append
+##### append
 
 - 类型: boolean
 - 默认值: false
@@ -284,7 +284,7 @@ type scrollBehaviorHandler = (
 ```
 
 
-##### 2.3.2.4. tag
+##### tag
 
 - 类型: string
 - 默认值: "`a`"
@@ -297,14 +297,14 @@ type scrollBehaviorHandler = (
 <li>foo</li>
 ```
 
-##### 2.3.2.5. active-class
+##### active-class
 
 - 类型: string
 - 默认值: "`router-link-active`"
 
 设置链接激活时使用的 CSS 类名。默认值可以通过路由的构造选项 `linkActiveClass` 来全局配置。
 
-##### 2.3.2.6. exact
+##### exact
 
 - 类型: boolean
 - 默认值: false
@@ -318,7 +318,7 @@ type scrollBehaviorHandler = (
 <router-link to="/" exact></router-link>
 ```
 
-##### 2.3.2.7. event
+##### event
 
 - 类型: string | `Array<string>`
 - 默认值: '`click`'
@@ -326,21 +326,21 @@ type scrollBehaviorHandler = (
 声明可以用来触发导航的事件。可以是一个字符串或是一个包含字符串的数组。
 
 
-##### 2.3.2.8. exact-active-class
+##### exact-active-class
 
 - 类型: string
 - 默认值: "`router-link-exact-active`"
 
 配置当链接被精确匹配的时候应该激活的 class。注意默认值也是可以通过路由构造函数选项 `linkExactActiveClass` 进行全局配置的。
 
-##### 2.3.2.9. aria-current-value
+##### aria-current-value
 
 - 类型: '`page`' | '`step`' | '`location`' | '`date`' | '`time`' | '`true`' | '`false`'
 - 默认值: "`page`"
 
 当链接根据精确匹配规则激活时配置的 `aria-current` 的值。这个值应该是 ARIA 规范中允许的 `aria-current` 的值。在绝大多数场景下，默认值 `page` 应该是最合适的。
 
-### 2.4. 编程式导航
+### 编程式导航
 
 在浏览器中，调用 API 方法实现导航的方式，叫做**编程式导航**。例如：普通网页中调用 `location.href` 跳转到新页面的方式，属于编程式导航
 
@@ -350,7 +350,7 @@ type scrollBehaviorHandler = (
 2. `this.$router.replace('hash 地址')` : 跳转到指定的 hash 地址，并替换掉当前的历史记录
 3. `this.$router.go(数值n)` : 实现导航历史前进、后退
 
-#### 2.4.1. router.push
+#### router.push
 
 ```js
 router.push(location, onComplete?, onAbort?)
@@ -392,7 +392,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 注意：如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 `/users/1` -> `/users/2`)，需要使用 `beforeRouteUpdate` 来响应这个变化 (比如抓取用户信息)
 
-#### 2.4.2. router.replace
+#### router.replace
 
 ```js
 router.replace(location, onComplete?, onAbort?)
@@ -402,7 +402,7 @@ router.replace(location, onComplete?, onAbort?)
 
 编程式的 `router.replace(...)` 方法相当于声明式的 `<router-link :to="..." replace>`
 
-#### 2.4.3. router.go
+#### router.go
 
 这个方法的参数是一个整数，意思是在 `history` 记录中向前或者后退多少步，类似 `window.history.go(n)`
 
@@ -421,14 +421,14 @@ router.go(-100)
 router.go(100)
 ```
 
-#### 2.4.4. router.go 的简化用法
+#### router.go 的简化用法
 
 在实际开发中，一般只会前进和后退一层页面。因此 vue-router 提供了如下两个便捷方法：
 
 - `$router.back()` : 在历史记录中，后退到上一个页面
 - `$router.forward()` : 在历史记录中，前进到上一个页面
 
-### 2.5. 命名路由
+### 命名路由
 
 通过一个名称来标识一个路由称为命名路由。在创建 `Router` 实例的时候，在 `routes` 配置中给某个路由设置名称。
 
@@ -456,9 +456,9 @@ const router = new VueRouter({
 router.push({ name: 'user', params: { userId: 123 } })
 ```
 
-### 2.6. 重定向和别名
+### 重定向和别名
 
-#### 2.6.1. 路由重定向
+#### 路由重定向
 
 路由重定向指的是：用户在访问地址 `/A` 的时候，强制用户跳转到地址 `/B`，从而展示特定的组件页面。
 
@@ -497,7 +497,7 @@ const router = new VueRouter({
 
 > 注意：导航守卫并没有应用在跳转路由上，而仅仅应用在其目标上。
 
-#### 2.6.2. 别名
+#### 别名
 
 `/a` 的别名是 `/b`，意味着，当用户访问 `/b` 时，URL 会保持为 `/b`，但是路由匹配则为 `/a`，就像用户访问 `/a` 一样。具体的路由配置是：
 
@@ -511,7 +511,7 @@ const router = new VueRouter({
 
 “别名”的功能让你可以自由地将 UI 结构映射到任意的 URL，而不是受限于配置的嵌套路由结构。
 
-### 2.7. 嵌套路由
+### 嵌套路由
 
 通过路由实现组件的嵌套展示，叫做嵌套路由。
 
@@ -618,7 +618,7 @@ const router = new VueRouter({
 })
 ```
 
-### 2.8. 动态路由匹配
+### 动态路由匹配
 
 动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。
 
@@ -654,7 +654,7 @@ const User = {
 
 除了 `$route.params` 外，`$route` 对象还提供了其它有用的信息，例如，`$route.query` (如果 URL 中有查询参数)、`$route.hash` 等等。
 
-#### 2.8.1. 开启 props 传参
+#### 开启 props 传参
 
 为了简化路由参数的获取形式，vue-router 允许在路由规则中开启 `props` 传参。在理由配置规则中增加 `props: true` 属性，直接将路径参数绑定到组件的 `props` 中
 
@@ -676,7 +676,7 @@ const User = {
 }
 ```
 
-#### 2.8.2. 响应路由参数的变化
+#### 响应路由参数的变化
 
 当使用路由参数时，例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。
 
@@ -705,7 +705,7 @@ const User = {
 }
 ```
 
-#### 2.8.3. 捕获所有路由或 404 Not found 路由
+#### 捕获所有路由或 404 Not found 路由
 
 常规参数只会匹配被 `/` 分隔的 URL 片段中的字符。如果想匹配任意路径，可以使用通配符 (`*`)：
 
@@ -733,9 +733,9 @@ this.$router.push('/non-existing')
 this.$route.params.pathMatch // '/non-existing'
 ```
 
-## 3. vue-router 进阶用法
+## vue-router 进阶用法
 
-### 3.1. 导航守卫
+### 导航守卫
 
 vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的，单个路由独享的，或者组件级的。
 
@@ -743,7 +743,7 @@ vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫
 
 > 导航守卫可以用于**控制路由的访问权限**
 
-#### 3.1.1. 全局前置守卫
+#### 全局前置守卫
 
 可以使用 `router.beforeEach` 注册一个全局前置守卫。每次发生路由的导航跳转时，都会触发全局前置守卫。因此，在全局前置守卫中，可以对每个路由进行类似访问权限的控制：
 
@@ -782,15 +782,15 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-#### 3.1.2. 全局解析守卫(待整理)
+#### 全局解析守卫(待整理)
 
-#### 3.1.3. 全局后置钩子(待整理)
+#### 全局后置钩子(待整理)
 
-#### 3.1.4. 路由独享的守卫(待整理)
+#### 路由独享的守卫(待整理)
 
-#### 3.1.5. 组件内的守卫(待整理)
+#### 组件内的守卫(待整理)
 
-#### 3.1.6. 完整的导航解析流程
+#### 完整的导航解析流程
 
 1. 导航被触发。
 2. 在失活的组件里调用 `beforeRouteLeave` 守卫。

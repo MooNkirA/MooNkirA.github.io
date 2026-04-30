@@ -1,4 +1,4 @@
-## 1. Zuul 简介
+## Zuul 简介
 
 Zuul 是 Netflix 开源的微服务网关，它可以和 Eureka、Ribbon、Hystrix 等组件配合使用，Zuul 组件的核心是一系列的过滤器，这些过滤器可以完成以下功能：
 
@@ -8,11 +8,11 @@ Zuul 是 Netflix 开源的微服务网关，它可以和 Eureka、Ribbon、Hystr
 - 静态响应处理：边缘位置进行响应，避免转发到内部集群
 - 身份认证和安全：识别每一个资源的验证要求，并拒绝那些不符的请求。Spring Cloud 对 Zuul 进行了整合和增强。
 
-## 2. Zuul 网关服务器搭建准备
+## Zuul 网关服务器搭建准备
 
 创建 Zuul 组件的示例工程 `spring-cloud-sample-zuul`，复用之前 `spring-cloud-sample-feign` 工程的代码，删除一些无用的内容
 
-### 2.1. 创建zuul服务引入依赖
+### 创建zuul服务引入依赖
 
 创建 zuu l网关工程 `shop-server-zuul`，并添加 zuul 组件的依赖
 
@@ -24,7 +24,7 @@ Zuul 是 Netflix 开源的微服务网关，它可以和 Eureka、Ribbon、Hystr
 </dependency>
 ```
 
-### 2.2. 开启zuul网关功能
+### 开启zuul网关功能
 
 创建启动类 `ZuulServerApplication`，在启动类上标识`@EnableZuulProxy`注解开启zuul网关功能
 
@@ -38,7 +38,7 @@ public class ZuulServerApplication {
 }
 ```
 
-### 2.3. 项目配置
+### 项目配置
 
 创建工程的配置文件`application.yml`，并添加基础配置
 
@@ -50,11 +50,11 @@ spring:
     name: shop-server-zuul # 服务名称
 ```
 
-## 3. Zuul 的路由转发
+## Zuul 的路由转发
 
 **路由转发**是指根据请求 URL，将请求分配到对应的处理程序。在微服务体系中，Zuul 负责接收所有的请求。根据不同的 URL 匹配规则，将不同的请求转发到不同的微服务处理。
 
-### 3.1. 基础配置
+### 基础配置
 
 修改工程的`application.yml`配置文件，配置路由规则
 
@@ -77,7 +77,7 @@ zuul:
 
 Zuul 路由配置后，启动服务，在浏览器中输入`http://localhost:8080/product-service/product/1`，即可访问到商品微服务
 
-### 3.2. 通过注册中心方式的路由配置
+### 通过注册中心方式的路由配置
 
 对于一个 URL 请求，最终会确认一个服务实例进行处理。在实际项目众多微服务情况下，如果对每个服务实例手动指定一个唯一访问地址，然后根据 URL 去手动实现请求匹配，显然不可能的。
 
@@ -125,7 +125,7 @@ zuul:
 
 依次启动Eureka，商品微服务，API网关，在浏览器上通过访问 http://localhost:8080/product-service/product/1 查看最终效果。
 
-### 3.3. 路由配置的简化方式
+### 路由配置的简化方式
 
 传统面向服务的路由配置规则是：
 
@@ -141,7 +141,7 @@ zuul:
     shop-service-product: /product-service/**
 ```
 
-### 3.4. 默认的路由规则
+### 默认的路由规则
 
 Zuul不单单提供的路由的简化配置，zuul还有默认的路由规则。<font color=red>**默认的路由规则是：一切服务的映射路径就是服务的名称**</font>
 
@@ -151,11 +151,11 @@ Zuul不单单提供的路由的简化配置，zuul还有默认的路由规则。
 
 ![](images/20201024100422212_22770.png)
 
-### 3.5. 通过注册中心方式配置zuul路由的架构图
+### 通过注册中心方式配置zuul路由的架构图
 
 ![](images/20201024090229529_11017.png)
 
-## 4. Zuul 的过滤器
+## Zuul 的过滤器
 
 <font color=red>**Zuul 组件包含了两个核心功能：对请求的路由和过滤**</font>。
 
@@ -164,7 +164,7 @@ Zuul不单单提供的路由的简化配置，zuul还有默认的路由规则。
 
 其实路由功能在真正运行时，它的路由映射和请求转发同样也由几个不同的过滤器完成的。所以**过滤器可以说是 Zuul 实现 API 网关功能最为核心的部件**，每一个进入Zuul的HTTP请求都会经过一系列的过滤器处理链得到请求响应并返回给客户端。
 
-### 4.1. ZuulFilter 简介
+### ZuulFilter 简介
 
 Zuul 中的过滤器跟 Servlet 使用的`javax.servlet.Filter`不一样，`javax.servlet.Filter`只有一种类型，可以通过配置 `urlPatterns` 来拦截对应的请求。而 Zuul 中的过滤器总共有4种类型，且每种类型都有对应的使用场景。
 
@@ -173,7 +173,7 @@ Zuul 中的过滤器跟 Servlet 使用的`javax.servlet.Filter`不一样，`java
 3. `POST`：此过滤器在路由到微服务以后执行。这种过滤器可用来为响应添加标准的 HTTPHeader、收集统计信息和指标、将响应从微服务发送给客户端等。
 4. `ERROR`：在其他阶段发生错误时执行该过滤器。
 
-### 4.2. 过滤器的生命周期
+### 过滤器的生命周期
 
 ![](images/20201024104130123_700.png)
 
@@ -195,13 +195,13 @@ Zuul 中的过滤器跟 Servlet 使用的`javax.servlet.Filter`不一样，`java
 
 ![](images/20201024104434210_3724.png)
 
-### 4.3. zuul 内置过滤器
+### zuul 内置过滤器
 
 ![](images/20201024104911792_30718.png)
 
-### 4.4. 自定义 zuul 过滤器
+### 自定义 zuul 过滤器
 
-#### 4.4.1. 基础用法
+#### 基础用法
 
 Zuul 提供了自定义过滤器的功能，只需要编写一个类去实现 zuul 提供的 `ZuulFilter` 接口即可。
 
@@ -229,7 +229,7 @@ public abstract class ZuulFilter implements IZuulFilter, Comparable<ZuulFilter> 
     - `error`：处理请求时发生错误调用
 - `filterOrder()`：通过返回`int`类型的值来定义过滤器的执行顺序，数字越小优先级越高
 
-#### 4.4.2. 自定义过滤器示例
+#### 自定义过滤器示例
 
 示例需求：自定义一个过滤器，模拟一个登录的校验。基本逻辑：如果请求头中有`access-token`参数，则认为请求有效，放行。
 
@@ -333,9 +333,9 @@ public class LoginFilter extends ZuulFilter {
 
 ![](images/20201024141450825_9895.png)
 
-## 5. 服务网关Zuul的核心源码解析
+## 服务网关Zuul的核心源码解析
 
-### 5.1. Zuul 网关处理请求的流程
+### Zuul 网关处理请求的流程
 
 ![](images/20201024141803070_6037.png)
 
@@ -346,7 +346,7 @@ public class LoginFilter extends ZuulFilter {
 3. 有了这些 filter 之后，`ZuulServlet`首先执行的Pre类型的过滤器，再执行route类型的过滤器，最后执行的是post类型的过滤器，如果在执行这些过滤器有错误的时候则会执行error类型的过滤器。
 4. 执行完这些过滤器，最终将请求的结果返回给客户端
 
-### 5.2. zuul 的初始化
+### zuul 的初始化
 
 Spring Cloud 对 Zuul 的封装使得发布一个`ZuulServer`，根据自动装载原则可以在 `spring-cloud-netflix-zuul-2.1.0.RELEASE.jar` 下找到 `spring.factories` 文件
 
@@ -477,7 +477,7 @@ public class ZuulFilterInitializer {
 }
 ```
 
-### 5.3. zuul 处理请求的转发
+### zuul 处理请求的转发
 
 在 Zuul 的`ZuulServerAutoConfiguration`自动配置类中，创建了`ZuulHandlerMapping`实例，此类为 Spring MVC 中`HandlerMapping`的拓展实现，会自动的添加到`HandlerMapping`链中。
 
@@ -582,15 +582,15 @@ public class ZuulServlet extends HttpServlet {
 }
 ```
 
-### 5.4. zuul 内置的过滤器
+### zuul 内置的过滤器
 
 Zuul 默认注入的过滤器可以在 `spring-cloud-netflix-core.jar` 中找到
 
 ![](images/20201024152851036_6958.png)
 
-## 6. Zuul网关的替换方案
+## Zuul网关的替换方案
 
-### 6.1. Zuul网关存在的问题
+### Zuul网关存在的问题
 
 - **性能问题**
 
@@ -598,11 +598,11 @@ Zuul 1.x 版本本质上就是一个同步 Servlet，采用多线程阻塞模型
 
 - **不支持任何长连接**，如`WebSocket`
 
-### 6.2. 替换方案 - Zuul2.x版本
+### 替换方案 - Zuul2.x版本
 
 Zuul2.x 版本是对 zuul 的升级版，但并没有被 Spring Cloud 收录
 
-### 6.3. 替换方案 - Spring Cloud Gateway
+### 替换方案 - Spring Cloud Gateway
 
 Spring Cloud Gateway 是 Spring Cloud 单独推出的微服务网关组件，比 Zuul 1.x 系列的性能和功能整体要好
 

@@ -1,17 +1,17 @@
-## 1. ShardingSphere 概述
+## ShardingSphere 概述
 
 Apache ShardingSphere 是一款分布式 SQL 事务和查询引擎，可通过数据分片、弹性伸缩、加密等能力对任意数据库进行增强。
 
 Apache ShardingSphere 设计哲学为 Database Plus，旨在构建异构数据库上层的标准和生态。 它关注如何充分合理地利用数据库的计算和存储能力，而并非实现一个全新的数据库。 它站在数据库的上层视角，关注它们之间的协作多于数据库自身。
 
-### 1.1. ShardingSphere 组成简介
+### ShardingSphere 组成简介
 
 Apache ShardingSphere 由 JDBC、Proxy 和 Sidecar（规划中）这 3 款既能够独立部署，又支持混合部署配合使用的产品组成。 它们均提供标准化的基于数据库作为存储节点的增量功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。
 
 - ShardingSphere-JDBC：定位为轻量级 Java 框架，在 Java 的 JDBC 层提供的额外服务。
 - ShardingSphere-Proxy：定位为透明化的数据库代理端，通过实现数据库二进制协议，对异构语言提供支持。
 
-### 1.2. 产品功能
+### 产品功能
 
 - **数据分片**：是应对海量数据存储与计算的有效手段。ShardingSphere 基于底层数据库提供分布式数据库解决方案，可以水平扩展计算和存储。
 - **分布式事务**：是保障数据库完整、安全的关键技术，也是数据库的核心技术。基于 XA 和 BASE 的混合事务引擎，ShardingSphere 提供在独立数据库上的分布式事务功能，保证跨数据源的数据安全。
@@ -21,7 +21,7 @@ Apache ShardingSphere 由 JDBC、Proxy 和 Sidecar（规划中）这 3 款既能
 - **数据加密**：是保证数据安全的基本手段。ShardingSphere 提供完整、透明、安全、低成本的数据加密解决方案。
 - **影子库**：在全链路压测场景下，ShardingSphere 支持不同工作负载下的数据隔离，避免测试数据污染生产环境。
 
-### 1.3. 产品优势
+### 产品优势
 
 - 极致性能：驱动程序端历经长年打磨，效率接近原生 JDBC，性能极致。
 - 生态兼容：代理端支持任何通过 MySQL/PostgreSQL 协议的应用访问，驱动程序端可对接任意实现 JDBC 规范的数据库。
@@ -31,7 +31,7 @@ Apache ShardingSphere 由 JDBC、Proxy 和 Sidecar（规划中）这 3 款既能
 - 弹性扩展：具备计算、存储平滑在线扩展能力，可满足业务多变的需求。
 - 开放生态：通过多层次（内核、功能、生态）插件化能力，为用户提供可定制满足自身特殊需求的独有系统。
 
-## 2. Apache ShardingSphere 的核心概念
+## Apache ShardingSphere 的核心概念
 
 ![](images/146744416240253.jpg)
 
@@ -43,11 +43,11 @@ Apache ShardingSphere 由 JDBC、Proxy 和 Sidecar（规划中）这 3 款既能
     - **L2 功能层**：用于提供增量能力，其所有组件均是可选的，可以包含零至多个组件。组件之间完全隔离，互无感知，多组件可通过叠加的方式相互配合使用。主要包括数据分片、读写分离、数据加密、影子库等。用户自定义功能可完全面向 Apache ShardingSphere 定义的顶层接口进行定制化扩展，而无需改动内核代码。
     - **L3 生态层**：用于对接和融入现有数据库生态，包括数据库协议、SQL 解析器和存储适配器，分别对应于 Apache ShardingSphere 以数据库协议提供服务的方式、SQL 方言操作数据的方式以及对接存储节点的数据库类型。
 
-## 3. 部署形态
+## 部署形态
 
 Apache ShardingSphere 由 ShardingSphere-JDBC 和 ShardingSphere-Proxy 这 2 款既能够独立部署，又支持混合部署配合使用的产品组成。它们均提供标准化的基于数据库作为存储节点的增量功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。
 
-### 3.1. ShardingSphere-JDBC 独立部署
+### ShardingSphere-JDBC 独立部署
 
 ShardingSphere-JDBC 定位为轻量级 Java 框架，在 Java 的 JDBC 层提供的额外服务。它使用客户端直连数据库，以 jar 包形式提供服务，无需额外部署和依赖，可理解为增强版的 JDBC 驱动，完全兼容 JDBC 和各种 ORM 框架。
 
@@ -57,7 +57,7 @@ ShardingSphere-JDBC 定位为轻量级 Java 框架，在 Java 的 JDBC 层提供
 
 ![](images/405303817246546.png)
 
-### 3.2. ShardingSphere-Proxy 独立部署
+### ShardingSphere-Proxy 独立部署
 
 ShardingSphere-Proxy 定位为透明化的数据库代理端，通过实现数据库二进制协议，对异构语言提供支持。 目前提供 MySQL 和 PostgreSQL 协议，透明化数据库操作，对 DBA 更加友好。
 
@@ -67,7 +67,7 @@ ShardingSphere-Proxy 定位为透明化的数据库代理端，通过实现数�
 
 ![](images/334904017266712.png)
 
-### 3.3. ShardingSphere-JDBC 与 ShardingSphere-Proxy 对比
+### ShardingSphere-JDBC 与 ShardingSphere-Proxy 对比
 
 |           | ShardingSphere-JDBC | ShardingSphere-Proxy |
 | -------- | ------------------- | -------------------- |
@@ -78,7 +78,7 @@ ShardingSphere-Proxy 定位为透明化的数据库代理端，通过实现数�
 | 无中心化   | 是                  | 否                   |
 | 静态入口   | 无                  | 有                   |
 
-### 3.4. ShardingSphere-Sidecar（TODO）
+### ShardingSphere-Sidecar（TODO）
 
 定位为 Kubernetes 的云原生数据库代理，以 Sidecar 的形式代理所有对数据库的访问。 通过无中心、零侵入的方案提供与数据库交互的啮合层，即 Database Mesh，又可称数据库网格。
 
@@ -86,7 +86,7 @@ Database Mesh 的关注重点在于如何将分布式的数据访问应用与数
 
 ![](images/340225017255936.png)
 
-### 3.5. 混合部署架构
+### 混合部署架构
 
 ShardingSphere-JDBC 采用无中心化架构，与应用程序共享资源，适用于 Java 开发的高性能的轻量级 OLTP 应用；ShardingSphere-Proxy 提供静态入口以及异构语言的支持，独立于应用程序部署，适用于 OLAP 应用以及对分片数据库进行管理和运维的场景。
 
@@ -94,17 +94,17 @@ Apache ShardingSphere 是多接入端共同组成的生态圈。通过混合使�
 
 ![](images/268504317259381.png)
 
-## 4. 运行模式
+## 运行模式
 
 Apache ShardingSphere 提供了两种运行模式，分别是单机模式和集群模式。
 
-### 4.1. 单机模式
+### 单机模式
 
 **单机模式**能够将数据源和规则等元数据信息持久化，但无法将元数据同步至多个 Apache ShardingSphere 实例，无法在集群环境中相互感知。通过某一实例更新元数据之后，会导致其他实例由于获取不到最新的元数据而产生不一致的错误。
 
 > 适用于工程师在本地搭建 Apache ShardingSphere 环境。
 
-### 4.2. 集群模式
+### 集群模式
 
 **集群模式**提供了多个 Apache ShardingSphere 实例之间的元数据共享和分布式场景下状态协调的能力。 它能够提供计算能力水平扩展和高可用等分布式系统必备的能力，集群环境需要通过独立部署的注册中心来存储元数据和协调节点状态。
 

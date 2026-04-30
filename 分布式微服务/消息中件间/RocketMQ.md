@@ -1,4 +1,4 @@
-## 1. RocketMQ 介绍
+## RocketMQ 介绍
 
 RocketMQ 是一款阿里巴巴开源的分布式消息中间件，现在是 Apache 的一个顶级项目。基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。同时，广泛应用于多个领域，包括异步通信解耦、企业解决方案、金融支付、电信、电子商务、快递物流、广告营销、社交、即时通信、移动应用、手游、视频、物联网、车联网等。
 
@@ -11,7 +11,7 @@ RocketMQ 是一款阿里巴巴开源的分布式消息中间件，现在是 Apac
 - 亿级消息堆积能力
 
 
-### 1.1. 基本概念
+### 基本概念
 
 - **消息模型（Message Model）**：RocketMQ 主要由 Producer、Broker、Consumer 三部分组成，其中 Producer 负责生产消息，Consumer 负责消费消息，Broker 负责存储消息。Broker 在实际部署过程中对应一台服务器，每个 Broker 可以存储多个 Topic 的消息，每个 Topic 的消息也可以分片存储于不同的 Broker。Message Queue 用于存储消息的物理地址，每个Topic中的消息地址存储于多个 Message Queue 中。ConsumerGroup 由多个 Consumer 实例构成。
 - **消息生产者（Producer）**：负责生产消息，一般由业务系统负责生产消息。一个消息生产者会把业务应用系统里产生的消息发送到broker服务器。RocketMQ提供多种发送方式，同步发送、异步发送、顺序发送、单向发送。同步和异步方式均需要Broker返回确认信息，单向发送不需要。
@@ -30,7 +30,7 @@ RocketMQ 是一款阿里巴巴开源的分布式消息中间件，现在是 Apac
 - **消息（Message）**：消息系统所传输信息的物理载体，生产和消费数据的最小单位，每条消息必须属于一个主题。RocketMQ中每个消息拥有唯一的Message ID，且可以携带具有业务标识的Key。系统提供了通过Message ID和Key查询消息的功能。
 - **标签（Tag）**：为消息设置的标志，用于同一主题下区分不同类型的消息。来自同一业务单元的消息，可以根据不同业务目的在同一主题下设置不同标签。标签能够有效地保持代码的清晰度和连贯性，并优化RocketMQ提供的查询系统。消费者可以根据Tag实现对不同子主题的不同消费逻辑，实现更好的扩展性。
 
-### 1.2. 技术架构
+### 技术架构
 
 ![](images/20220106111459581_10004.png)
 
@@ -44,7 +44,7 @@ RocketMQ 架构上主要分为四部分，如上图所示:
 > NameServer 通常也是集群的方式部署，各实例间相互不进行信息通讯。Broker 会向每一台 NameServer 注册自己的路由信息，所以每一个 NameServer 实例上面都保存一份完整的路由信息。当某个 NameServer 因某种原因下线了，Broker 仍然可以向其它 NameServer 同步其路由信息，Producer、Consumer 仍然可以动态感知 Broker 的路由的信息。
 - BrokerServer：Broker 主要负责消息的存储、投递和查询以及服务高可用保证。
 
-### 1.3. Broker 核心子模块
+### Broker 核心子模块
 
 Broker 为了实现这些功能，其架构包含了以下几个重要子模块：
 
@@ -56,13 +56,13 @@ Broker 为了实现这些功能，其架构包含了以下几个重要子模块�
 - HA Service：高可用服务，提供 Master Broker 和 Slave Broker 之间的数据同步功能。
 - Index Service：根据特定的 Message key 对投递到 Broker 的消息进行索引服务，以提供消息的快速查询。
 
-### 1.4. 消息系统通用模型
+### 消息系统通用模型
 
 消息发送-消费的通用模型
 
 ![](images/382563912248879.png)
 
-### 1.5. RocketMQ 的消息存储机制设计
+### RocketMQ 的消息存储机制设计
 
 RocketMQ 消息存储机制的设计原理：
 
@@ -71,11 +71,11 @@ RocketMQ 消息存储机制的设计原理：
 3. **索引机制**：提供索引机制，通过索引快速查找消息。
 4. **文件切割**：CommitLog 和消费队列文件按固定大小切割，便于文件管理和清理。
 
-## 2. RocketMQ 环境搭建
+## RocketMQ 环境搭建
 
 RocketMQ 学习示例是在 linux 环境下安装
 
-### 2.1. 资源下载
+### 资源下载
 
 > 最新版本 4.9.2（截止 2021.10.18）
 
@@ -94,14 +94,14 @@ apache-rocketmq
 └── lib
 ```
 
-### 2.2. Linux 环境安装
+### Linux 环境安装
 
-#### 2.2.1. 环境要求
+#### 环境要求
 
 - Linux 64位操作系统
 - 64bit JDK 1.8+
 
-#### 2.2.2. 安装
+#### 安装
 
 1. 使用 `rz` 命令工具上传文件到 Linux 系统
 
@@ -130,7 +130,7 @@ cd rocketmq-all-4.4.0-source-release
 mvn -Prelease-all -DskipTests clean install -U
 ```
 
-#### 2.2.3. 启动服务
+#### 启动服务
 
 进入 rocketmq 的安装目录下的 bin 目录
 
@@ -138,7 +138,7 @@ mvn -Prelease-all -DskipTests clean install -U
 cd ./{path}/rocketmq-all-4.4.0-bin-release/bin
 ```
 
-##### 2.2.3.1. 修改配置文件
+##### 修改配置文件
 
 启动前，需要修改两个配置文件。修改服务占用的内存
 
@@ -159,7 +159,7 @@ Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000005c00
 ...
 ```
 
-##### 2.2.3.2. 启动 NameServer
+##### 启动 NameServer
 
 ```bash
 nohup ./mqnamesrv &
@@ -177,7 +177,7 @@ netstat -an | grep 9876
 
 ![](images/20220106095659154_18638.png)
 
-##### 2.2.3.3. 启动 Broker
+##### 启动 Broker
 
 启动 Broker，需要指定一下 NameServer 的地址和端口
 
@@ -193,7 +193,7 @@ tail -f /root/logs/rocketmqlogs/broker.log
 
 ![](images/20220106105736976_27327.png)
 
-#### 2.2.4. 测试
+#### 测试
 
 官方文档提供了一个测试脚本。*注：以下命令是在RocketMQ根目录执行*
 
@@ -215,7 +215,7 @@ bin/tools.sh org.apache.rocketmq.example.quickstart.Consumer
 
 接收成功后显示：ConsumeMessageThread_%d Receive New Messages: [MessageExt…​
 
-#### 2.2.5. 关闭服务
+#### 关闭服务
 
 在 RocketMQ 根目录执行以下命令，关闭 RocketMQ
 
@@ -224,9 +224,9 @@ bin/mqshutdown broker
 bin/mqshutdown namesrv
 ```
 
-### 2.3. windows 环境安装
+### windows 环境安装
 
-#### 2.3.1. 安装
+#### 安装
 
 - 将下载的 rocketmq-all-4.9.2-bin-release.zip 到无中文无空格的目录下
 - 新增环境变量 `ROCKETMQ_HOME`，指定 rocketmq 解压的根目录
@@ -250,11 +250,11 @@ namesrvAddr=127.0.0.1:9876
 
 ![](images/20220106141213858_12615.png)
 
-#### 2.3.2. 启动服务
+#### 启动服务
 
 先进入 RocketMQ 的 bin 目录下
 
-##### 2.3.2.1. 修改配置文件
+##### 修改配置文件
 
 启动前，需要修改两个配置文件。修改服务占用的内存
 
@@ -274,7 +274,7 @@ namesrvAddr=127.0.0.1:9876
 
 - 修改服务的日志保存位置（可选），日志的配置文件位置是：rocketmq-4.9.2\conf\logback_xxx.xml，共3个文件
 
-##### 2.3.2.2. 启动 NameServer
+##### 启动 NameServer
 
 运行 bin 目录下的 `mqnamesrv` 命令即可启动命名服务器，默认对外服务端口 9876
 
@@ -288,7 +288,7 @@ mqnamesrv.cmd
 
 ![](images/20220106141603810_9695.png)
 
-##### 2.3.2.3. 启动 Broker
+##### 启动 Broker
 
 进入 `/根目录/bin/` 目录，通过命令行启动 broker
 
@@ -301,11 +301,11 @@ mqbroker.cmd -c ../conf/broker.conf
 
 > 注：如果不配置环境变量 `NAMESRV_ADDR` 或者 `broker.conf` 配置文件，将 borker 与 NameServer 关联起来，则需要在运行 `mqbroker` 指令前通过 `set` 指令设置 `NAMESRV_ADDR` 的值，并且每次开启均需要设置此项。
 
-#### 2.3.3. 关闭服务
+#### 关闭服务
 
 直接关闭命令行窗口即可
 
-### 2.4. RocketMQ 控制台安装（windows环境）
+### RocketMQ 控制台安装（windows环境）
 
 部署完 NameServer、Broker 之后，RocketMQ 就可以正常工作了，但所有操作都是通过命令行，不太方便。所以还需要部署一个扩展项目 rocketmq-console，可以通过 web 界面来管理 RocketMQ。
 
@@ -359,15 +359,15 @@ java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.nam
 
 ![](images/421073312230453.png)
 
-## 3. RocketMQ 快速开始
+## RocketMQ 快速开始
 
-### 3.1. 消息发送-消费示例流程图
+### 消息发送-消费示例流程图
 
 示例需求：创建一个 Producer，向 RocketMQ 发送消息，通过 RocketMQ Console 验证发送成功；创建一个 Consumer，从 RocketMQ 成功接收消息
 
 ![](images/375155012236746.png)
 
-### 3.2. 相关依赖
+### 相关依赖
 
 示例使用 SpringBoot 项目，引入 RocketMQ 依赖
 
@@ -402,7 +402,7 @@ java -jar rocketmq-console-ng-1.0.0.jar --server.port=7777 --rocketmq.config.nam
 
 > Notes: 示例依赖 rocketmq-starter 2.0.2 版本时，发送消息时如果当前 topic 不存在，会报 No route info of this topic 这个异常问题。高版本默认自动创建 topic。
 
-### 3.3. RocketMQ 相关的配置
+### RocketMQ 相关的配置
 
 修改项目application.yml配置文件，增加 RocketMQ 相关的配置
 
@@ -424,9 +424,9 @@ rocketmq:
   name-server: 127.0.0.1:9876 # RocketMQ 服务的地址
 ```
 
-### 3.4. 使用 RocketMQ 原生的 API 方式
+### 使用 RocketMQ 原生的 API 方式
 
-#### 3.4.1. 发送消息
+#### 发送消息
 
 使用 RocketMQ 发送消息步骤如下：
 
@@ -475,7 +475,7 @@ public void basicTest() throws Exception {
 }
 ```
 
-#### 3.4.2. 接收消息
+#### 接收消息
 
 使用 RocketMQ 接收消息步骤：
 
@@ -530,9 +530,9 @@ public void basicTest() throws Exception {
 }
 ```
 
-### 3.5. Spring Boot 方式
+### Spring Boot 方式
 
-#### 3.5.1. 发送消息
+#### 发送消息
 
 注入 `RocketMQTemplate` 对象用于发送消息
 
@@ -571,7 +571,7 @@ public class ProducerController {
 }
 ```
 
-#### 3.5.2. 接收消息
+#### 接收消息
 
 RocketMQ 支持两种消息模式：
 
@@ -601,11 +601,11 @@ public class ConsumeService implements RocketMQListener<String> {
 }
 ```
 
-## 4. 普通消息
+## 普通消息
 
 RocketMQ 提供三种方式来发送普通消息：可靠同步发送、可靠异步发送和单向发送。
 
-### 4.1. 可靠同步发送
+### 可靠同步发送
 
 同步发送是指消息发送方发出数据后，会在收到接收方发回响应之后才发下一个数据包的通讯方式。
 
@@ -628,7 +628,7 @@ public void testSyncSend() {
 }
 ```
 
-### 4.2. 可靠异步发送
+### 可靠异步发送
 
 异步发送是指发送方发出数据后，不等接收方发回响应，接着发送下个数据包的通讯方式。发送方通过回调接口接收服务器响应，并对响应结果进行处理。
 
@@ -664,7 +664,7 @@ public void testAsyncSend() throws InterruptedException {
 }
 ```
 
-### 4.3. 单向发送
+### 单向发送
 
 单向发送是指发送方只负责发送消息，不等待服务器回应且没有回调函数触发，即只发送请求不等待应答。
 
@@ -684,7 +684,7 @@ public void testOneWay() {
 }
 ```
 
-### 4.4. 三种发送方式的对比
+### 三种发送方式的对比
 
 | 发送方式 | 发送 TPS | 发送结果反馈 |  可靠性  |
 | :-----: | :------: | :--------: | :-----: |
@@ -692,9 +692,9 @@ public void testOneWay() {
 | 异步发送 |    快    |    有       |  不丢失  |
 | 单向发送 |   最快   |     无      | 可能丢失 |
 
-## 5. 顺序消息
+## 顺序消息
 
-### 5.1. 概述
+### 概述
 
 顺序消息是消息队列提供的一种严格按照顺序来发布和消费的消息类型。
 
@@ -752,29 +752,29 @@ public void testSendOrderly() throws InterruptedException {
 }
 ```
 
-### 5.2. 顺序消息保证机制原理
+### 顺序消息保证机制原理
 
 1. **顺序消息类型**：提供顺序消息类型，保证同一主题的同一队列中的消息按发送顺序消费。
 2. **局部顺序**：在单个队列级别实现消息顺序，保证队列内部消息的有序性。
 3. **分布式锁**：在发送和消费顺序消息时，使用分布式锁来保证顺序性。
 4. **重试机制**：当消费失败时，采用重试机制而非立即跳过，保证消息顺序。
 
-## 6. 事务消息
+## 事务消息
 
 RocketMQ 提供了事务消息，通过事务消息就能达到分布式事务的最终一致。
 
-### 6.1. 事务消息相关概念
+### 事务消息相关概念
 
 - 半事务消息：暂不能投递的消息，发送方已经成功地将消息发送到了 RocketMQ 服务端，但是服务端未收到生产者对该消息的二次确认，此时该消息被标记成“暂不能投递”状态，处于该种状态下的消息即半事务消息。
 - 消息回查：由于网络闪断、生产者应用重启等原因，导致某条事务消息的二次确认丢失，RocketMQ 服务端通过扫描发现某条消息长期处于“半事务消息”时，需要主动向消息生产者询问该消息的最终状态（`Commit` 或是 `Rollback`），该询问过程即消息回查。
 
-### 6.2. 事务消息交互流程
+### 事务消息交互流程
 
 ![](images/64572517256912.png)
 
 ![](images/20220107101823197_5114.png)
 
-#### 6.2.1. 事务消息发送步骤
+#### 事务消息发送步骤
 
 1. 发送方将半事务消息发送至 RocketMQ 服务端。
 2. RocketMQ 服务端将消息持久化之后，向发送方返回 Ack 确认消息已经发送成功，此时消息为半事务消息。
@@ -783,13 +783,13 @@ RocketMQ 提供了事务消息，通过事务消息就能达到分布式事务�
     - 服务端收到 `Commit` 状态则将半事务消息标记为可投递，订阅方最终将收到该消息。
     - 服务端收到 `Rollback` 状态则删除半事务消息，订阅方将不会接受该消息。
 
-#### 6.2.2. 事务消息回查步骤
+#### 事务消息回查步骤
 
 1. 在断网或者是应用重启的特殊情况下，『事务消息发送』步骤4提交的二次确认最终未到达服务端，经过固定时间后服务端将对该消息发起消息回查。
 2. 发送方收到消息回查后，需要检查对应消息的本地事务执行的最终结果。
 3. 发送方根据检查得到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行操作，确保消息最终一致性。
 
-### 6.3. 基础使用示例
+### 基础使用示例
 
 ```java
 @RestController
@@ -882,7 +882,7 @@ public class TxMessageServiceListener implements RocketMQLocalTransactionListene
 }
 ```
 
-### 6.4. @RocketMQTransactionListener 注解与 sendMessageInTransaction 在版本升级的变化
+### @RocketMQTransactionListener 注解与 sendMessageInTransaction 在版本升级的变化
 
 依赖：
 
@@ -992,7 +992,7 @@ java.lang.IllegalStateException: rocketMQTemplate already exists RocketMQLocalTr
 
 所以发送事务消息：在客户端，首先用户需要实现 `RocketMQLocalTransactionListener` 接口，并在接口类上注解声明 `@RocketMQTransactionListener`，实现确认和回查方法；然后再使用资源模板 `RocketMQTemplate`，调用方法 `sendMessageInTransaction()` 来进行消息的发布。注意：从 RocketMQ-Spring 2.1.0 版本之后，注解 `@RocketMQTransactionListener` 不能设置 `txProducerGroup`、`ak`、`sk`，这些值均与对应的 `RocketMQTemplate` 保持一致。
 
-### 6.5. 消息的幂等性
+### 消息的幂等性
 
 在上面事务消息测试中，如果处理本地事务时发生了网络的延迟或者其他问题，导致本地事务处理的方法没有返回，此时会就执行事务回查的方法并发送事务提交标识（`RocketMQLocalTransactionState.COMMIT`）。但后面网络恢复正常后，本地事务处理也会发送一次 `RocketMQLocalTransactionState.COMMIT`，此时 Consumer 会收到 2 次消息，可能导致重复消费。
 
@@ -1000,16 +1000,16 @@ java.lang.IllegalStateException: rocketMQTemplate already exists RocketMQLocalTr
 
 **解决思路**：在 Consumer 端创建一个消息中间表，用于记录接收的消息，最好给每条消息设计一个唯一的流水id。每次收到消息后，先根据流水id来查询该表，判断这条消息是否处理过。
 
-## 7. RocketMQ 扩展
+## RocketMQ 扩展
 
-### 7.1. RocketMQ 处理消息重试和死信队列的机制
+### RocketMQ 处理消息重试和死信队列的机制
 
 - **重试队列**：当消费失败时，消息会被发送到重试队列，按配置的间隔和次数重试。
 - **死信队列**：超过最大重试次数的消息会被转移到死信队列。
 - **配置灵活**：提供灵活的重试间隔和次数配置。
 - **死信队列处理**：可以对死信队列中的消息进行特殊处理，如人工干预或日志记录。
 
-### 7.2. RocketMQ 消息过滤功能
+### RocketMQ 消息过滤功能
 
 RocketMQ 消息过滤功能的实现方式：
 

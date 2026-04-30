@@ -1,15 +1,15 @@
-## 1. JUnit5 简介
+## JUnit5 简介
 
 JUnit 5 是当前一代的 JUnit 测试框架，它为 JVM 上的开发人员的测试提供了现代化的基础。这包括专注于 Java 8 及以上版本，以及支持多种不同风格的测试。
 
-### 1.1. 官方资料
+### 官方资料
 
 - 官网： https://junit.org/junit5/
 - 官方入门文档： https://junit.org/junit5/docs/current/user-guide/#overview
 - 官方示例： https://github.com/junit-team/junit5-samples
 - 官方 github： https://github.com/junit-team
 
-### 1.2. Junit5 的架构
+### Junit5 的架构
 
 与以前版本的 JUnit 不同，JUnit 5 由三个不同子项目中的几个不同模块组成。
 
@@ -23,7 +23,7 @@ JUnit 5 是当前一代的 JUnit 测试框架，它为 JVM 上的开发人员的
 
 ![](images/325643318267169.jpg)
 
-### 1.3. Junit5 常用注解
+### Junit5 常用注解
 
 - `@Test` 表示方法是一种测试方法。与 JUnit 4 的 `@Test` 注解不同，此注释不会声明任何属性。
 - `@ParameterizedTest` 表示方法是参数化测试
@@ -40,9 +40,9 @@ JUnit 5 是当前一代的 JUnit 测试框架，它为 JVM 上的开发人员的
 - `@ExtendWith` 用于注册自定义扩展，该注解可以继承
 - `@FixMethodOrder(MethodSorters.NAME_ASCENDING)`，控制测试类中方法执行的顺序，这种测试方式将按方法名称的进行排序，由于是按字符的字典顺序，所以以这种方式指定执行顺序会始终保持一致；不过这种方式需要对测试方法有一定的命名规则，如测试方法均以 `testNNN` 开头（`NNN` 表示测试方法序列号 `001-999`）
 
-## 2. JUnit5 快速开始
+## JUnit5 快速开始
 
-### 2.1. 引入 maven 依赖
+### 引入 maven 依赖
 
 ```xml
 <dependencies>
@@ -78,7 +78,7 @@ JUnit 5 是当前一代的 JUnit 测试框架，它为 JVM 上的开发人员的
 </dependencies>
 ```
 
-### 2.2. 编写 @Test 测试方法
+### 编写 @Test 测试方法
 
 `@Test` 注解标记的方法为测试方法，以便构建工具和 IDE 能够识别并执行它们。<font color=red>**JUnit 5 不再需要手动将测试类与测试方法为 `public`，包可见的访问级别即可**</font>。
 
@@ -95,13 +95,13 @@ public class Junit5QuickstartTest {
 }
 ```
 
-### 2.3. 运行单元测试
+### 运行单元测试
 
 ![](images/218455518264671.png)
 
-## 3. 生命周期测试
+## 生命周期测试
 
-### 3.1. 相关注解
+### 相关注解
 
 需要特别注意，Junit5 和 Junit4 注解不一样：
 
@@ -110,7 +110,7 @@ public class Junit5QuickstartTest {
 - `@AfterEach` 表示使用了该注解的方法应该在**当前类中每一个测试方法之后执行**。*（等同于 Junit4 的 `@After`）*
 - `@AfterAll` 表示使用了该注解的方法应该在**当前类中所有测试方法之后执行（只执行一次），并且它必须是 static 方法**（除非 `@TestInstance` 指定生命周期为 `Lifecycle.PER_CLASS`）。*（等同于 Junit4 的 `@AfterClass`）*
 
-### 3.2. 使用示例
+### 使用示例
 
 ```java
 import org.junit.jupiter.api.AfterAll;
@@ -179,13 +179,13 @@ public class StandardTest {
 
 ![](images/567022119268352.jpg)
 
-## 4. 禁用测试
+## 禁用测试
 
-### 4.1. @Disabled 注解
+### @Disabled 注解
 
 `@Disabled` 用于禁用（或者说忽略）一个测试类或测试方法。*（等同于 Junit4 的 `@Ignore`）*
 
-### 4.2. 使用示例
+### 使用示例
 
 禁用整个测试示例：
 
@@ -225,15 +225,15 @@ public class DisabledMethodTest {
 }
 ```
 
-## 5. 断言测试
+## 断言测试
 
-### 5.1. 断言概述
+### 断言概述
 
 断言能确保得到执行了被测类的方法以后想要的结果。
 
 一般的断言，无非是检查一个实例的属性（比如，判空与判非空等），或者对两个实例进行比较（比如，检查两个实例对象是否相等）等。无论哪种检查，断言方法都可以接受一个字符串作为最后一个可选参数，它会在断言失败时提供必要的描述信息。如果提供出错信息的过程比较复杂，它也可以被包装在一个 lambda 表达式中，这样，只有到真正失败的时候，消息才会真正被构造出来。
 
-### 5.2. Assertions 断言类
+### Assertions 断言类
 
 `org.junit.jupiter.api.Assertions` 是 JUnit 5 提供的断言工具类
 
@@ -248,7 +248,7 @@ public class DisabledMethodTest {
 - `assertTimeout` 断言超时
 - `fail` 使单元测试失败
 
-### 5.3. 使用示例
+### 使用示例
 
 创建用于测试的类：
 
@@ -392,9 +392,9 @@ public class AssertionsTest {
 
 <font color=red>**值得注意，`assertTimeoutPreemptively()` 和 `assertTimeout()` 的区别为：两者都是断言超时，前者在指定时间没有完成任务就会立即返回断言失败；后者会在任务执行完毕之后才返回**</font>。
 
-## 6. 异常测试
+## 异常测试
 
-### 6.1. assertThrows 异常抛出断言
+### assertThrows 异常抛出断言
 
 代码中对于带有异常的方法通常都是使用 try-catch 方式捕获处理，JUnit 5 在 `Assertions` 类中提供 `assertThrows` 方法来针对测试带有异常抛出的代码。
 
@@ -408,7 +408,7 @@ public static <T extends Throwable> T assertThrows(Class<T> expectedType, Execut
 - 第二个参数 `executable` 为函数式接口，跟 Runnable 接口相似，不需要参数，也没有返回，并且支持 Lambda表达式方式使用。
 - 第三个参数 `message`/`messageSupplier` 是断言提示的信息
 
-### 6.2. 使用示例
+### 使用示例
 
 ```java
 import org.junit.jupiter.api.DisplayName;
@@ -461,15 +461,15 @@ Caused by: java.lang.NumberFormatException: null
 	... 6 more
 ```
 
-## 7. 嵌套测试
+## 嵌套测试
 
-### 7.1. @Nested 注解
+### @Nested 注解
 
 `@Nested` 注解标识的类是嵌套的非静态测试类，`@BeforeAll` 和 `@AfterAll` 方法不能直接在 `@Nested` 测试类中使用，除非修改测试实例生命周期。
 
 嵌套测试给测试编写者更多的能力，来表达几组测试之间的关系。
 
-### 7.2. 使用示例
+### 使用示例
 
 ```java
 import org.junit.jupiter.api.BeforeEach;
@@ -563,9 +563,9 @@ public class NestedTest {
 
 ![](images/18285822240248.png)
 
-## 8. 重复测试
+## 重复测试
 
-### 8.1. @RepeatedTest 注解
+### @RepeatedTest 注解
 
 JUnit Jupiter 通过使用 `@RepeatedTest` 注解标识方法并指定所需的重复次数，提供了重复测试指定次数的功能。每次重复测试的调用都像执行常规的 `@Test` 方法一样，完全支持相同的生命周期回调和扩展。例如指定测试方法自动重复10次：
 
@@ -582,7 +582,7 @@ void repeatedTest() {
 - `{currentRepetition}`：当前重复次数
 - `{totalRepetitions}`：重复的总次数
 
-### 8.2. 使用示例
+### 使用示例
 
 ```java
 import org.junit.jupiter.api.BeforeEach;
@@ -639,11 +639,11 @@ public class RepeatTest {
 
 ![](images/274701223258674.png)
 
-## 9. 参数化测试（个人使用的版本无法使用，待确认）
+## 参数化测试（个人使用的版本无法使用，待确认）
 
 JUnit Jupiter 提供了很多开箱即用的 `@*Source` 注解。更多细节请参阅 `org.junit.jupiter.params.provider` 包中的 JavaDoc。
 
-### 9.1. @ValueSource
+### @ValueSource
 
 `@ValueSource` 是最简单的 source 之一。它可以让你指定一个原生类型（String，int，long或double）的数组，并且只能为每次调用提供一个参数。
 
@@ -655,7 +655,7 @@ void testWithValueSource(int argument) {
 }
 ```
 
-### 9.2. @EnumSource
+### @EnumSource
 
 `@EnumSource` 提供了一个使用 Enum 常量的简便方法。该注释提供了一个可选的 `name` 参数，可以指定使用哪些常量。如果省略，所有的常量将被用在下面的例子中。
 
@@ -692,7 +692,7 @@ void testWithEnumSourceRegex(TimeUnit timeUnit) {
 }
 ```
 
-### 9.3. @MethodSource
+### @MethodSource
 
 `@MethodSource` 允许引用一个或多个测试类的工厂方法。这样的方法必须返回一个 Stream，Iterable，Iterator 或者参数数组。另外，这种方法不能接受任何参数。默认情况下，除非测试类用 `@TestInstance(Lifecycle.PER_CLASS)` 注解，否则这些方法必须是静态的。如果只需要一个参数，则可以返回参数类型的实例 Stream。
 
@@ -738,7 +738,7 @@ static Stream<Arguments> stringIntAndListProvider() {
 }
 ```
 
-### 9.4. @CsvSource
+### @CsvSource
 
 `@CsvSource` 允许将参数列表表示为以逗号分隔的值（例如，字符串文字）。
 
@@ -760,7 +760,7 @@ void testWithCsvSource(String first, int second) {
 | `@CsvSource({ "foo, ''" })`         | "foo", ""         |
 | `@CsvSource({ "foo, " })`           | "foo", null       |
 
-### 9.5. @CsvFileSource
+### @CsvFileSource
 
 `@CsvFileSource` 可以使用 classpath 中的 CSV 文件。CSV 文件中的每一行都会导致参数化测试的一次调用。
 
@@ -783,7 +783,7 @@ bar, 2
 
 与 `@CsvSource` 中使用的语法相反，`@CsvFileSource` 使用双引号`"`作为转义字符，如上面例子中的`"baz, qux"`值，一个空的转义值`""`会产生一个空字符串，一个完全为空的值被解释为 null 引用，如果 null 引用的目标类型是基本类型，则引发 `ArgumentConversionException`。
 
-### 9.6. @ArgumentsSource
+### @ArgumentsSource
 
 可以使用 `@ArgumentsSource` 指定一个自定义的，可重用的 `ArgumentsProvider`。
 
@@ -801,9 +801,9 @@ static class MyArgumentsProvider implements ArgumentsProvider {
 }
 ```
 
-## 10. 动态测试
+## 动态测试
 
-### 10.1. @TestFactory 注解
+### @TestFactory 注解
 
 除了以上标准测试外，JUnit Jupiter 还引入了一种全新的测试编程模型：**动态测试**，它是由 `@TestFactory `注解的工厂方法在运行时生成的。
 
@@ -813,7 +813,7 @@ static class MyArgumentsProvider implements ArgumentsProvider {
 
 `DynamicTest` 是运行时生成的测试用例。它由显示名称和 `Executable` 组成。`Executable` 是 `@FunctionalInterface`，这意味着动态测试的实现可以作为 lambda 表达式或方法引用来提供。
 
-### 10.2. 使用示例
+### 使用示例
 
 ```java
 import org.junit.jupiter.api.DynamicNode;

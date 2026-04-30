@@ -1,8 +1,8 @@
-## 1. Ribbon 概述
+## Ribbon 概述
 
 当启动某个服务的时候，可以通过 HTTP 的形式将信息注册到注册中心，并且可以通过 Spring Cloud 提供的工具获取注册中心的服务列表。但是还存在很多的问题，如服务之间的如何调用，多个微服务的提供者如何选择，如何负载均衡等。Spring Cloud 提供了 Ribbon 组件的解决方案
 
-### 1.1. Ribbon 是什么
+### Ribbon 是什么
 
 Ribbon 组件是 Netflixfa 发布的一个负载均衡器，有助于控制 HTTP 和 TCP 客户端行为。在 Spring Cloud 中推荐使用 Ribbon 来实现负载均衡。即使用客户端根据服务的负载情况去选择空闲或者访问压力小的服务
 
@@ -12,40 +12,40 @@ Ribbon 组件是 Netflixfa 发布的一个负载均衡器，有助于控制 HTTP
 
 Ribbon 客户端组件提供一系列完善的配置项如连接超时，重试等。也可为 Ribbon 实现自定义的负载均衡算法
 
-### 1.2. Ribbon 的主要作用
+### Ribbon 的主要作用
 
-#### 1.2.1. 服务调用
+#### 服务调用
 
 基于 Ribbon 实现服务调用，是通过拉取到的所有服务列表组成（服务名-请求路径的）映射关系。借助 RestTemplate 最终进行调用
 
-#### 1.2.2. 负载均衡
+#### 负载均衡
 
 当有多个服务提供者时，Ribbon 可以根据负载均衡的算法自动的选择需要调用的服务地址
 
-### 1.3. Ribbon 架构
+### Ribbon 架构
 
 ![Ribbon架构](images/ribbon架构_1538697723_25876.jpg)
 
-## 2. Ribbon 基础使用示例
+## Ribbon 基础使用示例
 
 需求：改造上面 Eureka 注册中心（单机版）示例，基于 Ribbon 组件实现订单调用商品服务
 
 > 复制上面`02-springcloud-eureka`工程的代码，在原有基础进行修改。改造后示例源代码详见：`spring-cloud-note\spring-cloud-greenwich-sample\04-springcloud-ribbon\`
 
-### 2.1. Ribbon 的依赖
+### Ribbon 的依赖
 
 在 Spring Cloud 提供的服务工程，主要引入 eureka 组件，无论是服务端还是客户端，其 jar 都已经包含了 Ribbon 的依赖。所以使用 Ribbon 组件不需要导入任何额外的坐标
 
 ![](images/20201012154059447_22112.png)
 
-### 2.2. 服务项目使用Ribbon组件
+### 服务项目使用Ribbon组件
 
-#### 2.2.1. 改造步骤
+#### 改造步骤
 
 1. 在创建`RestTemplate`实例的时候，声明 Ribbon 组件的`@LoadBalanced`注解
 2. 在使用`RestTemplate`调用远程微服务接口时，不需要手动拉普拉斯微服务的 url，只需要将指定待请求的服务名称即可
 
-#### 2.2.2. 服务提供者
+#### 服务提供者
 
 修改`shop-service-product`工程中`ProductController`控制器的`findById()`方法，在返回数据中增加当时服务的ip与端口号（这里用于后面测试Ribbon负载均衡调用测试）
 
@@ -76,7 +76,7 @@ public class ProductController {
 }
 ```
 
-#### 2.2.3. 服务消费者
+#### 服务消费者
 
 修改服务消费者`shop_service_order`工程配置类`HttpConfig`，在创建`RestTemplate`方法上添加 `@LoadBalanced` 注解
 
@@ -118,13 +118,13 @@ public class OrderController {
 }
 ```
 
-#### 2.2.4. 代码测试
+#### 代码测试
 
 发起post请求`http://127.0.0.1:9002/order/1`，查看后端日志输出，已经可以在订单微服务中以服务名称的形式调用商品微服务获取数据
 
-## 3. Ribbon 的负载均衡
+## Ribbon 的负载均衡
 
-### 3.1. 负载均衡的定义
+### 负载均衡的定义
 
 负载均衡是一种基础的网络服务，其原理是通过运行在前面的负载均衡服务，按照指定的负载均衡算法，将流量分配到后端服务集群上，从而为系统提供并行扩展的能力
 
@@ -132,19 +132,19 @@ public class OrderController {
 
 ![](images/20201012165205002_10570.png)
 
-### 3.2. 客户端负载均衡与服务端负载均衡
+### 客户端负载均衡与服务端负载均衡
 
-#### 3.2.1. 服务端负载均衡
+#### 服务端负载均衡
 
 先发送请求到负载均衡服务器或者软件，然后通过负载均衡算法，在多个服务器之间选择一个进行访问。即在服务器端再进行负载均衡算法分配
 
-#### 3.2.2. 客户端负载均衡
+#### 客户端负载均衡
 
 客户端会有一个服务器地址列表，在发送请求前通过负载均衡算法选择一个服务器，然后进行访问，这是客户端负载均衡。即在客户端就进行负载均衡算法分配
 
-### 3.3. 基于 Ribbon 实现服务负载均衡的示例
+### 基于 Ribbon 实现服务负载均衡的示例
 
-#### 3.3.1. 搭建多服务实例
+#### 搭建多服务实例
 
 修改 `shop-service-product` 的 `application.yml` 配置文件，将端口号设置为变量，在启动应用时指定变量值，从而实现模拟多实例
 
@@ -166,7 +166,7 @@ ribbon默认的负载均衡策略是轮询，所以使用order服务去调用商
 
 ![](images/20201013133355958_11290.png)
 
-#### 3.3.2. 负载均衡策略配置
+#### 负载均衡策略配置
 
 Ribbon内置了多种负载均衡策略，内部负责复杂均衡的顶级接口为`com.netflix.loadbalancer.IRule`，有以下的实现类：
 
@@ -195,7 +195,7 @@ shop-service-product:
 
 ![](images/20201013143107548_3493.png)
 
-#### 3.3.3. 请求重试配置
+#### 请求重试配置
 
 请求重试的机制是：当服务消费者去请求多个服务提供者时，如果当前请求的服务A出现网络的波动或者宕机的情况，此时，请求就会出现报错或者请求不到数据。请求重试就是根据当前用户设置的参数（如：请求连接超时时间、获取数据返回超时时间等），如果超出了用户设置的限制，就会直接重新发起新的请求到另一台服务。
 
@@ -234,16 +234,16 @@ shop-service-product:
 
 ![](images/20201013161008081_12757.png)
 
-### 3.4. 自定义负载均衡策略（待完善）
+### 自定义负载均衡策略（待完善）
 
 Spring Cloud 提供了两种实现方式：
 
 1. 创建类实现 `com.netflix.loadbalancer.IRule` 接口，可以指定负载均衡策略。此方式是全局的，对所有的远程调用都起作用。
 2. 在客户端的配置文件中，可以配置某一个服务调用的负载均衡策略，只是对配置的这个服务远程调用时生效。（如上面示例）
 
-## 4. Ribbon 的负载均衡源码解析
+## Ribbon 的负载均衡源码解析
 
-### 4.1. Ribbon中的关键组件
+### Ribbon中的关键组件
 
 ![](images/20201013161729522_7569.png)
 
@@ -254,7 +254,7 @@ Spring Cloud 提供了两种实现方式：
 - `Ping`：客户端用于快速检查服务器当时是否处于活动状态
 - `LoadBalancer`：负载均衡器，负责负载均衡调度的管理
 
-### 4.2. @LoadBalanced 注解
+### @LoadBalanced 注解
 
 ```java
 /**
@@ -282,7 +282,7 @@ public RestTemplate createRestTemplate() {
 }
 ```
 
-### 4.3. 自动装配
+### 自动装配
 
 根据SpringBoot中的自动装配规则，在 `spring-cloud-netflix-ribbon-2.1.0.RELEASE.jar` 中找到 `META-INF\spring.factories`文件，自动初始化`RibbonAutoConfiguration`自动装配类
 
@@ -315,9 +315,9 @@ public class RibbonAutoConfiguration {
 }
 ```
 
-### 4.4. 负载均衡的实现
+### 负载均衡的实现
 
-#### 4.4.1. LoadBalancerAutoConfiguration 自动配置类
+#### LoadBalancerAutoConfiguration 自动配置类
 
 `LoadBalancerAutoConfiguration`类是负载均衡的自动化配置类。
 
@@ -361,7 +361,7 @@ public class LoadBalancerAutoConfiguration {
 - 创建了一个 `RestTemplateCustomizer` 的Bean，用于给 `RestTemplate` 增加 `LoadBalancerInterceptor` 拦截器。
 - 维护了一个被 `@LoadBalanced` 注解修饰的 `RestTemplate` 对象列表，并在这里进行初始化，通过调用 `RestTemplateCustomizer` 的实例来给需要客户端负载均衡的 `RestTemplate` 增加 `LoadBalancerInterceptor` 拦截器
 
-#### 4.4.2. LoadBalancerInterceptor 负载均衡拦截器
+#### LoadBalancerInterceptor 负载均衡拦截器
 
 ```java
 public class LoadBalancerInterceptor implements ClientHttpRequestInterceptor {
@@ -396,7 +396,7 @@ public class LoadBalancerInterceptor implements ClientHttpRequestInterceptor {
 
 当一个被 `@LoadBalanced` 注解修饰的 `RestTemplate` 对象向外发起HTTP请求时，会被 `LoadBalancerInterceptor` 类的 `intercept` 函数所拦截。由于在使用`RestTemplate`时候采用了服务名作为host，所以直接从 `HttpRequest` 的URI对象中通过`getHost()`方法就可以拿到服务名，然后调用 `execute` 函数去根据服务名来选择实例并发起实际的请求
 
-#### 4.4.3. LoadBalancerClient 负载均衡具体逻辑接口
+#### LoadBalancerClient 负载均衡具体逻辑接口
 
 `LoadBalancerClient` 是负载均衡器的抽象接口，其实现类是`org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient`
 
@@ -487,7 +487,7 @@ public class RibbonClientConfiguration {
 }
 ```
 
-### 4.5. 总结
+### 总结
 
 Ribbon 的负载均衡主要是通 `LoadBalancerClient` 来实现，而 `LoadBalancerClient` 具体是交给 `ILoadBalancer` 来处理，`ILoadBalancer` 通过配置 `IRule`、`IPing` 等，向 `EurekaClient` 获取注册列表信息，默认每10秒向 `EurekaClient` 发送一次“ping” 请求，用于检查是否需要更新服务的注册列表信息。最后，在得到服务注册列表令牌后，`ILoadBalancer` 根据 `IRule` 的策略进行负载均衡。
 

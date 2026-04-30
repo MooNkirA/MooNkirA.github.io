@@ -1,4 +1,4 @@
-## 1. Arthas 概述
+## Arthas 概述
 
 Arthas 是 Alibaba 开源的 Java 诊断工具，可以帮助解决以下问题：
 
@@ -12,7 +12,7 @@ Arthas 是 Alibaba 开源的 Java 诊断工具，可以帮助解决以下问题�
 
 Arthas 支持 JDK 6+，支持 Linux/Mac/Winodws，采用命令行交互模式，同时提供丰富的 Tab 自动补全功能，进一步方便进行问题的定位和诊断。
 
-## 2. Arthas 安装
+## Arthas 安装
 
 > 待整理
 

@@ -1,8 +1,8 @@
-## 1. WSL 概述
+## WSL 概述
 
 > 微软 WSL 官方文档：https://learn.microsoft.com/zh-cn/windows/wsl/
 
-### 1.1. 什么是 WSL？
+### 什么是 WSL？
 
 WSL 是 Windows Subsystem for Linux 的缩写，意思是适用于 Linux 的 Windows 子系统。WSL 可让开发人员直接在 Windows 上按原样运行 GNU/Linux 环境（包括大多数命令行工具、实用工具和应用程序），且不会产生传统虚拟机或双启动设置开销。
 
@@ -26,13 +26,13 @@ WSL 可以用于：
 - WSL 可以对 Windows 文件系统下的文件直接进行读写，文件传输更方便；
 - 剪贴板互通，可以直接在 Windows 下其它地方复制文本内容，粘贴到 WSL；
 
-### 1.2. 什么是 WSL 2？
+### 什么是 WSL 2？
 
 WSL 2 是适用于 Linux 的 Windows 子系统体系结构的一个新版本，它支持适用于 Linux 的 Windows 子系统在 Windows 上运行 ELF64 Linux 二进制文件。它的主要目标是**提高文件系统性能**，以及添加**完全的系统调用兼容性**。
 
 单个 Linux 分发版可以在 WSL 1 或 WSL 2 体系结构中运行。每个分发版可随时升级或降级，并且可以并行运行 WSL 1 和 WSL 2 分发版。WSL 2 使用全新的体系结构，该体系结构受益于运行真正的 Linux 内核。
 
-### 1.3. WSL 版本对比
+### WSL 版本对比
 
 目前 WSL 的版本分别是：WSL 1 和 WSL 2
 
@@ -53,17 +53,17 @@ WSL 1 和 WSL 2 之间的主要区别在于，在托管 VM 内使用实际的 Li
 
 > Notes: WSL 2 适用于 [VMware 15.5.5+](https://blogs.vmware.com/workstation/2020/05/vmware-workstation-now-supports-hyper-v-mode.html) 和 [VirtualBox 6+](https://www.virtualbox.org/wiki/Changelog-6.0)。有关详细信息，请参阅[常见问题解答](https://learn.microsoft.com/zh-cn/windows/wsl/faq#will-i-be-able-to-run-wsl-2-and-other-3rd-party-virtualization-tools-such-as-vmware--or-virtualbox-)。
 
-### 1.4. Microsoft Store 中的 WSL
+### Microsoft Store 中的 WSL
 
 WSL 已将更新功能从 Windows OS 映像提取到一个包中，该包可通过 Microsoft Store 获得。一旦更新和服务可用就会进行快速更新并提供服务，而无需等待 Windows 操作系统的更新。
 
 WSL 最初作为可选组件包含在 Windows 操作系统中，需要启用该组件才能安装 Linux 发行版。 Microsoft Store 中的 WSL 具有相同的用户体验，并且是相同的产品，但作为商店包而不是整个 OS 更新接收更新和服务。从 Windows 版本 19044 或更高版本开始，运行 `wsl.exe --install` 命令将从 Microsoft Store 安装 WSL 服务更新。 如果已经在使用 WSL，则可以更新以确保通过运行 `wsl.exe --update` 从商店接收最新的 WSL 功能和服务。
 
-## 2. WSL 的基本命令
+## WSL 的基本命令
 
 以下 WSL 命令以 PowerShell 或 Windows 命令提示符支持的格式列出。若要通过 Bash/Linux 发行版命令行运行这些命令，必须将 `wsl` 替换为 `wsl.exe`。若要获取完整的命令列表，请运行 `wsl --help`。
 
-### 2.1. Help 命令
+### Help 命令
 
 ```PowerShell
 wsl --help
@@ -71,7 +71,7 @@ wsl --help
 
 查看 WSL 中可用的选项和命令列表。
 
-### 2.2. 安装
+### 安装
 
 安装 WSL 和 Linux 的默认 Ubuntu 发行版：
 
@@ -99,9 +99,9 @@ wsl --install <Distribution Name>
 
 > Notes: 如果在 Windows 10 或更低版本上运行 WSL，可能需要在 `--install` 命令中包含 `-d` 标志以指定发行版：`wsl --instal -d <distribution name>`。
 
-### 2.3. 查询 Linux 发行版
+### 查询 Linux 发行版
 
-#### 2.3.1. 列出可用的 Linux 发行版
+#### 列出可用的 Linux 发行版
 
 ```PowerShell
 wsl --list --online
@@ -113,7 +113,7 @@ wsl --list --online
 wsl -l -o
 ```
 
-#### 2.3.2. 列出已安装的 Linux 发行版
+#### 列出已安装的 Linux 发行版
 
 ```PowerShell
 wsl --list --verbose
@@ -125,13 +125,13 @@ wsl --list --verbose
 wsl -l -v
 ```
 
-#### 2.3.3. 其他选项
+#### 其他选项
 
 可与 list 命令一起使用的其他选项包括：`--all`（列出所有发行版）、`--running`（仅列出当前正在运行的发行版）或 `--quiet`（仅显示发行版名称）。
 
-### 2.4. WSL 设置
+### WSL 设置
 
-#### 2.4.1. 设置 WSL 版本
+#### 设置 WSL 版本
 
 ```PowerShell
 wsl --set-version <distribution name> <versionNumber>
@@ -142,7 +142,7 @@ wsl --set-version <distribution name> <versionNumber>
 - `<distribution name>` 发行版的名称
 - `<versionNumber>` 版本号
 
-#### 2.4.2. 设置默认 WSL 版本
+#### 设置默认 WSL 版本
 
 ```PowerShell
 wsl --set-default-version <Version>
@@ -154,7 +154,7 @@ wsl --set-default-version <Version>
 
 例如设置默认使用 WSL 2 版本，`wsl --set-default-version 2`。
 
-#### 2.4.3. 设置默认 Linux 发行版
+#### 设置默认 Linux 发行版
 
 ```PowerShell
 wsl --set-default <Distribution Name>
@@ -164,7 +164,7 @@ wsl --set-default <Distribution Name>
 
 - `<Distribution Name>` Linux 发行版的名称。
 
-#### 2.4.4. 设置发行版的默认用户
+#### 设置发行版的默认用户
 
 ```PowerShell
 <DistributionName> config --default-user <Username>
@@ -180,9 +180,9 @@ ubuntu config --default-user johndoe
 
 > 警告：此命令不适用于导入的发行版，因为这些发行版没有可执行启动器。可以改为使用 `/etc/wsl.conf` 文件来更改导入的发行版的默认用户。
 
-### 2.5. WSL 操作
+### WSL 操作
 
-#### 2.5.1. 通过 PowerShell 或 CMD 运行特定的 Linux 发行版
+#### 通过 PowerShell 或 CMD 运行特定的 Linux 发行版
 
 ```PowerShell
 wsl --distribution <Distribution Name> --user <User Name>
@@ -195,7 +195,7 @@ wsl --distribution <Distribution Name> --user <User Name>
 
 > Tips: 通过 `whoami` 命令可以输出当前用户名。
 
-#### 2.5.2. 更新 WSL
+#### 更新 WSL
 
 ```PowerShell
 wsl --update
@@ -205,7 +205,7 @@ wsl --update
 
 - `--web-download`：从 GitHub 而不是 Microsoft Store 下载最新更新。
 
-#### 2.5.3. 检查 WSL 状态
+#### 检查 WSL 状态
 
 ```PowerShell
 wsl --status
@@ -213,7 +213,7 @@ wsl --status
 
 查看有关 WSL 配置的常规信息，例如默认发行版类型、默认发行版和内核版本。
 
-#### 2.5.4. 检查 WSL 版本
+#### 检查 WSL 版本
 
 ```PowerShell
 wsl --version
@@ -221,7 +221,7 @@ wsl --version
 
 检查有关 WSL 及其组件的版本信息。
 
-#### 2.5.5. 以特定用户的身份运行
+#### 以特定用户的身份运行
 
 ```PowerShell
 wsl -u <Username>
@@ -233,7 +233,7 @@ wsl --user <Username>
 
 - `<Username>` WSL 发行版中存在的用户名
 
-#### 2.5.6. 关闭 WSL
+#### 关闭 WSL
 
 ```PowerShell
 wsl --shutdown
@@ -241,7 +241,7 @@ wsl --shutdown
 
 立即终止所有正在运行的发行版和 WSL 2 轻量级实用工具虚拟机。例如更改内存使用限制或更改 .wslconfig 文件等需要重启 WSL 2 虚拟机环境的情形时，必须使用此命令。
 
-#### 2.5.7. 终止运行 WSL
+#### 终止运行 WSL
 
 ```PowerShell
 wsl --terminate <Distribution Name>
@@ -251,7 +251,7 @@ wsl --terminate <Distribution Name>
 
 - `<Distribution Name>` 目标发行版的名称。
 
-#### 2.5.8. 将目录更改为主页
+#### 将目录更改为主页
 
 ```PowerShell
 wsl ~
@@ -259,7 +259,7 @@ wsl ~
 
 `~` 可与 wsl 一起使用，以在用户的主目录中启动。若要在 WSL 命令提示符中从任何目录跳回到主目录，可使用命令 `cd ~`。
 
-### 2.6. 导入和导出发行版
+### 导入和导出发行版
 
 ```PowerShell
 # 导出
@@ -279,7 +279,7 @@ wsl --import <Distribution Name> <InstallLocation> <FileName>
 wsl --import-in-place <Distribution Name> <FileName>
 ```
 
-### 2.7. 注销或卸载 Linux 发行版
+### 注销或卸载 Linux 发行版
 
 可以通过 Microsoft Store 安装 Linux 发行版，但无法通过 Store 将其卸载。注销并卸载 WSL 发行版需要执行以下命令：
 
@@ -295,7 +295,7 @@ wsl --unregister <DistributionName>
 
 还可以像卸载任何其他应用商店应用程序一样卸载 Windows 计算机上的 Linux 发行版应用。若要重新安装，请在 Microsoft Store 中找到该发行版，然后选择“启动”。
 
-### 2.8. 装载磁盘或设备
+### 装载磁盘或设备
 
 ```PowerShell
 wsl --mount <DiskPath>
@@ -312,7 +312,7 @@ wsl --mount <DiskPath>
 
 > Notes: 如果运行的是 32 位进程来访问 wsl.exe（一种 64 位工具），那么可能需要按如下方式运行此命令：`C:\Windows\Sysnative\wsl.exe --command`。
 
-### 2.9. 卸载磁盘
+### 卸载磁盘
 
 ```PowerShell
 wsl --unmount <DiskPath>
@@ -320,6 +320,6 @@ wsl --unmount <DiskPath>
 
 卸载磁盘路径中给定的磁盘，如果未提供磁盘路径，则此命令将卸载并分离所有已装载的磁盘。
 
-## 3. 参考资料
+## 参考资料
 
 - [WSL Linux 子系统完整实操](https://zhuanlan.zhihu.com/p/146545159)

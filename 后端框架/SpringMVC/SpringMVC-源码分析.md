@@ -1,18 +1,18 @@
-## 1. Spring MVC 流程概述
+## Spring MVC 流程概述
 
 > Spring MVC 最新官方文档：https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#spring-web
 
-### 1.1. Spring MVC 时序图
+### Spring MVC 时序图
 
 ![](images/20200917172707993_20103.png)
 
-### 1.2. 官方流程图
+### 官方流程图
 
 ![](images/20200917172659185_21224.png)
 
-## 2. web 项目初始化过程分析
+## web 项目初始化过程分析
 
-### 2.1. Servlet 3.0 规范加入的内容
+### Servlet 3.0 规范加入的内容
 
 - Servlet3.0规范提供的标准接口，在web容器启动的时候，首先触发`ServletContainerInitializer`此接口的实现类的`onStartup()`方法
 
@@ -42,23 +42,23 @@ public @interface HandlesTypes {
 }
 ```
 
-### 2.2. SpringMVC 框架使用 Servlet 3.0 规范
+### SpringMVC 框架使用 Servlet 3.0 规范
 
 任何要使用Servlet3.0规范且脱离web.xml的配置，在使用时都必须在对应的jar包的`META-INF/services`目录创建一个名为`javax.servlet.ServletContainerInitializer`的文件，文件内容指定具体的`ServletContainerInitializer`实现类，那么，当web容器启动时就会运行这个初始化器做一些组件内的初始化工作。
 
 ![](images/20200917170758911_20768.png)
 
-### 2.3. AbstractDispatcherServletInitializer 中的 onStartUp 方法
+### AbstractDispatcherServletInitializer 中的 onStartUp 方法
 
 `AbstractDispatcherServletInitializer`类是Spring MVC提供的`WebApplicationInitializer`接口的实现抽象类。
 
-### 2.4. 注册 DisptatcherServlet
+### 注册 DisptatcherServlet
 
 > TODO: 整理中
 
-## 3. 前端控制器 DispatcherServlet
+## 前端控制器 DispatcherServlet
 
-### 3.1. 简介
+### 简介
 
 在 web.xml 中配置，<font color=red>**实质是一个 Servlet**</font>
 
@@ -66,9 +66,9 @@ public @interface HandlesTypes {
 
 用户请求到达前端控制器，它就相当于 MVC 模式中的 C，`DispatcherServlet` 是整个流程控制的中心，由它调用其它组件处理用户的请求，<font color=red>**`DispatcherServlet`的存在降低了组件之间的耦合性**</font>
 
-### 3.2. 执行过程分析
+### 执行过程分析
 
-#### 3.2.1. doService方法
+#### doService方法
 
 此方法在接收到请求首先执行的方法，通过跟踪源码得知，它重写父类`FrameworkServlet`的，`FrameworkServlet`是继承了`HttpServlet`，所以它就相当于执行了 Servlet 中的 service 方法。
 
@@ -109,7 +109,7 @@ protected final void processRequest(HttpServletRequest request, HttpServletRespo
 protected abstract void doService(HttpServletRequest request, HttpServletResponse response) throws Exception;
 ```
 
-#### 3.2.2. doDispatche方法
+#### doDispatche方法
 
 在 `doService` 方法执行的逻辑中，会调用 `doDispatche` 方法，此方法是处理请求分发的核心方法。它负责通过反射调用控制器方法、执行拦截器和处理结果视图
 
@@ -185,13 +185,13 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 6. **渲染视图**：处理器方法执行完成后，DispatcherServlet 会通过 ViewResolver 解析视图名称，找到对应的 View 对象，并将模型数据传递给 View 进行渲染。
 7. **生成响应**：View 会将渲染后的视图内容生成响应数据。
 
-## 4. 处理器映射器 HandlerMapping
+## 处理器映射器 HandlerMapping
 
-### 4.1. 作用
+### 作用
 
 `HandlerMapping` 负责根据用户请求找到相应的 Handler（即处理器），Spring MVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
 
-### 4.2. RequestMappingHandlerMapping 的执行时机
+### RequestMappingHandlerMapping 的执行时机
 
 `RequestMappingHandlerMapping` 是 `HandlerMapping` 接口的实现，是在项目启动的时候就进行
 
@@ -271,20 +271,20 @@ private void initHandlerMappings(ApplicationContext context) {
 }
 ```
 
-## 5. 处理器适配器 HandlerAdapter
+## 处理器适配器 HandlerAdapter
 
-### 5.1. 作用
+### 作用
 
-### 5.2. 适配器模式
+### 适配器模式
 
 适配器模式就是把一个类的接口变换成客户端所期待的另一种接口，从而使原本因接口原因不匹配而无法一起工作的两个类能够一起工作。适配类可以根据参数返还一个合适的实例给客户端。
 
 通过`HandlerAdapter`对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。
 
 
-### 5.3. SpringMVC控制器的三种编写方式
+### SpringMVC控制器的三种编写方式
 
-#### 5.3.1. 使用Controller注解
+#### 使用Controller注解
 
 ```java
 @Controller
@@ -297,7 +297,7 @@ public class BasicController {
 }
 ```
 
-#### 5.3.2. 实现Controller接口（少用）
+#### 实现Controller接口（少用）
 
 此实现方式的，返回值也是让spring mvc框架来处理后生成的ModelAndView
 
@@ -311,7 +311,7 @@ public interface Controller {
 }
 ```
 
-#### 5.3.3. 实现HttpRequestHandler接口（少用）
+#### 实现HttpRequestHandler接口（少用）
 
 此实现方式的与实现`Controller`接口方式的区别在于，返回值是让使用者通过response来处理
 
@@ -325,11 +325,11 @@ public interface HttpRequestHandler {
 }
 ```
 
-## 6. 视图解析器 ViewResovler 和 View
+## 视图解析器 ViewResovler 和 View
 
 > 注：现在互联网项目，都不会使用直接响应视图的方式返回。都是前后端分离，将数据以流的方式返回到前端，在html中显示。所以此部分的内容很少用，只作了解即可
 
-### 6.1. View
+### View
 
 视图的作用是渲染模型数据，将模型里的数据以某种形式呈现给用户。
 
@@ -346,7 +346,7 @@ public interface HttpRequestHandler {
 | JSON视图   | MappingJackson2JsonView | 将模型数据封装成Json格式数据输出。它需要借助Jackson开源框架                        |
 | XML视图    | MappingJackson2XmlView  | 将模型数据封装成XML格式数据。它是从4.1版本之后才加入的                             |
 
-### 6.2. ViewResolver
+### ViewResolver
 
 `ViewResolver`负责将处理结果生成`View`视图，`ViewResolver`首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成`View`视图对象，最后对`View`进行渲染将处理结果通过页面展示给用户。视图对象是由视图解析器负责实例化。
 
@@ -361,9 +361,9 @@ SpringMVC为逻辑视图名的解析提供了不同的策略，可以在Spring W
 | 解析指定XML文件  | XmlViewResolver              | 解析指定位置的XML文件，默认在/WEB-INF/views.xml                               |
 | 解析指定属性文件  | ResourceBundleViewResolver   | 解析properties文件                                                        |
 
-## 7. 请求参数封装的源码分析
+## 请求参数封装的源码分析
 
-### 7.1. 传统表单数据封装原理(!待整理)
+### 传统表单数据封装原理(!待整理)
 
 第1步：`DispatcherServlet` 的 `doService` 方法执行
 
@@ -401,17 +401,17 @@ SpringMVC为逻辑视图名的解析提供了不同的策略，可以在Spring W
 
 ![](images/555763015254677.png)
 
-### 7.2. @RequestBody 注解执行原理(!待整理)
+### @RequestBody 注解执行原理(!待整理)
 
 ![](images/20200922082020581_18801.png)
 
-### 7.3. @PathVariable 注解实现原理(!待整理)
+### @PathVariable 注解实现原理(!待整理)
 
 ![](images/20200922082144603_21222.png)
 
-### 7.4. 对象绑定与类型转换
+### 对象绑定与类型转换
 
-#### 7.4.1. 底层第一套转换接口与实现
+#### 底层第一套转换接口与实现
 
 ```mermaid
 classDiagram
@@ -453,7 +453,7 @@ Adapter3 --> Converters
 
 ![](images/486334414226935.png)
 
-#### 7.4.2. 底层第二套转换接口
+#### 底层第二套转换接口
 
 ```mermaid
 classDiagram
@@ -472,7 +472,7 @@ PropertyEditorRegistry o-- "多" PropertyEditor
 
 ![](images/240375814247101.png)
 
-#### 7.4.3. 高层接口与实现
+#### 高层接口与实现
 
 ```mermaid
 classDiagram
@@ -508,17 +508,17 @@ Spring 中 `TypeConverter` 默认实现有如下：
 - `DirectFieldAccessor` 为 bean 的属性赋值，当需要时做类型转换，通过反射来设置 Field（无需提供 setter 方法）
 - `ServletRequestDataBinder` 从配置文件中读取值，为 bean 的属性执行绑定，当需要时做类型转换，根据 directFieldAccess 属性来选择 Property 方式还是 Field 方式，具备校验与获取校验结果功能
 
-## 8. 拦截器的执行时机和调用过程
+## 拦截器的执行时机和调用过程
 
-### 8.1. 拦截器的执行流程图
+### 拦截器的执行流程图
 
 ![](images/20200922152943953_20761.jpg)
 
-### 8.2. 拦截器的源码执行过程分析
+### 拦截器的源码执行过程分析
 
 ![](images/20200922153214836_27754.png)
 
-### 8.3. 拦截器的责任链模式
+### 拦截器的责任链模式
 
 责任链模式是一种常见的行为模式。它是使多个对象都有处理请求的机会，从而避免了请求的发送者和接收者之间的耦合关系。将这些对象串成一条链，并沿着这条链一直传递该请求，直到有对象处理它为止。
 
@@ -532,11 +532,11 @@ Spring 中 `TypeConverter` 默认实现有如下：
     - 责任链路过长时，可能对请求传递处理效率有影响
     - 如果节点对象存在循环引用时，会造成死循环，导致系统崩溃
 
-## 9. SpringMVC 中的文件上传
+## SpringMVC 中的文件上传
 
-### 9.1. MultipartFile
+### MultipartFile
 
-#### 9.1.1. 源码
+#### 源码
 
 ```java
 /* SpringMVC中对上传文件的封装 */
@@ -580,13 +580,13 @@ public interface MultipartFile extends InputStreamSource {
 }
 ```
 
-#### 9.1.2. commons-fileupload的实现
+#### commons-fileupload的实现
 
 `MultipartFile`的实现类其中一个实现是`CommonsMultipartFile`，通过导包就看出了，此类是借助apache的commons-fileupload实现的文件上传
 
-### 9.2. MultipartResolver
+### MultipartResolver
 
-#### 9.2.1. 源码
+#### 源码
 
 ```java
 /*
@@ -606,7 +606,7 @@ public interface MultipartResolver {
 }
 ```
 
-#### 9.2.2. CommonsFileUploadResolver
+#### CommonsFileUploadResolver
 
 `MultipartResolver`的实现类是`CommonsMultipartResolver`，此类继承抽象类`CommonsFileUploadSupport`，解析`CommonsMultipartFile`逻辑在此抽象类
 
@@ -618,11 +618,11 @@ public class CommonsMultipartResolver extends CommonsFileUploadSupport
 
 从导包能得知，也是借助apache的commons-fileupload实现的文件上传。具体方法作用，查看源码工程注释
 
-## 10. @ControllerAdvice 注解调用流程
+## @ControllerAdvice 注解调用流程
 
-### 10.1. @ControllerAdvice 与 @InitBinder 配合实现流程
+### @ControllerAdvice 与 @InitBinder 配合实现流程
 
-#### 10.1.1. 流程图
+#### 流程图
 
 `@InitBinder` 在整个 `HandlerAdapter` 调用过程中所处的位置
 
@@ -673,7 +673,7 @@ container -->> -adapter:
 3. 以上两种情况 `@InitBinder` 的解析结果都会缓存来避免重复解析
 4. 控制器方法调用时，会综合利用本类的 `@InitBinder` 方法和 `@ControllerAdvice` 中的 `@InitBinder` 方法创建绑定工厂
 
-#### 10.1.2. 模拟 @InitBinder 在控制器方法调用示例
+#### 模拟 @InitBinder 在控制器方法调用示例
 
 源码详见 springmvc-sample 项目中的 10-handleradapter 模块中 `ControllerAdviceInitBinderTest` 测试类
 
@@ -793,9 +793,9 @@ public class ControllerAdviceInitBinderTest {
 16:24:20.368 [main] DEBUG com.moon.springmvc.test.ControllerAdviceInitBinderTest - 控制器的 @InitBinder 方法 [InitBinderController2.binder1, InitBinderController2.binder2, InitBinderController1.binder1]
 ```
 
-### 10.2. @ControllerAdvice 与 @ModelAttribute 配合实现流程
+### @ControllerAdvice 与 @ModelAttribute 配合实现流程
 
-#### 10.2.1. 流程图
+#### 流程图
 
 `@ModelAttribute` 在整个 `HandlerAdapter` 调用过程中所处的位置
 
@@ -840,7 +840,7 @@ container -->> -adapter:
 3. 以上两种 `@ModelAttribute` 的解析结果都会缓存来避免重复解析
 4. 控制器方法调用时，会综合利用本类的 `@ModelAttribute` 方法和 `@ControllerAdvice` 中的 `@ModelAttribute` 方法创建模型工厂
 
-#### 10.2.2. 模拟 @ModelAttribute 在控制器方法调用示例
+#### 模拟 @ModelAttribute 在控制器方法调用示例
 
 源码详见 springmvc-sample 项目中的 10-handleradapter 模块中 `ControllerAdviceModelAttributeTest` 测试类
 
@@ -937,13 +937,13 @@ ModelAttributeController.bar 方法执行了...
 {AA=ModelAttributeControllerAdvice.foo()方法返回值, BB=ModelAttributeController.foo()方法返回值, u=User[name='张三', age=0], org.springframework.validation.BindingResult.u=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
 ```
 
-### 10.3. @ControllerAdvice 之 ResponseBodyAdvice
+### @ControllerAdvice 之 ResponseBodyAdvice
 
-#### 10.3.1. 概述
+#### 概述
 
 `ResponseBodyAdvice` 接口是用于返回响应体前进行包装处理，一般配置 `@ControllerAdvice` 注解使用。
 
-#### 10.3.2. 流程图
+#### 流程图
 
 **ResponseBodyAdvice 增强**在整个 `HandlerAdapter` 调用过程中所处的位置
 
@@ -981,7 +981,7 @@ adapter ->> +container: 获取 ModelAndView
 container -->> -adapter: 
 ```
 
-#### 10.3.3. ResponseBodyAdvice 返回值增强示例
+#### ResponseBodyAdvice 返回值增强示例
 
 示例需求：将标识了 `@ResponseBody` 注解的控制器方法的返回值包装成统一响应格式。示例源码详见 springmvc-sample 项目中的 10-handleradapter 模块中 `ControllerAdviceResponseBodyTest` 测试类
 
@@ -1083,9 +1083,9 @@ public void test1() throws Exception {
 }
 ```
 
-## 11. 控制器方法执行流程
+## 控制器方法执行流程
 
-### 11.1. 方法调用处理类 ServletInvocableHandlerMethod 关系图
+### 方法调用处理类 ServletInvocableHandlerMethod 关系图
 
 ```mermaid
 classDiagram
@@ -1113,7 +1113,7 @@ ServletInvocableHandlerMethod o-- HandlerMethodReturnValueHandlerComposite
 - `HandlerMethodArgumentResolverComposite` 负责解析参数
 - `HandlerMethodReturnValueHandlerComposite` 负责处理返回值
 
-### 11.2. 控制器方法执行流程图
+### 控制器方法执行流程图
 
 图1：方法调用前准备阶段流程图
 

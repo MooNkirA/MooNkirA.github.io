@@ -1,0 +1,12 @@
+{
+  "theme": "moonstone",
+  "textFontFamily": "Cascadia Code",
+  "monospaceFontFamily": "Fira Code",
+  "enabledCssSnippets": [
+    "extended-colorschemes"
+  ],
+  "interfaceFontFamily": "Cascadia Code",
+  "showRibbon": true,
+  "showViewHeader": true,
+  "cssTheme": "AnuPpuccin"
+}

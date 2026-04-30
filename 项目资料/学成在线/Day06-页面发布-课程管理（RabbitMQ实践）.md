@@ -1,7 +1,8 @@
 # Day06 页面发布-课程管理（RabbitMQ实践）
 
-## 1. 页面发布
-### 1.1. 技术方案
+## 页面发布
+
+### 技术方案
 
 - 本项目使用MQ实现页面发布的技术方案如下
 
@@ -28,8 +29,8 @@
     6. Cms Client从GridFS中下载html文件
     7. Cms Client将html保存到所在服务器指定目录
 
-### 1.2. 页面发布消费方
-#### 1.2.1. 需求分析
+### 页面发布消费方
+#### 需求分析
 
 - 功能分析
     - 创建Cms Client工程作为页面发布消费方，将Cms Client部署在多个服务器上，它负责接收到页面发布的消息后从GridFS中下载文件在本地保存
@@ -42,7 +43,7 @@
         - 页面物理路径 = 站点物理路径 + 页面物理路径 + 页面名称
         - 从GridFS查询静态文件内容，将静态文件内容保存到页面物理路径下
 
-#### 1.2.2. 创建 Cms Client 工程
+#### 创建 Cms Client 工程
 
 1. 创建maven工程，修改pom.xml文件，添加相关依赖
 
@@ -136,7 +137,7 @@ public class ManageCmsClientApplication {
 }
 ```
 
-#### 1.2.3. RabbitmqConfig 配置类
+#### RabbitmqConfig 配置类
 
 - 消息队列设置如下：
     1. 创建『ex_cms_postpage』交换机
@@ -189,7 +190,7 @@ public class RabbitmqConfig {
 }
 ```
 
-#### 1.2.4. 定义消息格式
+#### 定义消息格式
 
 消息内容采用json格式存储数据，如：`{页面id：发布页面的id}`
 
@@ -199,7 +200,7 @@ public class RabbitmqConfig {
 }
 ```
 
-#### 1.2.5. MongoConfig 配置类
+#### MongoConfig 配置类
 
 ```java
 /**
@@ -219,7 +220,7 @@ public class MongoConfig {
 }
 ```
 
-#### 1.2.6. PageDao 接口层
+#### PageDao 接口层
 
 1. 使用 CmsPageRepository 查询页面信息
 
@@ -235,7 +236,7 @@ public interface CmsSiteRepository extends MongoRepository<CmsSite, String> {
 }
 ```
 
-#### 1.2.7. pageService 业务层
+#### pageService 业务层
 
 在Service中定义保存页面静态文件到服务器物理路径方法
 
@@ -371,7 +372,7 @@ public class PageService {
 }
 ```
 
-#### 1.2.8. ConsumerPostPage 监听消息队列类
+#### ConsumerPostPage 监听消息队列类
 
 在cms client工程的mq包下创建ConsumerPostPage类，ConsumerPostPage作为发布页面的消费客户端，监听页面发布队列的消息，收到消息后从mongodb下载文件，保存在本地
 
@@ -411,8 +412,8 @@ public class ConsumerPostPage {
 }
 ```
 
-### 1.3. 页面发布生产方
-#### 1.3.1. 需求分析
+### 页面发布生产方
+#### 需求分析
 
 - 管理员通过cms系统发布“页面发布”的按钮，发送请求，cms系统作为页面发布的生产方。需求如下：
     1. 管理员进入管理界面点击“页面发布”，前端请求cms页面发布接口。
@@ -422,7 +423,7 @@ public class ConsumerPostPage {
         2. 设置消息内容为页面ID。（采用json格式，方便日后扩展）
         3. 发送消息给ex_cms_postpage交换机，并将站点ID作为routingKey。
 
-#### 1.3.2. RabbitMQ 配置
+#### RabbitMQ 配置
 
 1. 修改xc-service-manage-cms工程的application.yml配置文件，添加Rabbitmq的连接参数配置
 
@@ -470,7 +471,7 @@ public class RabbitmqConfig {
 }
 ```
 
-#### 1.3.3. Api 接口
+#### Api 接口
 
 在api工程CmsPageControllerApi类中定义页面发布接口
 
@@ -483,7 +484,7 @@ public class RabbitmqConfig {
 public ResponseResult post(String pageId);
 ```
 
-#### 1.3.4. PageService 业务层
+#### PageService 业务层
 
 在PageService中定义页面发布方法
 
@@ -566,7 +567,7 @@ private void saveHtml(CmsPage cmsPage, String htmlContent) {
 }
 ```
 
-#### 1.3.5. CmsPageController 控制层
+#### CmsPageController 控制层
 
 编写Controller实现api接口，接收页面请求，调用service执行页面发布
 
@@ -584,14 +585,14 @@ public ResponseResult post(@PathVariable("pageId") String pageId) {
 }
 ```
 
-### 1.4. 页面发布前端
+### 页面发布前端
 
 - 用户操作流程：
     1. 用户进入cms页面列表。
     2. 点击“发布”请求服务端接口，发布页面。
     3. 提示“发布成功”，或发布失败。
 
-#### 1.4.1. API方法
+#### API方法
 
 在 src\module\cms\api\cms.js 前端添加 api 方法。
 
@@ -602,7 +603,7 @@ export const page_postPage = id => {
 }
 ```
 
-#### 1.4.2. 页面
+#### 页面
 
 - 修改page_list.vue，添加发布按钮
 
@@ -635,7 +636,7 @@ postPage(pageId) {
 }
 ```
 
-### 1.5. 测试
+### 测试
 
 这里测试轮播图页面修改、发布的流程：
 
@@ -645,14 +646,14 @@ postPage(pageId) {
 3. 执行页面发布，查看页面是否写到网站目录
 4. 刷新门户首页并观察轮播图是否变化。
 
-### 1.6. 问题思考
+### 问题思考
 
 1. 如果发布到服务器的页面内容不正确怎么办？
 2. 一个页面需要发布很多服务器，点击“发布”后如何知道详细的发布结果？
 3. 一个页面发布到多个服务器，其中有一个服务器发布失败时怎么办？
 
-## 2. 课程管理
-### 2.1. 需求分析
+## 课程管理
+### 需求分析
 
 在线教育平台的课程信息相当于电商平台的商品。课程管理是后台管理功能中最重要的模块。本项目为教学机构提供课程管理功能，教学机构可以添加属于自己的课程，供学生在线学习。
 
@@ -690,7 +691,7 @@ postPage(pageId) {
 
     ![我的课程操作流程7](images/20190602141417895_2150.png)
 
-### 2.2. 此部分的实践
+### 此部分的实践
 
 本模块对课程信息管理功能的采用实战方法，旨在通过实战提高接口编写的能力，具体方法如下：
 
@@ -704,15 +705,15 @@ postPage(pageId) {
 4. 参考文档
     - 实战结束提供每个功能的开发文档，参考文档并修正功能缺陷
 
-### 2.3. 环境搭建
-#### 2.3.1. 搭建数据库环境
+### 环境搭建
+#### 搭建数据库环境
 
 1. 创建数据库
     - 课程管理使用MySQL数据库，创建课程管理数据库：xc_course
     - 导入课程资料的xc_course.sql脚本
 2. 数据表介绍，参考课堂笔记，《2.3.1 搭建数据库环境 2. 数据表介绍》
 
-#### 2.3.2. 导入课程管理服务工程
+#### 导入课程管理服务工程
 
 1. 课程管理服务使用MySQL数据库存储课程信息，持久层技术介绍如下
     1. spring data jpa：用于表的基本CRUD
@@ -720,7 +721,7 @@ postPage(pageId) {
     3. druid：使用阿里巴巴提供的 spring boot 整合 druid 包 druid-spring-boot-starter 管理连接池。druid-spring-boot-starter地址：https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
 2. 导入工程。导入资料下的 “xc-service-manage-course.zip”
 
-#### 2.3.3. 导入课程管理前端工程
+#### 导入课程管理前端工程
 
 课程管理属于**教学管理子系统**的功能，使用用户为教学机构的管理人员和老师，为保证系统的可维护性，单独创建一个教学管理前端工程。 教学管理前端工程与系统管理前端的工程结构一样，也采用vue.js框架来实现。
 
@@ -734,8 +735,8 @@ For more information on which environments are supported please see:
 npm i node-sass -D
 ```
 
-## 3. 课程计划
-### 3.1. 需求分析
+## 课程计划
+### 需求分析
 
 - 什么是课程计划？
     - 课程计划定义了课程的章节内容，学生通过课程计划进行在线学习，下图中右侧显示的就是课程计划。
@@ -743,8 +744,8 @@ npm i node-sass -D
 - 教学管理人员对课程计划如何管理？
     - 功能包括：添加课程计划、删除课程计划、修改课程计划等
 
-### 3.2. 课程计划查询
-#### 3.2.1. 需求分析
+### 课程计划查询
+#### 需求分析
 
 - 课程计划查询是将某个课程的课程计划内容完整的显示出来
 
@@ -755,12 +756,12 @@ npm i node-sass -D
 - 点击修改可对某个章节内容进行修改。
 - 点击删除可删除某个章节。
 
-#### 3.2.2. 页面原型
-##### 3.2.2.1. tree组件介绍
+#### 页面原型
+##### tree组件介绍
 
 本功能使用element-ui的tree组件来完成，详细使用参考安官网文档：https://element.eleme.cn/#/zh-CN/component/tree
 
-##### 3.2.2.2. webstorm配置JSX
+##### webstorm配置JSX
 
 - element-ui的tree组件用到了JSX语法
 - JSX 是Javascript和XML结合的一种格式，它是React的核心组成部分，JSX和XML语法类似，可以定义属性以及子元素。唯一特殊的是可以用大括号来加入JavaScript表达式。遇到 HTML 标签（以 `<` 开头），就用 HTML 规则解析；遇到代码块（以 `{` 开头），就用 JavaScript 规则解析。
@@ -779,8 +780,8 @@ npm i node-sass -D
 
 ![webstorm配置JSX3](images/20190602230022504_6045.png)
 
-#### 3.2.3. API接口
-##### 3.2.3.1. 数据模型
+#### API接口
+##### 数据模型
 
 课程计划为树型结构，由树根（课程）和树枝（章节）组成，为了保证系统的可扩展性，在系统设计时将课程计划设置为树型结构。
 
@@ -809,7 +810,7 @@ public class Teachplan implements Serializable {
 }
 ```
 
-##### 3.2.3.2. 自定义模型类
+##### 自定义模型类
 
 - 前端页面需要树型结构的数据来展示Tree组件，如下：
 
@@ -843,7 +844,7 @@ public class TeachplanNode extends Teachplan {
 }
 ```
 
-##### 3.2.3.3. 接口定义
+##### 接口定义
 
 根据课程id查询课程的计划接口如下，在api工程创建course包，创建CourseControllerApi接口类并定义接口方法
 
@@ -858,8 +859,8 @@ public interface CourseControllerApi {
 }
 ```
 
-#### 3.2.4. 课程管理服务
-##### 3.2.4.1. 查询的sql语句
+#### 课程管理服务
+##### 查询的sql语句
 
 课程计划是树型结构，采用表的自连接方式进行查询，sql语句如下
 
@@ -884,7 +885,7 @@ ORDER BY
 	c.orderby
 ```
 
-##### 3.2.4.2. dao层
+##### dao层
 
 1. 创建TeachplanMapper接口
 
@@ -955,7 +956,7 @@ public interface TeachplanMapper {
 
 **说明：针对输入参数为简单类型`#{}`中可以是任意类型，判断参数是否为空要用`_parameter`（它属于mybatis的内置参数）**
 
-##### 3.2.4.3. service层
+##### service层
 
 创建CourseService类，定义查询课程计划方法
 
@@ -981,7 +982,7 @@ public class CourseService {
 }
 ```
 
-##### 3.2.4.4. controller层
+##### controller层
 
 ```java
 /**
@@ -1008,13 +1009,13 @@ public class CourseController implements CourseControllerApi {
 }
 ```
 
-##### 3.2.4.5. 测试
+##### 测试
 
 - 使用postman或swagger-ui测试查询接口
 - Get 请求：http://localhost:31200/course/teachplan/list/402885816243d2dd016243f24c030002
 
-#### 3.2.5. 前端页面
-##### 3.2.5.1. Api方法
+#### 前端页面
+##### Api方法
 
 修改\src\module\course\api\course.js，定义课程计划查询的api方法
 
@@ -1025,7 +1026,7 @@ export const findTeachplanList = courseid => {
 }
 ```
 
-##### 3.2.5.2. Api调用
+##### Api调用
 
 1. 修改src\module\course\page\course_manage\course_plan.vue，定义查询课程计划的方法，赋值给数据对象teachplanList
 
@@ -1069,12 +1070,12 @@ data() {
 },
 ```
 
-##### 3.2.5.3. 测试
+##### 测试
 
 将course_list.vue的页面中测试数据改成id:'297e7c7c62b888f00162b8a7dec20000'，跳转可以查询数据
 
-### 3.3. 添加课程计划
-#### 3.3.1. 需求分析
+### 添加课程计划
+#### 需求分析
 
 - 用户操作流程：
 1. 进入课程计划页面，点击“添加课程计划”
@@ -1087,7 +1088,7 @@ data() {
     - 当添加该课程时，在课程计划中还没有节点时候要自动添加该课程的根结点
 3. 点击提交
 
-#### 3.3.2. 页面原型说明
+#### 页面原型说明
 
 1. 添加课程计划采用弹出窗口组件Dialog
 
@@ -1187,7 +1188,7 @@ resetForm() {
 },
 ```
 
-#### 3.3.3. 后端 API 接口
+#### 后端 API 接口
 
 在 xc-service-api 工程 com.xuecheng.api.course.CourseControllerApi 增加课程计划新增接口
 
@@ -1196,8 +1197,8 @@ resetForm() {
 public ResponseResult addTeachplan(Teachplan teachplan);
 ```
 
-#### 3.3.4. 课程管理服务
-##### 3.3.4.1. dao 层
+#### 课程管理服务
+##### dao 层
 
 使用 Spring Data JPA 框架，创建dao层接口，定义查询方法。
 
@@ -1219,7 +1220,7 @@ public interface TeachplanRepository extends JpaRepository<Teachplan, String> {
 
 *注：上面的查询方法相当于`SELECT * FROM teachplan WHERE courseid = '297e7c7c62b888f00162b8a7dec20000' AND parentid='0'`*
 
-##### 3.3.4.2. service 层
+##### service 层
 
 ```java
 @Service
@@ -1334,7 +1335,7 @@ public class CourseService {
 }
 ```
 
-##### 3.3.4.3. controller 层
+##### controller 层
 
 修改xc-service-manage-course工程的CourseController，增加添加课程计划的方法
 
@@ -1353,12 +1354,12 @@ public ResponseResult addTeachplan(@RequestBody Teachplan teachplan) {
 
 ```
 
-##### 3.3.4.4. 测试
+##### 测试
 
 使用swagger-ui或postman测试上边的课程计划添加接口；
 
-#### 3.3.5. 页面前端
-##### 3.3.5.1. Api调用
+#### 页面前端
+##### Api调用
 
 1. 修改src\module\course\api\course.js，添加课程计划api方法
 
@@ -1401,7 +1402,7 @@ resetForm() {
 },
 ```
 
-#### 3.3.6. 测试
+#### 测试
 
 - 测试流程：
 1. 新建一个课程

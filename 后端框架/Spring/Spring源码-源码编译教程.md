@@ -1,4 +1,4 @@
-## 1. Gradle 项目构建工具
+## Gradle 项目构建工具
 
 Spring 源码是使用 Gradle 进行构建，需要下载与安装 Gradle。
 
@@ -6,11 +6,11 @@ Gradle官网：https://gradle.org/
 
 > 具体 Gradle 安装详见[《Gradle基础笔记》](/DevOps/项目构建工具/Gradle)
 
-## 2. Spring 源码编译流程
+## Spring 源码编译流程
 
 > 个人编译是使用 IDEA，可以直接参考源码工程中的《import-into-idea.md》文档
 
-### 2.1. 修改源码项目配置
+### 修改源码项目配置
 
 1. 进入 Spring 源码的根目录，打开 gradle/wrapper/gradle-wrapper.properties 配置文件。其中配置项说明如下：
 
@@ -75,7 +75,7 @@ repositories {
 }
 ```
 
-### 2.2. 预编译项目
+### 预编译项目
 
 参考源码工程提供的导入参考文档《import-into-idea.md》，在导入 idea 之前需要进行预编译。进入 Spring 源码工程根目录，执行以下 `gradle` 命令对 spring-oxm 与 spring-core 这两个模块进行预编译
 
@@ -90,7 +90,7 @@ repositories {
 
 ![](images/414334014239268.png)
 
-### 2.3. 导入源码
+### 导入源码
 
 导入IDEA (File -> New -> Project from Existing Sources -> Navigate to directory -> Select build.gradle)
 
@@ -103,7 +103,7 @@ repositories {
 > 1. 用 idea 打开 spring 源码工程，需要检查是否已经安装 kotlin 插件。如果安装，则需要重启 idea
 > 2. 需要先按上一个步骤编译工程后再导入
 
-### 2.4. IDEA 的 Gradle 配置
+### IDEA 的 Gradle 配置
 
 打开【Settings】面板，选择【Build, Execution, Deployment】->【Gradle】
 
@@ -137,7 +137,7 @@ repositories {
 
 ![](images/20211010172758571_9328.png)
 
-### 2.5. 排除 spring-aspects 模块
+### 排除 spring-aspects 模块
 
 在源码编译的过程中，可能会出现以下错误：
 
@@ -161,11 +161,11 @@ repositories {
 
 ![](images/486434322239897.png)
 
-### 2.6. AspectJ 编译器（非必须）
+### AspectJ 编译器（非必须）
 
 安装 AspectJ 编译器插件是为了解决使用 AOP 相关测试
 
-#### 2.6.1. 下载与安装
+#### 下载与安装
 
 AspectJ 官网下载 AspectJ 编译器
 
@@ -192,7 +192,7 @@ java -jar aspectj-1.9.5.jar
 
 ![](images/598140323247690.png)
 
-#### 2.6.2. IDEA 设置 AspectJ 编译器
+#### IDEA 设置 AspectJ 编译器
 
 1. 打开 Idea，先安装 Aspectj 插件，并启用此插件
 
@@ -208,9 +208,9 @@ java -jar aspectj-1.9.5.jar
 
 4. 把项目重新 build project，然后再成功运行 AOP 相关测试。即源码中可以使用 aspectj aop 了。
 
-## 3. Spring 各版本的下载地址
+## Spring 各版本的下载地址
 
-### 3.1. Spring 5.3.10
+### Spring 5.3.10
 
 此教程是基于个人 git 库的 Spring 5.3.10 源码编译的，并不是 Github 原生的 Spring 5.3.10 源码，有一些差别，但都是 gradle 配置文件的微小改动，比如把某些依赖从 optional 改成 compile 级别（主要是为了方便编译），其他都没改动。
 
@@ -221,15 +221,15 @@ git clone 的地址为：
 - 源码：https://gitee.com/mirrors/Spring-Framework/tree/v5.3.10
 - 个人注释版：https://github.com/MooNkirA/spring-note
 
-### 3.2. Spring 5.2.8.RELEASE
+### Spring 5.2.8.RELEASE
 
 - 源码下载地址：https://github.com/spring-projects/spring-framework
 - 国内镜像：https://gitee.com/mirrors/spring-framework
 - 目前源码学习的笔记更新至spring-framework 5.2.8.RELEASE，下载地址：https://gitee.com/mirrors/Spring-Framework/tree/v5.2.8.RELEASE
 
-## 4. 注释的源码引用
+## 注释的源码引用
 
-### 4.1. 方式一：直接在源码工程中创建测试代码
+### 方式一：直接在源码工程中创建测试代码
 
 像 maven 工程一样，在源码工程中创建自定义的测试示例等模块，直接依赖本源码工程各个模块即可。
 
@@ -282,7 +282,7 @@ test {
 
 ![](images/438273814220842.png)
 
-### 4.2. 方式一：测试的工程引入编译打包后的源码包
+### 方式一：测试的工程引入编译打包后的源码包
 
 把编译好的源码导入到工程中，这样可以在源码中写注释并且断点调试源码了。如果想让其他工程（或者maven工程）依赖自己注释过的源码包，需要进行如下操作：
 
@@ -308,9 +308,9 @@ test {
 
 > Tips: 这种方式唯一的好处就是可以使用 maven 来构建测试工程，然后引用编译后 class 包。但这种方式不好的地方是，如果源码有任何修改，需要重新编译打包，示例项目需要重新进行引用。
 
-## 5. 编译与测试可能出现的问题
+## 编译与测试可能出现的问题
 
-### 5.1. 程序包jdk.jfr不存在
+### 程序包jdk.jfr不存在
 
 下载源码后，修改了 Gradle 配置后，执行 `gradlew :spring-oxm:compileTestJava` 命令可能会报以下的错误
 
@@ -324,25 +324,25 @@ test {
 
 ![](images/525815010226506.png)
 
-### 5.2. Gradle 版本
+### Gradle 版本
 
 如果在编译的时候出现以下问题，可以尝试升级 Gradle
 
 ![](images/220920023220772.png)
 
-### 5.3. 测试模块无法找到其他子模块
+### 测试模块无法找到其他子模块
 
 在创建测试模块可能出现如下的错误，这是因为创建的模块位置不正确，最快的解决方法是，将模块删除，然后在 spring 源码目录下创建新的模块即可。
 
 ![](images/119185409236525.png)
 
-### 5.4. build 构建模块时出现 checkstyleMain
+### build 构建模块时出现 checkstyleMain
 
 如果 build 之后可能会出现了错误，直接忽略即可
 
 ![](images/156384710250159.png)
 
-## 6. 参考资源
+## 参考资源
 
 > - [手把手带你编译Spring框架源码，让你的学习事半功倍](https://zhuanlan.zhihu.com/p/380397684)
 > - 参考（待删）：https://blog.csdn.net/weixin_41657488/article/details/110223801

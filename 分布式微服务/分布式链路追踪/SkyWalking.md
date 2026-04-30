@@ -1,4 +1,4 @@
-## 1. SkyWalking 概述
+## SkyWalking 概述
 
 > 官网：https://skywalking.apache.org/
 
@@ -13,7 +13,7 @@ Skywalking 的特点：
 - 支持告警。
 - 优秀的可视化效果。
 
-### 1.1. Skywalking 整体架构
+### Skywalking 整体架构
 
 ![](images/375512722246235.jpg)
 

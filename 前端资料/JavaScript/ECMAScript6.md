@@ -1,10 +1,10 @@
-## 1. ES6 简介
+## ES6 简介
 
 ES6，是ECMAScript 6的简称，它是 JavaScript 语言的下一代标准，己于 2015 年 6 月正式发布。它的目标是使JavaScript语言可以用于编写复杂的大型应用程序，成为企业级开发语言。
 
 现在使用主流的前端框架中，如ReactJS、Vue.js、angularjs等，都会使用到ES6的新特性。
 
-### 1.1. 什么是 ECMAScript？（了解）
+### 什么是 ECMAScript？（了解）
 
 - web1.0时代：
     - 最初的网页以 HTML为主，是纯静态的网页。网页是只读的，信息流只能从服务的到客户端单向流通。**开发人员也只关心页面的样式和内容**即可。
@@ -15,7 +15,7 @@ ES6，是ECMAScript 6的简称，它是 JavaScript 语言的下一代标准，�
 
 ECMAScript是浏览器脚本语言的规范，而各种我们熟知的js语言，如JavaScript则是规范的具体实现。
 
-### 1.2. ECMAScript 的快速发展
+### ECMAScript 的快速发展
 
 - 1998 年6月，ECMAScript 2.0 发布。
 - 1999 年12月，ECMAScript 3.0 发布。这时，ECMAScript 规范本身也相对比较完善和稳定了
@@ -32,7 +32,7 @@ ECMAScript是浏览器脚本语言的规范，而各种我们熟知的js语言�
 
 因此， ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 JavaScript 的下一代 标准，涵盖了 ES2015、ES2016、 ES2017 等，而 ES2015 则是正式名称，特指当年发布的正式 版本的语言标准 。
 
-### 1.3. ECMAScript 和 JavaScript 的关系
+### ECMAScript 和 JavaScript 的关系
 
 1996 年 11 月，JavaScript 的创造者 Netscape 公司，决定将 JavaScript 提交给标准化组织 ECMA，次年，ECMA 发布 262 号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为 ECMAScript，这个版本就是 1.0 版。
 
@@ -40,7 +40,7 @@ ECMAScript是浏览器脚本语言的规范，而各种我们熟知的js语言�
 
 ECMAScript 是一个国际通过的标准化脚本语言。JavaScript 由 ECMAScript 和 DOM、BOM 三者组成。可以简单理解为：ECMAScript 是 JavaScript 的语言规范，JavaScript 是 ECMAScript 的实现和扩展。ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 JScript 和 ActionScript）。日常场合，这两个词是可以互换的。
 
-### 1.4. ES6 与 ECMAScript 2015 的关系
+### ES6 与 ECMAScript 2015 的关系
 
 2011 年，ECMAScript 5.1 版发布后，就开始制定 6.0 版了。因此，ES6 这个词的原意，就是指 JavaScript 语言的下一个版本。
 
@@ -48,7 +48,7 @@ ES6 的第一个版本，就这样在 2015 年 6 月发布了，正式名称就�
 
 因此，ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。
 
-## 2. let 和 const
+## let 和 const
 
 之前`var`是写js定义变量。但`var`有一个问题，就是定义的变量可以在全局使用。例如：
 
@@ -63,7 +63,7 @@ console.log("循环外：" + i)
 
 可以看出，在循环外部也可以获取到变量`i`的值，显然变量`i`的作用域范围太大了，在做复杂页面时，会带来很大的问题。
 
-### 2.1. let 关键字
+### let 关键字
 
 `let` 所声明的变量，只在 `let` 命令所在的代码块内有效。例如：
 
@@ -78,8 +78,8 @@ console.log("循环外：" + i)
 
 这样，就把变量的`i`的作用域控制在了循环内部。
 
-### 2.2. const 关键字
-#### 2.2.1. 定义
+### const 关键字
+#### 定义
 
 `const` 声明的变量是常量，**不能被修改**，类似于java中`final`关键字
 
@@ -93,14 +93,14 @@ console.log("a = ", a);
 
 ![const关键字](images/20190421091706053_3975.png)
 
-#### 2.2.2. 总结分析
+#### 总结分析
 
 1. 如果是定义是简单数据类型，是不能修改。简单理解是不能通过**“=”**来修改const修饰的变量，**即值不可变**
 2. 对于数组、对象、函数、正则、Set、Map之类等引用类型的可以更改、删除属性，但**引用的地址不能改变**
 
-### 2.3. var、let、const 在块级作用域的区别
+### var、let、const 在块级作用域的区别
 
-#### 2.3.1. 块作用域 {}
+#### 块作用域 {}
 
 JS 中作用域有：全局作用域、函数作用域。没有块作用域的概念。ECMAScript 6(简称ES6)中新增了块级作用域。
 
@@ -136,7 +136,7 @@ script type="text/javascript">
 </script>
 ```
 
-#### 2.3.2. var、let、const 的区别
+#### var、let、const 的区别
 
 - var 定义的变量，没有块的概念，可以跨块访问，不能跨函数访问。
 - let 定义的变量，只能在块作用域里访问，不能跨块访问，也不能跨函数访问。
@@ -179,9 +179,9 @@ script type="text/javascript">
 </script>
 ```
 
-## 3. 字符串扩展
+## 字符串扩展
 
-### 3.1. ES6中为字符串扩展了几个新的API
+### ES6中为字符串扩展了几个新的API
 
 - `includes()` ：返回布尔值，表示是否找到了参数字符串。
 - `startsWith()` ：返回布尔值，表示参数字符串是否在原字符串的头部。
@@ -199,7 +199,7 @@ console.log(str, " 中是否以h结束 => ", str.endsWith("h"));
 
 ![ES6字符串新API](images/20190421092315592_4719.png)
 
-### 3.2. 字符串模板
+### 字符串模板
 
 ES6中提供了“**&#96;**”来作为字符串模板标记。在两个“**&#96;**”之间的部分都会被作为字符串的值，可以任意换行。
 
@@ -214,7 +214,7 @@ console.log(str);
 
 ![字符串模版](images/20190421092816525_26781.png)
 
-#### 3.2.1. ${} 占位符
+#### ${} 占位符
 
 模板字符串使用反引号 (&#96; &#96;) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法（`${expression}`）的占位符。占位符中的表达式和周围的文本会一起传递给一个默认函数，该函数负责将所有的部分连接起来，如果一个模板字符串由表达式开头，则该字符串被称为带标签的模板字符串，该表达式通常是一个函数，它会在模板字符串处理后被调用，在输出最终结果前，你都可以通过该函数来对模板字符串进行操作处理。在模版字符串内使用反引号（&#96;）时，需要在它前面加转义符（`\`）
 
@@ -235,11 +235,11 @@ not ${2 * a + b}.`);
 // not 20."
 ```
 
-## 4. 解构表达式
+## 解构表达式
 
 什么是解构？ -- ES6中允许按照一定模式从数组和对象中提取值，然后对变量进行赋值，这被称为解构 (Destructuring)。
 
-### 4.1. 数组解构
+### 数组解构
 
 之前获取数组中的值，只能通过角标（索引）。ES6可以使用以下方式获取值
 
@@ -255,9 +255,9 @@ console.log(a);
 
 ![数组解构](images/20190421093712393_25559.png)
 
-### 4.2. 对象解构
+### 对象解构
 
-#### 4.2.1. 按属性名称获取对象中的值
+#### 按属性名称获取对象中的值
 
 解构表达式语法：`const { 属性名1, 属性名2, 属性名3, ...} = Object对象`
 
@@ -278,7 +278,7 @@ console.log(language);
 
 ![对象解构1](images/20190421094504001_27018.png)
 
-#### 4.2.2. 指定其他变量获取对象中的值
+#### 指定其他变量获取对象中的值
 
 解构表达式语法：
 
@@ -304,11 +304,11 @@ console.log(age);
 
 ![对象解构2](images/20190421094658744_24633.png)
 
-## 5. 函数优化
+## 函数优化
 
 在ES6中，对函数的操作做了优化，使得在操作函数时更加的便捷
 
-### 5.1. 函数参数默认值
+### 函数参数默认值
 
 在ES6以前，无法给一个函数参数设置默认值，只能采用变通写法。ES6后可以在函数参数直接定义默认值
 
@@ -330,11 +330,11 @@ function add(a, b = 1) {
 console.log(add(10));
 ```
 
-### 5.2. 箭头函数 (=>)
+### 箭头函数 (=>)
 
 ES6 允许使用“箭头”（=>）定义函数
 
-#### 5.2.1. 语法
+#### 语法
 
 ```js
 var 变量名 = 参数名 => 返回值
@@ -360,7 +360,7 @@ var sum = (num1, num2) => { return num1 + num2; }
 var getTempItem = id => ({ id: id, name: "Temp" });
 ```
 
-#### 5.2.2. 箭头函数有几个使用注意点
+#### 箭头函数有几个使用注意点
 
 1. 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
 2. 不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
@@ -369,7 +369,7 @@ var getTempItem = id => ({ id: id, name: "Temp" });
 
 **this指向的固定化**，并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，导致内部的**this就是外层代码块的this**。正是因为它没有this，所以也就不能用作构造函数。
 
-#### 5.2.3. 剪头函数-综合例子
+#### 剪头函数-综合例子
 
 - 一个参数时：
 
@@ -414,7 +414,7 @@ let sayHello = () => {
 sayHello();
 ```
 
-### 5.3. 对象的函数属性简写
+### 对象的函数属性简写
 
 ```js
 let person = {
@@ -434,7 +434,7 @@ let person = {
 
 *注：使用箭头函数时，里面不能使用this点属性取值*
 
-### 5.4. 箭头函数结合解构表达式
+### 箭头函数结合解构表达式
 
 ```js
 const person = {
@@ -453,15 +453,15 @@ var hi = ({ name }) => console.log("hello," + name);
 hi(person);
 ```
 
-## 6. set 和 map 数据结构
+## set 和 map 数据结构
 
 ES6 提供了 Set 和 Map 的数据结构。
 
-### 6.1. set 数据结构
+### set 数据结构
 
 Set 本质与数组类似。不同在于 Set 中只能保存不同元素，如果元素相同会被忽略。*和 java 中的 Set 集合非常相似*。
 
-#### 6.1.1. 构造函数
+#### 构造函数
 
 ```js
 // Set 构造函数可以接收一个数组或空
@@ -472,7 +472,7 @@ set.add(1); // [1]
 let set2 = new Set([2, 3, 4, 5, 5]); // 得到结果[2,3,4,5]
 ```
 
-#### 6.1.2. 相关方法
+#### 相关方法
 
 ```js
 let set = new Set();
@@ -485,21 +485,21 @@ set.forEach(function () {}) // 遍历元素
 set.size; // 元素个数。是属性，不是方法。
 ```
 
-#### 6.1.3. 利用 set 数据结构进行数组去重
+#### 利用 set 数据结构进行数组去重
 
 ```js
 const list = [1, 1, 2, 3, 6, 45, 8, 5, 4, 6, 5]
 const uniqueList = [...new Set(list)]    // [1, 2, 3, 6, 45, 8, 5, 4]
 ```
 
-### 6.2. map 数据结构
+### map 数据结构
 
 map 本质是与 Object 类似的结构。不同在于，Object 强制规定 key 只能是字符串。而 Map 结构的 key 可以是任意对象。即：
 
 - object 是`<string, object>`集合
 - map 是`<object, object>`集合
 
-#### 6.2.1. 构造函数
+#### 构造函数
 
 ```js
 /* map 构造函数可以接收一个数组，数组中的元素是键值对数组 */
@@ -519,7 +519,7 @@ const map2 = new Map(set)
 const map3 = new Map(map);
 ```
 
-#### 6.2.2. 相关方法
+#### 相关方法
 
 ```js
 map.set(key, value); // 添加
@@ -540,7 +540,7 @@ for (let key of map.keys()) {
 console.log(...map.values());
 ```
 
-## 7. 扩展运算符(...)
+## 扩展运算符(...)
 
 扩展运算符(spread)是三个点(`...`)， 将一个数组转为用逗号分隔的参数序列。
 
@@ -569,15 +569,15 @@ console.log(first, rest) // 1  [2, 3, 4, 5]
 console.log([...'hello']) // ["h", "e", "l", "l", "o"]
 ```
 
-## 8. Promise 对象
+## Promise 对象
 
-### 8.1. Promise 简述
+### Promise 简述
 
 Promise 是异步编程的一种解决方案。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。
 
 可以通过Promise的构造函数来创建Promise对象，并在内部封装一个异步执行的结果。
 
-### 8.2. Promise 语法
+### Promise 语法
 
 ES6 规定，`Promise` 对象是一个构造函数，用来生成 `Promise` 实例。
 
@@ -617,7 +617,7 @@ promise.then(function (value) {
 })
 ```
 
-### 8.3. Promise 基础使用示例
+### Promise 基础使用示例
 
 ```js
 const p = new Promise(function (resolve, reject) {
@@ -645,7 +645,7 @@ console.log('异步请求结束!');
 
 ![promise使用示例](images/20190421110058157_24233.png)
 
-### 8.4. Promise.prototype.then()
+### Promise.prototype.then()
 
 `then` 方法是定义在原型对象 `Promise.prototype` 上的。它的作用是为 `Promise` 实例添加状态改变时的回调函数。`then` 方法的参数如下：
 
@@ -682,7 +682,7 @@ getJSON("/post/1.json").then(
 );
 ```
 
-### 8.5. Promise.prototype.catch()
+### Promise.prototype.catch()
 
 `Promise.prototype.catch()` 方法是 `.then(null, rejection)` 或 `.then(undefined, rejection)` 的别名，用于指定发生错误时的回调函数。
 
@@ -718,7 +718,7 @@ someAsyncThing()
 // carry on
 ```
 
-### 8.6. Promise.all()
+### Promise.all()
 
 `Promise.all()` 方法用于将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。方法接受一个数组作为参数，但参数也可以不是数组，但必须具有 `Iterator` 接口，且返回的每个成员都是 `Promise` 实例。
 
@@ -740,7 +740,7 @@ Promise.all([
 
 > *上面代码中，`booksPromise`和`userPromise`是两个异步操作，只有等到它们的结果都返回了，才会触发`pickTopRecommendations`这个回调函数。*
 
-### 8.7. Promise.race()
+### Promise.race()
 
 `Promise.race()` 方法同样是将多个 `Promise` 实例，包装成一个新的 `Promise` 实例。方法的参数与 `Promise.all()` 方法参数一样，不同的地方在于，`Promise.race()` 方法会发起并行的 `Promise` 异步操作，只要任何一个异步操作完成，就立即执行下一步的 `.then` 操作（赛跑机制）
 
@@ -759,9 +759,9 @@ p
 
 > *上面代码中，如果 5 秒之内`fetch`方法无法返回结果，变量`p`的状态就会变为`rejected`，从而触发`catch`方法指定的回调函数。*
 
-## 9. Generator函数
+## Generator函数
 
-### 9.1. Generator 函数简介
+### Generator 函数简介
 
 - Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
 - Generator 函数有两个特征: 一是 function 命令与函数名之间有一个星号；二是函数体内部使用 yield 吾句定义不同的内部状态。
@@ -784,7 +784,7 @@ console.log(h.next()); // {value: undefined, done: true}
 
 上例说明，通过hello()返回的h对象，每调用一次next()方法返回一个对象，该对象包含了value值和done状态。直到遇到return关键字或者函数执行完毕，这个时候返回的状态为ture，表示已经执行结束了。
 
-### 9.2. yield 关键字简介
+### yield 关键字简介
 
 - yield 是 ES6 的新关键字，使生成器函数执行暂停，yield 关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的 return 关键字。
 - yield 关键字实际返回一个 IteratorResult（迭代器）对象，它有两个属性，value 和 done，分别代表返回值和是否完成。
@@ -798,7 +798,7 @@ console.log(h.next()); // {value: undefined, done: true}
 > 4. 需要next()函数配合使用，每次调用返回两个值：分别是value和done，代表迭代结果和是否完成
 > 5. 函数next()是个迭代器对象，传参可以缺省，默认调用函数。
 
-### 9.3. for...of 循环
+### for...of 循环
 
 通过for...of可以循环遍历Generator函数返回的迭代器。用法如下：
 
@@ -819,15 +819,15 @@ for (let obj of h) {
  */
 ```
 
-## 10. async/await
+## async/await
 
-### 10.1. 简介
+### 简介
 
 ES2017 标准引入了 `async` 函数，使得异步操作变得更加方便。`async` 是 `Generator` 函数的语法糖。`async` 函数就是将 `Generator` 函数的星号（`*`）替换成 `async`，将 `yield` 替换成`await`。
 
 `async`/`await` 是 ES8（ECMAScript 2017）引入的新语法，用来简化 `Promise` 异步操作。在 `async`/`await` 出现之前，开发者只能通过链式 `.then()` 的方式处理 `Promise` 异步操作。
 
-### 10.2. 基础用法
+### 基础用法
 
 `async` 函数返回一个 `Promise` 对象，可以使用 `then` 方法添加回调函数。当函数执行的时候，一旦遇到 `await` 就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
 
@@ -877,7 +877,7 @@ storage.getAvatar('jake').then(…);
 const foo = async () => {};
 ```
 
-### 10.3. async/await 使用注意事项
+### async/await 使用注意事项
 
 1. 如果在 function 中使用了 `await`，则 function 必须被 `async` 修饰
 2. 在 `async` 方法中，第一个 `await` 之前的代码会同步执行，`await` 之后的代码会异步执行
@@ -918,13 +918,13 @@ console.log('C')
 */
 ```
 
-## 11. class（类）的基本语法
+## class（类）的基本语法
 
 JavaScript 语言的传统方法是通过构造函数定义井生成新对象。ES6中引入了class的概念，通过class关键字自定义类。
 
-### 11.1. 基本用法
+### 基本用法
 
-#### 11.1.1. 创建类
+#### 创建类
 
 - 语法：
 
@@ -968,7 +968,7 @@ console.log(user.sayHello()); // hello
 console.log(User.isAdult(20)); // 成年人
 ```
 
-#### 11.1.2. constructor 类的构造函数
+#### constructor 类的构造函数
 
 `constructor()`是类的构造函数(默认方法)，<font color=red>**用于传递参数，返回实例对象**</font>，通过 `new` 关键字生成对象实例时，自动调用该方法。如果没有显示定义，类内部会自动给创建一个无参的构造函数`constructor()`
 
@@ -997,7 +997,7 @@ var shiyuan = new Star("石原里美", 18);
 console.log(shiyuan);
 ```
 
-#### 11.1.3. 定义类的方法
+#### 定义类的方法
 
 - 语法：
 
@@ -1050,9 +1050,9 @@ ldh.sing("冰雨")
 zxy.sing("李香兰")
 ```
 
-### 11.2. 类的继承
+### 类的继承
 
-#### 11.2.1. 创建类的继承
+#### 创建类的继承
 
 - 语法：
 
@@ -1099,7 +1099,7 @@ console.log(zs.sayHello());         // 输出结果：hello
 console.log(ZhangSan.isAdult(20));  // 输出结果：成年人
 ```
 
-#### 11.2.2. super 关键字
+#### super 关键字
 
 `super` 关键字用于访问和调用对象父类上的函数。<font color=red>**可以调用父类的构造函数，也可以调用父类的普通函数**</font>。语法如下：
 
@@ -1169,7 +1169,7 @@ son.say()
 */
 ```
 
-#### 11.2.3. 子类扩展自己的方法
+#### 子类扩展自己的方法
 
 ```js
 // 父类有加法方法
@@ -1199,17 +1199,17 @@ son.subtract() // 调用子类扩展的方法
 son.sum() // 调用父类方法
 ```
 
-### 11.3. 类与对象的注意点
+### 类与对象的注意点
 
 1. 在 ES6 中类没有变量提升，所以必须先定义类，才能通过类实例化对象
 2. 类里面的共有属性和方法一定要加`this`使用
 3. 类里面的`this`指向问题：`constructor`函数里面的`this`指向实例对象，方法里面的`this`指向这个方法的调用者
 
-### 11.4. 面向对象综合案例
+### 面向对象综合案例
 
 项目代码详见：【html-css-js-sample\javascript-sample\07-面向对象案例\】
 
-### 11.5. 类的本质
+### 类的本质
 
 1. class本质还是function
 2. 类的所有方法都定义在类的`prototype`属性上
@@ -1243,9 +1243,9 @@ console.dir(shiyuan)
 console.log(shiyuan.__proto__ === Star.prototype)
 ```
 
-## 12. 模块化
+## 模块化
 
-### 12.1. 什么是模块化
+### 什么是模块化
 
 在 ES6 模块化规范诞生之前，JavaScript 社区已经尝试并提出了 AMD、CMD、CommonJS 等模块化规范。但是，这些由社区提出的模块化标准，还是存在一定的差异性与局限性、并不是浏览器与服务器通用的模块化标准，例如：
 
@@ -1257,7 +1257,7 @@ console.log(shiyuan.__proto__ === Star.prototype)
 - 模块化就是把代码进行拆分，方便重复利用。类似java中的导包：要使用一个包，必须先导包。
 - 而JS中没有包的概念，换来的是模块。
 
-### 12.2. ES6的模块化的基本规则或特点
+### ES6的模块化的基本规则或特点
 
 ES6 模块化规范是浏览器端与服务器端通用的模块化开发规范。ES6 模块化规范中定义：
 
@@ -1274,7 +1274,7 @@ ES6 模块化规范是浏览器端与服务器端通用的模块化开发规范�
 
 > node.js 中默认**仅支持 CommonJS 模块化规范**，基于 node.js 使用 ES6 的模块化语法的配置详见[《node.js 笔记》](#/前端资料/前端工程化工具/node?id=_41-在-nodejs-中体验-es6-模块化)
 
-### 12.3. ES6 模块化的基本语法与用法
+### ES6 模块化的基本语法与用法
 
 模块功能主要由两个命令构成：`export` 和 `import`。
 
@@ -1287,11 +1287,11 @@ ES6 的模块化主要包含如下 3 种用法：
 2. 按需导出与按需导入
 3. 直接导入并执行模块中的代码
 
-### 12.4. export 用法
+### export 用法
 
 一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果希望外部能够读取模块内部的某个变量，就必须使用 `export` 关键字输出该变量。
 
-#### 12.4.1. 单独导入多个变量
+#### 单独导入多个变量
 
 ```js
 // profile.js
@@ -1320,7 +1320,7 @@ export function multiply(x, y) {
 };
 ```
 
-#### 12.4.2. 导出变量重命名
+#### 导出变量重命名
 
 通常情况下，`export` 导出的变量就是原文件中的变量名称，但是可以使用 `as` 关键字重命名。
 
@@ -1338,7 +1338,7 @@ export {
 };
 ```
 
-#### 12.4.3. export default （默认导出）
+#### export default （默认导出）
 
 使用 `export default` 命令，为模块指定默认导出。<font color=red>**一个模块只能有一个默认输出，因此 export default 命令只能使用一次**</font>。所以当使用 `import` 命令导入时，是不用加大括号，因为只可能唯一对应 `export default` 命令。
 
@@ -1398,7 +1398,7 @@ export { each as forEach };
 
 > 以上示例就是导出一个默认的函数，然后单独导出 `forEach` 与 `each` 函数，然后 `forEach` 函数默认指向 `each` 函数。所以 `forEach` 和 `each` 指向同一个方法。
 
-#### 12.4.4. 导出的注意事项
+#### 导出的注意事项
 
 - `export` 命令可以出现在模块（js文件）的任何位置，只要处于模块顶层即可。如果处于块级作用域内，就会报错
 
@@ -1412,11 +1412,11 @@ foo()
 - 每个模块中，只允许使用唯一的一次 `export default`，否则会报错！
 - 单独导出可以和默认导出一起使用
 
-### 12.5. import 用法
+### import 用法
 
 使用 `export` 命令定义了模块的对外接口以后，其他 JS 文件就可以通过 `import` 命令加载这个模块。
 
-#### 12.5.1. 导入单独变量
+#### 导入单独变量
 
 `import` 命令用于加载模块文件，并导入指定的变量。`import` 命令接受一对大括号`{}`，里面指定要从其他模块导入的变量名。大括号里面的变量名，必须与被导入模块对外导出的变量名称相同。
 
@@ -1433,7 +1433,7 @@ import {myMethod} from './xxxx';
 import {myMethod} from 'util';
 ```
 
-#### 12.5.2. 导入变量重命名
+#### 导入变量重命名
 
 `import` 命令可以使用 `as` 关键字，将导入的变量重命名。
 
@@ -1441,7 +1441,7 @@ import {myMethod} from 'util';
 import { str as string, sum } from './export.js'
 ```
 
-#### 12.5.3. 默认导入
+#### 默认导入
 
 在导入默认导出的内容时，`import` 命令可以为该匿名内容指定任意名字。需要注意的是，这时 `import` 命令后面，不使用大括号`{}`。
 
@@ -1466,7 +1466,7 @@ import { default as foo } from 'modules';
 // import foo from 'modules';
 ```
 
-#### 12.5.4. 直接导入并执行模块中的代码
+#### 直接导入并执行模块中的代码
 
 如果只想单纯地执行某个模块中的代码，并不需要得到模块中向外共享的成员。此时，可以直接导入并执行模块代码
 
@@ -1480,7 +1480,7 @@ for (let i = 0; i < 3; i++) {
 import './no-export.js'
 ```
 
-#### 12.5.5. 导入的注意事项
+#### 导入的注意事项
 
 - `import` 命令**导入的变量都是只读的**，因为它的本质是导入变量。即不允许在加载模块的脚本里面，改写变量相应的内容。<font color=red>**但如果导入的变量是指定一个对象，改写该对象的属性是允许的。不过，这种写法很难查错，建议凡是输入的变量，都当作完全只读，不要轻易改变它的属性。**</font>
 
@@ -1494,7 +1494,7 @@ a.foo = 'hello'; // 合法操作。不过，这种写法很难查错，建议凡
 
 - 如果多次重复执行同一句 `import` 语句，那么只会执行一次，而不会执行多次。
 
-### 12.6. export(具名导出) 与 export default(默认导出) 的区别
+### export(具名导出) 与 export default(默认导出) 的区别
 
 `export` 与 `export default` 均可用于导出常量、函数、文件、模块等，可以在其它文件或模块中通过`import+(常量 | 函数 | 文件 | 模块名)`的方式将其导入，以便能够对其进行使用。可以在一个文件中，选择使用其中一种，或者两种都使用。
 
@@ -1522,7 +1522,7 @@ import str from 'demo1' // 导入的时候没有花括号
 
 `export default`可以跟在非匿名函数之前，也可以跟在匿名函数之前，同时也可以是一个对象之前。
 
-#### 12.6.1. 导入与导出的关系
+#### 导入与导出的关系
 
 <font color=red>**导出方式决定了其导入方式**</font>。当用默认导入的方式，导入具名导出的内容时，就会报错。如下表格：
 
@@ -1533,7 +1533,7 @@ import str from 'demo1' // 导入的时候没有花括号
 
 当使用默认导入时，可以在 `import` 语句后面进行任意命名。比如 `import Banana from './Button.js'`，如此能获得与默认导出一致的内容。相反，**对于具名导入，导入和导出的名字必须一致**（这就是称其为“具名导入”的原因）。
 
-### 12.7. export 与 import 的复合写法
+### export 与 import 的复合写法
 
 如果在一个模块之中，先输入后输出同一个模块，`import` 语句可以与 `export` 语句写在一起。例如：
 
@@ -1546,7 +1546,7 @@ export { foo, bar };
 
 > Notes: 值得注意的是，上面示例的 `export` 和 `import` 语句结合在一起以后，foo 和 bar 实际上并没有被导入当前模块，只是相当于对外转发了这两个接口，导致当前模块不能直接使用 foo 和 bar。
 
-#### 12.7.1. 模块的接口改名和整体输出
+#### 模块的接口改名和整体输出
 
 ```js
 // 接口改名
@@ -1556,13 +1556,13 @@ export { foo as myFoo } from 'my_module';
 export * from 'my_module';
 ```
 
-#### 12.7.2. 默认接口导出
+#### 默认接口导出
 
 ```js
 export { default } from 'foo';
 ```
 
-#### 12.7.3. 具名接口与默认接口转换导出
+#### 具名接口与默认接口转换导出
 
 具名接口改为默认接口：
 
@@ -1579,7 +1579,7 @@ export default es6;
 export { default as es6 } from './someModule';
 ```
 
-#### 12.7.4. ES2020
+#### ES2020
 
 ES2020 之前，有一种 import 语句，没有对应的复合写法。
 
@@ -1596,15 +1596,15 @@ import * as ns from "mod";
 export { ns };
 ```
 
-## 13. Proxy
+## Proxy
 
-### 13.1. 概述
+### 概述
 
 Proxy 这个词的原意是代理，表示由它来“代理”某些操作，可以译为“代理器”。用于修改某些操作的默认行为，等同于在语言层面做出修改，属于一种“元编程”（meta programming），即对编程语言进行编程。
 
 Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。
 
-### 13.2. 基础语法
+### 基础语法
 
 ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。
 
@@ -1699,7 +1699,7 @@ fproxy.prototype === Object.prototype // true
 fproxy.foo === "Hello, foo" // true
 ```
 
-### 13.3. Proxy 实例支持的拦截方法(未整理完,待续)
+### Proxy 实例支持的拦截方法(未整理完,待续)
 
 > 参考：https://www.bookstack.cn/read/es6-3rd/spilt.2.docs-proxy.md
 
@@ -1717,7 +1717,7 @@ fproxy.foo === "Hello, foo" // true
 - `apply(target, object, args)`：拦截 Proxy 实例作为函数调用的操作，比如`proxy(...args)`、`proxy.call(object, ...args)`、`proxy.apply(...)`。
 - `construct(target, args)`：拦截 Proxy 实例作为构造函数调用的操作，比如`new proxy(...args)`。
 
-#### 13.3.1. get()
+#### get()
 
 `get(target, propertyKey, receiver)` 方法用于拦截某个属性的读取操作，可以接受三个参数：
 
@@ -1744,7 +1744,7 @@ proxy.name // "张三"
 proxy.age // 抛出一个错误
 ```
 
-#### 13.3.2. set()
+#### set()
 
 `set(target, propKey, value, receiver)` 方法用来拦截某个属性的赋值操作，可以接受四个参数：
 
@@ -1778,7 +1778,7 @@ person.age = 'young' // 报错
 person.age = 300 // 报错
 ```
 
-### 13.4. Proxy.revocable() 取消的 Proxy 实例
+### Proxy.revocable() 取消的 Proxy 实例
 
 `Proxy.revocable()` 方法返回一个可取消的 Proxy 实例。
 
@@ -1796,7 +1796,7 @@ proxy.foo // TypeError: Revoked
 
 `Proxy.revocable()` 方法返回一个对象，该对象的 `proxy` 属性是 Proxy 实例，`revoke` 属性是一个函数，可以取消 Proxy 实例。上面代码中，当执行 `revoke` 函数之后，再访问 Proxy 实例，就会抛出一个错误。`Proxy.revocable()` 的一个使用场景是，目标对象不允许直接访问，必须通过代理访问，一旦访问结束，就收回代理权，不允许再次访问。
 
-### 13.5. 示例：Web 服务的客户端
+### 示例：Web 服务的客户端
 
 Proxy 对象可以拦截目标对象的任意属性，适合用于 Web 服务的客户端。
 
@@ -1819,15 +1819,15 @@ service.employees().then(json => {
 
 上面代码新建了一个 Web 服务的接口，这个接口返回各种数据。Proxy 可以拦截这个对象的任意属性，所以不用为每一种数据写一个适配方法，只要写一个 Proxy 拦截就可以了。
 
-## 14. 修饰器(Decorator)
+## 修饰器(Decorator)
 
 修饰器(Decorator)是一个函数，是一种与类（class）相关的语法，用来注释或修改类和类方法。ES2017 引入了这项功能，目前 Babel 转码器己经支持。
 
-### 14.1. 语法格式
+### 语法格式
 
 装饰器是一种函数，语法格式：`@ + 函数名`。它可以放在类和类方法的定义前面。
 
-#### 14.1.1. 使用示例
+#### 使用示例
 
 示例1：
 
@@ -1860,7 +1860,7 @@ console.log(User.country); // 打印出country属性值
 }
 ```
 
-#### 14.1.2. 运行出现报错
+#### 运行出现报错
 
 ![](images/20190421114634357_14041.png)
 
@@ -1877,13 +1877,13 @@ input.map(function (item) {
 
 > 转码器相关内容详见《转码器》章节
 
-### 14.2. 类的装饰
+### 类的装饰
 
 装饰器是一个可以装饰整个类，并对类进行处理的<font color=red>**函数**</font>。装饰器函数的第一个参数，就是所要装饰的目标类。
 
 <font color=red>**注意，装饰器对类的行为的改变，是代码编译时发生的，而不是在运行时。这意味着，装饰器能在编译阶段运行代码。也就是说，装饰器本质就是编译时执行的函数。**</font>
 
-#### 14.2.1. 给类增加静态属性
+#### 给类增加静态属性
 
 ```js
 @testable
@@ -1911,7 +1911,7 @@ class A {}
 A = decorator(A) || A;
 ```
 
-#### 14.2.2. 装饰器传递参数
+#### 装饰器传递参数
 
 如果需要给装饰器传递参数，可以在装饰器外面再封装一层函数。
 
@@ -1932,7 +1932,7 @@ class MyClass {}
 MyClass.isTestable // false
 ```
 
-#### 14.2.3. 给类增加实例属性(多个)
+#### 给类增加实例属性(多个)
 
 如果想给目标类添加实例属性，可以对目标类的 `prototype` 对象上进行操作。
 
@@ -1984,11 +1984,11 @@ obj.foo() // 'foo'
 
 > 上面代码通过装饰器 `mixins`，把 `Foo` 对象的方法添加到了 `MyClass` 的实例上面。
 
-### 14.3. 方法的装饰
+### 方法的装饰
 
 装饰器不仅可以装饰类，还可以装饰类的属性。*装饰器也可以有注释的作用。*
 
-#### 14.3.1. 基础使用
+#### 基础使用
 
 装饰类方法的装饰器函数一共可以接受三个参数。
 
@@ -2068,7 +2068,7 @@ math.add(2, 4)
 
 > 上面代码中，`@log` 装饰器的作用就是在执行原始的操作之前，执行一次 `console.log`，从而达到输出日志的目的
 
-#### 14.3.2. 多个方法装饰器执行顺序
+#### 多个方法装饰器执行顺序
 
 如果同一个方法有多个装饰器，**先从外到内进入，然后由内向外执行**。
 
@@ -2091,7 +2091,7 @@ class Example {
 
 > 上面代码中，外层装饰器 `@dec(1)` 先进入，但是内层装饰器 `@dec(2)` 先执行。
 
-### 14.4. core-decorators.js 工具类
+### core-decorators.js 工具类
 
 core-decorators.js 是一个第三方模块，提供了几个常见的装饰器。
 
@@ -2101,14 +2101,14 @@ core-decorators.js 是一个第三方模块，提供了几个常见的装饰器�
 - `@deprecate` 或 `@deprecated` 装饰器在控制台显示一条警告，表示该方法将废除。
 - `@suppressWarnings` 装饰器抑制 `@deprecated` 装饰器导致的 `console.warn()` 调用。但是，异步代码发出的调用除外。
 
-## 15. 转码器
+## 转码器
 
 - Babel (babeljs.io) 是一个广为使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在浏览器或其他环境执行。
 - Google 公司的 Traceur 转码器 (github.com/google/traceur-compiler)， 也可以将 ES6 代码转为ES5的代码。
 
 这2款都是非常优秀的转码工具，后面的案例项目是使用阿里的开源企业级react框架：UmiJS。
 
-### 15.1. Babel 转码器
+### Babel 转码器
 
 Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在老版本的浏览器执行。这意味着，可以用 ES6 的方式编写程序，又不用担心现有环境是否支持。转换效果如下：
 
@@ -2124,7 +2124,7 @@ input.map(function (item) {
 
 上面的原始代码用了箭头函数，Babel 将其转为普通函数，就能在不支持箭头函数的 JavaScript 环境执行了。
 
-#### 15.1.1. 安装 Babel
+#### 安装 Babel
 
 项目目录中，使用以下命令安装 Babel
 
@@ -2132,7 +2132,7 @@ input.map(function (item) {
 $ npm install --save-dev @babel/core
 ```
 
-#### 15.1.2. 配置文件 .babelrc
+#### 配置文件 .babelrc
 
 Babel 的配置文件是 `.babelrc`，存放在项目的根目录下。使用 Babel 的第一步，就是配置这个文件。该文件用来设置转码规则和插件，基本格式如下。
 
@@ -2167,7 +2167,7 @@ $ npm install --save-dev @babel/preset-react
 
 > **注意，以下所有 Babel 工具和模块的使用，都必须先写好 `.babelrc`。**
 
-#### 15.1.3. 命令行转码
+#### 命令行转码
 
 Babel 提供命令行工具 `@babel/cli`，用于命令行转码。安装命令如下：
 
@@ -2197,7 +2197,7 @@ $ npx babel src -d lib
 $ npx babel src -d lib -s
 ```
 
-### 15.2. UmiJS
+### UmiJS
 
 官网： https://umijs.org/zh/
 
@@ -2210,7 +2210,7 @@ UmiJS 读音：（Omi）。其特点如下：
 - 约定式路由
     - 类 next.js 的约定式路由，无需再维护一份冗余的路由配置，支持权限、动态路由、嵌套路由等等。
 
-#### 15.2.1. 部署安装
+#### 部署安装
 
 1. 确认是否安装node.js
 
@@ -2241,7 +2241,7 @@ umi
 
 ![配置umi环境变量](images/20190421174111766_31187.png)
 
-#### 15.2.2. 快速入门
+#### 快速入门
 
 ```shell
 # 进入测试工程的文件夹中，通过初始化命令将生成package.json文件，它是 NodeJS 约定的用来存放项目的信息和配置等信息的文件。
@@ -2281,7 +2281,7 @@ umi dev
 
 ![测试转码2](images/20190421115922937_25029.png)
 
-## 16. 参考资料
+## 参考资料
 
 - [阮一峰 ECMAScript 6 入门教程（201801）](https://www.bookstack.cn/read/es6/readme.md)
 - [ECMAScript 6 入门 阮一峰](https://es6.ruanyifeng.com/)

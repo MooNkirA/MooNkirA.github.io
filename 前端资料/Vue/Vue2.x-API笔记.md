@@ -1,10 +1,10 @@
 # Vue.js API 笔记
 
-## 1. 全局配置
+## 全局配置
 
 `Vue.config` 是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列 property：
 
-### 1.1. silent
+### silent
 
 - **类型**：`boolean`
 - **默认值**：`false`
@@ -16,7 +16,7 @@ Vue.config.silent = true
 
 取消 Vue 所有的日志与警告。
 
-### 1.2. optionMergeStrategies
+### optionMergeStrategies
 
 - **类型**：`{ [key: string]: Function }`
 - **默认值**：`{}`
@@ -36,7 +36,7 @@ const Profile = Vue.extend({
 
 合并策略选项分别接收在父实例和子实例上定义的该选项的值作为第一个和第二个参数，Vue 实例上下文被作为第三个参数传入。
 
-### 1.3. devtools
+### devtools
 
 - **类型**：`boolean`
 - **默认值**：`true` (生产版为 `false`)
@@ -49,7 +49,7 @@ Vue.config.devtools = true
 
 配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版本默认为 `true`，生产版本默认为 `false`。生产版本设为 `true` 可以启用检查。
 
-### 1.4. errorHandler
+### errorHandler
 
 - **类型**：`Function`
 - **默认值**：`undefined`
@@ -70,7 +70,7 @@ Vue.config.errorHandler = function (err, vm, info) {
 > 从 2.6.0 起，这个钩子也会捕获 `v-on` DOM 监听器内部抛出的错误。另外，如果任何被覆盖的钩子或处理函数返回一个 Promise 链 (例如 async 函数)，则来自其 Promise 链的错误也会被处理。
 > 错误追踪服务 [Sentry](https://sentry.io) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 都通过此选项提供了官方支持。
 
-### 1.5. warnHandler
+### warnHandler
 
 > 2.4.0 新增
 
@@ -86,7 +86,7 @@ Vue.config.warnHandler = function (msg, vm, trace) {
 
 为 Vue 的运行时警告赋予一个自定义处理函数。注意这只会在开发者环境下生效，在生产环境下它会被忽略。
 
-### 1.6. ignoredElements
+### ignoredElements
 
 - **类型**：`Array<string | RegExp>`
 - **默认值**：`[]`
@@ -104,7 +104,7 @@ Vue.config.ignoredElements = [
 
 须使 Vue 忽略在 Vue 之外的自定义元素 (e.g. 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 `Unknown custom element` 的警告。
 
-### 1.7. keyCodes
+### keyCodes
 
 - **类型**：`{ [key: string]: number | Array<number> }`
 - **默认值**：`{}`
@@ -128,7 +128,7 @@ Vue.config.keyCodes = {
 
 给 `v-on` 自定义键位别名。
 
-### 1.8. performance
+### performance
 
 > 2.2.0 新增
 
@@ -138,7 +138,7 @@ Vue.config.keyCodes = {
 
 设置为 `true` 以在浏览器开发工具的性能/时间线面板中启用对组件初始化、编译、渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器上。
 
-### 1.9. productionTip
+### productionTip
 
 > 2.2.0 新增
 
@@ -148,9 +148,9 @@ Vue.config.keyCodes = {
 
 设置为 `false` 以阻止 vue 在启动时生成生产提示。
 
-## 2. 全局 API
+## 全局 API
 
-### 2.1. Vue.extend(options)
+### Vue.extend(options)
 
 - **参数**：
   - `{Object} options`
@@ -188,7 +188,7 @@ new Profile().$mount('#mount-point')
 
 - **参考**：[组件](../guide/components.html)
 
-### 2.2. Vue.nextTick([callback, context])
+### Vue.nextTick([callback, context])
 
 - **参数**：
   - `{Function} [callback]`
@@ -216,7 +216,7 @@ Vue.nextTick()
 
 - **参考**：[异步更新队列](../guide/reactivity.html#异步更新队列)
 
-### 2.3. Vue.set(target, propertyName/index, value)
+### Vue.set(target, propertyName/index, value)
 
 - **参数**：
   - `{Object | Array} target`
@@ -229,7 +229,7 @@ Vue.nextTick()
 
 > 注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。
 
-### 2.4. Vue.delete(target, propertyName/index)
+### Vue.delete(target, propertyName/index)
 
 - **参数**：
   - `{Object | Array} target`
@@ -245,7 +245,7 @@ Vue.nextTick()
 >
 > 目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。
 
-### 2.5. Vue.directive(id, [definition])
+### Vue.directive(id, [definition])
 
 - **参数**：
   - `{string} id`
@@ -271,7 +271,7 @@ Vue.directive('my-directive', function () {
 var myDirective = Vue.directive('my-directive')
 ```
 
-### 2.6. Vue.filter(id, [definition])
+### Vue.filter(id, [definition])
 
 - **参数**：
   - `{string} id`
@@ -288,7 +288,7 @@ Vue.filter('my-filter', function (value) {
 var myFilter = Vue.filter('my-filter')
 ```
 
-### 2.7. Vue.component(id, [definition])
+### Vue.component(id, [definition])
 
 - **参数**：
   - `{string} id`
@@ -306,7 +306,7 @@ Vue.component('my-component', { /* ... */ })
 var MyComponent = Vue.component('my-component')
 ```
 
-### 2.8. Vue.use(plugin)
+### Vue.use(plugin)
 
 - **参数**：
   - `{Object | Function} plugin`
@@ -318,14 +318,14 @@ var MyComponent = Vue.component('my-component')
 
 当 install 方法被同一个插件多次调用，插件将只会被安装一次。
 
-### 2.9. Vue.mixin(mixin)
+### Vue.mixin(mixin)
 
 - **参数**：
   - `{Object} mixin`
 - **用法**：
   - 全局注册一个混入，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混入，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
-### 2.10. Vue.compile(template)
+### Vue.compile(template)
 
 - **参数**：
   - `{string} template`
@@ -344,7 +344,7 @@ new Vue({
 })
 ```
 
-### 2.11. Vue.observable(object)
+### Vue.observable(object)
 
 > 2.6.0 新增
 
@@ -368,7 +368,7 @@ const Demo = {
 
 > 在 Vue 2.x 中，被传入的对象会直接被 `Vue.observable` 变更，它和被返回的对象是同一个对象。在 Vue 3.x 中，则会返回一个可响应的代理，而对源对象直接进行变更仍然是不可响应的。因此，为了向前兼容，我们推荐始终操作使用 `Vue.observable` 返回的对象，而不是传入源对象
 
-### 2.12. Vue.version
+### Vue.version
 
 - **细节**：提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 - **用法**：
@@ -385,9 +385,9 @@ if (version === 2) {
 }
 ```
 
-## 3. 选项 / 数据
+## 选项 / 数据
 
-### 3.1. data
+### data
 
 - **类型**：`Object | Function`
 - **限制**：组件的定义只接受 `function`。
@@ -431,7 +431,7 @@ var Component = Vue.extend({
 data: vm => ({ a: vm.myProp })
 ```
 
-### 3.2. props
+### props
 
 - **类型**：`Array<string> | Object`
 - **详细**：props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义验证和设置默认值。你可以基于对象的语法使用以下选项：
@@ -465,7 +465,7 @@ Vue.component('props-demo-advanced', {
 })
 ```
 
-### 3.3. propsData
+### propsData
 
 - **类型**：`{ [key: string]: any }`
 - **限制**：只用于 `new` 创建的实例中。
@@ -485,7 +485,7 @@ var vm = new Comp({
 })
 ```
 
-### 3.4. computed
+### computed
 
 - **类型**：`{ [key: string]: Function | { get: Function, set: Function } }`
 - **详细**：
@@ -527,7 +527,7 @@ vm.a       // => 2
 vm.aDouble // => 4
 ```
 
-### 3.5. methods
+### methods
 
 - **类型**：`{ [key: string]: Function }`
 - **详细**：methods 将被混入到 Vue 实例中。可以直接通过 VM 实例访问这些方法，或者在指令表达式中使用。方法中的 `this` 自动绑定为 Vue 实例。
@@ -549,7 +549,7 @@ vm.plus()
 vm.a // 2
 ```
 
-### 3.6. watch
+### watch
 
 - **类型**：`{ [key: string]: string | Function | Object | Array }`
 - **详细**：一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 `$watch()`，遍历 watch 对象的每一个 property。
@@ -602,9 +602,9 @@ vm.a = 2 // => new: 2, old: 1
 
 > 注意，**不应该使用箭头函数来定义 watcher 函数** (例如 `searchQuery: newValue => this.updateAutocomplete(newValue)`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 undefined。
 
-## 4. 选项 / DOM
+## 选项 / DOM
 
-### 4.1. el
+### el
 
 - **类型**：`string | Element`
 - **限制**：只在用 `new` 创建实例时生效。
@@ -617,7 +617,7 @@ vm.a = 2 // => new: 2, old: 1
 >
 > 如果 `render` 函数和 `template` property 都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。
 
-### 4.2. template
+### template
 
 - **类型**：`string`
 - **详细**：
@@ -628,7 +628,7 @@ vm.a = 2 // => new: 2, old: 1
 >
 > 如果 Vue 选项中包含渲染函数，该模板将被忽略。
 
-### 4.3. render
+### render
 
 - **类型**：`(createElement: () => VNode) => VNode`
 - **详细**：
@@ -637,7 +637,7 @@ vm.a = 2 // => new: 2, old: 1
 
 > Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
 
-### 4.4. renderError
+### renderError
 
 > 2.2.0 新增
 
@@ -656,28 +656,28 @@ new Vue({
 }).$mount('#app')
 ```
 
-## 5. 选项 / 生命周期钩子
+## 选项 / 生命周期钩子
 
 > 所有生命周期钩子的 `this` 上下文将自动绑定至实例中，因此你可以访问 data、computed 和 methods。这意味着**你不应该使用箭头函数来定义一个生命周期方法** (例如 `created: () => this.fetchTodos()`)。因为箭头函数绑定了父级上下文，所以 `this` 不会指向预期的组件实例，并且`this.fetchTodos` 将会是 undefined。
 
-### 5.1. beforeCreate
+### beforeCreate
 
 - **类型**：`Function`
 - **详细**：在实例初始化之后,进行数据侦听和事件/侦听器的配置之前同步调用。
 
-### 5.2. created
+### created
 
 - **类型**：`Function`
 - **详细**：在实例创建完成后被立即同步调用。在这一步中，实例已完成对选项的处理，意味着以下内容已被配置完毕：数据侦听、计算属性、方法、事件/侦听器的回调函数。然而，挂载阶段还没开始，且 `$el` property 目前尚不可用。
 
-### 5.3. beforeMount
+### beforeMount
 
 - **类型**：`Function`
 - **详细**：在挂载开始之前被调用：相关的 `render` 函数首次被调用。
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.4. mounted
+### mounted
 
 - **类型**：`Function`
 - **详细**：
@@ -694,14 +694,14 @@ mounted: function () {
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.5. beforeUpdate
+### beforeUpdate
 
 - **类型**：`Function`
 - **详细**：在数据发生改变后，DOM 被更新之前被调用。这里适合在现有 DOM 将要被更新之前访问它，比如移除手动添加的事件监听器。
 
 **该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务器端进行。**
 
-### 5.6. updated
+### updated
 
 - **类型**：`Function`
 - **详细**：
@@ -719,35 +719,35 @@ updated: function () {
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.7. activated
+### activated
 
 - **类型**：`Function`
 - **详细**：被 keep-alive 缓存的组件激活时调用。
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.8. deactivated
+### deactivated
 
 - **类型**：`Function`
 - **详细**：被 keep-alive 缓存的组件失活时调用。
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.9. beforeDestroy
+### beforeDestroy
 
 - **类型**：`Function`
 - **详细**：实例销毁之前调用。在这一步，实例仍然完全可用。
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.10. destroyed
+### destroyed
 
 - **类型**：`Function`
 - **详细**：实例销毁后调用。该钩子被调用后，对应 Vue 实例的所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁。
 
 **该钩子在服务器端渲染期间不被调用。**
 
-### 5.11. errorCaptured
+### errorCaptured
 
 > 2.5.0+ 新增
 
@@ -763,33 +763,33 @@ updated: function () {
 - 如果此 `errorCaptured` 钩子自身抛出了一个错误，则这个新错误和原本被捕获的错误都会发送给全局的 `config.errorHandler`。
 - 一个 `errorCaptured` 钩子能够返回 `false` 以阻止错误继续向上传播。本质上是说“这个错误已经被搞定了且应该被忽略”。它会阻止其它任何会被这个错误唤起的 `errorCaptured` 钩子和全局的 `config.errorHandler`。
 
-## 6. 选项 / 资源
+## 选项 / 资源
 
-### 6.1. directives
+### directives
 
 - **类型**：`Object`
 - **详细**：包含 Vue 实例可用指令的哈希表。
 
-### 6.2. filters
+### filters
 
 - **类型**：`Object`
 - **详细**：包含 Vue 实例可用过滤器的哈希表。
 
-### 6.3. components
+### components
 
 - **类型**：`Object`
 - **详细**：包含 Vue 实例可用组件的哈希表。
 
-## 7. 选项 / 组合
+## 选项 / 组合
 
-### 7.1. parent
+### parent
 
 - **类型**：`Vue instance`
 - **详细**：指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
 > 节制地使用 `$parent` 和 `$children` - 它们的主要目的是作为访问组件的应急方法。更推荐用 props 和 events 实现父子组件通信
 
-### 7.2. mixins
+### mixins
 
 - **类型**：`Array<Object>`
 - **详细**：
@@ -809,7 +809,7 @@ var vm = new Vue({
 // => 2
 ```
 
-### 7.3. extends
+### extends
 
 - **类型**：`Object | Function`
 - **详细**：允许声明扩展另一个组件 (可以是一个简单的选项对象或构造函数)，而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。这和 `mixins` 类似。
@@ -825,7 +825,7 @@ var CompB = {
 }
 ```
 
-### 7.4. provide / inject
+### provide / inject
 
 > 2.2.0 新增
 
@@ -951,9 +951,9 @@ const Child = {
 }
 ```
 
-## 8. 选项 / 其它
+## 选项 / 其它
 
-### 8.1. name
+### name
 
 - **类型**：`string`
 - **限制**：只有作为组件选项时起作用。
@@ -961,7 +961,7 @@ const Child = {
   - 允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
   - 指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools)，未命名组件将显示成 `<AnonymousComponent>`，这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
-### 8.2. delimiters
+### delimiters
 
 - **类型**：`Array<string>`
 - **默认值**：`{% raw %}["{{", "}}"]{% endraw %}`
@@ -977,12 +977,12 @@ new Vue({
 // 分隔符变成了 ES6 模板字符串的风格
 ```
 
-### 8.3. functional
+### functional
 
 - **类型**：`boolean`
 - **详细**：使组件无状态 (没有 `data`) 和无实例 (没有 `this` 上下文)。他们用一个简单的 `render` 函数返回虚拟节点使它们渲染的代价更小。
 
-### 8.4. model
+### model
 
 > 2.2.0 新增
 
@@ -1024,7 +1024,7 @@ new Vue({
 </my-checkbox>
 ```
 
-### 8.5. inheritAttrs
+### inheritAttrs
 
 > 2.4.0 新增
 
@@ -1034,7 +1034,7 @@ new Vue({
 
 注意：这个选项**不影响** `class` 和 `style` 绑定。
 
-### 8.6. comments
+### comments
 
 > 2.4.0 新增
 
@@ -1043,27 +1043,27 @@ new Vue({
 - **限制**：这个选项只在完整构建版本中的浏览器内编译时可用。
 - **详细**：当设为 `true` 时，将会保留且渲染模板中的 HTML 注释。默认行为是舍弃它们。
 
-## 9. 实例 property
+## 实例 property
 
-### 9.1. vm.$data
+### vm.$data
 
 - **类型**：`Object`
 - **详细**：Vue 实例观察的数据对象。Vue 实例代理了对其 `data` 对象 property 的访问。
 
-### 9.2. vm.$props
+### vm.$props
 
 > 2.2.0 新增
 
 - **类型**：`Object`
 - **详细**：当前组件接收到的 `props` 对象。Vue 实例代理了对其 `props` 对象 property 的访问。
 
-### 9.3. vm.$el
+### vm.$el
 
 - **类型**：`Element`
 - **只读**
 - **详细**：Vue 实例使用的根 DOM 元素。
 
-### 9.4. vm.$options
+### vm.$options
 
 - **类型**：`Object`
 - **只读**
@@ -1078,25 +1078,25 @@ new Vue({
 })
 ```
 
-### 9.5. vm.$parent
+### vm.$parent
 
 - **类型**：`Vue instance`
 - **只读**
 - **详细**：父实例，如果当前实例有的话。
 
-### 9.6. vm.$root
+### vm.$root
 
 - **类型**：`Vue instance`
 - **只读**
 - **详细**：当前组件树的根 Vue 实例。如果当前实例没有父实例，此实例将会是其自己。
 
-### 9.7. vm.$children
+### vm.$children
 
 - **类型**：`Array<Vue instance>`
 - **只读**
 - **详细**：当前实例的直接子组件。**需要注意 `$children` 并不保证顺序，也不是响应式的。**如果你发现自己正在尝试使用 `$children` 来进行数据绑定，考虑使用一个数组配合 `v-for` 来生成子组件，并且使用 Array 作为真正的来源。
 
-### 9.8. vm.$slots
+### vm.$slots
 
 - **类型**：`{ [name: string]: ?Array<VNode> }`
 - **只读**
@@ -1144,7 +1144,7 @@ Vue.component('blog-post', {
 })
 ```
 
-### 9.9. vm.$scopedSlots
+### vm.$scopedSlots
 
 > 2.1.0 新增
 
@@ -1157,19 +1157,19 @@ Vue.component('blog-post', {
 1. 作用域插槽函数现在保证返回一个 VNode 数组，除非在返回值无效的情况下返回 `undefined`。
 2. 所有的 `$slots` 现在都会作为函数暴露在 `$scopedSlots` 中。如果你在使用渲染函数，不论当前插槽是否带有作用域，我们都推荐始终通过 `$scopedSlots` 访问它们。这不仅仅使得在未来添加作用域变得简单，也可以让你最终轻松迁移到所有插槽都是函数的 Vue 3。
 
-### 9.10. vm.$refs
+### vm.$refs
 
 - **类型**：`Object`
 - **只读**
 - **详细**：一个对象，持有注册过 `ref` attribute 的所有 DOM 元素和组件实例。
 
-### 9.11. vm.$isServer
+### vm.$isServer
 
 - **类型**：`boolean`
 - **只读**
 - **详细**：当前 Vue 实例是否运行于服务器。
 
-### 9.12. vm.$attrs
+### vm.$attrs
 
 > 2.4.0 新增
 
@@ -1177,7 +1177,7 @@ Vue.component('blog-post', {
 - **只读**
 - **详细**：包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建高级别的组件时非常有用。
 
-### 9.13. vm.$listeners
+### vm.$listeners
 
 > 2.4.0 新增
 
@@ -1185,9 +1185,9 @@ Vue.component('blog-post', {
 - **只读**
 - **详细**：包含了父作用域中的 (不含 `.native` 修饰器的) `v-on` 事件监听器。它可以通过 `v-on="$listeners"` 传入内部组件——在创建更高层次的组件时非常有用。
 
-## 10. 实例方法 / 数据
+## 实例方法 / 数据
 
-### 10.1. vm.$watch(expOrFn, callback, [options])
+### vm.$watch(expOrFn, callback, [options])
 
 - **参数**：
   - `{string | Function} expOrFn`
@@ -1282,7 +1282,7 @@ var unwatch = vm.$watch(
 )
 ```
 
-### 10.2. vm.$set(target, propertyName/index, value)
+### vm.$set(target, propertyName/index, value)
 
 - **参数**：
   - `{Object | Array} target`
@@ -1291,16 +1291,16 @@ var unwatch = vm.$watch(
 - **返回值**：设置的值。
 - **用法**：这是全局 `Vue.set` 的**别名**。
 
-### 10.3. vm.$delete(target, propertyName/index)
+### vm.$delete(target, propertyName/index)
 
 - **参数**：
   - `{Object | Array} target`
   - `{string | number} propertyName/index`
 - **用法**：这是全局 `Vue.delete` 的**别名**。
 
-## 11. 实例方法 / 事件
+## 实例方法 / 事件
 
-### 11.1. vm.$on(event, callback)
+### vm.$on(event, callback)
 
 - **参数**：
   - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
@@ -1316,14 +1316,14 @@ vm.$emit('test', 'hi')
 // => "hi"
 ```
 
-### 11.2. vm.$once(event, callback)
+### vm.$once(event, callback)
 
 - **参数**：
   - `{string} event`
   - `{Function} callback`
 - **用法**：监听一个自定义事件，但是只触发一次。一旦触发之后，监听器就会被移除。
 
-### 11.3. vm.$off([event, callback])
+### vm.$off([event, callback])
 
 - **参数**：
   - `{string | Array<string>} event` (只在 2.2.2+ 支持数组)
@@ -1333,7 +1333,7 @@ vm.$emit('test', 'hi')
   - 如果只提供了事件，则移除该事件所有的监听器；
   - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
-### 11.4. vm.$emit(eventName, [...args])
+### vm.$emit(eventName, [...args])
 
 - **参数**：
   - `{string} eventName`
@@ -1412,9 +1412,9 @@ new Vue({
 })
 ```
 
-## 12. 实例方法 / 生命周期
+## 实例方法 / 生命周期
 
-### 12.1. vm.$mount([elementOrSelector])
+### vm.$mount([elementOrSelector])
 
 - **参数**：
   - `{Element | string} [elementOrSelector]`
@@ -1442,13 +1442,13 @@ var component = new MyComponent().$mount()
 document.getElementById('app').appendChild(component.$el)
 ```
 
-### 12.2. vm.$forceUpdate()
+### vm.$forceUpdate()
 
 - **用法**：
 
 迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-### 12.3. vm.$nextTick([callback])
+### vm.$nextTick([callback])
 
 - **参数**：
   - `{Function} [callback]`
@@ -1477,15 +1477,15 @@ new Vue({
 })
 ```
 
-### 12.4. vm.$destroy()
+### vm.$destroy()
 
 - **用法**：完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。触发 `beforeDestroy` 和 `destroyed` 的钩子。
 
 > 在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。
 
-## 13. 指令
+## 指令
 
-### 13.1. v-text
+### v-text
 
 - **预期**：`string`
 - **详细**：更新元素的 `textContent`。如果要更新部分的 `textContent`，需要使用 `{{ Mustache }}` 插值。
@@ -1497,7 +1497,7 @@ new Vue({
 <span>{{msg}}</span>
 ```
 
-### 13.2. v-html
+### v-html
 
 - **预期**：`string`
 - **详细**：更新元素的 `innerHTML`。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译**。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
@@ -1512,12 +1512,12 @@ new Vue({
 <div v-html="html"></div>
 ```
 
-### 13.3. v-show
+### v-show
 
 - **预期**：`any`
 - **用法**：根据表达式之真假值，切换元素的 `display` CSS property。当条件变化时该指令触发过渡效果。
 
-### 13.4. v-if
+### v-if
 
 - **预期**：`any`
 - **用法**：
@@ -1528,7 +1528,7 @@ new Vue({
 
 > 当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。
 
-### 13.5. v-else
+### v-else
 
 - **不需要表达式**
 - **限制**：前一兄弟元素必须有 `v-if` 或 `v-else-if`。
@@ -1543,7 +1543,7 @@ new Vue({
 </div>
 ```
 
-### 13.6. v-else-if
+### v-else-if
 
 > 2.1.0 新增
 
@@ -1566,7 +1566,7 @@ new Vue({
 </div>
 ```
 
-### 13.7. v-for
+### v-for
 
 - **预期**：`Array | Object | number | string | Iterable (2.6 新增)`
 - **用法**：基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 `alias in expression`，为当前遍历的元素提供别名：
@@ -1597,7 +1597,7 @@ new Vue({
 
 > 当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。
 
-### 13.8. v-on
+### v-on
 
 - **缩写**：`@`
 - **预期**：`Function | Inline Statement | Object`
@@ -1679,11 +1679,11 @@ new Vue({
 <my-component @click.native="onClick"></my-component>
 ```
 
-#### 13.8.1. 关于右键点击的问题
+#### 关于右键点击的问题
 
 **从vue 2.2.0版本开始可以使用`@click.right="方法"`属性来指定当鼠标右键点击时才触发的事件，但这种方式点击右键后会出现win系统的右键菜单，如果不想出现右键菜单的话，则需要使用`@contextmenu.prevent="方法"`即可**
 
-### 13.9. v-bind
+### v-bind
 
 - **缩写**：`:`
 - **预期**：`any (with argument) | Object (without argument)`
@@ -1753,7 +1753,7 @@ new Vue({
 
 在使用字符串模板或通过 `vue-loader`/`vueify` 编译时，无需使用 `.camel`。
 
-### 13.10. v-model
+### v-model
 
 - **预期**：随表单控件类型不同而不同。
 - **限制**：
@@ -1767,7 +1767,7 @@ new Vue({
   - `.trim` - 输入首尾空格过滤
 - **用法**：在表单控件或者组件上创建双向绑定。
 
-### 13.11. v-slot
+### v-slot
 
 - **缩写**：`#`
 - **预期**：可放置在函数参数位置的 JavaScript 表达式 (在支持的环境下可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
@@ -1807,7 +1807,7 @@ new Vue({
 </mouse-position>
 ```
 
-### 13.12. v-pre
+### v-pre
 
 - **不需要表达式**
 - **用法**：跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。
@@ -1817,7 +1817,7 @@ new Vue({
 <span v-pre>{{ this will not be compiled }}</span>
 ```
 
-### 13.13. v-cloak
+### v-cloak
 
 - **不需要表达式**
 - **用法**：这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 `[v-cloak] { display: none }` 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。
@@ -1837,7 +1837,7 @@ new Vue({
 
 上面 div 不会显示，直到编译结束。
 
-### 13.14. v-once
+### v-once
 
 - **不需要表达式**
 - **详细**：只渲染元素和组件**一次**。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
@@ -1858,9 +1858,9 @@ new Vue({
 </ul>
 ```
 
-## 14. 特殊 attribute
+## 特殊 attribute
 
-### 14.1. key
+### key
 
 - **预期**：`number | string | boolean (2.4.2 新增) | symbol (2.5.12 新增)`
 
@@ -1891,7 +1891,7 @@ new Vue({
 
 当 `text` 发生改变时，`<span>` 总是会被替换而不是被修改，因此会触发过渡。
 
-### 14.2. ref
+### ref
 
 - **预期**：`string`
 
@@ -1909,7 +1909,7 @@ new Vue({
 
 关于 ref 注册时间的重要说明：因为 ref 本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
-### 14.3. is
+### is
 
 - **预期**：`string | Object (组件的选项对象)`
 - **用法**：用于动态组件且基于 DOM 内模板的限制来工作。
@@ -1926,14 +1926,14 @@ new Vue({
 </table>
 ```
 
-### 14.4. slot (废弃)
+### slot (废弃)
 
 **推荐 2.6.0 新增的 v-slot。**
 
 - **预期**：`string`
 - **用法**：用于标记往哪个具名插槽中插入子组件内容。
 
-### 14.5. slot-scope (废弃)
+### slot-scope (废弃)
 
 **推荐 2.6.0 新增的 v-slot。**
 
@@ -1942,7 +1942,7 @@ new Vue({
 
 此 attribute 不支持动态绑定。
 
-### 14.6. scope (移除)
+### scope (移除)
 
 **被 2.5.0 新增的 slot-scope 取代。推荐 2.6.0 新增的 v-slot。**
 
@@ -1950,9 +1950,9 @@ new Vue({
 
 - **用法**：除了 `scope` 只可以用于 `<template>` 元素，其它和 `slot-scope` 都相同。
 
-## 15. 内置的组件
+## 内置的组件
 
-### 15.1. component
+### component
 
 - **Props**：
   - `is` - string | ComponentDefinition | ComponentConstructor
@@ -1967,7 +1967,7 @@ new Vue({
 <component :is="$options.components.child"></component>
 ```
 
-### 15.2. transition
+### transition
 
 - **Props**：
   - `name` - string，用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为 `.fade-enter`，`.fade-enter-active` 等。默认类名为 `"v"`
@@ -2031,7 +2031,7 @@ new Vue({
 }).$mount('#transition-demo')
 ```
 
-### 15.3. transition-group
+### transition-group
 
 - **Props**：
   - `tag` - string，默认为 `span`
@@ -2054,7 +2054,7 @@ new Vue({
 </transition-group>
 ```
 
-### 15.4. keep-alive
+### keep-alive
 
 - **Props**：
   - `include` - 字符串或正则表达式。只有名称匹配的组件会被缓存。
@@ -2131,16 +2131,16 @@ new Vue({
 
 > `<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。
 
-### 15.5. slot
+### slot
 
 - **Props**：
   - `name` - string，用于命名插槽。
 - **Usage**：`<slot>` 元素作为组件模板之中的内容分发插槽。`<slot>` 元素自身将被替换。
 
-## 16. VNode 接口
+## VNode 接口
 
 - 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
-## 17. 服务端渲染
+## 服务端渲染
 
 - 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。

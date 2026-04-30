@@ -1,8 +1,8 @@
-## 1. Spring Cloud Stream 概述
+## Spring Cloud Stream 概述
 
 > Spring Cloud Stream 官网：https://spring.io/projects/spring-cloud-stream
 
-### 1.1. 简介
+### 简介
 
 在实际的企业开发中，消息中间件是至关重要的组件之一。消息中间件主要解决应用解耦，异步消息，流量削锋等问题，实现高性能，高可用，可伸缩和最终一致性架构。
 
@@ -10,9 +10,9 @@
 
 Spring Cloud 提供了一套用于消息中间件与系统应用解耦合的解决方案：Spring Cloud Stream。它由一个中间件中立的核组成，对 MQ 的操作做了**高度抽象**，使开发时可以对底层的 MQ **无感知**。更换其他类型的 MQ 中间件时只需要更换相应的 Binder 即可。
 
-### 1.2. 核心概念
+### 核心概念
 
-#### 1.2.1. Binder 绑定器
+#### Binder 绑定器
 
 **Binder 绑定器**是 Spring Cloud Stream 中一个非常重要的概念。在没有绑定器这个概念的情况下，Spring Boot 应用要直接与消息中间件进行信息交互的时候，由于各消息中间件构建的初衷不同，它们的实现细节上会有较大的差异性，这使得实现的消息交互逻辑就会非常笨重，因为对具体的中间件实现细节有太重的依赖，当中间件有较大的变动升级、或是更换中间件的时候，就需要付出非常大的代价来实施。
 
@@ -31,7 +31,7 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 
 通过配置把应用和 Spring Cloud Stream 的 binder 绑定在一起，之后只需要修改 binder 的配置来达到动态修改 topic、exchange、type 等一系列信息而不需要修改一行代码。
 
-#### 1.2.2. 发布/订阅模型
+#### 发布/订阅模型
 
 在 Spring Cloud Stream 中的消息通信方式遵循了**发布-订阅模式**，当一条消息被投递到消息中间件之后，它会通过共享的 `Topic` 主题进行广播，消息消费者在订阅的主题中收到它并触发自身的业务逻辑处理。
 
@@ -39,7 +39,7 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 
 ![](images/20201113172849475_16449.png)
 
-### 1.3. Spring Cloud Stream 应用模型
+### Spring Cloud Stream 应用模型
 
 应用通过集成 Spring Cloud Stream 插入的 input(相当于消费者 consumer，它是从队列中接收消息的)和 output(相当于生产者 producer，它是从队列中发送消息的)通道与外界交流，通道（input、output）通过指定中间件的 Binder 实现与外部代理连接（消息中间件）。因此业务开发者不再关注具体消息中间件，只需关注 Binder 对应用程序提供的抽象概念来使用消息中间件实现业务即可。
 
@@ -47,7 +47,7 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 
 > 说明：最底层是消息服务，中间层是绑定层，绑定层和底层的消息服务进行绑定，顶层是消息生产者和消息消费者，顶层可以向绑定层生产消息和和获取消息消费
 
-### 1.4. Spring Cloud Stream 开发模型
+### Spring Cloud Stream 开发模型
 
 ![](images/282824712230454.png)
 
@@ -55,7 +55,7 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 - Destination Binding：目标绑定，是连接应用和消息中间件的桥梁，用于消息的消费和生产，由 Binder 创建。
 - Message 消息：用于 Producer、Consumer 通过 Binder 沟通的规范数据。
 
-### 1.5. 版本关系（更新于2020.11.13）
+### 版本关系（更新于2020.11.13）
 
 | Spring Cloud Stream | Spring Boot | Spring Cloud |
 | ------------------- | ----------- | ------------ |
@@ -64,9 +64,9 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 | Fishtown [2.1.x]    | 2.1.x       | Greenwich    |
 | Elmhurst [2.0.x]    | 2.0.x       | Finchley     |
 
-## 2. 快速入门案例（整合 RabbitMQ）
+## 快速入门案例（整合 RabbitMQ）
 
-### 2.1. 案例准备
+### 案例准备
 
 本次 Spring Cloud Stream 案例是通过 RabbitMQ 作为消息中间件，需要先准备 RabbitMQ 的环境
 
@@ -121,9 +121,9 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 </project>
 ```
 
-### 2.2. 消息生产者
+### 消息生产者
 
-#### 2.2.1. 创建工程引入依赖
+#### 创建工程引入依赖
 
 创建消息生产者子模块`stream-producer`，引入Spring Cloud Stream对于支持绑定RabbitMQ的依赖
 
@@ -135,7 +135,7 @@ Spring Cloud Stream 支持各种 binder 实现，*下面包含GitHub项目的链
 </dependency>
 ```
 
-#### 2.2.2. 定义 binding 消息绑定器
+#### 定义 binding 消息绑定器
 
 Spring Cloud Stream 发送消息时需要定义一个接口，此接口方法的返回对象是`MessageChannel`。此示例直接使用Spring Cloud Stream内置的接口`Source`：
 
@@ -159,7 +159,7 @@ public interface Source {
 
 这就接口声明了一个 binding 命名为 `output`。这个binding声明了一个消息输出流，也就是消息的生产者。
 
-#### 2.2.3. 修改项目配置
+#### 修改项目配置
 
 修改application.yml配置文件，配置项目的基本信息、RabbitMQ、Spring Cloud Stream的消息发送的绑定器
 
@@ -189,7 +189,7 @@ spring:
 - `spring.cloud.stream.bindings.消息输出流名称.contentType`：用于指定消息的类型。具体可以参考 [spring cloud stream docs](https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/2.2.1.RELEASE/spring-cloud-stream.html#_common_binding_properties)
 - `spring.cloud.stream.bindings.消息输出流名称.destination`：指定了消息发送的目的地，对应 RabbitMQ，会发送到 exchange 是 `stream-sample-default` 的所有消息队列中。
 
-#### 2.2.4. 创建消息发送工具类
+#### 创建消息发送工具类
 
 ```java
 package com.moon.stream.message;
@@ -232,7 +232,7 @@ public class MessageSender {
 
 > <font color=red>**注：`@EnableBinding`注解绑定消息发送通道。可以标识在Spring容器管理的配置bean或者入口类上，但一般建议标识在消息发送相关的类上。**</font>
 
-#### 2.2.5. 测试发送消息
+#### 测试发送消息
 
 - 创建消息生产者项目启动类
 
@@ -289,7 +289,7 @@ public class ProducerTest {
 }
 ```
 
-#### 2.2.6. 番外：不编写工具类，直接在启动类完成消息的发送
+#### 番外：不编写工具类，直接在启动类完成消息的发送
 
 ```java
 package com.moon.stream;
@@ -331,9 +331,9 @@ public class ProducerApplication implements CommandLineRunner {
 
 > 注：实现了`CommandLineRunner`接口的`run()`方法会在所有的 Spring Beans 都初始化之后，`SpringApplication.run()`之前执行，适合应用程序启动之初的数据初始化工作。
 
-### 2.3. 消息消费者
+### 消息消费者
 
-#### 2.3.1. 创建工程引入依赖
+#### 创建工程引入依赖
 
 创建消息消费者子模块`stream-consumer`，引入Spring Cloud Stream对于支持绑定RabbitMQ的依赖。*与消费生产者依赖一样*
 
@@ -345,7 +345,7 @@ public class ProducerApplication implements CommandLineRunner {
 </dependency>
 ```
 
-#### 2.3.2. 定义 binding 消息绑定器
+#### 定义 binding 消息绑定器
 
 Spring Cloud Stream 接收消息与发送消息一致，也需要定义一个接口，此接口方法的返回对象是`SubscribableChannel`。此示例直接使用Spring Cloud Stream内置的接口`Sink`：
 
@@ -369,7 +369,7 @@ public interface Sink {
 
 `@Input` 注解对应的方法，需要返回 `SubscribableChannel` 实例，并且指定一个参数值。这就接口声明了一个 binding 命名为 `input`
 
-#### 2.3.3. 修改项目配置
+#### 修改项目配置
 
 修改application.yml配置文件，配置项目的基本信息、RabbitMQ、Spring Cloud Stream的消息获取的绑定器
 
@@ -393,7 +393,7 @@ spring:
           type: rabbit # 指定绑定消息中间件的类型
 ```
 
-#### 2.3.4. 创建消息监听类
+#### 创建消息监听类
 
 ```java
 package com.moon.stream.listener;
@@ -425,7 +425,7 @@ public class MessageListener {
 
 在消息监听类上添加注解`@EnableBinding(Sink.class)`，其中 `Sink` 就是上述Spring Cloud Stream内置的接口。同时定义一个方法（此处是 input，方法名随意）标明注解为`@StreamListener(Sink.INPUT)`，表示绑定的消息名称，方法参数`String message`为监听接收到的消息内容。
 
-#### 2.3.5. 测试接收消息
+#### 测试接收消息
 
 - 创建启动类
 
@@ -456,15 +456,15 @@ public class ConsumerApplication {
 
 ![](images/20201122092141361_7436.png)
 
-## 3. (暂有问题)Spring Cloud Stream 整合 RocketMQ
+## (暂有问题)Spring Cloud Stream 整合 RocketMQ
 
-### 3.1. 案例准备
+### 案例准备
 
 此案例为 Spring Cloud Stream 整合 RocketMQ 作为消息中间件，需要先准备 RocketMQ 的环境。*示例沿用前面整合 RabbitMQ 的工程 `spring-cloud-sample-stream`*
 
 > 更多 RocketMQ 的内容详见：[《RocketMQ 笔记》](/分布式微服务/消息中件间/RocketMQ)
 
-### 3.2. 消息生产者开发步骤
+### 消息生产者开发步骤
 
 消息生产者开发流程
 
@@ -534,7 +534,7 @@ public class ProducerTest {
 }
 ```
 
-### 3.3. 消息消费者开发步骤
+### 消息消费者开发步骤
 
 消息消费者开发流程
 
@@ -585,7 +585,7 @@ public class MessageListener {
 
 4. 启动消息生产者与接收者进行测试。
 
-## 4. 消息过滤
+## 消息过滤
 
 对于消息消费者，可能只希望处理具有某些特征的消息，这就需要对消息进行过滤。
 
@@ -601,11 +601,11 @@ public void input(String message) {
 }
 ```
 
-## 5. 自定义消息通道
+## 自定义消息通道
 
 Spring Cloud Stream 内置了两种接口，分别定义了 binding 为 `input` 的输入流和 `output` 的输出流，而在实际使用中，往往是需要自定义各种输入输出流。
 
-### 5.1. 创建自定义消息 binding 接口
+### 创建自定义消息 binding 接口
 
 参考 Spring Cloud Stream 内置的 binding 接口，创建一个自定义的消息 binding 接口。接口主要包含的内容是：
 
@@ -646,7 +646,7 @@ public interface CustomProcessor {
 
 > *使用上面快速入门的示例代码，因为将输入与输出两个binding定义在一个接口中，而消息的生产者与消费者工程都用到，所以抽取此消息binding接口到一个工程中，并将Spring Cloud Stream的依赖抽取到此公共工程中，详见《spring-cloud-note\spring-cloud-greenwich-sample\15-springcloud-stream》*
 
-### 5.2. 修改消费者与生产者项目配置
+### 修改消费者与生产者项目配置
 
 - 修改生产者工程配置，增加自定义消息通道的配置
 
@@ -681,7 +681,7 @@ spring:
           type: rabbit # 指定绑定消息中间件的类型
 ```
 
-### 5.3. 创建消息发送工具类与消息监听类
+### 创建消息发送工具类与消息监听类
 
 - 创建`CustomMessageSender`消息发送工具类，绑定自定义消息通道
 
@@ -727,7 +727,7 @@ public class CustomMessageListener {
 }
 ```
 
-### 5.4. 测试发送与接收消息
+### 测试发送与接收消息
 
 - 创建生产者的发送消息的
 
@@ -746,7 +746,7 @@ public void sendMessageByCustomChannel() {
 
 ![](images/20201126172138222_19130.png)
 
-## 6. 消息分组
+## 消息分组
 
 通常在生产环境，每个服务都不会以单节点的方式运行在生产环境，当同一个服务启动多个实例的时候，这些实例都会绑定到同一个消息通道的目标主题（Topic）上。默认情况下，当生产者发出一条消息到绑定通道上，这条消息会产生多个副本被每个消费者实例接收和处理，会造成**重复消费**。但是有些业务场景之下，只希望生产者产生的消息只被其中一个实例消费，此时就需要为这些消费者设置消费组来实现这样的功能。
 
@@ -775,7 +775,7 @@ spring:
 
 <font color=red>经测试，同一个分组的多个消费者默认是以**轮询**（非绝对，只确保同一个组内多个消费不重复消费而已）的方法进行消费</font>
 
-## 7. 消息分区
+## 消息分区
 
 有一些场景需要满足，同一个特征的数据被同一个实例消费，比如同一个id的传感器监测数据必须被同一个实例统计计算分析，否则可能无法获取全部的数据。又比如部分异步任务，首次请求启动task，二次请求取消task，此场景就必须保证两次请求至同一实例。
 
@@ -783,7 +783,7 @@ spring:
 
 > Notes: 因为 RocketMQ 对消息分区的支持不够好，所以示例使用了 RabbitMQ
 
-### 7.1. 消息生产者配置
+### 消息生产者配置
 
 修改生产者工程的`application.yml`配置文件，增加分区相关配置
 
@@ -815,7 +815,7 @@ spring:
 
 [点击查看官网更多生产者详细配置项](https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/2.2.1.RELEASE/spring-cloud-stream.html#_producer_properties)
 
-### 7.2. 消息消费者配置
+### 消息消费者配置
 
 修改消费者工程的`application.yml`配置文件，增加分区相关配置
 
@@ -852,7 +852,7 @@ spring:
 
 [点击查看官网更多消费者详细配置项](https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/2.2.1.RELEASE/spring-cloud-stream.html#_consumer_properties)
 
-### 7.3. 测试
+### 测试
 
 编写生产的测试方法，发送多次消息
 
@@ -870,9 +870,9 @@ public void testMessagePartitioningSupport() {
 
 ![](images/20201127145557318_5987.png)
 
-## 8. 消费异常处理
+## 消费异常处理
 
-### 8.1. 概述
+### 概述
 
 消费者在接收消息时，可能会发生异常，需要采取一些策略来处理异常，通常可以分为：
 
@@ -885,7 +885,7 @@ Spring Cloud Steam 提供了应用级处理策略：
 - 局部处理方式
 - 全局处理方式
 
-### 8.2. 局部消费异常处理
+### 局部消费异常处理
 
 在消费者应用中，定义一个异常处理方法，并在方法上标识 `@ServiceActivator` 注解，在 `inputChannel` 属性上指定要处理异常相应的主题，方法的参数是 `org.springframework.messaging.support.ErrorMessage`。语法格式如下：
 
@@ -898,7 +898,7 @@ public void handleError(ErrorMessage errorMessage) {
 }
 ```
 
-### 8.3. 全局消费异常处理
+### 全局消费异常处理
 
 全局消费异常处理，使用 `@StreamListener` 注解标识异常处理方法，并指定相应内置接口名称 `errorChannel` 即可。语法格式如下：
 

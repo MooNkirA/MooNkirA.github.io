@@ -1,4 +1,4 @@
-## 1. Java 8 新特性概述
+## Java 8 新特性概述
 
 Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。Oracle 公司于 2014 年 3 月 18 日发布 Java 8 ，它支持函数式编程，新的 JavaScript 引擎，新的日期 API，新的Stream API 等。Java8 新增了非常多的特性，常用有以下几个：
 
@@ -13,9 +13,9 @@ Java 8 (又称为 jdk 1.8) 是 Java 语言开发的一个主要版本。Oracle �
 
 ![JDK1.8新特性.xmind](images/310344810266616.png)
 
-## 2. Lambda 表达式
+## Lambda 表达式
 
-### 2.1. Lambda 表达式定义
+### Lambda 表达式定义
 
 Lambda 表达式，也可称为闭包，它是推动 Java 8 发布的最重要新特性。Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中），使用 Lambda 表达式可以使代码变的更加简洁紧凑。
 
@@ -53,9 +53,9 @@ public void quickstartTest() {
 }
 ```
 
-### 2.2. Lambda 表达式语法
+### Lambda 表达式语法
 
-#### 2.2.1. Lambda 标准语法格式
+#### Lambda 标准语法格式
 
 - 标准语法格式
 
@@ -75,25 +75,25 @@ public void quickstartTest() {
 (parameters) -> { statements; }
 ```
 
-#### 2.2.2. lambda 表达式的重要特征（可省略规则）
+#### lambda 表达式的重要特征（可省略规则）
 
 - **可选类型声明**：不需要声明参数类型，编译器可以统一识别参数值。
 - **可选的参数圆括号**：一个参数无需定义圆括号，但多个参数需要定义圆括号。
 - **可选的大括号**：如果主体包含了一个语句，就不需要使用大括号。
 - **可选的返回关键字**：如果主体只有一个表达式返回值则编译器会自动返回值，大括号需要指定明表达式返回了一个数值。
 
-#### 2.2.3. 使用 Lambda 表达式前提条件
+#### 使用 Lambda 表达式前提条件
 
 1. Lambda 表达式主要用来定义行内执行的方法类型接口，例如，一个简单方法接口。在上面例子中，使用各种类型的Lambda表达式来定义MathOperation接口的方法。然后我们定义了sayMessage的执行。Lambda 表达式免去了使用匿名方法的麻烦，并且给予Java简单但是强大的函数化的编程能力。
 2. 使用Lambda表达式的接口只能有一个方法，此种接口可以称为函数式接口
 3. 如果一个接口使用注解`@FunctonalInterface`修饰，则该接口称为函数式接口。如果该接口中有多个方法，但除了一个方法外的其它方法都有默认实现（使用`default`关键字修改的方法），则也是可以做为函数式接口
 4. 如果接口里面有Object类下的非默认方法，也是一个函数式接口，可以使用lambda表达式
 
-### 2.3. Lambda 表达式示例
+### Lambda 表达式示例
 
 > TODO: 后面需要深入使用时，参考阿里的《Java工程师必读手册.pdf》电子书的[最完美的 Lambda 表达式只有一行]章节
 
-#### 2.3.1. 基础综合示例1
+#### 基础综合示例1
 
 ```java
 // 1. 不需要参数,返回值为 5
@@ -112,7 +112,7 @@ x -> 2 * x
 (String s) -> System.out.print(s)
 ```
 
-#### 2.3.2. 综合示例2
+#### 综合示例2
 
 ```java
 public class Java8Tester {
@@ -177,7 +177,7 @@ Hello Runoob
 Hello Google
 ```
 
-#### 2.3.3. 无参数无返回值的 Lambda
+#### 无参数无返回值的 Lambda
 
 - 定义只有一个抽象方法的接口
 
@@ -213,7 +213,7 @@ private void playBasketball(Sportable sportable) {
 }
 ```
 
-#### 2.3.4. 有参数有返回值的 Lambda
+#### 有参数有返回值的 Lambda
 
 示例：调用 `java.util.Comparator<T>` 接口的使用场景代码，其中的抽象方法定义为：
 
@@ -251,7 +251,7 @@ public void lambdaHasParamsTest() {
 }
 ```
 
-#### 2.3.5. 省略格式的 Lambda
+#### 省略格式的 Lambda
 
 ```java
 /* Lambda表达式省略格式写法示例 */
@@ -278,11 +278,11 @@ public static void main(String[] args) {
 }
 ```
 
-### 2.4. Lambda的 实现原理（！待整理）
+### Lambda的 实现原理（！待整理）
 
 > 参考《2019.10.25-JavaJDK新特性详解-JDK8》笔记
 
-#### 2.4.1. 类型推断与检查
+#### 类型推断与检查
 
 Java 编译器会从上下文中推断出用什么函数式接口来配合 Lambda 表达式。Java 编译器**类型推断**步骤如下：
 
@@ -292,16 +292,16 @@ Java 编译器会从上下文中推断出用什么函数式接口来配合 Lambd
 
 **类型检查**：利用 Java 编译器推断出来的函数描述符（参数和返回值类型），验证 Lambda 表达式参数是否合法。
 
-#### 2.4.2. this 指向对象
+#### this 指向对象
 
 Lambda 表达式可以用来取代唯一抽象方法的内部匿名类的。但是 this 指针指向对象，却是完全不一样的：
 
 - 对于 Java 中的匿名内部类，编译器会自动生成它的类名（`外部类类名$数字`）。而<font color=red>**匿名内部类中的 this，将指向的是这个内部类对象本身**</font>。
 - 对于 Java 中的<font color=red>**Lambda 表达式中的 this，指向的是 Lambda 表达式所在类的对象**</font>。即 Lambda 表达式中的 this 与普通表达式中的 this 没有任何区别。
 
-### 2.5. 变量作用域
+### 变量作用域
 
-#### 2.5.1. 概述
+#### 概述
 
 Java 局部类和匿名类都存在变量捕获（Captured Variable）和变量隐藏（Shadow Variable），但 Lambda 表达式只存在变量捕获，不存在变量隐藏。即 Lambda 表达式的作用域：
 
@@ -319,7 +319,7 @@ new Thread(() -> {
 // str = "outer"; // 报错，不允许修改
 ```
 
-#### 2.5.2. 使用示例
+#### 使用示例
 
 lambda 表达式只能引用标记了 `final` 的外层局部变量，这就是说不能在 lambda 内部修改定义在域外的局部变量，否则会编译错误。
 
@@ -389,7 +389,7 @@ public class Java8Tester {
 }
 ```
 
-### 2.6. Lambda 和匿名内部类对比总结
+### Lambda 和匿名内部类对比总结
 
 实际上 Lambda 表达式**并非匿名内部类的语法糖**。Lambda 表达式在大多数虚拟机中采用 `invokeDynamic` 指令实现，相对于匿名内部类在**效率上会更高**一些。
 
@@ -403,7 +403,7 @@ public class Java8Tester {
     - 匿名内部类是在编译后会生成一个名称为 `外部类类名$数字` 的 class 文件
     - Lambda 表达式是在程序运行的时候动态生成一个类（class 文件），在类中新增一个方法，这个方法的方法体就是 Lambda 表达式中的代码；还会生成一个匿名内部类，实现接口，重写抽象方法；在接口的重写方法中会调用前面新生成的方法（即 Lambda 表达式的代码）
 
-## 3. 方法引用
+## 方法引用
 
 方法引用是 Lambda 表达式的一个简化写法。所引用的方法其实是 Lambda 表达式的方法体的实现。如果正好有某个方法满足一个 lambda 表达式的形式，那就可以将这个 lambda 表达式用方法引用的方式表示，但是如果这个 lambda 表达式的比较复杂就不能用方法引用进行替换。实际上方法引用是 lambda 表达式的一种语法糖
 
@@ -418,16 +418,16 @@ public class Java8Tester {
 1. <font color=red>**方法引用只能"引用"已经存在的方法**</font>
 2. <font color=red>**Lambda 体中调用的方法的参数列表与返回值类型，要与函数式中接口的抽象方法的参数列表和返回值类型一样**</font>
 
-### 3.1. 方法引用语法格式
+### 方法引用语法格式
 
 - **方法引用语法符号**：`::`
 - **方法引用符号说明**：双冒号为方法引用运算符，而它所在的表达式被称为方法引用。
 
-### 3.2. 常见引用方式
+### 常见引用方式
 
 主要有5种语法格式
 
-#### 3.2.1. 实例对象普通方法的引用
+#### 实例对象普通方法的引用
 
 最常见的一种用法，如果一个类中已经存在了一个成员方法，并且当 Lambda 表达式参数与调用的对象实例方法参数一致时，可以采用实例方法引用语法。表达式语法如下：
 
@@ -454,7 +454,7 @@ public void methodReftest01() {
 }
 ```
 
-#### 3.2.2. 类静态方法的引用
+#### 类静态方法的引用
 
 当 Lambda 表达式参数与调用的静态方法参数一致时，可以采用静态方法引用语法。表达式语法如下：
 
@@ -477,7 +477,7 @@ public void test02() {
 }
 ```
 
-#### 3.2.3. 参数类方法的引用
+#### 参数类方法的引用
 
 Java面向对象中，类名只能调用静态方法。而在方法引用中，也可以使用类名引用普通方法。
 
@@ -508,7 +508,7 @@ public void test03() {
 }
 ```
 
-#### 3.2.4. 构造方法的引用
+#### 构造方法的引用
 
 当 Lambda 表达式参数与调用的构造方法参数一致时，可以采用构造方法引用语法。由于构造器的名称与类名完全一样，所以可以使用类名引用。表达式语法如下：
 
@@ -558,7 +558,7 @@ public void test04() {
 }
 ```
 
-#### 3.2.5. 数组构造器的引用
+#### 数组构造器的引用
 
 数组也是 `Object` 的子类对象，所以同样具有构造器引用。表达式语法如下：
 
@@ -581,7 +581,7 @@ public void test05() {
 }
 ```
 
-### 3.3. 方法引用用法综合示例
+### 方法引用用法综合示例
 
 ```java
 public class Demo02MethodRefComprehensive {
@@ -649,9 +649,9 @@ Following the com.moon.java.jdk8methodref.Car@4dd8dc3
 ===================特定对象的方法引用===================
 ```
 
-## 4. JDK8 接口的默认方法与静态方法
+## JDK8 接口的默认方法与静态方法
 
-### 4.1. JDK 8接口增强介绍
+### JDK 8接口增强介绍
 
 JDK 8以前的接口：
 
@@ -673,9 +673,9 @@ public interface 接口名 {
 }
 ```
 
-### 4.2. 默认方法
+### 默认方法
 
-#### 4.2.1. 接口引入默认方法的背景介绍
+#### 接口引入默认方法的背景介绍
 
 - Java 8 新增了接口的默认方法。简单说，默认方法就是接口可以有实现方法，而且不需要实现类去实现其方法。
 - 只需在方法名前面加个default关键字即可实现默认方法。
@@ -684,7 +684,7 @@ public interface 接口名 {
 
 首先，之前的接口是个双刃剑，好处是面向抽象而不是面向具体编程，缺陷是，当需要修改接口时候，需要修改全部实现该接口的类，目前的java 8之前的集合框架没有foreach方法，通常能想到的解决办法是在JDK里给相关的接口添加新的方法及实现。然而，对于已经发布的版本，是没法在给接口添加新方法的同时不影响已有的实现。所以引进的默认方法的目的是为了解决接口的修改与现有的实现类不兼容的问题。
 
-#### 4.2.2. 接口默认方法语法格式
+#### 接口默认方法语法格式
 
 语法格式：
 
@@ -708,7 +708,7 @@ public interface Java8DefaultMethod {
 }
 ```
 
-#### 4.2.3. 接口默认方法的使用
+#### 接口默认方法的使用
 
 - 方式一：实现类直接调用接口默认方法
 - 方式二：实现类重写接口默认方法
@@ -754,7 +754,7 @@ public void defaultFunctionTest() {
 }
 ```
 
-#### 4.2.4. 多个默认方法
+#### 多个默认方法
 
 一个接口有默认方法，考虑这样的情况，一个类实现了多个接口，且这些接口有相同的默认方法，有以下两种解决的方案
 
@@ -817,11 +817,11 @@ public void multiDefaultFunctionTest() {
 }
 ```
 
-### 4.3. 静态默认方法
+### 静态默认方法
 
 Java 8 的另一个特性是接口可以声明（并且可以提供实现）静态方法。
 
-#### 4.3.1. 接口默认方法语法格式
+#### 接口默认方法语法格式
 
 语法格式：
 
@@ -850,7 +850,7 @@ public interface Java8DefaultMethod1 {
 }
 ```
 
-#### 4.3.2. 接口静态方法的使用
+#### 接口静态方法的使用
 
 直接使用接口名调用即可，`接口名.静态方法名();`
 
@@ -889,7 +889,7 @@ public void defaultFunctionTest() {
 }
 ```
 
-### 4.4. 接口默认方法和静态方法的区别
+### 接口默认方法和静态方法的区别
 
 1. 默认方法通过实例调用，静态方法通过接口名调用。
 2. 默认方法可以被继承，实现类可以直接使用接口默认方法，也可以重写接口默认方法。
@@ -897,7 +897,7 @@ public void defaultFunctionTest() {
 
 小结：如果接口某个方法需要被实现类继承或重写，则使用默认方法，如果接口中的方法不需要被继承就使用静态方法
 
-### 4.5. 默认方法与默认方法综合示例
+### 默认方法与默认方法综合示例
 
 ```java
 public class Jdk8DefaultAndStaticMethodDemo {
@@ -944,9 +944,9 @@ class Car implements Vehicle, FourWheeler {
 我是一辆汽车!
 ```
 
-## 5. Java 8 函数式接口
+## Java 8 函数式接口
 
-### 5.1. 定义
+### 定义
 
 函数式接口在Java中是指：**有且仅有一个抽象方法的接口**
 
@@ -955,7 +955,7 @@ class Car implements Vehicle, FourWheeler {
 - 函数式接口可以被隐式转换为 lambda 表达式
 - 函数式接口可以现有的函数友好地支持 lambda 表达式
 
-### 5.2. @FunctionalInterface 注解
+### @FunctionalInterface 注解
 
 与 `@Override` 注解的作用类似，Java 8中专门为函数式接口引入了一个新的注解：`@FunctionalInterface`。该注解可用于一个接口的定义上：
 
@@ -1002,7 +1002,7 @@ interface Operator {
 }
 ```
 
-### 5.3. 相关Java内置函数式接口接口
+### 相关Java内置函数式接口接口
 
 - JDK 1.8之前已有的函数式接口:
     - java.lang.Runnable
@@ -1020,9 +1020,9 @@ interface Operator {
 
 `java.util.function` 它包含了很多类，用来支持 Java的函数式编程，
 
-### 5.4. 常用内置函数式接口
+### 常用内置函数式接口
 
-#### 5.4.1. Supplier 接口
+#### Supplier 接口
 
 ```java
 @FunctionalInterface
@@ -1071,9 +1071,9 @@ max = 99
 printMax()方法执行结束...
 ```
 
-#### 5.4.2. Consumer 接口
+#### Consumer 接口
 
-##### 5.4.2.1. 基础使用
+##### 基础使用
 
 ```java
 @FunctionalInterface
@@ -1121,7 +1121,7 @@ printString()方法执行结束...
 程序结束!!
 ```
 
-##### 5.4.2.2. 默认方法：andThen()
+##### 默认方法：andThen()
 
 如果一个方法的参数和返回值全都是 `Consumer` 类型，那么就可以实现效果：消费一个数据的时候，首先做一个操作，然后再做一个操作，实现组合。而这个方法就是 `Consumer` 接口中的default方法 `andThen()`
 
@@ -1170,9 +1170,9 @@ printString()方法执行结束...
 程序结束!!
 ```
 
-#### 5.4.3. Function 接口
+#### Function 接口
 
-##### 5.4.3.1. 基础使用
+##### 基础使用
 
 ```java
 @FunctionalInterface
@@ -1235,7 +1235,7 @@ stringToInteger()方法执行结束...
 程序结束!!
 ```
 
-##### 5.4.3.2. 默认方法：andThen()
+##### 默认方法：andThen()
 
 ```java
 default <V> Function<T, V> andThen(Function<? super R, ? extends V> after) {
@@ -1280,9 +1280,9 @@ stringToInteger()方法执行结束...
 程序结束!!
 ```
 
-#### 5.4.4. Predicate 接口
+#### Predicate 接口
 
-##### 5.4.4.1. 基础使用
+##### 基础使用
 
 ```java
 @FunctionalInterface
@@ -1409,7 +1409,7 @@ public class Java8Tester {
 4 5 6 7 8 9
 ```
 
-##### 5.4.4.2. 默认方法：and、or、negate
+##### 默认方法：and、or、negate
 
 ```java
 default Predicate<T> and(Predicate<? super T> other) {
@@ -1469,9 +1469,9 @@ public class Demo08PredicateAndOrNegate {
 }
 ```
 
-### 5.5. 函数式接口应用示例
+### 函数式接口应用示例
 
-#### 5.5.1. 实现对象通用 Builder 链式设置属性值
+#### 实现对象通用 Builder 链式设置属性值
 
 1. 创建测试实体类
 
@@ -1541,7 +1541,7 @@ public void test() {
 }
 ```
 
-## 6. Stream 流
+## Stream 流
 
 - Java 8 API 添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。
 - Stream 使用一种类似用SQL语句从数据库查询数据的直观方式来提供一种对Java集合运算和表达的高阶抽象。
@@ -1551,7 +1551,7 @@ public void test() {
 
 Stream流式思想类似于工厂车间的“生产流水线”，Stream流不是一种数据结构，不保存数据，而是对数据进行加工处理处理
 
-### 6.1. 什么是 Stream？
+### 什么是 Stream？
 
 ![Stream 流程图](images/20190808134127819_22082.jpg)
 
@@ -1563,16 +1563,16 @@ Stream流式思想类似于工厂车间的“生产流水线”，Stream流不�
     - Pipelining:：中间操作都会返回流对象本身。这样多个操作可以串联成一个管道，如同流式风格（fluent style）。这样做可以对操作进行优化，比如延迟执行(laziness)和短路(short-circuiting)。
     - 内部迭代：以前对集合遍历都是通过Iterator或者For-Each的方式,显式的在集合外部进行迭代，这叫做外部迭代。Stream提供了内部迭代的方式，通过访问者模式(Visitor)实现。
 
-### 6.2. 流的操作特性（重要）
+### 流的操作特性（重要）
 
 1. stream 不是数据结构，不存储数据
 2. stream 不改变原来的数据源，它会将操作后的数据保存到另外一个对象中。
 3. stream 不可重复使用。每次进行操作后都会产生新的流，原来的流就会关闭，所以可以进行链式编程，就不会出现“流已关闭”的错误
 4. 惰性求值，流在中间处理过程中，只是对操作进行了记录，并不会立即执行（*即相当于预告声明，不会马上操作*），需要等到执行终止操作的时候才会进行实际的计算。（即Stream不调用终结方法时，中间的操作不会执行）
 
-### 6.3. 流的分类
+### 流的分类
 
-#### 6.3.1. 流的操作类型
+#### 流的操作类型
 
 stream 所有操作组合在一起即变成了管道，管道中有以下两个操作：
 
@@ -1583,7 +1583,7 @@ stream 所有操作组合在一起即变成了管道，管道中有以下两个�
 
 流的执行顺序说明：其每个元素挨着作为参数去调用中间操作及终值操作，而不是遍历一个方法，再遍历下一个方法
 
-#### 6.3.2. 流的API方法对应分类
+#### 流的API方法对应分类
 
 ![流方法分类](images/20190808080209567_10699.png)
 
@@ -1599,9 +1599,9 @@ stream 所有操作组合在一起即变成了管道，管道中有以下两个�
 - Short-circuiting：
     - anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit
 
-### 6.4. 流的常用创建方法
+### 流的常用创建方法
 
-#### 6.4.1. Collection 下的 stream() 方法
+#### Collection 下的 stream() 方法
 
 在 Java 8 中，所有的 `Collection` 集合接口都有`stream()`为集合创建串行流。<font color=red>**串行的流，就是在一个线程上执行**</font>
 
@@ -1613,7 +1613,7 @@ public static void main(String[] args) {
 }
 ```
 
-#### 6.4.2. Stream 中的静态方法：of()、iterate()、generate()
+#### Stream 中的静态方法：of()、iterate()、generate()
 
 由于数组对象不可能添加默认方法，所以 `Stream` 接口中提供了静态方法 `of`
 
@@ -1629,7 +1629,7 @@ stream3.forEach(System.out::println);
 
 > 备注： `Stream.of()` 方法的参数其实是一个可变参数，所以支持数组。
 
-#### 6.4.3. Arrays.stream()
+#### Arrays.stream()
 
 `Arrays` 中的 `stream()` 静态方法，将数组转成流
 
@@ -1638,7 +1638,7 @@ Integer[] nums = new Integer[10];
 Stream<Integer> stream = Arrays.stream(nums);
 ```
 
-#### 6.4.4. BufferedReader.lines()
+#### BufferedReader.lines()
 
 `BufferedReader.lines()` 方法，将每行内容转成流
 
@@ -1648,7 +1648,7 @@ Stream<String> lineStream = reader.lines();
 lineStream.forEach(System.out::println);
 ```
 
-#### 6.4.5. Pattern.splitAsStream()
+#### Pattern.splitAsStream()
 
 `Pattern.splitAsStream()` 方法，将字符串分隔成流
 
@@ -1658,9 +1658,9 @@ Stream<String> stringStream = pattern.splitAsStream("a,b,c,d");
 stringStream.forEach(System.out::println);
 ```
 
-### 6.5. 流的中间操作
+### 流的中间操作
 
-#### 6.5.1. map 方法
+#### map 方法
 
 ```java
 <R> Stream<R> map(Function<? super T, ? extends R> mapper);
@@ -1694,7 +1694,7 @@ public void mapTest() {
 }
 ```
 
-#### 6.5.2. flatMap 方法
+#### flatMap 方法
 
 ```java
 <R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
@@ -1731,7 +1731,7 @@ Stream<Integer> outputStream = inputStream.flatMap((childList) -> childList.stre
 
 原本的inputStream持有的元素中类型为`List<Integer>`，而在扁平化后的outputStream只想要持有Integer类型的元素，即去除List这层嵌套关系。因此在flapMap中，对每个`List<Integer>`类型的元素执行`childList.stream()`方法，转换成`Stream<Integer>`类型，然后由flatMap进行合并。
 
-#### 6.5.3. filter 方法
+#### filter 方法
 
 ```java
 Stream<T> filter(Predicate<? super T> predicate);
@@ -1761,7 +1761,7 @@ public void filterTest() {
 }
 ```
 
-#### 6.5.4. limit 方法
+#### limit 方法
 
 ```java
 Stream<T> limit(long maxSize);
@@ -1783,7 +1783,7 @@ public void limitTest() {
 }
 ```
 
-#### 6.5.5. skip 方法
+#### skip 方法
 
 ```java
 Stream<T> skip(long n);
@@ -1803,7 +1803,7 @@ public void skipTest() {
 
 > 注：Stream流的`skip(n)`方法配合`limit(n)`方法，可以实现分页的效果
 
-#### 6.5.6. distinct 方法
+#### distinct 方法
 
 ```java
 Stream<T> distinct();
@@ -1833,7 +1833,7 @@ public void distinctTest() {
 }
 ```
 
-#### 6.5.7. sorted 方法
+#### sorted 方法
 
 ```java
 Stream<T> sorted();
@@ -1889,7 +1889,7 @@ public void sortedTest() {
 }
 ```
 
-#### 6.5.8. peek 方法
+#### peek 方法
 
 ```java
 Stream<T> peek(Consumer<? super T> action);
@@ -1911,9 +1911,9 @@ Student{name='aa', age=100}
 Student{name='bb', age=100}
 ```
 
-### 6.6. 流的终止操作
+### 流的终止操作
 
-#### 6.6.1. forEach 方法
+#### forEach 方法
 
 ```java
 void forEach(Consumer<? super T> action);
@@ -1942,7 +1942,7 @@ public void forEachTest() {
 }
 ```
 
-#### 6.6.2. count 方法
+#### count 方法
 
 ```java
 long count();
@@ -1961,7 +1961,7 @@ public void countTest() {
 }
 ```
 
-#### 6.6.3. match 相关方法
+#### match 相关方法
 
 ```java
 boolean anyMatch(Predicate<? super T> predicate);
@@ -1993,7 +1993,7 @@ public void matchTest() {
 }
 ```
 
-#### 6.6.4. find 相关方法
+#### find 相关方法
 
 ```java
 Optional<T> findFirst();
@@ -2002,7 +2002,7 @@ Optional<T> findAny();
 
 Stream流的 `findFirst`、`findAny` 方法用于查找数据，都是返回流中的第一元素
 
-#### 6.6.5. max 和 min 方法
+#### max 和 min 方法
 
 ```java
 Optional<T> min(Comparator<? super T> comparator);
@@ -2028,15 +2028,15 @@ public void maxAndMinTest() {
 }
 ```
 
-#### 6.6.6. reduce 方法
+#### reduce 方法
 
-##### 6.6.6.1. 功能介绍
+##### 功能介绍
 
 这个方法的主要作用是把 Stream 元素组合起来。它提供一个起始值（种子），然后依照运算规则（BinaryOperator），和前面 Stream 的第一个、第二个、第 n 个元素组合。从这个意义上说，字符串拼接、数值的 sum、min、max、average 都是特殊的 `reduce`
 
 例如：Stream 的 sum 就相当于 `Integer sum = integers.reduce(0, (a, b) -> a+b);` 或 `Integer sum = integers.reduce(0, Integer::sum);`；也有没有起始值的情况，这时会把 Stream 的前面两个元素组合起来，返回的是 Optional。
 
-##### 6.6.6.2. 源码相关API
+##### 源码相关API
 
 ```java
 Optional<T> reduce(BinaryOperator<T> accumulator);
@@ -2056,7 +2056,7 @@ T reduce(T identity, BinaryOperator<T> accumulator);
 
 - 在串行流(stream)中，该方法跟第二个方法一样，即第三个参数combiner不会起作用。在并行流(parallelStream)中，我们知道流被fork join出多个线程进行执行，此时每个线程的执行流程就跟第二个方法reduce(identity,accumulator)一样，而第三个参数combiner函数，则是将每个线程的执行结果当成一个新的流，然后使用第一个方法reduce(accumulator)流程进行规约
 
-##### 6.6.6.3. 基础使用示例
+##### 基础使用示例
 
 ```java
 @Test
@@ -2142,7 +2142,7 @@ public void reduceTest() {
 }
 ```
 
-##### 6.6.6.4. 配合map方法使用示例
+##### 配合map方法使用示例
 
 ```java
 @Test
@@ -2190,7 +2190,7 @@ public void mapAndReduceTest() {
 }
 ```
 
-#### 6.6.7. mapToInt、mapToLong、mapToDouble 方法
+#### mapToInt、mapToLong、mapToDouble 方法
 
 ```java
 IntStream mapToInt(ToIntFunction<? super T> mapper);
@@ -2224,7 +2224,7 @@ public void mapToIntTest() {
 }
 ```
 
-#### 6.6.8. concat 方法
+#### concat 方法
 
 ```java
 public static <T> Stream<T> concat(Stream<? extends T> a, Stream<? extends T> b)
@@ -2252,9 +2252,9 @@ public void concatTest() {
 }
 ```
 
-### 6.7. Stream 流数据的收集操作
+### Stream 流数据的收集操作
 
-#### 6.7.1. collect 方法
+#### collect 方法
 
 Stream流提供 `collect` 方法，用于将流中元素收集成另外一个数据结构，其参数需要一个 `java.util.stream.Collector<T,A, R>` 接口对象来指定收集到哪种集合中。`java.util.stream.Collectors` 类提供一些方法，可以作为`Collector`接口的实例
 
@@ -2266,7 +2266,7 @@ Stream流提供 `collect` 方法，用于将流中元素收集成另外一个数
               BiConsumer<R, R> combiner);
 ```
 
-#### 6.7.2. Collector 接口
+#### Collector 接口
 
 `Collector<T, A, R>` 是一个接口，有以下5个抽象方法
 
@@ -2303,13 +2303,13 @@ Set<Characteristics> characteristics()
     - UNORDERED：表示该收集操作不会保留流中元素原有的顺序。
     - IDENTITY_FINISH：表示finisher参数只是标识而已，可忽略。
 
-#### 6.7.3. Collector 工具库：Collectors
+#### Collector 工具库：Collectors
 
 `Collectors` 工具类实现了很多归约操作，例如将流转换成集合和聚合元素。Collectors可用于返回列表或字符串。
 
 > *具体常用的API参考以下各个操作的说明与示例*
 
-#### 6.7.4. 收集 Stream 流中的结果到集合中
+#### 收集 Stream 流中的结果到集合中
 
 ```java
 public final class Collectors {
@@ -2345,7 +2345,7 @@ public void streamToCollectionTest() {
 }
 ```
 
-#### 6.7.5. 收集 Stream 流中的结果到数组中
+#### 收集 Stream 流中的结果到数组中
 
 ```java
 public interface Stream<T> extends BaseStream<T, Stream<T>> {
@@ -2375,7 +2375,7 @@ public void streamToArrayTest() {
 }
 ```
 
-#### 6.7.6. 对流中数据进行聚合、统计计算
+#### 对流中数据进行聚合、统计计算
 
 ```java
 public final class Collectors {
@@ -2454,7 +2454,7 @@ public void streamToPolymerizationTest() {
 }
 ```
 
-#### 6.7.7. 对流中数据进行分组
+#### 对流中数据进行分组
 
 ```java
 public final class Collectors {
@@ -2469,7 +2469,7 @@ public final class Collectors {
 }
 ```
 
-##### 6.7.7.1. 单个分组
+##### 单个分组
 
 `Collectors`工具类提供`groupingBy()`方法，用于在数据收集操作时根据某个属性将数据分组的方法，示例如下：
 
@@ -2505,7 +2505,7 @@ public void streamToGroupingByTest() {
 }
 ```
 
-##### 6.7.7.2. 多级分组
+##### 多级分组
 
 `Collectors`工具类提供`groupingBy()`方法，还可以在收集数据时进行多级的分组，示例如下：
 
@@ -2549,7 +2549,7 @@ public void streamToMultiGroupingByTest() {
 
 ![](images/20200927161046878_19446.png)
 
-#### 6.7.8. 对流中数据进行分区
+#### 对流中数据进行分区
 
 ```java
 public final class Collectors {
@@ -2583,7 +2583,7 @@ public void partitioningByTest() {
 }
 ```
 
-#### 6.7.9. 对流中数据进行拼接
+#### 对流中数据进行拼接
 
 ```java
 public final class Collectors {
@@ -2621,7 +2621,7 @@ public void joiningTest() {
 }
 ```
 
-#### 6.7.10. Collectors.toList() 源码解析（了解）
+#### Collectors.toList() 源码解析（了解）
 
 ```java
 // Collectors.toList() 源码
@@ -2672,9 +2672,9 @@ public <T> Collector<T, ?, List<T>> toList() {
 }
 ```
 
-### 6.8. 并行的 Stream 流
+### 并行的 Stream 流
 
-#### 6.8.1. 创建方式
+#### 创建方式
 
 1. 直接获取并行的流。在 Java 8 中，所有的 `Collection` 集合，都可以使用接口的`parallelStream()`方法为集合创建并行流
 2. 将串行流转成并行流。创建串行的Stream流后，调用`Stream`接口的`parallel()`方法，将流转成并行流
@@ -2696,7 +2696,7 @@ public void parallelStreamCreateTest() {
 }
 ```
 
-#### 6.8.2. 并行 Stream 流定义
+#### 并行 Stream 流定义
 
 以上学习使用的 Stream 流是串行的，就是在一个线程上执行。
 
@@ -2722,7 +2722,7 @@ public void serialAndParallelStreamTest() {
 
 ![](images/20200927233135356_29670.png)
 
-#### 6.8.3. 串行与并行流的效率对比
+#### 串行与并行流的效率对比
 
 需求：使用for循环，串行Stream流，并行Stream流来对5亿个数字求和。看消耗的时间。
 
@@ -2773,7 +2773,7 @@ public void parallelStreamTest() {
 
 Stream并行处理的过程会分而治之，也就是将一个大任务切分成多个小任务，这表示每个任务都是一个操作。
 
-#### 6.8.4. parallelStream 线程安全问题
+#### parallelStream 线程安全问题
 
 并行流`parallelStream`是多线程操作，所以就会出现线程安全的问题。线程安全问题示例：
 
@@ -2844,11 +2844,11 @@ collectList = 1000
 2. 使用线程安全的集合，如：`Vector`、`Collections`工具类提供的`synchronizedList`方法将集合转换成线程安全的
 3. 调用Stream流的`collect`、`toArray`去操作集合
 
-#### 6.8.5. parallelStream 底层实现原理
+#### parallelStream 底层实现原理
 
 > 注：parallelStream底层实现是使用Fork/Join框架，此框架的详细学习笔记详见《并发编程》中的相关笔记
 
-##### 6.8.5.1. Fork/Join 框架介绍
+##### Fork/Join 框架介绍
 
 parallelStream使用的是Fork/Join框架。Fork/Join框架自JDK 7引入。Fork/Join框架可以将一个大任务拆分为很多小任务来异步执行。 Fork/Join框架主要包含三个模块：
 
@@ -2858,13 +2858,13 @@ parallelStream使用的是Fork/Join框架。Fork/Join框架自JDK 7引入。Fork
 
 ![](images/20200928092050486_29775.png)
 
-##### 6.8.5.2. Fork/Join 原理-分治法
+##### Fork/Join 原理-分治法
 
 ForkJoinPool主要用来使用分治法(Divide-and-Conquer Algorithm)来解决问题。ForkJoinPool需要使用相对少的线程来处理大量的任务。比如要对1000万个数据进行排序，那么会将这个任务分割成两个500万的排序任务和一个针对这两组500万数据的合并任务。以此类推，对于500万的数据也会做出同样的分割处理，到最后会设置一个阈值来规定当数据规模到多少时，停止这样的分割处理。
 
 ![](images/20200928092111832_27148.png)
 
-##### 6.8.5.3. Fork/Join 原理-工作窃取算法
+##### Fork/Join 原理-工作窃取算法
 
 Fork/Join最核心的地方就是如何利用多核的处理器。工作窃取（work-stealing）算法就是整个Fork/Join框架的核心理念。Fork/Join工作窃取（work-stealing）算法是指某个线程从其他队列里窃取任务来执行
 
@@ -2878,7 +2878,7 @@ Java 8 引入了自动并行化的概念。它能够让一部分Java代码自动
 
 对于 `ForkJoinPool` 通用线程池的线程数量，通常使用默认值就可以了，即运行时计算机的处理器数量。可以通过设置系统属性：`java.util.concurrent.ForkJoinPool.common.parallelism=N` （N为线程数量），来调整 `ForkJoinPool` 的线程数量，可以尝试调整成不同的参数来观察每次的输出结果。
 
-##### 6.8.5.4. Fork/Join 案例
+##### Fork/Join 案例
 
 需求：使用Fork/Join计算1-10000的和，当一个任务的计算数量大于3000时拆分任务，数量小于3000时计算。
 
@@ -2936,16 +2936,16 @@ class SumRecursiveTask extends RecursiveTask<Long> {
 }
 ```
 
-#### 6.8.6. 总结
+#### 总结
 
 1. parallelStream 是线程不安全的
 2. parallelStream 适用的场景 是CPU 密集型的，只是做到别浪费 CPU，假如本身电脑 CPU 的负载很大，那还到处用并行流，那并不能起到作用
 3. 磁盘 I/O、网络 I/O 都属于密集型 I/O 操作，这部分操作是较少消耗 CPU 资源，一般并行流中不适用于 I/O 密集型的操作，就比如使用并流行进行大批量的消息推送，涉及到了大量 I/O，使用并行流反而慢了很多
 4. 在使用并行流的时候是无法保证元素的顺序的，也就是即使你用了同步集合也只能保证元素都正确但无法保证其中的顺序
 
-### 6.9. Stream 完整实例
+### Stream 完整实例
 
-#### 6.9.1. 综合示例1
+#### 综合示例1
 
 ```java
 package com.moon.test;
@@ -3160,7 +3160,7 @@ Squares List: [9, 4, 49, 25]
 空字符串的数量为: 2
 ```
 
-#### 6.9.2. 综合示例2
+#### 综合示例2
 
 ```java
 @Test
@@ -3189,7 +3189,7 @@ public void comprehensiveStreamTest02() {
 }
 ```
 
-### 6.10. Stream 流最佳使用技巧
+### Stream 流最佳使用技巧
 
 - **使用专属类型流以获得更好的性能**。例如在使用 int、long 和 double 等基本类型数据时，使用 IntStream、LongStream 和 DoubleStream 等基本流，而不是 Integer、Long 和 Double 等装箱类型流。原始流可以通过避免装箱和拆箱的成本来提供更好的性能。
 
@@ -3274,15 +3274,15 @@ List<Integer> list = Arrays.asList(3, 2, 1);
 List<Integer> SortedList = list.stream().sorted().collect(Collectors.toList());
 ```
 
-## 7. StringJoiner 类（字符拼接）
+## StringJoiner 类（字符拼接）
 
-### 7.1. 简介
+### 简介
 
 `StringJoiner` 是 `java.util` 包中的一个类，用于构造一个由分隔符分隔的字符序列（可选），并且可以从提供的前缀开始并以提供的后缀结尾
 
 **`StringJoiner` 类共有2个构造函数，5个公有方法。其中最常用的方法就是 `add` 方法和 `toString` 方法，类似于 `StringBuilder` 中的 `append` 方法和 `toString` 方法**
 
-### 7.2. 构造方法
+### 构造方法
 
 ```java
 public StringJoiner(CharSequence delimiter)
@@ -3296,9 +3296,9 @@ public StringJoiner(CharSequence delimiter, CharSequence prefix, CharSequence su
 
 - 构造一个由分隔符分隔的字符序列，prefix参数设置字符拼接的前缀，参数suffix设置后缀
 
-### 7.3. 基础用法
+### 基础用法
 
-#### 7.3.1. StringJoiner 对象
+#### StringJoiner 对象
 
 手动创建 `StringJoiner` 对象，实现字符串拼接
 
@@ -3319,7 +3319,7 @@ public class StringJoinerTest {
 }
 ```
 
-#### 7.3.2. Stream 流的 joining 方法
+#### Stream 流的 joining 方法
 
 在 Java8 的流操作中的 `Collector.joining`，底层也使用了 `StringJoiner` 进行字符串拼接了，基础用法如下：
 
@@ -3327,7 +3327,7 @@ public class StringJoinerTest {
 list.stream().collect(Collectors.joining(":"))
 ```
 
-#### 7.3.3. String 类的 join 静态方法
+#### String 类的 join 静态方法
 
 JDK 1.8 后，String 类新增两个 `join` 静态方法，底层也使用了 `StringJoiner` 进行字符串拼接了
 
@@ -3344,9 +3344,9 @@ List<String> list = Arrays.asList("a", "b", "c", "d");
 System.out.println(String.join(",", list)); // a,b,c,d
 ```
 
-### 7.4. 实现原理
+### 实现原理
 
-#### 7.4.1. StringJoiner
+#### StringJoiner
 
 通过查询源码，`StringJoiner` 其实是通过 `StringBuilder` 实现
 
@@ -3366,7 +3366,7 @@ private StringBuilder prepareBuilder() {
 }
 ```
 
-#### 7.4.2. Collector.joining
+#### Collector.joining
 
 还有 Java8 的流操作中的 `Collector.joining` 的实现原理也是使用了 `StringJoiner`，`Collector.joining` 的源代码如下：
 
@@ -3379,7 +3379,7 @@ public static Collector<CharSequence, ?, String> joining(CharSequence delimiter,
 }
 ```
 
-#### 7.4.3. String.join
+#### String.join
 
 `String.join` 静态方法，底层也是手动创建 `StringJoiner`，通过 `add` 添加拼接的元素，最终调用 `toString` 方法完成字符串拼接
 
@@ -3396,7 +3396,7 @@ public static String join(CharSequence delimiter, CharSequence... elements) {
 }
 ```
 
-### 7.5. 使用场景总结
+### 使用场景总结
 
 `StringJoiner` 其实是通过 `StringBuilder` 实现的，所以两者性能差不多，都是非线程安全的
 
@@ -3405,7 +3405,7 @@ public static String join(CharSequence delimiter, CharSequence... elements) {
 3. 如果是通过一个集合（如List）进行字符串拼接，则考虑使用 `StringJoiner`。
 4. 如果是对一组数据进行拼接，则可以考虑将其转换成 Stream，并使用` StringJoiner` 处理。
 
-## 8. Optional 类
+## Optional 类
 
 - Optional 类是一个可以为null的容器对象。如果值存在则`isPresent()`方法会返回true，调用`get()`方法会返回该对象。
 - Optional 是个容器：它可以保存类型T的值，或者仅仅保存null。Optional提供很多有用的方法，这样我们就不用显式进行空值检测。
@@ -3413,11 +3413,11 @@ public static String join(CharSequence delimiter, CharSequence... elements) {
 
 > 拓展：google的Guava Optional与Optional有同样的功能。不过需要注意的是，Guava Optional API 与 JDK 存在差异
 
-### 8.1. 类声明
+### 类声明
 
 `java.util.Optional<T>`类的声明：`public final class Optional<T> extends Object`
 
-### 8.2. Optional 类型说明
+### Optional 类型说明
 
 - 这也是一个模仿 Scala 语言中的概念，作为一个容器，它可能含有某值，或者不包含。使用它的目的是尽可能避免 NullPointerException
 - Optional里面只持有一个元素，而Stream可持有多个元素
@@ -3455,7 +3455,7 @@ public static int getLength(String text) {
 
 Stream 中的 findAny、max/min、reduce 等方法等返回 Optional 值。还有例如 `IntStream.average()` 返回 OptionalDouble 等等
 
-### 8.3. Optional 创建方式
+### Optional 创建方式
 
 `Optional`是一个没有子类的工具类。`Optional`本质是一个容器，需要将对象实例传入该容器中。`Optional` 的构造方法为 `private`，无法直接使用 `new` 构建对象，只能使用 `Optional` 提供的静态方法创建。`Optiona`l 三个创建方法如下：
 
@@ -3515,9 +3515,9 @@ public void optionalCreateTest() {
 }
 ```
 
-### 8.4. 类的常用方法
+### 类的常用方法
 
-#### 8.4.1. get() 与 isPresent()
+#### get() 与 isPresent()
 
 ```java
 public T get() {
@@ -3559,7 +3559,7 @@ public void getAndIsPresentTest() {
 }
 ```
 
-#### 8.4.2. orElse()、orElseGet() 与 orElseThrow()
+#### orElse()、orElseGet() 与 orElseThrow()
 
 ```java
 public T orElse(T other) {
@@ -3620,7 +3620,7 @@ public void orElseThrowTest() {
 }
 ```
 
-#### 8.4.3. ifPresent()
+#### ifPresent()
 
 ```java
 public void ifPresent(Consumer<? super T> consumer) {
@@ -3654,7 +3654,7 @@ public void ifPresentTest() {
 }
 ```
 
-#### 8.4.4. map() 与 flatMap()
+#### map() 与 flatMap()
 
 ```java
 public<U> Optional<U> map(Function<? super T, ? extends U> mapper) {
@@ -3710,7 +3710,7 @@ public void mapTest() {
 }
 ```
 
-#### 8.4.5. filter()
+#### filter()
 
 ```java
 public Optional<T> filter(Predicate<? super T> predicate) {
@@ -3746,7 +3746,7 @@ public void filterTest() {
 
 > `filter` 方法将会判断对象是否符合条件。如果不符合条件，将会返回一个空的 `Optional`
 
-#### 8.4.6. 其他常用方法
+#### 其他常用方法
 
 ```java
 boolean equals(Object obj)
@@ -3766,9 +3766,9 @@ String toString()
 
 - 返回一个Optional的非空字符串，用来调试
 
-### 8.5. Optional 使用实例
+### Optional 使用实例
 
-#### 8.5.1. 示例1
+#### 示例1
 
 ```java
 package com.moon.jav.test;
@@ -3808,7 +3808,7 @@ public class Java8Tester {
 10
 ```
 
-#### 8.5.2. 示例2
+#### 示例2
 
 - 未使用Optional之前代码
 
@@ -3863,15 +3863,15 @@ staffOpt.flatMap(Staff::getDepartment)
         .orElse("Unknown");
 ```
 
-## 9. JDK8 新的日期和时间 API
+## JDK8 新的日期和时间 API
 
-### 9.1. 旧版日期时间 API 存在的问题
+### 旧版日期时间 API 存在的问题
 
 1. 设计很差： 在`java.util`和`java.sql`的包中都有日期类，`java.util.Date`同时包含日期和时间，而`java.sql.Date`仅包含日期。此外用于格式化和解析的类在`java.text`包中定义
 2. 非线程安全：`java.util.Date` 是非线程安全的，所有的日期类都是可变的，这是Java日期类最大的问题之一
 3. 时区处理麻烦：日期类并不提供国际化，没有时区支持，因此Java引入了`java.util.Calendar`和`java.util.TimeZone`类，但他们同样存在上述所有的问题
 
-### 9.2. 新的日期时间 API
+### 新的日期时间 API
 
 JDK 8中增加了一套全新的日期时间API，这套API设计合理，是线程安全的。新的`java.time`包涵盖了所有处理日期，时间，日期/时间，时区，时刻（instants），过程（during）与时钟（clock）的操作。常用有以下的关键类：
 
@@ -3891,7 +3891,7 @@ Java中使用的历法是ISO 8601日历系统，它是世界民用历法，也�
 - `JapaneseDate`：日本历
 - `HijrahDate`：伊斯兰历
 
-#### 9.2.1. JDK 8的日期和时间类
+#### JDK 8的日期和时间类
 
 `LocalDate`、`LocalTime`、`LocalDateTime`类的实例是不可变的对象，分别表示使用 ISO-8601 日历系统的日期、时间、日期和时间。它们提供了简单的日期或时间，并不包含当前的时间信息，也不包含与时区相关的信息
 
@@ -4053,7 +4053,7 @@ public void compareLocalDateTimeTest() {
 }
 ```
 
-#### 9.2.2. JDK 8的时间格式化与解析
+#### JDK 8的时间格式化与解析
 
 通过 `java.time.format.DateTimeFormatter` 类可以进行日期时间解析与格式化。
 
@@ -4104,7 +4104,7 @@ public void parseAndFormatLocalDateTimeTest() {
 }
 ```
 
-#### 9.2.3. JDK 8的 Instant 类
+#### JDK 8的 Instant 类
 
 `Instant` 类是jdk8新提供的时间戳（时间线），内部保存了从1970年1月1日 00:00:00以来的秒和纳秒。
 
@@ -4144,7 +4144,7 @@ public void instantTest() {
 }
 ```
 
-#### 9.2.4. JDK 8的计算日期时间差类
+#### JDK 8的计算日期时间差类
 
 JDK8 提供了 `Duration`与`Period`类，用于计算日期时间差
 
@@ -4192,7 +4192,7 @@ public void computeTimeDifferenceTest() {
 }
 ```
 
-#### 9.2.5. JDK 8的时间校正器
+#### JDK 8的时间校正器
 
 时间校正器：用于自定义调整时间操作，将日期调整到指定某个时间点
 
@@ -4222,7 +4222,7 @@ public void temporalAdjusterTest() {
 }
 ```
 
-#### 9.2.6. JDK 8设置日期时间的时区
+#### JDK 8设置日期时间的时区
 
 Java8 中加入了对时区的支持，`LocalDate`、`LocalTime`、`LocalDateTime`是不带时区的，带时区的日期时间类分别为：`ZonedDate`、`ZonedTime`、`ZonedDateTime`
 
@@ -4283,7 +4283,7 @@ public void zoneDateTimeTest() {
 }
 ```
 
-#### 9.2.7. JDK8 其他的API使用示例
+#### JDK8 其他的API使用示例
 
 ```java
 /*
@@ -4355,9 +4355,9 @@ public void clockTest() {
 }
 ```
 
-### 9.3. 使用示例
+### 使用示例
 
-#### 9.3.1. 本地化日期时间 API
+#### 本地化日期时间 API
 
 LocalDate/LocalTime 和 LocalDateTime 类可以在处理时区不是必须的情况。
 
@@ -4412,7 +4412,7 @@ date4: 22:15
 date5: 20:15:30
 ```
 
-#### 9.3.2. 使用时区的日期时间API
+#### 使用时区的日期时间API
 
 需要考虑到时区，就可以使用时区的日期时间API
 
@@ -4448,7 +4448,7 @@ ZoneId: Europe/Paris
 当期时区: Asia/Shanghai
 ```
 
-## 10. Base64
+## Base64
 
 - 在 Java 8 中，Base64 编码已经成为Java类库的标准。内置了 Base64 编码的编码器和解码器。
 - Base64 工具类提供了一套静态方法获取下面三种BASE64编解码器：
@@ -4456,14 +4456,14 @@ ZoneId: Europe/Paris
     - **URL**：输出映射到一组字符`A-Za-z0-9+_`，输出是URL和文件
     - **MIME**：输出隐射到MIME友好格式。输出每行不超过76字符，并且使用`\r`并跟随`\n`作为分割。编码输出最后没有行分割
 
-### 10.1. 内部类
+### 内部类
 
 - `static class Base64.Decoder`
     - 该类实现一个解码器用于，使用 Base64 编码来解码字节数据
 - `static class Base64.Encoder`
     - 该类实现一个编码器，使用 Base64 编码来编码字节数据
 
-### 10.2. 相关方法
+### 相关方法
 
 - `static Base64.Decoder getDecoder()`
     - 返回一个 Base64.Decoder ，解码使用基本型 base64 编码方案
@@ -4482,7 +4482,7 @@ ZoneId: Europe/Paris
 
 *注意：Base64 类的很多方法从 `java.lang.Object` 类继承*
 
-### 10.3. Base64 实例
+### Base64 实例
 
 ```java
 package com.moon.test;
@@ -4531,17 +4531,17 @@ ZDc3Mjc2MDdjZjUtYjA1ZC00N2U5LTlkODItZDk5YTliMDA1MmRkN2FkZTdjM2EtZTFhOS00Zjgz
 LTlkZjgtNWZjYWIyNzhjYjlk
 ```
 
-## 11. JDK 8 重复注解与类型注解
+## JDK 8 重复注解与类型注解
 
-### 11.1. 重复注解
+### 重复注解
 
-#### 11.1.1. 重复注解的介绍
+#### 重复注解的介绍
 
 自从 Java 5 中引入注解以来，在各个框架和项目中被广泛使用。不过注解有一个很大的限制是：在同一个地方不能多次使用同一个注解。JDK 8 引入了重复注解的概念，允许在同一个地方多次使用同一个注解
 
 在 JDK 8 中使用`@Repeatable`注解定义重复注解。
 
-#### 11.1.2. 重复注解的使用步骤
+#### 重复注解的使用步骤
 
 1. 定义一个可以重复的注解
 
@@ -4604,14 +4604,14 @@ public void repeatableAnnotationTest() throws NoSuchMethodException {
 }
 ```
 
-### 11.2. 类型注解
+### 类型注解
 
 JDK 8为`@Target`元注解新增了两种类型：`TYPE_PARAMETER`，`TYPE_USE`
 
 - `TYPE_PARAMETER`：表示该注解能写在类型参数的声明语句中。类型参数声明如：`<T>`
 - `TYPE_USE`：表示注解可以再任何用到类型的地方使用
 
-#### 11.2.1. TYPE_PARAMETER 类型的使用
+#### TYPE_PARAMETER 类型的使用
 
 ```java
 // 标识在类上的泛型前
@@ -4630,7 +4630,7 @@ public class TypeParameterDemo<@MyTypeParameter T> {
 }
 ```
 
-#### 11.2.2. TYPE_USE 类型的使用
+#### TYPE_USE 类型的使用
 
 ```java
 public class TypeUseDemo {

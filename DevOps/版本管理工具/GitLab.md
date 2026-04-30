@@ -1,4 +1,4 @@
-## 1. GitLab
+## GitLab
 
 ![](images/542421808249069.png)
 
@@ -8,15 +8,15 @@ GitLab 和 GitHub 一样属于第三方基于 Git 开发的作品，免费且开
 
 > 官网： https://about.gitlab.com/
 
-## 2. Gitlab 安装
+## Gitlab 安装
 
-### 2.1. 运行环境说明
+### 运行环境说明
 
 安装所需最小配置：内存至少 4G
 
 > 官方说明： https://docs.gitlab.cn/jh/install/requirements.html
 
-### 2.2. ssh 版安装
+### ssh 版安装
 
 > 官方安装文档：https://gitlab.cn/install/?version=ce
 
@@ -102,9 +102,9 @@ firewall-cmd --reload
 
 ![](images/88253909255066.png)
 
-### 2.3. docker 版安装
+### docker 版安装
 
-#### 2.3.1. 安装前置说明
+#### 安装前置说明
 
 > 官方参考文档：https://docs.gitlab.cn/jh/install/docker.html
 
@@ -113,7 +113,7 @@ firewall-cmd --reload
 - 内存至少 4G
 - 系统内核至少在 3.10 以上，可使用 `uname -r` 命令查看系统内核版本
 
-#### 2.3.2. 安装 docker
+#### 安装 docker
 
 1. 更新 yum 源
 
@@ -161,7 +161,7 @@ systemctl enable docker
 docker version
 ```
 
-#### 2.3.3. 使用容器安装 gitlab
+#### 使用容器安装 gitlab
 
 - 添加容器
 
@@ -196,7 +196,7 @@ docker ps -a
 docker exec -it  gitlab /bin/bash
 ```
 
-#### 2.3.4. 管理员账号登录
+#### 管理员账号登录
 
 用户名是 `root`，密码存在下面文件中，登录后需要改密码不然24小时之后会失效。*注意：需要进入容器内再执行以下命令*
 
@@ -204,16 +204,16 @@ docker exec -it  gitlab /bin/bash
 cat /etc/gitlab/initial_root_password
 ```
 
-#### 2.3.5. 测试访问
+#### 测试访问
 
 启动后访问（根据具体虚拟机的地址）。当首次运行出现 502 错误的时候排查两个原因
 
 1. 虚拟机内存至少需要 4g
 2. 稍微再等等刷新一下可能就好了
 
-## 3. Gitlab 基础使用
+## Gitlab 基础使用
 
-### 3.1. gitlab 常用命令
+### gitlab 常用命令
 
 - 启动所有 gitlab 组件
 
@@ -257,7 +257,7 @@ vi /etc/gitlab/gitlab.rb
 gitlab-ctl tail
 ```
 
-### 3.2. 创建组
+### 创建组
 
 使用管理员 root 创建组，一个组里面可以有多个项目分支，可以将开发添加到组里面进行设置权限，不同的组就是公司不同的开发项目或者服务模块，不同的组添加不同的开发即可实现对开发设置权限的管理。
 
@@ -265,9 +265,9 @@ gitlab-ctl tail
 
 ![](images/95032812258747.png)
 
-### 3.3. 创建用户
+### 创建用户
 
-#### 3.3.1. 新建操作
+#### 新建操作
 
 创建用户的时候，可以选择 `Regular` 或 `Admin` 类型。
 
@@ -277,7 +277,7 @@ gitlab-ctl tail
 
 ![](images/366723212247429.png)
 
-#### 3.3.2. 将用户添加到组中
+#### 将用户添加到组中
 
 选择某个用户组，进行 Members 管理组的成员
 
@@ -289,7 +289,7 @@ gitlab-ctl tail
 
 ![](images/560933612233597.png)
 
-#### 3.3.3. Gitlab 用户在组里面的5种不同权限
+#### Gitlab 用户在组里面的5种不同权限
 
 - Guest：可以创建issue、发表评论，不能读写版本库
 - Reporter：可以克隆代码，不能提交，QA、PM 可以赋予这个权限
@@ -297,7 +297,7 @@ gitlab-ctl tail
 - Maintainer：可以创建项目、添加 tag、保护分支、添加项目成员、编辑项目，核心开发可以赋予这个权限
 - Owner：可以设置项目访问权限、Visibility Level、删除项目、迁移项目、管理组成员，开发组组长可以赋予这个权限
 
-### 3.4. 在用户组中创建项目
+### 在用户组中创建项目
 
 以刚才创建的新用户身份登录到 Gitlab，然后在用户组中创建新的项目
 
@@ -307,7 +307,7 @@ gitlab-ctl tail
 
 ![](images/553034612235429.png)
 
-## 4. 上传源码到 Gitlab 仓库
+## 上传源码到 Gitlab 仓库
 
 以 IDEA 开发工具为示例，将已经准备好一个简单的 Web 应用代码上传到Gitlab的项目仓库中。
 

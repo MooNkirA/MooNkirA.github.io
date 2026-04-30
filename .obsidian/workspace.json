@@ -1,0 +1,272 @@
+{
+  "main": {
+    "id": "2ee6a077688d1249",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee200645549a512f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ea1fde4daaecd29d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Python/Python-类和对象.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Python-类和对象"
+            }
+          },
+          {
+            "id": "27315a13ec61e7e0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DevOps/版本管理工具/Git-基础.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Git-基础"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a0fd9ad60286348",
+    "type": "split",
+    "children": [
+      {
+        "id": "96b50faf0b0ff220",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "887be6577aa678c7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "0b18f97d4457c32a",
+            "type": "leaf",
+            "state": {
+              "type": "quiet-outline",
+              "state": {},
+              "icon": "lines-of-text",
+              "title": "Quiet Outline"
+            }
+          },
+          {
+            "id": "d91eced6e784a54c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "51488a3b8dc30bf3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 279.5
+  },
+  "right": {
+    "id": "2c0f30c34b210c96",
+    "type": "split",
+    "children": [
+      {
+        "id": "655fcc458863be66",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9dc8886ed3dae111",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "其他/software/Obsidian.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Obsidian 的反向链接列表"
+            }
+          },
+          {
+            "id": "d774504df93a6683",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "其他/software/Obsidian.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Obsidian 的出链列表"
+            }
+          },
+          {
+            "id": "eb79ee8459375d6a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "2b459c61380386a9",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "6054710ebe536638",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "Python/Python-基础.md"
+              },
+              "icon": "lucide-info",
+              "title": "Python-基础的笔记属性"
+            }
+          },
+          {
+            "id": "bf0a01a4183c2cbd",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "advanced-tables-toolbar"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 329.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "command-palette:打开命令面板": false,
+      "canvas:新建白板": false,
+      "bases:新建数据库": false,
+      "graph:查看关系图谱": true,
+      "templater-obsidian:Templater": false,
+      "header-enhancer:Header Enhancer": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "27315a13ec61e7e0",
+  "lastOpenFiles": [
+    "Python/Python-类和对象.md",
+    "Index.md",
+    "其他/software/Common-Software.md",
+    "其他/tools/Markdown.md",
+    "Python/Python-数据模型.md",
+    "Java/Java基础-对象与类.md",
+    "Python/images/20260429214700578.jpg",
+    "Java/Java基础-语法.md",
+    "Work/Inbox/周报.md",
+    "Python/Python-基础.md",
+    "Python/Python-函数.md",
+    "attachments/Python/python-3.14-docs-html.zip",
+    "attachments/Python",
+    "attachments/新建文件夹",
+    "DevOps/版本管理工具/Git-基础.md",
+    "DevOps/版本管理工具/Git-安装.md",
+    "DevOps/版本管理工具/GitHub.md",
+    "后端框架/工具框架/Java-Logging.md",
+    "后端框架/工具框架/images/image-20221013085818698.png",
+    "DevOps/版本管理工具/images/20211212154343848_25152.png",
+    "其他/software/Obsidian.md",
+    "resources/images/website-icon.jpg",
+    "resources/images/moon-logo.png",
+    "resources/images/money-QRCode.png",
+    "resources/images/docsify-darklight-theme/sun.svg",
+    "resources/images/docsify-darklight-theme/moon.svg",
+    "attachments/常用工具类/JavaMail相关工具类与jar包/邮件的发送过程.png",
+    "attachments/IDE/Visual-Studio-Code-keyboard-shortcuts-windows.jpg",
+    "其他/software/Web-Browser.md",
+    "其他/software/everything.md",
+    "其他/software/Development-Tools.md",
+    "其他/software/Windows.md",
+    "README.md",
+    "Database/MongoDb/MongoDB-基础.md",
+    "Database/MySQL/MySQL-安装与部署.md",
+    "Database/MySQL/MySQL-函数.md",
+    "Inbox/testing.md",
+    "Database/MySQL/MySQL-索引.md",
+    "分布式微服务/SpringBoot/Spring-Boot-基础篇.md",
+    "Inbox/images/Inbox/images",
+    "Inbox/images/Inbox",
+    "Inbox/images",
+    "Inbox",
+    "vx_recycle_bin/20260420/Inbox",
+    "vx_recycle_bin/20260420",
+    "vx_notebook/notebook.db-journal"
+  ]
+}

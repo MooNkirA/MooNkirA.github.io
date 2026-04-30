@@ -1,6 +1,6 @@
-## 1. Spring Boot 涉及的 Spring 注解
+## Spring Boot 涉及的 Spring 注解
 
-### 1.1. @Configuration
+### @Configuration
 
 这是 Spring 3.0 添加的一个注解，用于定义配置类，用来代替 applicationContext.xml 配置文件，所有这个配置文件里面能做到的事情都可以通过这个注解所在类来进行注册。被注解的类内部包含有一个或多个被 `@Bean` 注解的方法，这些方法将会被 `AnnotationConfigApplicationContext` 或 `AnnotationConfigWebApplicationContext` 类进行扫描，并用于构建 bean 定义，初始化 Spring 容器。
 
@@ -21,7 +21,7 @@ public class TaskAutoConfiguration {
 }
 ```
 
-### 1.2. @ComponentScan
+### @ComponentScan
 
 这是 Spring 3.1 添加的一个注解，用来代替配置文件中的 component-scan 配置，开启组件扫描，即自动扫描包路径下的 `@Component` 注解进行注册 bean 实例到 context 中。
 
@@ -58,7 +58,7 @@ public class CheckApiApplication {
 }
 ```
 
-### 1.3. @Import
+### @Import
 
 这是 Spring 3.0 添加的新注解，用来导入一个或者多个 `@Configuration` 注解修饰的类，此注解在 Spring Boot 里面应用很多。
 
@@ -79,7 +79,7 @@ public class MainConfig {
 }
 ```
 
-### 1.4. @ImportResource
+### @ImportResource
 
 Spring 3.0 添加的新注解，用来导入一个或者多个 Spring  配置文件，这对 Spring Boot 兼容老项目非常有用，因为有些配置无法通过 Java Config 的形式来配置就只能用这个注解来导入。
 
@@ -100,17 +100,17 @@ public class CheckApiApplication {
 }
 ```
 
-### 1.5. @Component
+### @Component
 
 `@Component`是一个spring框架的“元注解”，意思是可以注解其他类注解，如`@Controller`、`@Service`、`@Repository`。带此注解的类被看作组件，当使用基于注解的配置和类路径扫描的时候，这些类就会被实例化。其他类级别的注解也可以被认定为是一种特殊类型的组件，比如`@Controller` 控制器（注入服务）、`@Service`服务（注入dao）`、@Repository` dao（实现dao访问）。`@Component`泛指组件，当组件不好归类的时候，可以使用这个注解进行标注，作用就相当于 XML配置`<bean id="" class=""/>`
 
-### 1.6. @ConfigurationProperties
+### @ConfigurationProperties
 
 用来加载额外的配置（如 `*.properties` 文件），可用在 `@Configuration` 注解类，或者 `@Bean` 注解方法上面，即使用注解的方式将自定义的 properties 文件映射到实体 bean 中
 
-## 2. 综合性注解
+## 综合性注解
 
-### 2.1. @SpringBootApplication
+### @SpringBootApplication
 
 Spring Boot 最最最核心的注解，用在 Spring Boot 主类上，标识这是一个 Spring Boot 应用，用来开启 Spring Boot 的各项能力
 
@@ -143,9 +143,9 @@ public class SpringBootApplicationDemo {
 }
 ```
 
-## 3. 配置相关注解
+## 配置相关注解
 
-### 3.1. @EnableAutoConfiguration
+### @EnableAutoConfiguration
 
 允许 Spring Boot 自动配置注解，开启这个注解之后，Spring Boot 就能根据当前类路径下的包或者类来配置 Spring Bean。
 
@@ -185,11 +185,11 @@ public @interface EnableAutoConfiguration {
 }
 ```
 
-### 3.2. @SpringBootConfiguration
+### @SpringBootConfiguration
 
 此注解就是 `@Configuration` 注解的变体，只是用来修饰是 Spring Boot 配置而已，或者可利于 Spring Boot 后续的扩展。
 
-### 3.3. @EnableConfigurationProperties
+### @EnableConfigurationProperties
 
 一般要配合 `@ConfigurationProperties` 注解使用，用来开启对 `@ConfigurationProperties` 注解配置 Bean 的支持。
 
@@ -208,7 +208,7 @@ public class RocketMQAutoConfiguration {
 }
 ```
 
-### 3.4. @AutoConfigureAfter
+### @AutoConfigureAfter
 
 用在自动配置类上面，表示该自动配置类需要在另外指定的自动配置类配置完之后。如 Mybatis 的自动配置类，需要在数据源自动配置类之后。
 
@@ -218,11 +218,11 @@ public class MybatisAutoConfiguration {
 }
 ```
 
-### 3.5. @AutoConfigureBefore
+### @AutoConfigureBefore
 
 这个和 `@AutoConfigureAfter` 注解使用相反，表示该自动配置类需要在另外指定的自动配置类配置之前。
 
-### 3.6. @AutoConfigureOrder
+### @AutoConfigureOrder
 
 Spring Boot 1.3.0 中有一个新的注解 `@AutoConfigureOrder`，用于确定配置加载的优先级顺序。
 
@@ -249,9 +249,9 @@ public class EmbeddedServletContainerAutoConfiguration {
 }
 ```
 
-## 4. 基于 @Conditional 注解实现的条件加载
+## 基于 @Conditional 注解实现的条件加载
 
-### 4.1. 概述
+### 概述
 
 Spring 4.0 新提供的注解，用来标识一个 Spring Bean 或者  Configuration 配置文件，当满足指定的条件才开启配置。
 
@@ -270,7 +270,7 @@ Spring 4.0 新提供的注解，用来标识一个 Spring Bean 或者  Configura
 
 > Notes: 如果在方法或者类上出现以下多个注解，则这多个条件注解是<font color=red>**并且的逻辑关系**</font>，即每个条件都成立，才会加载被标识的 Bean
 
-### 4.2. @ConditionalOnBean
+### @ConditionalOnBean
 
 当容器中有指定的 Bean 才开启配置
 
@@ -295,7 +295,7 @@ public class SpringBootConfigurationDemo {
 }
 ```
 
-### 4.3. @ConditionalOnMissingBean
+### @ConditionalOnMissingBean
 
 和 `@ConditionalOnBean` 注解相反，当容器中没有指定的 Bean 才开启配置。
 
@@ -311,7 +311,7 @@ public class SpringBootConfigurationDemo {
 }
 ```
 
-### 4.4. @ConditionalOnClass
+### @ConditionalOnClass
 
 当容器中有指定的 Class 才开启配置。可以仅当某些类存在于classpath上时候才创建某个Bean。
 
@@ -329,11 +329,11 @@ public class SpringBootConfigurationDemo {
 }
 ```
 
-### 4.5. @ConditionalOnMissingClass
+### @ConditionalOnMissingClass
 
 和 `@ConditionalOnMissingClass` 注解相反，当容器（classpath）中没有指定的 Class 才开启配置
 
-### 4.6. @ConditionalOnWebApplication
+### @ConditionalOnWebApplication
 
 当前项目类型是 WEB 项目才开启配置。当前项目有以下 3 种类型。
 
@@ -354,11 +354,11 @@ enum Type {
 }
 ```
 
-### 4.7. @ConditionalOnNotWebApplication
+### @ConditionalOnNotWebApplication
 
 和 `@ConditionalOnWebApplication` 注解相反，当前项目类型不是 WEB 项目才开启配置。
 
-### 4.8. @ConditionalOnProperty
+### @ConditionalOnProperty
 
 当指定的属性有指定的值时才开启配置。具体操作是通过其两个属性 `name` 以及 `havingValue` 来实现的，其中 `name` 用来从 `application.properties` 文件中读取某个属性值，如果该值为空，则返回 false；如果值不为空，则将该值与 `havingValue` 指定的值进行比较，如果一样则返回 true，否则返回 false。如果返回值为 false，则该 configuration 不生效；为 true 则生效。
 
@@ -400,7 +400,7 @@ public class RocketMQConsumerProperties extends RocketMQProperties {
 }
 ```
 
-### 4.9. @ConditionalOnExpression
+### @ConditionalOnExpression
 
 当 SpEL 表达式为 true 时才开启配置。
 
@@ -415,11 +415,11 @@ public class SpringBootConfigurationDemo {
 }
 ```
 
-### 4.10. @ConditionalOnJava
+### @ConditionalOnJava
 
 当运行的 Java JVM 在指定的版本范围时才开启配置。
 
-### 4.11. @ConditionalOnResource
+### @ConditionalOnResource
 
 当类路径下有指定的资源才开启配置。
 
@@ -431,25 +431,25 @@ protected Realm iniClasspathRealm(){
 }
 ```
 
-### 4.12. @ConditionalOnJndi
+### @ConditionalOnJndi
 
 当指定的 JNDI 存在时才开启配置。
 
-### 4.13. @ConditionalOnCloudPlatform
+### @ConditionalOnCloudPlatform
 
 当指定的云平台激活时才开启配置。
 
-### 4.14. @ConditionalOnSingleCandidate
+### @ConditionalOnSingleCandidate
 
 当指定的 class 在容器中只有一个 Bean，或者同时有多个但为首选时才开启配置。
 
-## 5. 网络相关注解
+## 网络相关注解
 
-### 5.1. @CrossOrigin (Spring Boot 解决跨域问题)
+### @CrossOrigin (Spring Boot 解决跨域问题)
 
 > SpringBoot 与 SpringMVC 一样可以使用`@CrossOrigin`注解解决跨域问题，均要求在 Spring 4.2 及以上的版本
 
-#### 5.1.1. @CrossOrigin 源码解析(翻译参考网络)
+#### @CrossOrigin 源码解析(翻译参考网络)
 
 ```java
 @Target({ ElementType.METHOD, ElementType.TYPE })
@@ -510,7 +510,7 @@ public @interface CrossOrigin {
 }
 ```
 
-#### 5.1.2. @CrossOrigin 注解相关属性
+#### @CrossOrigin 注解相关属性
 
 - origin属性
     - `"*"` 代表所有域名都可访问
@@ -518,7 +518,7 @@ public @interface CrossOrigin {
 - maxAge属性
     - 飞行前响应的缓存持续时间的最大年龄，简单来说就是Cookie的有效期 单位为秒。若maxAge是负数，则代表为临时Cookie，不会被持久化，Cookie信息保存在浏览器内存中，浏览器关闭Cookie就消失
 
-#### 5.1.3. 几种使用方式
+#### 几种使用方式
 
 1. 如果想要对某一接口配置CORS，可以在方法上添加 `@CrossOrigin` 注解
 
@@ -575,8 +575,8 @@ public FilterRegistrationBean corsFilter() {
 }
 ```
 
-## 6. 测试相关注解
+## 测试相关注解
 
-### 6.1. @WebMvcTest（待完善）
+### @WebMvcTest（待完善）
 
 `@WebMvcTest` 注解用于单元测试目标只关注 Spring MVC 组件的情况下，并且只想启动某一个 controller。执行此单元测试时，不会启动所有其他控制器和映射。

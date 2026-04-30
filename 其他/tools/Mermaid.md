@@ -2,9 +2,9 @@
 
 Mermaid 是一种基于 Javascript 的绘图工具，使用类似于 Markdown 的语法，使用户可以方便快捷地通过代码创建图表。
 
-## 1. Mermaid 概述
+## Mermaid 概述
 
-### 1.1. Mermaid 绘制的图列表
+### Mermaid 绘制的图列表
 
 - 饼状图：使用 `pie` 关键字
 - 流程图：使用 `graph` 关键字
@@ -14,13 +14,13 @@ Mermaid 是一种基于 Javascript 的绘图工具，使用类似于 Markdown �
 - 状态图：使用 `stateDiagram` 关键字
 - 用户旅程图：使用 `journey` 关键字
 
-### 1.2. 语法文档
+### 语法文档
 
 - Mermaid 文档: https://mermaid-js.github.io/mermaid/#/
 
-## 2. 语法示例
+## 语法示例
 
-### 2.1. 基础序列图
+### 基础序列图
 
 ```mermaid
 sequenceDiagram
@@ -46,7 +46,7 @@ sequenceDiagram
     Alice->John: Yes... John, how are you?
 ```
 
-### 2.2. 自动编号 autonumber
+### 自动编号 autonumber
 
 带上 `autonumber` 关键词，则会自动编号。
 
@@ -102,7 +102,7 @@ sequenceDiagram
     Bob-->>John: Jolly good!
 ```
 
-### 2.3. 基础流程图
+### 基础流程图
 
 ```mermaid
 graph LR
@@ -122,7 +122,7 @@ graph LR
     D --> E
 ```
 
-### 2.4. 带图形样式的复杂流程图
+### 带图形样式的复杂流程图
 
 ```mermaid
 graph TB
@@ -172,7 +172,7 @@ graph TB
      class di orange
 ```
 
-### 2.5. 循环条件时序图
+### 循环条件时序图
 
 ```mermaid
 sequenceDiagram
@@ -206,7 +206,7 @@ sequenceDiagram
     end
 ```
 
-### 2.6. 循环条件带自调用步骤时序图
+### 循环条件带自调用步骤时序图
 
 ```mermaid
 sequenceDiagram
@@ -236,9 +236,9 @@ sequenceDiagram
     Bob-->>John: Jolly good!
 ```
 
-### 2.7. 甘特图
+### 甘特图
 
-#### 2.7.1. 基础
+#### 基础
 
 ```mermaid
 gantt
@@ -264,7 +264,7 @@ gantt
     another task      : 24d
 ```
 
-#### 2.7.2. 带颜色的甘特图
+#### 带颜色的甘特图
 
 ```mermaid
 gantt
@@ -326,7 +326,7 @@ gantt
        Add another diagram to demo page    :48h
 ```
 
-#### 2.7.3. 示例一
+#### 示例一
 
 ```mermaid
 gantt
@@ -354,7 +354,7 @@ section 迭代二
 任务四      : 24d
 ```
 
-#### 2.7.4. 示例二
+#### 示例二
 
 ```mermaid
 gantt
@@ -416,7 +416,7 @@ section 其他任务
 用户培训    :48h
 ```
 
-#### 2.7.5. 示例三
+#### 示例三
 
 ```mermaid
 gantt
@@ -452,7 +452,7 @@ gantt
         验收: 3d
 ```
 
-#### 2.7.6. 示例四：时间轴重合问题说明
+#### 示例四：时间轴重合问题说明
 
 `axisFormat %m-%d` 自定义轴坐标语法。例如只显示月日的日期格式。
 
@@ -496,7 +496,7 @@ section 里程碑 0.3
 交付               :       p8, after p7, 2d
 ```
 
-#### 2.7.7. 示例五：排除项
+#### 示例五：排除项
 
 通过 `excludes` 可以将周六日在工时中去掉，甚至还能去掉指定日期，如国庆假期等等。
 
@@ -526,7 +526,7 @@ section 里程碑 0.2
 后端开发            :           p3, 2019-09-30, 7d
 ```
 
-### 2.8. 饼图
+### 饼图
 
 ```mermaid
 pie
@@ -546,7 +546,7 @@ pie
     "Iron" :  5
 ```
 
-### 2.9. 实体关系图
+### 实体关系图
 
 ```mermaid
 erDiagram
@@ -562,7 +562,7 @@ erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : uses 
 ```
 
-### 2.10. 类图
+### 类图
 
 ```mermaid
 classDiagram
@@ -612,7 +612,7 @@ classDiagram
       }
 ```
 
-### 2.11. 用户旅程图
+### 用户旅程图
 
 Tasks syntax is `Task name: <score>: <comma separated list of actors>`
 

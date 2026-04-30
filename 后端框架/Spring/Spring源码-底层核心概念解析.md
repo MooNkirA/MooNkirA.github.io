@@ -2,13 +2,13 @@
 
 在分析源码前，先对 Spring 框架中一些核心的概念、类、方法等进行了解。
 
-## 1. IOC相关理论
+## IOC相关理论
 
-### 1.1. 设计模式-工厂模式
+### 设计模式-工厂模式
 
 工厂模式是最常用的实例化对象模式了，它是用工厂中的方法代替new创建对象的一种设计模式。
 
-### 1.2. IOC（Inversion of Control）控制反转
+### IOC（Inversion of Control）控制反转
 
 控制反转（IOC），它不是一个技术，而是一种思想。其作用是用于削减代码间的耦合。它的实现思想就是利用了工厂设计模式，把创建对象代码从具体类中剥离出去，交由工厂来完成，从而降低代码间的依赖关系。耦合有如下分类：
 
@@ -22,11 +22,11 @@
 
 解耦的必要性在于，耦合是影响软件复杂程度和设计质量的一个重要因素，在设计上应采用以下原则：如果模块间必须存在耦合，就尽量使用数据耦合，少用控制耦合，限制公共耦合的范围，尽量避免使用内容耦合。
 
-### 1.3. DI（Dependency Injection）依赖注入
+### DI（Dependency Injection）依赖注入
 
 依赖注入（DI），是 Spring 框架核心 IOC 的具体实现。IOC 解耦只是降低他们的依赖关系，但不会消除。比如：业务层需要依赖数据层的方法。
 
-## 2. Spring 源码分析准备工作
+## Spring 源码分析准备工作
 
 > 注：下载spring源码并写注释，里面会标识相应方法的重要程度：1~5。
 >
@@ -34,11 +34,11 @@
 > - 1：一般重要，可看可不看
 > - 5：非常重要，一定要看
 
-### 2.1. 源码的下载与编译
+### 源码的下载与编译
 
 详见[《Spring 源码编译教程》](/后端框架/Spring/Spring源码分析00-Spring源码编译教程)
 
-### 2.2. 创建 Spring 最基础示例项目
+### 创建 Spring 最基础示例项目
 
 - 创建maven项目，修改pom.xml导入 spring 依赖。其中 spring 中最核心的4个jar如下
     - spring-beans
@@ -229,17 +229,17 @@ public void testBasic() {
 
 ![](images/20201226105547008_31835.png)
 
-## 3. Spring 基础
+## Spring 基础
 
-### 3.1. spring 配置文件中xsd文件引入
+### spring 配置文件中xsd文件引入
 
 XSD 是编写 xml 文件的一种规范，有了这个规范才能校验当前 xml 文件是否准确，在 spring 中同样有 XSD 规范。
 
-### 3.2. spring 容器加载方式（了解）
+### spring 容器加载方式（了解）
 
 现在实际项目中几乎用不到
 
-#### 3.2.1. ClassPathXmlApplicationContext(类路径获取配置文件上下文对象)
+#### ClassPathXmlApplicationContext(类路径获取配置文件上下文对象)
 
 比较常用的上下文对象，用于启动时读取类路径下的配置文件，创建xml的上下文对象
 
@@ -254,7 +254,7 @@ public void testClassPathXmlApplicationContext() {
 }
 ```
 
-#### 3.2.2. FileSystemXmlApplicationContext(文件系统路径【绝对路径】获取配置文件上下文对象)
+#### FileSystemXmlApplicationContext(文件系统路径【绝对路径】获取配置文件上下文对象)
 
 此上下文对象很少使用，一般都使用类路径读取配置文件的上下文对象
 
@@ -269,7 +269,7 @@ public void testFileSystemXmlApplicationContext() {
 }
 ```
 
-#### 3.2.3. AnnotationConfigApplicationContext(无配置文件加载容器上下文对象)
+#### AnnotationConfigApplicationContext(无配置文件加载容器上下文对象)
 
 此上下文对象也比较少用，一般在测试用例中使用比较多，因为可以直接扫描指定的包，获取包下所有有spring注解标识的类实例
 
@@ -286,7 +286,7 @@ public void testAnnotationConfigApplicationContext() {
 }
 ```
 
-#### 3.2.4. EmbeddedWebApplicationContext(SpringBoot 加载容器)
+#### EmbeddedWebApplicationContext(SpringBoot 加载容器)
 
 此上下文对象是spring boot的框架，启动的时候可以创建一个嵌入式的tomcat
 
@@ -317,9 +317,9 @@ public void testEmbeddedWebApplicationContext() {
 }
 ```
 
-### 3.3. Bean 实例注册到 Spring 容器的方式
+### Bean 实例注册到 Spring 容器的方式
 
-#### 3.3.1. 使用xml配置
+#### 使用xml配置
 
 最传统的配置方式，通过xml配置文件，配置需要实例化类的全限定名称，与实例id
 
@@ -338,7 +338,7 @@ public void testXmlRegisterBean() {
 }
 ```
 
-#### 3.3.2. 使用注解
+#### 使用注解
 
 通过在需要spring实例化与管理的类上标识`@Component`等注解，开启包扫描
 
@@ -364,7 +364,7 @@ public void testAnnotationRegisterBean() {
 }
 ```
 
-#### 3.3.3. 通过BeanFactory手动注册
+#### 通过BeanFactory手动注册
 
 通过阅读源码，在spring的核心流程中的`initApplicationEventMulticaster`初始化事件管理器的方式是手动创建管理器实例，然后通过`BeanFactory`的`registerSingleton`手动注册到spring容器
 
@@ -408,7 +408,7 @@ public void testBeanFactoryRegisterBean() {
 }
 ```
 
-### 3.4. IOC 容器初始化过程
+### IOC 容器初始化过程
 
 1. 从 XML 中读取配置文件，或者通过注解的方式读取配置文件。
 2. 将 bean 标签解析成 BeanDefinition，如解析 property 元素， 并注入到 BeanDefinition 实例中。
@@ -417,9 +417,9 @@ public void testBeanFactoryRegisterBean() {
 
 单例 bean 的初始化以及依赖注入一般都在容器初始化阶段进行，而懒加载（`lazy-init` 为 true）的单例 bean 与多例 bean （即使设置 `lazy-init` 为 false 也没用）则在容器启动时不实例化，是在程序第一次调用 `getBean()` 时进行初始化和依赖注入。
 
-## 4. Spring 框架涉及的设计模式
+## Spring 框架涉及的设计模式
 
-### 4.1. 设计模式1 - 模板设计模式
+### 设计模式1 - 模板设计模式
 
 在 spring 中大量的使用了模板设计模式，可以说是用得最多的设计模式。
 
@@ -433,11 +433,11 @@ spring框架中使用模板设计模式案例
 
 ![spring 框架使用模板设计模式](images/20191221190743024_24584.png)
 
-### 4.2. 设计模式2 - 委托模式(代理模式)
+### 设计模式2 - 委托模式(代理模式)
 
 有两个对象参与处理同一个请求，接受请求的对象将请求委托给另一个对象来处理
 
-### 4.3. 设计模式3 - 装饰模式
+### 设计模式3 - 装饰模式
 
 - 装饰模式主要分几个元素
     1. 被装饰者：已存在的具体对象，需要被增强的对象
@@ -446,9 +446,9 @@ spring框架中使用模板设计模式案例
 
 装饰者设计模式demo详见：moonzero-system项目中的mz-learning-springsource模块，`com.moon.learningspring.designPattern.decorator`包下的demo
 
-### 4.4. SPI 设计思想
+### SPI 设计思想
 
-#### 4.4.1. SPI是什么
+#### SPI是什么
 
 SPI全称Service Provider Interface，是Java提供的一套用来被第三方实现或者扩展的API，它可以用来启用框架扩展和替换组件。整体机制图如下：
 
@@ -456,7 +456,7 @@ SPI全称Service Provider Interface，是Java提供的一套用来被第三方�
 
 <font color=red>**Java SPI 实际上是“基于接口的编程＋策略模式＋配置文件”组合实现的动态加载机制。**</font>
 
-#### 4.4.2. Java SPI 机制基础实现
+#### Java SPI 机制基础实现
 
 要使用Java SPI，需要遵循如下约定：
 
@@ -533,19 +533,19 @@ public class SpiTest {
 }
 ```
 
-#### 4.4.3. spring 框架对spi设计的运用
+#### spring 框架对spi设计的运用
 
 spring 中自定义标签的解析就是这种 SPI 设计的运用，在自定义标签中解析的过程中，spring 会去加载 META-INF/spring.handlers 文件，然后建立映射关系，程序在解析标签头的时候，如：`<context:>`这种的标签头。会拿到一个 namespaceUri，然后再从映射关系中找到这个 namespaceUri 所对应的处理类
 
 ![spi设计思想运用](images/20200109133154692_23233.png)
 
-#### 4.4.4. 扩展：dubbo对spi的优化(有时间研究)
+#### 扩展：dubbo对spi的优化(有时间研究)
 
 dubbo在spi的配置文件中，设置为key-value的形式，这样在xml配置文件中配置相关属性，就可以唯一的确认一个实现类。
 
-## 5. BeanDefinition 接口
+## BeanDefinition 接口
 
-### 5.1. 概述
+### 概述
 
 ```java
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement
@@ -553,7 +553,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement
 
 BeanDefinition 贯穿整个 spring 框架，spring 是根据 BeanDefinition 对象来实例化 bean，只要把解析的标签或者扫描的注解类封装成 BeanDefinition 对象，spring 才能实例化 bean。BeanDefinition 中定义很多属性用来描述一个 Bean 的特点
 
-#### 5.1.1. 作用说明
+#### 作用说明
 
 Spring 的容器是用于存储 bean 对象。通常对于容器中存储 bean 的理解是一个个对应配置文件中的 `<bean/>` 标签或者是被注解的类，但是这些都是 bean 的静态表示，是还没有放入容器的物料，最终（<font color=red>**加载完配置，且在 getBean 之前**</font>）加载到容器中的是一个个 `BeanDefinition` 实例。
 
@@ -561,13 +561,13 @@ BeanDefinition 的继承关系如下图，`RootBeanDefinition`、`ChildBeanDefin
 
 在配置时，通过 `parent` 属性指定 bean 的父子关系，这个时候父 bean 则用 `RootBeanDefinition` 表示，而子 bean 则用 `ChildBeanDefinition` 表示。`GenericBeanDefinition` 自 2.5 版本引入，是对于一般的 bean 定义的一站式服务中心。
 
-#### 5.1.2. BeanDefinition类视图
+#### BeanDefinition类视图
 
 ![](images/20200903233604050_18807.png)
 
-### 5.2. 在 Spring 中 Bean 的定义方式
+### 在 Spring 中 Bean 的定义方式
 
-#### 5.2.1. 声明式定义
+#### 声明式定义
 
 在 Spring 中，通常有以下几种方式来定义Bean：
 
@@ -575,7 +575,7 @@ BeanDefinition 的继承关系如下图，`RootBeanDefinition`、`ChildBeanDefin
 - 在配置类中使用 `@Bean` 注解
 - 在类上标识 `@Component` 注解及其衍生注解（`@Service`, `@Controller` 等）
 
-#### 5.2.2. 编程式定义
+#### 编程式定义
 
 也可以直接通过 java 代码创建 BeanDefinition 对象来完成 Bean 的定义
 
@@ -598,9 +598,9 @@ context.registerBeanDefinition("user", beanDefinition);
 System.out.println(context.getBean("user"));
 ```
 
-### 5.3. BeanDefinition 接口与实现类
+### BeanDefinition 接口与实现类
 
-#### 5.3.1. AbstractBeanDefinition 抽象类
+#### AbstractBeanDefinition 抽象类
 
 **源码分析**
 
@@ -701,7 +701,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 **总结**：`BeanDefinition` 是容器对于bean配置的内部表示，Spring 将各个 bean 的 `BeanDefinition` 实例注册记录在 `BeanDefinitionRegistry` 中，该接口定义了对 `BeanDefinition` 的各种增删查操作，类似于内存数据库，其实现类 `SimpleBeanDefinitionRegistry` 主要以 Map 作为存储标的。
 
-#### 5.3.2. RootBeanDefinition 类
+#### RootBeanDefinition 类
 
 - 一个 RootBeanDefinition 定义表明它是一个可合并的 beanDefinition：即在 spring beanFactory 运行期间，可以返回一个特定的 bean。RootBeanDefinition 可以作为一个重要的通用的 beanDefinition 视图。
 - RootBeanDefinition 用来在配置阶段进行注册 beanDefinition。然后，从 spring 2.5 后，编写注册 beanDefinition 有了更好的的方法：GenericBeanDefinition。GenericBeanDefinition 支持动态定义父类依赖，而非硬编码作为 root bean definition。
@@ -716,18 +716,18 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 ![](images/20210222225628718_28191.png)
 
-#### 5.3.3. ChildBeanDefinition 类
+#### ChildBeanDefinition 类
 
 - ChildBeanDefinition 是一种 bean definition，它可以继承它父类的设置，即ChildBeanDefinition 对 RootBeanDefinition 有一定的依赖关系
 - ChildBeanDefinition 从父类继承构造参数值，属性值并可以重写父类的方法，同时也可以增加新的属性或者方法。(类同于 java 类的继承关系)。若指定初始化方法，销毁方法或者静态工厂方法，ChildBeanDefinition 将重写相应父类的设置。`depends on`，`autowire mode`，`dependency check`，`sigleton`，`lazy init` 一般由子类自行设定。
 
-#### 5.3.4. GenericBeanDefinition 类（源码分析的重点关注的实现类）
+#### GenericBeanDefinition 类（源码分析的重点关注的实现类）
 
 - 注意：从 spring 2.5 开始，提供了一个更好的注册 bean definition 类 GenericBeanDefinition，它支持动态定义父依赖，方法是GenericBeanDefinition对象中`public void setParentName(@Nullable String parentName);`，GenericBeanDefinition 可以在绝大分部使用场合有效的替代 ChildBeanDefinition
 - GenericBeanDefinition 是一站式的标准 bean definition，除了具有指定类、可选的构造参数值和属性参数这些其它 bean definition 一样的特性外，它还具有通过 parenetName 属性来灵活设置 parent bean definition
 - 通常，GenericBeanDefinition 用来注册用户可见的 bean definition(可见的bean definition意味着可以在该类bean definition上定义post-processor来对bean进行操作，甚至为配置 parent name 做扩展准备)。RootBeanDefinition / ChildBeanDefinition 用来预定义具有 parent/child 关系的 bean definition。
 
-#### 5.3.5. ScannedGenericBeanDefinition
+#### ScannedGenericBeanDefinition
 
 ```java
 public class ScannedGenericBeanDefinition extends GenericBeanDefinition implements AnnotatedBeanDefinition
@@ -737,7 +737,7 @@ public class ScannedGenericBeanDefinition extends GenericBeanDefinition implemen
 
 ![](images/20210222223322602_15969.png)
 
-#### 5.3.6. AnnotatedGenericBeanDefinition
+#### AnnotatedGenericBeanDefinition
 
 ```java
 public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implements AnnotatedBeanDefinition
@@ -747,7 +747,7 @@ public class AnnotatedGenericBeanDefinition extends GenericBeanDefinition implem
 
 ![](images/20210222223448474_22100.png)
 
-#### 5.3.7. ConfigurationClassBeanDefinition
+#### ConfigurationClassBeanDefinition
 
 ```java
 class ConfigurationClassBeanDefinitionReader {
@@ -760,13 +760,13 @@ class ConfigurationClassBeanDefinitionReader {
 
 ![](images/20210222223936902_17531.png)
 
-### 5.4. BeanDefinition 中的属性
+### BeanDefinition 中的属性
 
-#### 5.4.1. 属性图示
+#### 属性图示
 
 ![BeanDefinition属性结构图.xmind](images/20210102145642637_20396.png)
 
-#### 5.4.2. 属性作用解释
+#### 属性作用解释
 
 - 【id】：Bean 的唯一标识名。它必须是合法的 XMLID，在整个 XML 文档中唯一
 - 【class】：用来定义类的全限定名（包名+类名）。只有子类 Bean 不用定义该属性
@@ -797,7 +797,7 @@ class ConfigurationClassBeanDefinitionReader {
 - 【ConstructorArgumentValues】：用于封装`<constructor-arg>`标签的信息，其实类里面就是有一个 map，map 中用构造函数的参数顺序作为 key，值作为 value 存储到 map 中
 - 【MethodOverrides】：用于封装 bean 标签下的 lookup-method 和 replaced-method 等子标签的信息，同样的类里面有一个 Set 对象添加 LookupOverride 对象和 ReplaceOverride 对象
 
-### 5.5. GenericBeanDefinition 创建实例测试
+### GenericBeanDefinition 创建实例测试
 
 手动创建`BeanDefinition`对象并注册到spring容器中，定义一个被spring容器管理的类，实现`BeanDefinitionRegistryPostProcessor`接口，实现`postProcessBeanDefinitionRegistry`方法，在方法里设置需要实例化的类即可
 
@@ -844,7 +844,7 @@ public class BeanDefinitionTest implements BeanDefinitionRegistryPostProcessor {
 }
 ```
 
-### 5.6. BeanDefinition 创建过程
+### BeanDefinition 创建过程
 
 主要在`BeanDefinitionParserDelegate`类的`parseBeanDefinitionElement()`方法中进行对xml配置文件里面的bean标签进行解析，并创建BeanDefinition对象。
 
@@ -883,13 +883,13 @@ parsePropertyElements(ele, bd);
 
 **解析过程重点记忆：`MutablePropertyValues`属性**。如果想要设置类的属性值，那么就需要往这个对象中添加 `PropertyValue` 对象
 
-## 6. BeanFactory
+## BeanFactory
 
-### 6.1. 概述
+### 概述
 
 `BeanFactory` 是 Spring 顶层接口，在 Spring 框架中，所有对 Bean 相关操作（创建、获取等），该接口中定义的各种方法，其中将近一半是获取 bean 对象的各种方法，另外就是对 bean 属性的获取和判定，该接口仅仅是定义了 IOC 容器的最基本形式，具体实现都交由子类来实现。
 
-### 6.2. BeanFactory 类视图
+### BeanFactory 类视图
 
 **Spring5 BeanFactory 继承体系**：
 
@@ -899,9 +899,9 @@ parsePropertyElements(ele, bd);
 
 ![](images/20200903095250647_20309.png)
 
-### 6.3. 其他类型的 BeanFactory
+### 其他类型的 BeanFactory
 
-#### 6.3.1. HierarchicalBeanFactory 接口
+#### HierarchicalBeanFactory 接口
 
 ```java
 ### public interface HierarchicalBeanFactory extends BeanFactory {
@@ -930,7 +930,7 @@ parsePropertyElements(ele, bd);
 
 层次容器有一个特点就是子容器对于父容器来说是透明的，而子容器则能感知到父容器的存在。典型的应用场景就是 Spring MVC，控制层的 bean 位于子容器中，并将业务层和持久层的 bean 所在的容器设置为父容器，这样的设计可以让控制层的 bean 访问业务层和持久层的 bean，反之则不行，从而在容器层面对三层软件结构设计提供支持。
 
-#### 6.3.2. ListableBeanFactory
+#### ListableBeanFactory
 
 ```java
 public interface ListableBeanFactory extends BeanFactory
@@ -940,7 +940,7 @@ public interface ListableBeanFactory extends BeanFactory
 
 Listable 中文译为“可列举的”，对于容器而言，bean 的定义和属性是可以列举的对象
 
-#### 6.3.3. AutowireCapableBeanFactory
+#### AutowireCapableBeanFactory
 
 ```java
 public interface AutowireCapableBeanFactory extends BeanFactory
@@ -955,7 +955,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory
 
 **总结**：`<beans />`元素标签中的 `default-autowire` 属性可以配置全局自动匹配，`default-autowire` 默认值为 `no`，表示不启用自动装配。在实际开发中，XML 配置方式很少启用自动装配功能，而基于注解的配置方式默认采用 byType 自动装配策略。
 
-#### 6.3.4. ConfigurableBeanFactory
+#### ConfigurableBeanFactory
 
 ```java
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry
@@ -963,7 +963,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 `ConfigurableBeanFactory` 接口提供配置 Factory 的各种方法，增强了容器的可定制性，定义了设置类装载器、属性编辑器、容器初始化后置处理器等方法。
 
-### 6.4. DefaultListableBeanFactory（BeanFactory 重要的实现类）
+### DefaultListableBeanFactory（BeanFactory 重要的实现类）
 
 ```java
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
@@ -980,11 +980,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 public class XmlBeanFactory extends DefaultListableBeanFactory
 ```
 
-#### 6.4.1. DefaultListableBeanFactory 的类继承实现结构
+#### DefaultListableBeanFactory 的类继承实现结构
 
 ![](images/149650217236535.png)
 
-#### 6.4.2. 实现功能说明
+#### 实现功能说明
 
 `DefaultListableBeanFactory` 实现了很多接口，因此具有比 `BeanFactory` 更多的功能：
 
@@ -1004,9 +1004,9 @@ public class XmlBeanFactory extends DefaultListableBeanFactory
 14. AbstractAutowireCapableBeanFactory：继承了AbstractBeanFactory，实现了AutowireCapableBeanFactory，拥有了自动装配的功能
 15. DefaultListableBeanFactory：继承了AbstractAutowireCapableBeanFactory，实现了ConfigurableListableBeanFactory接口和BeanDefinitionRegistry接口，所以DefaultListableBeanFactory的功能很强大
 
-## 7. Spring 中的高级容器
+## Spring 中的高级容器
 
-### 7.1. ApplicationContext 接口
+### ApplicationContext 接口
 
 ```java
 public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
@@ -1024,7 +1024,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
 ![](images/283811323269476.png)
 
-### 7.2. ConfigurableApplicationContext 接口
+### ConfigurableApplicationContext 接口
 
 ```java
 public interface ConfigurableApplicationContext extends ApplicationContext, Lifecycle, Closeable
@@ -1032,7 +1032,7 @@ public interface ConfigurableApplicationContext extends ApplicationContext, Life
 
 `ConfigurableApplicationContext` 中主要增加了 `refresh()` 和 `close()` 两个方法，从而为应用上下文提供了启动、刷新和关闭的能力。其中 `refresh()` 方法是高级容器的核心方法，方法中概括了高级容器初始化的主要流程（包含简单的容器的全部功能，以及高级容器特有的扩展功能）
 
-### 7.3. WebApplicationContext 接口
+### WebApplicationContext 接口
 
 ```java
 public interface WebApplicationContext extends ApplicationContext
@@ -1048,11 +1048,11 @@ String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE = WebApplicationContext.class.getN
 
 并在初始化应用上下文时以该常量为 key，将 `WebApplicationContext` 实例存放到 ServletContext 的属性列表中，当调用 `WebApplicationContextUtils` 的 `getWebApplicationContext(ServletContext sc)` 方法时，本质上是在调用 ServletContext 的 `getAttribute(String name)` 方法，只不过 Spring 会对获取的结果做一些校验。
 
-### 7.4. 高级容器的一些具体实现类
+### 高级容器的一些具体实现类
 
 注意：<font color=red>**所有后缀为 `*ApplicationContext` 的类都是 `ApplicationContext` 接口的实现，但它们是组合了 `DefaultListableBeanFactory` 的功能，并非继承它**</font>
 
-#### 7.4.1. GenericApplicationContext
+#### GenericApplicationContext
 
 ```java
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry
@@ -1060,7 +1060,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 一个比较“纯净”的容器，类中只组合 `DefaultListableBeanFactory`，但没有相关 `BeanPostProcessor` 实现
 
-#### 7.4.2. AnnotationConfigApplicationContext（重要）
+#### AnnotationConfigApplicationContext（重要）
 
 ```java
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry
@@ -1083,7 +1083,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 4. AnnotationConfigRegistry：可以单独注册某个为类为 BeanDefinition（可以处理该类上的 `@Configuration` 注解，已经可以处理 `@Bean` 注解），同时可以扫描
 5. AnnotationConfigApplicationContext：继承了 GenericApplicationContext，实现了 AnnotationConfigRegistry 接口，拥有了以上所有的功能
 
-#### 7.4.3. ClasspathXmlApplicationContext（重要）
+#### ClasspathXmlApplicationContext（重要）
 
 ```java
 public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext
@@ -1095,7 +1095,7 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 
 ![](images/53990117248668.png)
 
-#### 7.4.4. FileSystemXmlApplicationContext
+#### FileSystemXmlApplicationContext
 
 ```java
 public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext
@@ -1103,7 +1103,7 @@ public class FileSystemXmlApplicationContext extends AbstractXmlApplicationConte
 
 `FileSystemXmlApplicationContext` 是基于xml配置的高级容器类，它用于加载文件系统中的配置文件。
 
-#### 7.4.5. AnnotationConfigWebApplicationContext
+#### AnnotationConfigWebApplicationContext
 
 ```java
 public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWebApplicationContext
@@ -1112,39 +1112,39 @@ public class AnnotationConfigWebApplicationContext extends AbstractRefreshableWe
 
 `AnnotationConfigWebApplicationContext` 是注解驱动开发web应用的高级容器类。
 
-#### 7.4.6. XmlWebApplicationContext
+#### XmlWebApplicationContext
 
 传统 SSM 整合时，基于 XML 配置文件的容器（旧）
 
-#### 7.4.7. AnnotationConfigServletWebServerApplicationContext
+#### AnnotationConfigServletWebServerApplicationContext
 
 Spring boot 中 servlet web 环境容器（新）
 
-#### 7.4.8. AnnotationConfigReactiveWebServerApplicationContext
+#### AnnotationConfigReactiveWebServerApplicationContext
 
 Spring boot 中 reactive web 环境容器（新）
 
-## 8. Spring 的 PostProcessor（后置处理器）
+## Spring 的 PostProcessor（后置处理器）
 
 Spring 提供了一系列的以 `PostProcessor` 为后缀的后置处理器，用于实现扩展功能
 
-### 8.1. BeanPostProcessor
+### BeanPostProcessor
 
 `BeanPostProcessor` 是 Bean 的后置处理器，用于对任意一个 Bean 的**初始化之前以及初始化之后**去额外的做一些用户自定义的逻辑，也可以通过判断 beanName 来进行针对性处理（针对某个Bean，或某部分Bean）。
 
 > Notes: 具体示例详见[《Spring 笔记-核心功能》笔记](/后端框架/Spring/Spring-基础)
 
-### 8.2. BeanFactoryPostProcessor
+### BeanFactoryPostProcessor
 
 `BeanFactoryPostProcessor` 是 Bean 工厂的后置处理器，会干涉 BeanFactory 的创建过程，实现接口的 `postProcessBeanFactory` 方法中，可以获取 `ConfigurableListableBeanFactory` 对象，从而可以对 BeanFactory 进行加工。
 
 > Notes: 具体示例详见[《Spring 笔记-核心功能》笔记](/后端框架/Spring/Spring-基础)
 
-## 9. BeanDefinitionReader - BeanDefinition 读取器
+## BeanDefinitionReader - BeanDefinition 读取器
 
 Spring 源码中提供了 BeanDefinition 读取器（BeanDefinitionReader），这些 BeanDefinitionReader 在实际使用 Spring 时比较少用到，但在 Spring 源码中用得多，相当于 Spring 源码的基础设施。
 
-### 9.1. AnnotatedBeanDefinitionReader（整理中）
+### AnnotatedBeanDefinitionReader（整理中）
 
 可以直接把某个类转换为 BeanDefinition，并且会解析该类上的注解，具体使用案例如下：*注：以下案例没有配置包扫描与bean上没有任何`@Component`注解*
 
@@ -1185,7 +1185,7 @@ public void testAnnotatedBeanDefinitionReader() {
 
 > Notes: <font color=red>**该BeanDefinition读取器能解析的注解如`@Conditional`，`@Scope`、`@Lazy`、`@Primary`、`@DependsOn`、`@Role`、`@Description`**</font>
 
-### 9.2. XmlBeanDefinitionReader
+### XmlBeanDefinitionReader
 
 用于解析 `<bean />` 标签
 
@@ -1198,7 +1198,7 @@ int i = xmlBeanDefinitionReader.loadBeanDefinitions("spring.xml");
 System.out.println(context.getBean("user"));
 ```
 
-### 9.3. ClassPathBeanDefinitionScanner
+### ClassPathBeanDefinitionScanner
 
 ```java
 public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateComponentProvider
@@ -1216,7 +1216,7 @@ scanner.scan("com.moon");
 System.out.println(context.getBean("userService"));
 ```
 
-## 10. MetadataReader、ClassMetadata、AnnotationMetadata
+## MetadataReader、ClassMetadata、AnnotationMetadata
 
 在 Spring 中需要去解析类的信息，比如类名、类中的方法、类上的注解，这些称之为类的<font color=red>**元数据**</font>，Spring 对类的元数据做了抽象，并提供了一些工具类。
 
@@ -1245,7 +1245,7 @@ public void test() throws IOException {
 
 > Notes: `SimpleMetadataReader` 使用的 ASM 技术去解析类时。因为 Spring 启动的时候需要进行包扫描，如果指定的包路径范围比较大，那么要扫描类的数量非常多，如果在 Spring 启动时就把这些类全部加载进 JVM 会造成资源的浪费与性能差的问题，因此使用了 ASM 技术。
 
-## 11. ExcludeFilter 和 IncludeFilter
+## ExcludeFilter 和 IncludeFilter
 
 - `ExcludeFilter`：排除过滤器
 - `IncludeFilter`：包含过滤器
@@ -1272,9 +1272,9 @@ public class AppConfig {
 
 > 以上配置表示扫描 `com.moon` 包下面的所有类时始终会包含 `UserService` 类，即使该类上没有标识 `@Component` 注解也会被扫描成 bean。
 
-## 12. Spring 的排序处理
+## Spring 的排序处理
 
-### 12.1. OrderComparator
+### OrderComparator
 
 ```java
 public class OrderComparator implements Comparator<Object> 
@@ -1336,7 +1336,7 @@ public class OrderComparatorTest {
 }
 ```
 
-### 12.2. AnnotationAwareOrderComparator
+### AnnotationAwareOrderComparator
 
 `AnnotationAwareOrderComparator` 是 Spring 中提供的 `OrderComparator` 的子类，它支持用 `@Order` 来指定排序值。
 
@@ -1384,14 +1384,14 @@ public class AnnotationAwareOrderComparatorTest {
 }
 ```
 
-## 13. Spring 源码相关扩展知识
+## Spring 源码相关扩展知识
 
-### 13.1. JFR
+### JFR
 
 JFR 是 Java Flight Record （Java飞行记录） 的缩写，是 JVM 内置的基于事件的JDK监控记录框架。Spring 源码有其应用。
 
 > 附带资料JFR介绍：https://zhuanlan.zhihu.com/p/122247741
 
-### 13.2. 参考资料
+### 参考资料
 
 - [spring-reading](https://github.com/xuchengsheng/spring-reading) - 深入 Spring，从源码开始！涵盖了 Spring 框架的核心概念和关键功能，包括控制反转（IOC）容器的使用，面向切面编程（AOP）的原理与实践，事务管理的方式与实现，Spring MVC 的流程与控制器工作机制，以及 Spring 中数据访问、安全、Boot 自动配置等方面的深入研究。此外，它还包含了 Spring 事件机制的应用、高级主题如缓存抽象和响应式编程，以及对 Spring 源码的编程风格与设计模式的深入探讨.

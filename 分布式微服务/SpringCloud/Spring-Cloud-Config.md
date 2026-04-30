@@ -1,6 +1,6 @@
-## 1. 配置中心概述
+## 配置中心概述
 
-### 1.1. 什么是配置中心
+### 什么是配置中心
 
 对于传统的单体应用而言，常使用配置文件来管理所有配置，比如SpringBoot的`application.yml`文件，但是在微服务架构中全部手动修改的话很麻烦而且不易维护。微服务的配置管理一般有以下需求：
 
@@ -11,11 +11,11 @@
 
 综上所述对于微服务架构而言，一套统一的、通用的管理配置机制是不可缺少的总要组成部分。常见的做法就是通过配置服务器进行管理
 
-### 1.2. 常见配置中心
+### 常见配置中心
 
 内容详见：[《分布式配置中心概述》笔记](/分布式微服务/配置中心/分布式配置中心概述)
 
-## 2. Spring Cloud Config 简介
+## Spring Cloud Config 简介
 
 > [Spring Cloud Config 官方文档](https://docs.spring.io/spring-cloud-config/docs/2.2.5.RELEASE/reference/html/)
 
@@ -32,22 +32,22 @@ Spring Cloud Config 为分布式系统中的外部配置提供服务器和客户
 
 随着应用程序通过从开发到测试和生产的部署流程，可以管理这些环境之间的配置，并确定应用程序具有迁移时需要运行的一切。服务器存储后端的默认实现使用git，因此它轻松支持标签版本的配置环境，以及可以访问用于管理内容的各种工具
 
-### 2.1. Spring Cloud Config 服务端特性
+### Spring Cloud Config 服务端特性
 
 - 以 HTTP 的方式，为外部配置提供基于资源的 API（键值对，或者等价的 YAML 内容）
 - 属性值的加密和解密（对称加密和非对称加密）
 - 通过使用 `@EnableConfigServer` 注解，在 Spring boot 应用中非常简单的嵌入
 
-### 2.2. Spring Cloud Config 客户端特性（特指 Spring 应用）
+### Spring Cloud Config 客户端特性（特指 Spring 应用）
 
 - 绑定 Config 服务端，并使用远程的属性源初始化 Spring 环境
 - 属性值的加密和解密（对称加密和非对称加密）
 
-## 3. Spring Cloud Config 入门案例
+## Spring Cloud Config 入门案例
 
-### 3.1. 案例准备工作
+### 案例准备工作
 
-#### 3.1.1. 基础项目准备
+#### 基础项目准备
 
 1. 创建聚合项目`spring-cloud-sample-config`
 2. 创建`server-eureka`与`service-product`
@@ -59,7 +59,7 @@ Spring Cloud Config 为分布式系统中的外部配置提供服务器和客户
 
 启动 eureka 服务与 product 商品服务，测试请求是否正常
 
-#### 3.1.2. 准备远程仓库
+#### 准备远程仓库
 
 Config Server 是一个可横向扩展、集中式的配置服务器，它用于集中管理应用程序各个环境下的配置，默认使用 Git 存储配置文件内容，也可以使用 SVN 存储，或者是本地文件存储。此示例使用 git 作为存储环境（因为国内的原因，案例使用 gitee 做为远程仓库）
 
@@ -76,11 +76,11 @@ Config Server 是一个可横向扩展、集中式的配置服务器，它用于
 - `{application}-{profile}.yml`或者`{application}-{profile}.properties`
 - 其中`application`为应用名称，`profile`指的开发环境（用于区分开发环境，测试环境、生产环境等）
 
-### 3.2. 搭建 Config 服务端程序
+### 搭建 Config 服务端程序
 
 Spring Cloud Config 服务为外部配置(键值对或YAML)提供了基于 HTTP 的远程资源访问接口。
 
-#### 3.2.1. 引入依赖
+#### 引入依赖
 
 创建`server-config`工程，并引入Spring Cloud Config的依赖
 
@@ -101,7 +101,7 @@ Spring Cloud Config 服务为外部配置(键值对或YAML)提供了基于 HTTP 
 
 如果只引入`spring-cloud-starter-config`的依赖，是没有`spring-cloud-config-server`的依赖，但官网文档中的快速入门示例也是只依赖`spring-cloud-starter-config`包即可，但本地测试时却不行？这个问题待日后研究，目前的解决方法是直接引入`spring-cloud-config-server`的依赖
 
-#### 3.2.2. 配置启动类
+#### 配置启动类
 
 使用 `@EnableConfigServer` 注解表示开启注册中心服务端功能，声明此应用程序是一个配置中心服务。
 
@@ -115,7 +115,7 @@ public class ConfigServerApplication {
 }
 ```
 
-#### 3.2.3. 配置 application.yml
+#### 配置 application.yml
 
 Spring Cloud Config 将分布式配置文件的数据存放在 Git 仓库中，因此需要配置 Git 仓库的基本信息。
 ，
@@ -141,15 +141,15 @@ spring:
 
 > 在 Windows 系统上，如果文件 URL 是带驱动器前缀的绝对路径，则在文件 URL 中需要一个额外的“`/`”（例如：`file:///${user.home}/config-repo`）
 
-#### 3.2.4. 测试
+#### 测试
 
 启动此微服务，可以在浏览器上通过server端访问到git服务器上的文件。示例访问的地址：`http://127.0.0.1:10000/product-pro.yml`
 
 ![](images/20201128141714911_5437.png)
 
-### 3.3. 修改客户端程序
+### 修改客户端程序
 
-#### 3.3.1. 引入依赖
+#### 引入依赖
 
 修改`service-product`工程，引入`spring-cloud-starter-config`的依赖
 
@@ -161,7 +161,7 @@ spring:
 </dependency>
 ```
 
-#### 3.3.2. 创建高级别 bootstrap.yml 配置文件
+#### 创建高级别 bootstrap.yml 配置文件
 
 因为商品服务（config Client）会从`server-config`中获取相应的配置文件，所以此时可以删除原来的`application.yml`文件
 
@@ -184,7 +184,7 @@ spring:
 - `spring.cloud.config.label`：配置中心git仓库的分支名称
 - `spring.cloud.config.uri`：配置中心请求地址
 
-#### 3.3.3. 测试
+#### 测试
 
 启动商品服务，请求可以获取到相应环境（dev）的配置文件里设置值。
 
@@ -194,7 +194,7 @@ spring:
 
 ![](images/20201128150807604_25964.png)
 
-### 3.4. 手动刷新配置
+### 手动刷新配置
 
 以上示例已经可以在客户端取到了配置中心的值，但当有时在修改Git库上面配置的值时，服务端（Config Server）能实时获取最新的值，但客户端（Config Client）读的是缓存，是无法实时获取最新值。
 
@@ -202,7 +202,7 @@ spring:
 
 对于此问题，Spring Cloud 已提供相应的解决方案，就是客户端（Config Client）使用post请求去触发refresh数据，从而获取最新数据，需要依赖spring-boot-starter-actuator
 
-#### 3.4.1. 引入依赖
+#### 引入依赖
 
 要实现手动刷新配置，需要配置Config Client(商品服务)引入`spring-boot-starter-actuator`依赖
 
@@ -214,7 +214,7 @@ spring:
 </dependency>
 ```
 
-#### 3.4.2. 标识动态刷新
+#### 标识动态刷新
 
 在需要刷新数据的类上加上`@RefreshScope`注解，代表此类需要动态刷新。修改商品服务`ProductController`加上注解
 
@@ -230,7 +230,7 @@ public class ProductController {
 }
 ```
 
-#### 3.4.3. 配置开启动态刷新
+#### 配置开启动态刷新
 
 修改商品服务的`bootstrap.yml`配置文件，开启动态刷新触发请求端点（POST请求）
 
@@ -250,7 +250,7 @@ management:
         include: refresh # 配置开放的请求刷新的url路径
 ```
 
-#### 3.4.4. 测试
+#### 测试
 
 使用Postman工具发起POST请求：`http://localhost:19001/actuator/refresh`，此时商品再次请求查看数据已经可以获取到最新的数据
 
@@ -258,15 +258,15 @@ management:
 
 ![](images/20201128155932488_27709.png)
 
-## 4. 配置中心的高可用
+## 配置中心的高可用
 
 在此前的示例中，客户端都是直接调用配置中心的Server端来获取配置文件信息。此时就存在了一个问题，Config Client(客户端)和Config Server(服务端)的耦合性太高，如果Config Server要做集群，那么Config Client只能通过原始的方式来配置路由，当Config Server改变IP地址的时候，Config Client也相应需要修改配置，这就不符合SpringCloud服务治理的理念。
 
 SpringCloud 提供了相应的解决方案，只需要将Config Server端当做一个服务注册到eureka中，Config Client端再从eureka中去获取配置中心Config Server端的服务地址即可
 
-### 4.1. Config Server（服务端）改造
+### Config Server（服务端）改造
 
-#### 4.1.1. 引入 eureka 依赖
+#### 引入 eureka 依赖
 
 修改`server-config`工程，引入 eureka 客户端依赖
 
@@ -277,7 +277,7 @@ SpringCloud 提供了相应的解决方案，只需要将Config Server端当做�
 </dependency>
 ```
 
-#### 4.1.2. 配置服务注册
+#### 配置服务注册
 
 修改`server-config`工程的`application.yml`配置文件，增加注册中心信息部分的配置，并将端口修改为动态参数的形式（*用于后面模拟多个config服务*）
 
@@ -303,13 +303,13 @@ eureka: # Eureka 客户端配置
 
 修改配置后，先启动eureka注册中心，在启动两个Config Server端，在浏览器中访问：`http://localhost:8001/` 就会看到两个Config Server端已注册到注册中心了。
 
-### 4.2. Config Client（客户端）改造
+### Config Client（客户端）改造
 
-#### 4.2.1. 引入eureka依赖
+#### 引入eureka依赖
 
 与`server-config`工程一样，引入eureka客户端依赖即可
 
-#### 4.2.2. 配置服务获取
+#### 配置服务获取
 
 修改 Config Client 客户端（`service-product`）获取从注册中获取 Config Server 的服务地址
 
@@ -334,13 +334,13 @@ eureka: # Eureka 客户端配置
       defaultZone: http://localhost:8001/eureka/
 ```
 
-### 4.3. 测试高可用
+### 测试高可用
 
 启动两个`server-config`服务，端口号分别是`10000`和`10001`，此时在eureka注册中心控制台可以看到两个Config Server成功注册。
 
 分别访问：`http://localhost:10000/product-pro.yml`、`http://localhost:10001/product-pro.yml` 均可返回配置信息，此时说明配置中心服务实现了高可用
 
-## 5. 消息总线bus（番外）
+## 消息总线bus（番外）
 
 在微服务架构中，通常会使用轻量级的消息代理来构建一个共用的消息主题来连接各个微服务实例，它广播的消息会被所有在注册中心的微服务实例监听和消费，也称消息总线。
 
@@ -358,9 +358,9 @@ Spring Cloud 中对应的解决方案是 Spring Cloud Bus，此组件的作用�
 
 > TODO: 日后使用时再整理详细的专题笔记
 
-## 6. 消息总线整合配置中心
+## 消息总线整合配置中心
 
-### 6.1. 引入依赖
+### 引入依赖
 
 在`server-config`与`service-product`工程中引入actuator 监控管理组件、bus消息总线组件、rabbitmq等依赖
 
@@ -382,7 +382,7 @@ Spring Cloud 中对应的解决方案是 Spring Cloud Bus，此组件的作用�
 </dependency>
 ```
 
-### 6.2. Config Server 服务端配置
+### Config Server 服务端配置
 
 修改`server-config`的application.yml配置文件，增加RabbitMQ、动态刷新端点的配置
 
@@ -416,7 +416,7 @@ eureka: # Eureka 客户端配置
       defaultZone: http://localhost:8001/eureka/
 ```
 
-### 6.3. Config Client 客户端配置
+### Config Client 客户端配置
 
 修改`service-product`服务的`bootstrap.yml`配置文件，删除开启动态刷新端点的配置部分，因为此部分在配置中心服务中配置了。
 
@@ -443,7 +443,7 @@ eureka: # Eureka 客户端配置
 
 ![](images/20201128232235252_3794.png)
 
-### 6.4. 测试
+### 测试
 
 重新启动对应的`server-eureka`，`server-config`，`service-product`。配置信息刷新后，只需要向配置中心发送对应的POST请求`http://localhost:10001/actuator/bus-refresh`，即可通过bus消息总线组件，发送给rabbitmq消息，然后每个Config Client客户端接收消息后，进行刷新配置
 
@@ -451,7 +451,7 @@ eureka: # Eureka 客户端配置
 
 ![](images/20201128235001042_14889.png)
 
-## 7. Spring Cloud Config 的原理
+## Spring Cloud Config 的原理
 
 Spring Cloud Config 支持将配宣布储在配置中心的本地服务器、Git 仓库或 Subversion。在 Spring Cloud Config 的线上环境中，通常将配置文件集中放宣在一个 Git 仓库里，然后通过配置中心服务端(Config Server)来管理所有的配置文件，当某个服务实例需要添加或更新配置肘，只要在该服务实例的本地将配置文件进行修改，然后推送到 Git 仓库.其他服务实例通过配置中心从 Git 服务端获取最新的配置信息。对于配置中心来说，每个服务实例都相当于客户端(Config Client)。
 

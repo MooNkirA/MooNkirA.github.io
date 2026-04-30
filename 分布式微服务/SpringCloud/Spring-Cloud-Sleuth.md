@@ -1,4 +1,4 @@
-## 1. Spring Cloud Sleuth 概述
+## Spring Cloud Sleuth 概述
 
 > sleuth （英）/sluːθ/ （美）/sluːθ/ n. 侦探；警犬；vi. 做侦探；侦查
 
@@ -6,7 +6,7 @@ Spring Cloud Sleuth 主要功能就是在分布式系统中提供调用链追踪
 
 Spring Cloud Sleuth 兼容支持 Zipkin，HTrace 和基于日志的（例如ELK）跟踪等。它大量借用了 Google Dapper 的设计，只需要在 pom 文件中引入相应的依赖即可。
 
-### 1.1. Sleuth 中的术语和相关概念
+### Sleuth 中的术语和相关概念
 
 - **Span**：代表一组基本工作单元，为了统计各处理单元的延迟，当请求到达各个服务组件的时候，也通过一个唯一标识（SpanId）来标记它的开始、具体过程和结束。通过 SpanId 的开始和结束时间戳，就能统计该 span 的调用时间，除此之外，还可以获取如事件的名称、请求信息等元数据。
 - **Trace**：由一组 TraceId 相同的 Span 串联形成一个树状结构。为了实现请求跟踪，当请求到达分布式系统的入口端点时，只需要服务跟踪框架为该请求创建一个唯一的标识（即 TraceId），同时在分布式系统内部流转的时候，框架始终保持传递该唯一值，直到整个请求的返回。那么我们就可以使用该唯一标识将所有的请求串联起来，形成一条完整的请求链路。例如，如果正在跑一个分布式大数据工程，可能需要创建一个 trace。
@@ -19,7 +19,7 @@ Spring Cloud Sleuth 兼容支持 Zipkin，HTrace 和基于日志的（例如ELK�
 
 ![](images/20201112110429301_23920.png)
 
-### 1.2. 调用链跟踪原理
+### 调用链跟踪原理
 
 一个最简单的服务调用，主要涉及以下关键点：
 
@@ -35,9 +35,9 @@ Spring Cloud Sleuth 兼容支持 Zipkin，HTrace 和基于日志的（例如ELK�
 
 ![](images/559881522236841.jpg)
 
-## 2. 链路追踪 Sleuth 基础入门示例
+## 链路追踪 Sleuth 基础入门示例
 
-### 2.1. 项目搭建
+### 项目搭建
 
 创建`14-springcloud-sleuth`工程，复用之前Spring Cloud Gateway示例项目`12-springcloud-gateway`的代码，移除相关限流的代码；增加order服务的路由部分的配置
 
@@ -64,7 +64,7 @@ spring:
             - RewritePath=/shop-service-order/(?<segment>.*), /$\{segment}
 ```
 
-### 2.2. 引入依赖
+### 引入依赖
 
 修改网关、订单、商品微服务工程，各自引入 Sleuth 依赖。
 
@@ -78,7 +78,7 @@ spring:
 
 > 注：在需要进行链路追踪的所有微服务上都要加上 Sleuth 的依赖
 
-### 2.3. 添加日志配置
+### 添加日志配置
 
 修改网关、订单、商品微服务工程的 application.yml 配置文件，添加日志级别
 
@@ -92,7 +92,7 @@ logging:
 
 > 注：在需要进行链路追踪的所有微服务上都要加上日志级别的配置
 
-### 2.4. 测试结果
+### 测试结果
 
 启动微服务，调用之后，我们可以在控制台观察到 sleuth 的日志输出。
 
@@ -106,7 +106,7 @@ logging:
 
 查看日志文件并不是一个很好的方法，当微服务越来越多日志文件也会越来越多，通过 Zipkin 可以将日志聚合，并进行可视化展示和全文检索。
 
-### 2.5. Sleuth 日志格式解析
+### Sleuth 日志格式解析
 
 ![](images/390903822257007.jpg)
 
@@ -117,15 +117,15 @@ logging:
 - `spanId`：表示一个基本的工作单元，一个请求可以包含多个步骤，每个步骤都拥有自己的 spanId。
 - `export`：布尔类型。表示是否要将该信息输出到类似 Zipkin 这样的追踪服务端进行收集和展示。
 
-## 3. Sleuth 对各种服务调用方式的支持
+## Sleuth 对各种服务调用方式的支持
 
 RestTemplate 与 Feign 都是服务调用的常用方式，还有多线程调用等。创建2个工程：服务提供方、服务调用方，均集成 Sleuth，在服务调用方中分别使用 RestTemplate 和 Feign、多线程的方式调用服务提供方的接口，查看调用各种调用方式是否整合跟踪。
 
 > 示例源码：`spring-cloud-note\spring-cloud-sample-sleuth-calling-support`
 
-### 3.1. 创建基础示例工程
+### 创建基础示例工程
 
-#### 3.1.1. 聚合项目
+#### 聚合项目
 
 创建测试聚合项目，引入依赖管理
 
@@ -162,7 +162,7 @@ RestTemplate 与 Feign 都是服务调用的常用方式，还有多线程调用
 </build>
 ```
 
-#### 3.1.2. 服务提供者
+#### 服务提供者
 
 创建服务提供方工程，引入依赖
 
@@ -207,7 +207,7 @@ public class TestController {
 }
 ```
 
-#### 3.1.3. 服务调用者
+#### 服务调用者
 
 创建服务提供方工程，引入依赖
 
@@ -246,9 +246,9 @@ spring:
 
 创建启动类
 
-### 3.2. RestTemplate 服务调用方式跟踪
+### RestTemplate 服务调用方式跟踪
 
-#### 3.2.1. 代码实现
+#### 代码实现
 
 1. 在配置类中创建 RestTemplate Bean
 
@@ -285,7 +285,7 @@ public class RestTemplateController {
 }
 ```
 
-#### 3.2.2. 测试
+#### 测试
 
 启动服务，访问服务调用者的接口 `http://127.0.0.1:8080/testByRestTemplate`
 
@@ -299,9 +299,9 @@ public class RestTemplateController {
 
 验证结果：consumer 与 provider 都输出 sleuth 结构的日志，Sleuth 可以正常跟踪 RestTemplate。
 
-### 3.3. Feign 服务调用方式跟踪
+### Feign 服务调用方式跟踪
 
-#### 3.3.1. 代码实现
+#### 代码实现
 
 1. 在配置类或者启动类中使用 `@EnableFeignClients` 注解开启 Feign 支持
 2. 创建 FeignClient 接口
@@ -335,7 +335,7 @@ public class FeignController {
 }
 ```
 
-#### 3.3.2. 测试
+#### 测试
 
 启动服务，访问服务调用者的接口 `http://127.0.0.1:8080/testByFeign`
 
@@ -349,9 +349,9 @@ public class FeignController {
 
 验证结果：consumer 与 provider 都输出 sleuth 结构的日志，Sleuth 可以正常跟踪 Feign 调用方式。
 
-### 3.4. 多线程调用方式跟踪
+### 多线程调用方式跟踪
 
-#### 3.4.1. 代码实现
+#### 代码实现
 
 通过线程池开启线程，在线程任务中通过 Feign 进行远程调用。
 
@@ -380,7 +380,7 @@ public class ThreadController {
 }
 ```
 
-#### 3.4.2. 测试
+#### 测试
 
 启动服务，访问服务调用者的接口 `http://localhost:8080/testByThread`
 
@@ -390,7 +390,7 @@ public class ThreadController {
 
 验证结果：consumer 线程内输出无 sleuth 结构的日志，Sleuth 不能正常跟踪 Thread 线程内调用服务的方式！
 
-#### 3.4.3. 正常跟踪线程内调用服务的解决方法
+#### 正常跟踪线程内调用服务的解决方法
 
 使用 Sleuth 提供的可跟踪的线程池服务 `org.springframework.cloud.sleuth.instrument.async.TraceableExecutorService`。对上面示例进行改造：
 
@@ -425,11 +425,11 @@ private ExecutorService executorService;
 
 线程内的日志也正常输出 sleuth 结构的日志，说明能正常跟踪。
 
-## 4. Sleuth 进阶用法
+## Sleuth 进阶用法
 
-### 4.1. Sleuth TraceFilter
+### Sleuth TraceFilter
 
-#### 4.1.1. 简介
+#### 简介
 
 Sleuth 对服务的调用链进行跟踪时，会在服务间传递跟踪数据，例如 Span 信息。而通过 tracefilter（过滤拦截 Span 信息） 和 baggage（包裹，key/value 对） 可以实现传递一些自定义的信息。
 
@@ -437,7 +437,7 @@ Sleuth 对服务的调用链进行跟踪时，会在服务间传递跟踪数据�
 
 ![](images/228903819248979.jpg)
 
-#### 4.1.2. 基础使用步骤
+#### 基础使用步骤
 
 1. 服务消费者创建 filter 继承 `org.springframework.web.filter.GenericFilterBean` 重写 `doFilter` 方法，在过滤方法中使用 `ExtraFieldPropagation` 工具方法封装包裹（信息）。
 
@@ -492,13 +492,13 @@ public String testTraceFilter() {
 
 ![](images/275771322230553.png)
 
-## 5. 客户端 Zipkin + Sleuth 整合（基于http方式收集数据）
+## 客户端 Zipkin + Sleuth 整合（基于http方式收集数据）
 
 Sleuth 是做调用链信息采集的，可以结合 zipkin 用来收集系统的时序数据，可以很直观地显示微服务之间的调用关系。ZipKin 客户端和 Sleuth 的集成非常简单，只需要在微服务中添加其依赖和配置即可。
 
 > Zipkin 的部署安装与使用详见[《Zipkin 笔记》](/分布式微服务/分布式链路追踪/Zipkin)
 
-### 5.1. 客户端添加依赖
+### 客户端添加依赖
 
 客户端指的是需要被追踪的微服务。*所以示例项目的网关、订单、商品服务都需要添加客户端的依赖*
 
@@ -512,7 +512,7 @@ Sleuth 是做调用链信息采集的，可以结合 zipkin 用来收集系统�
 
 > Tips: 整合 zipkin 依赖 spring-cloud-starter-zipkin 已包含基础示例依赖 spring-cloud-starter-sleuth，可以移除。
 
-### 5.2. 修改客户端配置文件
+### 修改客户端配置文件
 
 修改需要被追踪的微服务的 application.yml 配置文件。*所有示例项目的网关、订单、商品服务都需要修改配置文件*
 
@@ -536,7 +536,7 @@ spring:
 - `spring.zipkin.sender.type`：用于设置采样的数据传输方式，上面示例是使用http形式向server端发送数据
 - `spring.sleuth.sampler.probability`：制定需采样的百分比，默认为0.1，即10%，此示例配置1，是记录全部的sleuth信息，是为了收集到更多的数据（仅供测试用）。在分布式系统中，过于频繁的采样会影响系统性能，所以这里配置需要采用一个合适的值。
 
-### 5.3. 测试
+### 测试
 
 启动 Zipkin Service，并启动每个微服务。通过浏览器发送一次微服务请求。打开 Zipkin Service 控制台，我们可以根据条件追踪每次请求调用过程
 
@@ -546,7 +546,7 @@ spring:
 
 ![](images/20201113090926521_26943.png)
 
-### 5.4. 默认 Zipkin 数据采集方式存在的问题
+### 默认 Zipkin 数据采集方式存在的问题
 
 在默认情况下，zipkin 数据采集有如下特点：
 
@@ -558,7 +558,7 @@ spring:
 1. 当服务出现异常或者宕机的情况，存储在内存的数据就会出现丢失
 2. 在出现网络波动时，Server 端异常等情况下可能存在信息收集不及时的问题。
 
-## 6. Zipkin 跟踪数据的存储
+## Zipkin 跟踪数据的存储
 
 Zipkin 支持的数据存储方式：
 
@@ -567,9 +567,9 @@ Zipkin 支持的数据存储方式：
 3. Elasticsearch（熟悉度高，分布式，高性能，适合）
 4. MySQL（熟悉度高，性能不高）
 
-### 6.1. 追踪数据存储到 MySQL 数据库
+### 追踪数据存储到 MySQL 数据库
 
-#### 6.1.1. 准备存储跟踪数据的数据库
+#### 准备存储跟踪数据的数据库
 
 创建 zipkin 持久化相应数据库表 sql 脚本位置：`spring-cloud-note\document\sql\zipkin_db.sql`
 
@@ -640,7 +640,7 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
 ```
 
-#### 6.1.2. 配置启动服务端
+#### 配置启动服务端
 
 在启动zipkin服务端时增加相关数据库参数即可，启动脚本如下：
 
@@ -663,7 +663,7 @@ java -jar zipkin-server-2.22.0-exec.jar --STORAGE_TYPE=mysql --MYSQL_HOST=127.0.
 
 配置好服务端之后，可以在浏览器请求几次。在数据库查看会发现数据已经持久化到mysql中
 
-### 6.2. 追踪数据存储到 ElasticSearch
+### 追踪数据存储到 ElasticSearch
 
 1. 下载 elasticsearch。[下载地址](https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-8-4)
 2. 启动 elasticsearch
@@ -685,7 +685,7 @@ java -jar zipkin-server-2.23.16-exec.jar --STORAGE_TYPE=elasticsearch --ES_HOST=
 
 ![](images/111214719231886.png)
   
-### 6.3. 依赖分析
+### 依赖分析
 
 在 zipkin 图形化界面，点击下图中的【依赖】菜单，即可让 Zipkin 以图形化方式进行微服务之间的依赖关系分析。
 
@@ -707,19 +707,19 @@ java -DSTORAGE_TYPE=elasticsearch -DES_HOSTS=http://localhost:9200 -jar zipkin-d
 STORAGE_TYPE=elasticsearch ES_HOSTS=localhost:9200 java -jar zipkin-dependencies-x.jar 2020-06-01
 ```
 
-## 7. 基于消息中间件收集数据
+## 基于消息中间件收集数据
 
 Zipkin 支持与 rabbitMQ 整合完成异步消息传输。加了 MQ 之后，通信过程如下图所示：
 
 ![](images/20201113091547938_16673.png)
 
-### 7.1. RabbitMQ 的安装与启动
+### RabbitMQ 的安装与启动
 
 要使用消息中间件实现收集数据传输，需要准备MQ的服务。*此示例使用RabbitMQ*
 
 > 更多 RabbitMQ 的内容详见：[《RabbitMQ》笔记](/分布式微服务/消息中件间/RabbitMQ)
 
-### 7.2. 服务端启动
+### 服务端启动
 
 在启动 zipkin 服务端时增加相关 RabbitMQ 的参数即可，启动脚本如下：
 
@@ -739,9 +739,9 @@ java -jar zipkin-server-2.22.0-exec.jar --RABBIT_ADDRESSES=192.168.12.132:5672
 
 ![](images/20201113151201801_189.png)
 
-### 7.3. 客户端配置
+### 客户端配置
 
-#### 7.3.1. 配置依赖
+#### 配置依赖
 
 修改需要被追踪的微服务添加 zipkin 整合 sleuth、rabbitmq 的依赖。*所以示例项目的网关、订单、商品服务都需要添加依赖*
 
@@ -762,7 +762,7 @@ java -jar zipkin-server-2.22.0-exec.jar --RABBIT_ADDRESSES=192.168.12.132:5672
 
 导入 `spring-rabbit` 依赖，是Spring提供的对RabbitMQ的封装，客户端会根据配置自动的生产消息并发送到目标队列中
 
-#### 7.3.2. 配置消息中间件地址等信息
+#### 配置消息中间件地址等信息
 
 修改需要被追踪的微服务的application.yml配置文件（*所以示例项目的网关、订单、商品服务都需要修改配置文件*）。修改要求如下：
 
@@ -793,7 +793,7 @@ spring:
           enabled: true
 ```
 
-### 7.4. 测试
+### 测试
 
 启动所有微服务，关闭Zipkin Server，并发起几个请求连接。打开 rabbitmq 管理后台可以看到，消息已经推送到 rabbitmq。
 

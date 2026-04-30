@@ -1,6 +1,6 @@
-## 1. 原生 JS 工具函数
+## 原生 JS 工具函数
 
-### 1.1. 判断 JS 各种数据类型是否为空
+### 判断 JS 各种数据类型是否为空
 
 ```js
 /**
@@ -25,7 +25,7 @@ export function validatenull(val) {
 }
 ```
 
-### 1.2. 对象深拷贝
+### 对象深拷贝
 
 ```js
 /**
@@ -55,7 +55,7 @@ export const deepClone = data => {
 };
 ```
 
-### 1.3. 数组转成字符串（自己写，不严谨，有bug）
+### 数组转成字符串（自己写，不严谨，有bug）
 
 ```js
 /**
@@ -112,9 +112,9 @@ export function array2string(array, separator, property) {
 }
 ```
 
-### 1.4. 格式化日期
+### 格式化日期
 
-#### 1.4.1. 网上案例
+#### 网上案例
 
 ```js
 /**
@@ -155,7 +155,7 @@ formatDate(new Date().getTime(), '今天是YY/MM/DD hh:mm:ss'); // 今天是2022
 
 注意：js 中 `new Date("2022-07-01 08:00:00")` 格式在 IE 内核浏览器中显示 `NaN` 的不兼容的问题，因为 IE 内核的浏览器只识别 `/` 的日期分隔符。可以将造成 `new Date("2022-07-01 08:10:00").replace(/-/g,"/");`，这样确保了任何一个浏览器都没有问题
 
-#### 1.4.2. 开源项目vue-Element-Admin的工具方法
+#### 开源项目vue-Element-Admin的工具方法
 
 ```js
 /**
@@ -236,7 +236,7 @@ export function formatTime(time, option) {
 }
 ```
 
-### 1.5. 字符串数组转对象数组(网上资料暂存，好像有问题)
+### 字符串数组转对象数组(网上资料暂存，好像有问题)
 
 ```js
 /**
@@ -254,7 +254,7 @@ export const strCovArray = function () {
 }
 ```
 
-### 1.6. 生成指定位数的随机数
+### 生成指定位数的随机数
 
 ```js
 /**
@@ -268,8 +268,8 @@ export const randomLenNum = (len, date) => {
 }
 ```
 
-### 1.7. 验证两个对象的属性值是否相等
-#### 1.7.1. 方式1：浅对比
+### 验证两个对象的属性值是否相等
+#### 方式1：浅对比
 
 ```js
 /**
@@ -287,7 +287,7 @@ export const validObj = (olds, news) => {
 }
 ```
 
-#### 1.7.2. 方式2：深度对比
+#### 方式2：深度对比
 
 ```js
 function deepCompare(x, y) {
@@ -404,7 +404,7 @@ function deepCompare(x, y) {
 }
 ```
 
-### 1.8. 删除数组指定元素
+### 删除数组指定元素
 
 ```js
 //删除数组制定元素
@@ -419,7 +419,7 @@ export const removeByValue = (arr, val) => {
 }
 ```
 
-### 1.9. JSON格式化
+### JSON格式化
 
 ```js
 /**
@@ -490,7 +490,7 @@ export const formatJson = function (json, options) {
 }
 ```
 
-### 1.10. 根据身份证计算年龄、性别
+### 根据身份证计算年龄、性别
 
 ```js
 /**
@@ -532,7 +532,7 @@ export const IdCard = function (UUserCard, num) {
 }
 ```
 
-### 1.11. Object的属性设置为空，但是属性存在
+### Object的属性设置为空，但是属性存在
 
 ```js
 /**
@@ -546,7 +546,7 @@ export const setObjectnull = function (obj) {
 }
 ```
 
-### 1.12. 将Object的属性为null的转为空字符串''
+### 将Object的属性为null的转为空字符串''
 
 ```js
 /**
@@ -562,7 +562,7 @@ export const setObjectstr = function (obj) {
 }
 ```
 
-### 1.13. 生成随机UID
+### 生成随机UID
 
 ```js
 /**
@@ -582,7 +582,7 @@ export function genUid() {
 }
 ```
 
-### 1.14. 判断数据的类型
+### 判断数据的类型
 
 ```js
 /**
@@ -594,7 +594,7 @@ export function judgeType(data) {
 }
 ```
 
-### 1.15. 常用验证函数（手机、邮箱、身份证、整数、小数等）
+### 常用验证函数（手机、邮箱、身份证、整数、小数等）
 
 ```js
 export function isvalidUsername(str) {
@@ -799,7 +799,7 @@ export function validatenumord(num, type) {
 };
 ```
 
-### 1.16. 返回一个图形键盘
+### 返回一个图形键盘
 
 ```js
 (_=>[..."`1234567890-=~~QWERTYUIOP[]~ASDFGHJKL;'~~ZXCVBNM,./~"].map(x=>(o+=`/${b='_'.repeat(w=x<y?2:' 667699'[x=["BS","TAB","CAPS","ENTER"][p++]||'SHIFT',p])}|`,m+=y+(x+'    ').slice(0,w)+y+y,n+=y+b+y+y,l+=' __'+b)[73]&&(k.push(l,m,n,o),l='',m=n=o=y),m=n=o=y='|',p=l=k=[])&&k.join`
@@ -810,7 +810,7 @@ export function validatenumord(num, type) {
 
 ![运行效果图](images/20191104172347775_380.jpg)
 
-### 1.17. JS实现浏览器：加入收藏、设为首页、保存到桌面的方法功能
+### JS实现浏览器：加入收藏、设为首页、保存到桌面的方法功能
 
 使用js实现在一些网页的“设置为首页”和“ 收藏本站”，以及“保存到桌面”等功能，完美兼容IE,chrome,ff等浏览器。
 
@@ -874,7 +874,7 @@ export function validatenumord(num, type) {
 </html>
 ```
 
-### 1.18. 最快获取dom的方法
+### 最快获取dom的方法
 
 HTML中带有 `id` 属性的元素，都会被全局的 ID 同名变量所引用，实际就是保存到`window`对象中
 
@@ -895,7 +895,7 @@ console.log(el) // <div id="zero"></div>
 console.log(zero) // <div id="zero"></div>
 ```
 
-### 1.19. 一行代码生成随机生成字符串
+### 一行代码生成随机生成字符串
 
 主要是用ASCII码来实现。
 
@@ -906,9 +906,9 @@ console.log(str); // 'w5jetivt7e'
 
 以上可获得了一个10位数的随机字符串。先是 `Math.random()` 生成 `[0, 1)` 的数，也就是 0.123312、0.982931之类的，然后调用 `number` 的 `toString`方法将其转换成36进制的，按照MDN的说法，36进制的转换应该是包含了字母 a~z 和数字0~9的，因为这样生成的是`0.89kjna21sa`类似这样的，所以要截取一下小数部分，即从索引 2 开始截取10个字符就是随机字符串了。很多开源库都使用此方式为DOM元素创建随机ID。
 
-## 2. 常见高级知识点
+## 常见高级知识点
 
-### 2.1. 防抖
+### 防抖
 
 定义：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。
 
@@ -925,7 +925,7 @@ function debounce(fn, time) {
 }
 ```
 
-### 2.2. 节流
+### 节流
 
 定义：规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。
 
@@ -942,7 +942,7 @@ function throttle(fn, time) {
 }
 ```
 
-### 2.3. 高阶函数
+### 高阶函数
 
 定义：接受和/或返回另外一个函数的函数被称为高阶函数。常见的像数组的 `map`、`reduce`、`filter` 这些都是高阶函数
 
@@ -958,7 +958,7 @@ function fn(num) {
 add(-5, 6, fn) // 11
 ```
 
-### 2.4. 函数柯里化
+### 函数柯里化
 
 定义：函数柯里化指的是将能够接收多个参数的函数转化为接收单一参数的函数，并且返回接收余下参数且返回结果的新函数的技术。
 
@@ -1007,7 +1007,7 @@ console.log(curriedSum(1)(2, 3)) // 6，对第一个参数的柯里化
 console.log(curriedSum(1)(2)(3)) // 6，全柯里化
 ```
 
-### 2.5. 数组去重
+### 数组去重
 
 1. Set 去重
 
@@ -1037,7 +1037,7 @@ const removeRepeat = arr => {
 }
 ```
 
-### 2.6. 数组扁平化
+### 数组扁平化
 
 1. flat方法
 
@@ -1092,7 +1092,7 @@ function flatten(arr) {
 console.log(flatten(arr))
 ```
 
-### 2.7. 深拷贝
+### 深拷贝
 
 ```js
 function deepClone(obj) {
@@ -1118,7 +1118,7 @@ function deepClone(obj) {
 }
 ```
 
-### 2.8. getBoundingCilentRect
+### getBoundingCilentRect
 
 `getBoundingCilentRect` 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置。该函数返回一个对象，该对象有6个属性：top,lef,right,bottom,width,height，如图：
 
@@ -1141,7 +1141,7 @@ window.onscroll = function () {
 }
 ```
 
-### 2.9. IntersectionObserver
+### IntersectionObserver
 
 Intersection Observer API 提供了一种异步检测目标元素与祖先元素或视口(可统称为根元素)相交情况变化的方法。
 
@@ -1193,7 +1193,7 @@ function observe() {
 observe()
 ```
 
-### 2.10. 自定义事件
+### 自定义事件
 
 自定义事件，是指在开发的过程中，会监听很多的事件，比如：点击事件(click)、鼠标移动事件(mousemove)等等。这些事件是 js 提供的，但是有时候这些事件并不能满足开发需要，这个时候就可以用自定义事件来解决。自定义事件可以让开发者自主命名事件名，并且可以通过特定的方法进行添加，触发以及删除。
 
@@ -1258,13 +1258,13 @@ window.addEventListener('myEvent', function (e) {
 - `Event()` 一般用来创建简单的自定义事件
 - `CustomEvent()` 支持传递参数的自定义事件，它支持 detail 参数，可以在 detail 中放一些需要传递的参数，并在事件监听函数中获取
 
-## 3. 依赖第三工具包工具函数
+## 依赖第三工具包工具函数
 
-### 3.1. clipboard.js(复制文本到剪切板)
+### clipboard.js(复制文本到剪切板)
 
 依赖clipboard.js复制文字工具包，官网地址：http://www.clipboardjs.cn/
 
-#### 3.1.1. 安装
+#### 安装
 
 可以通过npm工具安装
 
@@ -1278,7 +1278,7 @@ npm install clipboard --save
 <script src="dist/clipboard.min.js"></script>
 ```
 
-#### 3.1.2. 使用示例(Vue框架)
+#### 使用示例(Vue框架)
 
 - 创建切剪板工具函数
 

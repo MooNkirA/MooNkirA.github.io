@@ -1,13 +1,13 @@
-## 1. 声明式事务实现原理
+## 声明式事务实现原理
 
 主要通过 AOP/动态代理实现。
 
 1. **在 Bean 初始化阶段创建代理对象**：Spring 容器在初始化每个单例 bean 的时候，会遍历容器中的所有 `BeanPostProcessor` 实现类，并执行其 `postProcessAfterInitialization` 方法，在执行 `AbstractAutoProxyCreator` 类的 `postProcessAfterInitialization` 方法时会遍历容器中所有的切面，查找与当前实例化 bean 匹配的切面，这里会获取事务属性切面，查找 `@Transactional` 注解及其属性值，然后根据得到的切面创建一个代理对象，默认是使用 JDK 动态代理创建代理，如果目标类是接口，则使用 JDK 动态代理，否则使用 Cglib。
 2. **在执行目标方法时进行事务增强操作**：当通过代理对象调用 Bean 方法的时候，会触发对应的 AOP 增强拦截器，声明式事务是一种环绕增强，对应接口为 `MethodInterceptor`，事务增强对该接口的实现为`TransactionInterceptor`。事务拦截器 `TransactionInterceptor` 在 `invoke` 方法中，通过调用父类 `TransactionAspectSupport` 的 `invokeWithinTransaction` 方法进行事务处理，包括开启事务、事务提交、异常回滚。
 
-## 2. Spring 事务相关注解源码分析
+## Spring 事务相关注解源码分析
 
-### 2.1. @EnableTransactionManagement 源码分析
+### @EnableTransactionManagement 源码分析
 
 `@EnableTransactionManagement`通过在`@Import`注解中传入`TransactionManagementConfigurationSelector`类，会给容器中导入两个组件：
 
@@ -38,17 +38,17 @@ public @interface EnableTransactionManagement {
 }
 ```
 
-#### 2.1.1. TransactionManagementConfigurationSelector
+#### TransactionManagementConfigurationSelector
 
 `TransactionManagementConfigurationSelector`类的作用是给容器导入两个组件：`AutoProxyRegistrar`、`ProxyTransactionManagementConfiguration`
 
-#### 2.1.2. AutoProxyRegistrar
+#### AutoProxyRegistrar
 
 `AutoProxyRegistrar` 此类的作用是给容器中注册一个 `InfrastructureAdvisorAutoProxyCreator` 组件
 
 利用后置处理器机制在对象创建以后，包装对象，并返回一个代理对象（增强器），代理对象执行方法利用拦截器链进行调用。
 
-#### 2.1.3. ProxyTransactionManagementConfiguration
+#### ProxyTransactionManagementConfiguration
 
 `ProxyTransactionManagementConfiguration`使用`@Configuration`注解修饰，表明是一个配置类。
 
@@ -100,14 +100,14 @@ public class ProxyTransactionManagementConfiguration extends AbstractTransaction
         2. 再获取`PlatformTransactionManager`，如果事先没有添加指定任何`transactionmanger`，最终会从容器中按照类型获取一个`PlatformTransactionManager`
         3. 执行目标方法。如果正常，利用事务管理器，提交事务；如果异常，获取到事务管理器，利用事务管理回滚操作。
 
-### 2.2. @Transactional 源码分析
+### @Transactional 源码分析
 
 1. 在`@EnableTransactionManagement`注解中，有一个导入器：`TransactionManagementConfigurationSelector`，该导入器中在`AdiviceMode`为默认值`PROXY`时，往容器中注入了两个bean对象，`AutoProxyRegistrar`和`ProxyTransactionManagementConfiguration`
 2. `ProxyTransactionManagementConfiguration`类中的一个方法`transactionAttributeSource()`，创建了一个注解事务的属性解析对象
 3. `AnnotationTransactionAttributeSource`类的实例化，调用一个有参构造方法，在该方法中会判断注解的类型，此时会构建一个`SpringTransactionAnnotationParser`（事务注解解析器）
 4. `SpringTransactionAnnotationParser`会进行注解解析，里面有多个重载`parseTransactionAnnotation`方法，用于解析传入的注解，事务的注解封装到`RuleBasedTransactionAttribute`对象，该对象其实就是`TransactionAttribute`。最后会存储到容器中，用于以后读取相关信息来进行事务的操作。
 
-### 2.3. @TransactionalEventListener 源码分析
+### @TransactionalEventListener 源码分析
 
 1. 在IoC容器加载时，执行`AbstractApplicationContext`的`refresh()`方法，在执行到`finishBeanFactoryInitialization(beanFactory)`方法时，就会初始化剩余的单例bean对象。
 2. 初始化剩余单例bean对象.调用的是`DefaultListableBeanFactory`类中的`preInstantiateSingletons`方法。
@@ -117,9 +117,9 @@ public class ProxyTransactionManagementConfiguration extends AbstractTransaction
 6. `TransactionalEventListenerFactory`类实现了`EventListenerFactory`接口，并重写了`createApplicationListener`方法。
 7. `ApplicationListenerMethodTransactionalAdapter`的实例化。至此，解析`TransactionalEventListener`注解的过程完成
 
-## 3. 事务涉及相关类源码分析
+## 事务涉及相关类源码分析
 
-### 3.1. TransactionTemplate
+### TransactionTemplate
 
 `TransactionTemplate`类是用于编程式事务的模板对象。其中实现编程式事务控制的核心方法是重写了`TransactionOperations`接口中的`execute()`方法
 
@@ -170,7 +170,7 @@ public <T> T execute(TransactionCallback<T> action) throws TransactionException 
 }
 ```
 
-### 3.2. DataSourceUtils
+### DataSourceUtils
 
 `DataSourceUtils`是Spring中数据源的工具类。里面定义着获取连接的方法
 
@@ -265,7 +265,7 @@ public abstract class DataSourceUtils {
 }
 ```
 
-### 3.3. TransactionSynchronizationManager
+### TransactionSynchronizationManager
 
 `TransactionSynchronizationManager`事务的同步管理器类，实现连接和线程绑定从而控制事务的核心类。它是个抽象类，但是没有任何子类，因为它所有的方法都是静态的
 
@@ -275,7 +275,7 @@ public abstract class DataSourceUtils {
 
 ![](images/20200916164133767_10017.png)
 
-### 3.4. TransactionAwareDataSourceProxy
+### TransactionAwareDataSourceProxy
 
 `TransactionAwareDataSourceProxy`是Spring提供的一个数据源代理类，它继承了`DelegatingDataSource`类。而`DelegatingDataSource`类实现了`javax.sql.DataSource`接口。
 
@@ -283,13 +283,13 @@ Spring通过装饰者模式，把原始DataSource中一些不希望用户直接�
 
 比如使用XXXTemplate，当然其背后是`DataSourceUtils`。同时还有另外一种办法，使用`TransactionAwareDataSourceProxy`。通过`TransactionAwareDataSourceProxy`对数据源代理后，数据源对象就有了事务上下文感知的能力了。通过源码会发现，其实它还是使用的`DataSourceUtils`
 
-### 3.5. High-level Synchronization Approach和Low-level Synchronization Approach
+### High-level Synchronization Approach和Low-level Synchronization Approach
 
-#### 3.5.1. High-level Synchronization Approach
+#### High-level Synchronization Approach
 
 首选的方法是使用基于Spring的和持久化集成的API高级模板，或者使用原生的ORM API，应用于事务支持型工厂bean或者管理原生资源的工厂的代理。这些事务型解决方案内建对资源创建、重用、清理、资源的可选事务同步以及异常的映射的支持。这样用户的数据访问代码就可以不再关心定位任务，专心于非样板化的持久化逻辑。通常，使用原生的ORM API或者使用JdbcTemplate的方法来进行JDBC访问
 
-#### 3.5.2. Low-level Synchronization Approach
+#### Low-level Synchronization Approach
 
 像DataSourceUtils (JDBC), EntityManagerFactoryUtils (JPA), SessionFactoryUtils(Hibernate), PersistenceManagerFactoryUtils (JDO), 等等这些类都是属于低级方法中的。当你的代码想要直接使用有关本地持久化事务API的时候，你需要让这些类明确Spring 框架管理的实例已经得到了，事务已经同步好了（可选的），并且异常运行中的异常也都会映射到一个一致的API
 

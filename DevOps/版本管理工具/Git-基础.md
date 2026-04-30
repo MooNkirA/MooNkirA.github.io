@@ -1,6 +1,6 @@
-## 1. Git 概述
+## Git 概述
 
-### 1.1. Git 简介与特点
+### Git 简介与特点
 
 Git是分布式的版本控制工具，其特点如下：
 
@@ -10,9 +10,9 @@ Git是分布式的版本控制工具，其特点如下：
 - 完全分布式
 - 有能力高效管理类似 Linux 内核一样的超大规模项目（速度快和数据多）
 
-### 1.2. Git 与 SVN 对比
+### Git 与 SVN 对比
 
-#### 1.2.1. SVN
+#### SVN
 
 SVN是<font color=red>**集中式版本控制软件**</font>，版本库是集中放在中央服务器的。每个程序员使用自己电脑，首先要从中央服务器哪里得到最新的版本，编程完将完成的代码推送到中央服务器。集中式版本控制系统是必须联网才能工作
 
@@ -27,7 +27,7 @@ SVN是<font color=red>**集中式版本控制软件**</font>，版本库是集�
 
 <font color=red>每天都同步一次即可，需要手动同步上传代码</font>
 
-#### 1.2.2. Git
+#### Git
 
 Git是<font color=red>**分布式版本控制软件**</font>，它可以没有中央服务器，每个人的电脑就是一个完整的版本库。工作的时候就不需要联网了，因为版本都是在自己的电脑上。当多人开发时，只需把各自的修改推送到远程仓库，就可以所有成员都可以看到修改了。
 
@@ -35,12 +35,12 @@ Git是<font color=red>**分布式版本控制软件**</font>，它可以没有�
 
 ![](images/20201105232113544_767.png)
 
-#### 1.2.3. 总结
+#### 总结
 
 1. svn 是集中式版本控制工具，git 是分布式版本控制工具
 2. svn 不支持离线提交，git 支持离线提交代码
 
-### 1.3. Git 工作流程
+### Git 工作流程
 
 1. 从远程仓库中克隆 Git 资源作为本地仓库。
 2. 从本地仓库中checkout代码然后进行代码修改
@@ -52,15 +52,15 @@ Git 的工作流程图
 
 ![](images/20201105232233988_19200.jpg)
 
-#### 1.3.1. 代码提交和同步代码
+#### 代码提交和同步代码
 
 ![](images/99655608240247.png)
 
-#### 1.3.2. 代码撤销和撤销同步
+#### 代码撤销和撤销同步
 
 ![](images/395145608258673.png)
 
-### 1.4. Git 相关概念
+### Git 相关概念
 
 **相关名词**
 
@@ -77,13 +77,13 @@ Git 的工作流程图
 - `Push`：推送，就是将本地仓库代码上传到远程仓库
 - `Pull`：拉取，就是将远程仓库代码下载到本地仓库，并将代码克隆到本地工作区
 
-## 2. Git 安装
+## Git 安装
 
-> 此部分内容详见[《Git 笔记 - 安装篇》](/DevOps/版本管理工具/Git-安装)
+> 此部分内容详见 [[Git-安装]] 笔记
 
-## 3. Git 本地仓库
+## Git 本地仓库
 
-### 3.1. 创建版本库
+### 创建版本库
 
 什么是版本库呢？版本库又名仓库，英文名 repository，可以简单理解成一个目录，这个目录里面的所有文件都可以被 Git 管理起来，每个文件的修改、删除，Git 都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。由于 git 是分布式版本管理工具，所以 git 在不需要联网的情况下也具有完整的版本管理能力。
 
@@ -98,7 +98,7 @@ Git 的工作流程图
 
 ![](images/554305516244198.png)
 
-### 3.2. 仓库内容介绍
+### 仓库内容介绍
 
 初始化的仓库，会生成一个 `.git` 的隐藏目录，里面相关 git 的配置、钩子、记录等等信息
 
@@ -109,15 +109,15 @@ Git 的工作流程图
 
 > Notes: 一个git版本库一般只存放一个项目（一个项目对应一个文件夹）。
 
-### 3.3. 工作区和暂存区
+### 工作区和暂存区
 
 Git 和其它版本控制软件如 SVN 的一个不同之处就是有<font color=red>**暂存区**</font>的概念。
 
-#### 3.3.1. 工作区 (Working Directory)
+#### 工作区 (Working Directory)
 
 工作区就是在本地电脑里能看到的 git 目录，例如上例的 git_repo 文件夹其实就是一个工作区，在这个目录中的 `.git` 隐藏文件夹才是版本库。
 
-#### 3.3.2. 暂存区 (stage)
+#### 暂存区 (stage)
 
 Git 的版本库里存了很多东西，其中最重要的就是称为 stage（或者叫 index）的暂存区，还有 Git 自动创建的第一个分支 master，以及指向 master 的一个指针叫 HEAD，HEAD 用来指向当前的分支。
 
@@ -130,19 +130,19 @@ Git 的版本库里存了很多东西，其中最重要的就是称为 stage（�
 
 因为在创建 Git 版本库时，Git 自动创建了唯一一个 master 分支，所以现在 `git commit` 就是往 master 分支上提交更改。可以简单理解为，需要提交的文件修改通通放到暂存区，然后一次性提交暂存区的所有修改。
 
-### 3.4. Git 仓库的特殊文件
+### Git 仓库的特殊文件
 
-#### 3.4.1. .gitkeep 文件
+#### .gitkeep 文件
 
 `.gitkeep`文件是用来保证当前目录即使为空，也会上传到远程仓库（如 github）上
 
-#### 3.4.2. .gitignore 忽略规则文件（待整理）
+#### .gitignore 忽略规则文件（待整理）
 
 `.gitignore` 的文件用于声明忽略文件或不忽略文件的规则，**规则对当前目录及其子目录生效**。
 
 > 注意：该文件因为没有文件名，没办法直接在windows目录下直接创建（*win10系统后来一些版本可以直接创建没有文件名的文件*），可以通过命令行 Git Bash 来 `touch` 指令来创建。
 
-##### 3.4.2.1. 忽略文件语法规范
+##### 忽略文件语法规范
 
 - 忽略所有 `.a` 的文件
 
@@ -174,7 +174,7 @@ Git 的版本库里存了很多东西，其中最重要的就是称为 stage（�
 doc/**/*.pdf
 ```
 
-##### 3.4.2.2. Gitignore 参考模板
+##### Gitignore 参考模板
 
 初用 Git 的工程师，都有着一个苦恼，每次都得针对不同项目、不同语言类型来重复写 .gitignore，以忽略一些无需纳入 Git 管理的文件。[Gitignore](https://github.com/github/gitignore)项目就是帮工程师解决这个问题的。每次需要为项目创建 .gitignore 文件时，只需要打开这个项目，针对你当前所用编程语言或框架，去寻找对应 .gitignore 模板替换即可。
 
@@ -182,11 +182,11 @@ doc/**/*.pdf
 
 ![](images/38921110220966.png)
 
-#### 3.4.3. .gitconfig 配置文件
+#### .gitconfig 配置文件
 
 在 OS X 和 Linux 下，Git 的配置文件储存在 `~/.gitconfig`。在 windows 系统中，存储在`%HOMEPATH%\.gitconfig`
 
-## 4. Git 远程仓库
+## Git 远程仓库
 
 在本地创建了一个 Git 仓库，又想让其他人来协作开发，此时就可以把本地仓库同步到远程仓库，同时还增加了本地仓库的一个备份。
 
@@ -194,33 +194,33 @@ doc/**/*.pdf
 
 > Notes: 此部分的内容详见[《GitHub 笔记》](/DevOps/版本管理工具/GitHub)
 
-## 5. 分支 (branch)（整理中）
+## 分支 (branch)（整理中）
 
-### 5.1. 分支的概念
+### 分支的概念
 
 几乎所有的版本控制系统都以某种形式支持分支。使用分支意味着可以把开发者本地工作区从开发主线上分离开来，避免影响开发主线。多线程开发，可以同时开启多个任务的开发，多个任务之间互不影响。
 
-### 5.2. 创建分支
+### 创建分支
 
 > TODO: 整理中
 
-## 6. 标签 (tag)（整理中）
+## 标签 (tag)（整理中）
 
-### 6.1. 标签的概念
+### 标签的概念
 
 如果项目达到一个重要的阶段，并希望永远记住那个特别的提交快照，可以给它打上标签(tag)
 
 比如说，想为项目发布一个"1.0"版本。可以给最新一次提交打上（HEAD）"v1.0"的标签。标签可以理解为项目里程碑的一个标记，一旦打上了这个标记则，表示当前的代码将不允许提交
 
-### 6.2. 标签的创建（图形化界面操作）
+### 标签的创建（图形化界面操作）
 
 标签的创建和分支的创建操作几乎一样
 
-### 6.3. 标签的切换与删除
+### 标签的切换与删除
 
 > TODO: 整理中
 
-## 7. Git 命令
+## Git 命令
 
 掌握并熟练使用了命令行模式操作 git 的话，会发现某些操作命令行比窗口化操作要简单。一般来说，日常使用 git 只要记住下图6个命令，就可以了。
 
@@ -228,15 +228,15 @@ doc/**/*.pdf
 
 > Notes: <font color=red>以下章节的命令中，`[]` 包裹的代表可以省略</font>
 
-### 7.1. 常用命令速查表
+### 常用命令速查表
 
 ![](images/3660922239387.jpg)
 
-### 7.2. config - 配置命令
+### config - 配置命令
 
 Git 的设置文件为 `.gitconfig`，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。在安装好后首次使用前，需要先进行全局配置。通过相关的命令设置全局信息会保存在 `~/.gitconfig` 文件中。
 
-#### 7.2.1. 配置全局的用户信息
+#### 配置全局的用户信息
 
 在空白位置打开右键菜单，点击【Git Bash Here】，打开Git命令行窗口。输入以下命令配置提交时全局的用户名与邮箱
 
@@ -247,7 +247,7 @@ $ git config --global user.email "邮箱地址"
 
 > Tips: `--global` 可以省略
 
-#### 7.2.2. 编辑 Git 配置文件
+#### 编辑 Git 配置文件
 
 ```bash
 $ git config -e [--global]
@@ -255,7 +255,7 @@ $ git config -e [--global]
 
 > Notes: `--global` 表示编辑全局配置，省略则表示编辑当前仓库的配置。
 
-#### 7.2.3. 查看配置信息
+#### 查看配置信息
 
 ```bash
 # 查看当前（全局） git 全部的配置信息
@@ -265,7 +265,7 @@ $ git config [--global] --list
 $ git config [--global] user.name
 ```
 
-#### 7.2.4. 设置 Git 短命令
+#### 设置 Git 短命令
 
 设置短命令可以很好的提高效率。有以下两种设置短命令的方式：
 
@@ -300,9 +300,9 @@ vim ~/.gitconfig
 git cp <commitHash>
 ```
 
-### 7.3. 基础操作命令
+### 基础操作命令
 
-#### 7.3.1. init - 本地仓库初始化
+#### init - 本地仓库初始化
 
 执行以下命令，初始化 git 仓库，即由 git 来管理此目录
 
@@ -319,7 +319,7 @@ $ git init --bare
 
 > 执行之后会在项目目录下创建【`.git`】的隐藏目录，这个目录是Git所创建的，不能删除，也不能随意更改其中的内容。
 
-#### 7.3.2. add - 添加文件到缓存区
+#### add - 添加文件到缓存区
 
 `git add` 指令，用于添加单个（多个）文件到缓存区。
 
@@ -353,7 +353,7 @@ $ git add .
 $ git add -p
 ```
 
-#### 7.3.3. reset - 取消缓存区的文件
+#### reset - 取消缓存区的文件
 
 将暂存区的文件取消暂存指定的文件(取消 `add`)
 
@@ -361,7 +361,7 @@ $ git add -p
 $ git reset 文件名
 ```
 
-#### 7.3.4. rm - 删除本地工作区文件
+#### rm - 删除本地工作区文件
 
 删除工作区文件，并且将这次删除放入暂存区
 
@@ -375,7 +375,7 @@ $ git rm <文件名1> <文件名2>...
 $ git rm --cached <文件名>
 ```
 
-#### 7.3.5. mv - 修改文件名
+#### mv - 修改文件名
 
 修改文件名称，并且将这个改名后文件放入暂存区
 
@@ -383,7 +383,7 @@ $ git rm --cached <文件名>
 $ git mv <file-original> <file-renamed>
 ```
 
-#### 7.3.6. commit - 提交至版本库
+#### commit - 提交至版本库
 
 `git commit` 指令，将当前缓存区的内容提交到版本库。
 
@@ -410,9 +410,9 @@ $ git commit --amend -m [message]
 $ git commit --amend [file1] [file2] ...
 ```
 
-### 7.4. 查看信息命令
+### 查看信息命令
 
-#### 7.4.1. status - 查看仓库当前状态
+#### status - 查看仓库当前状态
 
 用于查询当前仓库中有那些文件存在变动
 
@@ -423,7 +423,7 @@ $ git status
 git status –s
 ```
 
-#### 7.4.2. log - 查看版本（提交）记录
+#### log - 查看版本（提交）记录
 
 `git log` 指令，用于查看当前分支 git 的提交记录（版本）
 
@@ -494,7 +494,7 @@ git log --merges
 git log --grep="JRA-224:"
 ```
 
-#### 7.4.3. reflog - 查看历史版本
+#### reflog - 查看历史版本
 
 如果发生版本回退的操作，此时使用`git log`就无法查询回退到此版本之前的操作记录，所以需要使用 `git reflog` 指令来查看历史操作(包括所有分支的commit，以及已经被删除的commit)，获取最新的 commit id
 
@@ -502,7 +502,7 @@ git log --grep="JRA-224:"
 $ git reflog
 ```
 
-#### 7.4.4. 显示修改信息
+#### 显示修改信息
 
 ```bash
 # 显示所有提交过的用户，按提交次数排序
@@ -521,7 +521,7 @@ $ git show --name-only [commit]
 $ git show [commit]:[filename]
 ```
 
-#### 7.4.5. diff - 查看文件差异
+#### diff - 查看文件差异
 
 ```bash
 # 显示指定文件相关的每一次diff
@@ -543,9 +543,9 @@ $ git diff [first-branch]...[second-branch]
 $ git diff --shortstat "@{0 day ago}"
 ```
 
-### 7.5. 远程仓库操作命令
+### 远程仓库操作命令
 
-#### 7.5.1. clone - 克隆远程仓库到本地
+#### clone - 克隆远程仓库到本地
 
 `clone` 指令用于克隆远程仓库到本地
 
@@ -555,7 +555,7 @@ $ git clone 远程Git仓库地址
 
 > 注：远程仓库分两种，基于http/https协议或者基于ssh协议
 
-#### 7.5.2. remote - 查看远程仓库
+#### remote - 查看远程仓库
 
 - `remote` 指令用于查看远程，列出指定的每一个远程服务器的简写
 
@@ -575,7 +575,7 @@ $ git remote -v
 $ git remote show <仓库简称>
 ```
 
-#### 7.5.3. remote add - 添加远程仓库
+#### remote add - 添加远程仓库
 
 - 添加远程仓库
 
@@ -583,7 +583,7 @@ $ git remote show <仓库简称>
 $ git remote add <shortname> <url>
 ```
 
-#### 7.5.4. remote rm - 移除远程仓库
+#### remote rm - 移除远程仓库
 
 - 移除远程仓库和本地仓库的关系。
 
@@ -593,7 +593,7 @@ $ git remote rm <shortname>
 
 > Notes: <font color=red>**只是从本地移除远程仓库的关联关系，并不会真正影响到远程仓库**</font>
 
-#### 7.5.5. remote update - 更新远程分支列表
+#### remote update - 更新远程分支列表
 
 - 更新远程仓库，
 
@@ -601,9 +601,9 @@ $ git remote rm <shortname>
 git remote update origin(仓库源名称) --prune
 ```
 
-#### 7.5.6. 拉取远程仓库版本
+#### 拉取远程仓库版本
 
-##### 7.5.6.1. fetch - 手动拉取与合并
+##### fetch - 手动拉取与合并
 
 从远程仓库拉取 (拉取到.git 目录，不会合并到工作区，工作区发生变化)
 
@@ -617,7 +617,7 @@ $ git fetch <remote> <分支名称>
 $ git merge <remote>/<分支名称>
 ```
 
-##### 7.5.6.2. pull - 自动拉取与合并工作区
+##### pull - 自动拉取与合并工作区
 
 `pull` 指令用于拉取远程仓库的版本记录。(拉取到 .git 目录，合并到工作区，工作区不发生变化。相当于 `fetch` + `merge`)
 
@@ -634,7 +634,7 @@ $ git pull <shortname> <分支名称>
 $ git pull <shortname> <分支名称> --allow-unrelated-histories
 ```
 
-#### 7.5.7. push - 推送到远程仓库
+#### push - 推送到远程仓库
 
 - `push` 指令用于将修改的版本推送到远程仓库某个分支
 
@@ -668,9 +668,9 @@ $ git push [remote] --force
 $ git push [remote] --all
 ```
 
-### 7.6. 版本回退与撤销命令
+### 版本回退与撤销命令
 
-#### 7.6.1. checkout 恢复工作区
+#### checkout 恢复工作区
 
 ```bash
 $ git checkout<文件名>
@@ -684,7 +684,7 @@ $ git checkout [commit] [file]
 $ git checkout .
 ```
 
-#### 7.6.2. reset 版本回退
+#### reset 版本回退
 
 `git reset` 指令用于版本的回退
 
@@ -726,7 +726,7 @@ HEAD 说明：
 
 以此类推...
 
-#### 7.6.3. revert
+#### revert
 
 新建一个 commit，用来撤销指定 commit。后者的所有变化都将被前者抵消，并且应用到当前分支
 
@@ -734,7 +734,7 @@ HEAD 说明：
 $ git revert [commit]
 ```
 
-#### 7.6.4. stash
+#### stash
 
 暂时将未提交的变化移除，稍后再移入
 
@@ -743,11 +743,11 @@ $ git stash
 $ git stash pop
 ```
 
-### 7.7. branch - 分支管理命令
+### branch - 分支管理命令
 
 默认分支名称为 master。*2020年Github开始修改为 main*
 
-#### 7.7.1. 查看分支
+#### 查看分支
 
 - 查看分支基础语法
 
@@ -769,7 +769,7 @@ $ git branch -r
 $ git branch -a
 ```
 
-#### 7.7.2. 创建分支
+#### 创建分支
 
 新建一个分支，但依然停留在当前分支
 
@@ -795,7 +795,7 @@ $ git branch [branch] [commit]
 $ git branch --track [branch] [remote-branch]
 ```
 
-#### 7.7.3. checkout 切换分支
+#### checkout 切换分支
 
 使用 `checkout` 命令切换分支
 
@@ -807,7 +807,7 @@ $ git checkout <分支名>
 $ git checkout -
 ```
 
-#### 7.7.4. 分支追踪
+#### 分支追踪
 
 在现有分支与指定的远程分支之间建立追踪关系。
 
@@ -815,7 +815,7 @@ $ git checkout -
 $ git branch --set-upstream [branch] [remote-branch]
 ```
 
-#### 7.7.5. 删除分支
+#### 删除分支
 
 - 删除本地仓库的分支
 
@@ -842,7 +842,7 @@ $ git push origin --delete [branch-name]
 $ git branch -dr [remote/branch]
 ```
 
-#### 7.7.6. merge 合并分支
+#### merge 合并分支
 
 合并指定分支到当前分支。合并分支前需要先使用 `checkout` 切换到待合并到的分支，然后再使用 `merge` 指令指定要合并的分支。
 
@@ -858,13 +858,13 @@ $ git merge <被合并的分支名>
 $ git cherry-pick [commit]
 ```
 
-#### 7.7.7. push 提交分支至远程仓库
+#### push 提交分支至远程仓库
 
 ```bash
 $ git push <仓库简称> <分支名称>
 ```
 
-#### 7.7.8. Merge 还是 rebase
+#### Merge 还是 rebase
 
 merge 与 rebase 是两种『合并』的方式。
 
@@ -901,9 +901,9 @@ merge 与 rebase 是两种『合并』的方式。
 3. 在 MR 的迭代内持续用 amend commit
 4. 在 MR 通过后用 rebase 进行合并
 
-### 7.8. tag - 标签管理命令
+### tag - 标签管理命令
 
-#### 7.8.1. 查看 tag 信息
+#### 查看 tag 信息
 
 - 列出所有 tag
 
@@ -917,7 +917,7 @@ $ git tag
 $ git show [tagName]
 ```
 
-#### 7.8.2. 新建 tag
+#### 新建 tag
 
 在当前 commit 中新建一个标签（tag）
 
@@ -931,19 +931,19 @@ $ git tag [tagName]
 $ git tag [tag] [commit]
 ```
 
-#### 7.8.3. 新建一个分支指向某个 tag
+#### 新建一个分支指向某个 tag
 
 ```bash
 $ git checkout -b [branch] [tag]
 ```
 
-#### 7.8.4. 删除本地 tag
+#### 删除本地 tag
 
 ```bash
 $ git tag -d [tag]
 ```
 
-#### 7.8.5. 删除远程 tag
+#### 删除远程 tag
 
 ```bash
 $ git push origin :refs/tags/[tagName]
@@ -951,7 +951,7 @@ $ git push origin :refs/tags/[tagName]
 
 > Notes: **注意空格**
 
-#### 7.8.6. 提交 tag
+#### 提交 tag
 
 提交指定标签（tag）
 
@@ -967,7 +967,7 @@ $ git push [remote] [tagName]
 $ git push [remote] --tags
 ```
 
-#### 7.8.7. 新建分支指向某个 tag
+#### 新建分支指向某个 tag
 
 新建一个分支，并指向某个 tag
 
@@ -975,9 +975,9 @@ $ git push [remote] --tags
 $ git checkout -b <分支名称> <标签名称>
 ```
 
-### 7.9. 其他命令
+### 其他命令
 
-#### 7.9.1. archive
+#### archive
 
 生成一个可供发布的压缩包
 
@@ -985,11 +985,11 @@ $ git checkout -b <分支名称> <标签名称>
 $ git archive
 ```
 
-#### 7.9.2. subtree
+#### subtree
 
 Git subtree 是 Git 的一个子命令，可以在一个仓库中嵌入另一个仓库。这对于管理项目的不同部分，或者在多个项目之间共享代码非常有用。
 
-##### 7.9.2.1. 添加一个仓库
+##### 添加一个仓库
 
 要添加一个新的仓库到项目队伍中，需要使用 add 命令。这个命令需要两个参数：一个是想要添加的仓库 URL，另一个是想要将这个仓库添加到的队伍中的位置（目录）。
 
@@ -1001,7 +1001,7 @@ git subtree add --prefix=src/library https://github.com/example/library.git mast
 
 这个命令会将 library 的 master 分支添加到队伍中的 library 位置。
 
-##### 7.9.2.2. 更新一个仓库
+##### 更新一个仓库
 
 要更新一个仓库，可以使用 pull 命令。这个命令需要和 add 命令相同的参数。
 
@@ -1013,7 +1013,7 @@ git subtree pull --prefix=src/library https://github.com/example/library.git mas
 
 此命令会从 library 的 master 分支拉取最新的超能力（更改），并将它们合并到队伍中的 library 位置。
 
-##### 7.9.2.3. 将仓库（更改）推送回仓库
+##### 将仓库（更改）推送回仓库
 
 如果在项目中发现了一些新的变更（做了一些更改），并且你想要将这些变更推送回原始的仓库，可以使用 push 命令。这个命令需要和 add 命令相同的参数。
 
@@ -1025,14 +1025,14 @@ git subtree push --prefix=src/library https://github.com/example/library.git mas
 
 这个命令会将在 library 位置发现的变更推送到 library 的 master 分支。
 
-#### 7.9.3. 小结
+#### 小结
 
 - Git subtree 就像是一个项目队伍的管理者，它可以帮助更好地管理项目。
 - 通过使用 Git subtree，可以在一个项目中嵌入另一个项目，而不需要将它们合并成一个大的仓库。
 
-## 8. Git Bash 操作远程仓库（以 Github 为例）
+## Git Bash 操作远程仓库（以 Github 为例）
 
-### 8.1. Github 仓库同步
+### Github 仓库同步
 
 在仓库所在的目录（例如 D:\git_repo）点击右键选择【Git Bash Here】，启动 git bash 程序。
 
@@ -1067,7 +1067,7 @@ git remote rm mytest
 
 ![](images/531661708236949.jpg)
 
-### 8.2. Github 仓库克隆
+### Github 仓库克隆
 
 克隆远程仓库也就是从远程把仓库复制一份到本地，克隆后会创建一个新的本地仓库。选择一个任意部署仓库的目录，然后克隆远程仓库。
 
@@ -1077,7 +1077,7 @@ $ git clone git@github.com:仓库名称/mytest.git
 
 ![](images/300332008257115.jpg)
 
-### 8.3. Github 拉取代码
+### Github 拉取代码
 
 使用以下命令可以从 github 上拉取代码
 
@@ -1086,15 +1086,15 @@ $ git clone git@github.com:仓库名称/mytest.git
 
 ![](images/163533008249784.jpg)
 
-## 9. 版本库 .git 隐藏文件夹
+## 版本库 .git 隐藏文件夹
 
-### 9.1. git 的管理文件夹
+### git 的管理文件夹
 
 在工程会有个管理仓库的文件夹 `.git`，里面保存了版本管理的所有数据。
 
 ![](images/564494657973022.png)
 
-### 9.2. git 的版本管理基本知识
+### git 的版本管理基本知识
 
 - commit：一次对本地仓库的提交。这个提交有个唯一识别 id，最长 40 位，但是使用这个 id，只要位数足够可以唯一代表这个 commit，就不一定最长到 40 位。
 - branch/tag：一次仓库的副本，这个副本有一串历史 commit，是仓库的另一种快照，tag 是仓库的里程碑。处在分支的代码是安全的，否则不在分支的孤立 commit 可能被 git 当垃圾清理掉
@@ -1103,13 +1103,13 @@ $ git clone git@github.com:仓库名称/mytest.git
 - 本地/远程：本地对应的是本地仓库，并且维护了一个跟远端的关联关系
 - 映射关系：本地仓库和官方远程仓库进行同步，同步的方法：如分支的映射关系、当前提交
 
-### 9.3. git 仓库配置
+### git 仓库配置
 
 `git clone xxxx` 克隆一个远端分支会产生一个 `./git/config`，一个最简 config 配置如下：
 
 ![](images/406485356872110.png)
 
-#### 9.3.1. [core]分区
+#### [core]分区
 
 core 保存的是与分支无关的配置
 
@@ -1118,7 +1118,7 @@ core 保存的是与分支无关的配置
 - `logallrefupdates = true`，记录所有 ref 的更新。ref 是描述当前仓库所有本地分支，每一个文件名对应相应的分支，文件内部存储了当前分支最新的 commit hash 值。因此新建分支，只要往`.git/refs/heads/分支名`写入 commit hash 值即可。
 - `core.bare = false`，默认不创建裸仓库，裸仓库是创建的仓库并不包含工作区 ，在裸仓库上执行 Git 命令，而从裸仓库 clone 下来的本地仓库可以进行正常的 push 操作，但是从一般仓库 clone 下来的本地仓库却不行。所以裸仓库一般是作为远端的中心仓库。使用 `git init --bare <repo>` 可以创建一个裸仓库，并且这个仓库是可以被 clone 和 push，裸仓库不包含工作区，所以在裸仓库不能直接提交变更。
 
-#### 9.3.2. [remote]分区、[branch]分区
+#### [remote]分区、[branch]分区
 
 [remote "origin"] 和 [branch "master"] 指的是本地如何与远程仓库做交互。
 
@@ -1133,9 +1133,9 @@ core 保存的是与分支无关的配置
 - `git fetch orign` 会查找 `.git/config` 文件中的 [remote origin] 的配置 url，按照 fetch 规则把最新远端所有的分支的 commit id 更新到`./git/refs/remotes/origin文件夹`中。
 - `git merge` 会去找`./git/refs/remotes/origin/某个分支`，合并到 `refs/heads/某个分支`
 
-### 9.4. git 目录结构
+### git 目录结构
 
-#### 9.4.1. refs 文件夹（分支管理）
+#### refs 文件夹（分支管理）
 
 ![](images/123156062873112.png)
 
@@ -1153,9 +1153,9 @@ core 保存的是与分支无关的配置
 
 ![](images/360314098528656.png)
 
-#### 9.4.2. objects 文件夹（文件内容管理）
+#### objects 文件夹（文件内容管理）
 
-##### 9.4.2.1. object 角色
+##### object 角色
 
 git 定义的 object 有 3 种角色：commit、tree、blob。角色类型可以用 `git cat-file -t <commit id>` 找到。角色间的关系如下：commit 对应一个 tree，tree 里面可以包含另一个 tree，tree 的叶子节点是一个 blob，blog 代表这个文件的某个版本状态。
 
@@ -1167,7 +1167,7 @@ git 定义的 object 有 3 种角色：commit、tree、blob。角色类型可以
 
 ![](images/302556723674213.png)
 
-##### 9.4.2.2. objects 目录结构
+##### objects 目录结构
 
 - objects/ folder 存储了对象信息。包括文件内容，提交 id，树，和 tag 里程碑信息。
 - objects/[0-9a-f][0-9a-f] folders
@@ -1176,20 +1176,20 @@ git 定义的 object 有 3 种角色：commit、tree、blob。角色类型可以
 
 ![](images/374787147904007.png)
 
-#### 9.4.3. hooks 文件夹（脚本设置管理）
+#### hooks 文件夹（脚本设置管理）
 
 钩子函数脚本用于自定义一些 git 命令执行时候触发的脚本。比如 commit、applypatch、push、rebase 被执行会触发相关脚本。要使这些生效，把文件的 sample 后缀去掉。
 
 ![](images/47116077265154.png)
 
-#### 9.4.4. logs 文件夹（日志管理）
+#### logs 文件夹（日志管理）
 
 logs 目录夹存储 refs 文件夹的改变，这些日志包括 commit 关联关系、提交人、提交时间等，执行 `git reflog` 命令可以管理查看这些 log。
 
 - logs/refs/heads/ folder 分支管理
 - logs/refs/tags/ folder tag 管理
 
-#### 9.4.5. pack-refs 文件（缓存效能管理）
+#### pack-refs 文件（缓存效能管理）
 
 是 git 效能优化的文件，文件包含索引并且压缩 object，能达到随机访问对象。
 
@@ -1199,11 +1199,11 @@ branch 和 tag 的变更（统称为 ref）是每个 ref 在目录下的（子�
 
 分支的持续 commit 总是在 `$GIT_DIR/refs` 目录层次结构下创建新文件 。有过多 ref 的存储库的做法是将其 ref 打包 --all 一次，并偶尔运行 `git pack-refs`。根据定义，tag 是固定的，并且不会更改。branch 头将带有首字母 `pack-refs --all`，但只有当前分支 head 将被解包，而下一个 pack-refs（不带--all）将使它们解包。
 
-#### 9.4.6. objects/info 文件夹
+#### objects/info 文件夹
 
 存储额外扩展信息。info/exclude 用于配置本地分支的 例外文件夹，该文件夹不会被 git 仓库管理。和 gitignore 的区别在于，exclude 只在本地分支生效，不会被同步到远端的 repo。
 
-#### 9.4.7. index 文件（暂存区管理）
+#### index 文件（暂存区管理）
 
 index 是个二进制文件夹，对应着暂存区。暂存区：英文叫 stage 或 index。一般存放在 ".git目录下" 下的 index 文件（`.git/index`）中，所以我们把暂存区有时也叫作索引（index）。暂存区保存元数据包括时间戳、文件名、SHA id。
 
@@ -1211,7 +1211,7 @@ index 是个二进制文件夹，对应着暂存区。暂存区：英文叫 stag
 
 ![](images/72947036980311.png)
 
-#### 9.4.8. 头指针相关（HEAD、FETCH_HEAD、ORIG_HEAD等）
+#### 头指针相关（HEAD、FETCH_HEAD、ORIG_HEAD等）
 
 - HEAD 记录了当前的头指针所对应的 commit id。比如说想退回到当前提交的前一个提交，就可以这样方便表示：`git reset HEAD^`
 - FETCH_HEAD 记录了远端获取到的状态。最新从远程分支获取的分支。FETCH_HEAD 文件存储的是远程分支的最新的 commit 信息。
@@ -1221,19 +1221,19 @@ index 是个二进制文件夹，对应着暂存区。暂存区：英文叫 stag
 - CHERRY_PICK_HEAD：执行 cherry_pick，意义同 MERGE_HEAD。
 - 类似的还有 BISECT_HEAD, REVERT_HEAD，REJECT_NON_FF_HEAD
 
-#### 9.4.9. modules 文件夹
+#### modules 文件夹
 
 modules 包含了第三方的库，比如一个工程包含了另一个 repo
 
 ![](images/574436293179729.png)
 
-#### 9.4.10. decription 文件
+#### decription 文件
 
 decription 用于 git 在 web 界面用于搜索。
 
-## 10. Git 扩展知识
+## Git 扩展知识
 
-### 10.1. git 分支命名规范
+### git 分支命名规范
 
 **Git 常用分支命名**
 
@@ -1245,11 +1245,11 @@ decription 用于 git 在 web 界面用于搜索。
 | 发布版本 |   `release-*`   | 发布定期要上线的功能                                 |
 | 修复分支 |     `bug-*`     | 修复线上代码的 bug                                  |
 
-#### 10.1.1. main / master 分支
+#### main / master 分支
 
 `master` / `main`：主分支，永远是可用的、稳定的、可直接发布的版本，不能直接在该分支上开发。只有计划发布的版本功能在`develop`分支上全部完成，而且测试没有问题了才会合并到`master`上。
 
-#### 10.1.2. develop 分支
+#### develop 分支
 
 `develop`：开发主分支，代码永远是最新，所有新功能以这个分支来创建自己的开发分支，该分支只做合并操作，不能直接在该分支上开发
 
@@ -1258,7 +1258,7 @@ decription 用于 git 在 web 界面用于搜索。
     
 ![](images/20844982457772.jpg)
 
-#### 10.1.3. feature 分支
+#### feature 分支
 
 `feature-xxx`：功能开发分支，在`develop`上创建分支，以自己开发功能模块命名，功能测试正常后合并到`develop`分支
 
@@ -1279,7 +1279,7 @@ Feature 分支是生命期很短的分支，专注于单个特性的开发。和
 
 能建立大量 feature 分支，对于提高工作效率非常关键。每个特性建立一个 feature 分支，在上面完成特性开发后，发出 MR。在 code review 通过之前，已经可以新建另一个特性专用的 feature 分支，切换过去，开始做另一个特性。在 code review 过程中还能来回切换，同时做多个特性。其他 VCS 是做不到这一点的，效率也自然低很多。
 
-#### 10.1.4. release 分支群
+#### release 分支群
 
 `release`：预分布分支，在合并好`feature`分支的`develop`分支上创建，主要是用来测试 bug 的分支，修改好 bug 并确定稳定之后合并到`develop`和`master`分支，然后发布`master`分支
 
@@ -1287,11 +1287,11 @@ Feature 分支是生命期很短的分支，专注于单个特性的开发。和
 
 `release-fix`：功能 bug 修复分支，在`release`上创建分支修复，修复好测试出来的 bug 之后合并回`release`分支。
 
-#### 10.1.5. hotfix 分支
+#### hotfix 分支
 
 `hotfix-xxx`：紧急 bug 修改分支，项目上线之后可以会遇到一些环境问题需要紧急修复，在`master`分支上创建，流程跟`release`分支相似，修复完成后合并到`develop`和`master`分支
 
-### 10.2. 开发项目时 git 分支管理流程图
+### 开发项目时 git 分支管理流程图
 
 ![](images/20190316175236283_27122.jpg)
 
@@ -1301,9 +1301,9 @@ Feature 分支是生命期很短的分支，专注于单个特性的开发。和
 - 开发过程中，如果组员A开发的功能依赖组员B正在开发的功能，可以待组员B开发好相关功能之后，组员A直接pull组员B的分支下来开发，不需要先将组员B的分支merge到develop分支。
 - feature 分支在申请合并之前，最好是先 pull 一下 develop 主分支下来，看一下有没有冲突，如果有就先解决冲突后再申请合并。
 
-### 10.3. git 提交规范
+### git 提交规范
 
-#### 10.3.1. 中文式提交格式参考
+#### 中文式提交格式参考
 
 ```
 <新功能|bug修复|文档改动|格式化|重构|测试代码>: (影响范围) <主题>
@@ -1311,7 +1311,7 @@ Feature 分支是生命期很短的分支，专注于单个特性的开发。和
 issue #?
 ```
 
-#### 10.3.2. 提交类型
+#### 提交类型
 
 关于 commit 时类别，一般通用的如下
 
@@ -1327,7 +1327,7 @@ issue #?
 - chore：构建过程或辅助工具的变动，除上面之外的修改
 - revert：撤销先前的提交
 
-#### 10.3.3. 提交注释示例
+#### 提交注释示例
 
 ```
 <类型>: <主题>
@@ -1351,13 +1351,13 @@ issue #?
 # ---------------- 例子结束 -----------------------
 ```
 
-### 10.4. 免费源代码托管网站
+### 免费源代码托管网站
 
-#### 10.4.1. GitHub
+#### GitHub
 
 > 官网：https://github.com/
 
-#### 10.4.2. 码云（Gitee）
+#### 码云（Gitee）
 
 > 网址：https://gitee.com/
 
@@ -1367,7 +1367,7 @@ issue #?
 
 7 月 14 日，工业和信息化部技术发展司公布了 「2020 年开源托管平台项目」的招标结果，由深圳市奥思网络科技有限公司（开源中国）牵头，与国家工业信息安全发展研究中心等 10 家单位组成的联合体中标该项目，联合体将依托码云建设中国独立的开源托管平台。
 
-#### 10.4.3. Coding.net
+#### Coding.net
 
 > 网址：https://coding.net/
 
@@ -1377,7 +1377,7 @@ Coding.net的项目管理包含任务、讨论、文件等功能，支持多成�
 
 随着Github免费策略的推进，CODING 也已经顺势开放所有基础功能（项目协同、代码托管、CI/CD 等）免费使用，不限成员数，帮助国内开发者零成本开始研发协作。
 
-#### 10.4.4. Agit.ai
+#### Agit.ai
 
 > 网址：https://agit.ai/
 
@@ -1387,7 +1387,7 @@ Coding.net的项目管理包含任务、讨论、文件等功能，支持多成�
 
 Agit.ai为开发者提供集成了Tensorflow、Pytorch、Ray等常用AI库的开发环境镜像，以及一键式运行的的分布式计算资源，每一个为了环境搭建而苦恼的算法攻城狮，看到之后都应该会倍感欣慰。独特的匿名分享功能简直就是为了论文投稿的双盲评审而生，也可以从中看到浓浓的学术背景。
 
-#### 10.4.5. BitBucket
+#### BitBucket
 
 > 网址：https://bitbucket.org/
 
@@ -1395,9 +1395,9 @@ Agit.ai为开发者提供集成了Tensorflow、Pytorch、Ray等常用AI库的开
 
 值得注意的是，它让用户可以使用任何 Git 客户端或 Git 命令行来推送文件。并且 BitBucket 可以部署在云端、数据中心或本地服务器上。
 
-### 10.5. git 钩子
+### git 钩子
 
-#### 10.5.1. 本地禁止提交(commit)到 master 分支
+#### 本地禁止提交(commit)到 master 分支
 
 一般 master 分支只能从其他分支合并代码，为了防止意外提交和开发者随意提交到 master 分支。可以通过提交前钩子来禁止提交到 master 分支，在 git 项目目录下添加 `.git/hooks/pre-commit` 文件，添加内容如下：
 
@@ -1410,15 +1410,15 @@ if [ "master" == "$branch" ]; then
 fi
 ```
 
-### 10.6. 减小 Git 仓库 .git 文件大小（待测试）
+### 减小 Git 仓库 .git 文件大小（待测试）
 
 > 后面待测试与修改，参考：https://blog.csdn.net/LOI_QER/article/details/107911115
 
-#### 10.6.1. 起因
+#### 起因
 
 使用 git 储存本地音频、相片时，其中很多文件超过 10Mb，更有很多超过 50Mb，这些文件都添加到 git 的历史记录中`(git add . && git commit`)，就算后面删除了这些文件本身，但其提交记录永久的留在了 .git 中，被 git 保存为了 Blob 对象储存起来了，导致 .git 目录超过 35 Gb，占用过多硬盘空间，所以需要进行“瘦身”。
 
-#### 10.6.2. git gc 修剪历史提交
+#### git gc 修剪历史提交
 
 当运行 `git gc` 命令时，Git 会收集所有松散对象并将它们存入 packfile，合并这些 packfile 进一个大的 packfile，然后将不被任何 `commit` 引用并且已存在一段时间 (数月) 的对象删除。 此外， Git 还会将所有引用 (references) 并入一个单独文件。
 
@@ -1465,7 +1465,7 @@ $ git gc --prune=now
 $ git count-objects -v
 ```
 
-### 10.7. 将项目同时提交到多个远程仓库
+### 将项目同时提交到多个远程仓库
 
 由于 GitHub 的访问速度慢，因此会有需求将一套开源代码同时提交到多个开源平台（例如 GitHub 和 Gitee）。以下是一套代码同时提交到 GitHub 和 Gitee 为示例，配置 Git 达到同时上传代码到多个平台。
 
@@ -1520,9 +1520,9 @@ git clone git@github.com:MooNkirA/demo.git
 
 4. 使用 `git remote -v` 命令，可以看到本地仓库与两个远程仓库关联
 
-## 11. Git 常见问题及解决方法汇总
+## Git 常见问题及解决方法汇总
 
-### 11.1. fatal detected dubious ownership in repository 解决办法
+### fatal detected dubious ownership in repository 解决办法
 
 问题描述：在git仓库中执行 `git pull` 命令时，提示：`fatal: detected dubious ownership in repository`。这是因为 git 担心的权限安全策略导致的报错，可以按提示把某个（或多个）目录添加到信任列表
 
@@ -1537,9 +1537,9 @@ git config --global --add safe.directory D:/www/other-project
 git config --global --add safe.directory "*"
 ```
 
-### 11.2. git 显示和提交中文乱码
+### git 显示和提交中文乱码
 
-#### 11.2.1. git status 无法显示中文
+#### git status 无法显示中文
 
 使用 `git status` 查看有改动但未提交的文件时总只显示数字串，显示不出中文文件名。这是因为在默认设置下，中文文件名在工作区状态输出，中文名不能正确显示，而是显示为八进制的字符编码。
 
@@ -1551,7 +1551,7 @@ git config --global --add safe.directory "*"
 git config --global core.quotepath false
 ```
 
-#### 11.2.2. git bash 终端显示中文乱码
+#### git bash 终端显示中文乱码
 
 git bash 终端需要设置成中文和utf-8编码，才能正确显示中文。
 
@@ -1561,7 +1561,7 @@ git bash 终端需要设置成中文和utf-8编码，才能正确显示中文。
 
 > Tips: 英文界面显示则是：【Options】->【Text】->【Locale】改为 `zh_CN`，Character set 改为 `UTF-8`
 
-#### 11.2.3. 修改配置文件方式解决中文乱码
+#### 修改配置文件方式解决中文乱码
 
 还可以通过直接修改配置文件的方式来解决中文乱码问题。进入 git 的安装目录，编辑 etc\gitconfig 文件，在文件末尾增加以下内容：
 
@@ -1604,7 +1604,7 @@ export LESSHARESET=utf-8
 
 > Notes: 注意以上内容配置时，删除`#`号的注释
 
-### 11.3. Git 在跨平台 CRLF 和 LF 的解决方案
+### Git 在跨平台 CRLF 和 LF 的解决方案
 
 - mac 与 Unix 系统的换行使用 LF
 - windows 系统换行使用 CRLF
@@ -1635,11 +1635,11 @@ git config --global core.autocrlf false
 - Linux 最好不要设置 `core.autocrlf`，因为该配置算是为 Windows 平台定制。
 - Windows 上设置 `core.autocrlf=false`，仓库里也没有配置 `.gitattributes`，很容易引入 CRLF 或者混合换行符（Mixed Line Endings，一个文件里既有 LF 又有CRLF）到版本库，这样就可能产生各种奇怪的问题。
 
-### 11.4. 解决合并冲突常用规则
+### 解决合并冲突常用规则
 
 当出现合并冲突的时候，最好的方式是先把 feature 分支 rebase 到目标分支的顶端，这时候解决冲突，然后 force push。
 
-#### 11.4.1. 命令方式
+#### 命令方式
 
 > 只要所有开发者都遵守这个规则，那么解决冲突是一件非常容易的事情
 
@@ -1651,14 +1651,97 @@ git config --global core.autocrlf false
 6. 把 dev 分支的代码合并回 master 分支：`git merge dev`。
 7. 提交代码：`git push`。
 
-#### 11.4.2. 常见错误
+#### 常见错误
 
 - **解决合并冲突后建了个新的 MR**：因为冲突解决的错误行为，有可能在解决之后，修改被提交到了一个新的分支。这时候应该把你的分支 reset 到新的去，force push，再删掉新的；而不是关掉原先的 MR，在新分支上开个新 MR。
 - **把分支搞乱**：如果真的遇到了多分支复杂交错的情况，有两个方法可以尝试清理出来。<font color=red>*注：两个方法最后都需要force push。*</font>
     - 强制rebase。Fetch一下整个repo；把你的分支rebase到目标分支上的时候勾选force；这时候在列表里选要拿去rebase的commit。大部分时候这都能行。但有时候git因为分支太错综复杂而搞不清楚commit，在列表里会有遗漏。
     - Cherry-pick。在目标分支上新建一个临时分支；把有用的commit都cherry-pick过去；把你的分支reset到那个临时分支上；最后删掉那个临时分支。
 
-## 12. Git 学习资源分享
+### Git 中修改文件名的大小写无法生效
+
+#### 问题描述与原因分析
+
+在 Git 中修改文件名的大小写（例如 file.txt -> File.txt）后，push 到远程仓库发现未生效，通常是因为 Git 默认对文件名大小写不敏感（尤其在 Windows/macOS 系统上）。
+
+- Git 默认配置：`core.ignoreCase` 设置为 true（尤其在 Windows/macOS），导致 Git 认为 file.txt 和 File.txt 是同一个文件。
+- 文件缓存：Git 缓存（index）中保留了旧文件名，未检测到大小写变化。
+
+#### 解决方案
+
+方法1：强制重命名并提交
+
+```bash
+# 1. 删除旧文件名（Git 才能识别为改名）
+git mv --force oldname.txt NEWNAME.txt
+
+# 2. 提交并推送
+git commit -m "Rename file (case change)"
+git push
+```
+
+方法2：手动修改并清除缓存
+
+```bash
+# 1. 直接修改文件名（大小写变化）
+mv oldname.txt NEWNAME.txt
+
+# 2. 清除 Git 缓存并重新添加
+git rm --cached oldname.txt
+git add NEWNAME.txt
+
+# 3. 提交并推送
+git commit -m "Rename file (case change)"
+git push
+```
+
+方法3：临时修改 Git 配置（<font color=red>**推荐**</font>）
+
+```bash
+# 1. 临时关闭大小写忽略
+git config core.ignoreCase false
+
+# 2. 执行改名操作（方法1或方法2）
+git mv --force oldname.txt NEWNAME.txt
+
+# 3. 提交并推送
+git commit -m "Fix case sensitivity in filename"
+git push
+
+# 4. 恢复配置（可选）
+git config core.ignoreCase true
+```
+
+#### 验证是否生效
+
+```bash
+# 查看 Git 是否识别为改名
+git status
+```
+
+如果显示 `renamed: oldname.txt -> NEWNAME.txt`，则操作成功。
+
+#### 注意事项
+
+- **系统差异**：Linux 系统默认对大小写敏感，可能无需额外操作。
+- **协作影响**：如果其他人已拉取旧文件名，可能需要让他们清理本地缓存：
+
+```bash
+git rm --cached -r .
+git reset --hard
+```
+
+#### 预防措施
+
+全局关闭大小写忽略（谨慎操作，可能影响其他项目）：
+
+```bash
+git config --global core.ignoreCase false
+```
+
+使用 `git mv --force` 直接处理大小写重命名。
+
+## Git 学习资源分享
 
 - [阮一峰 Git 教程](https://www.bookstack.cn/read/git-tutorial/README.md)
 - [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_CN) - 最好用的 Git 在线学习工具。提供了多个学习章节，适合不同水平的学习者。如果是初学者，可以按照顺序逐步学习。每个章节都设计有明确的学习目标和提示信息，帮助理解并实践 Git 的各种操作。

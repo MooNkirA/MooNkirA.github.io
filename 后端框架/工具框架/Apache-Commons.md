@@ -32,20 +32,20 @@ Apache Commons 是对 JDK 的拓展，包含了很多开源的工具，用于解
 
 # Apache Commons IO
 
-## 1. 简介
+## 简介
 
 Apache Commons IO 是第三方 IO 操作工具类库，jar 包名称是 `commons-io-x.x.jar`
 
 - 官网：http://commons.apache.org/proper/commons-io/index.html
 - 官方API文档：http://commons.apache.org/proper/commons-io/apidocs/index.html
 
-## 2. 基础使用
+## 基础使用
 
-### 2.1. 直接导入jar包
+### 直接导入jar包
 
 Apache Commons IO包的下载地址：http://commons.apache.org/proper/commons-io/download_io.cgi
 
-### 2.2. maven 依赖
+### maven 依赖
 
 ```xml
 <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -56,9 +56,9 @@ Apache Commons IO包的下载地址：http://commons.apache.org/proper/commons-i
 </dependency>
 ```
 
-## 3. FilenameUtils 工具类常用方法
+## FilenameUtils 工具类常用方法
 
-### 3.1. getExtension
+### getExtension
 
 ```java
 static String getExtension(String filename);
@@ -66,7 +66,7 @@ static String getExtension(String filename);
 
 - 获取路径中的扩展名(`.后缀名`)
 
-### 3.2. getName
+### getName
 
 ```java
 static String getName(String filename);
@@ -74,7 +74,7 @@ static String getName(String filename);
 
 - 获取路径中的文件名包括(`.后缀名`)
 
-### 3.3. isExtension
+### isExtension
 
 ```java
 static boolean isExtension(String filename, String extension);
@@ -82,9 +82,9 @@ static boolean isExtension(String filename, String extension);
 
 - 判断路径是否符合后缀名(extension)，是返回`true`，否则返回`fale`
 
-## 4. FileUtils 工具类常用方法
+## FileUtils 工具类常用方法
 
-### 4.1. copyDirectory
+### copyDirectory
 
 ```java
 static String readFileToString(File file);
@@ -96,7 +96,7 @@ static String readFileToString(File file);
 String str = FileUtils.readFileToString(new File("a.txt"), "utf8");
 ```
 
-### 4.2. write
+### write
 
 ```java
 void write(File file, CharSequence data);
@@ -104,7 +104,7 @@ void write(File file, CharSequence data);
 
 - 将指定的字符串写出到目标文件中
 
-### 4.3. writeStringToFile
+### writeStringToFile
 
 ```java
 static void writeStringToFile(File file, String data);
@@ -112,7 +112,7 @@ static void writeStringToFile(File file, String data);
 
 - 将指定字符串写出到目标文件中
 
-### 4.4. copyFile
+### copyFile
 
 ```java
 public static void copyFile(final File srcFile, final File destFile) throws IOException
@@ -134,7 +134,7 @@ public static long copyFile(final File input, final OutputStream output) throws 
 
 - 将`input`源文件夹对象转成`output`输入流对象，写到目标文件夹中，如目标文件不存在，则会创建该文件
 
-### 4.5. copyDirectory
+### copyDirectory
 
 ```java
 public static void copyDirectory(final File srcDir, final File destDir) throws IOException
@@ -167,7 +167,7 @@ public static void copyDirectory(final File srcDir, final File destDir,
     - `FileFilter`参数：是一个函数式接口，用于实现对象目录的过滤功能，入参为当前源文件对象，返回`true`时表示复制该文件，否则表示不复制
     - `preserveFileDate`参数：用于指定复制后的文件修改日期是否与源文件一样，`true`代表与源文件一样。
 
-### 4.6. copyDirectoryToDirectory
+### copyDirectoryToDirectory
 
 ```java
 static copyDirectoryToDirectory(File srcDir,File destDir);
@@ -175,9 +175,9 @@ static copyDirectoryToDirectory(File srcDir,File destDir);
 
 - 将srcDir源文件夹中内容复制到另一个destDir目标文件夹中(多一个父级文件夹destDir)
 
-## 5. IOUtils 类常用方法
+## IOUtils 类常用方法
 
-### 5.1. copy
+### copy
 
 ```java
 static int copy(InputStream input, OutputStream output)
@@ -187,20 +187,20 @@ static int copy(InputStream input, OutputStream output)
 
 # Apache Commons Lang
 
-## 1. 简介
+## 简介
 
 Apache Commons Lang 是第三方 Java 基础 API 增强的工具包，特别是字符串操作方法，基本数值方法，对象反射，并发，创建和序列化以及系统属性。此外，它还包含对`java.util.Date`的基本增强，以及一系列专用于构建方法的实用程序，例如 `hashCode`，`toString` 和 `equals`。
 
 - 官网：http://commons.apache.org/proper/commons-lang/
 - 官方API文档：http://commons.apache.org/proper/commons-lang/javadocs/api-release/index.html
 
-## 2. 基础使用
+## 基础使用
 
-### 2.1. 直接导入jar包
+### 直接导入jar包
 
 Apache Commons Lang 包的下载地址：http://commons.apache.org/proper/commons-lang/download_lang.cgi
 
-### 2.2. maven 依赖
+### maven 依赖
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
@@ -257,7 +257,7 @@ WordUtils – 用于处理单词大小写、换行等。
 
 # Apache Commons BeanUtils
 
-## 1. BeanUtils 概述
+## BeanUtils 概述
 
 BeanUtils 是 Apache commons 组件的成员之一，是 Apache 组织开发的一款方便操作 JavaBean 的工具类。主要使用场景如下：
 
@@ -265,9 +265,9 @@ BeanUtils 是 Apache commons 组件的成员之一，是 Apache 组织开发的�
 - 使用 BeanUtils 将一个 JavaBean 对象的属性值赋值给另一个 JavaBean 对象。
 - 使用 BeanUtils 将一个 Map 集合中数据封装的一个 JavaBean 对象中。
 
-## 2. 使用步骤
+## 使用步骤
 
-### 2.1. 直接导入 jar 包
+### 直接导入 jar 包
 
 1. 下载地址：http://commons.apache.org/
 2. 使用第三方工具，需要导入 jar 包：
@@ -275,13 +275,13 @@ BeanUtils 是 Apache commons 组件的成员之一，是 Apache 组织开发的�
 	- commons-logging-1.2.jar -- 日志记录组件
 	- commons-collections-3.2.2.jar -- 增强的集合包
 
-### 2.2. （待补充）maven 依赖
+### （待补充）maven 依赖
 
 ```xml
 
 ```
 
-## 3. BeanUtils 对象工具类
+## BeanUtils 对象工具类
 
 `org.apache.commons.beanutils.BeanUtils` 提供一些操作 JavaBean 的静态工具方法：
 
@@ -320,7 +320,7 @@ public static Map<String, String> describe(Object bean) throws IllegalAccessExce
 
 - 将一个 JavaBean 中所有的属性转成 Map 集合，并且多出一个 class 属性键值对。如操作后，类中会多出一个属性 `class = class com.moon.entity.User`
 
-## 4. ConvertUtils 日期转换器
+## ConvertUtils 日期转换器
 
 `org.apache.commons.beanutils.ConvertUtils` 是一用于日期操作、转换等工具类库
 	
@@ -350,7 +350,7 @@ ConvertUtils.register(dateC, Date.class);
 BeanUtils.populate(bean, map);
 ```
 
-## 5. 扩展：与 Spring 提供的 BeanUtils 的区别
+## 扩展：与 Spring 提供的 BeanUtils 的区别
 
 `org.springframework.beans.BeanUtils` 与 `org.apache.commons.beanutils.BeanUtils` 都提供了 `copyProperties` 方法，作用是将一个 JavaBean 对象中的数据复制到另一个属性结构相似的 JavaBean 对象中。两者的使用注意事项如下：
 
@@ -372,7 +372,7 @@ public static void copyProperties(Object dest, Object orig) throws IllegalAccess
 
 # Commons DBUtils
 
-## 1. DbUtils 概述
+## DbUtils 概述
 
 `DbUtils` 是 Apache 组织开发的一个开源 JDBC 工具类库。是一款方便操作数据库的工具。
 
@@ -383,9 +383,9 @@ public static void copyProperties(Object dest, Object orig) throws IllegalAccess
 
 目前使用的是：commons-dbutils-1.7.jar
 
-## 2. DbUtils 工具的核心类
+## DbUtils 工具的核心类
 
-### 2.1. DbUtils 类
+### DbUtils 类
 
 提供了装载 JDBC 驱动程序、关闭资源和处理事务的相关静态方法
 
@@ -401,11 +401,11 @@ public static void closeQuietly(…);
 
 这一类方法不仅能在 `Connection`、`Statement` 和 `ResultSet` 为 `NULL` 情况下避免关闭，还能隐藏一些在程序中抛出的 `SQLException`。
 
-### 2.2. QueryRunner 类
+### QueryRunner 类
 
 用来对数据库执行CRUD(增删改查)操作
 
-#### 2.2.1. QueryRunner 增删改操作方式1：传入数据源对象
+#### QueryRunner 增删改操作方式1：传入数据源对象
 
 **构造方法**
 
@@ -435,7 +435,7 @@ int update(String sql, Object...params);
 > 注：以上方法在内部都有释放资源的代码，所以<font color=red>**无需关闭连接**</font>等操作
 
 
-#### 2.2.2. QueryRunner 增删改操作方式2：没有传入任何对象
+#### QueryRunner 增删改操作方式2：没有传入任何对象
 
 **构造方法**
 
@@ -460,7 +460,7 @@ int update(Connection conn, String sql, Object...params);
 
 > 注：以上方法没有释放资源的代码，<font color=red>**需要操作者手动关闭连接**</font>
 
-#### 2.2.3. QueryRunner 查询操作方式1：没有连接对象
+#### QueryRunner 查询操作方式1：没有连接对象
 
 构造方法
 
@@ -481,7 +481,7 @@ Object query(String sql, ResultSetHandler rsh, Object... params)
 
 > 注：以上方法在内部都有释放资源的代码，所以<font color=red>**无需关闭连接**</font>等操作
 
-#### 2.2.4. QueryRunner 查询操作方式2：有连接对象，需要手动关闭资源
+#### QueryRunner 查询操作方式2：有连接对象，需要手动关闭资源
 
 构造方法
 
@@ -498,7 +498,7 @@ Object query(Connection conn, String sql, ResultSetHandler rsh, Object... params
 
 > 注：以上方法没有释放资源的代码，<font color=red>**需要操作者手动关闭连接**</font>
 
-#### 2.2.5. QureyRunner 的操作多个数据方法
+#### QureyRunner 的操作多个数据方法
 
 ```java
 int[] batch(String sql, Object[][] params)
@@ -548,11 +548,11 @@ public void delProductBatch(String[] pids) {
 }
 ```
 
-### 2.3. ResultSetHandler 接口
+### ResultSetHandler 接口
 
 用来定义如何封装查询结果集
 
-#### 2.3.1. 接口的方法
+#### 接口的方法
 
 ```java
 Object handle(ResultSet rs);
@@ -632,9 +632,9 @@ public class QueryRunnerTest {
 }
 ```
 
-### 2.4. 常用的 ResultSetHandler 接口的实现类
+### 常用的 ResultSetHandler 接口的实现类
 
-#### 2.4.1. 封装成 JavaBean (BeanHandler / BeanListHandler)
+#### 封装成 JavaBean (BeanHandler / BeanListHandler)
 
 <font color=red>**前提：表的列名与 JavaBean 属性名要相同**</font>
 
@@ -720,7 +720,7 @@ public class Test02_04 {
 }
 ```
 
-#### 2.4.2. 封装成 Map (MapHandler / MapListHandler)
+#### 封装成 Map (MapHandler / MapListHandler)
 
 <font color=red>**可用于表连接查询的时候**</font>
 
@@ -809,7 +809,7 @@ public class Test02_06 {
 }
 ```
 
-#### 2.4.3. 封装成数组(ArrayHandler / ArrayListHandler)
+#### 封装成数组(ArrayHandler / ArrayListHandler)
 
 ```java
 Object[] ArrayHandler();
@@ -881,7 +881,7 @@ public class Test02_01 {
 }
 ```
 
-#### 2.4.4. 封装单行单列数据 (ScalarHandler)
+#### 封装单行单列数据 (ScalarHandler)
 
 ```java
 T ScalarHandler<T>();
@@ -925,7 +925,7 @@ public class Test02_04 {
 }
 ```
 
-#### 2.4.5. 封装多行单列数据 (ColumnListHandler)
+#### 封装多行单列数据 (ColumnListHandler)
 
 ```java
 List<T> ColumnListHandler<T>();
@@ -976,7 +976,7 @@ public class Test02_05 {
 }
 ```
 
-#### 2.4.6. KeyedHandler
+#### KeyedHandler
 
 ```java
 Map<String, Map<String, Object>> KeyedHandler<K>(String s);
@@ -1030,9 +1030,9 @@ public class Test02_05 {
 }
 ```
 
-## 3. DbUtils 事务操作
+## DbUtils 事务操作
 
-### 3.1. DbUtils 事务处理方式
+### DbUtils 事务处理方式
 
 **自动提交**：每条SQL语句执行后自动提交事务。无法通过回滚撤消操作。
 
@@ -1042,7 +1042,7 @@ public class Test02_05 {
 2. 先调用 `conn.setAutoCommit(false);` 开启事务，取消自动提交。
 3. 在 SQL 执行完后调用 `commitAndCloseQuietly(conn);` 提交事务，如果出现异常则调用 `rollbackAndCloseQuietly(conn);` 回滚事务。
 
-### 3.2. 与事务处理相关的方法（待修改完善）
+### 与事务处理相关的方法（待修改完善）
 
 ```java
 conn.setAutoCommit(false);

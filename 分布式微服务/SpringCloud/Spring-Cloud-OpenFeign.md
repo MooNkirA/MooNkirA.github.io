@@ -1,4 +1,4 @@
-## 1. Spring Cloud OpenFeign 简介
+## Spring Cloud OpenFeign 简介
 
 Feign 是 Netflix 开发的声明式，模板化的 HTTP 客户端，其灵感来自 Retrofit，JAXRS-2.0 以及 WebSocket。
 
@@ -6,26 +6,26 @@ Feign 可更加便捷，优雅的调用 HTTP API。在 Spring Cloud 中，使用
 
 Feign 支持多种注解，例如 Feign 自带的注解或者 JAX-RS 注解等。Spring Cloud 对 Feign 进行了增强，使 Feign 支持了 SpringMVC 注解，并整合了 Ribbon 和 Eureka，从而让 Feign 的使用更加方便。
 
-### 1.1. Feign 和 OpenFeign
+### Feign 和 OpenFeign
 
 OpenFeign 组件的前身是 Netflix Feign 项目，它最早是作为 Netflix OSS 项目的一部分，由 Netflix 公司开发。后来 Feign 项目被贡献给了开源组织，于是就有了 Spring Cloud OpenFeign 组件。
 
 Feign 和 OpenFeign 有很多大同小异之处，不同的是 OpenFeign 支持 MVC 注解。**可以认为 OpenFeign 为 Feign 的增强版**。
 
-### 1.2. OpenFeign 的作用
+### OpenFeign 的作用
 
 - OpenFeign 是声明式的 HTTP 客户端，让远程调用更简单。
 - 提供了 HTTP 请求的模板，编写简单的接口和插入注解，就可以定义好 HTTP 请求的参数、格式、地址等信息
 - 整合了 Ribbon（负载均衡组件）和 Hystix（服务熔断组件），不需要显示使用这两个组件
 - Spring Cloud Feign 在 Netflix Feign 的基础上扩展了对 SpringMVC 注解的支持
 
-## 2. 基于 eureka 的 Feign 服务调用示例
+## 基于 eureka 的 Feign 服务调用示例
 
-### 2.1. 示例工程准备
+### 示例工程准备
 
 复用之前 eureka 单机版的示例项目`spring-cloud-sample-eureka`，命名为`spring-cloud-sample-feign`
 
-### 2.2. 引入 Feign 依赖
+### 引入 Feign 依赖
 
 在服务消费者 `shop-service-order` 工程添加 Feign 依赖
 
@@ -37,7 +37,7 @@ Feign 和 OpenFeign 有很多大同小异之处，不同的是 OpenFeign 支持 
 </dependency>
 ```
 
-### 2.3. 开启 Feign 的支持
+### 开启 Feign 的支持
 
 在服务消费者的启动类上，通过`@EnableFeignClients`注解开启 Spring Cloud Feign 的支持功能
 
@@ -52,9 +52,9 @@ public class OrderApplication {
 }
 ```
 
-### 2.4. 创建 Feign 服务调用的接口
+### 创建 Feign 服务调用的接口
 
-#### 2.4.1. 基础使用步骤
+#### 基础使用步骤
 
 在服务消费者 `shop-service-order` 创建一个 Feign 接口，此接口是在 Feign 中调用微服务的核心接口。
 
@@ -79,18 +79,18 @@ public interface ProductFeignClient {
 }
 ```
 
-#### 2.4.2. 基础使用步骤总结
+#### 基础使用步骤总结
 
 1. 启动类添加`@EnableFeignClients`注解，表示开启对Feign的支持，Spring会扫描标记了`@FeignClient`注解的接口，并生成此接口的代理对象
 2. `@FeignClient`注解通过`name/value`属性指定需要调用的微服务的名称，用于创建Ribbon的负载均衡器。所以Ribbon从注册中心中获取服务列表，并通过负载均衡算法调用相应名称的服务。如：`@FeignClient("service-xxx")`即指定了服务提供者的名称`service-xxx`，Feign会从注册中心获取服务列表，并通过负载均衡算法进行服务调用名为`service-xxx`的服务
 3. 在接口方法中使用`@GetMapping("/xxxx")`等SpringMVC的注解，指定调用的url，Feign将根据url进行远程调用
 
-#### 2.4.3. Feign组件使用注意事项
+#### Feign组件使用注意事项
 
 - 定义接口方法对于形参绑定时，`@PathVariable`、`@RequestParam`、`@RequestHeader`等可以指定参数属性，在Feign中绑定参数必须通过`value`属性来指明具体的参数名，不然会抛出异常
 - `FeignClient` 返回值为复杂对象时，其对象类型必须有无参构造函数
 
-### 2.5. 配置消费者调用服务接口
+### 配置消费者调用服务接口
 
 修改消费者`shop-service-order`的`OrderController`控制类，注入`ProductFeignClient`接口实例，并在相应的方法中使用`ProductFeignClient`实例方法完成微服务调用即可
 
@@ -123,9 +123,9 @@ public class OrderController {
 
 启动相应的服务，进行测试
 
-## 3. 基于 Nacos 的 Feign 服务调用示例
+## 基于 Nacos 的 Feign 服务调用示例
 
-### 3.1. 实践步骤
+### 实践步骤
 
 ![](images/476592823230361.png)
 
@@ -136,7 +136,7 @@ public class OrderController {
 5. 服务消费者使用 Feign 接口调用服务提供者
 6. 启动并测试
 
-### 3.2. 服务提供者
+### 服务提供者
 
 创建 feign-nacos-provider 工程，添加 Nacos 依赖：
 
@@ -214,7 +214,7 @@ public class ProviderTestController {
 }
 ```
 
-### 3.3. 服务消费者
+### 服务消费者
 
 创建 feign-nacos-consumer 工程，添加 Nacos 与 feign 依赖：
 
@@ -320,7 +320,7 @@ public class ComsumerTestController {
 }
 ```
 
-### 3.4. 测试
+### 测试
 
 发送get请求，观察是否成功返回
 
@@ -328,7 +328,7 @@ public class ComsumerTestController {
 http://127.0.0.1:8080/hello?name=MooNkirA
 ```
 
-## 4. Feign 的负载均衡
+## Feign 的负载均衡
 
 Feign 和 Ribbon 的联系：
 
@@ -343,9 +343,9 @@ Feign 本身已经集成了 Ribbon 依赖和自动配置，因此不需要额外
 
 ![](images/20201015140621794_15061.png)
 
-## 5. Feign 进阶使用
+## Feign 进阶使用
 
-### 5.1. Feign 可配置项说明
+### Feign 可配置项说明
 
 从 Spring Cloud Edgware 版本开始，Feign 支持使用属性自定义 Feign。对于一个指定名称的 Feign Client（例如该 Feign Client 的名称为 feignName ），Feign支持如下配置项：
 
@@ -377,7 +377,7 @@ feign:
 - `requestInterceptors`：添加请求拦截器
 - `decode404`：配置熔断不处理404异常
 
-### 5.2. 请求压缩配置
+### 请求压缩配置
 
 Spring Cloud Feign 支持对请求和响应进行GZIP压缩，以减少通信过程中的性能损耗。通过下面的参数即可开启请求与响应的压缩功能：
 
@@ -403,13 +403,13 @@ feign:
 
 > 注：上面的数据类型、压缩大小下限均为默认值。
 
-### 5.3. 日志级别
+### 日志级别
 
 Feign 在构建服务客户端时，会为每个客户端都创建一个 `feign.logger` 实例，此日志对象的调试模式可以记录 Feign 请求过程细节日志记录。
 
 默认情况下 Feign 的日志是关闭的，可以通过以下几种方式开启日志记录。
 
-#### 5.3.1. 代码方式局部配置日志
+#### 代码方式局部配置日志
 
 1. 在配置文件中设置 Feigin client 接口的日志级别
 
@@ -451,7 +451,7 @@ public interface FeignClientDemo {
 
 ![](images/457444209230367.png)
 
-#### 5.3.2. 属性方式局部配置日志
+#### 属性方式局部配置日志
 
 在 `application.yml` 中以属性配置方式，配置 Feigin client 接口的日志级别与目标调用服务的日志级别
 
@@ -480,7 +480,7 @@ logging:
 
 ![](images/20201015210138012_24744.png)
 
-#### 5.3.3. 全局方式配置日志
+#### 全局方式配置日志
 
 前面的方式都是局部的日志配置，只是针对某个 Feign 接口的，如果需要配置的接口比较多，比较适合使用全局配置。**全局配置同样可以通过代码的方式或者属性方式来配置**。
 
@@ -508,9 +508,9 @@ feign:
         loggerLevel: FULL  # 配置 Feign 的日志级别，相当于代码配置方式中的Logger
 ```
 
-### 5.4. 多参数传递
+### 多参数传递
 
-#### 5.4.1. 多参数传递问题描述
+#### 多参数传递问题描述
 
 服务提供者有一个需要多个参数请求的接口，Feign 中是需要特别注意“多参数传递问题”。假设服务提供者写一个复杂参数的接口如下：
 
@@ -570,7 +570,7 @@ public User getUser(Integer id, String name, String city, String email){
 
 ![](images/367673917248793.png)
 
-#### 5.4.2. 解决方案1：参数注解
+#### 解决方案1：参数注解
 
 Spring MVC 的 get 方法支持直接绑定 POJO，而 Feign 并未覆盖所有 Spring MVC 功能，不能直接绑定 POJO。需要修改服务消费者 Feign 接口方法，在方法参数前添加 `org.springframework.cloud.openfeign.SpringQueryMap` 注解。
 
@@ -585,7 +585,7 @@ public interface FeignClientDemo {
 
 启动服务测试，可以成功请求.
 
-#### 5.4.3. 解决方案2：独立参数
+#### 解决方案2：独立参数
 
 另一种解决方案是，URL 中有几个参数，Feign 接口中的方法使用 `@RequestParam` 注解指定相应的请求的参数。修改服务消费者 Feign 接口方法
 
@@ -603,7 +603,7 @@ public interface FeignClientDemo {
 
 修改服务消费者调用新的 Feign 接口，启动服务测试，可以成功请求.
 
-### 5.5. 处理复杂参数形式
+### 处理复杂参数形式
 
 实际开发中，可能会通过多种方式进行参数传递，例如服务提供者有以下形式的接口：
 
@@ -634,7 +634,7 @@ public interface FeignClientDemo {
 }
 ```
 
-#### 5.5.1. 问题记录
+#### 问题记录
 
 做些示例项目时，使用 spring-cloud-starter-openfeign 是 2.1.5.RELEASE 版本，启动时会提示 `RequestParam.value() was empty on parameter 2` 错误。
 
@@ -644,7 +644,7 @@ public interface FeignClientDemo {
 
 以上示例修改为 `@RequestParam("name") String name` 后就能正常启动。
 
-### 5.6. 文件上传
+### 文件上传
 
 早期版本的 Feign 是没有上传文件的功能，需要开发者去编写 Encoder 去实现上传。但目前 Feign 官方提供了子项目 feign-form，实现了上传所需的 Encoder。实现步骤如下：
 
@@ -699,7 +699,7 @@ public String fileUpload(MultipartFile file) throws Exception {
 
 ![](images/125252322236662.png)
 
-### 5.7. 使用 HttpClient 与 OkHttp 远程调用
+### 使用 HttpClient 与 OkHttp 远程调用
 
 Feign 的 HTTP 客户端支持 3 种框架：
 
@@ -709,7 +709,7 @@ Feign 的 HTTP 客户端支持 3 种框架：
 
 传统的 HttpURLConnection 是 JDK 自带的，并不支持连接池，效率非常低。为了提高效率，Feign 支持替换支持连接池的的请求客户端 appache httpclient 和 okhttp
 
-#### 5.7.1. HttpClient
+#### HttpClient
 
 在消费者工程中，使用 HttpClient 做为 Feign HTTP 客户端步骤如下：
 
@@ -742,7 +742,7 @@ logging:
 
 ![](images/389022522230370.png)
 
-#### 5.7.2. OkHttp
+#### OkHttp
 
 在消费者工程中，使用 OkHttp 做为 Feign HTTP 客户端步骤如下：
 
@@ -800,21 +800,21 @@ public class OkHttpConfiguration {
 
 ![](images/532473922248796.png)
 
-## 6. Feign 工作原理
+## Feign 工作原理
 
-### 6.1. 开发编码层面流程梳理
+### 开发编码层面流程梳理
 
 ![Spring-Cloud-OpenFeign流程图.drawio](images/241154011248792.jpg)
 
-### 6.2. FeignClient 代理工作流程
+### FeignClient 代理工作流程
 
 ![Spring-Cloud-OpenFeign流程图.drawio](images/470700012256825.jpg)
 
-### 6.3. Feign 最终整体调用流程
+### Feign 最终整体调用流程
 
 ![Spring-Cloud-OpenFeign流程图.drawio](images/506390812249494.jpg)
 
-### 6.4. OpenFeign 的核心流程梳理
+### OpenFeign 的核心流程梳理
 
 1. 在 Spring 项目启动阶段，服务 A 的 OpenFeign 框架会发起一个主动的扫包流程。
 2. 从指定的目录下扫描并加载所有被 `@FeignClient` 注解修饰的接口，然后将这些接口转换成 Bean，统一交给 Spring 来管理。
@@ -825,11 +825,11 @@ public class OkHttpConfiguration {
 7. 经过负载均衡算法找到一个服务的 IP 地址，拼接出请求的 URL
 8. 服务 B 处理服务 A 发起的远程调用请求，执行业务逻辑后，返回响应给服务 A。
 
-## 7. Feign 源码分析
+## Feign 源码分析
 
 通过使用过程可知，`@EnableFeignClients`和`@FeignClient`两个注解就实现了Feign的功能，所以从`@EnableFeignClients`注解开始分析Feign的源码
 
-### 7.1. @EnableFeignClients 注解
+### @EnableFeignClients 注解
 
 ```java
 @Retention(RetentionPolicy.RUNTIME)
@@ -843,7 +843,7 @@ public @interface EnableFeignClients {
 
 通过 `@EnableFeignClients` 引入了 `FeignClientsRegistrar` 客户端注册类。
 
-### 7.2. FeignClientsRegistrar 客户端注册类
+### FeignClientsRegistrar 客户端注册类
 
 ```java
 class FeignClientsRegistrar implements ImportBeanDefinitionRegistrar,
@@ -950,7 +950,7 @@ public void registerFeignClients(AnnotationMetadata metadata,
 
 `registerFeignClients()`方法主要是扫描类路径，对所有的FeignClient生成对应的`BeanDefinition`。同时又调用了 `registerClientConfiguration` 注册配置的方法。这里是第二次调用，主要是将扫描的目录下，每个项目的配置类加载的容器当中。调用 `registerFeignClient` 注册对象
 
-### 7.3. FeignClient 对象的注册
+### FeignClient 对象的注册
 
 在上一步中，获取`@FeignClient`注解的数据封装到一个map集合后，调用`registerFeignClient(registry, annotationMetadata, attributes);`方法，往spring容器中注册`BeanDefinition`对象
 
@@ -1002,7 +1002,7 @@ private void registerFeignClient(BeanDefinitionRegistry registry,
 
 通过源分析可知：最终是向Spring中注册了一个bean，bean的名称就是类或接口的名称（也就是本例中的FeignService），bean的实现类是`FeignClientFactoryBean`，其属性设置就是在`@FeignClient`中定义的属性。那么下面在Controller中对`FeignService`的的引入，实际就是引入了`FeignClientFactoryBean`类
 
-### 7.4. FeignClientFactoryBean 类
+### FeignClientFactoryBean 类
 
 对`@EnableFeignClients`注解的源码进行了分析，了解到其主要作用就是把带有`@FeignClient`注解的类或接口用`FeignClientFactoryBean`类注册到Spring容器中。
 
@@ -1064,7 +1064,7 @@ class FeignClientFactoryBean implements FactoryBean<Object>, InitializingBean,
 - `getObject()`方法中调用的是`getTarget()`方法，它从applicationContext取出FeignContext，然后构造`Feign.Builder`并设置了logger、encoder、decoder、contract，之后通过configureFeign根据`FeignClientProperties`来进一步配置`Feign.Builder`的retryer、errorDecoder、request.Options、requestInterceptors、queryMapEncoder、decode404
 - 初步配置完`Feign.Builder`之后再判断是否需要loadBalance，如果需要则通过loadBalance方法来设置，不需要则在Client是`LoadBalancerFeignClient`的时候进行unwrap
 
-### 7.5. 发送请求的实现
+### 发送请求的实现
 
 从上面的源码分析可知，`FeignClientFactoryBean.getObject()`具体返回的是一个代理类，具体为`FeignInvocationHandler`
 
@@ -1172,9 +1172,9 @@ final class SynchronousMethodHandler implements MethodHandler {
 - `retryer`中定义了用户的重试策略。
 - 调用`executeAndDecode`方法通过client完成请求处理，client的实现类是`LoadBalancerFeignClient`
 
-## 8. 相关知识
+## 相关知识
 
-### 8.1. Ribbon 和 Feign 调用服务的区别
+### Ribbon 和 Feign 调用服务的区别
 
 主要是**调用方式不同**：
 

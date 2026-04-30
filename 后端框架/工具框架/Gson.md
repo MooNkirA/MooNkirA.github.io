@@ -1,10 +1,10 @@
-## 1. Gson介绍
+## Gson介绍
 
 Gson 是 Google 提供的用来在 Java 对象和 JSON 数据之间进行映射的 Java 类库。可以将 Java 对象转换为相应的 JSON 形式，也可以将 JSON 字符串转换为对应的 Java 对象。
 
 Gson 可以使用任意 Java 对象，包括哪些预先存在的、但不在源代码中的对象（因此并不知道对象的属性）。
 
-### 1.1. 特点
+### 特点
 
 - 提供一种机制，使得将 Java 对象转换为 JSON，或相反如使用 `toString()`以及构造器（工厂方法）一样简单。
 - 允许预先存在的不可变的对象转换为 JSON，或与之相反。
@@ -13,11 +13,11 @@ Gson 可以使用任意 Java 对象，包括哪些预先存在的、但不在源
 - 输出轻量易读的JSON
 - 数据传递和解析方便
 
-### 1.2. 依赖包
+### 依赖包
 
 Gson，需要导入 jar 包：`gson-2.2.4.jar`
 
-## 2. Gson 基础 API
+## Gson 基础 API
 
 ```java
 public Gson();
@@ -37,13 +37,13 @@ public T fromJson(String jsonStr, T.class)
 
 - 将json字符串转化为指定类型为T的Java对象
 
-## 3. Gson 基础使用
+## Gson 基础使用
 
 可以仅仅通过 `new Gson()` 的方式创建 Gson 的核心对象。也可以通过 `GsonBuilder` 类去创建 Gson 实例，该类允许进行一系列配置，例如版本控制等等。
 
 Gson 实例不会保存任何进行 Json 操作时的状态。因此可以自由的使用相同的 Gson 对象进行多个的 Json 序列化和反序列化操作。
 
-### 3.1. 引入 maven 依赖
+### 引入 maven 依赖
 
 ```xml
 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
@@ -54,7 +54,7 @@ Gson 实例不会保存任何进行 Json 操作时的状态。因此可以自由
 </dependency>
 ```
 
-### 3.2. 序列化
+### 序列化
 
 ```java
 // 基础类型
@@ -97,7 +97,7 @@ class BagOfPrimitives {
 }
 ```
 
-### 3.3. 反序列化
+### 反序列化
 
 ```java
 // 基础类型
@@ -125,7 +125,7 @@ Collection<Integer> ints2 = gson.fromJson(json, collectionType);
 // ints2 is same as ints
 ```
 
-### 3.4. 自定义序列化和反序列化机制
+### 自定义序列化和反序列化机制
 
 有时，默认的实现并非想要的，在处理类库时常常发生（例如 DateTime）。Gson 允许注册自己自定义的序列化器和反序列化器。该过程分为两部分：
 
@@ -144,9 +144,9 @@ gson.registerTypeAdapter(MyType.class, new MyInstanceCreator());
 
 `registerTypeAdapter` 会检查类型适配器是否实现了上面三个接口中的一个以上并且它们都注册了类型适配器。
 
-## 4. Gson 使用案例
+## Gson 使用案例
 
-### 4.1. 案例-输出JSON字符串包含null值的属性
+### 案例-输出JSON字符串包含null值的属性
 
 ```java
 public static void main(String[] args) {
@@ -187,7 +187,7 @@ public GsonBuilder serializeNulls() {
 }
 ```
 
-### 4.2. Gson其他使用要点
+### Gson其他使用要点
 
 可以用 `@SerializedName` 注解给属性重命名，用 `@Expose` 注解标识属性不进行序列化，支持 Map 的 key 为复杂对象的形式，日期类型转化为特定格式，还有区分版本进行显示，这些在日常项目中都极常用到，只不过好像我们之前都是自己实现的。
 
@@ -219,6 +219,6 @@ public GsonBuilder serializeNulls() {
 
 当然，还有好多特性呢，比如字段首字母大写阿、结果格式化阿等等
 
-## 5. 参考资料
+## 参考资料
 
 - [Gson用户指南（中文翻译）](https://www.jianshu.com/p/1e20b28c39d1)

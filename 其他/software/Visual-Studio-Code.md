@@ -1,8 +1,8 @@
-## 1. 安装与下载
+## 安装与下载
 
 官方网站：https://code.visualstudio.com/
 
-### 1.1. 下载镜像
+### 下载镜像
 
 由于官网是国外的服务器，所以下载非常慢，可以使用国内镜像加快下载速度。具体步骤如下：
 
@@ -19,20 +19,26 @@ https://az764295.vo.msecnd.net/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/V
 https://vscode.cdn.azure.cn/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/VSCode-win32-x64-1.72.0.zip
 ```
 
-### 1.2. VSCode 修改扩展和用户文件夹目录位置(Windows) - 待整理
+### VSCode 插件目录
+
+```
+C:\Users\{用户名}\.vscode\extensions
+```
+
+### [待整理] VSCode 修改扩展和用户文件夹目录位置(Windows)
 
 > TODO: 参考 https://blog.csdn.net/weixin_53510183/article/details/126906182
 
-## 2. 常用配置
+## 常用配置
 
-### 2.1. 用户设置和工作区设置的区别
+### 用户设置和工作区设置的区别
 
 > “用户设置”会应用于用户打开的所有工程；“工作区设置”仅适用于当前目录的 VSCode 的设置。<font color=red>**注：“工作区设置”会覆盖“用户设置”。**</font>
 
 - 用户设置：这种方式进行的设置，会应用于该用户打开的所有工程；
 - 工作空间设置：工作空间是指使用 VSCode 打开的某个文件夹，在该文件夹下会创建一个名为 .vscode 的隐藏文件夹，里面包含着仅适用于当前目录的 VSCode 的设置，工作空间的设置会覆盖用户的设置。
 
-#### 2.1.1. 用户设置与工作空间设置保存目录
+#### 用户设置与工作空间设置保存目录
 
 VSCode 的设置文件为 setting.json。用户设置的文件保存在如下目录：
 
@@ -41,12 +47,12 @@ VSCode 的设置文件为 setting.json。用户设置的文件保存在如下目
 
 工作空间设置的文件保存在当前目录的 .vscode 文件夹下。
 
-#### 2.1.2. 修改默认设置的两种方式
+#### 修改默认设置的两种方式
 
 - 使用编辑器直接打开 setting.json 文件进行设置；
 - 点击 VSCode 的【文件】->【首选项】->【设置】，可以打开设置面板进行设置；
 
-### 2.2. 出现 CPU 100% 优化的设置
+### 出现 CPU 100% 优化的设置
 
 有时，vscode 会出现 CPU 利用率 100% 的情况，两个 rg.exe 占用了全部的 CPU。
 
@@ -56,7 +62,7 @@ VSCode 的设置文件为 setting.json。用户设置的文件保存在如下目
 
 ![](images/20201106085408474_25960.jpg)
 
-### 2.3. 如何配置 VSCODE 打开文件总是在一个新的标签
+### 如何配置 VSCODE 打开文件总是在一个新的标签
 
 经常搞混单击和双击的区别？这里在左侧资源管理器这边 如果单击文件是打开文件的预览模式，文件所在的标签上显示的文件名是 斜体状态，表明是在 预览模式，会被新打开的文件替换。所以如果是要打开文件进行编辑需要双击文件进行打开
 
@@ -74,7 +80,7 @@ VSCode 的设置文件为 setting.json。用户设置的文件保存在如下目
 
 ![](images/20201106085551962_7405.jpg)
 
-### 2.4. 设置tab为4个空格与格式化时缩进4个空格
+### 设置tab为4个空格与格式化时缩进4个空格
 
 tab的宽度设置
 
@@ -84,13 +90,13 @@ tab的宽度设置
 
 ![](images/20201106085641403_18541.jpg)
 
-### 2.5. 设置默认换行符
+### 设置默认换行符
 
 在 Settings 中，【Text Editor】->【Files: EOl】，选择需要的换行符
 
 ![](images/330313323248777.png)
 
-### 2.6. 个人配置备份
+### 个人配置备份
 
 ```json
 {
@@ -186,7 +192,7 @@ tab的宽度设置
 }
 ```
 
-### 2.7. 网上配置参考
+### 网上配置参考
 
 ```json
 {
@@ -230,39 +236,39 @@ tab的宽度设置
 }
 ```
 
-## 3. 常用操作
+## 常用操作
 
-### 3.1. 官方快捷键列表
+### 官方快捷键列表
 
 - 官网地址：https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 - windows 快捷键
 
 <img src="../../resources/attachments/IDE/Visual-Studio-Code-keyboard-shortcuts-windows.jpg" alt="" style="width: 80%; height: auto;">
 
-### 3.2. 常用快捷键
+### 常用快捷键
 
 - `ctrl+shift+L` 批量修改变量名称
 
-### 3.3. 多行编辑操作
+### 多行编辑操作
 
 VScode对多行编辑有两种模式。
 
-#### 3.3.1. 第一种模式
+#### 第一种模式
 
 竖列选择：长按`Alt+Shift`，按左键拖动鼠标选择多行。这种模式下只可以选择竖列，不可以随意插入光标。所以只限制于同一列且不间隔的情况下
 
-#### 3.3.2. 第二种模式
+#### 第二种模式
 
 - 竖列选择：`Shift+Ctrl`
 - 选择多个编辑位点：`Ctrl+光标点击`
 
 这种模式下不仅可以选择竖列，同时还可以在多个地方插入光标
 
-#### 3.3.3. 两种模式的切换
+#### 两种模式的切换
 
 使用`Ctrl+Shift+p`快捷键调用查询输入栏，输入“cursor”，列表中会出现“切换多行修改键”这个选项。选择这个选项就可以在两种模式下切换
 
-### 3.4. 快速删除空行
+### 快速删除空行
 
 在 VSCode 中，可以通过 `Ctrl+h` 快捷键调出替换界面，在替换查找界面输入空行对应的正则表达式 `^\s*(?=\r?$)\n` 并 `Alt+R` 选择对应正则表达式查找模式，批量全部替换即可完成需求，具体如下：
 
@@ -274,13 +280,13 @@ VScode对多行编辑有两种模式。
 
 ![](images/455570116231242.png)
 
-## 4. 自定义代码片段(Snippets)
+## 自定义代码片段(Snippets)
 
 编写代码，大部分时间都是在写大量的重复代码，比如 for、while、try、函数、class 等。因此可以把重复的代码提取出来，做成代码片段。或者一键修改插件源码，实现懒人式配置。
 
 > 参考资料：https://mp.weixin.qq.com/s/XTpW5Zm7ZdxLIzknkIxfZQ
 
-### 4.1. 基础配置
+### 基础配置
 
 代码片段配置入口
 
@@ -315,15 +321,15 @@ VScode对多行编辑有两种模式。
 - `description`：代码片段的详细描述。
 - `scope`：代码作用域（创建全局代码片段用的，`.code-snippets` 结尾的文件），比如指定作用域为 js，多个语言用逗号分隔。
 
-## 5. 常用插件
+## 常用插件
 
-### 5.1. 通用类
+### 通用类
 
-#### 5.1.1. Chinese (Simplified) Language Pack for VS Code
+#### Chinese (Simplified) Language Pack for VS Code
 
 中文汉化包
 
-#### 5.1.2. eslint 插件
+#### eslint 插件
 
 ![](images/20201106084622737_26552.jpg)
 
@@ -543,7 +549,7 @@ module.exports = {
 }
 ```
 
-#### 5.1.3. Turbo Console Log
+#### Turbo Console Log
 
 ![](images/566330210240446.png)
 
@@ -556,7 +562,7 @@ module.exports = {
 
 ![](images/280210410258872.gif) ![](images/367870410246739.gif)
 
-#### 5.1.4. Todo Tree
+#### Todo Tree
 
 Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项目文件，并将其中包含的待办事项和自定义标记显示在一个树状视图中，使得跟踪项目中的任务变得更加容易。
 
@@ -647,13 +653,13 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
 }
 ```
 
-### 5.2. HTML 类
+### HTML 类
 
-#### 5.2.1. Highlight Matching Tag
+#### Highlight Matching Tag
 
 高亮显示选中匹配标签
 
-### 5.3. Vue 相关插件
+### Vue 相关插件
 
 |              名称              |                              说明                               |
 | ----------------------------- | -------------------------------------------------------------- |
@@ -662,7 +668,7 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
 | Vue Language Features (Volar) | Vue官方插件，支持Vue3                                             |
 | Vscode-element-helper         | 使用element-ui库的可以安装这个插件，编写标签时自动提示element标签名称。 |
 
-#### 5.3.1. Vetur 插件配置
+#### Vetur 插件配置
 
 <font color=red>**注意：VSCode中使用vetur插件格式化vue文件时，js代码会被添加上分号且单引号会转变为双引号。**</font>设置vscode配置文件
 
@@ -670,7 +676,7 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
 "vetur.format.defaultFormatter.js": "vscode-typescript"
 ```
 
-### 5.4. 推荐主题
+### 推荐主题
 
 |           名称            |                   说明                   |
 | ------------------------ | --------------------------------------- |
@@ -682,24 +688,24 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
 | Material Icon Theme      | vscode资源目录加上图标（必备）              |
 | vscode-icon              | vscode资源目录加上图标（必备）              |
 
-### 5.5. beautify（不再维护）
+### beautify（不再维护）
 
 beautify：格式化代码的工具，可以格式化 JSON|JS|HTML|CSS|SCSS。比内置格式化好用；但是 react 工程的 jsx 文件用 beautify 插件格式化会乱掉，建议不要用。
 
 目前 VSCode 内置的格式化器就是使用 js-beautify，但是前端当前最流行的格式化工具是 prettier，建议安装 prettier，然后设置 VSCode 使用 prettier 作为格式化器。
 
-### 5.6. Prettier - Code formatter
+### Prettier - Code formatter
 
 格式化代码的工具，可以支持 react
 
 > - [Prettier 官网](https://prettier.io/)
 > - [Prettier 中文网](https://prettier.nodejs.cn/)
 
-#### 5.6.1. 配置指南（包含所有配置项）【!待整理】
+#### 配置指南（包含所有配置项）【!待整理】
 
 > 参考：https://www.jianshu.com/p/18999f6e1668
 
-#### 5.6.2. 个人配置备份
+#### 个人配置备份
 
 `.prettierrc.js` 配置说明：
 
@@ -799,7 +805,7 @@ module.exports = {
 }
 ```
 
-### 5.7. IntelliSense for CSS class names in HTML 或 HTML CSS Support
+### IntelliSense for CSS class names in HTML 或 HTML CSS Support
 
 **IntelliSense for CSS class names in HTML**
 
@@ -809,7 +815,7 @@ module.exports = {
 
 让 html 标签上写class 智能提示当前项目所支持的样式。新版已经支持scss文件检索
 
-### 5.8. cssrem
+### cssrem
 
 此插件的功能是实现 px 转换 rem
 
@@ -818,13 +824,13 @@ module.exports = {
 3. 设置html字体大小基准值，默认是16px
 4. 使用时只需要将光标停留在一些px单位的值上，再按`Alt+z`，就可以换算成 rem 单位的值
 
-### 5.9. Markdown 插件
+### Markdown 插件
 
-#### 5.9.1. Markdown All in One
+#### Markdown All in One
 
 集成了撰写 Markdown 时所需要的大部分功能
 
-#### 5.9.2. markdownlint
+#### markdownlint
 
 > 参考：https://github.com/DavidAnson/markdownlint/tree/main/doc
 
@@ -911,31 +917,31 @@ markdownlint是vscode上一款非常好用的 Markdown 格式检查扩展工具�
 | MD046  | 	Code block style                                              | 整篇文档采用一致的代码格式                                                                                                              |
 | MD047  | 	Files should end with a single newline character              | 文档末尾需要一个空行结尾                                                                                                               |
 
-#### 5.9.3. Pangu-Markdown
+#### Pangu-Markdown
 
 插件就是专门用来给中英混排添加空格的。
 
-#### 5.9.4. Past Image
+#### Past Image
 
 插件可以把粘贴的图片按照指定的命名规则放到指定的路径去，而且这个路径可以是相对路径。
 
-#### 5.9.5. Markdown Preview Mermaid Support
+#### Markdown Preview Mermaid Support
 
 Markdown Preview Mermaid Support 支持 mermaid 预览，如流程图、甘特图等
 
-#### 5.9.6. MdTableEditor 
+#### MdTableEditor 
 
 操作表格的插件，提升表格编辑效率
 
-#### 5.9.7. Auto Markdown TOC By AX1
+#### Auto Markdown TOC By AX1
 
 实现章节自动编号，及生成目录
 
-#### 5.9.8. Draw.io Integration
+#### Draw.io Integration
 
 Draw.io 的内嵌扩展，绘图神器
 
-### 5.10. 待整理
+### 待整理
 
 - Debugger for Chrome
     - 让 vscode 映射 chrome 的 debug功能，静态页面都可以用 vscode 来打断点调试，真666~。配置稍微复杂一些
@@ -946,15 +952,15 @@ Draw.io 的内嵌扩展，绘图神器
 - Project Manager
     - 在多个项目之前快速切换的工具
 
-### 5.11. VSCode 1.81.1 版本后已内置的功能(插件)
+### VSCode 1.81.1 版本后已内置的功能(插件)
 
-#### 5.11.1. Auto Close Tag
+#### Auto Close Tag
 
 **Auto Close Tag**：自动添加 HTML / XML关闭标签。目前测试在 html js, jsx, tsx 都可实现自动添加相应的闭合标签。默认是开启的，不需要额外配置。
 
 > Notes：VSCode 不支持在 `.vue` 文件中原生的自动闭合标签功能。可以通过安装 Vue Languages Features (Volar) 来启用此功能。
 
-#### 5.11.2. Auto Rename Tag
+#### Auto Rename Tag
 
 修改 html 标签，自动完成尾部闭合标签的同步修改。现在 vscode 也内置了，而且在新版本中 jsx、tsx 中也已经支持 html 标签重命名。在 settings.json 文件中增加配置：
 
@@ -962,7 +968,7 @@ Draw.io 的内嵌扩展，绘图神器
 "editor.linkedEditing": true
 ```
 
-#### 5.11.3. Trailing Spaces
+#### Trailing Spaces
 
 此扩展的功能是：自动删除末尾的空白字符，确保一致的格式。
 
@@ -984,11 +990,11 @@ VSCode 现在将该功能内置，可以在文件中自动删除末尾的空白�
 }
 ```
 
-#### 5.11.4. 路径自动补全(Path IntelliSense / Path Autocomplete)
+#### 路径自动补全(Path IntelliSense / Path Autocomplete)
 
 VSCode 已经具备原生的路径自动补全功能。当准备输入要导入的文件名（通常在输入`""`），会列出一个项目中的文件列表，从中选择一个将自动插入文件名。
 
-##### 5.11.4.1. Path Intellisense 配置 @ 路径提示（原插件配置）
+##### Path Intellisense 配置 @ 路径提示（原插件配置）
 
 自动路径补全。路径提示配置的前提是，在 webpack.config.js 文件中配置 `@` 符号指定的目录位置
 
@@ -1019,7 +1025,7 @@ module.exports ={
 
 > <font color=red>**注意：需要使用vscode打开项目根目录（即 package.json 所在的目录），否则 `@` 路径提示将失效**</font>
 
-##### 5.11.4.2. Path Autocomplete 配置 @ 路径提示（原插件配置）
+##### Path Autocomplete 配置 @ 路径提示（原插件配置）
 
 > 地址补全插件。路径提示配置的前提同上
 
@@ -1036,7 +1042,7 @@ module.exports ={
 
 重启 vscode，`@`路径提示就配置好了
 
-#### 5.11.5. Settings Sync
+#### Settings Sync
 
 Settings Sync 用于同步当前的 VSCode 配置环境。具体配置如下：
 
@@ -1046,7 +1052,7 @@ Settings Sync 用于同步当前的 VSCode 配置环境。具体配置如下：
 
 > Tips: 大致原理是，使用 GitHub Gist 来同步多台计算机上的设置，代码段，主题，文件图标，启动，键绑定，工作区和扩展。
 
-#### 5.11.6. HTML Snippets
+#### HTML Snippets
 
 超级实用且初级的 H5 代码片段以及提示
 
@@ -1072,13 +1078,13 @@ ul>li.slide*3>p.item$
 </ul>
 ```
 
-#### 5.11.7. Bracket pair colorization
+#### Bracket pair colorization
 
 目前 vscode 也内置了，默认是开启的。如果没有开启，点击设置，搜索 Bracket Pair，并勾选上以下设置：
 
 ![](images/33692808237257.png)
 
-#### 5.11.8. Rainbow Brackets
+#### Rainbow Brackets
 
 此扩展允许使用颜色标识匹配的括号。
 
@@ -1091,7 +1097,7 @@ ul>li.slide*3>p.item$
 }
 ```
 
-#### 5.11.9. Auto Import
+#### Auto Import
 
 自动导入功能：当文件中引用了模块的函数、变量或其他成员时，该模块会自动导入到文件中。如果模块文件被移动，这个扩展将帮助自动更新它们。现这些功能也被 VsCode 内置了。
 
@@ -1120,11 +1126,11 @@ VsCode 内置功能，设置自动导入：
 }
 ```
 
-#### 5.11.10. TypeScript Hero
+#### TypeScript Hero
 
 TypeScript 相关的扩展的功能基本上全部已经被 VSCode 内置
 
-### 5.12. VSCode 拓展插件推荐（前端开发）【网络资源】
+### VSCode 拓展插件推荐（前端开发）【网络资源】
 
 https://github.com/varHarrie/varharrie.github.io/issues/10
 

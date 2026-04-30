@@ -1,6 +1,6 @@
-## 1. RPC（Remote Procedure Call Protocol）
+## RPC（Remote Procedure Call Protocol）
 
-### 1.1. RPC 的概念
+### RPC 的概念
 
 RPC（Remote Procedure Call Protocol）远程过程调用协议，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。
 
@@ -10,9 +10,9 @@ RPC 协议假定某些传输协议的存在，如 TCP 或 UDP，为通信程序�
 
 简言之，**RPC 就是从一台本地机器(客户端)上通过参数传递的方式远程调用另一台机器(服务器)上的一个函数或方法(可以统称为服务)并得到返回的结果**。RPC 使得程序能够像访问本地系统资源一样，去访问远端系统资源。比较关键的一些方面包括：通讯协议、序列化、资源（接口）描述、服务框架、性能、语言支持等。
 
-### 1.2. RPC 实现原理
+### RPC 实现原理
 
-#### 1.2.1. RPC 使用场景的微服务结构
+#### RPC 使用场景的微服务结构
 
 在微服务环境下，会存在大量的跨 JVM （不同服务器之间）进行方法调用的场景，服务结构如下图：
 
@@ -22,7 +22,7 @@ RPC 协议假定某些传输协议的存在，如 TCP 或 UDP，为通信程序�
 
 ![](images/20200122134326828_23754.png)
 
-#### 1.2.2. RPC 核心要点
+#### RPC 核心要点
 
 实现 RPC 功能，主要需要解决以下几点：
 
@@ -31,11 +31,11 @@ RPC 协议假定某些传输协议的存在，如 TCP 或 UDP，为通信程序�
 3. 服务器端：暴露开放的服务接口。
 4. 客户端：生成调用服务接口的代理实现，该代理实现负责收集数据、编码并传输给服务器然后等待结果返回。
 
-#### 1.2.3. RPC 架构图
+#### RPC 架构图
 
 ![](images/20190409090340345_9140.jpg)
 
-#### 1.2.4. RPC 架构组件
+#### RPC 架构组件
 
 一个基本的 RPC 架构里面应该至少包含以下4个组件：
 
@@ -60,9 +60,9 @@ RPC 协议假定某些传输协议的存在，如 TCP 或 UDP，为通信程序�
 
 而 RPC 框架的实现目标则是将上面的第 2-10 步完好地封装起来，也就是把调用、编码/解码的过程给封装起来，让用户感觉上像调用本地服务一样的调用远程服务。
 
-### 1.3. RPC 调用实践
+### RPC 调用实践
 
-#### 1.3.1. 服务接口的本地调用
+#### 服务接口的本地调用
 
 从本质上来讲，某个 JVM 内的对象方法，是无法在 JVM 外部被调用的，如下例：
 
@@ -118,7 +118,7 @@ public class ProviderApplication {
 
 > 注：以上示例`orderService.getDetail("1")`的这一行程序调用，是无法脱离本地 jvm 环境被调用的。
 
-#### 1.3.2. RPC 的实现切入口 - 反射调用
+#### RPC 的实现切入口 - 反射调用
 
 为了解决不同 JVM 环境（不同服务器）之间的 JAVA 对象方法的调用，可以使用反射模式来解决。
 
@@ -178,13 +178,13 @@ Object result = InvokeUtils.call(info, context);
 LOGGER.info("测试InvokeUtils.call调用功能，调用结果：{}", JSON.toJSONString(result));
 ```
 
-#### 1.3.3. 网络通信传递反射信息
+#### 网络通信传递反射信息
 
 在上一节的步骤中，可以知道，只要传递 target/method/arg等三要素，就可以执行想要的目标服务方法，所以目前只需要解决target/method/arg 三种信息的网络传输问题即可。
 
 网络通信的方法很多，如 http/rmi/webservice 等等。本次示例选用 JDK 的 rmi 方式，其使用方式如下
 
-##### 1.3.3.1. 定义一个接口继承自 remote 接口
+##### 定义一个接口继承自 remote 接口
 
 - 创建 InfoService 接口
 
@@ -258,7 +258,7 @@ public class InfoServiceImpl extends UnicastRemoteObject implements InfoService 
 }
 ```
 
-##### 1.3.3.2. 服务提供方通过 RMI 开放服务到指定 URL
+##### 服务提供方通过 RMI 开放服务到指定 URL
 
 只需要将实例绑定注册到指定的 `URL` 和 `port` 上，远程即可调用此实例
 
@@ -285,7 +285,7 @@ public class ProviderApplication {
 }
 ```
 
-##### 1.3.3.3. 消费端通过 RMI 远程 URL 连接并调用
+##### 消费端通过 RMI 远程 URL 连接并调用
 
 ```java
 package com.moon;
@@ -346,7 +346,7 @@ public class ConsumerApplication {
 
 > 至此，可以实现了通过RMI跨机器传递需要调用的反射信息（target/method/arg）
 
-#### 1.3.4. 远程调用的融合
+#### 远程调用的融合
 
 经过前两步的实践，已经实现了跨机器的反射信息收发和反射动作调用。现在只需要在InfoService的实现上，对传递过来的info信息，直接发起反射调用即可
 
@@ -391,7 +391,7 @@ public class ProviderApplication {
 
 现在远程机器只要通过infoService传递信息过来，就自动将目标服务反射调用，并返回结果值回去，整个RPC过程完成
 
-#### 1.3.5. 对客户端友好的透明化封装
+#### 对客户端友好的透明化封装
 
 经过前面的测试示例，RPC 的整个调用链条已经拉通，但是还有一个易出错的地方，就是客户端封装反射信息的地方，功能不够内聚，容易出现错误，代码易读性也很差
 
@@ -459,7 +459,7 @@ public class ConsumerApplication {
 
 优化后，客户端远程传递反射信息的过程，直接变成调用接口的代理对象即可。调用者，甚至不再需要区分，此接口代理对象到底是谁，像调用正常的本地服务一样使用即可
 
-### 1.4. HTTP 和 RPC 的区别
+### HTTP 和 RPC 的区别
 
 - HTTP（Hypertext Transfer Protocol）是一种应用层协议，主要强调的是网络通信。
 - RPC（Remote Procedure Call，远程过程调用）是一种用于分布式系统之间通信的协议，强调的是服务之间的远程调用。
@@ -478,14 +478,14 @@ public class ConsumerApplication {
 
 > Tips: 在微服务体系里，基于 HTTP 风格的远程调用通常使用框架如 Feign 来实现；基于 RPC 的远程调用通常使用框架如 Dubbo 来实现。
 
-## 2. Dubbo 简介
+## Dubbo 简介
 
 Apache Dubbo™ 是一款高性能 Java RPC 框架。致力于提供高性能和透明化的 RPC 远程服务调用方案，以及 SOA 服务治理方案。
 
 > - 官网（中文）：https://cn.dubbo.apache.org/zh-cn/
 > - 最新官方文档：https://cn.dubbo.apache.org/zh-cn/overview/home/
 
-### 2.1. Dubbo 实现 RPC 框架
+### Dubbo 实现 RPC 框架
 
 分布式服务架构下，各个服务间的相互 RPC 调用会越来越复杂。最终形成网状结构，此时服务的治理极为关键。
 
@@ -501,9 +501,9 @@ Dubbo 是一个带有服务治理功能的 RPC 框架，提供了一套较为完
 - 集群容错：提供基于接口方法的透明远程过程调用，包括多协议支持以及软负载均衡，失败容错、地址路由、动态配置等集群支持。
 - 自动发现：基于注册中心目录服务，使服务消费方能动态的查找服务提供方，使地址透明，使服务提供方可以平滑增加或减少机器。
 
-### 2.2. Dubbo 的架构
+### Dubbo 的架构
 
-#### 2.2.1. 整体设计
+#### 整体设计
 
 dubbo 的整体结构如下图：
 
@@ -528,7 +528,7 @@ dubbo 的整体结构如下图：
 
 Service 和 Config 两层可以认为是 API 层，主要提供给 API 使用者，使用者只需要配置和完成业务代码即可。后面所有的层级是 SPI 层，主要提供给扩展者使用主要是用来做 Dubbo 的二次开发扩展功能。
 
-#### 2.2.2. 各层说明
+#### 各层说明
 
 Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是留给实际想要使用 Dubbo 开发分布式服务的开发者实现业务逻辑的接口层。图中左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口，位于中轴线上的为双方都用到的接口。Dubbo 对于服务提供方和服务消费方，从框架的 10 层中分别提供了各自需要关心和扩展的接口，构建整个服务生态系统(服务提供方和服务消费方本身就是一个以服务为中心的)
 
@@ -545,7 +545,7 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 - **Transport 网络传输层**：抽象 mina 和 netty 为统一接口，以 `Message` 为中心，扩展接口为 `Channel`, `Transporter`, `Client`, `Server`, `Codec`
 - **Serialize 数据序列化层**：可复用的一些工具，扩展接口为 `Serialization`, `ObjectInput`, `ObjectOutput`, `ThreadPool`
 
-### 2.3. Dubbo 服务的角色依赖关系
+### Dubbo 服务的角色依赖关系
 
 服务提供方和服务消费方之间的调用关系，如图所示：
 
@@ -570,7 +570,7 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 4. 服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。
 5. 服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。
 
-### 2.4. Dubbo 支持的协议与应用场景
+### Dubbo 支持的协议与应用场景
 
 ![](images/240722916231072.png)
 
@@ -582,9 +582,9 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 - **memcache**：基于 memcached 实现的 RPC 协议
 - **redis**：基于 redis 实现的 RPC 协议
 
-### 2.5. Dubbo 各阶段实现过程
+### Dubbo 各阶段实现过程
 
-#### 2.5.1. Dubbo 的总体的调用过程
+#### Dubbo 的总体的调用过程
 
 ![](images/72343307237365.png)
 
@@ -604,7 +604,7 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 12. 之后经过一个服务提供者端的**过滤器链**
 13. 然后找到接口实现并**真正的调用**，将请求结果返回
 
-#### 2.5.2. 服务暴露的流程
+#### 服务暴露的流程
 
 ![](images/520602622231072.png)
 
@@ -616,7 +616,7 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 
 ![](images/414402822249498.png)
 
-#### 2.5.3. 服务引用的流程
+#### 服务引用的流程
 
 ![](images/481843022237365.png)
 
@@ -624,17 +624,17 @@ Dubbo 总体架构设计一共划分了 10 层，而最上面的 Service 层是�
 2. 之后 `DubboProtocol` **根据 provider 的地址和接口信息连接到服务端 server**，开启客户端 client，然后创建 invoker。
 3. 之后通过 invoker 为服务接口**生成代理对象**，这个代理对象用于远程调用 provider，至此完成了服务引用。
 
-## 3. 快速入门
+## 快速入门
 
-### 3.1. 基于 Dubbo Spring Boot Starter（使用 Nacos 注册中心）微服务实践
+### 基于 Dubbo Spring Boot Starter（使用 Nacos 注册中心）微服务实践
 
 基于 Nacos 作为注册中心的 Dubbo x Spring Boot 的微服务开发快速开始示例，用于了解 Dubbo x Spring Boot 配置方式。
 
-#### 3.1.1. 启动 nacos
+#### 启动 nacos
 
 启动 nacos 作为服务注册中心，nacos 的使用参考《Spring-Cloud-Alibaba-Nacos 笔记》
 
-#### 3.1.2. 创建聚合工程与 API 模块
+#### 创建聚合工程与 API 模块
 
 创建示例聚合工程，引入以下依赖：
 
@@ -704,7 +704,7 @@ public interface HelloService {
 }
 ```
 
-#### 3.1.3. 服务提供者
+#### 服务提供者
 
 1. 引入服务接口工程、dubbo、nacos 等相关依赖
 
@@ -793,7 +793,7 @@ dubbo:
     port: -1
 ```
 
-#### 3.1.4. 服务消费者
+#### 服务消费者
 
 1. 服务消费端同样引入服务接口工程、dubbo、nacos 等相关依赖。*具体参考“服务提供者”*
 2. 创建启动类，并使用 `@EnableDiscoveryClient` 开启服务发现功能。*具体参考“服务提供者”*
@@ -872,7 +872,7 @@ public class Task implements CommandLineRunner {
 }
 ```
 
-#### 3.1.5. 测试
+#### 测试
 
 启动 nacos、dubbo-nacos-provider、dubbo-nacos-consumer。在 nacos 控制台可以看到相应的服务列表：
 
@@ -886,11 +886,11 @@ public class Task implements CommandLineRunner {
 
 ![](images/547453016257014.png)
 
-### 3.2. Dubbo 整合 Nacos 配置中心实践
+### Dubbo 整合 Nacos 配置中心实践
 
 基于上个章节『基于 Dubbo Spring Boot Starter（使用 Nacos 注册中心）微服务实践』，将项目修改为使用 Nacos Config 来管理项目配置。具体实现步骤如下：
 
-#### 3.2.1. 添加 Nacos Config 依赖
+#### 添加 Nacos Config 依赖
 
 在 dubbo-nacos-consumer、dubbo-nacos-provider 均添加 Nacos Config 的依赖。
 
@@ -901,7 +901,7 @@ public class Task implements CommandLineRunner {
 </dependency>
 ```
 
-#### 3.2.2. 更改本地与远程配置
+#### 更改本地与远程配置
 
 以服务提供端（dubbo-nacos-provider）为例，移除（修改为别的名称）原来的 application.yml 文件，创建优先级最高的 bootstrap.yml 文件，只需要配置 nacos 相关选项：
 
@@ -924,30 +924,30 @@ spring:
 
 成功修改后，按上个章节步骤测试即可
 
-### 3.3. 基于 Spring XML 微服务实践
+### 基于 Spring XML 微服务实践
 
 基于 Dubbo x Spring XML 的微服务快速开始示例，用于了解 Dubbo x Spring XML 配置方式。
 
 > 参考官网：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/spring-xml/
 
-### 3.4. 基于 Dubbo API 微服务实践
+### 基于 Dubbo API 微服务实践
 
 > 参考官网：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/api/
 
 基于 Dubbo 的纯 API 的微服务快速开始示例，
 
-## 4. Dubbo 基础配置使用
+## Dubbo 基础配置使用
 
-### 4.1. xml 文件配置方式
+### xml 文件配置方式
 
-#### 4.1.1. dubbo 标签关系图
+#### dubbo 标签关系图
 
 ![](images/20200126122444209_30129.jpg)
 
 > 1. 标签属性有继承关系，即：下层有设置则使用，未配置则沿用上一级的设置
 > 2. timeout/retries/loadbalance消费方未设置，则沿用服务方的设置
 
-#### 4.1.2. dubbo 各标签作用汇总表
+#### dubbo 各标签作用汇总表
 
 |          标签           |    用途     |                                       解释                                        |
 | ---------------------- | ---------- | -------------------------------------------------------------------------------- |
@@ -963,7 +963,7 @@ spring:
 | `<dubbo:method/>`      | 方法配置     | 用于 `ServiceConfig` 和 `ReferenceConfig` 指定方法级的配置信息                        |
 | `<dubbo:argument/>`    | 参数配置     | 用于指定方法参数配置                                                                 |
 
-#### 4.1.3. 标签详解
+#### 标签详解
 
 所有配置项分为三大类，参见以下各个标签作用表中的"作用"一列
 
@@ -978,13 +978,13 @@ spring:
 
 > 各个标签详细属性配置参考官网：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/
 
-##### 4.1.3.1. dubbo:service【常用】
+##### dubbo:service【常用】
 
 服务提供者暴露服务配置。对应的配置类：`org.apache.dubbo.config.ServiceConfig`。常用属性如下：
 
 ![](images/274152323230560.png)
 
-##### 4.1.3.2. dubbo:reference【常用】
+##### dubbo:reference【常用】
 
 服务消费者引用服务配置。对应的配置类：`org.apache.dubbo.config.ReferenceConfig`。常用属性如下：
 
@@ -993,7 +993,7 @@ spring:
 | id        |            | string | **必填** |       | 配置关联 | 服务引用BeanId | 1.0.0以上版本 |
 | interface |            | class  | **必填** |       | 服务发现 | 服务接口名     | 1.0.0以上版本 |
 
-##### 4.1.3.3. dubbo:protocol【常用】
+##### dubbo:protocol【常用】
 
 服务提供者协议配置。对应的配置类：`org.apache.dubbo.config.ProtocolConfig`。同时，如果需要支持多协议，可以声明多个 `<dubbo:protocol>` 标签，并在 `<dubbo:service>` 中通过 protocol 属性指定使用的协议。常用属性如下：
 
@@ -1001,7 +1001,7 @@ spring:
 
 > 详见官方文档：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/#protocol
 
-##### 4.1.3.4. dubbo:registry【常用】
+##### dubbo:registry【常用】
 
 注册中心配置。对应的配置类：`org.apache.dubbo.config.RegistryConfig`。同时如果有多个不同的注册中心，可以声明多个 `<dubbo:registry>` 标签，并在 `<dubbo:service>` 或 `<dubbo:reference>` 的 registry 属性指定使用的注册中心。常用属性如下：
 
@@ -1009,29 +1009,29 @@ spring:
 
 > 详见官方文档：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/#registry
 
-##### 4.1.3.5. dubbo:monitor
+##### dubbo:monitor
 
 监控中心配置。对应的配置类：`org.apache.dubbo.config.MonitorConfig`
 
-##### 4.1.3.6. dubbo:application【常用】
+##### dubbo:application【常用】
 
 应用信息配置。对应的配置类：`org.apache.dubbo.config.ApplicationConfig`。常用属性如下：
 
 > 详见官方文档：https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/#application
 
-##### 4.1.3.7. dubbo:module
+##### dubbo:module
 
 模块信息配置。对应的配置类：`org.apache.dubbo.config.ModuleConfig`
 
-##### 4.1.3.8. dubbo:provider
+##### dubbo:provider
 
 服务提供者缺省值配置。对应的配置类：`org.apache.dubbo.config.ProviderConfig`。同时该标签为 `<dubbo:service>` 和 `<dubbo:protocol>` 标签的缺省值设置
 
-##### 4.1.3.9. dubbo:consumer
+##### dubbo:consumer
 
 服务消费者缺省值配置。配置类：`org.apache.dubbo.config.ConsumerConfig`。同时该标签为 `<dubbo:reference>` 标签的缺省值设置
 
-##### 4.1.3.10. dubbo:method
+##### dubbo:method
 
 方法级配置。对应的配置类：`org.apache.dubbo.config.MethodConfig`。同时该标签为 `<dubbo:service>` 或 `<dubbo:reference>` 的子标签，用于控制到方法级。如下例：
 
@@ -1041,7 +1041,7 @@ spring:
 </dubbo:reference>
 ```
 
-##### 4.1.3.11. dubbo:argument
+##### dubbo:argument
 
 方法参数配置。对应的配置类：`org.apache.dubbo.config.ArgumentConfig`。该标签为 `<dubbo:method>` 的子标签，用于方法参数的特征描述。如下例：
 
@@ -1051,7 +1051,7 @@ spring:
 </dubbo:method>
 ```
 
-##### 4.1.3.12. dubbo:parameter
+##### dubbo:parameter
 
 选项参数配置。对应的配置类：`java.util.Map`。同时该标签为`<dubbo:protocol>`或`<dubbo:service>`或`<dubbo:provider>`或`<dubbo:reference>`或`<dubbo:consumer>`的子标签，用于配置自定义参数，该配置项将作为扩展点设置自定义参数使用。如下例：
 
@@ -1067,31 +1067,31 @@ spring:
 <dubbo:protocol name="jms" p:queue="xxx" />
 ```
 
-##### 4.1.3.13. dubbo:config-center
+##### dubbo:config-center
 
 配置中心。对应的配置类：`org.apache.dubbo.config.ConfigCenterConfig`
 
-#### 4.1.4. xml配置使用示例
+#### xml配置使用示例
 
 > - xml的配置使用示例。详细参考dubbo-sample-xml工程
 > - Springmvc的集成Dubbo的使用示例，详细参考busi-mvc工程
 
-### 4.2. 属性配置方式
+### 属性配置方式
 
 如果项目应用足够简单，例如，不需要多注册中心或多协议，并且需要在 spring 容器中共享配置。可以直接使用 `dubbo.properties` 作为默认配置。
 
-### 4.3. 注解配置方式
+### 注解配置方式
 
 > 详细示例参考：dubbo-sample-annotation工程
 
 - 注解方式的底层与XML一致，只是表现形式上的不同。
 - 目标都是配置Dubbo基础信息，主要涉及以下五个必不可少的信息：`ApplicationConfig`、`ProtocolConfig`、`RegistryConfig`、`service`、`reference`
 
-#### 4.3.1. @EnableDubbo 开启服务
+#### @EnableDubbo 开启服务
 
 `@EnableDubbo` 注解：开启注解 Dubbo 功能，其中可以加入 `scanBasePackages` 属性配置包扫描的路径，用于扫描并注册 bean。其中封装了组件 `@DubboComponentScan`，来扫描Dubbo框架的 `@Service` 注解暴露 Dubbo 服务，以及扫描 Dubbo 框架的 `@Reference` 字段或者方法注入 Dubbo 服务代理。
 
-#### 4.3.2. @Configuration 方式配置公共信息
+#### @Configuration 方式配置公共信息
 
 `@Configuration` 指定配置类，在类中分别将 ApplicationConfig、ProtocolConfig、RegistryConfig 等类创建到 IOC 容器中即可，提供者配置（消费者配置方式一样）示例如下：
 
@@ -1163,7 +1163,7 @@ public class ProviderConfiguration {
 }
 ```
 
-#### 4.3.3. property 属性配置方式自动装配公共信息
+#### property 属性配置方式自动装配公共信息
 
 `@PropertySource`注解方式：使用 Spring boot 属性文件方式，由 Dubbo 自动将文件信息配置入容器，就类似 spring boot 自动装配一样，提供者示例如下：
 
@@ -1196,7 +1196,7 @@ public class ProviderPropertyConfiguration {
 }
 ```
 
-### 4.4. API 配置方式
+### API 配置方式
 
 以API 配置的方式来配置你的 Dubbo 应用
 
@@ -1278,9 +1278,9 @@ public class ApiConsumer {
 }
 ```
 
-## 5. RPC 协议
+## RPC 协议
 
-### 5.1. 协议概述
+### 协议概述
 
 Dubbo3 提供了 Triple(Dubbo3)、Dubbo2 协议，这是 Dubbo 框架的原生协议。除此之外，Dubbo3 也对众多第三方协议进行了集成，并将它们纳入 Dubbo 的编程与服务治理体系， 包括 gRPC、Thrift、JsonRPC、Hessian2、REST 等。
 
@@ -1304,7 +1304,7 @@ RPC 协议的设计需要考虑以下内容：
 - 性能：尽可能地快(As fast as it can be)
 - 穿透性：能够被各种终端设备识别和转发：网关、代理服务器等 通用性和高性能通常无法同时达到，需要协议设计者进行一定的取舍。
 
-### 5.2. Dubbo 协议
+### Dubbo 协议
 
 Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据量大并发的服务调用，以及服务消费者机器数远大于服务提供者机器数的情况。反之，Dubbo 缺省协议不适合传送大数据量的服务，比如传文件，传视频等，除非请求量很低。
 
@@ -1348,11 +1348,11 @@ Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据
 > - 服务器端和客户端对领域对象并不需要完全一致，而是按照最大匹配原则。
 > - 会抛异常的情况：枚举值一边多一种，一边少一种，正好使用了差别的那种，或者属性名相同，类型不同。
 
-#### 5.2.1. 使用场景
+#### 使用场景
 
 适合大并发小数据量的服务调用，服务消费者远大于服务提供者的情景。
 
-#### 5.2.2. 使用方式
+#### 使用方式
 
 **配置协议**
 
@@ -1404,9 +1404,9 @@ Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据
 <dubbo:protocol name="dubbo" accepts="1000" />
 ```
 
-### 5.3. Triple 协议
+### Triple 协议
 
-#### 5.3.1. 概述
+#### 概述
 
 Triple 是 Dubbo3 提出的基于 HTTP 的开放协议，旨在解决 Dubbo2 私有协议带来的互通性问题，Tripe 基于 gRPC 和 gRPC-Web 设计而来，保留了两者的优秀设计，Triple 做到了完全兼容 gRPC 协议，并可同时运行在 HTTP/1 和 HTTP/2 之上。
 
@@ -1424,7 +1424,7 @@ Triple 是 Dubbo3 提出的基于 HTTP 的开放协议，旨在解决 Dubbo2 私
 - 不绑定 IDL，支持 Java Interface 定义服务
 - 保持与官方 gRPC 库的 100% 兼容性的同时，与 Dubbo 的微服务治理体系无缝融合
 
-#### 5.3.2. 使用方式
+#### 使用方式
 
 由于 Triple 协议底层需要依赖 protobuf 协议进行传输，即使定义的服务接口不使用 protobuf 也需要在环境中引入 protobuf 的依赖。
 
@@ -1436,15 +1436,15 @@ Triple 是 Dubbo3 提出的基于 HTTP 的开放协议，旨在解决 Dubbo2 私
 </dependency>
 ```
 
-## 6. Dubbo SPI 机制
+## Dubbo SPI 机制
 
-### 6.1. 概述
+### 概述
 
-#### 6.1.1. Java SPI 机制回顾
+#### Java SPI 机制回顾
 
 > 此部分内容详见[《Java基础 - 反射》笔记](/Java/Java基础-反射)的『Java SPI 机制』章节
 
-#### 6.1.2. Dubbo SPI 概述
+#### Dubbo SPI 概述
 
 Dubbo 框架是建立的 SPI 机制之上。Java SPI 机制非常简单，就是读取指定的配置文件，将所有的类都加载到程序中。而这种机制，存在很多缺陷，比如：
 
@@ -1462,7 +1462,7 @@ key=com.xxx.xxx
 
 3. `META-INF/dubbo/internal/` 目录：该目录存放 Dubbo 内部使用的 SPI 配置文件。
 
-#### 6.1.3. Dubbo SPI 和 Java SPI 区别
+#### Dubbo SPI 和 Java SPI 区别
 
 **JDK SPI**：JDK 标准的 SPI 会一次性加载所有的扩展实现类并且全部实现化。但如果有的扩展初始化又耗时并且没有用上，这就很浪费资源。但 JDK 的 SPI 又无法实现指定只加载某个的实现类的功能。
 
@@ -1473,7 +1473,7 @@ key=com.xxx.xxx
 3. 增加了对扩展点 IOC 和 AOP 的支持，一个扩展点可以直接 setter 注入其它扩展点。
 4. Dubbo 的扩展机制能很好的支持第三方 IoC 容器，默认支持 Spring Bean。
 
-### 6.2. @SPI 注解
+### @SPI 注解
 
 与 Java SPI 实现类配置不同，Dubbo SPI 是通过键值对的方式进行配置，这样就可以按需加载指定的实现类。另外，需要在接口上标注 `@SPI` 注解。表明此接口是 SPI 的扩展点：
 
@@ -1531,7 +1531,7 @@ AAAA,你好，调通了A实现！
 I'm default,你好，调通了B实现！
 ```
 
-### 6.3. @Activate 注解
+### @Activate 注解
 
 Dubbo 的 SPI 机制虽然对原生 SPI 有了增强，但功能还远远不够。在实际项目中，某种时候存在这样的情形，需要同时启用某个接口的多个实现类，如 Filter 过滤器。希望某种条件下启用这一批实现，而另一种情况下启用那一批实现，比如：希望的 RPC 调用的消费端和服务端，分别启用不同的两批 Filter，这样就需要使用 `@Activate` 注解
 
@@ -1551,7 +1551,7 @@ public class testActivate2 implements Filter {
 
 > 详细示例参考 dubbo-thought 项目的 base-spi 和 busi-logic 工程
 
-### 6.4. Javassist 动态编译
+### Javassist 动态编译
 
 在 SPI 寻找实现类的过程中，是通过 `getAdaptiveExtension` 方法得到的对象，只是个接口代理对象，此代理对象是由临时编译的类来实现的。javassist 动态编译类有两种方式，此动态编译生成类是没有 class 文件
 
@@ -1628,7 +1628,7 @@ public void createClassByCompile() throws IllegalAccessException, InstantiationE
 }
 ```
 
-### 6.5. @Adaptive 注解
+### @Adaptive 注解
 
 扩展点对应的实现类不能在程序运行时动态指定，就是`extensionLoader.getExtension`方法写死了扩展点对应的实现类，不能在程序运行期间根据运行时参数进行动态改变。而在程序使用时会希望对实现类进行懒加载，并且能根据运行时情况来决定，应该启用哪个扩展类。为了解决这个问题，dubbo 引入了`@Adaptive`注解，也就是 dubbo 的自适应机制
 
@@ -1683,7 +1683,7 @@ adaptiveExtension.passInfo("moon", url)
 
 > 详细示例参考dubbo-thought项目
 
-### 6.6. Dubbo SPI 的依赖注入
+### Dubbo SPI 的依赖注入
 
 Dubbo SPI 的核心实现类为 `ExtensionLoader`，此类的使用几乎遍及 Dubbo的 整个源码体系。`ExtensionLoader` 有三个重要的入口方法，分别与 `@SPI`、`@Activate`、`@Adaptive` 注解对应。
 
@@ -1693,7 +1693,7 @@ Dubbo SPI 的核心实现类为 `ExtensionLoader`，此类的使用几乎遍及 
 
 其中，`@Adaptive` 注解作的自适应功能，还涉及到了代理对象（而 Dubbo 的代理机制，有两种选择，jdk 动态代理和 javassist 动态编译类）。
 
-#### 6.6.1. Dubbo SPI 依赖注入场景
+#### Dubbo SPI 依赖注入场景
 
 Dubbo 的 SPI 机制，除上以上三种注解的用法外，还有一个重要的功能依赖注入，下面是依赖注入的一个示例：
 
@@ -1742,7 +1742,7 @@ public void iocSPI() {
 
 > 最后dubbo调用了InfoService的B实现
 
-#### 6.6.2. Dubbo 依赖注入的过程分析
+#### Dubbo 依赖注入的过程分析
 
 从`loader.getDefaultExtension();`开始，通过`getExtensionClasses();`方法获取所有扩展类Class对象，如果第一次创建，则参过`instance = createExtension(name);`创建实例
 
@@ -1770,15 +1770,15 @@ public interface ExtensionFactory {
 
 ExtensionFactory 接口有两个实现类，一个适配类（adaptive，接口的默认实现）。AdaptiveExtensionFactory 在内部持有了所有的 factory 实现工厂，即`SpiExtensionFactory`与`SpringExtensionFactory`两个实现类。一个为 SPI 工厂（依赖类是扩展接口时发挥作用），一个为 Spring 工厂（依赖的是 springbean 时发挥作用）。于是，当需要为某个生成的对象注入依赖时，直接调用此对象即可。从而实现 Dubbo SPI 的 IOC 功能
 
-## 7. 整合 Sentinel 系统防护
+## 整合 Sentinel 系统防护
 
-### 7.1. 概述
+### 概述
 
 在复杂的生产环境下可能部署着成千上万的 Dubbo 服务实例，流量持续不断地进入，服务之间进行相互调用。但是分布式系统中可能会因流量激增、系统负载过高、网络延迟等一系列问题，导致某些服务不可用，如果不进行相应的控制可能导致级联故障，影响服务的可用性，因此如何对流量进行合理的控制，成为保障服务稳定性的关键。
 
 Sentinel 是阿里中间件团队开源的，面向分布式服务架构的轻量级流量控制产品，主要以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度来帮助用户保护服务的稳定性。Dubbo 可整合 Sentinel 进行流量控制。
 
-### 7.2. Sentinel Dubbo Adapter
+### Sentinel Dubbo Adapter
 
 Sentinel 提供 Dubbo 的相关适配 Sentinel Dubbo Adapter，用于适配 Dubbo 的资源，主要包括针对 Service Provider 和 Service Consumer 实现的 Filter。不同的 Dubbo 版本，相关模块也不同：
 
@@ -1818,11 +1818,11 @@ Sentinel 提供 Dubbo 的相关适配 Sentinel Dubbo Adapter，用于适配 Dubb
 
 引入此依赖后，Dubbo 的服务接口和方法（包括调用端和服务端）就会成为 Sentinel 中的资源，在配置了规则后就可以自动享受到 Sentinel 的防护能力。
 
-### 7.3. Dubbo 整合 Sentinel 步骤
+### Dubbo 整合 Sentinel 步骤
 
 基于前面快速入门示例中『基于 Dubbo Spring Boot Starter（使用 Nacos 注册中心）微服务实践』工程代码，添加以下步骤：
 
-#### 7.3.1. 添加 Sentinel 相关依赖
+#### 添加 Sentinel 相关依赖
 
 在服务消费者与服务提供者添加 Sentinel 与 Sentinel Dubbo Adapter 的依赖
 
@@ -1833,7 +1833,7 @@ Sentinel 提供 Dubbo 的相关适配 Sentinel Dubbo Adapter，用于适配 Dubb
 </dependency>
 ```
 
-#### 7.3.2. 添加 sentinel 相关属性配置
+#### 添加 sentinel 相关属性配置
 
 服务提供者增加 sentinel 相关配置
 
@@ -1887,7 +1887,7 @@ dubbo:
 
 > 注：本机 sentinel 服务端口为 9898，按实际进行修改。
 
-#### 7.3.3. 测试
+#### 测试
 
 分别启动 nacos、sentinel 服务、dubbo-sentinel-provider、dubbo-sentinel-consumer 进行测试。
 
@@ -1907,7 +1907,7 @@ sentinel 控制看到服务提供者的资源
 
 ![](images/34190323246242.png)
 
-### 7.4. 自定义异常处理
+### 自定义异常处理
 
 像上面示例中被限流后返回的错误不太友好，dubbo 提供了自定义异常处理功能，只实现 `com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallback` 接口，其中 `handle` 就是发现异常后处理逻辑实现。
 
@@ -1947,13 +1947,13 @@ public class DubboSentinelProvider {
 
 ![](images/480870823230561.png)
 
-## 8. 整合 SkyWalking 链路跟踪（待整理）
+## 整合 SkyWalking 链路跟踪（待整理）
 
 > TODO: 待学习 SkyWalking 后再整理
 
-## 9. 服务化最佳实践
+## 服务化最佳实践
 
-### 9.1. 在 Provider 端应尽量配置的属性
+### 在 Provider 端应尽量配置的属性
 
 Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service属性 -> Consumer 属性`
 
@@ -1961,7 +1961,7 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 
 而对于服务调用的超时时间、重试次数等属性，服务的提供方比消费方更了解服务性能，因此我们应该在 Provider 端尽量多配置 Consumer 端属性，让其漫游到消费端发挥作用
 
-#### 9.1.1. 在 Provider 端尽量多配置 Consumer 端属性
+#### 在 Provider 端尽量多配置 Consumer 端属性
 
 - Provider 端尽量多配置 Consumer 端的属性，让 Provider 的实现者一开始就思考 Provider 端的服务特点和服务质量等问题
 
@@ -1982,7 +1982,7 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 3. `loadbalance`：负载均衡算法，缺省是随机 random。还可以配置轮询 roundrobin、最不活跃优先 leastactive 和一致性哈希 consistenthash 等
 4. `actives`：消费者端的最大并发调用限制，即当 Consumer 对一个服务的并发调用到上限后，新调用会阻塞直到超时，在方法上配置 `dubbo:method` 则针对该方法进行并发限制，在接口上配置 `dubbo:service`，则针对该服务进行并发限制
 
-#### 9.1.2. 在 Provider 端配置合理的 Provider 端属性
+#### 在 Provider 端配置合理的 Provider 端属性
 
 ```xml
 <dubbo:protocol threads="200" />
@@ -1996,15 +1996,15 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 1. `threads`：服务线程池大小
 2. `executes`：一个服务提供者并行执行请求上限，即当 Provider 对一个服务的并发调用达到上限后，新调用会阻塞，此时 Consumer 可能会超时。在方法上配置 `dubbo:method` 则针对该方法进行并发限制，在接口上配置 `dubbo:service`，则针对该服务进行并发限制
 
-### 9.2. 服务拆分最佳实现
+### 服务拆分最佳实现
 
-#### 9.2.1. 分包
+#### 分包
 
 建议将服务接口、服务模型、服务异常等均放在 API 包中，因为服务模型和异常也是 API 的一部分，这样做也符合分包原则：重用发布等价原则(REP)，共同重用原则(CRP)。
 
 如果需要，也可以考虑在 API 包中放置一份 Spring 的引用配置，这样使用方只需在 Spring 加载过程中引用此配置即可。配置建议放在模块的包目录下，以免冲突，如：com/alibaba/china/xxx/dubbo-reference.xml。
 
-#### 9.2.2. 粒度
+#### 粒度
 
 服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo 暂未提供分布式事务支持。
 
@@ -2012,7 +2012,7 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 
 不建议使用过于抽象的通用接口，如：Map query(Map)，这样的接口没有明确语义，会给后期维护带来不便。
 
-#### 9.2.3. 版本
+#### 版本
 
 每个接口都应定义版本号，为后续不兼容升级提供可能，如：`<dubbo:service interface="com.xxx.XxxService" version="1.0" />`
 
@@ -2020,7 +2020,7 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 
 当不兼容时，先升级一半提供者为新版本，再将消费者全部升为新版本，然后将剩下的一半提供者升为新版本。
 
-#### 9.2.4. 异常
+#### 异常
 
 建议使用异常汇报错误，而不是返回错误码，异常信息能携带更多信息，并且语义更友好。
 
@@ -2030,17 +2030,17 @@ Dubbo 的属性配置优先度上，遵循顺序：`reference属性 -> service�
 
 服务提供方不应将 DAO 或 SQL 等异常抛给消费方，应在服务实现中对消费方不关心的异常进行包装，否则可能出现消费方无法反序列化相应异常。
 
-## 10. 其他
+## 其他
 
-### 10.1. dubbo 框架使用示例
+### dubbo 框架使用示例
 
 dubbo 框架使用示例项目参考：dubbo-note\dubbo-sample\
 
-### 10.2. Dubbo telnet 命令
+### Dubbo telnet 命令
 
 dubbo 服务发布之后，可以利用 `telnet` 命令进行调试、管理。Dubbo2.0.5 以上版本服务提供端口支持 `telnet` 命令。
 
-#### 10.2.1. 连接服务
+#### 连接服务
 
 在命令行终端输入以下命令后进入 Dubbo 命令模式。
 
@@ -2048,7 +2048,7 @@ dubbo 服务发布之后，可以利用 `telnet` 命令进行调试、管理。D
 telnet localhost 20880
 ```
 
-#### 10.2.2. 查看服务列表
+#### 查看服务列表
 
 ```bash
 dubbo>ls
@@ -2067,11 +2067,11 @@ quer
 - `ls XxxService`：显示服务的方法列表。
 - `ls -l XxxService`：显示服务的方法详细信息列表。
 
-### 10.3. Dubbo 如何优雅停机
+### Dubbo 如何优雅停机
 
 Dubbo 是通过 JDK 的 ShutdownHook 来完成优雅停机的，所以如果使用 `kill -9 PID` 等强制关闭指令，是不会执行优雅停机的，只有通过 `kill PID` 时，才会执行。
 
-### 10.4. HSF 服务框架（Dubbo 升级版）
+### HSF 服务框架（Dubbo 升级版）
 
 高速服务框架 HSF (High-speed Service Framework)，是在阿里巴巴内部广泛使用的分布式 RPC 服务框架。
 

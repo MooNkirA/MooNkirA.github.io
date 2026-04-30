@@ -1,10 +1,10 @@
-## 1. Servlet 概述
+## Servlet 概述
 
 `javax.servlet.Servlet` 是一个接口。是运行在 Web 服务器（如：Tomcat）上的 Java 小应用程序，由Tomcat去调用，没有main函数。
 
 每个 Servlet 都要在 web.xml 中进行配置。Servlet 就是一个 Java 类，运行在 Web 容器中，接收并响应用户的请求并且对用户的请求做出响应。通常通过 HTTP 协议实现。
 
-### 1.1. Servlet 的生命周期方法
+### Servlet 的生命周期方法
 
 Servlet 的生命周期包括：加载和实例化、初始化、处理请求以及服务结束。
 
@@ -21,7 +21,7 @@ Servlet 的生命周期包括：加载和实例化、初始化、处理请求以
 | ServletConfig getServletConfig()                      | 返回ServletConfig配置对象                                                      |         |
 | String getServletInfo()                               | 返回Servlet中的一些额外信息（几乎不用），如：作者，版本，版权                         |         |
 
-### 1.2. Servlet 的运行过程
+### Servlet 的运行过程
 
 ![](images/599891323237152.jpg)
 
@@ -35,9 +35,9 @@ Servlet 的生命周期包括：加载和实例化、初始化、处理请求以
 2. 得到类全名，通过反射实例化Servlet
 3. 创建request和response对象，调用service()方法，传递2个对象给方法。
 
-### 1.3. Servlet 的实现类
+### Servlet 的实现类
 
-#### 1.3.1. Servlet 接口继承结构
+#### Servlet 接口继承结构
 
 - Servlet接口：定义了所有 Servlet 生命周期的方法
 - ServletConfig 接口：定义 Servlet 中的配置对象，读取 Servlet 配置参数
@@ -48,7 +48,7 @@ HttpServlet 抽象类实现了 Servlet 接口和 ServletConfig 接口。类继�
 
 一般情况下，自定义 Servlet 不建议直接实现 Servlet 接口，通常会继承 Servlet 的实现类 HttpServlet。 
 
-#### 1.3.2. GenericServlet 抽象类
+#### GenericServlet 抽象类
 
 ```java
 public abstract class GenericServlet implements Servlet, ServletConfig, Serializable
@@ -56,7 +56,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, Serializ
 
 抽象类，定义了一个通用的，独立于协议的 Servlet，如果要写 HTTP 协议的 Servlet，建议继承于 HttpServlet。该类实现了 Servlet 接口和 ServletConfig 接口。
 
-#### 1.3.3. HttpServlet 抽象类
+#### HttpServlet 抽象类
 
 ```java
 public abstract class HttpServlet extends GenericServlet
@@ -66,7 +66,7 @@ public abstract class HttpServlet extends GenericServlet
 
 一般需要根据业务来建议重写 `doGet` 和 `doPost` 方法，如果没有重写，此 `service()` 方法就会抛出405错误。
 	
-#### 1.3.4. HttpServlet 的 service 方法
+#### HttpServlet 的 service 方法
 
 ```java
 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -159,21 +159,21 @@ public abstract class HttpServlet extends GenericServlet {
 
 > Notes: HttpServletRequest 和 HttpServletResponse 是 ServletRequest 和 ServletResponse 的子接口
 
-### 1.4. Servlet 作用域
+### Servlet 作用域
 
-#### 1.4.1. 作用域概述
+#### 作用域概述
 
 如果要在 Servlet 之间共享数据的话，可以将数据放到作用域中。作用域是服务器的一块内存空间。
 
 作用域结构是一个 Map 结构，存的是键和值，键必须是字符串类型，值可以是 Object 任意类型。
 
-#### 1.4.2. Servlet 三个作用域
+#### Servlet 三个作用域
 
 Web 服务器一共有三个作用域。其作用范围从小到大：请求域 < 会话域 < 上下文域
 
 - **请求域**作用范围：<font color=red>**只在同一个请求中起作用**</font>，如果请求结束，或换了另一个请求，请求域中的数据将会丢失。
 
-#### 1.4.3. 作用域的创建与销毁
+#### 作用域的创建与销毁
 
 |  作用域  |        接口名         |         创建方式          |       作用范围       |                 生命周期                  |
 | ------- | -------------------- | ----------------------- | ------------------- | ---------------------------------------- |
@@ -184,7 +184,7 @@ Web 服务器一共有三个作用域。其作用范围从小到大：请求域 
 - 作用范围：上下文域 > 会话域 > 请求域
 - 使用原则：如果小的域可以使用，尽量使用小的域。
 
-#### 1.4.4. 三种作用域共同的方法
+#### 三种作用域共同的方法
 
 |   功能   |                      方法                       |
 | ------- | ---------------------------------------------- |
@@ -192,13 +192,13 @@ Web 服务器一共有三个作用域。其作用范围从小到大：请求域 
 | 存放数据 | `void setAttribute(String name, Object value)` |
 | 删除数据 | `void removeAttribute(String name)`            |
 
-#### 1.4.5. 作用域使用原则
+#### 作用域使用原则
 
 <font color=purple>**尽量使用小的作用域，作用域越小越省资源**</font>。
 
-## 2. Request 请求对象
+## Request 请求对象
 
-### 2.1. HttpServletRequest
+### HttpServletRequest
 
 `HttpServletRequest` 接口，是 `ServletRequest` 接口的子接口，代表一个请求对象，用来封装浏览器所有数据封装成一个请求对象。
 
@@ -210,9 +210,9 @@ public interface HttpServletRequest extends ServletRequest
 
 请求行、请求头、请求体，三个部分都封装到了 request 对象中。
 
-### 2.2. HttpServletRequest 接口常用方法
+### HttpServletRequest 接口常用方法
 
-#### 2.2.1. 获取请求行相关的方法
+#### 获取请求行相关的方法
 
 ```java
 String getMethod();
@@ -243,33 +243,33 @@ GET 方式请求示例： ![1](images/502811810259889.jpg)
 
 ![](images/290441910257493.jpg)
 
-#### 2.2.2. 小结
+#### 小结
 
 请求对象的 `getAttribute` 与 `getParameter` 方法的区别？
 
 - `getParameter` 方法是通过容器的实现来取得通过类似 post，get 等方式传入的数据；`getAttribute` 只是仅仅用于请求处理阶段，获取 web 容器内部流转作用域中数据。
 - `getAttribute` 是返回对象；`getParameter` 是返回字符串。
 
-## 3. 转发与重定向
+## 转发与重定向
 
-### 3.1. 页面跳转的 2 种方式
+### 页面跳转的 2 种方式
 
 从一个页面跳转到另一个页面(不同的 Servlet 之间)，跳转有 2 种方式，一种叫**转发**，一种叫**重定向**。
 
-### 3.2. forward（转发）
+### forward（转发）
 
 **转发**是在服务器端内部进行页面的跳转。只能在同一个 Web 应用程序内的资源之间转发请求，是服务器内部的一种操作。原理图如下：
 
 ![](images/256212908248998.jpg)
 
-#### 3.2.1. 转发的特点
+#### 转发的特点
 
 1. 地址栏：不会发生变化，显示的依然是上一个 Servlet 中地址。 ![](images/374013108236865.jpg)，内容看到是demo2。因为转发是服务器直接请求访问目标地址的 URL，把那个 URL 的响应内容读取过来，然后将内容再响应发给浏览器。浏览器根本不知道服务器发送的内容从哪里来的，所以浏览器地址栏还是原来的地址。
 2. 请求次数：只有1次请求。![](images/102063408257031.jpg)
 3. 根目录：使用的是服务器的根目录，`/`表示WebRoot开发目录。相当于 `http://localhost:8080/项目名/`
 4. 请求域：因为是同一次请求，所以请求域中的数据不会丢失。方法把请求带到了第 2 个 Servlet
 
-#### 3.2.2. 转发的方法
+#### 转发的方法
 
 1. 得到转发器，参数是要跳转到页面，使用的`/`是服务器端的绝对路径
 
@@ -289,7 +289,7 @@ dispatcher.forward(request, response);
 request.getRequestDispatcher("跳转的页面").forward(request, response);
 ```
 
-### 3.3. redirect（重定向）
+### redirect（重定向）
 
 **重定向**是服务器通知客户端（浏览器），让客户端重新发起请求进行页面的跳转，是 2 次请求。不仅可以重定向到当前应用程序的其他资源，还可以重定向到同一个站点上的其他应用程序中的资源，甚至是使用绝对 UR 重定向到其他站点的资源。
 
@@ -297,7 +297,7 @@ request.getRequestDispatcher("跳转的页面").forward(request, response);
 
 ![](images/318363908249700.jpg)
 
-#### 3.3.1. 重定向的特点
+#### 重定向的特点
 
 1. 地址栏：是发生变化的，显示第2个Servlet(页面)的地址。因为重定向是服务端根据逻辑，例如发送一个状态码，告诉浏览器重新去请求某个地址。所以浏览器地址栏显示的是新的 URL。重定向等于客户端向服务器端发出两次请求，同时也接受两次响应。
 2. 请求次数：有2次请求
@@ -307,13 +307,13 @@ request.getRequestDispatcher("跳转的页面").forward(request, response);
 3. 根目录：浏览器端的绝对地址。`/`表示的是：`http://localhost:8080/`；是 WebRoot 的上一级：`/day38-request/demo4`
 4. 请求域：因为不是同一次请求，请求域中的数据会丢失
 
-#### 3.3.2. 重写向的方法
+#### 重写向的方法
 
 ```java
 response.sendRedirect(request.getContextPath() + "/访问的地址");
 ```
 
-### 3.4. 重定向和转发的区别
+### 重定向和转发的区别
 
 - 根目录
     - 转发：服务器端的根目录。如：`http://localhost:8080/项目名`
@@ -336,26 +336,26 @@ response.sendRedirect(request.getContextPath() + "/访问的地址");
 
 > Notes: <font color=red>**无论转发或重定向，后续的代码都会执行，如果不想后续的代码继续运行，需要加上 `return`**</font>。
 
-## 4. 会话
+## 会话
 
-### 4.1. 概述
+### 概述
 
 > API: Provides a way to identify a user across more than one page request or visit to a Web site and to store information about that user.
 
 会话提供了一种途径，用来标识一个用户访问多个页面或访问一个站点，同时保存用户访问的信息。HTTP 协议是一个无状态协议，不会保存用户的信息，所以需要使用会话来保存用户的信息。
 
-### 4.2. 什么是会话
+### 什么是会话
 
 类似于生活中的打电话，会话从电话接通开始，挂断结束，在整个通话的过程中，双方可以不断通话，类似于浏览器不停的请求和响应。整个通话的过程就是一次会话。
 
 BS结构的程序类似于打电话，从浏览器第一次访问服务器开始，就创建了一个会话，整个过程中，浏览器不断地向服务器发送请求，服务器不断向浏览器做出响应，这个过程就称为一个会话。当用户关闭浏览器，会话就结束。
 
-### 4.3. 会话的技术
+### 会话的技术
 
 - Cookie 技术：数据保存在浏览器端(缓存中或文件)
 - Session 技术：数据保存在服务器的内存中，在 Java 中定义为 `HttpSession` 接口
 
-### 4.4. 实现集群中的 Session 共享存储
+### 实现集群中的 Session 共享存储
 
 Session 是运行在一台服务器上的，所有的访问都会到达此唯一服务器上时，可以根据客户端传来的 sessionID，来获取相应的 Session；或在对应 Session 不存在的情况下（session 生命周期到了/用户第一次登录），创建一个新的 Session。
 
@@ -368,9 +368,9 @@ Session 是运行在一台服务器上的，所有的访问都会到达此唯一
 3. session 共享：使用 redis， memcached 等技术缓存 session，让所有集群的服务器共离。
 4. session 持久化：将 session 存储至数据库中，像操作数据一样才做 session。
 
-## 5. Cookie
+## Cookie
 
-### 5.1. 概念
+### 概念
 
 > API：Creates a cookie, a small amount of information sent by a servlet to a Web browser, saved by the browser, and later sent back to the server. A cookie's value can uniquely identify a client
 >
@@ -394,11 +394,11 @@ Cookie 的格式：`键=值`，每个 Cookie 就是一个键值对，键和值�
 > - tomcat8 以上的 cookie 不支持`,`和`_`的符号
 > - 网站的登录界面中『请记住我』这样的选项，就是通过 cookie 实现的。
 
-#### 5.1.1. Chrome 查看 Cookie
+#### Chrome 查看 Cookie
 
 ![](images/411334808248888.jpg) ![](images/542944808236755.jpg)
 
-#### 5.1.2. Cookie 技术运行的原理
+#### Cookie 技术运行的原理
 
 ![](images/423175008256921.jpg)
 
@@ -407,13 +407,13 @@ Cookie 的格式：`键=值`，每个 Cookie 就是一个键值对，键和值�
 3. 浏览器接收到服务器发送的 Cookie 数据，自动将 Cookie(`键=值`)存在浏览器的缓存中。
 4. 下次再访问服务器，浏览器将 Cookie 信息以请求头的方式发送给服务器。服务器就可以得到 Cookie 的信息。
 
-#### 5.1.3. Cookie 中使用汉字的情况 
+#### Cookie 中使用汉字的情况 
 
 在服务器端先对汉字使用 URL 编码以后写到浏览器，浏览器发送回来的后，再使用 URL 解码。*URL 编码方法参考后面的下载文件案例*
 
-### 5.2. Cookie 操作相关的方法
+### Cookie 操作相关的方法
 
-#### 5.2.1. Cookie 类的方法
+#### Cookie 类的方法
 
 Cookie 是被抽象在 Tomcat 中的 `javax.servlet.http.Cookie`。以下为常用的创建与设置 Cookie 的常用方法
 
@@ -463,7 +463,7 @@ public void setPath(String uri)
 
 - 设置浏览器向服务器发送 Cookie 的访问（保存）路径，会影响到 Cookie 信息的读取。服务器在读取 Cookie 信息的时候，**访问路径必须是设置的路径或子路径才能读取 Cookie**。*具体的访问规则详见后面章节*。
 
-#### 5.2.2. 写入 Cookie 的方法
+#### 写入 Cookie 的方法
 
 Cookies 写入操作是指服务端往客户端（浏览器）响应 Cookie 的内容。操作方法定义在 `javax.servlet.http.HttpServletResponse` 接口中
 
@@ -473,7 +473,7 @@ void addCookie(Cookie cookie);
 
 - 将指定的 Cookie 对象的发送给浏览器，并且由浏览器写入缓存
 
-#### 5.2.3. 读取 Cookie 的方法
+#### 读取 Cookie 的方法
 
 Cookies 读取操作是指客户端（浏览器）请求服务器时带上的 Cookie 内容。操作方法定义在 `javax.servlet.http.HttpServletRequest` 接口中
 
@@ -483,7 +483,7 @@ Cookie[] getCookies();
 
 - 得到从浏览器端发送回来所有的 Cookie 数据，返回一个 Cookie 数组
 
-#### 5.2.4. Cookie 基础操作案例
+#### Cookie 基础操作案例
 
 案例需求：得到用户上次访问的时间
 
@@ -577,13 +577,13 @@ public class VisitedCookie extends HttpServlet {
 }
 ```
 
-### 5.3. 设置 Cookie 的路径
+### 设置 Cookie 的路径
 
 通过 Cookie 对象的 `setPath(String uri)` 方法可以设置 Cookie 保存的路径。如果不设置，则默认是当前工程的访问地址。
 
 在读取 Cookie 时的访问路径必须是设置的路径或子路径才能成功读取。
 
-#### 5.3.1. 路径的访问规则
+#### 路径的访问规则
 
 如果浏览器端请求的 URL 地址是之前项目或它的子目录，则浏览器会将 Cookie 的信息发送给服务器，即访问 Cookie 所在的路径 path，或它的子目录，都会将 Cookie 从浏览器发送给服务器。
 
@@ -595,7 +595,7 @@ public class VisitedCookie extends HttpServlet {
 | `setPath("/web")`     | `http://localhost:8080/web`              | 可以               |
 | `setPath("/")`        | `http://localhost:8080/`                 | 可以               |
 
-### 5.4. 删除 Cookie
+### 删除 Cookie
 
 如果要删除一个 Cookie，使用该对象的 `setMaxAge(0)`，将过期的时间设置为0 即可。示例如下：
 
@@ -610,15 +610,15 @@ response.addCookie(c);
 
 > Tips: *如果设置为负数，相当于没有设置*
 
-## 6. HttpSession
+## HttpSession
 
-### 6.1. Session 概述
+### Session 概述
 
 会话是运行在服务端，所有的用户信息数据以键和值(可以是 Object)的方式保存在服务器的内存中。
 
 每个浏览器的用户都会在服务器上有一个会话与其对应。各自会话保存用户自己的数据，不同的用户之间数据不能共享，每个用户的数据只能是自己使用。
 
-#### 6.1.1. 在浏览器中查看会话 ID
+#### 在浏览器中查看会话 ID
 
 JSESSIONID 是指，会话ID
 
@@ -630,7 +630,7 @@ JSESSIONID 是指，会话ID
 
 ![](images/476074814259779.jpg)
 
-#### 6.1.2. Session 实现原理分析
+#### Session 实现原理分析
 
 简单来说，服务器在响应的时将会话ID 发送给浏览器。浏览器下次访问时，再将会话ID 发送给服务器，服务器通过会话ID 识别不同的会话。具体流程如下：
 
@@ -648,7 +648,7 @@ JSESSIONID 是指，会话ID
 > - 不同浏览器的会话ID 是不同的，不同的会话ID 可以区分不同的用户。
 > - Session 不会随着浏览器的关闭而死亡，只是不能再次得到之前的会话ID，服务器上的会话没有过期，直到过期才销毁。<font color=red>**默认服务器的过期时间是30分钟**</font>。
 
-#### 6.1.3. 关闭浏览器后再次访问 Session
+#### 关闭浏览器后再次访问 Session
 
 如果浏览器关闭，服务器上的会话信息还是存在的，直到会话过期才从服务器上删除用户的信息。但是下一个用户再打开浏览器，在正常情况下是不能得到之前的会话ID，服务器会再创建一个新的会话给这个用户。因为浏览器关闭以后 Cookie 就过期，之前保存的会话ID 会丢失。
 
@@ -661,7 +661,7 @@ jsessionid.setMaxAge(60 * 10);
 response.addCookie(jsessionid);
 ```
 
-#### 6.1.4. Session 和 Cookie 的主要区别
+#### Session 和 Cookie 的主要区别
 
 - **作用范围不同**：Cookie 保存在客户端；Session 保存在服务器端内存中。
 - **值类型不同**：Cookie 键和值都是字符串类型；Session 键是字符串类型，值是 Object 类型。
@@ -669,7 +669,7 @@ response.addCookie(jsessionid);
 - **隐私策略不同**：Cookie 存储在客户端，容易被窃取；Session 存储在服务端，安全性相对 Cookie 要好一些。
 - **存储大小不同**：单个 Cookie 保存的数据不能超过 4K；对于 Session 来说存储没有上限，但出于对服务器的性能考虑，Session 内不要存放过多的数据，并且需要设置 Session 删除机制。
 
-### 6.2. HttpSession 的使用
+### HttpSession 的使用
 
 1. 创建时机：由服务器创建，每个用户<font color=red>**第一次**</font>访问的时候创建一个会话对象。每个用户对应一个会话。
 2. 获取 Session 对象，程序可以通过 `javax.servlet.http.HttpServletRequest` 接口的 `getSession()` 方法得到服务器创建好的会话（**本质是获得会话对象**）。
@@ -683,7 +683,7 @@ HttpSession getSession();
 
 > Tips: 服务器会认为不同的浏览器是不同的用户，会话不会相同。
 
-### 6.3. HttpSession 接口常用 API
+### HttpSession 接口常用 API
 
 ```java
 String getId();
@@ -740,16 +740,16 @@ void removeAttribute(String var1);
 
 - 从会话域中删除对象
 
-### 6.4. 改变会话销毁的时间
+### 改变会话销毁的时间
 
-#### 6.4.1. 会话销毁的含义
+#### 会话销毁的含义
 
 会话销毁，又称为会话过期。其含义是：只要在指定的时间内与服务器有交互，会话过期时间就重新开始计时。有以下情况导致会话的销毁：
 
 1. **浏览器关闭**，服务器上的会话 ID 得不到，相当于密码条丢失，服务器会开启一个新的会话
 2. **服务器会话过期**，相当于密码条还在，储物箱没有了，服务器会开启一个新的会话。
 
-#### 6.4.2. 查看默认销毁时间
+#### 查看默认销毁时间
 
 Session在服务器上默认的销毁时间是 30分钟，可以通过 `javax.servlet.http.HttpSession` 对象的方法查看：
 
@@ -757,7 +757,7 @@ Session在服务器上默认的销毁时间是 30分钟，可以通过 `javax.se
 int getMaxInactiveInterval();
 ```
 
-#### 6.4.3. 方式1：编程式修改销毁时间
+#### 方式1：编程式修改销毁时间
 
 调用 `javax.servlet.http.HttpSession` 对象的设置会话过期时间的方法
 
@@ -768,7 +768,7 @@ void setMaxInactiveInterval(int var1);
 int getMaxInactiveInterval();
 ```
 
-#### 6.4.4. 方式2：修改 web.xml 配置文件改变会话销毁时间
+#### 方式2：修改 web.xml 配置文件改变会话销毁时间
 
 ```xml
 <!-- 配置会话的过期时间 -->
@@ -780,7 +780,7 @@ int getMaxInactiveInterval();
 
 > Notes: 设置 web.xml 的会话配置，并且在代码中设置会话过期的时间，此时<font color=red>**按照就近原则，以代码为准**</font>。
 
-#### 6.4.5. 方式3：立刻失效
+#### 方式3：立刻失效
 
 调用 `javax.servlet.http.HttpSession` 接口让会话立即失效的方法：
 
@@ -790,37 +790,37 @@ void invalidate();
 
 > Tips: 一般用于退出或注销按钮
 
-### 6.5. 会话的钝化与激活技术（了解）
+### 会话的钝化与激活技术（了解）
 
 - 浏览器关闭的时候，服务器端的会话就销毁？错
 - 服务器关闭的时候，服务器端的会话就销毁？错
 
 **钝化与激活是会话的特有特性**，上下文域在关闭时就销毁。而会话因为是可以设置其过期时间，所以，只有在会话过期前，重新开启服务器，都可以重新激活会话。
 
-#### 6.5.1. 序列化与反序列化回顾
+#### 序列化与反序列化回顾
 
 - 序列化：将一个对象写到文件中
 - 反序列化：将文件中的对象读取成一个对象
 
 > 更多序列化与反序列化的内容详见[《Java基础-IO编程》笔记](/Java/Java基础-IO编程)
 
-#### 6.5.2. 会话的钝化
+#### 会话的钝化
 
 当服务器正常关闭的时候，将会话中的数据以对象的方式写到服务器的硬盘中。如果要让一个对象钝化，这个对象必须要可以序列化，实现 `java.io.Serializable` 接口。
 
 保存的位置是，在 tomcat/work 目录下。如：`\apache-tomcat-7.0.70\work\catalina\localhost\***\SESSIONS.ser`
 
-#### 6.5.3. 会话的激活
+#### 会话的激活
 
 当服务器重新开启的时候将服务器硬盘中的对象读取出来，还原成会话。会话还原后就将ser文件删除
 
-### 6.6. 案例：session 完成验证码
+### 案例：session 完成验证码
 
-#### 6.6.1. 案例需求
+#### 案例需求
 
 用户登录的时候使用验证码进行验证。登录成功后将用户信息保存到会话域中，并且跳转到 WelcomeServlet，然后在 WeclcomeServlet 中读取会话域用户信息，显示欢迎信息。在 WelcomeServlet 上显示退出的链接，点退出，注销会话信息。
 
-#### 6.6.2. LoginServlet 实现步骤
+#### LoginServlet 实现步骤
 
 1. 使用昨天的代码实现验证码的绘制
 2. 将随机产生的字符串放在会话域中
@@ -906,7 +906,7 @@ public class LoginServlet extends HttpServlet {
 }
 ```
 
-#### 6.6.3. WelcomeServlet 的实现步骤
+#### WelcomeServlet 的实现步骤
 
 1. 从会话域中取出用户信息并且显示
 2. 在页面上输出一个注销的连接，点注销跳转到 LogoutServlet
@@ -955,7 +955,7 @@ public class WelcomeServlet extends HttpServlet {
 }
 ```
 
-#### 6.6.4. LogoutServlet的实现步骤
+#### LogoutServlet的实现步骤
 
 1. 让会话立刻过期
 2. 显示您已经成功退出
@@ -1230,9 +1230,9 @@ public class C3P0Util {
 }</script>
 ```
 
-## 7. 常见问题
+## 常见问题
 
-### 7.1. 找不到 HttpServlet 错误
+### 找不到 HttpServlet 错误
 
 如果看到 JSP 报错：`The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path` 可以加入如下依赖解决。
 
@@ -1245,7 +1245,7 @@ public class C3P0Util {
 </dependency>
 ```
 
-### 7.2. EL 表达式没有提示问题
+### EL 表达式没有提示问题
 
 `${pageContext}` 这个 EL 表达式中通过 pageContext 对象访问 reuqest 属性时本身是应该有提示的，如果没有，则加入以下依赖即可。
 

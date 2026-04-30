@@ -1,4 +1,4 @@
-## 1. Spring Security 概述
+## Spring Security 概述
 
 Spring Security 是一个能够为基于 Spring 的企业应用系统提供声明式的安全访问控制解决方案的安全框架。由于它是 Spring 生态系统中的一员，因此它伴随着整个 Spring 生态系统不断修正、升级，在 spring boot 项目中加入 spring security 更是十分简单，使用 Spring Security 减少了为企业系统安全控制编写大量重复代码的工作。
 
@@ -6,17 +6,17 @@ Spring Security 是一个能够为基于 Spring 的企业应用系统提供声�
 - 官方源码仓库地址：https://github.com/spring-projects/spring-security
 - 官方示例仓库地址：https://github.com/spring-projects/spring-security-samples
 
-## 2. Spring Security 快速开始
+## Spring Security 快速开始
 
 此示例基于 Maven 构建的 Spring MVC 项目
 
-### 2.1. 初始化示例项目
+### 初始化示例项目
 
 创建 maven 工程 spring-security-5.1.x，工程结构如下：
 
 ![](images/341164010238594.png)
 
-#### 2.1.1. 引入依赖
+#### 引入依赖
 
 在 spring mvc 项目的基础上增加 spring-security 的依赖，完整依赖如下：
 
@@ -130,7 +130,7 @@ Spring Security 是一个能够为基于 Spring 的企业应用系统提供声�
 </project>
 ```
 
-#### 2.1.2. 配置 Spring 容器
+#### 配置 Spring 容器
 
 创建 `com.moon.spring.security.config.ApplicationConfig` 类，用于替代 applicationContext.xml 配置文件。对应在 web.xml 中的 `ContextLoaderListener` 等配置。
 
@@ -142,7 +142,7 @@ public class ApplicationConfig {
 }
 ```
 
-#### 2.1.3. 配置 Servlet Context
+#### 配置 Servlet Context
 
 本案例采用 Servlet3.0 无 web.xml 方式，创建 `com.moon.spring.security.config.WebConfig` 类，它对应于 web.xml  文件中的 `DispatcherServlet` 配置
 
@@ -169,7 +169,7 @@ public class WebConfig {
 }
 ```
 
-#### 2.1.4. 配置加载 Spring 容器
+#### 配置加载 Spring 容器
 
 在 init 包下创建 Spring 容器初始化类 `SpringApplicationInitializer`，此类实现 `WebApplicationInitializer` 接口，Spring 容器启动时加载 `WebApplicationInitializer` 接口的所有实现类。
 
@@ -201,9 +201,9 @@ public class SpringApplicationInitializer extends AbstractAnnotationConfigDispat
 }
 ```
 
-### 2.2. 实现认证功能
+### 实现认证功能
 
-#### 2.2.1. 认证登陆页面
+#### 认证登陆页面
 
 Spring Security 框架默认提供认证页面，不需要使用者额外开发。
 
@@ -212,7 +212,7 @@ Spring Security 框架默认提供认证页面，不需要使用者额外开发�
 - 登陆的url：`http://项目访问域名/login`
 - 登出的url：`http://项目访问域名/logout`
 
-#### 2.2.2. Spring Security 安全配置
+#### Spring Security 安全配置
 
 Spring Security 提供了用户名密码登录、退出、会话管理等认证功能，只需要配置即可使用。
 
@@ -277,7 +277,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 > *注：`HttpSecurity` 更多的配置详见[《附录：HttpSecurity 配置列表》](#_251-httpsecurity-配置列表)*
 
-#### 2.2.3. 加载 Spring Security 配置类
+#### 加载 Spring Security 配置类
 
 修改 `SpringApplicationInitializer` 的 `getRootConfigClasses()` 方法，添加 `WebSecurityConfig.class`：
 
@@ -292,7 +292,7 @@ public class SpringApplicationInitializer extends AbstractAnnotationConfigDispat
 }
 ```
 
-#### 2.2.4. Spring Security 初始化
+#### Spring Security 初始化
 
 Spring Security 初始化，有两种情况：
 
@@ -309,7 +309,7 @@ public class SpringSecurityApplicationInitializer extends AbstractSecurityWebApp
 }
 ```
 
-#### 2.2.5. 配置默认根路径请求
+#### 配置默认根路径请求
 
 在 `WebConfig.java` 配置类中添加默认请求根路径 `/` 时，重定向到 `/login`，此 url 为 spring security 默认提供的登陆页面：
 
@@ -329,7 +329,7 @@ public class WebConfig implements WebMvcConfigurer {
 }
 ```
 
-#### 2.2.6. 创建登陆成功后跳转页面
+#### 创建登陆成功后跳转页面
 
 在 `LoginController` 类中定义 `/login-success` 相应的映射方法:
 
@@ -347,7 +347,7 @@ public String loginSuccess() {
 >
 > ![](images/313221823220167.png)
 
-#### 2.2.7. 测试
+#### 测试
 
 - 使用 maven 命令 `clean tomcat7:run` 启动项目，访问项目地址： `http://localhost:8080/spring-security-5.1.x`。页面会根据 `WebConfig` 中 `addViewControllers` 配置规则，跳转至 `/login`，这是 Spring Security 提供的登录页面。
 - 输入错误的用户名、密码
@@ -362,11 +362,11 @@ public String loginSuccess() {
 
 ![](images/475282323246626.png)
 
-### 2.3. 实现授权功能
+### 实现授权功能
 
 实现授权需要对用户的访问进行拦截校验，校验用户的权限是否可以操作指定的资源，Spring Security 默认提供授权实现方法。
 
-#### 2.3.1. 新增不同权限访问的 url 控制方法
+#### 新增不同权限访问的 url 控制方法
 
 在 `LoginController` 添加 `/check/p1` 与 `/check/p2`
 
@@ -382,7 +382,7 @@ public String checkPrivilege2() {
 }
 ```
 
-#### 2.3.2. 配置授权规则
+#### 配置授权规则
 
 修改安全配置类 `WebSecurityConfig.java` 中配置授权规则：
 
@@ -403,23 +403,23 @@ protected void configure(HttpSecurity http) throws Exception {
 - `.antMatchers("/check/p1").hasAuthority("p1")` 表示：访问 `/check/p1` 资源的 ur l需要拥有 p1 权限。
 - `.antMatchers("/check/p2").hasAuthority("p2")` 表示：访问 `/check/p2` 资源的 url 需要拥有 p2 权限。
 
-#### 2.3.3. 测试
+#### 测试
 
 启动项目。登陆 admin 用户，分别访问两个url，有权限时则正常访问，否则返回403（拒绝访问）
 
 ![](images/440381610220168.png)
 
-### 2.4. 小结
+### 小结
 
 通过快速开始示例可知，Spring Security 提供了基于账号和密码的认证方式，通过安全配置即可实现请求拦截，授权功能。不需要开发者去实现登陆、授权控制等逻辑代码。
 
-### 2.5. 附录
+### 附录
 
-#### 2.5.1. HttpSecurity 配置列表
+#### HttpSecurity 配置列表
 
 ![](images/406040423220166.png)
 
-#### 2.5.2. @EnableWebSecurity 注解源码
+#### @EnableWebSecurity 注解源码
 
 ```java
 @Retention(value = java.lang.annotation.RetentionPolicy.RUNTIME)
@@ -439,7 +439,7 @@ public @interface EnableWebSecurity {
 }
 ```
 
-## 3. Spring Boot 集成 Spring Security
+## Spring Boot 集成 Spring Security
 
 > *注：Spring Boot 集成 Spring Security 更多的集成功能示例详见【分布式微服务/SpringBoot】*
 
@@ -447,7 +447,7 @@ Spring Boot 是一套 Spring 的快速开发框架，基于 Spring 4.0 设计，
 
 Spring Boot 提供 spring-boot-starter-security 用于快速开发 Spring Security 应用。
 
-### 3.1. 创建示例工程
+### 创建示例工程
 
 创建 maven 工程 spring-security-boot-2.1.x，工程目录结构如下：
 
@@ -586,7 +586,7 @@ Spring Boot 提供 spring-boot-starter-security 用于快速开发 Spring Securi
 </project>
 ```
 
-### 3.2. 配置 spring 容器
+### 配置 spring 容器
 
 - 创建 SpringBoot 项目启动类。SpringBoot 工程启动会自动扫描启动类所在包下的所有Bean，加载到 spring 容器。
 
@@ -612,7 +612,7 @@ spring:
     name: spring-security-boot
 ```
 
-### 3.3. 配置 Servlet Context
+### 配置 Servlet Context
 
 - 创建 Servlet Context 配置类 `WebConfig`。由于 Spring boot starter 自动装配机制，不需要像 Spring MVC 项目，不用标识 `@EnableWebMvc` 与 `@ComponentScan` 注解，如下：
 
@@ -642,7 +642,7 @@ spring:
       suffix: .jsp
 ```
 
-### 3.4. Spring Security 安全配置
+### Spring Security 安全配置
 
 创建 Spring Security 安全配置类 `WebSecurityConfig`，由于 Spring boot starter 自动装配机制，无需使用 `@EnableWebSecurity` 注解开启 Spring Security，配置的内容和上面 Spring MVC 项目一样，如下：
 
@@ -697,21 +697,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-### 3.5. 测试
+### 测试
 
 创建与上面 Spring MVC 示例一样的控制层。启动项目进行登陆、退出、授权等测试。
 
 示例项目访问地址：`http://127.0.0.1:8080/`
 
-## 4. Spring Security 应用详解
+## Spring Security 应用详解
 
 Spring Security 提供了非常好的认证、授权扩展方法，比如：快速开始的示例中将用户信息存储到内存中，实际开发中用户信息通常在数据库，Spring security 可以实现从数据库读取用户信息，Spring security 还支持多种授权方法。
 
-### 4.1. 自定义认证登录页面
+### 自定义认证登录页面
 
 在上面基础示例中，默认配置没有明确设定一个登录页面的URL，因此 Spring Security 会根据启用的功能自动生成一个登录页面 URL，并使用默认 URL 处理登录的提交内容，登录后跳转的到默认 URL 等等。尽管 Spring Security  提供的默认登陆页面很方便快速启动和运行，但实际应用程序都希望定义自己的登录页面。
 
-#### 4.1.1. 配置流程
+#### 配置流程
 
 - 在项目的 `/src/main/webapp/WEB-INF/view/` 目录下，创建自定义认证页面 login.jsp
 
@@ -774,7 +774,7 @@ protected void configure(HttpSecurity http) throws Exception {
 >
 > 必须允许所有用户访问自定义登录页（例如为验证的用户），这个 `formLogin().permitAll()` 方法允许任意用户访问基于表单登录的所有的URL。
 
-#### 4.1.2. 测试与跨域问题
+#### 测试与跨域问题
 
 - 测试，启动项目。访问项目根路径，当用户没有认证（登陆）时访问系统的资源会重定向到 login-view，即 login.jsp 页面
 
@@ -805,7 +805,7 @@ protected void configure(HttpSecurity http) throws Exception {
 </form>
 ```
 
-#### 4.1.3. 小坑记录
+#### 小坑记录
 
 因为示例项目是使用聚合项目的结构
 
@@ -825,11 +825,11 @@ protected void configure(HttpSecurity http) throws Exception {
 
 配置后即可正常访问到jsp页面
 
-### 4.2. 自定义连接数据库认证
+### 自定义连接数据库认证
 
 前面的示例都是将用户信息存储在内存中，实际项目中用户信息存储在数据库中。
 
-#### 4.2.1. 创建数据库
+#### 创建数据库
 
 - 创建 user_db 数据库
 
@@ -854,7 +854,7 @@ VALUES
 	( 1, 'admin', '123', '管理员' ),( 2, 'moon', '123', '天锁斩月' );
 ```
 
-#### 4.2.2. 配置连接数据库
+#### 配置连接数据库
 
 - 修改项目依赖文件 pom.xml，引入 jdbc、mysql 数据库驱动 依赖
 
@@ -882,7 +882,7 @@ spring:
     password: 123456
 ```
 
-#### 4.2.3. 编写查询用户接口
+#### 编写查询用户接口
 
 - 创建用户实体类
 
@@ -920,7 +920,7 @@ public class UserDao {
 }
 ```
 
-#### 4.2.4. 修改自定义 UserDetailService 接口实现
+#### 修改自定义 UserDetailService 接口实现
 
 创建（修改）自定义 UserDetailService 接口实现类 `CustomUserDetailsService`，在 `loadUserByUsername` 方法中查询数据库获取用户信息
 
@@ -952,7 +952,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 }
 ```
 
-#### 4.2.5. 使用 BCryptPasswordEncoder
+#### 使用 BCryptPasswordEncoder
 
 在示例项目 Spring Security 安全配置类中，配置相关的密码编码器，本示例使用 `BCryptPasswordEncoder` 加密密码
 
@@ -969,15 +969,15 @@ public PasswordEncoder passwordEncoder() {
 
 ![](images/299625016231606.png)
 
-#### 4.2.6. 测试
+#### 测试
 
 启动项目，测试是否成功认证登陆。
 
-### 4.3. 会话
+### 会话
 
 用户认证通过后，为了避免用户的每次操作都进行认证可将用户的信息保存在会话中。Spring Security 提供会话管理，认证通过后将身份信息放入 `SecurityContextHolder` 上下文，`SecurityContext` 与当前线程进行绑定，方便获取用户身份。
 
-#### 4.3.1. 获取用户身份
+#### 获取用户身份
 
 修改 `LoginController` 类，增加 `getUsername` 方法，通过 Spring Security 框架的 `SecurityContextHolder.getContext().getAuthentication()` 方法获取当前登录用户信息
 
@@ -1020,7 +1020,7 @@ public class LoginController {
 
 启动项目测试，登陆成功看是否返回当前登陆用户
 
-#### 4.3.2. 会话控制
+#### 会话控制
 
 可以通过以下选项准确控制会话何时创建以及 Spring Security 如何与之交互：
 
@@ -1050,7 +1050,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 若使用 `stateless`，则说明 Spring Security 对登录成功的用户不会创建 Session 了，你的应用程序也不会允许新建 session。并且它会暗示不使用 cookie，所以每个请求都需要重新进行身份验证。这种无状态架构适用于 REST API 及其无状态认证机制。
 
-#### 4.3.3. 会话超时
+#### 会话超时
 
 可以在 sevlet 容器中设置 Session 的超时时间，修改 spring boot 项目配置文件，例如设置 Session 有效期为 3600s：
 
@@ -1075,7 +1075,7 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-#### 4.3.4. 安全会话 cookie
+#### 安全会话 cookie
 
 可以使用 `httpOnly` 和 `secure` 配置来保护会话 cookie：
 
@@ -1098,9 +1098,9 @@ server:
         secure: true
 ```
 
-### 4.4. 自定义退出
+### 自定义退出
 
-#### 4.4.1. 默认退出
+#### 默认退出
 
 Spring security 默认实现了 logout（退出）功能，默认url是：`/logout`
 
@@ -1114,7 +1114,7 @@ Spring security 默认实现了 logout（退出）功能，默认url是：`/logo
 - 清除 `SecurityContextHolder`
 - 跳转到 `/login-view?logout`
 
-#### 4.4.2. 自定义退出配置
+#### 自定义退出配置
 
 Spring Security 可以自定义退出成功的页面，可以通过安全配置类，进一步配置自定义退出功能：
 
@@ -1143,7 +1143,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 > <font color=red>**注意：如果想让在 GET 请求下退出，必须关闭防止 CSRF 攻击 `csrf().disable()`。如果开启了 CSRF，必须使用 post 方式请求 `/logout`**</font>
 
-#### 4.4.3. LogoutHandler
+#### LogoutHandler
 
 一般来说，`LogoutHandler` 的实现类被用来执行必要的清理，因而他们不应该抛出异常。下面是 Spring Security 提供的一些实现：
 
@@ -1155,9 +1155,9 @@ protected void configure(HttpSecurity http) throws Exception {
 
 链式 API 提供了调用相应的 `LogoutHandler` 实现的快捷方式，比如 `deleteCookies()`
 
-### 4.5. 授权
+### 授权
 
-#### 4.5.1. 概述
+#### 概述
 
 授权的方式包括  web 授权和方法授权，web 授权是通过 url 拦截进行授权，方法授权是通过方法拦截进行授权。他们都会调用 `accessDecisionManager` 进行授权决策，若为 web 授权则拦截器为 `FilterSecurityInterceptor`；若为方法授权则拦截器为 `MethodSecurityInterceptor`。如果同时通过 web 授权和方法授权则先执行 web 授权，再执行方法授权，最后决策通过，则允许访问资源，否则将禁止访问。
 
@@ -1165,7 +1165,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ![](images/17470710238596.png)
 
-#### 4.5.2. 示例环境准备
+#### 示例环境准备
 
 在 user_db 数据库创建如下表：
 
@@ -1234,7 +1234,7 @@ TRUNCATE TABLE `t_role_permission`;
 INSERT INTO `t_role_permission` ( `role_id`, `permission_id` ) VALUES ( '1', '1' ),( '1', '2' );
 ```
 
-#### 4.5.3. 修改自定义 UserDetailService 接口实现
+#### 修改自定义 UserDetailService 接口实现
 
 - 创建权限表相应的实体类
 
@@ -1296,9 +1296,9 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
 
 最后启动项目进行测试
 
-#### 4.5.4. web 授权
+#### web 授权
 
-##### 4.5.4.1. 配置不同 url 权限
+##### 配置不同 url 权限
 
 在 Spring Security 的安全配置中，通过给 `http.authorizeRequests()` 添加多个子节点来定制不同需求的URL权限。如：
 
@@ -1325,7 +1325,7 @@ protected void configure(HttpSecurity http) throws Exception {
 - `antMatchers("/check/**").authenticated()` 指定除了上面 p1、p2、p3等url之外的 `/check/` 开头的资源，同时通过身份认证就能够访问。*这里使用SpEL（Spring Expression Language）表达式*
 - `anyRequest().permitAll()` 剩余的尚未匹配的资源，不做保护
 
-##### 4.5.4.2. 配置注意事项
+##### 配置注意事项
 
 <font color=red>**规则的顺序是重要的，更具体、细粒度更小的规则应该先写**</font>。否则大范围的规则会覆盖后面小范围的规则，从而导致权限保护失效
 
@@ -1343,7 +1343,7 @@ protected void configure(HttpSecurity http) throws Exception {
 .antMatchers("/admin/**").hasRole("ADMIN")
 ```
 
-##### 4.5.4.3. 保护 URL 常用的方法
+##### 保护 URL 常用的方法
 
 - `authenticated()` 保护URL，需要用户登录
 - `permitAll()` 指定URL无需保护，一般应用与静态资源文件
@@ -1354,7 +1354,7 @@ protected void configure(HttpSecurity http) throws Exception {
 - `access(String attribute)` 该方法使用 SpEL表达式，所以可以创建复杂的限制
 - `hasIpAddress(String ipaddressExpression)` 限制IP地址或子网
 
-#### 4.5.5. 方法授权
+#### 方法授权
 
 从 Spring Security 2.0版本开始，它支持服务层方法的安全性的支持。主要有 `@PreAuthorize`，`@PostAuthorize`，`@Secured `三类注解
 
@@ -1375,7 +1375,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 然后在方法（在类或接口上）添加相应的注解即可限制对该方法的访问权限控制。 Spring Security 的原生注释支持为该方法定义了一组属性。 这些将被传递给 `AccessDecisionManager` 以供它作出实际的决定：
 
-##### 4.5.5.1. @Secured 注解
+##### @Secured 注解
 
 ```java
 public interface BankService {
@@ -1394,7 +1394,7 @@ public interface BankService {
 >
 > post 方法需要有 TELLER 角色才能访问，底层使用 RoleVoter 投票器。
 
-##### 4.5.5.2. @PreAuthorize 注解
+##### @PreAuthorize 注解
 
 
 ```java
@@ -1427,9 +1427,9 @@ public String checkPrivilege4() {
 >
 > ![](images/139874011246629.png)
 
-## 5. Spring Security 工作原理
+## Spring Security 工作原理
 
-### 5.1. 框架总体结构概述
+### 框架总体结构概述
 
 Spring Security 构架的作用是**安全访问控制**，而安全访问控制功能其实就是对所有进入系统的请求进行拦截，校验每个请求是否能够访问它所期望的资源。可以通过 Filter 或 AOP 等技术来实现，Spring Security 对 Web 资源的保护是靠 Filter 链实现的
 
@@ -1451,8 +1451,8 @@ Spring Security 功能的实现主要是由一系列过滤器链相互配合完�
 - `UsernamePasswordAuthenticationFilter` 用于处理来自表单提交的认证。该表单必须提供对应的用户名和密码，其内部还有登录成功或失败后进行处理的 `AuthenticationSuccessHandler` 和 `AuthenticationFailureHandler`，这些都可以根据需求做相关改变；
 - `FilterSecurityInterceptor` 是用于保护web资源的，使用 `AccessDecisionManager` 对当前用户进行授权访问，前面已经详细介绍过了；5.2. - `ExceptionTranslationFilter` 能够捕获来自 FilterChain 所有的异常，并进行处理。但是它只会处理两类异常：`AuthenticationException` 和 `AccessDeniedException`，其它的异常它会继续抛出。
 
-### 5.2. 认证流程
-#### 5.2.1. 整体流程概述
+### 认证流程
+#### 整体流程概述
 
 ![](images/86020414220168.png)
 
@@ -1469,7 +1469,7 @@ Spring Security 功能的实现主要是由一系列过滤器链相互配合完�
 
 ![](images/400914614238594.png)
 
-#### 5.2.2. AuthenticationProvider
+#### AuthenticationProvider
 
 在 Spring Security 认证流程中，认证管理器（`AuthenticationManager`）委托 `AuthenticationProvider` 完成认证工作。`AuthenticationProvider` 是一个接口，源码如下：
 
@@ -1500,7 +1500,7 @@ public boolean supports(Class<?> authentication) {
 **由此可以说明，当 web 表单提交用户名密码时，Spring Security 是由 `DaoAuthenticationProvider` 类来处理。**
 
 
-#### 5.2.3. Authentication （认证信息）
+#### Authentication （认证信息）
 
 Authentication (认证信息) ，是 Spring Security 框架中的接口，直接继承自 `Principal` 类，而 `Principal` 是位于 `java.security` 包中的。它是表示着一个抽象主体身份，任何主体都有一个名称，因此包含一个 `getName()` 方法。前面出现过的 `UsernamePasswordAuthenticationToken` 就是此接口的其中一个实现，接口源码如下：
 
@@ -1526,9 +1526,9 @@ public interface Authentication extends Principal, Serializable {
 - `getDetails()`：获取细节信息，web 应用中的实现接口通常为 `WebAuthenticationDetails`，它记录了访问者的 ip 地址和 sessionId 的值。
 - `getPrincipal()`：获取身份信息，大部分情况下返回的是 `UserDetails` 接口的实现类，`UserDetails` 代表用户的详细信息，那从 `Authentication` 中取出来的 `UserDetails` 就是当前登录用户信息，它也是框架中的常用接口之一。
 
-#### 5.2.4. UserDetailsService
+#### UserDetailsService
 
-##### 5.2.4.1. 概述
+##### 概述
 
 `DaoAuthenticationProvider` 处理了 web 表单的认证逻辑，认证成功后既得到一个 `Authentication` (`UsernamePasswordAuthenticationToken`实现类实例)，里面包含了身份信息（`Principal`）。这个身份信息就是一个 `Object`，大多数情况下它可以被强转为 `UserDetails` 对象。
 
@@ -1571,7 +1571,7 @@ public interface UserDetails extends Serializable {
 
 通过自定义实现 `UserDetailsService` 和 `UserDetails`，可以完成对用户信息获取方式以及用户信息字段的扩展。Spring Security 提供的 `InMemoryUserDetailsManager`(内存认证)，`JdbcUserDetailsManager`(jdbc认证)就是 `UserDetailsService` 的实现类，主要区别是前者从内存加载用户数据，后者是从数据库加载用户数据。
 
-##### 5.2.4.2. 自定义 UserDetailsService 接口实现
+##### 自定义 UserDetailsService 接口实现
 
 在原来的安全配置类 `WebSecurityConfig` 中，注释了原来创建框架默认的 `UserDetailsService` 实现的实例化方法。然后编写自定义的 `org.springframework.security.core.userdetails.UserDetailsService` 接口实现类，重写 `loadUserByUsername` 方法，该方法就是用于实现获取用户的处理逻辑。
 
@@ -1605,9 +1605,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 重启工程，请求认证，测试 `SpringDataUserDetailsService` 实现类中的 `loadUserByUsername` 方法是否被调用 ，查询用户信息。
 
-#### 5.2.5. PasswordEncoder
+#### PasswordEncoder
 
-##### 5.2.5.1. 概述
+##### 概述
 
 `DaoAuthenticationProvider` 认证处理器通过 `UserDetailsService` 获取到 `UserDetails` 后，就需要将查询到的用户密码与请求 `Authentication` 中的密码做对比。Spring Security 为了适应多种多样的加密类型，将校验方法抽象成接口，`DaoAuthenticationProvider` 通过 `PasswordEncoder` 接口的 `matches` 方法进行密码的对比，而具体的密码对比细节取决于具体的实现。`PasswordEncoder` 接口源码如下：
 
@@ -1643,7 +1643,7 @@ public PasswordEncoder passwordEncoder() {
 
 实际项目中推荐使用 `BCryptPasswordEncoder`, `Pbkdf2PasswordEncoder`, `SCryptPasswordEncoder` 等
 
-##### 5.2.5.2. 密码加密使用示例 BCryptPasswordEncoder
+##### 密码加密使用示例 BCryptPasswordEncoder
 
 - 在安全配置类 `WebSecurityConfig` 中，创建 `BCryptPasswordEncoder` 实例并加入到 Spring 容器
 
@@ -1675,9 +1675,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 > 注：实际项目中存储在数据库中的密码并不是原始密码，都是经过加密处理的密码。
 
-### 5.3. 授权流程
+### 授权流程
 
-#### 5.3.1. 整体流程概述
+#### 整体流程概述
 
 Spring Security 可以通过 `http.authorizeRequests()` 对 web 请求进行授权保护。Spring Security 使用标准 Filter 建立了对 web 请求的拦截，最终实现对资源的授权访问。授权流程如下：
 
@@ -1690,7 +1690,7 @@ Spring Security 可以通过 `http.authorizeRequests()` 对 web 请求进行授�
 
 3. `FilterSecurityInterceptor` 会调用 `AccessDecisionManager` 进行授权决策，若决策通过，则允许访问资源，否则将禁止访问。
 
-#### 5.3.2. 授权决策
+#### 授权决策
 
 `AccessDecisionManager` 采用<font color=red>**投票**</font>的方式来确定是否能够访问受保护资源。
 
@@ -1698,7 +1698,7 @@ Spring Security 可以通过 `http.authorizeRequests()` 对 web 请求进行授�
 
 通过上图可以看出，`AccessDecisionManager` 中包含的一系列 `AccessDecisionVoter` 将会被用来对 `Authentication` 是否有权访问受保护对象进行投票，`AccessDecisionManager` 根据投票结果，做出最终决策。
 
-#### 5.3.3. AccessDecisionManager（访问决策管理器）
+#### AccessDecisionManager（访问决策管理器）
 
 `AccessDecisionManager`（访问决策管理器）的核心接口源码如下：
 
@@ -1724,7 +1724,7 @@ public interface AccessDecisionManager {
 - `Object object`：要访问的受保护资源，web 请求对应 `FilterInvocation`
 - `Collection<ConfigAttribute> configAttributes`：是受保护资源的访问策略，通过 `SecurityMetadataSource` 获取。
 
-#### 5.3.4. AccessDecisionVoter （决策投票者）
+#### AccessDecisionVoter （决策投票者）
 
 `AccessDecisionVoter` 是一个接口，其中定义有三个方法，具体源码如下：
 
@@ -1752,7 +1752,7 @@ public interface AccessDecisionVoter<S> {
 
 如果一个 `AccessDecisionVoter` 不能判定当前 `Authentication` 是否拥有访问对应受保护对象的权限，则其 `vote()` 方法的返回值应当为弃权 `ACCESS_ABSTAIN`
 
-#### 5.3.5. 内置 AccessDecisionManager 实现类
+#### 内置 AccessDecisionManager 实现类
 
 Spring Security 内置了三个基于投票的 `AccessDecisionManager` 实现类如下，它们分别是 `AffirmativeBased`、`ConsensusBased` 和 `UnanimousBased`
 
@@ -1779,11 +1779,11 @@ Spring Security 内置了三个基于投票的 `AccessDecisionManager` 实现类
 
 > `UnanimousBased` 的逻辑与另外两种实现有点不一样，另外两种会一次性把受保护对象的配置属性全部传递给 `AccessDecisionVoter` 进行投票，而 `UnanimousBased` 会一次只传递一个 `ConfigAttribute` 给 `AccessDecisionVoter` 进行投票。这也就意味着如果 `AccessDecisionVoter` 的逻辑是只要传递进来的 `ConfigAttribute` 中有一个能够匹配则投赞成票，但是放到 `UnanimousBased` 中其投票结果就不一定是赞成了
 
-#### 5.3.6. 内置投票者实现类（未整理）
+#### 内置投票者实现类（未整理）
 
 Spring Security 也内置一些投票者实现类，如 `RoleVoter`、`AuthenticatedVoter` 和 `WebExpressionVoter` 等，待查阅资料学习
 
-## 6. Spring Security OAuth 概述
+## Spring Security OAuth 概述
 
 Spring Security OAuth2.0 是对 OAuth2.0 协议的一种实现，并且跟 Spring Security 相辅相成。
 
@@ -1791,13 +1791,13 @@ Spring Security OAuth2.0 是对 OAuth2.0 协议的一种实现，并且跟 Sprin
 - 官方源码仓库地址：https://github.com/spring-projects/spring-security-oauth
 - 官方 SpringBoot 版本源码仓库地址：https://github.com/spring-projects/spring-security-oauth2-boot
 
-### 6.1. Spring Security OAuth2.0 与 Spring Cloud 整合
+### Spring Security OAuth2.0 与 Spring Cloud 整合
 
 Spring Security OAuth2.0 与 Spring Cloud 体系的集成也非常便利
 
 此部分详细内容详见 [《Spring Cloud Security 学习笔记》](/分布式微服务/SpringCloud/Spring-Cloud-Security)
 
-### 6.2. 项目终止维护通知
+### 项目终止维护通知
 
 Spring Security OAuth 项目生命周期已结束，不再积极维护。该项目已被 Spring Security 和 Spring Authorization Server 提供的 OAuth2 支持所取代。
 

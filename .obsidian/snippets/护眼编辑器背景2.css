@@ -1,0 +1,11 @@
+/* 浅色模式工作区背景 */
+.theme-light {
+  --background-primary: #E3EDCD !important; /* 主背景色 */
+  --text-normal: #333333 !important; /* 文字色 */
+}
+
+/* 深色模式工作区背景 */
+.theme-dark {
+  --background-primary: #D6E4B7 !important; /* 深豆沙绿 */
+  --text-normal: #E0E0E0 !important;
+}

@@ -1,14 +1,12 @@
-# Day08 商品修改与审核&注解式事务配置&Nginx静态资源服务器
+## 商家后台-商品管理【商品列表】
 
-## 1. 商家后台-商品管理【商品列表】
-
-### 1.1. 需求分析
+### 需求分析
 
 在商家后台，显示该商家的商品列表信息
 
 ![显示商品列表](images/20190128163526185_11503.jpg)
 
-### 1.2. 查询商家商品列表-后端
+### 查询商家商品列表-后端
 
 功能代码参考之前【运营商后台-商品分类功能】
 
@@ -138,7 +136,7 @@ List<Map<String, Object>> findByWhere(@Param("goods") Goods goods);
 </select>
 ```
 
-### 1.3. 查询商家商品列表-前端
+### 查询商家商品列表-前端
 
 - 参考其他模块引入相关的js文件，添加引入指令，导入分页组件。
 - 修改pinyougou-shop-web工程goodsController层，定义分页搜索的方法；定义状态码数组，用于页面转换数据字典
@@ -198,17 +196,17 @@ $scope.status = ['未审核', '已审核', '审核未通过', '关闭'];
 </div>
 ```
 
-## 2. 商家后台-商品管理【商品修改】
+## 商家后台-商品管理【商品修改】
 
-### 2.1. 需求分析
+### 需求分析
 
 在商品列表页面点击修改，进入商品编辑页面，并传递参数商品ID，商品编辑页面接受该参数后从数据库中读取商品信息，用户修改后保存信息。
 
-### 2.2. 基本信息读取
+### 基本信息读取
 
 首选读取商品分类、商品名称、品牌，副标题，价格等信息
 
-#### 2.2.1. 查询单个商品信息-后端部分
+#### 查询单个商品信息-后端部分
 
 - 修改pinyougou-shop-web工程控制层GoodsController，增加根据id查询商品方法
 
@@ -259,7 +257,7 @@ public Goods findOne(Long id) {
 }
 ```
 
-#### 2.2.2. 查询单个商品信息-前端部分
+#### 查询单个商品信息-前端部分
 
 - 修改goods_edit.html页面加入base标签与配置位置提供者
 
@@ -314,7 +312,7 @@ app.controller('goodsController', function ($scope, $controller,
 
 *地址栏输入(测试)：http://shop.moon.com/admin/goods_edit.html?id=149187842868008*
 
-### 2.3. 读取商品介绍（富文本编辑器）
+### 读取商品介绍（富文本编辑器）
 
 因为数据库保存的富文本字符串，需要将字符串设置到富文本编辑器的html元素。修改goodsController中findOne方法增加富文本处理
 
@@ -336,7 +334,7 @@ $scope.findOne = function () {
 };
 ```
 
-### 2.4. 显示商品图片列表
+### 显示商品图片列表
 
 修改goodsController，在findOne方法添加代码，将图片列表由字符串转换为json集合对象。
 
@@ -350,7 +348,7 @@ baseService.findOne('/goods/findOne', id).then(function (response) {
 });
 ```
 
-### 2.5. 读取商品扩展属性
+### 读取商品扩展属性
 
 - 修改goodsController.js中的findOne方法，添加扩展属性json转换
 
@@ -425,7 +423,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 });
 ```
 
-### 2.6. 读取商品规格属性
+### 读取商品规格属性
 
 - 修改goodsController，添加规格属性json转换
 
@@ -482,13 +480,13 @@ $scope.checkAttributeValue = function (specName, optionName) {
 </div>
 ```
 
-### 2.7. 读取SKU数据
+### 读取SKU数据
 
 显示SKU商品列表，并自动读取价格、库存等数据加载到列表中
 
 ![SKU数据生成](images/20190129140533344_32261.jpg)
 
-#### 2.7.1. 读取SKU数据-后端部分
+#### 读取SKU数据-后端部分
 
 修改GoodsServiceImpl的findOne方法中增加查询SKU商品数据
 
@@ -515,7 +513,7 @@ public Goods findOne(Long id) {
 }
 ```
 
-#### 2.7.2. 读取SKU数据-前端部分
+#### 读取SKU数据-前端部分
 
 修改控制层goodsController的findOne方法，增加SKU列表规格json字符串转换对象
 
@@ -531,9 +529,9 @@ baseService.findOne('/goods/findOne', id).then(function (response) {
 });
 ```
 
-### 2.8. 保存数据
+### 保存数据
 
-#### 2.8.1. 商品修改保存数据-后端部分
+#### 商品修改保存数据-后端部分
 
 - 在pinyougou-shop-web工程的控制层GoodsController增加修改商品的方法
 
@@ -643,7 +641,7 @@ public void updateGoods(Goods goods) {
 }
 ```
 
-#### 2.8.2. 商品修改保存数据-前端部分
+#### 商品修改保存数据-前端部分
 
 修改前端控制器goodsController，在saveOrUpdate方法中增加url请求的判断
 
@@ -679,7 +677,7 @@ $scope.saveOrUpdate = function () {
 };
 ```
 
-### 2.9. 页面跳转
+### 页面跳转
 
 1. 由商品列表页跳转到商品编辑页，修改goods.html表格行的修改按钮
 
@@ -713,9 +711,9 @@ $scope.saveOrUpdate = function () {
 };
 ```
 
-## 3. 运营商后台-商品管理【商品审核】
+## 运营商后台-商品管理【商品审核】
 
-### 3.1. 待审核商品列表
+### 待审核商品列表
 
 需求：参照商家后台显示商品列表的代码
 
@@ -830,13 +828,13 @@ public class GoodsController {
 </div>
 ```
 
-### 3.2. 商品审核与驳回
+### 商品审核与驳回
 
-#### 3.2.1. 需求分析
+#### 需求分析
 
 商品审核的状态值为1，驳回的状态值为2，用户在列表中选中ID后，点击审核或驳回，修改商品状态，并刷新列表。
 
-#### 3.2.2. 商品审核-后端部分
+#### 商品审核-后端部分
 
 - pinyougou-manager-web的控制层GoodsController，新增更新商品审核状态方法
 
@@ -907,7 +905,7 @@ void updateStatus(@Param("ids") Long[] ids, @Param("status") String status);
 </update>
 ```
 
-#### 3.2.3. 商品审核-前端部分
+#### 商品审核-前端部分
 
 - 修改pinyougou-manager-web的控制器goodsController增加更新商品状态的方法
 
@@ -955,13 +953,13 @@ $scope.updateStatus = function (status) {
 </button>
 ```
 
-## 4. 运营商后台-商品管理【商品删除】
+## 运营商后台-商品管理【商品删除】
 
-### 4.1. 需求分析
+### 需求分析
 
 为商品管理提供商品删除功能，用户选中部分商品，点击删除按钮即可实现商品删除。注意，这里的删除并非是物理删除，而是修改`tb_goods`表的`is_delete`字段为1 ，称之为“逻辑删除”。
 
-### 4.2. 逻辑删除-后端部分
+### 逻辑删除-后端部分
 
 - 修改pinyougou-manager-web的控制层GoodsController，增加批量删除商品方法
 
@@ -1029,7 +1027,7 @@ void updateDeleteStatus(@Param("ids") Long[] ids, @Param("isDelete") String isDe
 </update>
 ```
 
-### 4.3. 逻辑删除-前端部分
+### 逻辑删除-前端部分
 
 - 修改pinyougou-manager-web前端控制器goodsController，增加批量删除商品方法
 
@@ -1061,19 +1059,19 @@ $scope.delete = function () {
 </button>
 ```
 
-### 4.4. 商品显示列表排除已删除记录
+### 商品显示列表排除已删除记录
 
 修改（检查）GoodsMapper.xml的`findByWhere`查询语句，是否有查询条件`is_delete is null`
 
-## 5. 商家后台-【商品上下架】
+## 商家后台-【商品上下架】
 
-### 5.1. 需求分析
+### 需求分析
 
 什么是商品上下架？其实上下架也是商品的一个状态，但是不同于审核状态。审核状态的控制权在运营商手中，而上下架的控制权在商户手中。商户可以随时将一个已审核状态的商品上架或下架。上架表示正常销售，而下架则表示暂停销售。
 
 实现逻辑：商品的上下架就是对上下架状态的修改。字段为tb_goods表的is_marketable字段。1表示上架、0表示下架。
 
-### 5.2. 商品上下架状态修改-后端部分
+### 商品上下架状态修改-后端部分
 
 - 修改pinyougou-shop-web工程的控制层GoodsController，增加批量修改上下架状态方法
 
@@ -1144,7 +1142,7 @@ void updateMarketableStatus(@Param("ids") Long[] ids, @Param("status") String st
 </update>
 ```
 
-### 5.3. 商品上下架状态修改-前端部分
+### 商品上下架状态修改-前端部分
 
 - 修改pinyougou-shop-web前端控制器goodsController，增加批量修改商品上下架状态方法
 
@@ -1199,9 +1197,9 @@ $scope.updateMarketableStatus = function (status) {
 </button>
 ```
 
-## 6. 注解式事务配置
+## 注解式事务配置
 
-### 6.1. 事务异常测试
+### 事务异常测试
 
 修改服务层GoodsServiceImpl的saveGoods方法，在里面增加异常
 
@@ -1236,9 +1234,9 @@ public void saveGoods(Goods goods) {
 >
 > 通过观察发现，程序发生异常，商品表仍然会存储记录，这是不符合我们要求的。这是因为我们目前的系统还没有配置事务。
 
-### 6.2. 注解式事务解决方案
+### 注解式事务解决方案
 
-#### 6.2.1. 配置文件
+#### 配置文件
 
 修改pinyougou-mapper工程的applicationContext-mapper.xml
 
@@ -1254,7 +1252,7 @@ public void saveGoods(Goods goods) {
                       proxy-target-class="true"/>
 ```
 
-#### 6.2.2. 在类上添加注解
+#### 在类上添加注解
 
 ```java
 @Service(interfaceName = "com.pinyougou.sellergoods.service.GoodsService")
@@ -1270,7 +1268,7 @@ public class GoodsServiceImpl implements GoodsService {
 - `readOnly=true`：该服务类中所有方法只能做查询
 - `rollbackFor=RuntimeException.class`：该服务类中所有方法出现RuntimeException异常时事务才有效
 
-## 7. Nginx静态资源服务器
+## Nginx静态资源服务器
 
 - 存在问题：商品图片访问不了
 

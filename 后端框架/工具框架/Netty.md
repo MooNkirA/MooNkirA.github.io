@@ -1,8 +1,8 @@
-## 1. 前置知识：BIO 与 NIO 编程
+## 前置知识：BIO 与 NIO 编程
 
 此部分内容详见[《Java基础 - IO编程、序列化》笔记](/Java/Java基础-IO编程)
 
-## 2. Netty 网络应用程序框架概述
+## Netty 网络应用程序框架概述
 
 Netty 是由 JBOSS 提供的一个 Java 开源框架。Netty 提供异步的、基于事件驱动的网络应用程序框架，用以快速开发高性能、高可靠性的网络 IO 程序。
 
@@ -12,9 +12,9 @@ Netty 是一个**基于 NIO 的网络编程框架**，使用 Netty 可以快速�
 
 ![Netty 架构图](images/20191006090940658_26285.png)
 
-## 3. Netty 整体设计
+## Netty 整体设计
 
-### 3.1. 线程模型
+### 线程模型
 
 1. 单线程模型
 
@@ -40,7 +40,7 @@ Netty 是一个**基于 NIO 的网络编程框架**，使用 Netty 可以快速�
 - 每个 NioChannel 只会绑定在唯一的 NioEventLoop 上
 - 每个 NioChannel 都绑定有一个自己的 ChannelPipeline
 
-### 3.2. 异步模型
+### 异步模型
 
 包括：FUTURE, CALLBACK 和 HANDLER 三部分
 
@@ -52,20 +52,20 @@ Netty 是一个**基于 NIO 的网络编程框架**，使用 Netty 可以快速�
 
 ![异步模型流程图](images/20191006191334878_22879.png)
 
-## 4. 核心 API
+## 核心 API
 
-### 4.1. ChannelHandler 及其实现类
-#### 4.1.1. 概述
+### ChannelHandler 及其实现类
+#### 概述
 
 ChannelHandler 接口定义了许多事件处理的方法，可以通过重写这些方法去实现具体的业务逻辑。API 关系如下图所示
 
 ![API 关系图](images/20191006233404923_25840.png)
 
-#### 4.1.2. 用法
+#### 用法
 
 具体用法：需要自定义一个 Handler 类去继承 ChannelInboundHandlerAdapter，然后通过重写相应方法实现业务逻辑
 
-#### 4.1.3. 常用方法
+#### 常用方法
 
 ```java
 public void channelActive(ChannelHandlerContext ctx)
@@ -91,14 +91,14 @@ public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
 
 - 通道发生异常事件
 
-### 4.2. Pipeline 和 ChannelPipeline
-#### 4.2.1. 概述
+### Pipeline 和 ChannelPipeline
+#### 概述
 
 ChannelPipeline 是一个 Handler 的集合，它负责处理和拦截 inbound 或者 outbound 的事件和操作，相当于一个贯穿 Netty 的链
 
 ![netty 处理链](images/20191007093754914_11588.png)
 
-#### 4.2.2. 常用方法
+#### 常用方法
 
 ```java
 ChannelPipeline addFirst(ChannelHandler... handlers)
@@ -112,12 +112,12 @@ ChannelPipeline addLast(ChannelHandler... handlers)
 
 - 把一个业务处理类（handler）添加到链中的最后一个位置
 
-### 4.3. ChannelHandlerContext
-#### 4.3.1. 概述
+### ChannelHandlerContext
+#### 概述
 
 这是事件处理器上下文对象，Pipeline 链中的实际处理节点。每个处理节点ChannelHandlerContext中包含一个具体的事件处理器 ChannelHandler，同时 ChannelHandlerContext 中也绑定了对应的 pipeline 和 Channel 的信息，方便对 ChannelHandler 进行调用
 
-#### 4.3.2. 常用方法
+#### 常用方法
 
 ```java
 ChannelFuture close()
@@ -137,24 +137,24 @@ ChannelFuture writeAndFlush(Object msg)
 
 - 将数据写到 ChannelPipeline 中当前 ChannelHandler 的下一个 ChannelHandler 开始处理（出站）
 
-### 4.4. ChannelOption
-#### 4.4.1. 概述
+### ChannelOption
+#### 概述
 
 Netty 在创建 Channel 实例后，一般都需要设置 ChannelOption 参数。ChannelOption 是 Socket 的标准参数，而非 Netty 独创的。
 
-#### 4.4.2. 常用参数配置值
+#### 常用参数配置值
 
 1. `ChannelOption.SO_BACKLOG`
     - 对应 TCP/IP 协议 listen 函数中的 backlog 参数，用来初始化服务器可连接队列大小。服务端处理客户端连接请求是顺序处理的，所以同一时间只能处理一个客户端连接。多个客户端来的时候，服务端将不能处理的客户端连接请求放在队列中等待处理，backlog 参数指定了队列的大小
 2. `ChannelOption.SO_KEEPALIVE`
     - 一直保持连接活动状态
 
-### 4.5. ChannelFuture
-#### 4.5.1. 概述
+### ChannelFuture
+#### 概述
 
 表示 Channel 中异步 I/O 操作的结果，在 Netty 中所有的 I/O 操作都是异步的，I/O 的调用会直接返回，调用者并不能立刻获得结果，但是可以通过 ChannelFuture 来获取 I/O 操作的处理状态
 
-#### 4.5.2. 常用方法
+#### 常用方法
 
 ```java
 Channel channel();
@@ -168,8 +168,8 @@ ChannelFuture sync() throws InterruptedException;
 
 - 等待异步操作执行完毕
 
-### 4.6. EventLoopGroup 和其实现类 NioEventLoopGroup
-#### 4.6.1. 概述
+### EventLoopGroup 和其实现类 NioEventLoopGroup
+#### 概述
 
 EventLoopGroup 是一组 EventLoop 的抽象，Netty 为了更好的利用多核 CPU 资源，一般会有多个 EventLoop 同时工作，每个 EventLoop 维护着一个 Selector 实例
 
@@ -181,7 +181,7 @@ EventLoopGroup 提供 next 接口，可以从组里面按照一定规则获取�
 
 BossEventLoopGroup 通常是一个单线程的 EventLoop，EventLoop 维护着一个注册了ServerSocketChannel 的 Selector 实例，BossEventLoop 不断轮询 Selector 将连接事件分离出来，通常是 OP_ACCEPT 事件，然后将接收到的 SocketChannel 交给 WorkerEventLoopGroup，WorkerEventLoopGroup 会由 next 选择其中一个 EventLoopGroup 来将这个 SocketChannel 注册到其维护的 Selector 并对其后续的 IO 事件进行处理
 
-#### 4.6.2. 常用方法
+#### 常用方法
 
 ```java
 public NioEventLoopGroup()
@@ -195,13 +195,13 @@ public Future<?> shutdownGracefully()
 
 - 断开连接，关闭线程
 
-### 4.7. ServerBootstrap 和 Bootstrap
-#### 4.7.1. 概述
+### ServerBootstrap 和 Bootstrap
+#### 概述
 
 - ServerBootstrap 是 Netty 中的服务器端启动助手，通过它可以完成服务器端的各种配置
 - Bootstrap 是 Netty 中的客户端启动助手，通过它可以完成客户端的各种配置
 
-#### 4.7.2. 常用方法
+#### 常用方法
 
 ```java
 public ServerBootstrap group(EventLoopGroup parentGroup, EventLoopGroup childGroup)
@@ -251,12 +251,12 @@ public ChannelFuture connect(String inetHost, int inetPort)
 
 - 该方法用于客户端，用来连接服务器端
 
-### 4.8. Unpooled 类
-#### 4.8.1. 概述
+### Unpooled 类
+#### 概述
 
 这是 Netty 提供的一个专门用来操作缓冲区的工具类
 
-#### 4.8.2. 常用方法
+#### 常用方法
 
 ```java
 public static ByteBuf copiedBuffer(CharSequence string, Charset charset)
@@ -264,7 +264,7 @@ public static ByteBuf copiedBuffer(CharSequence string, Charset charset)
 
 - 通过给定的数据和字符编码返回一个 ByteBuf 对象（类似于 NIO 中的 ByteBuffer 对象，但与 ByteBuffer 有区别）
 
-## 5. 入门案例
+## 入门案例
 
 1. 编写pom.xml，添加 netty 的坐标，采用 4.1.8 版本
 
@@ -506,7 +506,7 @@ public class NettyClient {
 
 ![运行效果](images/20191012185749107_11780.png)
 
-## 6. 网络聊天案例
+## 网络聊天案例
 
 1. 通过继承SimpleChannelInboundHandler类自定义了一个服务器端业务处理类，并在该类中重写了四个方法
     1. `channelActive`：当通道就绪时，输出在线；
@@ -816,9 +816,9 @@ public class ChatClient {
 
 ![运行效果4](images/20191014113558537_29355.png)
 
-## 7. 编码和解码
+## 编码和解码
 
-### 7.1. 编解码器
+### 编解码器
 
 在编写网络应用程序的时候需要注意 codec (编解码器)，因为数据在网络中传输的都是二进制字节码数据，而拿到的目标数据往往不是字节码数据。因此在发送数据时就需要编码，接收数据时就需要解码。
 
@@ -833,9 +833,9 @@ codec 的组成部分有两个：decoder(解码器)和 encoder(编码器)。
 2. 序列化后的体积太大，是二进制编码的 5 倍多
 3. 序列化性能太低
 
-### 7.2. Netty 编解码器
+### Netty 编解码器
 
-#### 7.2.1. 概述
+#### 概述
 
 Netty codec 自身提供了一些解码器：
 
@@ -849,14 +849,14 @@ Netty 提供的编码器
 
 *Netty 本身自带的 ObjectDecoder 和 ObjectEncoder 可以用来实现 POJO 对象或各种业务对象的编码和解码，但其内部使用的仍是 Java 序列化技术，所以不建议使用*。因此对于 POJO 对象或各种业务对象要实现编码和解码，需要更高效更强的技术。
 
-#### 7.2.2. Netty 编解码器的作用
+#### Netty 编解码器的作用
 
 1. 编码器可以**将 Java 对象转换为字节流**，以便在网络上传输。例如，将字符串、数字、图像等对象编码成二进制数据。
 2. 解码器可以**将字节流转换为 Java 对象**，以便在应用程序中使用。例如，将二进制数据解码成字符串、数字、图像等对象。
 3. 使用编解码器可以减少网络流量，提高网络性能。例如，通过压缩数据来减少数据的大小，从而减少网络流量。
 4. 使用编解码器可以简化开发，减少代码的复杂度。例如，使用 Netty 提供的内置编解码器，可以避免手动处理数据转换的细节。
 
-### 7.3. Google 的 Protobuf
+### Google 的 Protobuf
 
 Protobuf 是 Google 发布的开源项目，全称 Google Protocol Buffers，特点如下：
 
@@ -864,7 +864,7 @@ Protobuf 是 Google 发布的开源项目，全称 Google Protocol Buffers，特
 - 高性能，高可靠性
 - 使用 protobuf 编译器能自动生成代码，Protobuf 是将类的定义使用`.proto`文件进行描述，然后通过 protoc.exe 编译器根据`.proto`自动生成`.java`文件
 
-### 7.4. Protobuf 案例
+### Protobuf 案例
 
 目前在使用 Netty 开发时，经常会结合 Protobuf 作为 codec (编解码器)去使用，具体使用步骤如下：
 
@@ -1073,9 +1073,9 @@ public class NettyServer {
 }
 ```
 
-## 8. 基于 Netty 自定义 RPC
+## 基于 Netty 自定义 RPC
 
-### 8.1. RPC 概述
+### RPC 概述
 
 RPC (Remote Procedure Call)，即远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络实现的技术。
 
@@ -1095,8 +1095,8 @@ RPC (Remote Procedure Call)，即远程过程调用，它是一种通过网络�
 
 RPC 的目标就是将 2-8 这些步骤都封装起来，用户无需关心这些细节，可以像调用本地方法一样即可完成远程服务调用。
 
-### 8.2. 设计和实现
-#### 8.2.1. 结构设计
+### 设计和实现
+#### 结构设计
 
 ![RPC结构设计图](images/20191014160115424_17258.png)
 
@@ -1109,9 +1109,9 @@ RPC 的目标就是将 2-8 这些步骤都封装起来，用户无需关心这�
 >
 > 最终要实现的目标是：在 TestNettyRPC 中远程调用 HelloRPCImpl 或 HelloNettyImpl 中的方法
 
-#### 8.2.2. 代码实现
+#### 代码实现
 
-##### 8.2.2.1. Server端(服务提供方)
+##### Server端(服务提供方)
 
 作为服务的提供方，分别编写了两个接口和两个实现类，供消费方远程调用
 
@@ -1139,7 +1139,7 @@ public class HelloRPCImpl implements HelloRPC {
 }
 ```
 
-##### 8.2.2.2. Server Stub(业务逻辑处理)
+##### Server Stub(业务逻辑处理)
 
 1. 创建实体类，用来封装消费方发起远程调用时传给服务方的数据
 
@@ -1316,7 +1316,7 @@ public class NettyRPCServer {
 }
 ```
 
-##### 8.2.2.3. Client Stub(业务逻辑处理)
+##### Client Stub(业务逻辑处理)
 
 1. 创建客户端的业务处理类读取远程调用返回的数据
 
@@ -1446,7 +1446,7 @@ public class NettyRPCProxy {
 }
 ```
 
-##### 8.2.2.4. Client( 服务的调用方 - 消费方)
+##### Client( 服务的调用方 - 消费方)
 
 创建两个与服务端相同的接口，创建消费方进行调用，*需要注意是导入本地接口，不是服务端包下的接口*
 
@@ -1477,7 +1477,7 @@ public class TestNettyRPC {
 }
 ```
 
-##### 8.2.2.5. 运行效果
+##### 运行效果
 
 消费方不需要知道底层的网络实现细节，就像调用本地方法一样成功发起了两次远程调用。运行效果如下图所示
 
@@ -1485,7 +1485,7 @@ public class TestNettyRPC {
 
 > 该案例的目的不是为了实现一个多么成熟的 RPC 框架，因此会有很多地方不够完善，目的是通过该案例更熟悉 Netty 的使用
 
-## 9. 基于Netty网络编程项目实战（待学习）
+## 基于Netty网络编程项目实战（待学习）
 
 学习资料：阶段2-项目框架架构与优化\2-5 Netty网络编程\
 

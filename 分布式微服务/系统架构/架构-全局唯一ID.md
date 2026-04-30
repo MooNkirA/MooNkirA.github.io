@@ -1,4 +1,4 @@
-## 1. 分布式全局唯一 ID
+## 分布式全局唯一 ID
 
 传统的单体架构，基本是单数据库、业务单表的结构。每个业务表的 ID 一般都是从 1 自增，通过 `AUTO_INCREMENT=1` 设置自增起始值，但是在分布式服务架构模式下分库分表的设计，使得多个库或多个表存储相同的业务数据。这种情况根据数据库的自增 ID 就会产生相同 ID 的情况，不能保证主键的唯一性。
 
@@ -14,7 +14,7 @@
 - 对于并发数要求不高、期望长期使用的应用，可增加时间戳位数，减少序列数的位数。例如配置成 `{"workerBits":23,"timeBits":31,"seqBits":9}` 时，可支持 28 个节点以整体并发量 14400 UID/s 的速度持续运行 68 年。
 - 对于节点重启频率频繁、期望长期使用的应用，可增加工作机器位数和时间戳位数，减少序列数位数。例如配置成 `{"workerBits":27,"timeBits":30,"seqBits":6}` 时，可支持 37 个节点以整体并发量 2400 UID/s 的速度持续运行 34 年。
 
-## 2. UUID
+## UUID
 
 UUID（Universally Unique Identifier），通用唯一识别码的缩写。UUID 是由一组 32 位数的 16 进制数字所构成，所以 UUID 理论上的总数为 16<sup>32</sup> = 2<sup>128</sup> ≈ 3.4 x 10<sup>38。也就是说若每纳秒产生 1 兆个 UUID，要花 100 亿年才会将所有 UUID 用完。
 
@@ -49,7 +49,7 @@ public static void main(String[] args) {
 - 信息不安全：基于 MAC 地址生成 UUID 的算法可能会造成 MAC 地址泄露，暴露使用者的位置。
 - 对 MySQL 索引不利：如果作为数据库主键，在 InnoDB 引擎下，UUID 的无序性可能会引起数据位置频繁变动，严重影响性能。
 
-## 3. 数据库生成
+## 数据库生成
 
 由于分布式数据库的起始自增值一样，所以才会有冲突的情况发生，那么将分布式系统中数据库的同一个业务表的自增 ID 设计成不一样的起始值，然后设置固定的步长，步长的值即为分库的数量或分表的数量。
 
@@ -66,7 +66,7 @@ public static void main(String[] args) {
 
 但是缺点也很明显，首先它强依赖 DB，当 DB 异常时整个系统不可用。虽然配置主从复制可以尽可能的增加可用性，但是数据一致性在特殊情况下难以保证。主从切换时的不一致可能会导致重复发号。还有就是 ID 发号性能瓶颈限制在单台 MySQL 的读写性能。
 
-## 4. redis 生成
+## redis 生成
 
 Redis 实现分布式唯一 ID，主要是通过 `INCR` 和 `INCRBY` 的自增原子命令，由于 Redis 自身的单线程的特点，所以能保证生成的 ID 肯定是唯一有序的。
 
@@ -76,7 +76,7 @@ Redis 实现分布式全局唯一 ID，它的性能比较高，生成的数据�
 
 > 此部分内容详见[《Redis 场景应用设计》笔记](/Database/Redis/Redis-场景应用设计)
 
-## 5. Snowflake（雪花算法）
+## Snowflake（雪花算法）
 
 Snowflake（雪花算法）是由 Twitter 开源的分布式 ID 生成算法，以划分命名空间的方式将 64 位分割成多个部分，每个部分代表不同的含义。而在 Java 中 SnowFlake 算法生成的 ID 是 64 bit 的 Long 类型整数。
 
@@ -275,9 +275,9 @@ public static void main(String[] args) {
 
 很多其他类雪花算法也是在此思想上的设计，然后改进规避它的缺陷，如百度 UidGenerator 和美团分布式 ID 生成系统 Leaf 中 snowflake 模式都是在此基础上演进出来。
 
-## 6. 百度 - UidGenerator
+## 百度 - UidGenerator
 
-### 6.1. 概述
+### 概述
 
 百度的 UidGenerator 是百度开源基于 Java 语言实现的唯一 ID 生成器，是在雪花算法 snowflake 的基础上做了一些改进。UidGenerator 以组件形式工作在应用项目中，支持自定义 workerId 位数和初始化策略，适用于 docker 等虚拟化环境下实例自动重启、漂移等场景。
 
@@ -308,7 +308,7 @@ CREATE TABLE WORKER_NODE (
 ) COMMENT = 'DB WorkerID Assigner for UID Generator', ENGINE = INNODB;
 ```
 
-### 6.2. DefaultUidGenerator 实现
+### DefaultUidGenerator 实现
 
 `DefaultUidGenerator` 就是正常的根据时间戳和机器位、还有序列号的生成方式，和雪花算法很相似，对于时钟回拨也只是抛异常处理。仅有一些不同，如以秒为单位和支持 Docker 等虚拟化环境。
 
@@ -356,7 +356,7 @@ protected synchronized long nextId() {
 </bean>
 ```
 
-### 6.3. CachedUidGenerator 实现
+### CachedUidGenerator 实现
 
 官方建议的性能较高的 `CachedUidGenerator` 生成方式，是使用 `RingBuffer` 缓存生成的 id。数组每个元素成为一个 slot。`RingBuffer` 容量默认为 Snowflake 算法中 sequence 最大值（2<sup>13</sup> = 8192）。可通过 boostPower 配置进行扩容，以提高 `RingBuffer` 读写吞吐量。Tail 指针、Cursor 指针用于环形数组上读写 slot：
 
@@ -377,11 +377,11 @@ RingBuffer 填充时机：
 - **即时填充**：Take 消费时，即时检查剩余可用 slot 量(`tail - cursor`)，如小于设定阈值，则补全空闲 slots。阈值可通过 `paddingFactor` 来进行配置。
 - **周期填充**：通过 Schedule 线程，定时补全空闲 slots。可通过 scheduleInterval 配置，以应用定时填充功能，并指定 Schedule 时间间隔。
 
-## 7. 美团 Leaf
+## 美团 Leaf
 
 Leaf 是美团基础研发平台推出的一个分布式 ID 生成服务，提供了两种生成方式，分别是** Leaf-segment 数据库方案**和 **Leaf-snowflake 方案**。
 
-### 7.1. Leaf-segment 数据库方案
+### Leaf-segment 数据库方案
 
 Leaf-segment 数据库方案，是在前面章节描述的数据库使用方案上，做了如下改变：
 
@@ -420,7 +420,7 @@ CREATE TABLE `leaf_alloc` (
 
 对于这种方案依然存在一些问题，它仍然依赖 DB 的稳定性，需要采用主从备份的方式提高 DB 的可用性，还有 Leaf-segment 方案生成的 ID 是趋势递增的，这样 ID 号是可被计算的，例如订单 ID 生成场景，通过订单 id 号相减就能大致计算出公司一天的订单量，这个是不能忍受的。
 
-### 7.2. Leaf-snowflake 方案
+### Leaf-snowflake 方案
 
 Leaf-snowflake 方案完全沿用 snowflake 方案的 bit 位设计，对于 workerlD 的分配引入了 Zookeeper 持久顺序节点的特性，自动对 snowflake 节点配置 wokerlD。避免了服务规模较大时，动手配置成本太高的问题。一般会按照下面几个步骤启动的：
 

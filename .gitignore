@@ -30,3 +30,8 @@ vx_recycle_bin
 # 忽略 office 编辑临时文件
 ~*.doc
 ~*.tmp
+
+# 忽略其他
+Work
+desktop.ini
+.*.cloudSyncDisk

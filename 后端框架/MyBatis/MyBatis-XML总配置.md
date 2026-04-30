@@ -1,6 +1,6 @@
-## 1. MyBatis 总配置文件
+## MyBatis 总配置文件
 
-### 1.1. 总配置内容概述
+### 总配置内容概述
 
 MyBatis 总配置文件（SqlMapConfig.xml）中配置的内容和顺序如下：（必须按顺序，否则为报错）
 
@@ -18,7 +18,7 @@ MyBatis 总配置文件（SqlMapConfig.xml）中配置的内容和顺序如下�
     - databaseIdProvider（数据库厂商标识）
     - mappers（映射器）
 
-### 1.2. Mybatis 3.5.0 全配置示例(demo项目配置更新优先)
+### Mybatis 3.5.0 全配置示例(demo项目配置更新优先)
 
 > 参考Mybatis源码学习项目：https://github.com/MooNkirA/mybatis-note
 >
@@ -165,9 +165,9 @@ MyBatis 总配置文件（SqlMapConfig.xml）中配置的内容和顺序如下�
 </configuration>
 ```
 
-## 2. properties 属性标签
+## properties 属性标签
 
-### 2.1. 配置属性
+### 配置属性
 
 1. `resource`属性：指定本地属性文件的位置
 2. `url`属性：指定网络上的配置文件位置（用于放置多个服务器统一使用一份配置文件）
@@ -217,7 +217,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
 
 因此，<font color=red>**通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的则是 properties 元素中指定的属性。**</font>
 
-### 2.2. 属性默认值
+### 属性默认值
 
 从 MyBatis 3.4.2 开始，可以为占位符指定一个默认值。例如：
 
@@ -237,7 +237,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
 </properties>
 ```
 
-### 2.3. 属性名中的“:”字符处理
+### 属性名中的“:”字符处理
 
 **提示**：如果在属性名中使用了"`:`"字符（如：`db:username`），或者在 SQL 映射中使用了 OGNL 表达式的三元运算符（如：`${tableName != null ? tableName : 'global_constants'}`），就需要设置特定的属性来修改分隔属性名和默认值的字符。例如：
 
@@ -255,9 +255,9 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
 </dataSource>
 ```
 
-## 3. settings 设置标签
+## settings 设置标签
 
-### 3.1. 配置示例
+### 配置示例
 
 1. 在`<settings>`标签中，配置用生成的主键值
 
@@ -273,7 +273,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
 
 > 效果说明：当数据库表的字段为dept_id，会自动转换成deptId
 
-### 3.2. 相关设置含义清单
+### 相关设置含义清单
 
 > 这是 MyBatis 中极为重要的调整设置，它们会改变 MyBatis 的运行时行为。 下表描述了设置中各项设置的含义、默认值等。(官网提供)
 
@@ -301,9 +301,9 @@ https://mybatis.org/mybatis-3/zh/configuration.html#%E8%AE%BE%E7%BD%AE%EF%BC%88s
 </settings>
 ```
 
-## 4. typeAliases 类型别名标签
+## typeAliases 类型别名标签
 
-### 4.1. mybatis 本身所支持的别名
+### mybatis 本身所支持的别名
 
 |    别名     | 映射类型 |    别名     |  映射类型   |
 | ---------- | ------- | ---------- | ---------- |
@@ -329,9 +329,9 @@ https://mybatis.org/mybatis-3/zh/configuration.html#%E8%AE%BE%E7%BD%AE%EF%BC%88s
 
 *注：mybatis内置别名中，没有配置set集合，所以mybatis中使用List比较多*
 
-### 4.2. 自定义别名
+### 自定义别名
 
-#### 4.2.1. 方式1：typeAlias 子标签
+#### 方式1：typeAlias 子标签
 
 1. `type`属性：指定别名的类型
 2. 默认使用类的名称，作为别名的名称
@@ -359,7 +359,7 @@ Mapper.xml 文件配置示例：
 </select>
 ```
 
-#### 4.2.2. 方式2：package 子标签
+#### 方式2：package 子标签
 
 1. `name`属性：配置要扫描的包
 2. 默认都使用类的名称作为别名的名称
@@ -392,7 +392,7 @@ public class Author {
 }
 ```
 
-### 4.3. 配置别名示例
+### 配置别名示例
 
 sqlMapConfig.xml文件综合配置别名示例：
 
@@ -406,15 +406,15 @@ sqlMapConfig.xml文件综合配置别名示例：
 </typeAliases>
 ```
 
-## 5. （待整理）environments 环境配置标签
+## （待整理）environments 环境配置标签
 
 > TODO: 待整理
 
-## 6. mappers 映射器标签
+## mappers 映射器标签
 
 `<mappers>`映射器标签用于定义 SQL 映射语句，可以使用相对于类路径的资源引用，或完全限定资源定位符（包括 `file:///` 形式的 URL），或类名和包名等。
 
-### 6.1. mapper 标签的 resource 属性
+### mapper 标签的 resource 属性
 
 使用相对于类路径的资源（现在的使用方式），resource：指定配置文件的位置。如下：
 
@@ -422,7 +422,7 @@ sqlMapConfig.xml文件综合配置别名示例：
 <mapper resource="sqlmap/User.xml" />
 ```
 
-### 6.2. mapper 标签的 url 属性
+### mapper 标签的 url 属性
 
 url引用的完全限定名（包括`file:///URLs`）
 
@@ -435,7 +435,7 @@ url引用的完全限定名（包括`file:///URLs`）
 </mappers>
 ```
 
-### 6.3. mapper 标签的 class 属性
+### mapper 标签的 class 属性
 
 使用mapper接口类路径。注意：此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。
 
@@ -450,7 +450,7 @@ url引用的完全限定名（包括`file:///URLs`）
 </mappers>
 ```
 
-### 6.4. package 标签的 name 属性
+### package 标签的 name 属性
 
 包扫描方式配置映射文件，扫描该包下的所有mapper接口。其中`name`属性是配置需要扫描的包名。包扫描方式使用要求如下：
 

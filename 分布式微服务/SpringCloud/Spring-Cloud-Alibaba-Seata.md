@@ -1,4 +1,4 @@
-## 1. Seata 概述
+## Seata 概述
 
 Seata 是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。Seata 将为用户提供了 **AT、TCC、SAGA 和 XA 事务模式**，为用户打造一站式的分布式解决方案。
 
@@ -6,13 +6,13 @@ Seata 是一款开源的分布式事务解决方案，致力于提供高性能�
 
 ![](images/20220109080311518_31131.png)
 
-### 1.1. 发展历史
+### 发展历史
 
 2019 年 1 月，阿里巴巴中间件团队发起了开源项目 Fescar（Fast & EaSy Commit And Rollback），其愿景是让分布式事务的使用像本地事务的使用一样，简单和高效，并逐步解决开发者们遇到的分布式事务方面的所有难题。后来更名为 Seata，意为：Simple Extensible AutonomousTransaction Architecture，是一套分布式事务解决方案。
 
 Seata 的设计目标是对业务无侵入，因此从业务无侵入的 2PC 方案着手，在传统 2PC 的基础上演进。它把一个分布式事务理解成一个包含了若干分支事务的全局事务。全局事务的职责是协调其下管辖的分支事务达成一致，要么一起成功提交，要么一起失败回滚。此外，通常分支事务本身就是一个关系数据库的本地事务。
 
-### 1.2. Seata 三个重要组件
+### Seata 三个重要组件
 
 - **TC (Transaction Coordinator) - 事务协调者**：维护全局和分支事务的状态，驱动全局事务提交或回滚。
 - **TM (Transaction Manager) - 事务管理器**：定义全局事务的范围：开始全局事务、提交或回滚全局事务。
@@ -20,7 +20,7 @@ Seata 的设计目标是对业务无侵入，因此从业务无侵入的 2PC 方
 
 ![](images/265511923236855.jpg)
 
-### 1.3. Seata 的执行流程
+### Seata 的执行流程
 
 ![](images/20220109123257491_7540.png)
 
@@ -33,19 +33,19 @@ Seata 的设计目标是对业务无侵入，因此从业务无侵入的 2PC 方
 7. 全局事务调用链处理完毕，TM 根据有无异常向 TC 发起全局事务的提交或者回滚
 8. TC 协调其管辖之下的所有分支事务，决定是否回滚
 
-### 1.4. Seata 实现 2PC 与传统 2PC 的差别
+### Seata 实现 2PC 与传统 2PC 的差别
 
 1. 架构层次方面，传统 2PC 方案的 RM 实际上是在数据库层，RM 本质上就是数据库自身，通过 XA 协议实现，而 Seata 的 RM 是以 jar 包的形式作为中间件层部署在应用程序这一侧的。
 2. 两阶段提交方面，传统 2PC 无论第二阶段的决议是 commit 还是 rollback，事务性资源的锁都要保持到 Phase2 完成才释放。而 Seata 的做法是在 Phase1 就将本地事务提交，这样就可以省去 Phase2 持锁的时间，整体提高效率。
 
-## 2. Seata AT 模式
+## Seata AT 模式
 
-### 2.1. 模式实现前提
+### 模式实现前提
 
 - 基于支持本地 ACID 事务的关系型数据库。
 - Java 应用，通过 JDBC 访问数据库
 
-### 2.2. 整体机制
+### 整体机制
 
 两阶段提交协议的演变：
 
@@ -54,7 +54,7 @@ Seata 的设计目标是对业务无侵入，因此从业务无侵入的 2PC 方
     - 提交异步化，非常快速地完成。
     - 回滚通过一阶段的回滚日志进行反向补偿。
 
-### 2.3. 写隔离
+### 写隔离
 
 一阶段本地事务提交前，需要确保先拿到**全局锁**。
 
@@ -76,7 +76,7 @@ tx1 二阶段全局提交，释放**全局锁**。tx2 拿到**全局锁**提交�
 
 因为整个过程**全局锁**在 tx1 结束前一直是被 tx1 持有的，所以**不会发生脏写的问题**。
 
-### 2.4. 读隔离
+### 读隔离
 
 在数据库本地事务隔离级别**读已提交（Read Committed）**或以上的基础上，Seata（AT 模式）的默认全局隔离级别是**读未提交（Read Uncommitted）**。
 
@@ -88,7 +88,7 @@ tx1 二阶段全局提交，释放**全局锁**。tx2 拿到**全局锁**提交�
 
 > 出于总体性能上的考虑，Seata 目前的方案并没有对所有 SELECT 语句都进行代理，仅针对 FOR UPDATE 的 SELECT 语句。
 
-### 2.5. 工作流程示例
+### 工作流程示例
 
 下面以一个示例来说明整个 AT 分支的工作过程。假设有业务表：`product`
 
@@ -104,7 +104,7 @@ AT 分支事务的业务逻辑：
 update product set name = 'GTS' where name = 'TXC';
 ```
 
-#### 2.5.1. 一阶段
+#### 一阶段
 
 ![](images/47122114254986.jpg)
 
@@ -188,13 +188,13 @@ select id, name, since from product where id = 1;
 7. 本地事务提交：业务数据的更新和前面步骤中生成的 UNDO LOG 一并提交。
 8. 将本地事务提交的结果上报给 TC。
 
-#### 2.5.2. 二阶段
+#### 二阶段
 
 二阶段分为『回滚』与『提交』两种情况，分别流程如下：
 
 ![](images/379992614236227.jpg)
 
-##### 2.5.2.1. 回滚
+##### 回滚
 
 ![](images/138894514258667.jpg)
 
@@ -209,32 +209,32 @@ update product set name = 'TXC' where id = 1;
 
 5. 提交本地事务。并把本地事务的执行结果（即分支事务回滚的结果）上报给 TC。
 
-##### 2.5.2.2. 提交
+##### 提交
 
 ![](images/250334514253803.jpg)
 
 1. 收到 TC 的分支提交请求，把请求放入一个异步任务的队列中，马上返回提交成功的结果给 TC。
 2. 异步任务阶段的分支提交请求将异步和批量地删除相应 UNDO LOG 记录。
 
-## 3. Seata AT 模式开发示例
+## Seata AT 模式开发示例
 
 快速开始的示例通过 Seata 中间件实现分布式事务，模拟电商中的下单和扣库存的过程。案例通过订单微服务执行下单操作，然后由订单微服务调用商品微服务扣除库存
 
 ![](images/20220109082858197_17747.png)
 
-### 3.1. 编写业务处理逻辑
+### 编写业务处理逻辑
 
 > 此部分详见案例项目 `spring-cloud-note\spring-cloud-alibaba-sample-seata\`
 
-### 3.2. 启动 Seata 服务(0.9.0 版服务端)
+### 启动 Seata 服务(0.9.0 版服务端)
 
-#### 3.2.1. 下载 Seata
+#### 下载 Seata
 
 官方下载地址：https://github.com/seata/seata/releases
 
 > Notes: 本次示例 Seata 版本为 0.9.0。demo 中使用的相关版本号，具体请看代码。如果搭建个人demo不成功，验证是否是由版本导致，由于目前这几个项目更新比较频繁，版本稍有变化便会出现许多奇怪问题
 
-#### 3.2.2. 修改 Seata 配置
+#### 修改 Seata 配置
 
 将 Seata 压缩包进行解压，进入 conf 目录，修改以下的配置文件：
 
@@ -271,7 +271,7 @@ service.vgroup_mapping.product-service=default
 service.vgroup_mapping.order-service=default
 ```
 
-#### 3.2.3. 初始化 seata 相关配置至 nacos
+#### 初始化 seata 相关配置至 nacos
 
 确保正常运行 nacos 服务后，进行 seata 的 config 目录，运行以下命令：
 
@@ -285,7 +285,7 @@ nacos-config.sh 127.0.0.1
 
 ![](images/20220109214316908_11520.png)
 
-#### 3.2.4. 启动 Seata 服务
+#### 启动 Seata 服务
 
 进行 Seata 的 bin 目录。（windows 运行 .bat 脚本，linux 运行 .sh 的脚本）
 
@@ -298,9 +298,9 @@ seata-server.bat -p 9000 -m file
 
 ![](images/20220109214919700_31871.png)
 
-### 3.3. 微服务使用 Seata 实现事务控制(0.7.1 版客户端)
+### 微服务使用 Seata 实现事务控制(0.7.1 版客户端)
 
-#### 3.3.1. 添加依赖
+#### 添加依赖
 
 在需要进行分布式控制的微服务中（*示例是订单微服务、商品微服务*），添加 Spring Cloud Alibaba 依赖管理工具和 Seata 依赖
 
@@ -329,7 +329,7 @@ seata-server.bat -p 9000 -m file
 
 > 此示例是使用nacos作为注册配置中心，需要再引入 `spring-cloud-starter-alibaba-nacos-config` 相关的依赖
 
-#### 3.3.2. 初始化 undo_log 表
+#### 初始化 undo_log 表
 
 在微服务业务相关的数据库中添加 undo_log 表，这是 Seata 记录事务日志要用到的表，用于保存需要回滚的数据
 
@@ -349,7 +349,7 @@ CREATE TABLE `undo_log` (
 ) ENGINE = INNODB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8;
 ```
 
-#### 3.3.3. 注入数据源
+#### 注入数据源
 
 Seata 是通过代理数据源实现事务分支的，所以需要配置 `io.seata.rm.datasource.DataSourceProxy` 的 Bean，且是 `@Primary` 默认的数据源，否则事务不会回滚，无法实现分布式事务
 
@@ -399,7 +399,7 @@ public class DataSourceProxyConfig {
 }
 ```
 
-#### 3.3.4. 修改微服务项目配置文件
+#### 修改微服务项目配置文件
 
 - 修改项目配置文件，创建 `bootstrap.yaml`/`bootstrap.properties` 文件，增加 nacos 配置中心与 seata 的配置
 
@@ -419,7 +419,7 @@ spring:
 
 - 在 resources 目录下添加 Seata 的配置文件 registry.conf
 
-#### 3.3.5. 在微服务开启全局事务
+#### 在微服务开启全局事务
 
 Seata 实现全局事务，只需要在<font color=red>**业务发起方**</font>的方法上使用 `@GlobalTransactional` 注解，即可开启全局事务，Seata 会将事务的 xid 通过拦截器添加到调用其他服务的请求中，实现分布式事务。
 
@@ -431,7 +431,7 @@ public Order createOrder(Long pid)  {
 }
 ```
 
-### 3.4. Seata 运行流程分析
+### Seata 运行流程分析
 
 ![](images/20220110084705489_32530.jpg)
 
@@ -445,7 +445,7 @@ public Order createOrder(Long pid)  {
 
 ![](images/423962223257021.jpg)
 
-## 4. Seata TCC 模式
+## Seata TCC 模式
 
 一个分布式的全局事务，整体是**两阶段提交**的模型。全局事务是由若干分支事务组成的，分支事务要满足**两阶段提交**的模型要求，即需要每个分支事务都具备自己的：
 
@@ -468,20 +468,20 @@ public Order createOrder(Long pid)  {
 - 二阶段 commit 行为：马上成功结束，**自动异步批量清理回滚日志**。
 - 二阶段 rollback 行为：通过回滚日志，**自动生成补偿操作，完成数据回滚**。
 
-## 5. SEATA Saga 模式
+## SEATA Saga 模式
 
-### 5.1. 概述
+### 概述
 
 整理中
 
-## 6. Seata XA 模式
+## Seata XA 模式
 
-### 6.1. 模式实现前提
+### 模式实现前提
 
 - 支持 XA 事务的数据库。如 MySQL、DB2、Oracle。
 - Java 应用，通过 JDBC 访问数据库。
 
-### 6.2. 整体机制
+### 整体机制
 
 在 Seata 定义的分布式事务框架内，利用事务资源（数据库、消息服务等）对 XA 协议的支持，以 XA 协议的机制来管理分支事务的一种 事务模式。
 
@@ -497,9 +497,9 @@ public Order createOrder(Long pid)  {
 - 分支提交：执行 XA 分支的 commit
 - 分支回滚：执行 XA 分支的 rollback
 
-### 6.3. 工作机制
+### 工作机制
 
-#### 6.3.1. 整体运行机制
+#### 整体运行机制
 
 XA 模式 运行在 Seata 定义的事务框架内：
 
@@ -508,7 +508,7 @@ XA 模式 运行在 Seata 定义的事务框架内：
 - 执行阶段（Execute）：XA start/XA end/XA prepare + SQL + 注册分支。
 - 完成阶段（Finish）：XA commit/XA rollback
 
-#### 6.3.2. 数据源代理
+#### 数据源代理
 
 XA 模式需要 XAConnection，有以下两种方式：
 
@@ -525,7 +525,7 @@ XA 模式需要 XAConnection，有以下两种方式：
 
 ![](images/294515113259880.png)
 
-#### 6.3.3. 分支注册
+#### 分支注册
 
 XA start 需要 Xid 参数。这个 Xid 需要和 Seata 全局事务的 XID 和 BranchId 关联起来，以便由 TC 驱动 XA 分支的提交或回滚。
 
@@ -533,7 +533,7 @@ XA start 需要 Xid 参数。这个 Xid 需要和 Seata 全局事务的 XID 和 
 
 将来一个可能的优化方向：把分支注册尽量延后。类似 AT 模式在本地事务提交之前才注册分支，避免分支执行失败情况下，没有意义的分支注册。这个优化方向需要 BranchId 生成机制的变化来配合。BranchId 不通过分支注册过程生成，而是生成后再带着 BranchId 去注册分支。
 
-## 7. XA 模式的开发示例
+## XA 模式的开发示例
 
 从编程模型上，XA 模式与 AT 模式保持完全一致。上层编程模型与 AT 模式完全相同。只需要修改数据源代理，即可实现 XA 模式与 AT 模式之间的切换。
 

@@ -1,49 +1,49 @@
-## 1. Zookeeper 概念
+## Zookeeper 概念
 
 **Zookeeper 是一个分布式协调服务，可用于实现数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能**。Zookeeper 提供了一个类似于 Linux 文件系统的树形结构（可认为是轻量级的内存文件系统，但只适合存少量信息，完全不适合存储大量文件或者大文件），同时它集群的管理者，提供了对于每个节点的监控与通知机制。
 
 Zookeeper 实际是一个『文件系统』+『监控通知中心』
 
-### 1.1. Zookeeper 文件系统
+### Zookeeper 文件系统
 
-#### 1.1.1. 文件系统简介
+#### 文件系统简介
 
 Zookeeper 提供一个多层级的节点命名空间（节点称为 znode）。与文件系统不同的是，zk 这些节点都可以设置关联的数据，而文件系统中只有文件节点可以存放数据而目录节点不能。
 
 Zookeeper 为了保证高吞吐和低延迟，在内存中维护了这个树状的目录结构，这种特性使得 Zookeeper 不能用于存放大量的数据，每个节点的存放数据上限为 1M。
 
-#### 1.1.2. Znode 四种类型的数据节点
+#### Znode 四种类型的数据节点
 
 1. **PERSISTENT（持久节点）**：除非手动删除，否则节点一直存在于 Zookeeper 上。
 2. **EPHEMERAL（临时节点）**：临时节点的生命周期与客户端会话绑定。即与 Session 有关，一旦客户端 Session 失效（**注：客户端与 Zookeeper 连接断开不一定会话失效**），则这个客户端创建的所有临时节点数据都被销毁。
 3. **PERSISTENT_SEQUENTIAL（持久顺序编号节点）**：基本特性同持久节点，只是增加了顺序属性，节点名后边会追加一个由父节点维护的自增整型数字。
 4. **EPHEMERAL_SEQUENTIAL（临时顺序编号节点）**：基本特性同临时节点，增加了顺序属性，节点名后边会追加一个由父节点维护的自增整型数字。
 
-### 1.2. Zookeeper 角色
+### Zookeeper 角色
 
 Zookeeper 集群是一个基于主从复制的高可用集群，每个服务器承担如下三种角色中的一种。
 
 ![](images/263073017249692.png)
 
-#### 1.2.1. Leader（主节点）
+#### Leader（主节点）
 
 一个 Zookeeper 集群同一时间只会有一个实际工作的 Leader，它会发起并维护与各 Follwer 及 Observer 间的心跳。
 
 **所有的写操作必须要通过 Leader 完成再由 Leader 将写操作广播给其它服务器。只要有超过半数节点（不包括 observeer 节点）写入成功，该写请求就会被提交（类 2PC 协议，两阶段提交：预提交、ACK、确认提交等流程）**。
 
-#### 1.2.2. Follower（跟随者）
+#### Follower（跟随者）
 
 一个 Zookeeper 集群可能同时存在多个 Follower，它会响应 Leader 的心跳。
 
 **Follower 可直接处理并返回客户端的读请求，同时会将写请求转发给 Leader 处理，并且负责在 Leader 处理写请求时对请求进行投票**。
 
-#### 1.2.3. Observer（观察者）
+#### Observer（观察者）
 
 3.0 版本后引入的角色，与 Follower 类似，但是无投票权。
 
 Zookeeper 需保证高可用和强一致性，为了支持更多的客户端，需要增加更多 Server。但 Server 增多会导致投票阶段延迟增大，影响性能。因此引入 Observer 这个角色，Observer 不参与投票但会接受客户端的连接，并将写请求转发给 leader 节点。所有加入更多 Observer 节点，提高伸缩性，同时不影响吞吐率。
 
-### 1.3. Zookeeper 下 Server 工作状态
+### Zookeeper 下 Server 工作状态
 
 服务器具有四种状态，分别是 `LOOKING`、`FOLLOWING`、`LEADING`、`OBSERVING`。
 
@@ -52,7 +52,7 @@ Zookeeper 需保证高可用和强一致性，为了支持更多的客户端，�
 - `LEADING`：领导者状态。表明当前服务器角色是 Leader。
 - `OBSERVING`：观察者状态。表明当前服务器角色是 Observer。
 
-### 1.4. Zookeeper 保证的分布式特性
+### Zookeeper 保证的分布式特性
 
 Zookeeper 保证了如下分布式的特性：
 
@@ -66,11 +66,11 @@ Zookeeper 保证了如下分布式的特性：
 
 **顺序一致性**：有序性是 zookeeper 中非常重要的一个特性，所有的更新都是全局有序的，每个更新都有一个唯一的时间戳，这个时间戳称为 zxid（Zookeeper Transaction Id）。而读请求只会相对于更新有序，也就是读请求的返回结果中会带有这个 zookeeper 最新的 zxid。
 
-## 2. Zookeeper 服务端
+## Zookeeper 服务端
 
-### 2.1. 安装
+### 安装
 
-#### 2.1.1. 安装包方式
+#### 安装包方式
 
 - zookeeper 底层依赖于 jdk，zookeeper 用户登录后，根目录下先进行 jdk 的安装，jdk 使用 jdk-8u131-linux-x64.tar.gz 版本，上传并解压 jdk
 
@@ -119,11 +119,11 @@ mkdir data
 dataDir=/home/zookeeper/zookeeper-x.x.x/data
 ```
 
-#### 2.1.2. docker 方式（待整理）
+#### docker 方式（待整理）
 
 > TODO: 整理中...
 
-### 2.2. 配置
+### 配置
 
 修改 conf 目录的 zoo.cfg 文件，可以设置 zk 相关配置。如下是本人配置参考：
 
@@ -171,7 +171,7 @@ dataLogDir=E:/deployment-environment/apache-zookeeper-3.6.3-bin/log
 
 > 注：Zookeeper3.5的新特性：会启动 Zookeeper AdminServer，默认使用 8080 端口。可以通过配置文件的 `admin.serverPort=8888` 修改 AdminServer 的端口
 
-### 2.3. 启动与停止
+### 启动与停止
 
 修改了相应的配置之后，可以直接通过 zkServer.sh 这个脚本进行服务的相关操作
 
@@ -189,9 +189,9 @@ sh bin/zkServer.sh stop
 sh bin/zkServer.sh restart
 ```
 
-## 3. Zookeeper 常用操作命令
+## Zookeeper 常用操作命令
 
-### 3.1. 新增节点
+### 新增节点
 
 命令格式：
 
@@ -242,7 +242,7 @@ Created /cc0000000006
 Ephemerals cannot have children: /test/test1
 ```
 
-### 3.2. 更新节点
+### 更新节点
 
 更新节点的命令是`set`，语法如下：
 
@@ -274,7 +274,7 @@ numChildren = 0
 version No is not valid : /hadoop
 ```
 
-### 3.3. 删除节点
+### 删除节点
 
 删除节点的语法：
 
@@ -300,7 +300,7 @@ Node not empty: /moon
 [zk: localhost:2181(CONNECTED) 31] deleteall /moon
 ```
 
-### 3.4. 查看节点
+### 查看节点
 
 查看节点语法：
 
@@ -347,7 +347,7 @@ numChildren = 0
 
 > 注：重点关注红色加粗的属性值
 
-### 3.5. 查看节点状态
+### 查看节点状态
 
 查看节点状态语法：
 
@@ -374,7 +374,7 @@ dataLength = 3
 numChildren = 0
 ```
 
-### 3.6. 查看节点列表
+### 查看节点列表
 
 查看节点列表语法：
 
@@ -391,13 +391,13 @@ ls [-s] [-w] [-R] path
 [dubbo, hadoop, moon0000000004, zero0000000005, zookeeper]
 ```
 
-### 3.7. 监听器
+### 监听器
 
 注册的监听器能够在节点内容发生改变的时候，向客户端发出通知。<font color=red>**需要注意的是 zookeeper 的触发器是一次性的 (One-time trigger)，即触发一次后就会立即失效**</font>。
 
 可以注册监听器的操作分别有：查询节点（`get`）、查询节点状态（`stat`）、查询节点列表（`ls`）
 
-#### 3.7.1. 查看节点时注册监听器
+#### 查看节点时注册监听器
 
 使用`get -w path`命令注册的监听器能够在节点内容发生改变的时候，会向客户端发出一次通知
 
@@ -408,7 +408,7 @@ WATCHER::
 WatchedEvent state:SyncConnected type:NodeDataChanged path:/hadoop
 ```
 
-#### 3.7.2. 查看节点状态时注册监听器
+#### 查看节点状态时注册监听器
 
 使用`stat -w path`命令注册的监听器能够在节点状态发生改变的时候，会向客户端发出一次通知
 
@@ -419,7 +419,7 @@ WATCHER::
 WatchedEvent state:SyncConnected type:NodeDataChanged path:/hadoop
 ```
 
-#### 3.7.3. 查看节点列表时注册监听器
+#### 查看节点列表时注册监听器
 
 使用`ls -w path`命令注册的监听器能够<font color=red>**监听该节点下所有子节点的增加和删除等操作**</font>，会向客户端发出一次通知
 
@@ -435,15 +435,15 @@ WATCHER::
 WatchedEvent state:SyncConnected type:NodeChildrenChanged path:/hadoop
 ```
 
-## 4. Zookeeper 的 ACL 权限控制
+## Zookeeper 的 ACL 权限控制
 
-### 4.1. ACL 概述
+### ACL 概述
 
 UGO（User/Group/Others）：目前在 Linux/Unix 文件系统中使用，也是使用最广泛的权限控制方式，是一种粗粒度的文件系统权限控制模式。
 
 zookeeper 类似文件系统，client 可以创建节点、更新节点、删除节点。Zookeeper 的 ACL（access control list 访问控制列表）就是实现对节点的权限的控制。
 
-### 4.2. ACL 权限控制的基础语法
+### ACL 权限控制的基础语法
 
 ```
 scheme:id:permission
@@ -468,7 +468,7 @@ scheme:id:permission
 setAcl /test2 ip:192.168.60.130:crwda
 ```
 
-#### 4.2.1. scheme 权限模式
+#### scheme 权限模式
 
 定义采用何种方式授权
 
@@ -481,11 +481,11 @@ setAcl /test2 ip:192.168.60.130:crwda
 | Super  | 超级用户                                                                                                               |
 
 
-#### 4.2.2. id 授权对象
+#### id 授权对象
 
 授权对象是指，权限赋予的实体，即指定给谁授予权限。例如：IP 地址或用户。
 
-#### 4.2.3. permission 权限
+#### permission 权限
 
 permission 用于指定授予什么类型的权限。其中 create、delete、read、writer、admin 也就是 增、删、改、查、管理权限，这5种权限简写为`cdrwa`。
 
@@ -499,7 +499,7 @@ permission 用于指定授予什么类型的权限。其中 create、delete、re
 
 **注意：这5种权限中，delete 是指对子节点的删除权限，其它4种权限指对自身节点的操作权限**
 
-### 4.3. ACL 授权命令
+### ACL 授权命令
 
 |   命令   |    描述     |
 | :-----: | ---------- |
@@ -507,9 +507,9 @@ permission 用于指定授予什么类型的权限。其中 create、delete、re
 | setAcl  | 设置ACL权限  |
 | addauth | 添加认证用户 |
 
-### 4.4. ACL 权限控制示例
+### ACL 权限控制示例
 
-#### 4.4.1. world 授权模式
+#### world 授权模式
 
 命令
 
@@ -539,7 +539,7 @@ dataLength = 5
 numChildren = 0
 ```
 
-#### 4.4.2. IP 授权模式
+#### IP 授权模式
 
 命令
 
@@ -577,7 +577,7 @@ Authentication is not valid : /node2 # 提示没有权限
 
 > 注意：远程登录zookeeper命令是：`./zkCli.sh -server ip`
 
-#### 4.4.3. Auth授权模式
+#### Auth授权模式
 
 命令
 
@@ -627,7 +627,7 @@ dataLength = 5
 numChildren = 0
 ```
 
-#### 4.4.4. Digest 授权模式
+#### Digest 授权模式
 
 命令
 
@@ -683,7 +683,7 @@ dataLength = 5
 numChildren = 0
 ```
 
-#### 4.4.5. 多种模式授权
+#### 多种模式授权
 
 同一个节点可以同时使用多种模式授权
 
@@ -694,7 +694,7 @@ Created /node5
 [zk: localhost:2181(CONNECTED) 2] setAcl /node5 ip:192.168.60.129:cdra,auth:MooN:cdrwa,digest:MooN:qlzQzCLKhBROghkooLvb+Mlwv4A=:cdrwa
 ```
 
-### 4.5. ACL 超级管理员
+### ACL 超级管理员
 
 zookeeper的权限管理模式有一种叫做super，该模式提供一个超管可以方便的访问任何权限的节点。通过以下步骤
 
@@ -728,9 +728,9 @@ nohup $JAVA "-Dzookeeper.log.dir=${ZOO_LOG_DIR}" "-Dzookeeper.root.logger=${ZOO_
 addauth digest super:admin
 ```
 
-## 5. Zookeeper Watcher（事件监听机制）
+## Zookeeper Watcher（事件监听机制）
 
-### 5.1. Watcher 概述
+### Watcher 概述
 
 Zookeeper 提供了数据的发布/订阅功能，多个订阅者可同时监听某一特定主题对象，当该主题对象的自身状态发生变化时(例如节点内容改变、节点下的子节点列表改变等)，会实时、主动通知所有订阅者。
 
@@ -738,19 +738,19 @@ Zookeeper 采用了 Watcher 机制实现数据的发布/订阅功能。该机制
 
 Watcher 机制实际上与观察者模式类似，也可看作是一种观察者模式在分布式场景下的实现方式。
 
-#### 5.1.1. Watcher 特性
+#### Watcher 特性
 
 1. **一次性**：无论是服务端还是客户端，一个 watcher 一旦被触发就会将其从相应的存储中移除，再次使用时需要重新注册。这样的设计有效的减轻了服务端的压力，不然对于更新非常频繁的节点，服务端会不断的向客户端发送事件通知，无论对于网络还是服务端的压力都非常大。
 2. **客户端顺序串行化回调**： watcher 回调是顺序串行化同步执行的过程，只有回调后客户端才能看到最新的数据状态。一个 watcher 回调逻辑不应该太多，以免影响别的 watcher 执行。
 3. **轻量级**：WatchEvent 是最小的通信单元，结构上只包含通知状态、事件类型和节点路径，并不会说明数据节点变化前后的具体内容；客户端向服务端注册 Watcher 的时候，也不会把客户端真实的 Watcher 对象实体传递到服务端，仅仅是在客户端请求中使用 boolean 类型属性进行标记。
 4. **时效性**：watcher 只有在当前 session 彻底失效时才会无效，若在 session 有效期内快速重连成功，则 watcher 依然存在，仍可接收到通知。
 
-#### 5.1.2. 事件监听注意事项
+#### 事件监听注意事项
 
 - <font color=red>**Zookeeper 只能保证最终的一致性，而无法保证强一致性**</font>。watcher 的通知事件从 server 发送到 client 是异步的，不同的客户端和服务器之间通过 socket 进行通信，由于网络延迟或其他因素导致客户端在不通的时刻监听到事件，Zookeeper 本身提供了 ordering guarantee，即客户端监听事件后，才会感知它所监视 znode 发生了变化。所以**使用 Zookeeper 不能期望能够监控到节点每次的变化**。
 - 当一个客户端连接到一个新的服务器上时，watch 将会被以任意会话事件触发。当与一个服务器失去连接的时候，是无法接收到 watch 的。而当 client 重新连接时，如果需要的话，所有先前注册过的 watch，都会被重新注册。通常这过程是完全透明的。只有在一个特殊情况下，watch 可能会丢失：对于一个未创建的 znode 的 exist watch，如果在客户端断开连接期间被创建了，并且随后在客户端连接上之前又删除了，这种情况下，这个 watch 事件可能会被丢失。
 
-### 5.2. Watcher 架构
+### Watcher 架构
 
 Watcher 实现由三个部分组成：
 
@@ -762,7 +762,7 @@ Watcher 实现由三个部分组成：
 
 ![](images/20210622185757976_8975.png)
 
-### 5.3. Watcher 接口设计
+### Watcher 接口设计
 
 `Watcher`是一个接口，任何实现了`Watcher`接口的类就是一个新的`Watcher`。`Watcher`内部包含了两个枚举类：`KeeperState`、`EventType`
 
@@ -795,7 +795,7 @@ Watcher 实现由三个部分组成：
 
 注：客户端接收到的相关事件通知中只包含状态及类型等信息，不包括节点变化前后的具体内容，变化前的数据需业务自身存储，变化后的数据需调用get等方法重新获取
 
-### 5.4. 捕获相应的事件
+### 捕获相应的事件
 
 |               注册方式               | Created | ChildrenChanged | Changed | Deleted |
 | :---------------------------------: | ------- | --------------- | ------- | ------- |
@@ -803,9 +803,9 @@ Watcher 实现由三个部分组成：
 |   `zk.getData("/node-x",watcher)`   |         |                 | 可监控   | 可监控   |
 | `zk.getChildren("/node-x",watcher)` |         | 可监控           |         | 可监控   |
 
-### 5.5. Watcher 基础使用
+### Watcher 基础使用
 
-#### 5.5.1. 客服端与服务器的连接状态监听
+#### 客服端与服务器的连接状态监听
 
 KeeperState 通知状态：
 
@@ -870,7 +870,7 @@ public class ZKConnectionWatcher implements Watcher {
 }
 ```
 
-#### 5.5.2. 检查节点是否存在
+#### 检查节点是否存在
 
 使用`ZooKeeper`对象的`exists`方法可以指定监听器`Watcher`。可以监听以下状态
 
@@ -1001,7 +1001,7 @@ public class ZKExistsWatcher {
 }
 ```
 
-#### 5.5.3. 查看节点
+#### 查看节点
 
 使用`ZooKeeper`对象的`getData`方法可以指定监听器`Watcher`。可以监听以下状态
 
@@ -1146,7 +1146,7 @@ public class ZKGetDataWatcher {
 }
 ```
 
-#### 5.5.4. 查看子节点
+#### 查看子节点
 
 使用`ZooKeeper`对象的`getChildren`方法可以指定监听器`Watcher`。可以监听以下状态
 
@@ -1292,9 +1292,9 @@ public class ZKGetChildWatcher {
 }
 ```
 
-### 5.6. Watcher 实现流程
+### Watcher 实现流程
 
-#### 5.6.1. 客户端注册 Watcher 实现
+#### 客户端注册 Watcher 实现
 
 1. 调用 `getData()`/`getChildren()`/`exist()` 三个 API，传入 Watcher 对象
 2. 标记请求 request，封装 Watcher 到 WatchRegistration
@@ -1302,20 +1302,20 @@ public class ZKGetChildWatcher {
 4. 收到服务端响应后，将 Watcher 注册到 ZKWatcherManager 中进行管理
 5. 请求返回，完成注册。
 
-#### 5.6.2. 服务端处理 Watcher 实现
+#### 服务端处理 Watcher 实现
 
 1. **服务端接收 Watcher 并存储**：接收到客户端请求，处理请求判断是否需要注册 Watcher，需要的话将数据节点的节点路径和 ServerCnxn（ServerCnxn 代表一个客户端和服务端的连接，实现了 Watcher 的 process 接口，此时可以看成一个 Watcher 对象）存储在 WatcherManager 的 WatchTable 和 watch2Paths 中去。
 2. **Watcher 触发**：服务端接收到 setData() 事务请求触发 Watcher（下面以触发 NodeDataChanged 事件为例）。
 3. **封装 WatchedEvent**：将通知状态（SyncConnected）、事件类型（NodeDataChanged）以及节点路径封装成一个 WatchedEvent 对象。
 4. **查询 Watcher**：从 WatchTable 中根据节点路径查找 Watcher 没找到；说明没有客户端在该数据节点上注册过 Watcher 找到；提取并从 WatchTable 和 Watch2Paths 中删除对应 Watcher（从这里可以看出 Watcher 在服务端是一次性的，触发一次就失效了）调用 process 方法来触发 Watcher 这里 process 主要就是通过 ServerCnxn 对应的 TCP 连接发送 Watcher 事件通知。
 
-#### 5.6.3. 客户端回调 Watcher
+#### 客户端回调 Watcher
 
 客户端 SendThread 线程接收事件通知，交由 EventThread 线程回调 Watcher。客户端的 Watcher 机制同样是一次性的，一旦被触发后，该 Watcher 就失效了。
 
-## 6. Zookeeper 工作原理（原子消息广播协议）
+## Zookeeper 工作原理（原子消息广播协议）
 
-### 6.1. 原子广播整体流程
+### 原子广播整体流程
 
 1. **Zookeeper 的核心是原子广播**，这个机制保证了各个 server 之间的同步。实现这个机制的协议叫做 Zab 协议。**Zab 协议有两种模式，分别是恢复模式和广播模式。**
 2. 当服务启动或者在领导者崩溃后，Zab 就进入了恢复模式，当领导者被选举出来，且大多数 server 的完成了和 leader 的状态同步以后，恢复模式就结束了。
@@ -1325,11 +1325,11 @@ public class ZKGetChildWatcher {
 6. 实现中 zxid 是一个 64 为的数字，它高 32 位是 epoch 用来标识 leader 关系是否改变，每次一个 leader 被选出来，它都会有一个新的 epoch。低 32 位是个递增计数。
 7. 当 leader 崩溃或者 leader 失去大多数的 follower，这时候 zk 进入恢复模式，恢复模式需要重新选举出一个新的 leader，让所有的 server 都恢复到一个正确的状态。
 
-### 6.2. ZAB 协议（了解）
+### ZAB 协议（了解）
 
 ZAB 协议是为分布式协调服务 Zookeeper 专门设计的一种支持崩溃恢复的原子广播协议（ZAB 协议）。通过原子广播的方式，在分布式系统中实现保证了数据的一致性和可靠性。
 
-#### 6.2.1. Zab 协议两种模式及其工程流程
+#### Zab 协议两种模式及其工程流程
 
 Zab 协议有两种模式，它们分别是**恢复模式（选主，崩溃恢复）和广播模式（同步，消息广播）**。流程如下：
 
@@ -1339,41 +1339,41 @@ Zab 协议有两种模式，它们分别是**恢复模式（选主，崩溃恢�
 
 ZAB 提交事务并不像 2PC 一样需要全部 follower 都 ACK，**只需要得到超过半数的节点的 ACK 就可以了**。
 
-#### 6.2.2. epoch
+#### epoch
 
 **epoch**：可以理解为当前集群所处的年代或者周期，每个 leader 就像皇帝，都有自己的年号，所以每次改朝换代，leader 变更之后，都会在前一个年代的基础上加 1。**这样就算旧的 leader 崩溃恢复之后，也没有人听他的了，因为 follower 只听从当前年代的 leader 的命令**。
 
-#### 6.2.3. 事务编号 Zxid（事务请求计数器 + epoch）
+#### 事务编号 Zxid（事务请求计数器 + epoch）
 
 在 ZAB（ZooKeeper Atomic Broadcast, ZooKeeper 原子消息广播协议） 协议的事务编号 Zxid 设计中，Zxid 是一个 64 位的数字，其中低 32 位是一个简单的单调递增的计数器，**针对客户端每一个事务请求，计数器加 1**；而高 32 位则代表 Leader 周期 epoch 的编号，**每个当选产生一个新的 Leader 服务器，就会从这个 Leader 服务器上取出其本地日志中最大事务的 ZXID，并从中读取 epoch 值，然后加 1，以此作为新的 epoch 值**，并将低 32 位从 0 开始计数。
 
 Zxid（Transaction id）类似于 RDBMS 中的事务 ID，用于标识一次更新操作的 Proposal（提议）ID。为了保证顺序性，该 zkid 必须单调递增。
 
-#### 6.2.4. ZAB 协议 4 阶段
+#### ZAB 协议 4 阶段
 
-##### 6.2.4.1. Leader election （选举阶段 - 选出准 Leader）
+##### Leader election （选举阶段 - 选出准 Leader）
 
 **Leader election（选举阶段）**：节点在一开始都处于选举阶段，只要有一个节点得到超半数节点的票数，它就可以当选准 leader。只有到达广播阶段（broadcast）准 leader 才会成为真正的 leader。这一阶段的目的是就是为了选出一个准 leader，然后进入下一个阶段。
 
-##### 6.2.4.2. Discovery （发现阶段 - 接受提议、生成 epoch 、接受 epoch）
+##### Discovery （发现阶段 - 接受提议、生成 epoch 、接受 epoch）
 
 **Discovery（发现阶段）**：在这个阶段，followers 跟准 leader 进行通信，同步 followers 最近接收的事务提议。这个一阶段的主要目的是发现当前大多数节点接收的最新提议，并且准 leader 生成新的 epoch，让 followers 接受，更新它们的 accepted Epoch
 
 一个 follower 只会连接一个 leader，如果有一个节点 f 认为另一个 follower p 是 leader，f 在尝试连接 p 时会被拒绝，f 被拒绝之后，就会进入重新选举阶段。
 
-##### 6.2.4.3. Synchronization （同步阶段 - 同步 follower 副本）
+##### Synchronization （同步阶段 - 同步 follower 副本）
 
 **Synchronization（同步阶段）**：同步阶段主要是利用 leader 前一阶段获得的最新提议历史，同步集群中所有的副本。只有当 大多数节点都同步完成，准 leader 才会成为真正的 leader。follower 只会接收 zxid 比自己的 lastZxid 大的提议。
 
-##### 6.2.4.4. Broadcast （广播阶段 -leader 消息广播）
+##### Broadcast （广播阶段 -leader 消息广播）
 
 **Broadcast（广播阶段）**：到了这个阶段，Zookeeper 集群才能正式对外提供事务服务，并且 leader 可以进行消息广播。同时如果有新的节点加入，还需要对新节点进行同步。
 
-#### 6.2.5. ZAB 协议 JAVA 实现（ FLE-发现阶段和同步合并为 Recovery Phase（恢复阶段））
+#### ZAB 协议 JAVA 实现（ FLE-发现阶段和同步合并为 Recovery Phase（恢复阶段））
 
 协议的 Java 版本实现跟上面的定义有些不同，选举阶段使用的是 Fast Leader Election（FLE），它包含了 选举的发现职责。因为 FLE 会选举拥有最新提议历史的节点作为 leader，这样就省去了发现最新提议的步骤。实际的实现将 发现阶段 和 同步合并为 Recovery Phase（恢复阶段）。所以，ZAB 的实现只有三个阶段：Fast Leader Election；Recovery Phase；Broadcast Phase。
 
-### 6.3. 投票机制（了解）
+### 投票机制（了解）
 
 **每个 sever 首先给自己投票，然后用自己的选票和其他 sever 选票对比，权重大的胜出，使用权重较大的更新自身选票箱**。具体选举过程如下：
 
@@ -1394,9 +1394,9 @@ Zxid（Transaction id）类似于 RDBMS 中的事务 ID，用于标识一次更�
 > 4. 服务器 4 启动，给自己投票，同时与之前启动的服务器 1,2,3 交换信息，尽管服务器 4 的编号大，但之前服务器 3 已经胜出，所以服务器 4 只能成为小弟。
 > 5. 服务器 5 启动，后面的逻辑同服务器 4 成为小弟。
 
-## 7. Zookeeper 总结
+## Zookeeper 总结
 
-### 7.1. Zookeeper 实现注册中心的原理
+### Zookeeper 实现注册中心的原理
 
 Zookeeper 可以充当一个服务注册表（Service Registry），让多个服务提供者形成一个集群，让服务消费者通过服务注册表获取具体的服务访问地址（IP+端口）去访问具体的服务提供者。如下图所示：
 
@@ -1422,7 +1422,7 @@ Zookeeper 的 Watch 机制其实就是一种**推拉结合的模式**：
 - “推”的部分：服务消费者会去监听相应路径（`/HelloWorldService/1.0.0`），一旦路径上的数据有任务变化（增加或减少），Zookeeper 只会发送一个事件类型和节点信息给关注的客户端，而不会包括具体的变更内容，所以事件本身是轻量级的。
 - “拉”的部分：收到变更通知的客户端需要自己去拉变更的数据。
 
-### 7.2. Zookeeper 不适合作为注册中心
+### Zookeeper 不适合作为注册中心
 
 ZooKeeper 作为一个分布式协同服务是非常好，但是对于 Service 发现服务来说就不合适了，因为对于 Service 发现服务来说就算是返回了包含不实的信息的结果也比什么都不返回要好。
 

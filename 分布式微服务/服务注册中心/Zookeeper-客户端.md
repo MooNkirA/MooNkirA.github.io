@@ -1,8 +1,8 @@
-## 1. Zookeeper Java 客户端概述
+## Zookeeper Java 客户端概述
 
 业界中操作 Zookeeper 的 Java 客户端有很多，常用有：Zookeeper 官方客户端、Zkclient、Curator 等等
 
-## 2. Zookeeper 官方客户端
+## Zookeeper 官方客户端
 
 > 以下章节只展示小部分示例代码，更多API使用示例详见：https://github.com/MooNkirA/dubbo-note/tree/master/zookeeper-sample
 
@@ -15,7 +15,7 @@ znode 是 Zookeeper 集合的核心组件，zookeeper API 提供了一小组方�
 - 只要会话ID处于活动状态，就可以获取/设置znode
 - 所有任务完成后，断开与zookeeper服务器的连接。如果客户端长时间不活动，则zookeeper服务器将自动断开客户端
 
-### 2.1. maven 依赖
+### maven 依赖
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
@@ -26,7 +26,7 @@ znode 是 Zookeeper 集合的核心组件，zookeeper API 提供了一小组方�
 </dependency>
 ```
 
-### 2.2. 连接 Zookeeper 服务端
+### 连接 Zookeeper 服务端
 
 `ZooKeeper`类构造函数实现连接到zookeeper服务端
 
@@ -73,7 +73,7 @@ public void testZooKeeperConnection() {
 }
 ```
 
-### 2.3. 新增节点
+### 新增节点
 
 使用`ZooKeeper`对象的`create`方法新增节点
 
@@ -132,7 +132,7 @@ public void testZooKeeperCreate() {
 }
 ```
 
-### 2.4. 更新节点
+### 更新节点
 
 使用`ZooKeeper`对象的`setData`方法更新修改节点
 
@@ -194,7 +194,7 @@ public void testZooKeeperUpdate() {
 }
 ```
 
-### 2.5. 删除节点
+### 删除节点
 
 使用`ZooKeeper`对象的`delete`方法删除节点
 
@@ -255,7 +255,7 @@ public void testZooKeeperDelete() {
 }
 ```
 
-### 2.6. 查看节点
+### 查看节点
 
 使用`ZooKeeper`对象的`getData`方法查询节点信息
 
@@ -323,7 +323,7 @@ public void testZooKeeperGetData() {
 }
 ```
 
-### 2.7. 查看子节点
+### 查看子节点
 
 使用`ZooKeeper`对象的`getChildren`方法查询子节点信息
 
@@ -389,7 +389,7 @@ public void testZooKeeperGetChildren() {
 }
 ```
 
-### 2.8. 检查节点是否存在
+### 检查节点是否存在
 
 使用`ZooKeeper`对象的`exists`方法检查节点是否存在
 
@@ -446,9 +446,9 @@ public void testZooKeeperExists() {
 }
 ```
 
-## 3. Zkclient
+## Zkclient
 
-### 3.1. maven依赖
+### maven依赖
 
 ```xml
 <!-- https://mvnrepository.com/artifact/com.101tec/zkclient -->
@@ -459,7 +459,7 @@ public void testZooKeeperExists() {
 </dependency>
 ```
 
-### 3.2. 初始化ZKClient对象
+### 初始化ZKClient对象
 
 建立与zookeeper服务端链接，是同步方法。需要注意的是，原生的zookeeper客户端连接初始化时是一个异步操作（`Zookeeper zk = new Zookeeper()`）。
 
@@ -506,7 +506,7 @@ public void testZkclientConnection() throws Exception {
 
 > 值得注意的量，与原生`ZooKeeper`创建连接的异步过程不一样，`ZkClient`建立连接是同步的
 
-### 3.3. 新增节点
+### 新增节点
 
 ZkClient提供了15个创建节点的方法，以下只列出几个常用的方法：
 
@@ -560,7 +560,7 @@ public void testZkclientCreate() throws Exception {
 }
 ```
 
-### 3.4. 更新节点
+### 更新节点
 
 更新操作可以通过以下接口来实现：
 
@@ -592,7 +592,7 @@ public void testZkclientWriteData() throws Exception {
 }
 ```
 
-### 3.5. 删除节点
+### 删除节点
 
 删除节点提供了以下方法：
 
@@ -623,7 +623,7 @@ public void testZkclientDelete() throws Exception {
 }
 ```
 
-### 3.6. 查看节点
+### 查看节点
 
 获取节点内容有以下接口方法：
 
@@ -677,7 +677,7 @@ public void testZkclientReadData() throws Exception {
 
 > 注意读取节点数据的方法，如果创建zkclient连接时没有传入`ZkSerializer`接口的实现，定义节点存储数据的序列化，在读取数据时会抛出“java.io.StreamCorruptedException: invalid stream header”的异常
 
-### 3.7. 查看节点列表
+### 查看节点列表
 
 ```java
 public List<String> getChildren(String path)
@@ -713,7 +713,7 @@ public void testZkclientConnection() throws Exception {
 }
 ```
 
-### 3.8. 监测节点是否存在
+### 监测节点是否存在
 
 此API比较简单，调用以下方法即可：
 
@@ -741,7 +741,7 @@ public void testZkclientExists() throws Exception {
 }
 ```
 
-## 4. Curator
+## Curator
 
 curator 是 Netflix 公司开源的一个 zookeeper 客户端，后捐献给 apache，curator 框架在 zookeeper 原生 API 接口上进行了包装，解决了很多 ZooKeeper 客户端非常底层的细节开发。提供 ZooKeeper 各种应用场景(比如：分布式锁服务、集群领导选举、共享计数器、缓存机制、分布式队列等)的抽象封装，实现了 Fluent 风格的 API 接口，是最好用，最流行的 zookeeper 的客户端。
 
@@ -760,7 +760,7 @@ curator 特点：
 - 遵循 Fluent 风格的 API
 - 提供了分布式锁服务、共享计数器、缓存机制等机制
 
-### 4.1. maven依赖
+### maven依赖
 
 ```xml
 <!-- curator 客户端依赖 -->
@@ -781,7 +781,7 @@ curator 特点：
 </dependency>
 ```
 
-### 4.2. 连接 Zookeeper 服务端
+### 连接 Zookeeper 服务端
 
 使用`CuratorFrameworkFactory`工厂的建造者方式创建zookeeper服务端连接
 
@@ -811,7 +811,7 @@ public void testCuratorConnection() {
 }
 ```
 
-### 4.3. 新增节点
+### 新增节点
 
 示例：
 
@@ -906,7 +906,7 @@ public class CuratorCreateDemo {
 }
 ```
 
-### 4.4. 更新节点
+### 更新节点
 
 示例：
 
@@ -980,7 +980,7 @@ public class CuratorSetDataDemo {
 }
 ```
 
-### 4.5. 删除节点
+### 删除节点
 
 示例：
 
@@ -1064,7 +1064,7 @@ public class CuratorDeleteDemo {
 ```
 
 
-### 4.6. 查看节点
+### 查看节点
 
 示例：
 
@@ -1139,7 +1139,7 @@ public class CuratorGetDataDemo {
 }
 ```
 
-### 4.7. 查看子节点
+### 查看子节点
 
 示例：
 
@@ -1206,7 +1206,7 @@ public class CuratorGetChildrenDemo {
 }
 ```
 
-### 4.8. 检查节点是否存在
+### 检查节点是否存在
 
 示例：
 
@@ -1280,7 +1280,7 @@ public class CuratorCheckExistsDemo {
 }
 ```
 
-### 4.9. Watcher API
+### Watcher API
 
 Curator 客户端提供了两种 `Watcher`(Cache) 来监听结点的变化
 
@@ -1386,7 +1386,7 @@ public class CuratorWatcherDemo {
 }
 ```
 
-### 4.10. 事务
+### 事务
 
 示例：
 
@@ -1429,7 +1429,7 @@ public class CuratorTransactionDemo {
 }
 ```
 
-### 4.11. 分布式锁（待整理）
+### 分布式锁（待整理）
 
 Curator 提供了分布式锁服务的抽象封装与实现
 

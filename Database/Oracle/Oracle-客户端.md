@@ -1,10 +1,10 @@
-## 1. SQL Plus
+## SQL Plus
 
-### 1.1. 概述
+### 概述
 
 SQL Plus 是交互式查询工具，在安装 Oracle 数据库服务器或客户端时会自动安装。SQL Plus 有一个命令行界面，允许连接到 Oracle 数据库服务器并交互执行语句。
 
-### 1.2. sqlplus 客户端工具的安装
+### sqlplus 客户端工具的安装
 
 > 参考文档：\Oracle数据库安装视频教程\02、测试sqlplus客户端连接服务器.doc
 
@@ -19,7 +19,7 @@ sqlplus system/moon@192.168.17.10:1521/orcl
 
 ![全局数据库名](images/20190423103526915_19243.jpg)
 
-### 1.3. 使用 SQL Plus 连接 Oracle 数据库服务器
+### 使用 SQL Plus 连接 Oracle 数据库服务器
 
 在终端输入 sqlplus 命令，以此来在 Linux 或 Window 中启动 SQL Plus。
 
@@ -67,15 +67,15 @@ sqlplus OT@PDBORCL
 
 SQL Plus 会提示输入 OT 用户的密码。输入密码后，将连接到 Oracle 数据库服务器中的 PDBORCL 数据库。
 
-## 2. SQL Developer
+## SQL Developer
 
-### 2.1. 概述
+### 概述
 
 SQL Developer 是一个用于在 Oracle 数据库中使用 SQL 的免费 GUI 工具。与 SQL Plus 程序一样，在安装 Oracle 数据库服务器或客户端时自动安装。
 
 要启动 SQL Developer 程序，请单击开始菜单中Oracle程序文件夹中的SQL Developer图标
 
-### 2.2. 使用 SQL Developer 连接 Oracle 数据库服务器
+### 使用 SQL Developer 连接 Oracle 数据库服务器
 
 单击开始菜单中 Oracle 程序文件夹中的 SQL Developer 图标启动。
 
@@ -95,7 +95,7 @@ SQL Developer 不能用于创建 Oracle 数据库，只能用来连接已创建�
 
 填写完配置以后可以点击【Test】按钮来测试数据库连接是否正确，如上图所示，左下角有“Status：Success”则表明数据库连接正确
 
-### 2.3. 创建新用户
+### 创建新用户
 
 为 ORCL 这个数据库创建新用户：
 
@@ -117,11 +117,11 @@ SQL Developer 不能用于创建 Oracle 数据库，只能用来连接已创建�
 
 ![](images/184043222263584.png)
 
-## 3. 安装 PLSQL Developer 客户端
+## 安装 PLSQL Developer 客户端
 
 > 参考文档：\Oracle数据库安装视频教程\03、安装PLSQL并测试连接.doc
 
-### 3.1. 中文乱码的处理
+### 中文乱码的处理
 
 1. 查看服务器端编码
 

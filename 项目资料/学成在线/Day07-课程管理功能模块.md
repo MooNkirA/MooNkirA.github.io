@@ -1,7 +1,8 @@
 # Day07 课程管理功能模块
 
-## 1. 我的课程
-### 1.1. 需求分析
+## 我的课程
+
+### 需求分析
 
 课程添加完成后可通过我的课程进入课程修改页面，此页面显示我的课程列表，如下图所示，可分页查询。
 
@@ -9,7 +10,7 @@
 
 上边的查询要实现分页、会存在多表关联查询，所以建议使用mybatis实现我的课程查询。
 
-### 1.2. API接口
+### API接口
 
 - 接口输入参数：页码、每页显示个数、查询条件（本次功能不涉及，但建议每个接口都定义查询条件的入参，方便日后扩展）
 - 输出结果类型：`QueryResponseResult<自定义类型>`
@@ -21,8 +22,8 @@
 public QueryResponseResult<CourseInfo> findCourseList(int page, int size, CourseListRequest courseListRequest);
 ```
 
-### 1.3. 课程管理服务
-#### 1.3.1. PageHelper 分页助手
+### 课程管理服务
+#### PageHelper 分页助手
 
 - PageHelper是mybatis的通用分页插件，通过mybatis的拦截器实现分页功能，拦截sql查询请求，添加分页语句，最终实现分页查询功能。
 - 我的课程具有分页功能，本项目使用Pagehelper实现Mybatis分页功能开发，由于本项目使用springboot开发，在springboot上集成pagehelper（https://github.com/pagehelper/pagehelper-spring-boot）
@@ -49,7 +50,7 @@ pagehelper:
   helper-dialect: mysql
 ```
 
-#### 1.3.2. Dao 层
+#### Dao 层
 
 1. 修改CourseMapper接口，增加查询的方法
 
@@ -107,7 +108,7 @@ public class TestDao {
 }
 ```
 
-#### 1.3.3. Service 层
+#### Service 层
 
 修改CourseService类，增加我的课程列表查询的方法
 
@@ -156,7 +157,7 @@ public QueryResponseResult<CourseInfo> findCourseList(int page, int size,
 }
 ```
 
-#### 1.3.4. Controller 层
+#### Controller 层
 
 修改CourseController，实现CourseControllerApi接口的findCourseList()查询我的课程方法
 
@@ -178,16 +179,16 @@ public QueryResponseResult<CourseInfo> findCourseList(@PathVariable("page") int 
 }
 ```
 
-#### 1.3.5. 测试
+#### 测试
 
 使用postman或swagger-ui测试课程列表接口。
 
-### 1.4. 前端页面说明
-#### 1.4.1. 页面
+### 前端页面说明
+#### 页面
 
 我的课程列表使用element 的card组件，代码参考前端工程，xc-ui-pc-teach\src\module\course\page\course_list.vue
 
-#### 1.4.2. Api调用
+#### Api调用
 
 1. 修改src\module\course\api\course.js，定义查询课程列表的Api方法
 
@@ -234,12 +235,12 @@ handleCurrentChange(val) {
 },
 ```
 
-#### 1.4.3. 测试
+#### 测试
 
 注意：由于课程图片服务器没有搭建，这里图片暂时无法显示。
 
-## 2. 新增课程
-### 2.1. 需求分析
+## 新增课程
+### 需求分析
 
 - 用户操作流程如下：
     1. 用户进入“我的课程”页面，点击“新增课程”，进入新增课程页面
@@ -249,8 +250,8 @@ handleCurrentChange(val) {
     1. 课程分类。多级分类，需要方便用户去选择
     2. 课程等级、学习模式等这些选项建议是可以配置的
 
-### 2.2. 课程分类查询
-#### 2.2.1. 介绍
+### 课程分类查询
+#### 介绍
 
 在新增课程界面需要选择课程所属分类，分类信息是整个项目非常重要的信息，课程即商品，分类信息设置的好坏直接影响用户访问量
 
@@ -258,7 +259,7 @@ handleCurrentChange(val) {
     1. 首页分类导航
     2. 课程的归属地，添加课程时要选择课程的所属分类
 
-#### 2.2.2. 数据表结构
+#### 数据表结构
 
 该功能涉及的category表
 
@@ -275,8 +276,8 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-#### 2.2.3. 分类查询
-##### 2.2.3.1. 返回的数据结构分析
+#### 分类查询
+##### 返回的数据结构分析
 
 - 在添加课程时需要选择课程所属的分类，这里需要定义课程分类查询接口。
 - 接口格式要根据前端需要的数据格式来定义，前端展示课程分类使用elemenet-ui的cascader（级联选择器）组件
@@ -315,7 +316,7 @@ CREATE TABLE `category` (
 ]
 ```
 
-##### 2.2.3.2. 数据模型
+##### 数据模型
 
 1. 定义category的模型与数据库表字段对应
 
@@ -352,7 +353,7 @@ public class CategoryNode extends Category {
 }
 ```
 
-##### 2.2.3.3. Api接口
+##### Api接口
 
 在xc-service-api工程创建`com.xuecheng.api.course.CategoryControllerApi`接口，定义查询分类的方法
 
@@ -364,7 +365,7 @@ public interface CategoryControllerApi {
 }
 ```
 
-##### 2.2.3.4. dao层
+##### dao层
 
 根据数据格式的分析，此查询需要返回树型数据格式，为了开发方便，使用mybatis实现查询
 
@@ -460,7 +461,7 @@ public interface CategoryMapper {
 </mapper>
 ```
 
-##### 2.2.3.5. Service 层
+##### Service 层
 
 创建CategoryService类，增加查询分类方法
 
@@ -485,7 +486,7 @@ public class CategoryService {
 }
 ```
 
-##### 2.2.3.6. Controller 层
+##### Controller 层
 
 创建CategoryController实现CategoryControllerApi接口，实现查询方法
 
@@ -508,13 +509,13 @@ public class CategoryController implements CategoryControllerApi {
 }
 ```
 
-##### 2.2.3.7. 接口测试
+##### 接口测试
 
 - postman测试接口地址：http://127.0.0.1:31200/category/list
 - swagger-ui地址：http://127.0.0.1:31200/swagger-ui.html
 
-### 2.3. 数据字典
-#### 2.3.1. 介绍
+### 数据字典
+#### 介绍
 
 在新增课程界面需要选择课程等级、课程状态等，这些信息统一采用数据字典管理的方式
 
@@ -522,7 +523,7 @@ public class CategoryController implements CategoryControllerApi {
 
 数据字典对系统的业务分类进行统一管理，并且也可以解决硬编码问题，比如添加课程时选择课程等级，下拉框中的课程等级信息如果在页面硬编码将造成不易修改维护的问题，所以从数据字典表中获取，如果要修改名称则在数据字典修改即可，提高系统的可维护性
 
-#### 2.3.2. 数据模型
+#### 数据模型
 
 - 在mongodb中创建数据字典表sys_dictionary。举例，其中一个字典信息如下
 
@@ -596,8 +597,8 @@ public class SysDictionaryValue {
 }
 ```
 
-#### 2.3.3. 字典查询接口
-##### 2.3.3.1. API接口
+#### 字典查询接口
+##### API接口
 
 为了方便其它子系统使用，在xc-service-api工程cms模块下创建字典查询接口，根据字典的type查询字典信息，接口定义如下
 
@@ -612,7 +613,7 @@ public interface SysDicthinaryControllerApi {
 }
 ```
 
-##### 2.3.3.2. Dao 层
+##### Dao 层
 
 在xc-service-manage-cms模块下创建数据库的dao层SysDictionaryRepository类
 
@@ -632,7 +633,7 @@ public interface SysDictionaryRepository extends MongoRepository<SysDictionary, 
 }
 ```
 
-##### 2.3.3.3. Service 层
+##### Service 层
 
 ```java
 /**
@@ -656,7 +657,7 @@ public class SysdictionaryService {
 }
 ```
 
-##### 2.3.3.4. Controller 层
+##### Controller 层
 
 ```java
 /**
@@ -683,16 +684,16 @@ public class SysDictionaryController implements SysDicthinaryControllerApi {
 }
 ```
 
-##### 2.3.3.5. 测试
+##### 测试
 
 - 测试url：http://127.0.0.1:31001/sys/dictionary/get/200
 - Swagger：http://127.0.0.1:31001/swagger-ui.html
 
-### 2.4. 新增课程页面完善
+### 新增课程页面完善
 
 需求完成数据字典显示及课程分类显示
 
-#### 2.4.1. 新增课程页面
+#### 新增课程页面
 
 1. 页面效果如下
 
@@ -731,7 +732,7 @@ export default [{
 </router-link>
 ```
 
-#### 2.4.2. 查询数据字典
+#### 查询数据字典
 
 课程添加页面中课程等级、学习模式需要从数据字典查询字典信息
 
@@ -763,7 +764,7 @@ mounted() {
 }
 ```
 
-#### 2.4.3. 查询课程分类
+#### 查询课程分类
 
 课程添加页面中课程分类采用Cascader级联选择器组件完成
 
@@ -809,7 +810,7 @@ mounted() {
 
 5. 用户选择课程分类后，所选分类 ID 绑定到categoryActive（数组）中，选择了一级、二级分类，分别存储在categoryActive数组的第一个、第二个元素中
 
-### 2.5. 新增课程 API 接口
+### 新增课程 API 接口
 
 在xc-service-api工程的CourseControllerApi接口编写新增课程的方法
 
@@ -822,11 +823,11 @@ public interface CourseControllerApi {
 }
 ```
 
-### 2.6. 新增课程服务端
+### 新增课程服务端
 
 在xc-service-manage-course工程添加新增课程接口实现
 
-#### 2.6.1. Dao 层
+#### Dao 层
 
 ```java
 public interface CourseBaseRepository extends JpaRepository<CourseBase, String> {
@@ -834,7 +835,7 @@ public interface CourseBaseRepository extends JpaRepository<CourseBase, String> 
 ```
 
 
-#### 2.6.2. Service 层
+#### Service 层
 
 修改CourseService类，创建新增课程方法
 
@@ -855,7 +856,7 @@ public interface CourseBaseRepository extends JpaRepository<CourseBase, String> 
     }
 ```
 
-#### 2.6.3. Controller 层
+#### Controller 层
 
 修改CourseController类，实现新增课程方法
 
@@ -873,8 +874,8 @@ public AddCourseResult addCourseBase(@RequestBody CourseBase courseBase) {
 }
 ```
 
-### 2.7. 新增课程前端
-#### 2.7.1. Api方法定义
+### 新增课程前端
+#### Api方法定义
 
 在前端定义请求服务端添加课程的api的方法，在course模块中定义方法
 
@@ -885,7 +886,7 @@ export const addCourseBase = params => {
 }
 ```
 
-#### 2.7.2. Api方法调用
+#### Api方法调用
 
 在course_add.vue 调用api提交课程信息
 
@@ -921,24 +922,24 @@ methods: {
 },
 ```
 
-#### 2.7.3. 测试
+#### 测试
 
 - 注意：将course_base表中的company_id改为非必填，待认证功能开发完成再修改为必填
 - 测试流程：
     1. 进入我的课程，点击“新增课程”打开新增课程页面
     2. 输入课程信息，点击提交
 
-## 3. 课程信息修改
-### 3.1. 需求分析
+## 课程信息修改
+### 需求分析
 
 课程添加成功进入课程管理页面，通过课程管理页面修改课程的基本信息、编辑课程图片、编辑课程营销信息等
 
-### 3.2. 课程管理页面说明
-#### 3.2.1. 页面结构
+### 课程管理页面说明
+#### 页面结构
 
 ![课程管理页面的结构](images/20190726205818072_6596.png)
 
-#### 3.2.2. 课程管理导航页面
+#### 课程管理导航页面
 
 1. 定义course_manage.vue为课程管理导航页面，导航效果使用Element-UI的NavMenu组件实现。源码参考xc-ui-pc-teach工程
 2. 创建各各信息管理页面。通过管理页面的导航可以进入各各信息管理页面，这里先创建各各信息管理页面，页面内容暂时为空，待开发时再完善，在本模块的page目录下创建course_manage目录，此目录存放各各信息管理页面，页面明细如下：
@@ -951,7 +952,7 @@ methods: {
     - 课程发布页面：course_pub.vue
 3. 创建路由，源码参考xc-ui-pc-teach工程
 
-### 3.3. 修改课程 Api 接口
+### 修改课程 Api 接口
 
 - 修改课程需要在CourseControllerApi创建如下接口：
 1. 根据课程ID查询课程信息
@@ -968,12 +969,12 @@ public CourseBase getCourseBaseById(String courseId) throws RuntimeException;
 public ResponseResult updateCourseBase(String courseId, CourseBase courseBase);
 ```
 
-### 3.4. 服务端
-#### 3.4.1. dao 层
+### 服务端
+#### dao 层
 
 使用原来的CourseBaseRepository接口即可
 
-#### 3.4.2. service 层
+#### service 层
 
 修改CourseService类，增加查询课程与修改课程的方法
 
@@ -1025,7 +1026,7 @@ public ResponseResult updateCoursebase(String courseId, CourseBase courseBase) {
 }
 ```
 
-#### 3.4.3. controller 层
+#### controller 层
 
 修改CourseController类，实现查询和修改的方法
 
@@ -1059,12 +1060,12 @@ public ResponseResult updateCourseBase(@PathVariable("id") String courseId,
 }
 ```
 
-### 3.5. 前端
-#### 3.5.1. 修改页面
+### 前端
+#### 修改页面
 
 在course模块下的course_manage目录下创建course_baseinfo.vue页面，本页面实现课程修改，代码参考xc-ui-pc-teach工程
 
-#### 3.5.2. 前端 API 方法
+#### 前端 API 方法
 
 修改course.js，增加获取课程基本信息和更新课程基本信息的方法
 
@@ -1080,7 +1081,7 @@ export const updateCoursebase = (id, course) => {
 }
 ```
 
-#### 3.5.3. 课程信息显示
+#### 课程信息显示
 
 修改course_baseinfo.vue，在mounted钩子方法中查询课程信息及数据字典
 
@@ -1109,7 +1110,7 @@ mounted() {
 }
 ```
 
-#### 3.5.4. 课程修改提交
+#### 课程修改提交
 
 修改course_baseinfo.vue，增加保存课程修改的方法
 
@@ -1148,14 +1149,14 @@ methods: {
 },
 ```
 
-## 4. 课程营销
-### 4.1. 需求分析
+## 课程营销
+### 需求分析
 
 课程营销信息包括课程价格、课程有效期等信息
 
 ![课程营销页面](images/20190801124855960_19647.png)
 
-### 4.2. 数据模型
+### 数据模型
 
 课程营销信息使用course_market表存储，定义数据模型类如下
 
@@ -1183,7 +1184,7 @@ public class CourseMarket implements Serializable {
 }
 ```
 
-### 4.3. 后端API
+### 后端API
 
 1. 修改CourseControllerApi接口，增加查询课程营销信息接口方法
 
@@ -1199,8 +1200,8 @@ public CourseMarket getCourseMarketById(String courseId);
 public ResponseResult updateCourseMarket(String id, CourseMarket courseMarket);
 ```
 
-### 4.4. 课程管理服务
-#### 4.4.1. dao 层
+### 课程管理服务
+#### dao 层
 
 在xc-service-manage-course工程，增加CourseMarketRepository接口
 
@@ -1212,7 +1213,7 @@ public interface CourseMarketRepository extends JpaRepository<CourseMarket, Stri
 }
 ```
 
-#### 4.4.2. service 层
+#### service 层
 
 在CourseService类中，增加课程营销查询与修改的方法
 
@@ -1275,7 +1276,7 @@ public class CourseService {
 }
 ```
 
-#### 4.4.3. controller 层
+#### controller 层
 
 修改CourseController类，实现新增的两个接口
 
@@ -1307,8 +1308,8 @@ public ResponseResult updateCourseMarket(@PathVariable("id") String id,
 }
 ```
 
-### 4.5. 前端页面
-#### 4.5.1. 定义API请求后端方法
+### 前端页面
+#### 定义API请求后端方法
 
 修改course.js，增加查询与更新课程信息的请求方法
 
@@ -1324,7 +1325,7 @@ export const updateCourseMarket = (id, courseMarket) => {
 }
 ```
 
-#### 4.5.2. 页面请求后端
+#### 页面请求后端
 
 编写 course_marketinfo.vue，实现相关功能
 

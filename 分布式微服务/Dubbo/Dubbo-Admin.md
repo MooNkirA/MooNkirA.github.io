@@ -1,4 +1,4 @@
-## 1. Dubbo Admin 控制台概述
+## Dubbo Admin 控制台概述
 
 Dubbo Admin 是 Dubbo 官方提供的可视化 Web 交互控制台，基于 Admin 可以实时监测集群流量、服务部署状态、排查诊断问题。
 
@@ -13,7 +13,7 @@ Dubbo Admin 是 Dubbo 官方提供的可视化 Web 交互控制台，基于 Admi
 
 拉取项目源码：`git clone https://github.com/apache/dubbo-admin.git`
 
-## 2. Maven 方式部署
+## Maven 方式部署
 
 - 安装，此方式即将前端 vue 产出的静态内容集成到 Spring Boot 包内
 
@@ -27,7 +27,7 @@ java -jar dubbo-admin-0.1.jar
 
 - 访问`http://localhost:8080`
 
-## 3. 前后端分离部署
+## 前后端分离部署
 
 - 前端
 
@@ -48,7 +48,7 @@ java -jar dubbo-admin-server-0.1.jar
 
 - 访问：`http://localhost:8081`
 
-## 4. 配置
+## 配置
 
 - 配置文件为：`dubbo-admin-server/src/main/resources/application.properties`
 - 主要的配置
@@ -69,7 +69,7 @@ dubbo.metadata-report.address=zookeeper://127.0.0.1:2181
 
 配置中心里的地址会覆盖掉本地 application.properties 的配置
 
-## 5. 服务治理
+## 服务治理
 
 服务治理主要作用是改变运行时服务的行为和选址逻辑，达到限流，权重配置等目的，主要有以下几个功能：
 

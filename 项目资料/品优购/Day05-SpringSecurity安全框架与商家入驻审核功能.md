@@ -1,12 +1,10 @@
-# Day05 Spring Security安全框架与商家入驻审核功能
+## Spring Security 安全框架入门
 
-## 1. Spring Security 安全框架入门
-
-### 1.1. Spring Security 简介
+### Spring Security 简介
 
 Spring Security是一个能够为基于Spring的企业应用系统提供声明式的安全访问控制解决方案的安全框架。它提供了一组可以在Spring应用上下文中配置的Bean，充分利用了Spring IoC，DI（控制反转Inversion of Control ,DI:Dependency Injection 依赖注入）和AOP（面向切面编程）功能，为应用系统提供声明式的安全访问控制功能，减少了为企业系统安全控制编写大量重复代码的工作
 
-### 1.2. Spring Security Demo
+### Spring Security Demo
 
 - 创建maven war项目，配置pom.xml文件相关依赖
 
@@ -144,7 +142,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 </beans>
 ```
 
-### 1.3. Spring Security 配置说明
+### Spring Security 配置说明
 
 1. 	`<security-http use-expressions="false">`：是否使用使用 Spring 表达式语言（SpEL），默认为true，如果开启，则拦截的配置应该写成以下形式：
 
@@ -173,11 +171,11 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 
     - 说明：CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。
 
-### 1.4. Spring Security 基本使用步骤与配置
+### Spring Security 基本使用步骤与配置
 
 <font color="red">**配置拦截url与编写验证控制器。注意：只能接收post请求**</font>
 
-#### 1.4.1. Spring Security 依赖
+#### Spring Security 依赖
 
 配置pom.xml文件，增加spring security核心依赖
 
@@ -196,7 +194,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 <!-- Spring-Security 核心依赖end -->
 ```
 
-#### 1.4.2. web.xml 配置SpringSecurity委派过滤器
+#### web.xml 配置SpringSecurity委派过滤器
 
 ```xml
 <!-- 配置SpringSecurity委派过滤器 -->
@@ -213,7 +211,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 - <font color="red">*注：配置SpringSecurity委派过滤器时*</font>
     - <font color="red">*filter-name必须是【springSecurityFilterChain】*</font>
 
-#### 1.4.3. applicationContext-security.xml 配置步骤
+#### applicationContext-security.xml 配置步骤
 
 1. 导入约束与命名空间
 
@@ -239,7 +237,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 
 4. 配置认证管理器`<security:authentication-manager>`
 
-#### 1.4.4. Spring Security 配置文件标签说明
+#### Spring Security 配置文件标签说明
 
 - 【标签】`<security:http>`
     - 【属性】`pattern`：配置拦截的url
@@ -277,15 +275,15 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 
 ---
 
-## 2. 运营商系统登录与安全控制
+## 运营商系统登录与安全控制
 
-### 2.1. 需求分析
+### 需求分析
 
 完成运营商登录功能：http://manager.moon.com/login.html
 
-### 2.2. 登陆功能
+### 登陆功能
 
-#### 2.2.1. 配置pinyougou-manager-web工程的pom.xml文件，添加依赖
+#### 配置pinyougou-manager-web工程的pom.xml文件，添加依赖
 
 参考前面demo，Spring Security的基本使用，注意不需要配置版本
 
@@ -300,7 +298,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 </dependency>
 ```
 
-#### 2.2.2. 配置web.xml文件
+#### 配置web.xml文件
 
 配置核心监听器加载spring文件，配置SpringSecurity委派过滤器（参考前面demo）
 
@@ -326,7 +324,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 </filter-mapping>
 ```
 
-#### 2.2.3. 配置 applicationContext-security
+#### 配置 applicationContext-security
 
 - pinyougou-manager-web下添加配置文件applicationContext-security.xml
 
@@ -406,7 +404,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
     </security:headers>
     ```
 
-#### 2.2.4. 修改登陆页面
+#### 修改登陆页面
 
 修改pinyougou-manager-web的login.html，配置用户名与密码的name属性，提交表单需要设置post方式
 
@@ -432,9 +430,9 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 </form>
 ```
 
-### 2.3. 主界面显示登录用户名
+### 主界面显示登录用户名
 
-#### 2.3.1. 后端代码
+#### 后端代码
 
 在pinyougou-manager-web新建LoginController，返回用户数据
 
@@ -463,7 +461,7 @@ public class LoginController {
 }
 ```
 
-#### 2.3.2. 前端代码
+#### 前端代码
 
 - 创建前端的控制器indexController.js，定义请求获取登陆数据的方法
 
@@ -499,7 +497,7 @@ app.controller('indexController', ($scope, baseService) => {
       ng-init="showLoginName();">
 ```
 
-### 2.4. 退出登陆
+### 退出登陆
 
 - 在pinyougou-manager-web的applicationContext-security.xml添加配置
 
@@ -522,9 +520,9 @@ app.controller('indexController', ($scope, baseService) => {
 
 ---
 
-## 3. 商家申请入驻功能模块
+## 商家申请入驻功能模块
 
-### 3.1. 需求分析
+### 需求分析
 
 商家申请入驻，需要填写商家相关的信息。待运营商平台审核通过后即可使用。
 
@@ -559,7 +557,7 @@ app.controller('indexController', ($scope, baseService) => {
 
 ![构建Controller](images/20190120234421911_3295.jpg)
 
-### 3.2. 注册功能-前端代码
+### 注册功能-前端代码
 
 - 修改pinyougou-shop-web工程register.html引入相关js文件，加入初始化模块指令
 
@@ -643,7 +641,7 @@ $scope.save = function(){
 };
 ```
 
-### 3.3. 保存注册信息-后端代码
+### 保存注册信息-后端代码
 
 - pinyougou-shop-web工程，控制层SellerController新增save()保存方法
 
@@ -702,16 +700,16 @@ public void saveSeller(Seller seller) {
 
 ---
 
-## 4. 商家审核功能模块
+## 商家审核功能模块
 
-### 4.1. 需求分析
+### 需求分析
 
 - 商家申请入驻后，需要网站运营人员在运营商后台pinyougou-manager-web中进行审核，审核后商家才可以登录系统。
 - 状态值：`0：未审核  1：已审核  2：审核未通过  3：关闭`
 
-### 4.2. 审核功能-商家待审核列表
+### 审核功能-商家待审核列表
 
-#### 4.2.1. 商家待审核列表-前端部分
+#### 商家待审核列表-前端部分
 
 - 修改pinyougou-manager-web 模块中的 seller_check.html
 - 参考其他功能的页面，引入angular前端框架、导入分页组件、angular框架mvc分层后的js文件；初始化指令
@@ -788,7 +786,7 @@ $scope.search = function(page, rows){
 </div>
 ```
 
-#### 4.2.2. 商家待审核列表-后端部分
+#### 商家待审核列表-后端部分
 
 - 在pinyougou-manager-web工程的控制层SellerController增加条件+分页查询方法
 
@@ -897,7 +895,7 @@ List<Seller> findAll(@Param("seller") Seller seller);
 </select>
 ```
 
-#### 4.2.3. 商家详情（点击详细，查询商品信息）
+#### 商家详情（点击详细，查询商品信息）
 
 1. 找到页面弹出窗口部分，绑定对象
 
@@ -1005,9 +1003,9 @@ List<Seller> findAll(@Param("seller") Seller seller);
         ng-click="show(entity);">详情</button>
 ```
 
-### 4.3. 商家审核功能（与教材不一样，个人实践使用post请求实现）
+### 商家审核功能（与教材不一样，个人实践使用post请求实现）
 
-#### 4.3.1. 商家审核-前端部分
+#### 商家审核-前端部分
 
 - 修改seller_check.html的审核按钮，调用更新方法
 
@@ -1050,7 +1048,7 @@ $scope.updateStatus = function (sellerId, status) {
 
 *注：sellerController只需要保留分页查询search方法与显示详情的show方法，其他多余方法可删掉*
 
-#### 4.3.2. 商家审核-后端部分
+#### 商家审核-后端部分
 
 - sellerController修改状态的方法，接收参数可以是商家实体类，也可以是map集合
 
@@ -1120,13 +1118,13 @@ public void updateStatus(Seller seller) {
 
 ---
 
-## 5. 商家系统登录与安全控制
+## 商家系统登录与安全控制
 
-### 5.1. 需求分析
+### 需求分析
 
 完成商家系统登录与安全控制，商家账号来自数据库，并实现密码加密
 
-### 5.2. 自定义认证类
+### 自定义认证类
 
 1. pom.xml、web.xml、shoplogin.html 等配置，参照运营商管理后台
     - 配置spring-security依赖jar包、过滤器、页面表单。
@@ -1233,7 +1231,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 <font color="red">*说明：经过上述配置，用户在输入密码123456时就会通过（用户名随意）*</font>
 
-### 5.3. 认证类调用服务方法
+### 认证类调用服务方法
 
 - 修改UserDetailsServiceImpl，调用商家服务层
 
@@ -1325,15 +1323,15 @@ public Seller findOne(String username) {
 
 <font color="red">*说明：经过上述修改后，在登录页面输入用户名和密码与数据库一致即可登录。(即无进行密码加密)*</font>
 
-### 5.4. 密码加密
+### 密码加密
 
-#### 5.4.1. BCrypt加密算法
+#### BCrypt加密算法
 
 - 用户表的密码通常使用MD5等不可逆算法加密后存储，为防止彩虹表破解更会先使用一个特定的字符串（如域名）加密，然后再使用一个随机的salt（盐值）加密。
 - 特定字符串是程序代码中固定的，salt是每个密码单独随机，一般给用户表加一个字段单独存储，比较麻烦。
 - BCrypt算法将salt随机并混入最终加密后的密码，验证时也无需单独提供之前的salt，从而无需单独处理salt问题。
 
-#### 5.4.2. 商家入驻模块使用密码加密
+#### 商家入驻模块使用密码加密
 
 - 商家申请入驻的密码要使用BCrypt算法进行加密存储。修改pinyougou-shop-web工程，SellerController的save方法，增加加密部分
 
@@ -1382,15 +1380,15 @@ public boolean save(@RequestBody Seller seller) {
       class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 ```
 
-### 5.5. 显示登录名与退出登录
+### 显示登录名与退出登录
 
-#### 5.5.1. 显示登录名
+#### 显示登录名
 
 - 参照运营商后台
 - 复制运营商后台的indexController.js与LoginController
 - 修改pinyougou-shop-web\src\main\webapp\admin\index.html，引入相关的js文件与初始化指令，把页面 chendahai 替换成 `{{loginName}}`
 
-#### 5.5.2. 退出登录
+#### 退出登录
 
 - 参照运营商后台
 

@@ -1,6 +1,6 @@
-## 1. 概述
+## 概述
 
-### 1.1. Maven 是什么
+### Maven 是什么
 
 Maven 的 Apache 公司开源项目，是项目依赖管理、构建工具。
 
@@ -13,11 +13,11 @@ Maven 采用 Project Object Modle（POM、项目对象模型）概念来管理�
 - **项目构建**：项目在编码完成后，对项目进行编译、测试、打包、部署等一系列的操作都通过**命令**来实现
 - **依赖管理**：对 jar 包管理过程
 
-### 1.2. 什么是项目构建
+### 什么是项目构建
 
 项目构建是一个项目从编写源代码到编译、测试、运行、打包、部署、运行的过程
 
-#### 1.2.1. 传统项目构建过程
+#### 传统项目构建过程
 
 传统的使用 IDE 构建项目过程如下：
 
@@ -27,7 +27,7 @@ Maven 采用 Project Object Modle（POM、项目对象模型）概念来管理�
 4. 执行 Junit 单元测试
 5. 将工程打成 war 包部署至 tomcat 运行
 
-#### 1.2.2. maven 项目构建过程
+#### maven 项目构建过程
 
 maven 将项目构建的过程进行标准化，每个阶段使用一个命令完成
 
@@ -42,7 +42,7 @@ maven 将项目构建的过程进行标准化，每个阶段使用一个命令�
 
 ![](images/561565416221070.png)
 
-### 1.3. 使用 maven 构建工程的优点
+### 使用 maven 构建工程的优点
 
 1. 一步构建。maven 对项目构建的过程进行标准化，通过一个命令即可完成构建、运行的过程，方便快速。
 2. 依赖管理。maven 工程不用手动导 jar 包，通过在 pom.xml 中定义坐标从 maven 仓库自动下载，方便且不易出错
@@ -50,22 +50,22 @@ maven 将项目构建的过程进行标准化，每个阶段使用一个命令�
 4. 使用 maven 可以分模块化的构建项目
 5. maven 对每个构建阶段都遵循规范开发，有利于提高大型团队的协作开发效率，降低项目的维护成本，大公司都会考虑使用 maven 来构建项目
 
-### 1.4. 相关资源
+### 相关资源
 
 - Maven 官网：https://maven.apache.org/
 - MvnCenter 更好用的maven搜索引擎，支持直接按类名、包名搜索：https://www.mvncenter.com/index
 
-## 2. Maven 的安装与配置
+## Maven 的安装与配置
 
 Maven 3.3+ 环境要求：需要使用 JDK 1.7+，它的运行依赖JDK。因此需要本地系统先安装 JDK，并使用 `java -version` 命令检查本机的 JDK 安装版本信息。
 
-### 2.1. 下载 Maven 安装包
+### 下载 Maven 安装包
 
 - 官方最新版本下载地址：https://maven.apache.org/download.cgi
 - 历史版本下载地址：https://archive.apache.org/dist/maven/maven-3/
 - Maven Releases History（Maven 历史版本）：https://maven.apache.org/docs/history.html
 
-### 2.2. Maven 的目录结构
+### Maven 的目录结构
 
 下载 maven 的压缩包 `apache-maven-3.x.x-bin.zip`，解压到本地磁盘（解压目录不要有中文、空格）。maven 目录结构如下：
 
@@ -76,7 +76,7 @@ Maven 3.3+ 环境要求：需要使用 JDK 1.7+，它的运行依赖JDK。因此
 - 【conf】：包含 settings.xml 配置文件，整个maven工具核心配置文件。settings.xml 中默认的用户库: `${user.home}/.m2/repository`。通过maven下载的jar包都会存储到此仓库中。可以手动修改指定的保存路径。
 - 【lib】：maven 运行依赖 jar 包
 
-### 2.3. 配置环境变量
+### 配置环境变量
 
 > 电脑上需先安装java环境，至少 JDK1.7+ 版本（将`JAVA_HOME/bin`配置环境变量path）。
 
@@ -98,7 +98,7 @@ Maven 3.3+ 环境要求：需要使用 JDK 1.7+，它的运行依赖JDK。因此
 
 ![](images/20220115152621134_12862.jpg)
 
-### 2.4. 验证是否安装成功
+### 验证是否安装成功
 
 查询 maven 的版本信息，用于检验 maven 是否配置成功。打开命令行，输入以下命令：
 
@@ -108,9 +108,9 @@ mvn -v
 
 ![](images/20220115153032526_25105.jpg)
 
-### 2.5. Maven 全局核心配置
+### Maven 全局核心配置
 
-#### 2.5.1. 全局 setting 与用户 setting
+#### 全局 setting 与用户 setting
 
 maven 仓库地址、私服等配置信息需要在 setting.xml 文件中配置，分为<font color=red>全局配置</font>和<font color=red>用户配置</font>。
 
@@ -121,7 +121,7 @@ maven 会先找用户配置，如果找到则以用户配置文件为准，否�
 
 ![](images/20220116171359145_19781.jpg)
 
-#### 2.5.2. 配置本地仓库
+#### 配置本地仓库
 
 配置本地仓库目的：让 maven 程序知道仓库具体位置。windows 系统本地仓库默认值：`%HOMEPATH%/.m2/repository`。配置方式如下：
 
@@ -141,7 +141,7 @@ maven 会先找用户配置，如果找到则以用户配置文件为准，否�
 
 > Notes: `<localRepository>` 标签内容在注释里，需要将内容复制到外面进行修改。配置的本地仓库目录，需要先手动创建一个空的目录。仓库目录的名称不能包含中文与空格。
 
-#### 2.5.3. 配置阿里云云效 Maven 镜像仓库
+#### 配置阿里云云效 Maven 镜像仓库
 
 因为中央仓库的服务是在国外，访问中央仓库比较慢。但可以修改全局配置，访问阿里云的公共库。
 
@@ -174,7 +174,7 @@ maven 会先找用户配置，如果找到则以用户配置文件为准，否�
 
 ![](images/20220115233136704_31857.png)
 
-#### 2.5.4. 配置 Maven 工程的基础 JDK 版本
+#### 配置 Maven 工程的基础 JDK 版本
 
 按默认配置运行的 maven 项目，默认使用的 JDK 版本是 1.5。可以通过修改 settings.xml 配置文件，在 `<profiles>` 标签增加以下 `<profile>` 子标签内容，指定 JDK 版本。
 
@@ -198,17 +198,17 @@ maven 会先找用户配置，如果找到则以用户配置文件为准，否�
 </profiles>
 ```
 
-## 3. Maven 项目的核心概念
+## Maven 项目的核心概念
 
-### 3.1. Maven 的概念模型
+### Maven 的概念模型
 
 Maven 包含了一个项目对象模型(Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑
 
 ![](images/20220115153602269_5827.png)
 
-### 3.2. Maven 仓库
+### Maven 仓库
 
-#### 3.2.1. 仓库的类型
+#### 仓库的类型
 
 <font color=red>本地仓库</font>
 
@@ -225,12 +225,12 @@ Maven 包含了一个项目对象模型(Project Object Model)，一组标准集�
 
 在maven软件中内置一个远程仓库地址，它是[中央仓库](https://repo1.maven.org/maven2)，服务于整个互联网，它是由Maven团队自己维护，里面存储了非常全的jar包，它包含了世界上大部分流行的开源项目构件
 
-#### 3.2.2. 相关仓库服务器网址
+#### 相关仓库服务器网址
 
 - 中央仓库的网址：https://repo1.maven.org/maven2/
 - maven 坐标查找的网站：https://mvnrepository.com/
 
-#### 3.2.3. 项目查找 jar 顺序
+#### 项目查找 jar 顺序
 
 1. 先查找本地仓库
 2. 再查找私服或者外网中央仓库
@@ -242,15 +242,15 @@ Maven 包含了一个项目对象模型(Project Object Model)，一组标准集�
 
 maven 的工作需要从仓库下载一些 jar 包，如下图所示，本地的项目A、项目B等都会通过 maven 软件从远程仓库（可以理解为互联网上的仓库）下载 jar 包并存在本地仓库，本地仓库就是本地文件夹，当第二次需要此 jar 包时则不再从远程仓库下载，因为本地仓库已经存在了，可以将本地仓库理解为缓存，有了本地仓库就不用每次从远程仓库下载了。
 
-### 3.3. Maven 的坐标
+### Maven 的坐标
 
-#### 3.3.1. 定义
+#### 定义
 
 坐标(GAV)：是 Maven 作为<font color=red>**查找定位 jar 包（项目/组件）的唯一依据**</font>。例如：`struts2-core-2.3.24.jar`
 
 坐标的规则：`Apache(公司名称)+struts2(项目名称)+2.3.24(版本信息)`
 
-#### 3.3.2. Maven 坐标主要组成
+#### Maven 坐标主要组成
 
 - `groupId`：定义当前 Maven 工程隶属项目、组织（通常是域名反转，如：org.mybatis）
 - `artifactId`：定义实际项目中的一个项目（模块）名称
@@ -264,7 +264,7 @@ maven 的工作需要从仓库下载一些 jar 包，如下图所示，本地的
 <version>1.0-SNAPSHOT</version>
 ```
 
-#### 3.3.3. 坐标和仓库中 jar 包存储路径的对应关系
+#### 坐标和仓库中 jar 包存储路径的对应关系
 
 示例坐标：
 
@@ -276,7 +276,7 @@ maven 的工作需要从仓库下载一些 jar 包，如下图所示，本地的
 
 上面坐标对应的 jar 包在 Maven 本地仓库中的位置是：`Maven本地仓库根目录\com\moon\maven-demo\1.0\maven-demo-1.0.jar`
 
-### 3.4. 项目对象模型 (POM)
+### 项目对象模型 (POM)
 
 POM：Project Object Model（项目对象模型）。POM 表示将工程抽象为一个模型，再用程序中的对象来描述这个模型。*在开发过程中，最基本的做法就是将现实生活中的事物抽象为模型，然后封装模型相关的数据作为一个对象，这样就可以在程序中计算与现实事物相关的数据。*
 
@@ -284,7 +284,7 @@ POM 理念集中体现在，每个 Maven 工程根目录下都有一个对应的
 
 > Notes: 与 POM 相类似的是，DOM：Document Object Model（文档对象模型）。它们都是模型化思想的具体体现。
 
-### 3.5. 依赖管理系统(Dependency Management System)
+### 依赖管理系统(Dependency Management System)
 
 通过 maven 的依赖管理对项目所依赖的 jar 包进行统一管理。比如：项目依赖 junit 4.9，通过在 pom.xml 中定义 junit 的依赖即使用 junit 4.9，如下所示是 junit 4.9 的依赖定义：
 
@@ -305,7 +305,7 @@ POM 理念集中体现在，每个 Maven 工程根目录下都有一个对应的
 </dependencies>
 ```
 
-### 3.6. 一个项目生命周期(Project Lifecycle)
+### 一个项目生命周期(Project Lifecycle)
 
 使用maven完成项目的构建，项目构建包括：清理、编译、测试、部署等过程，maven将这些过程规范为一个生命周期，如下所示是生命周期的各各阶段：
 
@@ -313,17 +313,17 @@ POM 理念集中体现在，每个 Maven 工程根目录下都有一个对应的
 
 maven 通过执行一些简单命令即可实现上边生命周期的各各过程，比如执行 `mvn compile` 执行编译、执行 `mvn clean` 执行清理
 
-### 3.7. 一组标准集合
+### 一组标准集合
 
 maven 将整个项目管理过程定义一组标准，比如：通过 maven 构建工程有标准的目录结构，有标准的生命周期阶段、依赖管理有标准的坐标定义等。
 
-### 3.8. 插件(plugin)目标(goal)
+### 插件(plugin)目标(goal)
 
 maven 管理项目生命周期过程都是基于插件完成的。
 
-## 4. Maven 项目的创建
+## Maven 项目的创建
 
-### 4.1. 使用命令行方式创建
+### 使用命令行方式创建
 
 直接通过命令行使用 maven 提供的插件创建 maven 项目。语法如下：
 
@@ -358,9 +358,9 @@ mvn archetype:generate -DgroupId=com.moon -DartifactId=web-project-demo -Darchet
 
 ![](images/20220116183910279_803.png)
 
-### 4.2. 使用 IDEA 创建
+### 使用 IDEA 创建
 
-#### 4.2.1. 配置 idea 中的 maven 环境
+#### 配置 idea 中的 maven 环境
 
 - 指定maven的安装目录与仓库目录
 
@@ -370,7 +370,7 @@ mvn archetype:generate -DgroupId=com.moon -DartifactId=web-project-demo -Darchet
 
 ![](images/20220116182142569_1677.jpg)
 
-#### 4.2.2. 创建 maven 项目
+#### 创建 maven 项目
 
 选择 【File】 -> 【New】 -> 【Project...】/【Module...】 创建项目/模块
 
@@ -381,15 +381,15 @@ mvn archetype:generate -DgroupId=com.moon -DartifactId=web-project-demo -Darchet
 
 ![](images/20220116221152757_17049.png)
 
-#### 4.2.3. 创建 web 项目（待整理）
+#### 创建 web 项目（待整理）
 
 > TODO: 待补充整理！
 
-### 4.3. 使用 eclipse 创建（待整理）
+### 使用 eclipse 创建（待整理）
 
 > TODO: 待补充整理！
 
-### 4.4. Maven 约定的标准目录结构
+### Maven 约定的标准目录结构
 
 使用 maven 创建的工程称它为 maven 工程，maven 工程具有一定的目录规范，如下：
 
@@ -421,7 +421,7 @@ Maven 为了让构建过程能够尽可能自动化完成，所以必须约定�
 
 如果每次创建工程都要针对各个目录的位置进行详细的配置，是相关麻烦的事情。因此标准的 Maven 工程目录结构没有采用配置的方式，而是**基于约定**。目前开发领域的技术发展趋势就是：<font color=red>**约定大于配置，配置大于编码**</font>。
 
-### 4.5. Maven 核心配置文件 pom.xml
+### Maven 核心配置文件 pom.xml
 
 - project：任何要build的事物，Maven都认为它们是工程。这些工程被定义为工程对象模型（POM，Poject Object Model）。一个工程可以依赖其它工程，一个工程也可以由多个子工程构成。
 - POM：pom(pom.xml)是Maven的核心文件，它是指示Maven如何工作的元数据文件，类似于Ant的build.xml文件。pom.xml文件位于每个工程的根目录下。
@@ -497,11 +497,11 @@ Maven 为了让构建过程能够尽可能自动化完成，所以必须约定�
 
 > Tips: 更多 POM 配置与介绍详见[《Maven POM 配置》笔记](/DevOps/项目构建工具/Maven-POM)
 
-## 5. maven 命令
+## maven 命令
 
 进入项目根目录，通过（cmd）命令行界面进行操作。如果配置系统的环境变量，即可在任意目录中使用 `mvn` 的命令。
 
-### 5.1. maven 命令格式与参数
+### maven 命令格式与参数
 
 maven 命令的格式为 `mvn [plugin-name]:[goal-name]`，可以接受的参数如下。
 
@@ -512,7 +512,7 @@ maven 命令的格式为 `mvn [plugin-name]:[goal-name]`，可以接受的参数
 - `-X` 显示maven允许的debug信息
 - `-U` 强制去远程更新snapshot的插件或依赖，默认每天只更新一次。
 
-### 5.2. 构建项目命令执行前提
+### 构建项目命令执行前提
 
 运行 Maven 中构建操作相关的命令时，必须进入到 pom.xml 所在的目录。如果没有在 pom.xml 所在的目录运行 Maven 的构建命令，那么会看到下面的错误信息：
 
@@ -522,9 +522,9 @@ The goal you specified requires a project to execute but there is no POM in this
 
 > Tips: `mvn -v` 命令和构建操作无关，只要正确配置了 Maven 环境变量，在任何目录下执行都可以。而构建相关的命令要在 pom.xml 所在目录下运行。*操作哪个工程，就进入该工程的 pom.xml 所在目录*
 
-### 5.3. maven 常用构建项目的命令
+### maven 常用构建项目的命令
 
-#### 5.3.1. clean（清理）
+#### clean（清理）
 
 ```bash
 mvn clean
@@ -532,7 +532,7 @@ mvn clean
 
 清理项目根目录下 target 目录，即清理编译后的 class 文件
 
-#### 5.3.2. compile（编译）
+#### compile（编译）
 
 ```bash
 mvn compile
@@ -546,7 +546,7 @@ mvn test-compile
 
 maven 工程中测试程序的编译命令，作用是将 `src/test/java` 的文件编译后的 class 文件输出到 `target/test-classes` 目录下
 
-#### 5.3.3. test（单元测试）
+#### test（单元测试）
 
 ```bash
 mvn test
@@ -554,7 +554,7 @@ mvn test
 
 将项目根目录中 `src/test/java` 目录下的单元测试类全部执行。单元测试类名有要求：`XxxxTest.java`，如果不是以 `Test` 结尾，则无法被执行。
 
-#### 5.3.4. package（打包）
+#### package（打包）
 
 ```bash
 mvn package
@@ -567,7 +567,7 @@ mvn package
 
 打包后生成的文件默认保存在工程根目录下 taget 目录
 
-#### 5.3.5. install（安装）
+#### install（安装）
 
 ```bash
 mvn install
@@ -577,7 +577,7 @@ mvn install
 
 > Tips: 另外，安装操作还会将原 pom.xml 文件转换为 XXX.pom 文件一起存入本地仓库。所以在 Maven 的本地仓库中的查看一个 jar 包对应 XXX.pom 文件，其实就是原始的 pom.xml 文件，它们是名字发生了改变，本质上是同一个文件。
 
-#### 5.3.6. deploy（部署）
+#### deploy（部署）
 
 ```bash
 mvn deploy
@@ -585,7 +585,7 @@ mvn deploy
 
 将项目部署到私服上
 
-### 5.4. 常用命令汇总
+### 常用命令汇总
 
 - 创建 maven 项目：`mvn archetype:create`
 - 指定 group：`-DgroupId=packageName`
@@ -626,15 +626,15 @@ web 项目相关命令：
 - 重新部署：`mvn tomcat:redeploy`
 - 部署展开的 war 文件：`mvn war:exploded tomcat:exploded`
 
-## 6. 依赖管理
+## 依赖管理
 
-### 6.1. 什么是依赖管理
+### 什么是依赖管理
 
 依赖，是指一个 java 项目可能要使用一些第三方的 jar 包才可以运行，那么我们说这个 java 项目依赖了这些第三方的jar包
 
 依赖管理，是对项目所有依赖的 jar 包进行规范化管理
 
-#### 6.1.1. 传统项目的依赖管理
+#### 传统项目的依赖管理
 
 传统的项目工程要管理所依赖的jar包完全靠人工进行，程序员从网上下载jar包添加到项目工程中
 
@@ -648,7 +648,7 @@ web 项目相关命令：
 2. 从网上找jar包非常不方便，有些jar找不到。
 3. jar包添加到工程中导致工程过大。
 
-#### 6.1.2. maven 项目的依赖管理
+#### maven 项目的依赖管理
 
 maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，只需要在 pom.xml（maven工程的配置文件）添加 jar 包的坐标，自动从 maven 仓库中下载 jar 包、运行
 
@@ -659,7 +659,7 @@ maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，�
 1. 通过pom.xml文件对jar包的版本进行统一管理，可避免版本冲突。
 2. maven团队维护了一个非常全的maven仓库，里边包括了当前使用的jar包，maven工程可以自动从maven仓库下载jar包，非常方便。
 
-### 6.2. 依赖配置（添加依赖）
+### 依赖配置（添加依赖）
 
 依赖是指当前项目运行所需的 jar 包，一个项目可以设置多个依赖。具体是在 pom.xml 中添加 `<dependency>` 标签，语法格式如下：
 
@@ -675,7 +675,7 @@ maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，�
 </dependency>
 ```
 
-### 6.3. 查找坐标
+### 查找坐标
 
 添加依赖需要指定依赖 jar 包的坐标，但是很多情况是不知道 jar 包的的坐标，可以通过如下方式查询：
 
@@ -687,9 +687,9 @@ maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，�
 
 - **方法二：使用 maven 插件的索引功能**。如果在本地仓库有项目需要的 jar 包，可以在 pom.xml 中右键添加依赖
 
-### 6.4. 依赖范围
+### 依赖范围
 
-#### 6.4.1. 依赖范围语法格式
+#### 依赖范围语法格式
 
 如果A依赖B，需要在A的 pom.xml 文件中添加B的坐标，添加坐标时可以通过 `<scope>` 标签来指定依赖范围，依赖范围决定 jar 包的可用的范围。语法格式如下：
 
@@ -705,21 +705,21 @@ maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，�
 
 > Tips: 其中 `import` 依赖范围只能在 `<dependencyManagement>` 依赖管理标签中使用。
 
-#### 6.4.2. compile
+#### compile
 
 compile（编译依赖范围），指A在编译时依赖B，此范围为默认依赖范围。<font color=violet>*编译范围的依赖会用在编译、测试、运行，由于运行时需要。所以编译范围的依赖会被打包到war包中*</font>。**添加依赖范围默认值是 compile**
 
-#### 6.4.3. provided
+#### provided
 
 provided（容器已经提供依赖范围），provided 依赖只有在当 JDK 或者一个容器已提供该依赖之后才使用，provided 依赖<font color=violet>*在编译和测试时需要，在运行时不需要，不会打包到 war 包中*</font>，比如：servlet-api 和 jsp-api 被 tomcat 容器提供，全用默认依赖范围，在 package 后 jsp-api 和 servlet-api 是存在 war 包中；使用 provided 后，打包后是不存在的。就是避免和服务器上已有的同类 jar 包产生冲突，同时减轻服务器的负担。
 
 ![](images/20220117224108310_3609.jpg)
 
-#### 6.4.4. test
+#### test
 
 test（测试依赖范围），在编译和运行时都不需要，它们<font color=violet>*只有在测试编译和测试运行阶段可用*</font>，比如：junit。由于运行时不需要所以<font color=violet>*test范围依赖不会被打包到war包中*</font>。
 
-#### 6.4.5. system
+#### system
 
 system 范围依赖与 provided 类似，但是必须显式的提供一个对于本地系统中 JAR 文件的路径。以 Windows 系统环境下开发为例，通过配置 `system` 依赖范围引入指定的 jar 包到项目中：
 
@@ -735,7 +735,7 @@ system 范围依赖与 provided 类似，但是必须显式的提供一个对于
 
 > Notes: 显然这种引入依赖方式需要指定 systemPath 磁盘路径，完全不具有可移植性，<font color=violet>*因此不推荐使用 system 依赖*</font>。
 
-#### 6.4.6. runtime
+#### runtime
 
 runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在运行和测试系统的时候需要，但在编译的时候不需要**</font>。因为编译时根据接口调用方法，但是实际运行时则需要接口的具体实现类。由于运行时需要所以<font color=violet>*runtime 范围的依赖会被打包至 war/jar 包*</font>。比如：jdbc 的数据库驱动包、Spring Boot 热部署等
 
@@ -749,7 +749,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-#### 6.4.7. import
+#### import
 
 可以通过继承父工程的方式来管理依赖，但是和 Java 类一样，Maven 也是单继承的。如果不同体系的依赖信息封装在不同 POM 中了，就无法继承多个父工程来管理依赖。此时可以使用 `import` 依赖范围。
 
@@ -797,7 +797,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 - 依赖的工程打包类型必须是 pom
 - 必须定义在 `<dependencyManagement>` 标签中，使用时再引入具体依赖坐标
 
-#### 6.4.8. 依赖范围作用总结
+#### 依赖范围作用总结
 
 |  依赖范围 | 对于编译 classpath 有效 | 对于测试 classpath 有效 | 对于运行时 classpath 有效 |
 | :------: | :--------------------: | :--------------------: | :----------------------: |
@@ -807,7 +807,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 |  runtime |                        |           ✔️           |            ✔️            |
 |  system  |           ✔️           |           ✔️           |                          |
 
-#### 6.4.9. 依赖范围测试
+#### 依赖范围测试
 
 如果将 servlet-api.jar 设置为 `compile`，打包后包含 serlvet-api.jar，war 包部署到 tomcat 跟 tomcat 中存在 servlet-api.jar 包冲突。导致运行失败
 
@@ -830,9 +830,9 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 依赖范围由强到弱的顺序是：compile > provided > runtime > test
 
-### 6.5. 传递依赖
+### 传递依赖
 
-#### 6.5.1. 什么是传递依赖
+#### 什么是传递依赖
 
 依赖具有传递性。即当 A 依赖 B、B 依赖 C，A 也会自动导入 C。依赖分成以下两种：
 
@@ -841,7 +841,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 根据上面示例，<font color=red>B 是 A 的直接依赖，C 是 A 的传递依赖</font>，如果 C 依赖 D，则 D 也可能是 A 的传递依赖
 
-#### 6.5.2. 依赖范围对传递依赖的影响（了解）
+#### 依赖范围对传递依赖的影响（了解）
 
 依赖会有依赖范围，依赖范围对传递依赖也有影响，有A、B、C，A依赖B、B依赖C，C可能是A的传递依赖
 
@@ -858,7 +858,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 ![](images/20220117222559292_26547.jpg)
 
-### 6.6. 可选依赖
+### 可选依赖
 
 配置可选依赖：在 `<dependency>` 标签体中使用 `<optional>` 标签，可以设置当前依赖的组件不向下传递。默认值为 false，表示依赖会向下传递；如果设置为 true，则表示依赖不会向下传递。官方解释：
 
@@ -909,7 +909,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 因此在 Maven 项目中，恰当的使用 optional 配置，可以在很大程度上减少 jar 包的大小，提升编译和发布速度。
 
-### 6.7. 依赖版本的选择依据
+### 依赖版本的选择依据
 
 1. 最短路径优先。以下图为例子，对模块 pro25-module-a 来说，Maven 会采纳 1.2.12 版本。
 
@@ -919,7 +919,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 ![](images/89944108227453.png)
 
-### 6.8. 依赖版本冲突解决
+### 依赖版本冲突解决
 
 当一个项目依赖的构件比较多时，它们相互之前存在依赖，会出现依赖版本的冲突。如：
 
@@ -940,7 +940,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependencies>
 ```
 
-#### 6.8.1. 自动依赖调解原则：在两个直接依赖中,以后面声明者优先
+#### 自动依赖调解原则：在两个直接依赖中,以后面声明者优先
 
 在pom文件定义依赖，以后面声明的依赖为准
 
@@ -960,7 +960,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-#### 6.8.2. 自动依赖调解原则：在两个传递(间接)依赖中,以先声明者优先
+#### 自动依赖调解原则：在两个传递(间接)依赖中,以先声明者优先
 
 在pom文件定义依赖，以先声明的依赖为准
 
@@ -980,7 +980,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-#### 6.8.3. 自动依赖调解原则：直接依赖级别高于传递(间接)依赖
+#### 自动依赖调解原则：直接依赖级别高于传递(间接)依赖
 
 例如：A依赖spirng-beans-4.2.4，A依赖B依赖spirng-beans-3.0.5，则spring-beans-4.2.4优先被依赖在A中，因为spring-beans-4.2.4相对spirng-beans-3.0.5被A依赖的路径最近
 
@@ -993,7 +993,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-#### 6.8.4. 手动解决依赖冲突：排除依赖
+#### 手动解决依赖冲突：排除依赖
 
 版本的冲突可以通过排除依赖方法辅助依赖调解。比如在依赖 struts2-spring-plugin 的设置中添加排除依赖，排除 spring-beans
 
@@ -1019,7 +1019,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-#### 6.8.5. 手动解决依赖冲突：锁定版本（推荐使用）
+#### 手动解决依赖冲突：锁定版本（推荐使用）
 
 面对众多的依赖，有一种方法不用考虑依赖路径、声明优化等因素可以采用直接锁定版本的方法确定依赖构件的版本，版本锁定后则不考虑依赖的声明顺序或依赖的路径，<font color=red>**以锁定的版本为准添加到工程中，此方法在企业开发中常用**</font>
 
@@ -1067,9 +1067,9 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependencies>
 ```
 
-## 7. maven 项目的生命周期
+## maven 项目的生命周期
 
-### 7.1. 三套生命周期
+### 三套生命周期
 
 在 maven 中存在“三套”生命周期，每一套生命周期相互<font color=red>**独立**</font>，互不影响。<font color=red>**在同一套生命周期内，执行后面的命令前面操作会自动执行**</font>
 
@@ -1079,11 +1079,11 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 - Default LifeCycle：默认生命周期，构建核心部分，编译，测试，打包，部署等等。包括的命令：`compile`,`test`,`package`,`install`,`deploy`
 - site LifeCycle：站点生命周期，生成项目报告，站点，发布站点。包括的命令：`site`
 
-### 7.2. 生命周期的阶段
+### 生命周期的阶段
 
 每个生命周期都有很多阶段，每个阶段对应一个执行命令
 
-#### 7.2.1. clean 生命周期的阶段
+#### clean 生命周期的阶段
 
 clean 生命周期每套生命周期都由一组阶段(Phase)组成，我们平时在命令行输入的命令总会对应于一个特定的阶段。比如，运行`mvn clean`，这个的 clean 是 clean 生命周期的一个阶段。有 clean 生命周期，也有 clean 阶段。clean 生命周期一共包含了三个阶段：
 
@@ -1093,7 +1093,7 @@ clean 生命周期每套生命周期都由一组阶段(Phase)组成，我们平�
 
 `mvn clean` 命令中的 clean 就是上面的 clean，在一个生命周期中，运行某个阶段的时候，它之前的所有阶段都会被运行，也就是说，`mvn clean`等同于 `mvn pre-clean clean`，如果运行 `mvn post-clean`，那么 pre-clean，clean 都会被运行。这是 Maven 很重要的一个规则，可以大大简化命令行的输入
 
-#### 7.2.2. default 生命周期（重点）
+#### default 生命周期（重点）
 
 default 生命周期 default 生命周期是 Maven 生命周期中最重要的一个，绝大部分工作都发生在这个生命周期中。比较重要和常用的阶段如下
 
@@ -1124,7 +1124,7 @@ deploy 将最终的包复制到远程的仓库，以让其它开发人员与项�
 
 运行任何一个阶段的时候，它前面的所有阶段都会被运行，这也就是为什么运行 `mvn install` 的时候，代码会被编译，测试，打包。此外，Maven的插件机制是完全依赖Maven的生命周期的
 
-#### 7.2.3. site 生命周期
+#### site 生命周期
 
 site 生命周期包含如下 4 个阶段：
 
@@ -1143,7 +1143,7 @@ site 生命周期包含如下 4 个阶段：
 
 ![](images/20220117231549358_4691.jpg)
 
-### 7.3. 命令与生命周期的阶段
+### 命令与生命周期的阶段
 
 每个 maven 命令对应生命周期的某个阶段，例如：`mvn clean`命令对应 clean 生命周期的 clean 阶段，`mvn test` 命令对应 default 生命周期的test  阶段。
 
@@ -1153,7 +1153,7 @@ site 生命周期包含如下 4 个阶段：
 
 如果要同时执行多个生命周期的阶段可在命令行输入多个命令，中间以空格隔开，例如：`clean package` 该命令执行 clean 生命周期的 clean 阶段和 default 生命周期的 package 阶段。
 
-### 7.4. 生命周期插件
+### 生命周期插件
 
 插件与生命周期内的阶段绑定，在执行到对应生命周期时执行对应的插件功能。
 
@@ -1179,9 +1179,9 @@ site 生命周期包含如下 4 个阶段：
 </build>
 ```
 
-### 7.5. 项目构建时跳过测试
+### 项目构建时跳过测试
 
-#### 7.5.1. 应用场景
+#### 应用场景
 
 - 整体模块功能未开发
 - 模块中某个功能未开发完毕
@@ -1190,7 +1190,7 @@ site 生命周期包含如下 4 个阶段：
 
 实现项目上线打包部署时是不被允许跳过测试，这只是用于在本地开发时，为了能快速构建项目才使用。
 
-#### 7.5.2. 命令行方式跳过测试
+#### 命令行方式跳过测试
 
 在使用 mvn 命令进行编译、打包时，Maven 会执行 src/test/java 中的 JUnit 测试用例，有以下两种命令来跳过测试：
 
@@ -1208,7 +1208,7 @@ mvn 指令 -Dmaven.test.skip=true
 
 **注意事项：执行的指令生命周期必须包含测试环节**
 
-#### 7.5.3. 通过配置文件跳过测试
+#### 通过配置文件跳过测试
 
 mavan 执行每个生命周期都是通过插件来完成，所以对相应的插件配置跳过测试即可。也可以指定执行哪些测试用例，或者指定排除不执行哪些测试用例。pom.xml 配置示例如下：
 
@@ -1237,33 +1237,33 @@ mavan 执行每个生命周期都是通过插件来完成，所以对相应的�
 </build>
 ```
 
-#### 7.5.4. IDEA 配置跳过测试
+#### IDEA 配置跳过测试
 
-##### 7.5.4.1. 操作命令栏
+##### 操作命令栏
 
 在 IDEA 中的 Maven 命令栏的工具栏有下图中的图标【Skip Tests】。点击选中后再用【LifeStyle】中的相关命令时，就会跳过测试。
 
 ![](images/20220121191757343_20033.png)
 
-##### 7.5.4.2. 配置 VM Options 参数
+##### 配置 VM Options 参数
 
 打开配置，找到【Build,Exxcution,Deployment】–>【Maven Tools】–>【Maven】–>【Runner】，在 VM option 中添加 `-Dmaven.test.skip=true` 或者 `-DskipTests=true`，也可以在打包是跳过测试。
 
 ![](images/129292122230452.png)
 
-##### 7.5.4.3. 修改运行 Properties 配置参数
+##### 修改运行 Properties 配置参数
 
 打开配置，找到【Build,Exxcution,Deployment】–>【Maven Tools】–>【Maven】–>【Runner】，在【Properties】中勾选【Skip Test】选项。
 
 ![](images/569943019236745.png)
 
-### 7.6. Maven 自定义插件（了解）
+### Maven 自定义插件（了解）
 
 > TODO: 待整理，参考 http://heavy_code_industry.gitee.io/code_heavy_industry/pro002-maven/chapter09/verse06.html
 
 > Notes: 实际开发中几乎没有什么场景需要开发自定义 Maven 插件，只是通过自定义插件的过程，来更好的理解插件的目标和生命周期阶段之间的关系
 
-#### 7.6.1. 插件开发
+#### 插件开发
 
 1. 创建 Maven 工程
 2. 设定打包方式
@@ -1311,7 +1311,7 @@ public class MyHelloPlugin extends AbstractMojo {
 }
 ```
 
-#### 7.6.2. 插件配置
+#### 插件配置
 
 1. Mojo 类中的配置，有以下两种方式：
 
@@ -1345,7 +1345,7 @@ public class MyPluginOfFistBlood extends AbstractMojo {
 </pluginGroups>
 ```
 
-#### 7.6.3. 使用插件
+#### 使用插件
 
 Maven 会根据插件的 artifactId 来<font color=red>**识别插件前缀**</font>。例如下面两种情况
 
@@ -1409,19 +1409,19 @@ mvn hello:sayHello
 
 ![](images/357145023248080.png)
 
-## 8. 继承和聚合
+## 继承和聚合
 
 通常继承和聚合同时使用
 
-### 8.1. 聚合
+### 聚合
 
-#### 8.1.1. 概述
+#### 概述
 
 项目开发通常是分组分模块开发，每个模块开发完成要运行整个工程需要将每个模块聚合在一起运行，比如：dao、service、web 三个工程最终会打一个独立的 war 运行
 
 聚合的作用：用于快速构建 maven 工程，一次性构建多个项目/模块
 
-#### 8.1.2. 聚合的配置语法
+#### 聚合的配置语法
 
 - 创建一个空的 maven 项目，修改 pom.xml 文件，将打包类型定义为 `pom` 类型。**只有打包方式为 pom 类型的 Maven 工程才能够管理其他 Maven 工程**。
 
@@ -1444,7 +1444,7 @@ mvn hello:sayHello
 
 > <font color=red>**需要注意：参与聚合操作的模块最终执行顺序与模块间的依赖关系有关，与配置顺序无关**</font>
 
-#### 8.1.3. 在聚合父工程中定义依赖管理
+#### 在聚合父工程中定义依赖管理
 
 - 在聚合父工程 pom 文件中，使用 `<dependencyManagement>` 标签定义依赖管理
 
@@ -1476,15 +1476,15 @@ mvn hello:sayHello
 </dependency>
 ```
 
-### 8.2. 继承
+### 继承
 
-#### 8.2.1. 概述
+#### 概述
 
 继承的作用是，可以实现在子工程中沿用父工程的配置。
 
 继承是为了消除重复，如果将dao、service、web分开创建独立的工程则每个工程的pom.xml文件中的内容存在重复，比如：设置编译版本、锁定spring的版本的等，可以将这些重复的配置提取出来在父工程的pom.xml中定义
 
-#### 8.2.2. 继承的配置语法
+#### 继承的配置语法
 
 只需在子工程 pom.xml 文件中，通过 `<parent>` 标签声明继承的父工程坐标与对应的位置即可
 
@@ -1501,12 +1501,12 @@ mvn hello:sayHello
 </parent>
 ```
 
-### 8.3. 继承和聚合总结
+### 继承和聚合总结
 
 - 继承主要是为了消除重复配置
 - 聚合主要是为了快速构建运行项目
 
-#### 8.3.1. 项目继承
+#### 项目继承
 
 maven 项目继承的作用：抽取所有项目公共的配置：
 
@@ -1518,7 +1518,7 @@ maven 项目继承：
 - 父项目：抽取所有项目的公共的依赖、插件。最好在父项目中统一控制组件的版本
 - 子项目：继承父项目，就可以具有父项目已经提供的依赖、公用的插件
 
-#### 8.3.2. 通过父项目锁定依赖组件版本
+#### 通过父项目锁定依赖组件版本
 
 为什么需要版本锁定？
 
@@ -1528,11 +1528,11 @@ maven 项目继承：
 
 通过 `<dependencyManagement>` 标签进行版本锁定。父项目锁定版本 + 抽取公用依赖配置 + 抽取公用的插件配置
 
-#### 8.3.3. maven 聚合项目
+#### maven 聚合项目
 
 无论是继承还是聚合，项目类型都是 pom。无论是继承还是聚合，父项目或聚合项目都不需要写代码
 
-#### 8.3.4. 总结
+#### 总结
 
 - 作用
     - 聚合用于快速构建项目
@@ -1544,9 +1544,9 @@ maven 项目继承：
     - 聚合是在当前模块中配置关系，聚合可以感知到参与聚合的模块有哪些
     - 继承是在子模块中配置关系，父模块无法感知哪些子模块继承了自己
 
-## 9. 属性管理
+## 属性管理
 
-### 9.1. 自定义属性
+### 自定义属性
 
 - 作用：相当于定义变量，方便统一管理
 - 使用 `<properties>` 标签定义：
@@ -1568,7 +1568,7 @@ maven 项目继承：
 </dependency>
 ```
 
-### 9.2. 内置属性
+### 内置属性
 
 - 使用maven内置的属性，获取内置一些配置值
 - 调用格式：
@@ -1578,7 +1578,7 @@ ${basedir}
 ${version}
 ```
 
-### 9.3. Setting 属性
+### Setting 属性
 
 - 使用 maven 配置文件 setting 中的标签属性，用于动态配置
 - 调用格式
@@ -1587,7 +1587,7 @@ ${version}
 ${settings.localRepository}
 ```
 
-### 9.4. Java 系统属性
+### Java 系统属性
 
 - 读取 Java 系统属性
 - 调用格式：
@@ -1602,7 +1602,7 @@ ${user.home}
 mvn help:system
 ```
 
-### 9.5. 环境变量属性
+### 环境变量属性
 
 - 读取 Java 系统属性
 - 调用格式：
@@ -1617,7 +1617,7 @@ ${env.JAVA_HOME}
 mvn help:system
 ```
 
-### 9.6. 资源配置文件引用 pom 文件
+### 资源配置文件引用 pom 文件
 
 maven 可以在任意配置文件使用 pom 文件中定义的属性，在处理资源时会将引用属性的表达式替换为具体的属性值，步骤如下：
 
@@ -1660,11 +1660,11 @@ maven 可以在任意配置文件使用 pom 文件中定义的属性，在处理
 jdbc.url=${jdbc.url}
 ```
 
-## 10. 多环境配置 profile
+## 多环境配置 profile
 
-### 10.1. 概述
+### 概述
 
-#### 10.1.1. 项目的不同运行环境
+#### 项目的不同运行环境
 
 通常情况下，项目研究至少有三种运行环境：
 
@@ -1676,18 +1676,18 @@ jdbc.url=${jdbc.url}
 
 在 Maven 中，使用 profile 机制来管理不同环境下的配置信息。
 
-#### 10.1.2. 默认的 profile
+#### 默认的 profile
 
 其实根标签 project 下所有配置相当于都是在设定默认的 profile。除了 `<modelVersion>` 和坐标标签之外，其它标签都可以配置到 profile 中，然后安装、打包时可以选择不同的 profile 配置。
 
-#### 10.1.3. 配置的位置
+#### 配置的位置
 
 profile 可以在以下两种配置文件中配置：
 
 - settings.xml：全局生效。**但值得注意的是，若只本地配置，当项目部署到其他环境中，则此配置就会失效（因为其他环境不一定有修改全局配置）**。例如配置 JDK 版本。
 - pom.xml：当前项目 POM 生效
 
-### 10.2. 基础定义语法
+### 基础定义语法
 
 `<profiles>` 标签统一管理多个 `<profile>` 子标签，
 
@@ -1722,9 +1722,9 @@ profile 可以在以下两种配置文件中配置：
 </profiles>
 ```
 
-### 10.3. 激活 profile
+### 激活 profile
 
-#### 10.3.1. 命令语法
+#### 命令语法
 
 每个 profile 都必须有一个`<id>`标签，指定该 profile 的唯一标识。该值会被用于使用命令行时加载指定环境配置，语法以下：
 
@@ -1744,7 +1744,7 @@ mvn install -P prod_env
 mvn help:active-profiles
 ```
 
-#### 10.3.2. 默认激活
+#### 默认激活
 
 通过 `<activeByDefault>` 标识来设置默认激活的 profile
 
@@ -1763,16 +1763,16 @@ mvn help:active-profiles
 </profiles>
 ```
 
-#### 10.3.3. 多个激活条件
+#### 多个激活条件
 
 - Maven 3.2.2 之前：遇到第一个满足的条件即可激活（或的关系）
 - Maven 3.2.2 开始：各条件均需满足（且的关系）
 
-### 10.4. 基于环境信息激活
+### 基于环境信息激活
 
 环境信息包含：JDK 版本、操作系统参数、文件、属性等各个方面。一个 profile 一旦被激活，那么它定义的所有配置都会覆盖原来 POM 中对应层次的元素。
 
-#### 10.4.1. 资源属性过滤
+#### 资源属性过滤
 
 Maven 为了能够通过 profile 实现各不同运行环境切换，提供了一种『资源属性过滤』的机制。通过属性替换实现不同环境使用不同的参数。
 
@@ -1810,7 +1810,7 @@ mvn clean resources:resources -PdevJDBCProfile
 
 ![](images/505821023221162.png)
 
-#### 10.4.2. 资源文件的包含与排除
+#### 资源文件的包含与排除
 
 `<resource>` 标签中可以配置 `<includes>` 和 `<excludes>` 子标签。它们的作用是：
 
@@ -1850,15 +1850,15 @@ mvn clean resources:resources -PdevJDBCProfile
 
 ![](images/20761323239588)
 
-## 11. help 插件
+## help 插件
 
 > 官方说明文档：https://maven.apache.org/plugins/maven-help-plugin
 
-### 11.1. 概念
+### 概念
 
 Maven help 插件用于获取项目或系统的相关信息。它可以用来获取某个特定插件的描述，包括该插件的目标及其参数和组件要求、当前构建的有效 POM 和有效设置，以及应用于当前构建项目的配置文件。
 
-### 11.2. help 插件的 7 个目标
+### help 插件的 7 个目标
 
 |            目标            |                     说明                     |
 | ------------------------- | -------------------------------------------- |
@@ -1870,9 +1870,9 @@ Maven help 插件用于获取项目或系统的相关信息。它可以用来获
 | `help:evaluate`           | 计算用户在交互模式下给出的 Maven 表达式           |
 | `help:system`             | 显示平台详细信息列表，如系统属性和环境变量         |
 
-### 11.3. help:evaluate 的使用
+### help:evaluate 的使用
 
-#### 11.3.1. 查看属性值
+#### 查看属性值
 
 假设在 pom.xml 文件中定义属性
 
@@ -1892,7 +1892,7 @@ mvn help:evaluate
 
 ![](images/175771622221157.png)
 
-#### 11.3.2. 访问系统属性
+#### 访问系统属性
 
 通过 Java 代码获取所有系统属性
 
@@ -1920,7 +1920,7 @@ ${java.runtime.name}
 Java(TM) SE Runtime Environment
 ```
 
-#### 11.3.3. 访问系统环境变量
+#### 访问系统环境变量
 
 运行命令 `mvn help:evaluate`，通过表达式 `${env.系统环境变量名}` 来访问系统环境变量
 
@@ -1933,7 +1933,7 @@ ${env.JAVA_HOME}
 D:\development\Java\jdk1.8.0_311
 ```
 
-#### 11.3.4. 访问 pom 配置中 project 属性
+#### 访问 pom 配置中 project 属性
 
 运行命令 `mvn help:evaluate`，通过表达式 `${project.标签名}` 可以访问当前 POM 中的一级标签元素值
 
@@ -1954,7 +1954,7 @@ ${project.artifactId}
 
 ![](images/88863322240285.png)
 
-#### 11.3.5. 访问 settings 全局配置
+#### 访问 settings 全局配置
 
 运行命令 `mvn help:evaluate`，通过表达式 `${settings.标签名}` 可以访问 settings.xml 中配置的元素值。
 
@@ -1967,13 +1967,13 @@ ${settings.LocalRepository}
 D:\development\maven\repository
 ```
 
-## 12. Maven 进阶
+## Maven 进阶
 
-### 12.1. 手动添加 jar 包到本地 Maven 仓库
+### 手动添加 jar 包到本地 Maven 仓库
 
 使用Maven的过程中，经常碰到有些jar包在中央仓库没有的情况。如果公司有私服，那么就把jar包安装到私服上。如果没有私服，那就把jar包安装到本地Maven仓库。有2种安装jar包到本地Maven仓库的方法
 
-#### 12.1.1. 使用 Maven 命令安装 jar 包
+#### 使用 Maven 命令安装 jar 包
 
 前提：在windows操作系统中配置好了Maven的环境变量。在windows的cmd命令下，参考下面安装命令安装jar包。注意：这个命令不能换行，中间用空格来分割的
 
@@ -1993,7 +1993,7 @@ $ mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor -Dversion=1.
 
 执行完命令后，可看到SUCCESS字样提示，代表安装成功，可以在本地仓库找到jar包
 
-#### 12.1.2. 使用 eclipse 安装 jar 包
+#### 使用 eclipse 安装 jar 包
 
 使用eclipse安装也有个前提，就是eclipse的Maven要先配置好。具体操作：
 
@@ -2005,13 +2005,13 @@ $ mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor -Dversion=1.
 
 ![](images/20201104152759117_23200.png)
 
-#### 12.1.3. 两种方案的比较
+#### 两种方案的比较
 
 方案一：缺点就是很麻烦，比如要配置环境变量，需要写很长的安装命令。不过，如果你配置好了环境变量，那就简单了。copy个安装的命令的示例，然后就直接安装了。
 
 方案二：需要eclipse，个人推荐这种方式，比较简单。
 
-### 12.2. 批量删除maven项目错误后生成`*.lastUpdated`文件
+### 批量删除maven项目错误后生成`*.lastUpdated`文件
 
 在项目运行错误后，在本地仓库下生成`.lastUpdated`文件，会影响项目的运行。使用批处理文件可以将里面文件删除，<font color=red>**注：将`REPOSITORY_PATH`变量改成本地仓库的路径**</font>
 

@@ -1,4 +1,4 @@
-## 1. FastJson 简介
+## FastJson 简介
 
 Fastjson 是一个 Java 库，可以将 Java 对象转换为 JSON 格式，也可以将 JSON 字符串转换为 Java 对象。
 
@@ -10,12 +10,12 @@ Fastjson 可以操作任何 Java 对象，即使是一些预先存在的没有�
 - FastJson Bug、漏洞较多
 - FastJson 牺牲多数场景下的稳定性而提高的效率
 
-### 1.1. 官方仓库与文档
+### 官方仓库与文档
 
 - [Fastjson Github](https://github.com/alibaba/fastjson)
 - [Fastjson 中文 Wiki](https://github.com/alibaba/fastjson/wiki/Quick-Start-CN)
 
-### 1.2. Fastjson 特性
+### Fastjson 特性
 
 - 提供服务器端、安卓客户端两种解析工具，性能表现较好。
 - 提供了 `toJSONString()` 和 `parseObject()` 方法来将 Java 对象与 JSON 相互转换。
@@ -26,9 +26,9 @@ Fastjson 可以操作任何 Java 对象，即使是一些预先存在的没有�
 - 允许对象的自定义表示、允许自定义序列化类。
 - 支持任意复杂对象（具有深厚的继承层次和广泛使用的泛型类型）。
 
-## 2. FastJson 基础使用
+## FastJson 基础使用
 
-### 2.1. 引入 maven 依赖
+### 引入 maven 依赖
 
 ```xml
 <dependency>
@@ -40,7 +40,7 @@ Fastjson 可以操作任何 Java 对象，即使是一些预先存在的没有�
 
 其中 `x.x.x` 是版本号，根据需要使用特定版本，建议使用最新版本。
 
-### 2.2. 序列化对象成 JSON 字符串
+### 序列化对象成 JSON 字符串
 
 ```java
 User user = new User();
@@ -52,7 +52,7 @@ System.out.println(jsonString);
 // 输出 {"age":3,"name":"校长","old":false,"salary":123456789.0123}
 ```
 
-### 2.3. 反序列化 JSON 字符串成 Java 对象
+### 反序列化 JSON 字符串成 Java 对象
 
 ```java
 String jsonString = "{\"age\":3,\"birthdate\":1496738822842,\"name\":\"校长\",\"old\":true,\"salary\":123456789.0123}";
@@ -66,7 +66,7 @@ System.out.println(userList.size());
 // 输出 1
 ```
 
-### 2.4. 对于日期的处理
+### 对于日期的处理
 
 默认序列化 `Date` 对象输出使用 `yyyy-MM-dd HH:mm:ss` 格式，可以用 `UseISO8601DateFormat` 特性换成 `yyyy-MM-dd` 或者 `HH:mm:ss` 格式。
 
@@ -92,7 +92,7 @@ public static class Model {
 }
 ```
 
-### 2.5. BeanToArray
+### BeanToArray
 
 在 fastjson 中，支持一种叫做 BeanToArray 的映射模式。普通模式下，JavaBean 映射成 json object，BeanToArray 模式映射为 json array。
 
@@ -155,7 +155,7 @@ class Company {
 }
 ```
 
-### 2.6. 设置字段名
+### 设置字段名
 
 ```java
 public class A {
@@ -167,7 +167,7 @@ public class A {
 }
 ```
 
-### 2.7. 设置是否不序列化某字段
+### 设置是否不序列化某字段
 
 ```java
 public class A {
@@ -181,7 +181,7 @@ public class A {
 }
 ```
 
-### 2.8. 设置字段顺序
+### 设置字段顺序
 
 ```java
 public static class VO {
@@ -196,7 +196,7 @@ public static class VO {
 }
 ```
 
-### 2.9. 自定义序列化和反序列化
+### 自定义序列化和反序列化
 
 > 参考资料：
 >

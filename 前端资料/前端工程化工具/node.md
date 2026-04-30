@@ -1,20 +1,20 @@
-## 1. Node.js 简介
+## Node.js 简介
 
 Node.js 是一个开源和跨平台的 JavaScript 运行时环境。它几乎是任何类型项目的流行工具！Node.js 在浏览器之外运行 V8 JavaScript 引擎（Google Chrome 的内核），性能非常好。
 
-## 2. npm 包管理器
+## npm 包管理器
 
-### 2.1. npm 简介
+### npm 简介
 
 `npm` 是 Node.js 标准的软件包管理器。它起初是作为下载和管理 Node.js 包依赖的方式，但其现在也已成为前端 JavaScript 中使用的工具。
 
-### 2.2. 查看 npm 版本
+### 查看 npm 版本
 
 node.js 已经集成了 `npm` 工具，在命令提示符输入 `npm -v` 可查看当前 `npm` 版本
 
 ![](images/20190407112957021_10443.png)
 
-### 2.3. 设置 npm 的包路径
+### 设置 npm 的包路径
 
 包路径就是 npm 从远程下载的 js 包所存放的路径。使用以下命令，可查询 NPM 管理包路径（NPM下载的依赖包所存放的路径）
 
@@ -38,9 +38,9 @@ npm config set cache "D:\development\nodejs\npm_cache"
 
 > **注：配置以后，一些全局安装的工具会安装到`npm_modules`此文件夹中，需要在环境变量中配置`npm_modules`此文件夹，才可以全局的使用这些安装的工具**
 
-### 2.4. 下载与安装包
+### 下载与安装包
 
-#### 2.4.1. 安装所有依赖
+#### 安装所有依赖
 
 如果项目具有 `package.json` 文件，则通过运行：
 
@@ -50,7 +50,7 @@ npm install
 
 运行命令后，会在 `node_modules` 文件夹（如果尚不存在则会创建）中安装项目所需的所有东西。
 
-#### 2.4.2. 安装单个软件包
+#### 安装单个软件包
 
 通过运行以下命令安装特定的软件包：
 
@@ -65,7 +65,7 @@ npm install <package-name>
 
 以上参数的区别主要是，`devDependencies` 通常是开发的工具（例如测试的库），而 `dependencies` 则是与生产环境中的应用程序相关。
 
-### 2.5. npm 全局安装与本地安装
+### npm 全局安装与本地安装
 
 当使用 npm 安装软件包时，可以执行两种安装类型：
 
@@ -77,7 +77,7 @@ npm install <package-name>
 - 本地的软件包：安装在运行 `npm install <package-name>` 的目录中，并且放置在此目录下的 `node_modules` 文件夹中。
 - 全局的软件包：放在系统中的单独位置（确切的位置取决于设置），无论在何处运行 `npm install -g <package-name>`。
 
-#### 2.5.1. 本地的软件包
+#### 本地的软件包
 
 ```bash
 npm install <package-name>
@@ -87,7 +87,7 @@ npm install <package-name>
 
 在这种情况下，`npm` 还会在当前文件夹中存在的 `package.json` 文件的 `dependencies` 属性中添加相应软件包条目。
 
-#### 2.5.2. 全局的软件包
+#### 全局的软件包
 
 使用 `-g` 参数可以执行全局安装：
 
@@ -97,7 +97,7 @@ npm install -g <package-name>
 
 在这种情况下，`npm` 不会将软件包安装到本地文件夹下，而是使用全局的位置。
 
-##### 2.5.2.1. 查看全局安装的位置
+##### 查看全局安装的位置
 
 ```bash
 npm root -g
@@ -105,7 +105,7 @@ npm root -g
 
 默认情况下，在 macOS 或 Linux 上，此位置可能是 `/usr/local/lib/node_modules`；在 Windows 上，可能是 `C:\Users\YOU\AppData\Roaming\npm\node_modules`；如果使用 nvm 管理 Node.js 版本，则软件包的位置可能为 `/Users/joe/.nvm/versions/node/v8.9.0/lib/node_modules`
 
-##### 2.5.2.2. 查看系统已安装的全局软件包
+##### 查看系统已安装的全局软件包
 
 通过在命令行上运行以下命令查看：
 
@@ -113,7 +113,7 @@ npm root -g
 npm list -g --depth 0
 ```
 
-### 2.6. 更新软件包
+### 更新软件包
 
 通过运行以下命令，`npm` 会检查所有软件包是否有满足版本限制的更新版本。
 
@@ -127,11 +127,11 @@ npm update
 npm update <package-name>
 ```
 
-### 2.7. 卸载软件包
+### 卸载软件包
 
 卸载（删除）软件包，也分为全局卸载（删除）和本地卸载（删除）
 
-#### 2.7.1. 卸载本地软件
+#### 卸载本地软件
 
 若要卸载之前在本地安装（在 `node_modules` 文件夹使用 `npm install <package-name>`）的软件包，则从项目的根文件夹（包含 `node_modules` 文件夹的文件夹）中运行：
 
@@ -146,7 +146,7 @@ npm uninstall -S <package-name>
 npm uninstall -D <package-name>
 ```
 
-#### 2.7.2. 卸载全局软件
+#### 卸载全局软件
 
 如果该软件包是全局安装的，则需要添加 `-g` 或 `--global` 参数。可以在系统上的任何位置运行此命令，因为当前所在的文件夹无关紧要。
 
@@ -160,7 +160,7 @@ npm uninstall -g <package-name>
 npm uninstall -g webpack
 ```
 
-### 2.8. 版本控制
+### 版本控制
 
 除了简单的下载外，npm 还可以管理版本控制，因此可以指定软件包的任何特定版本，或者要求版本高于或低于所需版本。
 
@@ -170,7 +170,7 @@ npm uninstall -g webpack
 
 在所有这些情况中，版本控制都有很大的帮助，npm 遵循语义版本控制标准。
 
-#### 2.8.1. npm 的语义版本控制
+#### npm 的语义版本控制
 
 npm 的语义版本控制是指，所有的版本都有 3 个数字：`x.y.z`。
 
@@ -184,7 +184,7 @@ npm 的语义版本控制是指，所有的版本都有 3 个数字：`x.y.z`。
 - 当以向后兼容的方式添加功能时，则升级次版本。
 - 当进行向后兼容的缺陷修复时，则升级补丁版本。
 
-#### 2.8.2. 版本规则符号
+#### 版本规则符号
 
 npm 设置了一些规则，可用于在 `package.json` 文件中选择要将软件包更新到的版本（当运行 `npm update` 时）。相应的符号与规则说明如下：
 
@@ -203,7 +203,7 @@ npm 设置了一些规则，可用于在 `package.json` 文件中选择要将软
 - `无符号`：仅接受指定的特定版本（例如 1.2.1）。
 - `latest`：使用可用的最新版本。
 
-### 2.9. 运行任务
+### 运行任务
 
 `package.json` 文件支持一种用于指定命令行任务（可通过使用以下方式运行）的格式：
 
@@ -242,19 +242,19 @@ $ npm run dev
 $ npm run prod
 ```
 
-### 2.10. package.json 指南（待整理）
+### package.json 指南（待整理）
 
 > TODO: 待整理
 
-### 2.11. cnpm
+### cnpm
 
-#### 2.11.1. npmmirror 镜像站
+#### npmmirror 镜像站
 
 npmmirror 是一个完整 npmjs.com 镜像，可以用此代替官方版本(只读)，将尽量与官方服务实时同步。
 
 > 官网：https://npmmirror.com/
 
-#### 2.11.2. cnpm 使用说明
+#### cnpm 使用说明
 
 国内使用 npm 速度很慢，可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm。cnpm 支持除了写相关操作外的所有命令，例如 install、info、view 等。
 
@@ -276,7 +276,7 @@ alias cnpm="npm --registry=https://registry.npmmirror.com \ --cache=$HOME/.npm/.
 $ npm config set registry https://registry.npmmirror.com
 ```
 
-#### 2.11.3. 使用 cnpm 安装模块
+#### 使用 cnpm 安装模块
 
 通常上一步骤的，就可以使用 cnpm 命令来安装模块了：
 
@@ -284,7 +284,7 @@ $ npm config set registry https://registry.npmmirror.com
 $ cnpm install [name]
 ```
 
-#### 2.11.4. 同步模块
+#### 同步模块
 
 ```bash
 $ cnpm sync cnpmcore
@@ -296,9 +296,9 @@ $ cnpm sync cnpmcore
 $ open https://npmmirror.com/sync/cnpmcore
 ```
 
-## 3. npx
+## npx
 
-### 3.1. npx 概述
+### npx 概述
 
 npx 是 npm 5.2.0 版本新增的一个工具包，定义为 npm 包的执行者，相比 npm，npx 会自动安装依赖包并执行某个命令。
 
@@ -321,9 +321,9 @@ npx 会在当前目录下的 `./node_modules/.bin` 里去查找是否有可执�
 
 > Notes: 高版本的 npm 自带 npx，可以直接使用，如果没有可以手动安装，执行命令：`npm i -g npx`
 
-### 3.2. npx 命令参数
+### npx 命令参数
 
-#### 3.2.1. --no-install
+#### --no-install
 
 `--no-install` 参数是让 npx 不要自动下载，也就意味着如果本地没有该模块则无法执行后续的命令。
 
@@ -333,11 +333,11 @@ npx --no-install create-react-app my-react-app
 // not found: create-react-app
 ```
 
-#### 3.2.2. --ignore-existing
+#### --ignore-existing
 
 `--ignore-existing` 参数使 npx 忽略本地已经存在的模块，每次都去执行下载操作，即每次都会下载安装临时模块并在用完后删除。
 
-#### 3.2.3. -p
+#### -p
 
 `-p` 用于指定 npx 所要安装的模块，它可以指定某一个版本进行安装：
 
@@ -351,7 +351,7 @@ npx -p node@12.0.0 node index.js
 npx -p lolcatjs -p cowsay [command]
 ```
 
-#### 3.2.4. -c
+#### -c
 
 `-c` 参数使 npx 所有命令都用 npx 解释。例如：
 
@@ -365,13 +365,13 @@ npx -p lolcatjs -p cowsay 'cowsay hello | lolcatjs'
 npx -p lolcatjs -p cowsay -c 'cowsay hello | lolcatjs'
 ```
 
-### 3.3. 参考材料
+### 参考材料
 
 - [npx 使用教程](https://www.ruanyifeng.com/blog/2019/02/npx.html)
 
-## 4. 常用命令
+## 常用命令
 
-### 4.1. 初始化包管理配置文件
+### 初始化包管理配置文件
 
 在项目目录路径下，通过命令行工具输入以下命令，初始化包管理配置文件 package.json
 
@@ -379,15 +379,15 @@ npx -p lolcatjs -p cowsay -c 'cowsay hello | lolcatjs'
 npm init –y
 ```
 
-### 4.2. 清理缓存
+### 清理缓存
 
 ```bash
 npm cache clean --force
 ```
 
-## 5. 常见问题处理方案
+## 常见问题处理方案
 
-### 5.1. 报错 ERR_OSSL_EVP_UNSUPPORTED
+### 报错 ERR_OSSL_EVP_UNSUPPORTED
 
 最近用 node:lts-alpine 编译时发生 ERR_OSSL_EVP_UNSUPPORTED 错误。
 
@@ -421,13 +421,21 @@ Error: error:0308010C:digital envelope routines::unsupported
 
 原因是 node v17 中的 OpenSSL3.0 对允许算法和密钥大小增加了严格的限制。
 
-## 6. 其他
+## 其他
 
-### 6.1. 在 node.js 中体验 ES6 模块化
+### 在 node.js 中体验 ES6 模块化
 
 node.js 中默认**仅支持 CommonJS 模块化规范**，若想基于 node.js 体验与学习 ES6 的模块化语法，可以按照如下两个步骤进行配置：
 
 - 确保安装了 v14.15.1 或更高版本的 node.js
 - 在 `package.json` 的根节点中添加 `"type": "module"` 节点
 
+## 参考资料
 
+### Node.js Best Practices
+
+GitHub 上超火的开源项目：👉 Node.js Best Practices。它是什么？一句话介绍：📘 一份涵盖架构、安全、性能、测试等 100+ 条 Node.js 最佳实践合集，且每条都讲清楚了背后的“为什么”。
+
+- 📌 Star 数：102,000+
+- 🌍 官网：https://practica.dev
+- 📦 项目地址：https://github.com/goldbergyoni/nodebestpractices

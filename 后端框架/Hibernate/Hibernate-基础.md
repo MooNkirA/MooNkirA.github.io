@@ -1,4 +1,4 @@
-## 1. Hibernate 概述
+## Hibernate 概述
 
 Hibernate 是应用在 javaee 三层结构中 dao 层，开源的轻量级持久层框架。Hibernate 是一个不用写 SQL，直接使用对象实现对数据库 CRUD 操作的框架！！！！
 
@@ -19,19 +19,19 @@ Hibernate 底层是对 JDBC 进行封装，使用 Hibernate 的好处是，不�
 
 ![](images/562462220250166.jpg)
 
-### 1.1. Hibernate 版本
+### Hibernate 版本
 
 - Hibernate 3.x
 - Hibernate 4.x：过渡版本，比较少用
 - Hibernate 5.x：目前使用，要求JDK 6+
 
-### 1.2. Hibernate 文件结构
+### Hibernate 文件结构
 
 - documentation：hibernate 相关文档
 - lib：hibernate 相关 jar 包
 - project：hibernate 相关开源代码
 
-### 1.3. ORM 思想
+### ORM 思想
 
 ORM：（Object Relational Mapping）对象关系映射。在访问数据库前，<font color=red>**将实体类的类名和数据库表的表名关联起来**</font>。通过**操作实体类的对象**，直接由框架生成操作数据库的 SQL 操作数据库表。
 
@@ -51,9 +51,9 @@ ORM 是一种实现使用实体类对象操作数据库表的设计思想。
 
 ![](images/567251823259372.jpg)
 
-## 2. Hibernate 基础使用
+## Hibernate 基础使用
 
-### 2.1. 配置流程
+### 配置流程
 
 ![](images/196420919240246.jpg)
 
@@ -63,9 +63,9 @@ ORM 是一种实现使用实体类对象操作数据库表的设计思想。
 4. 通过会话工厂可以获得操作对象会话（Session），Session 可以操作数据库（增删改查）。
 5. 会话的增删改查必须要依赖映射文件，操作前必须配置一个实体类，然后配置实体类对应的映射文件。
 
-### 2.2. 搭建 Hibernate 环境（传统方式）
+### 搭建 Hibernate 环境（传统方式）
 
-#### 2.2.1. Step 1：导入 hibernate 相关 jar 包
+#### Step 1：导入 hibernate 相关 jar 包
 
 1. 引入 hibernate 核心的 jar 包。
     - 必须的支撑包：hibernate-release-5.0.12.Final\lib\required
@@ -74,11 +74,11 @@ ORM 是一种实现使用实体类对象操作数据库表的设计思想。
 2. 使用 hibernate 时，有日志信息输出，hibernate 本身没有日志输出的 jar 包，所以需要导入其他日志的 jar 包。如：log4j-1.2.16.jar、slf4j-api-1.6.1.jar 等
 3. 数据库 MySQL 驱动的 jar 包，如：mysql-connector-java-5.1.44-bin.jar。
 
-#### 2.2.2. Step 2：创建实体类
+#### Step 2：创建实体类
 
 <font color=red>**hibernate 要求实体类有一个属性是唯一的，一般都是用作 id（对应数据表的主键）**</font>。注：使用 hibernate 时，不需要手动创建表，hibernate 会自动创建表格。
 
-#### 2.2.3. Step 3：配置实体类和数据库表 - 对应关系(映射关系)
+#### Step 3：配置实体类和数据库表 - 对应关系(映射关系)
 
 1. 创建 xml 格式配置文件实现映射关系，这个映射配置文件名称和位置没有固定要求。<font color=red>*建议：在实体类所在包里面创建。命名：`实体类名称.hbm.xml`*</font>
 2. 配置文件是 xml 格式，在配置文件中首先引入 xml 约束。
@@ -131,7 +131,7 @@ Code Dome: User.hbm.xml
 </hibernate-mapping>
 ```
 
-#### 2.2.4. Step 4：创建 hibernate 的核心配置文件
+#### Step 4：创建 hibernate 的核心配置文件
 
 1. 配置文件，默认是放在 classpath 根目录下（即 src 目录下），文件名默认必须为 `hibernate.cfg.xml`
 2. 引人 dtd 约束。查询文件：hibernate-configuration-3.0.dtd
@@ -175,9 +175,9 @@ Code Dome: hibernate.cfg.xml
 </hibernate-configuration>
 ```
 
-### 2.3. 使用 Maven 方式搭建 Hibernate
+### 使用 Maven 方式搭建 Hibernate
 
-#### 2.3.1. 引入依赖
+#### 引入依赖
 
 引入 hibernate 的 core、c3p0（数据源），MySQL 数据库的驱动等依赖
 
@@ -209,7 +209,7 @@ Code Dome: hibernate.cfg.xml
 </dependencies>
 ```
 
-#### 2.3.2. 数据库映射配置文件与实体类
+#### 数据库映射配置文件与实体类
 
 ```java
 public class Customer {
@@ -263,7 +263,7 @@ public class Customer {
 </hibernate-mapping>
 ```
 
-#### 2.3.3. hibernate 总配置文件
+#### hibernate 总配置文件
 
 在 resources 目录下创建 hibernate 总配置文件 hibernate.cfg.xml
 
@@ -315,7 +315,7 @@ public class Customer {
 </hibernate-configuration>
 ```
 
-#### 2.3.4. c3p0 连接池的配置（额外）
+#### c3p0 连接池的配置（额外）
 
 Hibernate 内置的连接池功能是很弱的，所以 Hibernate 支持第三方的连接池。而 c3p0 是开源最流行的连接池之一，使用连接池的作用是为了提高并发访问数据库的效率。
 
@@ -367,13 +367,13 @@ INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw 
 <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 ```
 
-### 2.4. Hibernate 使用步骤
+### Hibernate 使用步骤
 
 <font color=red>**前 4 步和后 2 步都是固定，第 5 步是根据实际情况而变化。**</font>
 
 > Notes: 这里的 Session 与 Javaweb 中的 Session 是两个不同的东西。
 
-#### 2.4.1. Step 1：加载 hibernate 核心配置文件
+#### Step 1：加载 hibernate 核心配置文件
 
 ```java
 Configuration cfg = new Configuration();
@@ -382,7 +382,7 @@ cfg.configure();
 
 执行的过程：先到 src 下面找到名称是 hibernate.cfg.xml，把该文件放入这个对象中，然后调用方法执行加载配置文件。也可以指定配置文件名字 `cfg.configure(config.xml);`，但不推荐。
 
-#### 2.4.2. Step 2：创建 SessionFactory 对象
+#### Step 2：创建 SessionFactory 对象
 
 ```java
 SessionFactory sessionFactory = cfg.buildSessionFactory();
@@ -390,7 +390,7 @@ SessionFactory sessionFactory = cfg.buildSessionFactory();
 
 读取 hibernate 核心配置文件内容，创建 `sessionFactory`。在这过程中，根据映射关系，在配置的数据库里面把表创建。
 
-#### 2.4.3. Step 3：使用 SessionFactory 创建 Session 对象
+#### Step 3：使用 SessionFactory 创建 Session 对象
 
 ```java
 Session session = sessionFactory.openSession();
@@ -398,13 +398,13 @@ Session session = sessionFactory.openSession();
 
 类似于连接(可认为是和数据库建立的一个连接)
 
-#### 2.4.4. Step 4：开启事务
+#### Step 4：开启事务
 
 ```java
 Transaction transaction = session.beginTransaction();
 ```
 
-#### 2.4.5. Step 5：写具体逻辑 CRUD 操作
+#### Step 5：写具体逻辑 CRUD 操作
 
 直接对对象进行操作，最后调用 Session 的方法实现操作。例如，添加数据：
 
@@ -412,20 +412,20 @@ Transaction transaction = session.beginTransaction();
 session.save(xxx对象);
 ```
 
-#### 2.4.6. Step 6：提交事务
+#### Step 6：提交事务
 
 ```java
 transaction.commit();
 ```
 
-#### 2.4.7. Step 7：关闭资源
+#### Step 7：关闭资源
 
 ```java
 session.close();
 sessionFactory.close();
 ```
 
-### 2.5. 创建 Hibernate 工具类
+### 创建 Hibernate 工具类
 
 <font color=red>**注意：要理解为什么，一个项目只能有一个连接池。如果出现多个连接池，有可能导致事务处理不同步。**</font>
 
@@ -463,9 +463,9 @@ public class HibernateUtil {
 }
 ```
 
-## 3. Hibernate 核心类
+## Hibernate 核心类
 
-### 3.1. Hibernate 架构与核心类概述
+### Hibernate 架构与核心类概述
 
 Hibernate 架构是分层的，Hibernate 利用数据库以及配置数据来为应用程序提供持续性服务（以及持续性对象）。下图是 Hibernate 应用程序体系结构视图以及一些重要的类：
 
@@ -483,13 +483,13 @@ Hibernate 使用不同的现存 Java API，比如 JDBC，Java 事务 API（JTA�
 - Query：使用 SQL 或者 Hibernate 查询语言（HQL）字符串在数据库中来检索数据并创造对象。一个查询的实例被用于连结查询参数，限制由查询返回的结果数量，并最终执行查询。
 - Criteria：被用于创造和执行面向规则查询的对象来检索对象。
 
-### 3.2. Configuration 类
+### Configuration 类
 
 `org.hibernate.cfg.Configuration` 类的作用是对 Hibernate 进行配置，以及对它进行启动。在 Hibernate 的启动过程中，`Configuration` 类的实例首先定位映射文档的位置，读取这些配置，然后创建一个 `SessionFactory` 对象。虽然 `Configuration` 类在整个 Hibernate 项目中只扮演着一个很小的角色，但它是启动 hibernate 时所遇到的第一个对象。
 
 总结：Configuration 类用于获得框架的信息，构建将会话工厂。
 
-#### 3.2.1. 构造函数
+#### 构造函数
 
 ```java
 public Configuration() {
@@ -509,7 +509,7 @@ public Configuration(MetadataSources metadataSources) {
 }
 ```
 
-#### 3.2.2. 常用方法
+#### 常用方法
 
 ```java
 public Configuration configure() throws HibernateException
@@ -529,7 +529,7 @@ public SessionFactory buildSessionFactory() throws HibernateException
 
 - 获取一个 `SessionFactory` 对象
 
-#### 3.2.3. 示例
+#### 示例
 
 不使用配置文件获得框架的信息示例（*不推荐，了解*）。
 
@@ -561,9 +561,9 @@ private static SessionFactory createSessionFactory(){
 }
 ```
 
-### 3.3. SessionFactory 接口
+### SessionFactory 接口
 
-#### 3.3.1. 概述
+#### 概述
 
 ```java
 public interface SessionFactory extends EntityManagerFactory, HibernateEntityManagerFactory, Referenceable, Serializable, java.io.Closeable
@@ -573,7 +573,7 @@ public interface SessionFactory extends EntityManagerFactory, HibernateEntityMan
 
 需要注意的是，SessionFactory 是一个重量级对象，一般情况下，一个项目通常只需要一个 SessionFactory 就足够，所以通常它都是在应用程序启动时创造然后保存为以后使用。每个数据库需要一个 SessionFactory 对象使用一个单独的配置文件。所以如果使用多个（种）数据库，那么就要每个（种）数据库指定一个 SessionFactory 对象。
 
-#### 3.3.2. 常用方法
+#### 常用方法
 
 ```java
 Session openSession() throws HibernateException;
@@ -593,9 +593,9 @@ void close() throws HibernateException;
 
 - 关闭会话工厂
 
-### 3.4. Session 接口
+### Session 接口
 
-#### 3.4.1. 概述
+#### 概述
 
 ```java
 public interface Session extends SharedSessionContract, EntityManager, HibernateEntityManager, AutoCloseable, Closeable
@@ -607,7 +607,7 @@ Session 对象不应该长时间保持开启状态因为它们通常情况下并
 
 Session接口负责执行被持久化对象的CRUD操作(CRUD的任务是完成与数据库的交流，包含了很多常见的SQL语句)。但需要注意的是Session对象是非线程安全的。同时，Hibernate的session不同于JSP应用中的HttpSession。这里当使用session这个术语时，其实指的是Hibernate中的session，而以后会将HttpSession对象称为用户session。
 
-#### 3.4.2. 常用方法
+#### 常用方法
 
 ```java
 Serializable save(Object object);
@@ -735,9 +735,9 @@ Criteria createCriteria(String entityName, String alias);
 
 - 获得标准查询的 Criteria 对象（已过时）。继承自 `org.hibernate.SharedSessionContract`
 
-#### 3.4.3. 绑定 Session 到当前线程
+#### 绑定 Session 到当前线程
 
-##### 3.4.3.1. 将 Session 当参数的传递的方式实现
+##### 将 Session 当参数的传递的方式实现
 
 ```java
 @Test
@@ -781,7 +781,7 @@ public class HibernateDao {
 }
 ```
 
-##### 3.4.3.2. Hibernate 内置实现
+##### Hibernate 内置实现
 
 由于项目几乎都使用 Spring 框架，不能使用 new 创建对象。所以不能使用构造函数传递 session 给 DAO，可以使用线程绑定来实现外层的 session 和 DAO 的 session 是同一个对象。
 
@@ -809,7 +809,7 @@ public static Session getSession() {
 1. session 不能手动关闭。如果 session 绑定到当前线程，会随线程启动而启动，随线程结束而结束。因此不能手工关闭。
 2. 所有的操作都要打开事务，包括查询（原来查询是不需要启动事务的）。配置了线程绑定，Hibernate 就要验证事务激活状态，导致了所有的操作都要开启事务，包括查询！！
 
-##### 3.4.3.3. 使用 ThreadLocal 实现
+##### 使用 ThreadLocal 实现
 
 使用 `ThreadLocal` 类实现线路绑定。注意，自定义实现线程绑定是不需要配置 Hibernate 的线程绑定的。修改前面示例中 `HibernateUtil` 的核心部分：
 
@@ -846,9 +846,9 @@ public class HibernateUtil {
 }
 ```
 
-#### 3.4.4. 小结
+#### 小结
 
-##### 3.4.4.1. get 和 load 方法的区别（了解）
+##### get 和 load 方法的区别（了解）
 
 `get()` 方法：
 
@@ -868,7 +868,7 @@ public class HibernateUtil {
 
 > Tips: 由于 load 方法拿不到数据报异常，又需要处理异常导致代码增加。所以开发都是使用 get 方法
 
-#### 3.4.5. 示例
+#### 示例
 
 基础的增删改查
 
@@ -983,9 +983,9 @@ public class TestHibernate {
 }
 ```
 
-### 3.5. Transaction 接口
+### Transaction 接口
 
-#### 3.5.1. 概述
+#### 概述
 
 ```java
 public interface Transaction extends EntityTransaction
@@ -997,7 +997,7 @@ public interface Transaction extends EntityTransaction
 
 Transaction 是一个可选的 API，因此 Hibernate 应用程序可以选择不使用这个接口，取而代之的是 Hibernate 的设计者在应用程序中自己实现底层事务处理代码。
 
-#### 3.5.2. 常用方法
+#### 常用方法
 
 ```java
 public void begin();
@@ -1017,15 +1017,15 @@ public void rollback();
 
 - 回滚事务。继承自 `javax.persistence.EntityTransaction`
 
-## 4. Hibernate 持久化类
+## Hibernate 持久化类
 
-### 4.1. 概述
+### 概述
 
 Hibernate 的核心工作就是提取 Java 类属性中的值，并且将它们保存到数据库表相应的字段中。而实体类映射文件能够帮助 Hibernate 确定如何从该类中提取值，并将它们映射在表格和相关域中。
 
 在 Hibernate 中，其对象或实例将会被存储在数据库表单中的 Java 类被称为**持久化类**。若该类遵循一些简单的规则或者符合 Plain Old Java Object (POJO) 编程模型，Hibernate 将会处于其最佳运行状态。以下所列就是持久化类的主要规则，但值得注意的是，在这些规则中，没有一条是硬性要求。
 
-#### 4.1.1. 编写规则
+#### 编写规则
 
 持久化类就是实体类(符合 JavaBean 的规则)，编写规则如下：
 
@@ -1038,13 +1038,13 @@ Hibernate 的核心工作就是提取 Java 类属性中的值，并且将它们�
 
 > Tips: POJO 的名称用于强调一个给定的对象是普通的 Java 对象，而不是特殊的对象，尤其不是一个 Enterprise JavaBean。
 
-#### 4.1.2. 常用的分包规则
+#### 常用的分包规则
 
 - `xxx.entity`：实体
 - `xxx.pojo`：简单的 Java 对象
 - `xxx.domian`：域对象
 
-#### 4.1.3. 一个简单的 POJO 的例子
+#### 一个简单的 POJO 的例子
 
 基于以上所述规则，定义如下 POJO 类：
 
@@ -1063,7 +1063,7 @@ public class Employee {
 }
 ```
 
-### 4.2. 持久化类的三种状态
+### 持久化类的三种状态
 
 由于 Hibernate 框架是一个<font color=red>**先映射，后操作**</font>的框架，因此实体类（持久化类）对象是有状态的。所谓的状态就是实体类的<font color=red>**对象和数据库是否有关联的情况**</font>。
 
@@ -1071,7 +1071,7 @@ public class Employee {
 2. 持久态：正在与数据库保持连接的关系，通常是将一个瞬时状态实例通过与一个 Session 关联的方式将其转化为持久状态实例。持久态对象存在持久化标识 OID，加入到了 Session 缓存中，并且相关联的 Session 没有关闭，在数据库中有对应的记录。
 3. 游离态：曾经被 session 操作过，但 session 失效了、关闭、清除。脱管态对象存在持久化标识 OID，并且仍然与数据库中的数据存在关联，只是失去了与当前 Session 的关联。
 
-### 4.3. 状态的转换
+### 状态的转换
 
 - 当使用 `new` 关键字创建实体对象，此时实体对象与数据库没有任何关系，对象的状态为瞬时态（自由态）。
 - 当调用 session 对象的 `save(实体对象)` 方法，即对象被 session 操作过，对象的状态为持久态（托管态）。
@@ -1079,7 +1079,7 @@ public class Employee {
 
 ![](images/176762516266808.jpg)
 
-#### 4.3.1. 持久态的获取
+#### 持久态的获取
 
 持久类的其他不重要，只要了解如何获得持久态对象即可。有以下情况可以获得持久态：
 
@@ -1093,7 +1093,7 @@ public class Employee {
 2. `persist()` 方法保证当它在一个事务外部被调用的时候并不触发一个 INSERT 语句，当需要封装一个长会话流程的时候，`persist()` 方法是很有必要的。
 3. `save()` 方法不保证第 2 条，它要返回标识符，所以它会立即执行 INSERT 语句，不管是在事务内部还是外部。至于 `lock()` 方法和 `update()` 方法的区别，`update()` 方法是把一个已经更改过的脱管状态的对象变成持久状态；`lock()` 方法是把一个没有更改过的脱管状态的对象变成持久状态。
 
-#### 4.3.2. 持久态支持的功能
+#### 持久态支持的功能
 
 Hibernate 持久态的对象就是正在和数据表关联的状态对象，有如下的功能：
 
@@ -1101,13 +1101,13 @@ Hibernate 持久态的对象就是正在和数据表关联的状态对象，有�
 2. 支持快照
 3. 支持导航导航查询：即通过一个表直接获得关联的表的数据。
 
-## 5. 原生 SQL
+## 原生 SQL
 
 Hibernate 建议如果使用 Criteria 和 HQL 可以解决的问题，就不要使用 SQL 操作。但是有一些复杂的需求，使用 HQL 实现不了，那么可以使用原生的 SQL 操作。
 
 如果想使用数据库特定的功能如查询提示或 Oracle 中的 CONNECT 关键字的话，可以使用原生 SQL 数据库来表达查询。Hibernate 3.x 允许为所有的创建，更新，删除和加载操作指定手写 SQL，包括存储过程。
 
-### 5.1. SQLQuery 接口
+### SQLQuery 接口
 
 `org.hibernate.SQLQuery` 接口是用于操作原生 SQL。
 
@@ -1116,7 +1116,7 @@ Hibernate 建议如果使用 Criteria 和 HQL 可以解决的问题，就不要�
 public interface SQLQuery<T> extends Query<T>, SynchronizeableQuery<T>
 ```
 
-#### 5.1.1. SQLQuery 对象的获取
+#### SQLQuery 对象的获取
 
 使用 Session 接口的 `createSQLQuery` 方法来获取 SQL 查询对象 `SQLQuery`，参数 `queryString` 是 SQL 查询语句。
 
@@ -1126,7 +1126,7 @@ NativeQuery createSQLQuery(String queryString);
 
 当通过一个包含 SQL 查询的 `createsqlquery()` 方法的字符串时，可以将 SQL 的结果与现有的 Hibernate 实体，一个连接或一个标量结果分别使用 `addEntity()`，`addJoin()` 和 `addScalar()` 方法进行关联。
 
-#### 5.1.2. SQLQuery 常用方法
+#### SQLQuery 常用方法
 
 ```java
 SQLQuery<T> addEntity(String entityName);
@@ -1153,7 +1153,7 @@ R uniqueResult();
 
 > Notes: 由于 SQL 查询返回的是一个 Object 数组，如果需要指定的实体类接收，要强制绑定。
 
-### 5.2. 标量查询
+### 标量查询
 
 最基本的 SQL 查询是从一个或多个列表中获取一个标量（值）列表。
 
@@ -1163,7 +1163,7 @@ query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 List results = query.list();
 ```
 
-### 5.3. 实体查询
+### 实体查询
 
 标量查询都是返回标量值，只是基础性地返回结果集中的“原始”值。通过 `addEntity()` 方法可以从原生 SQL 查询中获取实体对象。
 
@@ -1173,7 +1173,7 @@ query.addEntity(Employee.class);
 List<Employee> results = query.list(); 
 ```
 
-### 5.4. 指定 SQL 查询
+### 指定 SQL 查询
 
 通过 addEntity() 方法和使用指定 SQL 查询，从原生 SQL 查询中来获取实体对象。
 
@@ -1184,7 +1184,7 @@ query.setParameter("employee_id", 10);
 List results = query.list();  
 ```
 
-### 5.5. 综合示例
+### 综合示例
 
 ```java
 public class HibernateSQLTest {
@@ -1259,21 +1259,21 @@ public class HibernateSQLTest {
 }
 ```
 
-## 6. Hibernate 缓存与快照
+## Hibernate 缓存与快照
 
 缓存是关于应用程序性能的优化，降低了应用程序对物理数据源访问的频次，从而提高应用程序的运行性能。Hibernate 使用了如下解释的多级缓存方案：
 
 ![](images/585641222240345.jpg)
 
-### 6.1. 一级缓存
+### 一级缓存
 
-#### 6.1.1. 概述
+#### 概述
 
 Hibernate 是支持一级缓存，即 Session 级别的缓存。<font color=red>同一个 session 查询同样的数据，只查询一次数据库</font>。如果出现同多次同样的查询（get/load），直接返回缓存的数据。
 
 Hibernate 默认情况就支持一级缓存。如果支持缓存，使用多次 get 查方法只有一条 sql 语句，说明只查询一次数据库，其余次数的数据直接在缓存中获得。
 
-#### 6.1.2. 清空缓存的方法
+#### 清空缓存的方法
 
 调用以下三个方法，会清空缓存：
 
@@ -1283,16 +1283,16 @@ Hibernate 默认情况就支持一级缓存。如果支持缓存，使用多次 
 
 <font color=red>**注意：close，clear，evit 清空缓存只是将持久态转成游离态，清空的是数据和数据库的关联，而不是清空数据。**</font>
 
-### 6.2. 二级缓存
+### 二级缓存
 
-#### 6.2.1. 概述
+#### 概述
 
 1. HQL 支持缓存，不过是二级缓存，如果返回的记录是多条数据，需要使用二级缓存。
 2. 一级缓存是 session 级别的缓存。
 
 hql 使用的使用 query 对象，需要配置二级缓存。
 
-#### 6.2.2. 二级缓存的配置
+#### 二级缓存的配置
 
 1. 导入包 `hibernate-release-5.x.x.Final.jar`（源码在 `\lib\optional\ehcache`）
 2. 在 hibernate.cfg.xml 配置文件中，配置打开缓存。
@@ -1316,13 +1316,13 @@ query.setCacheable(true);
 ```
 
 4. <font color=red>**注意：配置二级缓存，实体类必须要实现序列化接口**</font>9.7. 
-### 6.3. 查询层次缓存
+### 查询层次缓存
 
 Hibernate 也实现了一个和二级缓存密切集成的查询结果集缓存。这是一个可选择的、并且需要两个额外的物理缓存区域，它们保存着缓存的查询结果和表单上一次更新时的时间戳。这仅对以同一个参数频繁运行的查询来说是有用的。
 
-### 6.4. 快照机制
+### 快照机制
 
-#### 6.4.1. 概述
+#### 概述
 
 当对象变成<font color=red>持久态对象</font>的时候，和数据库表关联后。在 session 中<font color=red>**会保存<u>两份数据的副本</u>：一份是缓存，一个是快照**</font>。缓存与快照的区别如下：
 
@@ -1351,21 +1351,21 @@ public void update2() {
 }
 ```
 
-#### 6.4.2. 实现原理
+#### 实现原理
 
 当获得一个持久态对象，此时 Session 保存两份副本，一份是快照数据(不能手动修改)，一份是缓存数据。此时再调用对象的 set 方法修改某个属性，<font color=red>修改属性的同时修改缓存的数据，但快照数据保持不变</font>。最后提交事务，就会<font color=red>对比快照与缓存中的数据，如果数据不一样，则更新数据库</font>（不需要再将使用 `update()` 方法）。
 
 ![](images/216724816259477.jpg)
 
-## 7. Hibernate 拦截器
+## Hibernate 拦截器
 
-### 7.1. 概述
+### 概述
 
 在 Hibernate 中，一个对象将被创建和保持。一旦对象已经被修改，它必须被保存到数据库里。这个过程持续直到下一次对象被需要，它将被从持久的存储中加载。
 
 Hibernate 提供了一个 Interceptor 接口，可以实现在持久化对象不同的生命周期阶段，被调用进行一些所需要的任务的方法。这些方法是从会话到应用程序的回调函数，允许应用程序在持久化对象被保存，更新，删除或上传之前，对其进行检查或操作。
 
-### 7.2. Interceptor 接口
+### Interceptor 接口
 
 `org.hibernate.Interceptor` 常用方法如下：
 
@@ -1425,11 +1425,11 @@ isUnsaved()
 
 - （没有找到此方法，待确认）
 
-### 7.3. 拦截器的基础使用
+### 拦截器的基础使用
 
 自定义拦截器可以直接实现 `Interceptor` 类或者继承 `EmptyInterceptor` 类。以下是简单的使用 Hibernate 拦截器功能的步骤。
 
-#### 7.3.1. 基础代码准备
+#### 基础代码准备
 
 1. 在数据库中创建 EMPLOYEE 表
 2. 根据 EMPLOYEE 表的字段，创建相应的 Employee 类
@@ -1457,7 +1457,7 @@ isUnsaved()
 </hibernate-mapping>
 ```
 
-#### 7.3.2. 创建拦截器
+#### 创建拦截器
 
 例子中继承 `EmptyInterceptor`，当 Employee 对象被创建和更新时拦截器的方法将自动被调用。*也可以根据需求实现更多的方法*。
 
@@ -1527,7 +1527,7 @@ public class MyInterceptor extends EmptyInterceptor {
 }
 ```
 
-#### 7.3.3. 创建测试程序
+#### 创建测试程序
 
 测试程序需要注意，当创建 `Session` 对象时使用 `Interceptor` 类作为参数。
 
@@ -1691,9 +1691,9 @@ mysql> select * from EMPLOYEE;
 +----+------------+-----------+--------+
 ```
 
-## 8. Hibernate 相关扩展知识
+## Hibernate 相关扩展知识
 
-### 8.1. eclipse 创建 XML 的配置 DTD 规则文件生成配置文件
+### eclipse 创建 XML 的配置 DTD 规则文件生成配置文件
 
 大部分的框架规则文件都在核心包，Hibernate 的规则文件也是在 core 核心包里面找。有注意事项如下：
 
@@ -1704,7 +1704,7 @@ mysql> select * from EMPLOYEE;
 3. Hibernate 的规则文件都在核心包里面 hibernate-core-5.0.12.Final.jar
 4. 配置文件最重要的步骤，就是在核心包里面 cfg 找到对应的属性！！！！！
 
-#### 8.1.1. 关联本地 dtd 约束文件的方式1
+#### 关联本地 dtd 约束文件的方式1
 
 ![](images/542580520266705.jpg) ![](images/330700620259374.jpg)
 
@@ -1730,13 +1730,13 @@ hibernate-core-5.0.12.Final.jar -> org.hibernate.cfg -> AvailableSettings.class
 
 ![](images/416761020263486.jpg)
 
-#### 8.1.2. 关联本地 dtd 约束文件的方式2
+#### 关联本地 dtd 约束文件的方式2
 
 关联 dtd 文件时选择 url，对应是 hibernate/struts 的 dtd 下载网址（注意前后不能有空格和 `""` 双引号）
 
 ![](images/276871120257032.jpg)
 
-### 8.2. Eclipse 插件 ERMaster 根据数据库表生成 JavaBean 代码
+### Eclipse 插件 ERMaster 根据数据库表生成 JavaBean 代码
 
 - 将 ERMaster 解压到 Eclipse 里面
 
@@ -1764,12 +1764,12 @@ hibernate-core-5.0.12.Final.jar -> org.hibernate.cfg -> AvailableSettings.class
 
 ![](images/455655112269661.jpg)
 
-### 8.3. Hibernate 的 session 跟 servlet 的 session 的 区别
+### Hibernate 的 session 跟 servlet 的 session 的 区别
 
 - servlet 的 session 保持的是请求状态的。（用于返回当前用户的数据到页面）
 - hibernate 的 session 保持程序和数据库连接的状态。（用于操作数据库）
 
-### 8.4. Hibernate 使用 JDBC（了解，基本不用）
+### Hibernate 使用 JDBC（了解，基本不用）
 
 ```java
 // 使用 JDBC 操作（了解）
@@ -1794,7 +1794,7 @@ public void findALLByJDBC(){
 }
 ```
 
-### 8.5. 逆向工程
+### 逆向工程
 
 逆向工程是通过数据库的结构生成代码。下面是以 eclipse 为例：
 

@@ -1,8 +1,8 @@
 # Bean 的实例化过程（基于xml配置方式）
 
-## 1. Spring 框架解析xml文件流程
+## Spring 框架解析xml文件流程
 
-### 1.1. 解析xml文件入口
+### 解析xml文件入口
 
 此次分析源码如何解析xml文件的的入口选择了比较常用的`ClassPathXmlApplicationContext`类，点击查看此类的构造方法
 
@@ -27,7 +27,7 @@ public ClassPathXmlApplicationContext(
 }
 ```
 
-### 1.2. 解析xml文件流程
+### 解析xml文件流程
 
 1. 通过构造函数，创建对应的上下文对象。调用父类AbstractApplicationContext中的`refresh()`方法
 2. 做了一些初始化容器的准备工作后，调用父类AbstractApplicationContext的`obtainFreshBeanFactory()`方法，返回`ConfigurableListableBeanFactory`对象
@@ -66,9 +66,9 @@ public ClassPathXmlApplicationContext(
 
 ![xml流程分析图](images/20191222113802450_32288.png)
 
-### 1.3. 自定义标签解析（component-scan 标签为例）
+### 自定义标签解析（component-scan 标签为例）
 
-#### 1.3.1. 自定义标签解析源码调用逻辑
+#### 自定义标签解析源码调用逻辑
 
 ![](images/20200109144928626_7171.png)
 
@@ -98,7 +98,7 @@ String namespaceUri = getNamespaceURI(node);
 handler.parse(ele, new ParserContext(this.readerContext, this, containingBd));
 ```
 
-#### 1.3.2. parse 解析方法流程分析（以`<context:component-scan/>`为例）
+#### parse 解析方法流程分析（以`<context:component-scan/>`为例）
 
 每个NameHander的`init()`方法注册不同标签对应的不同的 Parse 解析器，如 `<context:component-scan/>` 标签的解析是`ComponentScanBeanDefinitionParser`，其`parse`方法源码如下：
 
@@ -146,7 +146,7 @@ public BeanDefinition parse(Element element, ParserContext parserContext) {
 3. 通过`scanner.doScan`方法，扫描类并封装成`BeanDefiniton`对象
 4. `registerComponents(parserContext.getReaderContext(), beanDefinitions, element);`方法注册相关`BeanPostProcessor`类，后面用于注解DI依赖注入
 
-#### 1.3.3. configureScanner 注解扫描器的创建
+#### configureScanner 注解扫描器的创建
 
 ![](images/20210215092125857_29037.png)
 
@@ -184,7 +184,7 @@ protected ClassPathBeanDefinitionScanner configureScanner(ParserContext parserCo
 
 ![](images/20210215093532078_25864.png)
 
-#### 1.3.4. doScan 注解类的扫描
+#### doScan 注解类的扫描
 
 ![](images/20210215094056202_17085.png)
 
@@ -244,7 +244,7 @@ protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 
 ![](images/20210215095043845_19017.png)
 
-#### 1.3.5. registerComponents 组件注册
+#### registerComponents 组件注册
 
 ![](images/20210215100353499_22959.png)
 
@@ -259,9 +259,9 @@ protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 ![](images/20210215104255501_11966.png)
 
 
-## 2. invokeBeanFactoryPostProcessors 方法调用
+## invokeBeanFactoryPostProcessors 方法调用
 
-### 2.1. 方法的作用
+### 方法的作用
 
 `AbstractApplicationContext`类的`refresh()`核心方法，`invokeBeanFactoryPostProcessors`方法的作用是：在Bean实例化前，BeanDefinitionRegistry与BeanFactory初始化后，实例化`BeanDefinitionRegistryPostProcessor`与`BeanFactoryPostProcessor`接口的实现类，并且调用接口的`postProcessBeanDefinitionRegistry()`与`postProcessBeanFactory()`方法
 
@@ -292,13 +292,13 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 }
 ```
 
-### 2.2. BeanDefinitionRegistryPostProcessor 接口的方法调用
+### BeanDefinitionRegistryPostProcessor 接口的方法调用
 
-#### 2.2.1. 接口的作用
+#### 接口的作用
 
 <font color=red>**这个接口的理解：用于获取 `BeanDefinitionRegistry` 对象，获取到此对象就可以获取这个对象中注册的所有 `BeanDefinition` 对象，就可以完成里面所有 `BeanDefinition` 对象的新增、修改、删除、查询操作。**</font>
 
-#### 2.2.2. 在spring中的调用时机
+#### 在spring中的调用时机
 
 在AbstractApplicationContext类的`refresh()`方法中，调用`invokeBeanFactoryPostProcessors(beanFactory)`方法。BeanDefinitionRegistryPostProcessor 这个接口的调用分为三步：
 
@@ -306,9 +306,9 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 2. 调用实现了 Ordered 排序接口
 3. 没有实现接口的调用
 
-#### 2.2.3. 接口主要作用的案例
+#### 接口主要作用的案例
 
-##### 2.2.3.1. BeanDefinition 的增删改查操作
+##### BeanDefinition 的增删改查操作
 
 ```java
 package com.moon.spring.postprocessor;
@@ -385,7 +385,7 @@ public class CustomBeanDefinitionRegistryPostProcessor implements BeanDefinition
 }
 ```
 
-##### 2.2.3.2. 自定义注解扫描
+##### 自定义注解扫描
 
 可以通过实现`BeanDefinitionRegistryPostProcessor`接口，实现自定义注解扫描及其所作用的类注册到spring容器中
 
@@ -493,7 +493,7 @@ public void testCustomAnnotationScan() {
 }
 ```
 
-##### 2.2.3.3. BeanFactory 参数的修改
+##### BeanFactory 参数的修改
 
 实现`BeanDefinitionRegistryPostProcessor`接口，在`postProcessBeanFactory`方法可以获取到`BeanFactory`实例，从而可以实现对`BeanFactory`的一些参数修改，及其所有注册的BeanDefinition对象
 
@@ -531,15 +531,15 @@ public class CustomBeanDefinitionRegistryPostProcessor implements BeanDefinition
 }
 ```
 
-### 2.3. BeanFactoryPostProcessor 接口的方法调用
+### BeanFactoryPostProcessor 接口的方法调用
 
 此调用的流程与`BeanDefinitionRegistryPostProcessor`一样，在`BeanDefinitionRegistryPostProcessor`接口调用后进行调用
 
 ![](images/20210115150828600_8797.png)
 
-## 3. registerBeanPostProcessors 方法调用
+## registerBeanPostProcessors 方法调用
 
-### 3.1. BeanPostProcessor 源码
+### BeanPostProcessor 源码
 
 ```java
 public interface BeanPostProcessor {
@@ -557,11 +557,11 @@ public interface BeanPostProcessor {
 }
 ```
 
-### 3.2. BeanPostProcessor 接口的作用
+### BeanPostProcessor 接口的作用
 
 BeanPostProcessor（后置处理器）：这个接口里面有两个方法，可以进行相应的操作，<font color=red>**bean实例化前的操作，以及bean实例化后的操作**</font>，这个实例化在其他正常的实例化方法之前，比如可以阻止其他 bean 的 IOC 依赖注入，把实现了 BeanPostProcessor 接口的类实例化，并且加入到 BeanFactory
 
-### 3.3. BeanPostProcessor 的注册
+### BeanPostProcessor 的注册
 
 在AbstractApplicationContext类的`refresh()`方法中，调用`registerBeanPostProcessors(beanFactory);`方法。此方法完成了 `BeanPostProcessor` 的注册，<font color=red>**就是把实现 `BeanPostProcessor` 接口的类提前实例化**</font>
 
@@ -618,7 +618,7 @@ private static void registerBeanPostProcessors(
 }
 ```
 
-## 4. initMessageSource 初始化消息资源接口的实现类（待整理）
+## initMessageSource 初始化消息资源接口的实现类（待整理）
 
 ```java
 // 初始化消息资源接口的实现类。主要用于处理国际化（i18n），重要程度【2】
@@ -626,9 +626,9 @@ private static void registerBeanPostProcessors(
 initMessageSource();
 ```
 
-## 5. initApplicationEventMulticaster 容器注册与初始化事件管理类
+## initApplicationEventMulticaster 容器注册与初始化事件管理类
 
-### 5.1. 源码
+### 源码
 
 ```java
 protected void initApplicationEventMulticaster() {
@@ -655,13 +655,13 @@ protected void initApplicationEventMulticaster() {
 }
 ```
 
-### 5.2. 作用
+### 作用
 
 此方法是`AbstractApplicationContext.refresh()`方法的流程之一，作用是为容器注册与初始化事件管理类
 
-## 6. onRefresh
+## onRefresh
 
-### 6.1. 源码
+### 源码
 
 ```java
 /*
@@ -685,17 +685,17 @@ protected void onRefresh() throws BeansException {
 }
 ```
 
-### 6.2. 作用
+### 作用
 
 此方法是`AbstractApplicationContext.refresh()`方法的流程之一，是典型的钩子方法，是模板设计模式。此方法是在一般的spring实现中，都是空方法，没有任何逻辑。但在SpringBoot中，就在此方法中完成一些事情，如tomcat的启动等等工作。
 
-## 7. registerListeners 注册事件类应用的监听器
+## registerListeners 注册事件类应用的监听器
 
-### 7.1. 作用
+### 作用
 
 此方法是`AbstractApplicationContext.refresh()`方法的流程之一，作用是往事件管理类中注册事件类应用的监听器，就是注册实现了ApplicationListener接口的监听器bean。*前面的`initApplicationEventMulticaster()`方法是用于初始化事件管理类*
 
-### 7.2. Spring 标准事件与自定义事件使用示例
+### Spring 标准事件与自定义事件使用示例
 
 1. 创建自定义事件类，需继承Spring的`ApplicationEvent`事件类
 
@@ -811,13 +811,13 @@ public void testPublishEvent() {
 }
 ```
 
-### 7.3. Spring 事件的处理流程
+### Spring 事件的处理流程
 
 > 官网：Event handling in the ApplicationContext is provided through the ApplicationEvent class and the ApplicationListener interface. If a bean that implements the ApplicationListener interface is deployed into the context, every time an ApplicationEvent gets published to the ApplicationContext, that bean is notified. Essentially, this is the standard Observer design pattern.
 
 Spring框架是通过`ApplicationEvent`类和`ApplicationListener`接口提供了ApplicationContext中对于事件处理功能。如果将实现`ApplicationListener`接口的监听类注册到spring容器中，则每次`ApplicationEvent`发布到ApplicationContext时，都会调用到该监听类的相应方法。这个本质就是标准的观察者设计模式。
 
-#### 7.3.1. Spring 提供的标准事件列表
+#### Spring 提供的标准事件列表
 
 |             事件             |                                                         说明                                                          |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -828,7 +828,7 @@ Spring框架是通过`ApplicationEvent`类和`ApplicationListener`接口提供�
 | `RequestHandledEvent`        | 请求处理事件，在Web应用中，当一个http请求(request)结束触发该事件。*此事件仅适用于使用Spring的DispatcherServlet的Web应用程序。* |
 | `ServletRequestHandledEvent` | `RequestHandledEvent`的子类，添加了特定于Servlet的上下文信息                                                             |
 
-#### 7.3.2. 源码
+#### 源码
 
 此方法是`AbstractApplicationContext.refresh()`方法的流程之一，作用是往事件管理类中注册事件类应用的监听器
 
@@ -895,7 +895,7 @@ public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableTyp
 }
 ```
 
-#### 7.3.3. ContextRefreshedEvent 事件的执行时机
+#### ContextRefreshedEvent 事件的执行时机
 
 在`AbstractApplicationContext.refresh()`方法的流程中的`finishRefresh()`方法中，完成context的刷新。主要是调用LifecycleProcessor的onRefresh()方法，并且发布`ContextRefreshedEvent`事件
 
@@ -983,7 +983,7 @@ protected void finishBeanFactoryInitialization(ConfigurableListableBeanFactory b
 }
 ```
 
-## 1. preInstantiateSingletons 实例化主流程方法
+## preInstantiateSingletons 实例化主流程方法
 
 `DefaultListableBeanFactory`抽象类中的`preInstantiateSingletons`方法，此方法是具体实例化过程
 
@@ -1057,9 +1057,9 @@ public void preInstantiateSingletons() throws BeansException {
 
 在此处实例化会分成普通bean实例以及实现factorybean接口的bean实例化。其核心方法是`getBean(beanName);`。
 
-## 2. getSingleton 方法（获取单例）
+## getSingleton 方法（获取单例）
 
-### 2.1. 源码
+### 源码
 
 核心代码位置：
 
@@ -1129,7 +1129,7 @@ protected <T> T doGetBean(
 }
 ```
 
-### 2.2. getSingleton 两个重载方法
+### getSingleton 两个重载方法
 
 ```java
 /**
@@ -1160,7 +1160,7 @@ public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory)
 - 第一个`getSingleton`方法是根据beanName从缓存中获取单例对象。并且检查是否允许循环依赖
 - 第二个`getSingleton`方法也是根据beanName从缓存中获取单例对象，如果缓存中没有，则创建一个新的实例对象
 
-### 2.3. getSingleton 从缓存中获取 Bean 实例的过程
+### getSingleton 从缓存中获取 Bean 实例的过程
 
 ```java
 /* 根据beanName从缓存中获取实例 */
@@ -1199,7 +1199,7 @@ protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 3. 如果二级缓存中没有，并且是允许实例提前暴露，则再从singletonFactories（三级缓存）中获取。
 4. 如果三级缓存中也没有，则直接返回null；如果三级缓存中存在实例，则将实例存入二级缓存，并且将其实例对象从三级缓存中删除。（**这个操作主要是用于循环依赖**）
 
-### 2.4. beforeSingletonCreation
+### beforeSingletonCreation
 
 方法开始，调用`this.singletonObjects.get(beanName);`方法，从一级缓存中获取实例，如果一级缓存中有，说明bean实例化已完成，则直接返回；如果一级缓存中没有，说明bean还没有实例化，则进行创建
 
@@ -1223,7 +1223,7 @@ protected void beforeSingletonCreation(String beanName) {
 }
 ```
 
-### 2.5. singletonFactory.getObject
+### singletonFactory.getObject
 
 在执行`Object getSingleton(String beanName, ObjectFactory<?> singletonFactory)`方法的过程中，调用了`singletonObject = singletonFactory.getObject();`方法(即会调用外层的lambda表达式的逻辑)。调到 getObject 方法，完成 bean 的实例化。
 
@@ -1231,7 +1231,7 @@ protected void beforeSingletonCreation(String beanName) {
 
 ![](images/20210123230657453_30340.png)
 
-### 2.6. afterSingletonCreation
+### afterSingletonCreation
 
 当`getObject`方法调用完后，就代表着 Bean 实例化已经完成了，此后还需要进行以下两步操作：
 
@@ -1278,15 +1278,15 @@ protected void addSingleton(String beanName, Object singletonObject) {
 }
 ```
 
-### 2.7. 涉及相关重要的核心属性
+### 涉及相关重要的核心属性
 
 在`DefaultSingletonBeanRegistry`类中的`singletonObjects`属性，此属性是Map结构容器，用于存在完全实例化的对象。
 
 > 完全实例化对象：指的是此类创建出对象，并且类里的所有属性与DI（依赖注入）都全部已经完成
 
-## 3. createBean 方法
+## createBean 方法
 
-### 3.1. 源码位置
+### 源码位置
 
 `createBean`的代码位置：`AbstractBeanFactory.doGetBean()` 方法中调用，其具体实现在`AbstractAutowireCapableBeanFactory.createBean`，此方法是 bean 实例化核心方法。
 
@@ -1294,11 +1294,11 @@ protected void addSingleton(String beanName, Object singletonObject) {
 
 在实例化bean的方法中，会把 bean 实例化，并且包装成 BeanWrapper。*注：但此时不涉及DI（依赖注入）*
 
-### 3.2. doCreateBean 方法
+### doCreateBean 方法
 
 ![](images/20200503085619659_19844.png)
 
-### 3.3. createBeanInstance 方法
+### createBeanInstance 方法
 
 在`doCreateBean`方法中对应创建 Bean 实例的方法是`createBeanInstance`。会将bean实例化，并且包装成`BeanWrapper`对象返回
 
@@ -1308,14 +1308,14 @@ instanceWrapper = createBeanInstance(beanName, mbd, args);
 
 ![](images/20200503085137982_4511.png)
 
-#### 3.3.1. 此方法主要处理的内容
+#### 此方法主要处理的内容
 
 1. 实例化factoryMethod方法相应的实例
 2. 实例化标识`@Autowired`注解的有参构造函数
 3. 实例化没有`@Autowired`注解的有参构造函数
 4. 实例化无参构造函数
 
-#### 3.3.2. 获取bean的Class对象
+#### 获取bean的Class对象
 
 该方法首先通过beanName，反射获取将要实例化的bean的Class对象
 
@@ -1327,9 +1327,9 @@ protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd
 	....
 ```
 
-### 3.4. createBeanInstance 对 FactoryMethodName 属性的处理
+### createBeanInstance 对 FactoryMethodName 属性的处理
 
-#### 3.4.1. 源码分析
+#### 源码分析
 
 进入`createBeanInstance(beanName, mbd, args);`方法中，会有判断当前创建中类（BeanDefinition对象）的`FactoryMethodName`属性是否为空，如果不为空，则调用`instantiateUsingFactoryMethod()`方法进行factory-method的实例处理，核心代码如下：
 
@@ -1442,14 +1442,14 @@ public BeanWrapper instantiateUsingFactoryMethod(
 }
 ```
 
-#### 3.4.2. factory-method 两种调用形式总结
+#### factory-method 两种调用形式总结
 
 1. 配置`factory-bean`属性，`factory-method`指定类中的非静态方法
 2. 如不配置`factory-bean`属性，则必须配置`class`属性，并且`factory-method`指定类中的静态方法
 
-### 3.5. createBeanInstance 对不同类型的构造函数处理
+### createBeanInstance 对不同类型的构造函数处理
 
-#### 3.5.1. 标识 @Autowired 注解的有参构造函数实例化过程
+#### 标识 @Autowired 注解的有参构造函数实例化过程
 
 测试示例：
 
@@ -1543,7 +1543,7 @@ protected BeanWrapper autowireConstructor(
 
 <font color=red>**总结：由以上源码分析可知，不管是Field，Method、或者是构造函数，凡是使用`@Autowired`注解，如果自动注入的参数是一个引用的类型，就会触发这个引用类型的getBean方法来进行实例化，获取bean实例**</font>
 
-#### 3.5.2. 无 @Autowired 注解的有参构造函数实例化过程
+#### 无 @Autowired 注解的有参构造函数实例化过程
 
 当实例化的类中有一个无`@Autowired`的有参数构造函数时，spring是可以正常实例化该类；如果多个无标识`@Autowired`的有参构造函数时，实例化时会报错，但报错非spring框架的错误，而是会报实例化时找不到构造函数。因为这种情况下，spring框架实例化会去找无参构造函数。如不让程序报错，增加无参构造函数即可
 
@@ -1562,7 +1562,7 @@ public AutowiredConstructorComponent(ComponentA a) {
 
 ![](images/20210130001836071_9330.png)
 
-#### 3.5.3. 无参构造函数的实例化过程
+#### 无参构造函数的实例化过程
 
 通过上面有`@Autowired`注解与无注解的有参构造方法处理后，如果都没有，则走到无参数构造函数的实例化。**这就是简单的反射实例化。大部分类的实例化都会走无参构造的逻辑**
 
@@ -1576,13 +1576,13 @@ protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd
 }
 ```
 
-#### 3.5.4. 小结
+#### 小结
 
 为什么spring框架要设计可以使用`@Autowired`注解标识有参构造函数的方式来实例化对象，如果类只一个构造函数，或者不写构造函数（此时会有默认的构造函数）都可以支持类到的实例化。
 
 因为类是可以定义多个构造函数，所以通过设计这种注解的的方式，方便使用者去指定以那个构造函数用于实例化
 
-### 3.6. 类中注解的收集 applyMergedBeanDefinitionPostProcessors
+### 类中注解的收集 applyMergedBeanDefinitionPostProcessors
 
 实例化完成后，接下来就需要对类中的属性进行依赖注入操作。类里面属性和方法的依赖注入往往都标识了 `@Autowired` 或者 `@Resource` 注解，核心方法就是`applyMergedBeanDefinitionPostProcessors`
 
@@ -1612,7 +1612,7 @@ synchronized (mbd.postProcessingLock) {
 
 ![](images/20200505171610617_18011.png)
 
-#### 3.6.1. CommonAnnotationBeanPostProcessor
+#### CommonAnnotationBeanPostProcessor
 
 第1个是调用 `CommonAnnotationBeanPostProcessor` 类，这个类完成了 `@Resource` 注解的属性或者方法的收集。这个类还对 `@PostConstruct` 和 `@PreDestory` 等注解的支持
 
@@ -1762,17 +1762,17 @@ private InjectionMetadata findResourceMetadata(String beanName, final Class<?> c
 
 ![](images/20210131091802503_20563.png)
 
-#### 3.6.2. AutowiredAnnotationBeanPostProcessor
+#### AutowiredAnnotationBeanPostProcessor
 
 `AutowiredAnnotationBeanPostProcessor`类，对`@Autowired`与`@Value`注解的属性和方法的收集。收集过程基本上跟`@Resource`注解的收集差不多，详见源码注释
 
-### 3.7. IOC\DI 依赖注入（populateBean）
+### IOC\DI 依赖注入（populateBean）
 
-#### 3.7.1. populateBean 源码位置
+#### populateBean 源码位置
 
 ![](images/20210131093846296_3242.png)
 
-#### 3.7.2. DI 前是否需要注入判断
+#### DI 前是否需要注入判断
 
 ![](images/20210131151426080_17297.png)
 
@@ -1780,7 +1780,7 @@ private InjectionMetadata findResourceMetadata(String beanName, final Class<?> c
 
 > 注：此部分运用的示例详见`spring-note\spring-analysis-note\spring-source-study-2021\09-spring-beanpostprocessor\CustomInstantiationAwareBeanPostProcessor.java`
 
-#### 3.7.3. @Resource 和 @Autowired 注解依赖注入
+#### @Resource 和 @Autowired 注解依赖注入
 
 在Bean实例化完成、并且收集完`@Resource`和`@Autowired`注解以后，通过上面的依赖注入前的校验后，开始处理依赖注入的逻辑
 
@@ -2018,7 +2018,7 @@ public abstract static class InjectedElement {
 
 <font color=red>**上述过程是对`@Autowired`、`@Resource`以及`@Value`注解修饰的`Field`和`Method`等完成依赖注入**</font>
 
-##### 3.7.3.1. @Autowired 自动匹配小结(待研究分析，补充)
+##### @Autowired 自动匹配小结(待研究分析，补充)
 
 1. @Autowired 本质上是根据成员变量或方法参数的类型进行装配
 2. 如果待装配类型是 `Optional`，需要根据 `Optional` 泛型找到 bean，再封装为 `Optional` 对象装配
@@ -2032,9 +2032,9 @@ public abstract static class InjectedElement {
 10. 有 `@Primary` 标注的 `@Component` 或 `@Bean` 的处理
 11. 与成员变量名或方法参数名同名 bean 的处理
 
-##### 3.7.3.2. @Autowird 装配测试示例（待补充！）
+##### @Autowird 装配测试示例（待补充！）
 
-#### 3.7.4. @Value 属性值注入
+#### @Value 属性值注入
 
 其实`@Value`的属性值注入，与`@Autowired`注解注入流程是一样。在`AbstractAutowireCapableBeanFactory#doCreateBean`的方法，执行到`applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);`时，会对`@Value`注解的收集，然后在`populateBean`处理对属性的注入，主要`AutowiredAnnotationBeanPostProcessor`这个 BeanPostProcessor 实现
 
@@ -2062,7 +2062,7 @@ public abstract static class InjectedElement {
 
 ![](images/20210212121621247_23021.png)
 
-##### 3.7.4.1. @Value 装配底层 - 按类型装配的步骤小结(待分析)
+##### @Value 装配底层 - 按类型装配的步骤小结(待分析)
 
 1. 查看需要的类型是否为 `Optional`，若为是则进行封装（非延迟），否则流程向下走
 2. 查看需要的类型是否为 `ObjectFactory` 或 `ObjectProvider`，若为是则进行封装（延迟），否则流程向下走
@@ -2078,7 +2078,7 @@ public abstract static class InjectedElement {
 10. 如果结果仍大于 1，再根据成员名或变量名进行筛选
 11. 结果仍大于 1，抛出 `NoUniqueBeanDefinitionException` 异常
 
-##### 3.7.4.2. @Value 解析测试示例
+##### @Value 解析测试示例
 
 > 示例代码：spring-note\spring-sample\36-annotation-value
 
@@ -2203,7 +2203,7 @@ public class SpringValueTest {
 }
 ```
 
-#### 3.7.5. xml 配置的依赖注入
+#### xml 配置的依赖注入
 
 比如在spring的xml配置文件的 `<bean>` 标签中配置以下属性
 
@@ -2221,9 +2221,9 @@ public class SpringValueTest {
 
 这块逻辑是针对xml配置依赖注入的，基本上现在基于xml配置的依赖很少使用，没必要研究
 
-### 3.8. initializeBean - Bean 实例化和 IOC 依赖注入完成后逻辑处理
+### initializeBean - Bean 实例化和 IOC 依赖注入完成后逻辑处理
 
-#### 3.8.1. 源码位置与逻辑处理内容
+#### 源码位置与逻辑处理内容
 
 核心代码位置在`AbstractAutowireCapableBeanFactory`类中的`doCreateBean()`方法中。`initializeBean`方法主要是
 
@@ -2239,7 +2239,7 @@ exposedObject = initializeBean(beanName, exposedObject, mbd);
 3. 调用实现了`InitializingBean`接口的类中的`afterPropertiesSet`方法，调用init-method中配置的方法
 4. 代理实例的创建，用BeanPostProcessor接口来完成代理实例的生成
 
-#### 3.8.2. 对某些 Aware 接口的调用(实例化Bean后执行流程1)
+#### 对某些 Aware 接口的调用(实例化Bean后执行流程1)
 
 此步骤主要是对于当前实例中的bean实现某些Aware的接口的方法调用，如`BeanNameAware`、`BeanClassLoaderAware`、`BeanFactoryAware`
 
@@ -2266,7 +2266,7 @@ private void invokeAwareMethods(final String beanName, final Object bean) {
 }
 ```
 
-#### 3.8.3. @PostConstruct 注解方法与某些Aware接口的调用(实例化Bean后执行流程2)
+#### @PostConstruct 注解方法与某些Aware接口的调用(实例化Bean后执行流程2)
 
 `applyBeanPostProcessorsBeforeInitialization`方法，作用是对类中某些特殊方法的调用，比如@PostConstruct，Aware接口。此处又是一个 `BeanPostProcessor` 接口的运用。核心代码位置
 
@@ -2301,7 +2301,7 @@ public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, S
 }
 ```
 
-##### 3.8.3.1. ApplicationContextAwareProcessor
+##### ApplicationContextAwareProcessor
 
 `ApplicationContextAwareProcessor`类是相关`Aware`类型的接口的调用，支持`EnvironmentAware`、`EmbeddedValueResolverAware`、`ResourceLoaderAware`、`ApplicationEventPublisherAware`、`MessageSourceAware`、`ApplicationContextAware`等接口
 
@@ -2359,7 +2359,7 @@ private void invokeAwareInterfaces(Object bean) {
 }
 ```
 
-##### 3.8.3.2. InitDestroyAnnotationBeanPostProcessor
+##### InitDestroyAnnotationBeanPostProcessor
 
 从前面了解到，有 `@PostConstruct` 注解的方法会收集到一个 `metaData` 对象中，现在就是通过 `BeanPostProcessor` 接口调到 `CommonAnnotationBeanPostProcessor` 类，然后在类中拿到 `metaData` 对象，根据对象里面的容器来反射调用有注解的方法。核心逻辑（*以`InitDestroyAnnotationBeanPostProcessor`为例，此类用于调用`@PostConstruct`相应的方法*）代码如下：
 
@@ -2409,7 +2409,7 @@ public void invoke(Object target) throws Throwable {
 }
 ```
 
-##### 3.8.3.3. ImportAwareBeanPostProcessor
+##### ImportAwareBeanPostProcessor
 
 `ImportAwareBeanPostProcessor`是`ConfigurationClassPostProcessor`的内部类，是对`ImportAware`接口类型实例的`setImportMetadata`方法调用。
 
@@ -2435,7 +2435,7 @@ public Object postProcessBeforeInitialization(Object bean, String beanName) {
 
 > <font color=red>**注：通过`@Import`注解导入的类，在spring容器中注册的名称不是默认的“类名首字母小写”，而是“类的全限定名”**</font>
 
-##### 3.8.3.4. 番外：ImportAware 接口的运用示例
+##### 番外：ImportAware 接口的运用示例
 
 - 创建`ImportAware`接口的实现类。<font color=red>**注意：此实现类不需要使用`@Component`之类的注解，而是通过`@Import`注解的方式，让spring容器管理**</font>
 
@@ -2486,9 +2486,9 @@ public void testImportAware() {
 
 ![](images/20210205103633266_8754.png)
 
-#### 3.8.4. InitializingBean 接口和 init-method 属性的调用(实例化Bean后执行流程3)
+#### InitializingBean 接口和 init-method 属性的调用(实例化Bean后执行流程3)
 
-##### 3.8.4.1. InitializingBean 接口介绍
+##### InitializingBean 接口介绍
 
 实现`InitializingBean`接口的类，spring会在实例化该类以后，会调用接口的`afterPropertiesSet()`方法
 
@@ -2564,7 +2564,7 @@ public void testBaseInitializingBean() {
 
 ![](images/20210203135226427_9828.png)
 
-##### 3.8.4.2. 源码实现过程分析
+##### 源码实现过程分析
 
 执行流程往下就是对实现了`InitializingBean`接口的类与在xml配置文件中`<bean>`标签中配置了`init-method`属性的相应方法的调用
 
@@ -2612,13 +2612,13 @@ protected void invokeInitMethods(String beanName, final Object bean, @Nullable R
 }
 ```
 
-#### 3.8.5. @PostConstruct、InitializingBean接口、init-method 小结
+#### @PostConstruct、InitializingBean接口、init-method 小结
 
 `InitializingBean.afterPropertiesSet`、`init-method`和有`@PostConstruct`注解的方法其实核心功能都是一样的，只是调用时序不一样而已，都是在该类实例化和 IOC 做完后调用的，可以在这些方法中做一些在 spring 或者 servlet 容器启动的时候的初始化工作。比如缓存预热，比如缓存数据加载到内存，比如配置解析，等等初始化工作。
 
 <font color=red>**从源码的分析可知，这3种初始化方法的调用时序是：`@PostConstruct` -> `InitializingBean.afterPropertiesSet` -> `init-method`（xml配置）**</font>
 
-#### 3.8.6. AOP入口
+#### AOP入口
 
 在这个方法里面最后还有一个重要的逻辑
 
@@ -2637,11 +2637,11 @@ protected Object initializeBean(final String beanName, final Object bean, @Nulla
 
 <font color=red>**这也是一个 `BeanPostProcessor` 接口的运用，在这里会返回 bean 的代理实例，这个就是 AOP 的入口。**</font>
 
-### 3.9. 循环依赖
+### 循环依赖
 
 > <font color=red>**注：此部分的逻辑是在IOC/DI依赖注入之前，为了方便理解，先分析了依赖注入与bean实例化后操作流程再来分析**</font>
 
-#### 3.9.1. 循环依赖流程图
+#### 循环依赖流程图
 
 > TODO: 循环依赖参照流程图（引用其他资料。）<font color="red">有时间自己再重新整理</font>
 
@@ -2649,7 +2649,7 @@ protected Object initializeBean(final String beanName, final Object bean, @Nulla
 
 > 图片出处：https://www.processon.com/view/link/5df9ce52e4b0c4255ea1a84f
 
-#### 3.9.2. 循环依赖需要注意的问题
+#### 循环依赖需要注意的问题
 
 SpringBoot 2.6.x 以前是默认允许循环依赖的，即如果代码出现了循环依赖问题，一般情况下也不会报错。Spring 的解决办法是三级缓存机制，提前暴露的对象存放在三级缓存中，二级缓存存放过渡 bean（半成品），一级缓存存放最终形态的 bean。但是这种机制也有一些缺点，比如增加了内存开销（需要维护三级缓存，也就是三个 Map），降低了性能（需要进行多次检查和转换）。**并且循环依赖是有限制条件的，还有少部分情况是不支持循环依赖的**，比如：
 
@@ -2660,7 +2660,7 @@ SpringBoot 2.6.x 以前是默认允许循环依赖的，即如果代码出现了
     - A 中注入的 B 为 setter 注入，B 中注入的 A 为构造器注入，可以成功注入。
     - B 中注入的 A 为 setter 注入，A 中注入的 B 为构造器注入，注入失败。
 
-#### 3.9.3. 循环依赖解决方案
+#### 循环依赖解决方案
 
 SpringBoot 2.6.x 以后官方不再推荐编写存在循环依赖的代码，建议开发者自己写代码时减少不必要的互相依赖。循环依赖本身就是一种设计缺陷，开发者不应该过度依赖 Spring 而忽视了编码的规范和质量，说不定未来某个 SpringBoot 版本就彻底禁止循环依赖的代码。
 
@@ -2681,7 +2681,7 @@ public B(@Lazy A a) {
 }
 ```
 
-#### 3.9.4. 循环依赖步骤与源码分析
+#### 循环依赖步骤与源码分析
 
 > *注：以最简单的两个单例A与B相互引用为案例说明*
 
@@ -2760,7 +2760,7 @@ protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFa
 - 依赖注入后，B类实例化已经完成，B类的实例化是由A类实例化中B属性的依赖注入触发的 `getBean()` 操作进行的，现在B类已经实例化，所以A类中B属性就可以完成依赖注入了，此时A类B属性已经有值了
 - B类A属性指向的就是A类实例堆空间，所以这时候B类A属性也会有值了。
 
-#### 3.9.5. earlySingletonObjects （二级缓存）的作用总结
+#### earlySingletonObjects （二级缓存）的作用总结
 
 `earlySingletonObjects`是`DefaultSingletonBeanRegistry`类中的一个Map集合，作用是用于存放提前暴露的bean实例的映射。
 
@@ -2772,7 +2772,7 @@ protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFa
 
 > *注：其实`singletonFactories`（三级缓存）在多次的循环依赖情况下，只会触发一次就会被删除，将实例放到`earlySingletonObjects`（二级缓存）中*
 
-#### 3.9.6. 有参构造函数的 @Autowired 循环依赖
+#### 有参构造函数的 @Autowired 循环依赖
 
 1. 创建A类的实例是在方法 `createBeanInstance(beanName, mbd, args)` 中通过无参或标识`@Autowired`注解的有参构造函数实例化进行的
 2. 如果A类的有参构造函数的参数是引用类型B类，创建当前实例的时候，就是触发B类的`getBean`实例化操作。
@@ -2790,7 +2790,7 @@ protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFa
 
 **如果是通过属性加`@Autowired`方式进行循环依赖，在执行`populateBean`方法进行属性依赖注入之前就会把 bean 放入三级缓存中，从而在`populateBean`方法进行依赖注入操作时触发 `getBean` 操作时就可以直接从三级缓存中获取到提前暴露的实例引入**
 
-#### 3.9.7. 多例模式的循环依赖
+#### 多例模式的循环依赖
 
 多例模式也是不支持循环依赖，原理同上有参构造函数的循环依赖，多例每次创建的三级缓存都不一样，所以第2次触发`getBean`操作时找不到对应的三级缓存，校验的时候也会报错误。
 
@@ -2808,9 +2808,9 @@ protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFa
 
 ![](images/20210206232329791_17264.png)
 
-### 3.10. Bean 的销毁
+### Bean 的销毁
 
-#### 3.10.1. DisposableBeanAdapter（销毁处理器）的注册
+#### DisposableBeanAdapter（销毁处理器）的注册
 
 在依赖注入完成并调用了相关的Aware接口、生命周期方法后，程序往下执行到`registerDisposableBeanIfNecessary`方法。此方法会在 bean 创建完成后就会对这个 bean 注册一个销毁的 `DisposableBeanAdapter` 对象， `disposableBeans`集合负责对需要销毁的 bean 进行放置。
 
@@ -2928,7 +2928,7 @@ private List<DestructionAwareBeanPostProcessor> filterPostProcessors(List<BeanPo
 }
 ```
 
-#### 3.10.2. Bean 销毁的时的调用处理
+#### Bean 销毁的时的调用处理
 
 测试代码：
 
@@ -2987,11 +2987,11 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
 ![](images/20210209101119229_6741.png)
 
-### 3.11. FactoryBean 接口
+### FactoryBean 接口
 
 > 接口作用与使用示例详见[《Spring笔记01-基础.md》文档](/后端框架/Spring/Spring-基础)
 
-#### 3.11.1. 源码分析
+#### 源码分析
 
 `FactoryBean` 类型接口触发的位置：`AbstractBeanFactory --> doGetBean()`
 
@@ -3189,7 +3189,7 @@ private Object doGetObjectFromFactoryBean(FactoryBean<?> factory, String beanNam
 }
 ```
 
-#### 3.11.2. 小结
+#### 小结
 
 `FactoryBean`接口类型实例的调用具体调用位置是在`getSingleton`方法之后`getObjectForBeanInstance`的方法中，主要处理的内容如下：
 
@@ -3204,9 +3204,9 @@ private Object doGetObjectFromFactoryBean(FactoryBean<?> factory, String beanNam
 
 ![](images/20210213110534655_8412.png)
 
-### 3.12. Bean 的多例及作用域
+### Bean 的多例及作用域
 
-#### 3.12.1. 多例Bean测试
+#### 多例Bean测试
 
 通过`@Scope`注解可以设置bean为多例
 
@@ -3259,14 +3259,14 @@ public void testPrototype() throws InterruptedException {
 
 ![](images/20210213120839072_32605.png)
 
-#### 3.12.2. 多例Bean源码分析
+#### 多例Bean源码分析
 
 ![](images/20210213121102156_12992.png)
 
 - Bean 的多例模式，在容器启动时不会进行实例化，在方法 `preInstantiateSingletons` 中有判断，如果 bean 不是抽象的、单例的、非懒加载的才会进行实例化，多例模式需要在手动调用 `getBean` 触发。存放正在创建的多例 bean 对象的集合是 `prototypesCurrentlyInCreation`，此容器是`ThreadLocal<Object>`，为了确保**同一个线程的同一次`getBean`操作**不会重复创建实例
 - Bean 的多例模式不支持循环依赖 `doGetBean` 方法中有判断，因为多例的 Bean 不进行实例化，所以没法从一级缓存中获取，所以直接就走此方法 `isPrototypeCurrentlyInCreation`，如果 scope 是 `Prototype` 的，校验是否有出现循环依赖，如果有则直接报错。
 
-#### 3.12.3. 多例Bean注意项
+#### 多例Bean注意项
 
 - scope 作用域：默认是单例模式，即 `scope="singleton"`。另外 scope 还有 prototype、request、session、global session 作用域。`scope="prototype"`表示多例。<font color=red>**注：request 和 session 作用域只会在 web 环境才会存在(此时 bean 的管理是由 tomcat 进行的)**</font>
 - Scope 是 `Prototype` 时，不管是否同一个线程，只要是 `getBean()` 方法就会得到一个新的实例
@@ -3277,7 +3277,7 @@ public void testPrototype() throws InterruptedException {
 - `WebXmlApplicationContext` 容器是有 request 和 session 的作用域，但是如何添加呢？
 
 
-#### 3.12.4. Request与Session作用域(!!后面需要补充tomcat部署时的截图。目前因为没有配置好web.xml文件与springMVC)
+#### Request与Session作用域(!!后面需要补充tomcat部署时的截图。目前因为没有配置好web.xml文件与springMVC)
 
 定义两个作用域测试bean。*注：需要引入spring-web的依赖*
 
@@ -3308,9 +3308,9 @@ public void requestSessoinScopeTest() {
 
 ![](images/20200603234906381_7555.png)
 
-#### 3.12.5. 自定义作用域
+#### 自定义作用域
 
-##### 3.12.5.1. 自定义作用域源码分析
+##### 自定义作用域源码分析
 
 阅读`AbstractBeanFactory`类的源码发现，有一个public的方法`registerScope`，该方法可以往spring构架中的scopes容器中注册（添加自定义作用域）。所以只要通过实现`BeanFactoryPostProcessor`接口，拿到spring的BeanFactory对象，即可调用该方法往作用域scopes容器中注册自定义作用域
 
@@ -3412,7 +3412,7 @@ public void destroyScopedBean(String beanName) {
 ```
 
 
-##### 3.12.5.2. 自定义作用域实现
+##### 自定义作用域实现
 
 1. 写一个类实现 scope 接口，实现`get()`方法，该方法是管理生成bean实例作用域的逻辑
 
@@ -3509,7 +3509,7 @@ public class CustomScopeBean {
 
 ![](images/20210213151048197_11426.png)
 
-#### 3.12.6. Bean作用域总结
+#### Bean作用域总结
 
 Spring框架Bean的作用域的本质是对Bean实例的管理。
 
@@ -3523,16 +3523,16 @@ Spring框架Bean的作用域的本质是对Bean实例的管理。
 
 注：Spring基于纯注解的Bean实例化过程，基本上与xml的流程差不多，目前项目几乎都是基于注解驱动开发的，所以基于注解的方式的实例化是重点
 
-## 1. AnnotationConfigApplicationContext 基于注解配置上下文对象
+## AnnotationConfigApplicationContext 基于注解配置上下文对象
 
 创建基于注解的上下文对象 `AnnotationConfigApplicationContext` 一般都会调用以下的构造方法
 
 - 通过传入一个或者多个扫描包名来创建容器
 - 通过传入一个或者多个配置类的字节码对象来创建容器
 
-### 1.1. 使用包扫描的构造函数
+### 使用包扫描的构造函数
 
-#### 1.1.1. 构造函数源码
+#### 构造函数源码
 
 ```java
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
@@ -3553,15 +3553,15 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 }
 ```
 
-#### 1.1.2. scan 方法说明
+#### scan 方法说明
 
 它是根据传入的类路径下(`classpath*`)的包解析Bean对象中注解的（包括类上以及类成员的），使用的是`ClassPathBeanDefinitionScanner`类中的`doScan`方法，该方法最终将得到的BeanDefinitionHolder信息存储到LinkedHashSet中，为后面初始化容器做准备。
 
 `doScan()`中的`findCandidateComponents`方法调用`ClassPathScanningCandidateComponentProvider`类中的`scanCandidateComponents`方法，而此方法又去执行了`PathMatchingResourcePatternResolver`类中的`doFindAllClassPathResources`方法，找到指定扫描包的URL(是URL，不是路径。因为是带有file协议的)，然后根据磁盘路径读取当前目录及其子目录下的所有类。接下来执行`AnnotationConfigUtils`类中的`processCommonDefinitionAnnotations`方法，剩余执行流程与通过字节码方式的一样。
 
-### 1.2. 使用类字节码的构造函数
+### 使用类字节码的构造函数
 
-#### 1.2.1. 构造函数源码
+#### 构造函数源码
 
 ```java
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
@@ -3584,7 +3584,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 }
 ```
 
-#### 1.2.2. register 方法说明
+#### register 方法说明
 
 它是根据传入的配置类字节码解析Bean对象中注解的（包括类上的和类中方法和字段上的注解。如果类没有被注解，那么类中方法和字段上的注解不会被扫描）。使用的是AnnotatedGenericBeanDefinition，里面包含了BeanDefinition和Scope两部分信息，其中BeanDefinition是传入注解类的信息，即构造方法传入的项目的配置类；scope是指定bean的作用范围，默认情况下为单例。
 
@@ -3592,7 +3592,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 
 在`ConfigurationClassBeanDefinitionReader`类中的`registerBeanDefinitionForImportedConfigurationClass`方法会把导入的在自己配置类通过`@Bean`注解创建的类注册到容器中。而`loadBeanDefinitionsForBeanMethod`方法会解析`@Bean`注解，把被`@Bean`注解修饰的方法返回值存入容器。
 
-### 1.3. AnnotationConfigApplicationContext 无参构造方法
+### AnnotationConfigApplicationContext 无参构造方法
 
 无论是基于包扫描的构造函数或者是基于配置类字节码对象的构造函数中，都会调用 `AnnotationConfigApplicationContext` 类的 `this()` 无参构造方法。
 
@@ -3639,13 +3639,13 @@ public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environmen
 
 > 注：上面的`registerAnnotationConfigProcessors()`方法，在xml自定义标签标签时的逻辑一致。因为基于纯注解配置，没有了xml配置文件，其实以前基于xml自定义标签(如`<context:component-scan>`等)来配置注解扫描的解析，也会调用`AnnotationConfigUtils.registerAnnotationConfigProcessors()`方法，来完成这些组件的注册。
 
-### 1.4. ClassPathScanningCandidateComponentProvider 的 registerDefaultFilters
+### ClassPathScanningCandidateComponentProvider 的 registerDefaultFilters
 
 `ClassPathScanningCandidateComponentProvider` 的 `registerDefaultFilters()` 方法是Spring注册注解类型过滤器的处理逻辑
 
 详情查询源代码工程`\spring-note\Spring-Framework\`
 
-### 1.5. AbstractApplicationContext 的 refresh()
+### AbstractApplicationContext 的 refresh()
 
 `AbstractApplicationContext` 的 `refresh()` 方法是初始化容器与创建实现主流程【重点流程】
 
@@ -3762,13 +3762,13 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 
-### 1.6. AbstractBeanFactory 的 doGetBean
+### AbstractBeanFactory 的 doGetBean
 
 `AbstractBeanFactory`的`doGetBean()`方法，是实例化和获取Bean对象的主要流程
 
 详情查询源代码工程`\spring-note\Spring-Framework\`
 
-## 2. BeanNameGenerator及其实现类
+## BeanNameGenerator及其实现类
 
 `BeanNameGenerator` 接口位于 `org.springframework.beans.factory.support` 包下面:
 
@@ -3794,11 +3794,11 @@ public interface BeanNameGenerator {
 
 > `DefaultBeanNameGenerator`与`AnnotationBeanNameGenerator`详见代码工程的注释
 
-## 3. ConfigurationClassPostProcessor 类
+## ConfigurationClassPostProcessor 类
 
 在`registerAnnotationConfigProcessors()`方法中，会完成很多注解处理类的注册，`ConfigurationClassPostProcessor`类的作用就是支持了`@Configuration`、`@Component`、`@ComponentScan`、`@Import`、`@ImportResource`、`@PropertySource`、`@Order` 等注解的注册，对于理解 springboot 帮助很大，真正的可以做到零 xml 配置
 
-### 3.1. 类作用分析
+### 类作用分析
 
 ```java
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
@@ -3816,7 +3816,7 @@ public int getOrder() {
 }
 ```
 
-### 3.2. bean实例化前的处理
+### bean实例化前的处理
 
 `ConfigurationClassPostProcessor`实现`BeanDefinitionRegistryPostProcessor`接口，所以实例化bean前会调用`postProcessBeanDefinitionRegistry`方法
 
@@ -3839,7 +3839,7 @@ public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
 }
 ```
 
-### 3.3. 包含所支持的注解的类收集
+### 包含所支持的注解的类收集
 
 调用`processConfigBeanDefinitions`方法，完成有包含可支持注解的BeanDefinition收集
 
@@ -3982,7 +3982,7 @@ Set集合`candidateIndicators`所包含的支持的注解名称
 
 ![](images/20210213231426026_5664.png)
 
-### 3.4. ConfigurationClassParser - 解析候选BeanDefinition中的相关注解
+### ConfigurationClassParser - 解析候选BeanDefinition中的相关注解
 
 收集完候选的BeanDefinition后，程序继续往下执行，会创建一个注解的解析类`ConfigurationClassParser`，然后对筛选出来的
 
@@ -4091,13 +4091,13 @@ protected void processConfigurationClass(ConfigurationClass configClass, Predica
 }
 ```
 
-### 3.5. @Conditional 实现原理
+### @Conditional 实现原理
 
-#### 3.5.1. 注解作用
+#### 注解作用
 
 `@Conditional`注解作用是根据条件选择是否注入的bean对象到Spring容器中。该注解可以作用在类、方法上。该注解的value属性的值老百姓提供一个或者多个`Condition`接口的实现类，实现类中需要编写具体代码实现注册到ioc容器的条件。重写接口的`matches`方法，返回true表示通过校验可实例化到容器
 
-#### 3.5.2. 源码分析
+#### 源码分析
 
 `@Conditional`注解处理源码位置：`ConfigurationClassParser.processConfigurationClass()`。如果进入if代码块，则不会执行到最后增加到`configurationClasses`，就不会加入到`BeanDefinitionRegistry`中
 
@@ -4158,7 +4158,7 @@ public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable Co
 }
 ```
 
-#### 3.5.3. 使用示例
+#### 使用示例
 
 > 注：此事例只是基础使用，真正功能实现不严谨
 
@@ -4206,7 +4206,7 @@ public class ConditionalBean {
 }
 ```
 
-### 3.6. @Component 实现原理
+### @Component 实现原理
 
 `@Component`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，去处理该注解
 
@@ -4264,7 +4264,7 @@ private void processMemberClasses(ConfigurationClass configClass, SourceClass so
 }
 ```
 
-### 3.7. @PropertySource 与 @PropertySources 实现原理
+### @PropertySource 与 @PropertySources 实现原理
 
 `@PropertySource`与`@PropertySources`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，会循环当前类中所有此两个注解进行解析
 
@@ -4385,9 +4385,9 @@ private void addPropertySource(PropertySource<?> propertySource) {
 }
 ```
 
-### 3.8. @ComponentScan 实现原理
+### @ComponentScan 实现原理
 
-#### 3.8.1. 测试@ComponentScan配置扫描
+#### 测试@ComponentScan配置扫描
 
 - 创建配置类，在类上增加`@ComponentScan`注解，作用相当于xml配置文件中的`<context:component-scan base-package="com.moon.spring"/>`标签
 
@@ -4418,7 +4418,7 @@ public class MyTest {
 }
 ```
 
-#### 3.8.2. 开启xml配置注解扫描标签的差异
+#### 开启xml配置注解扫描标签的差异
 
 - 如果不开启xml配置文件中的注解扫描时，运行`AnnotationConfigApplicationContext`测试，会发现`BeanDefinitionRegistry`对象中的`BeanDefinitionNames`只有当前传入的类名称
 
@@ -4436,7 +4436,7 @@ public class MyTest {
 
 ![](images/20200607191232299_16943.png)
 
-#### 3.8.3. 解析流程
+#### 解析流程
 
 `@ComponentScan`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，去处理该注解
 
@@ -4479,7 +4479,7 @@ if (!componentScans.isEmpty() &&
 
 值得注意的是，在处理包扫描后，此时扫描出来类都只是包含`@Component`注解，然而这些类上可能还会有其他的注解（如：`@Import`、`@Bean`等等注解）。此时就又会调用`ConfigurationClassUtils.checkConfigurationClassCandidate`方法进行是否有候选待处理的注解，如果有，则再递归调用`ConfigurationClassParser.parse`方法
 
-### 3.9. @Import 实现原理
+### @Import 实现原理
 
 `@Import`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，去处理该注解
 
@@ -4488,7 +4488,7 @@ if (!componentScans.isEmpty() &&
 processImports(configClass, sourceClass, getImports(sourceClass), filter, true);
 ```
 
-#### 3.9.1. getImports 收集所有导入的类数据
+#### getImports 收集所有导入的类数据
 
 收集`@Import`注解`value`属性配置导入的多个类字节码对象，又将每个导入的类包装成`SourceClass`对象。
 
@@ -4521,7 +4521,7 @@ private void collectImports(SourceClass sourceClass, Set<SourceClass> imports, S
 }
 ```
 
-#### 3.9.2. processImports
+#### processImports
 
 `processImports`方法是处理`@Import`注解的主要逻辑源码与分析如下：
 
@@ -4616,7 +4616,7 @@ private void processImports(ConfigurationClass configClass, SourceClass currentS
 - 判断是否`ImportBeanDefinitionRegistrar`接口类型，也通过反射实例化import导入的类（不会注册到spring ioc容器），加入到`Map<ImportBeanDefinitionRegistrar, AnnotationMetadata> importBeanDefinitionRegistrars`容器中，这里还没有调用接口的`registerBeanDefinitions`方法
 - 判断都不是以上两种类型，按`@Configuration`注解解析流程去处理，调用`processConfigurationClass`方法解析
 
-#### 3.9.3. ImportSelector 与 ImportBeanDefinitionRegistrar 接口运用小示例
+#### ImportSelector 与 ImportBeanDefinitionRegistrar 接口运用小示例
 
 - 创建自定义注解用于测试
 
@@ -4723,9 +4723,9 @@ public class ImportBeanDefinitionRegistrarDemo implements ImportBeanDefinitionRe
 
 ![](images/20210216172047889_18121.png)
 
-#### 3.9.4. DeferredImportSelector 接口调用流程与使用示例
+#### DeferredImportSelector 接口调用流程与使用示例
 
-##### 3.9.4.1. 基础使用示例
+##### 基础使用示例
 
 - 创建`DeferredImportSelector`接口实现
 
@@ -4831,7 +4831,7 @@ public void testDeferredImportSelectorBasic() {
 }
 ```
 
-##### 3.9.4.2. 源码分析
+##### 源码分析
 
 源码位置：`ConfigurationClassParser.processImports`
 
@@ -4920,7 +4920,7 @@ public Iterable<Group.Entry> getImports() {
 }
 ```
 
-### 3.10. @ImportResource 实现原理
+### @ImportResource 实现原理
 
 `@ImportResource`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，去处理该注解，其处理流程与xml配置文件解析处理流程一样
 
@@ -4940,7 +4940,7 @@ if (importResource != null) {
 }
 ```
 
-### 3.11. @Bean 实现原理
+### @Bean 实现原理
 
 `@Bean`在`ConfigurationClassParser.doProcessConfigurationClass`方法中，去收集该注解所标识的方法，放到`ConfigurationClass`类的`beanMethods`容器（`Set<BeanMethod>`）中
 
@@ -4959,7 +4959,7 @@ for (MethodMetadata methodMetadata : beanMethods) {
 processInterfaces(configClass, sourceClass);
 ```
 
-### 3.12. 注解收集与解析完成后的处理
+### 注解收集与解析完成后的处理
 
 在`parser.parse(candidates)`注解解析方法完成后，`ConfigurationClassPostProcessor.processConfigBeanDefinitions`的方法继续往下执行
 
@@ -5051,7 +5051,7 @@ private void loadBeanDefinitionsForConfigurationClass(
 }
 ```
 
-#### 3.12.1. @Import 导入类的处理
+#### @Import 导入类的处理
 
 调用`registerBeanDefinitionForImportedConfigurationClass`方法，对`@Import`导入的类封装成BeanDefinition，填充类标识了的注解信息，并注册
 
@@ -5080,7 +5080,7 @@ private void registerBeanDefinitionForImportedConfigurationClass(ConfigurationCl
 }
 ```
 
-#### 3.12.2. @Bean 注解的处理
+#### @Bean 注解的处理
 
 前面已经收集过每个标识了`@Bean`注解的方法，并封装成`BeanMethod`对象。此处调用`loadBeanDefinitionsForBeanMethod`方法，封装成BeanDefinition对象，并注册
 
@@ -5088,7 +5088,7 @@ private void registerBeanDefinitionForImportedConfigurationClass(ConfigurationCl
 
 ![](images/20210218220553135_6968.png)
 
-#### 3.12.3. @ImportedResources 注解的处理
+#### @ImportedResources 注解的处理
 
 调用`loadBeanDefinitionsFromImportedResources`进入xml文件的解析，与前面的xml配置文件解析逻辑一样
 
@@ -5137,7 +5137,7 @@ private void loadBeanDefinitionsFromImportedResources(
 }
 ```
 
-#### 3.12.4. ImportBeanDefinitionRegistrar 接口的调用
+#### ImportBeanDefinitionRegistrar 接口的调用
 
 在前面注解的解析时，将`@Import`注解导入的`ImportBeanDefinitionRegistrar`接口类型反射实例化，并存入`importBeanDefinitionRegistrars`的容器中
 
@@ -5152,19 +5152,19 @@ private void loadBeanDefinitionsFromRegistrars(Map<ImportBeanDefinitionRegistrar
 }
 ```
 
-#### 3.12.5. 比较差异
+#### 比较差异
 
 执行完`parse`与`loadBeanDefinitions`方法后，会获取最新注册器中所有BeanDefinition数量，与原来的比较差异，如果不一样，又要执行多一次解析流程
 
-## 4. @Configuration 注解
+## @Configuration 注解
 
-### 4.1. @Configuration 与 @Component 的差异
+### @Configuration 与 @Component 的差异
 
-#### 4.1.1. 手动调用 @Bean 注解方法获取对象
+#### 手动调用 @Bean 注解方法获取对象
 
 ![](images/20210220223137173_31763.png)
 
-#### 4.1.2. 手动调用实现FactoryBean接口的getObject方法
+#### 手动调用实现FactoryBean接口的getObject方法
 
 - 创建`FactoryBean`接口实现
 
@@ -5189,7 +5189,7 @@ public class MyFactoryBean implements FactoryBean<Bird> {
 
 - 运行测试结果：使用`@Component`注解时，两个hashCode的结果不一样；而使用`@Configuration`注解时，两个hashCode的结果一致
 
-### 4.2. 源码分析
+### 源码分析
 
 > <font color=red>**经上面差异测试，可以知道，在调用`@Bean`注解的方法获取对象时，不是通过类实例本身调用，而是通过代理调用**</font>
 
@@ -5197,7 +5197,7 @@ public class MyFactoryBean implements FactoryBean<Bird> {
 
 `postProcessBeanDefinitionRegistry`方法主要处理注解解析与收集，还有一些接口的调用；而`postProcessBeanFactory`方法就是处理`@Configuration`注解生成代理的逻辑
 
-#### 4.2.1. postProcessBeanFactory 方法
+#### postProcessBeanFactory 方法
 
 ```java
 /* 将配置类替换为CGLIB增强的子类，用于运行时请求生成bean实例 */
@@ -5220,7 +5220,7 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 }
 ```
 
-#### 4.2.2. 生成CGlib代理子类
+#### 生成CGlib代理子类
 
 在`enhanceConfigurationClasses`方法中，会将原来标识了`@Configuration`的类生成增强的子类。*注：CGlib的作用只是动态生成一个增强的字节码文件并加载到jvm中，而真正的实例化由spring来处理*
 
@@ -5246,7 +5246,7 @@ private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader cl
 
 ![](images/20210221092858346_16168.png)
 
-#### 4.2.3. 代理调用MethodInterceptor的筛选
+#### 代理调用MethodInterceptor的筛选
 
 在`isMath`方法中，判断调用哪个callback方法的逻辑
 
@@ -5258,7 +5258,7 @@ private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader cl
 
 所以当前的`method`带有`@Bean`注解的话，就会调用`BeanMethodInterceptor`这个实例的`intercept`方法
 
-#### 4.2.4. BeanMethodInterceptor 类调用代理方法
+#### BeanMethodInterceptor 类调用代理方法
 
 上面筛选后就是使用代理调用方法的逻辑，在`BeanMethodInterceptor.intercept`方法中实现普通的`@Bean`方法的代理调用
 
@@ -5270,11 +5270,11 @@ private Enhancer newEnhancer(Class<?> configSuperClass, @Nullable ClassLoader cl
 
 # Spring 相关功能与设计
 
-## 1. BeanPostProcessor 接口理解
+## BeanPostProcessor 接口理解
 
 BeanPostProcessor 接口类型实例是针对某种特定功能的埋点，在这个点会根据接口类型来过滤掉不关注这个点的其他类，只有真正关注的类才会在这个点进行相应的功能实现。
 
-### 1.1. 获取有 @Autowired 注解的构造函数埋点
+### 获取有 @Autowired 注解的构造函数埋点
 
 - 作用：用于收集创建中Bean实例中有`@Autowired`注解的构造函数
 - 此功能实现的`BeanPostProcessor`接口类型是：`SmartInstantiationAwareBeanPostProcessor`
@@ -5282,7 +5282,7 @@ BeanPostProcessor 接口类型实例是针对某种特定功能的埋点，在�
 
 ![](images/20210208140224422_9821.png)
 
-### 1.2. 收集注解的方法和属性埋点
+### 收集注解的方法和属性埋点
 
 - 作用：收集`@Resource`、`@Autowired`、`@Value`、`@PostConstruct`、`@PreDestroy`等注解，并收集的信息封装成`InjectionMetadata`对象
 - 此功能实现的`BeanPostProcessor`接口类型是：`MergedBeanDefinitionPostProcessor`
@@ -5290,7 +5290,7 @@ BeanPostProcessor 接口类型实例是针对某种特定功能的埋点，在�
 
 ![](images/20210208141325680_8337.png)
 
-### 1.3. 解决循环依赖提前暴露bean实例的埋点
+### 解决循环依赖提前暴露bean实例的埋点
 
 - 作用：用于从三级缓存中暴露bean的实例，如果当前bean不需要增加装饰或者生成代理，则直接返回，此设计方便日后增强
 - 此功能实现的`BeanPostProcessor`接口类型是：`SmartInstantiationAwareBeanPostProcessor`
@@ -5298,7 +5298,7 @@ BeanPostProcessor 接口类型实例是针对某种特定功能的埋点，在�
 
 ![](images/20210208141732697_11347.png)
 
-### 1.4. 阻止依赖注入的埋点
+### 阻止依赖注入的埋点
 
 - 作用：在实例属性依赖注入前，阻止继续执行依赖注入的逻辑
 - 此功能实现的`BeanPostProcessor`接口类型是：`InstantiationAwareBeanPostProcessor`
@@ -5306,18 +5306,18 @@ BeanPostProcessor 接口类型实例是针对某种特定功能的埋点，在�
 
 ![](images/20210208143036849_7267.png)
 
-### 1.5. IOC/DI 依赖注入埋点
+### IOC/DI 依赖注入埋点
 
 - 此功能实现的`BeanPostProcessor`接口类型是：`InstantiationAwareBeanPostProcessor`
 - 调用的方法是：`postProcessProperties`（新版本才是调用此方法）
 
 ![](images/20210208143444653_19168.png)
 
-## 2. Spring 配置文件的解析
+## Spring 配置文件的解析
 
-### 2.1. 基础使用示例
+### 基础使用示例
 
-#### 2.1.1. 准备测试类、xml配置、properties文件
+#### 准备测试类、xml配置、properties文件
 
 ```java
 @Data
@@ -5352,7 +5352,7 @@ moon.name=MooNkirA
 moon.password=123456
 ```
 
-#### 2.1.2. 传统xml配置读取properties配置文件
+#### 传统xml配置读取properties配置文件
 
 - xml设置读取配置文件方式1，直接配置`<context:property-placeholder>`标签即可
 
@@ -5415,7 +5415,7 @@ public void testPropertiesByXml() {
 }
 ```
 
-#### 2.1.3. 通过BeanDefinitionRegistryPostProcessorr接口修改BeanDefinition
+#### 通过BeanDefinitionRegistryPostProcessorr接口修改BeanDefinition
 
 - 使用上面示例原始的xml配置文件（*但不需要配置`context:property-placeholder`标签*）与properties文件
 - 创建使用`@Value`注解占位符注入属性的测试类
@@ -5510,7 +5510,7 @@ public void testPropertiesByXml() {
 
 ![](images/20210213224956223_12043.png)
 
-#### 2.1.4. 通过 ResourceLoaderAware 接口实现读取 properties 配置文件
+#### 通过 ResourceLoaderAware 接口实现读取 properties 配置文件
 
 - 实现`ResourceLoaderAware`接口，通过`setResourceLoader`方法获取到资源加载对象`ResourceLoader`，通过该对象读取properties文件，手动设置到spring的占位符解析器`PropertySourcesPlaceholderConfigurer`
 
@@ -5537,7 +5537,7 @@ public class CustomResourceLoaderAware implements ResourceLoaderAware {
 }
 ```
 
-#### 2.1.5. 注意事项
+#### 注意事项
 
 <font color=red>**注：如果都不配置以上的任何一种参数解析方案，xml则直接将占位符（el表达式）当成字符串赋值给相应的属性**</font>，结果如下：
 
@@ -5545,7 +5545,7 @@ public class CustomResourceLoaderAware implements ResourceLoaderAware {
 ${moon.name} :: ${moon.password}
 ```
 
-### 2.2. PropertyPlaceholderBeanDefinitionParser 标签解析类
+### PropertyPlaceholderBeanDefinitionParser 标签解析类
 
 `PropertyPlaceholderBeanDefinitionParser`是`<context:property-placeholder>`标签的解析类
 
@@ -5578,7 +5578,7 @@ protected Class<?> getBeanClass(Element element) {
 }
 ```
 
-### 2.3. PropertySourcesPlaceholderConfigurer 占位符解析器
+### PropertySourcesPlaceholderConfigurer 占位符解析器
 
 从源码的继承关系可知，`PropertySourcesPlaceholderConfigurer`类不仅实现了`BeanFactoryPostProcessor`接口、还实现了`EnvironmentAware`、`BeanNameAware`、`BeanFactoryAware`等接口
 
@@ -5771,7 +5771,7 @@ protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolv
 
 ![](images/20210211113856229_15045.png)
 
-### 2.4. PropertySourcesPlaceholderConfigurer 与 PropertyPlaceholderConfigurer 的区别
+### PropertySourcesPlaceholderConfigurer 与 PropertyPlaceholderConfigurer 的区别
 
 Spring在5.2版本以后，使用`PropertySourcesPlaceholderConfigurer`类做为属性值占位符的解析器，而`PropertyPlaceholderConfigurer`是以前版本的占位符解析器。
 
@@ -5811,7 +5811,7 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 }
 ```
 
-### 2.5. 占位符设置BeanClass属性示例
+### 占位符设置BeanClass属性示例
 
 通过源码分析，其他的属性都可以设置为占位符，在下图的位置可以进行占位符的替换操作。如`BeanClass`属性，与处理类属性值一样，同样会调用`resolveStringValue`方法处理占位符
 
@@ -5821,7 +5821,7 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 
 利用Spring这个功能，可以通过配置文件与占位符来创建Bean实例
 
-#### 2.5.1. 配置文件
+#### 配置文件
 
 修改properties文件，设置占位符与待创建实例的类全限定名
 
@@ -5834,7 +5834,7 @@ moon.placeHolderBean2=com.moon.spring.bean.Cat
 moon.placeHolderBean3=com.moon.spring.bean.Fish
 ```
 
-#### 2.5.2. 创建配置类
+#### 创建配置类
 
 在配置类中设置包扫描与手动创建`PropertySourcesPlaceholderConfigurer`占位符解析器
 
@@ -5854,7 +5854,7 @@ public class SpringConfiguration {
 }
 ```
 
-#### 2.5.3. 通过BeanDefinitionRegistry注册中心设置BeanClass占位符
+#### 通过BeanDefinitionRegistry注册中心设置BeanClass占位符
 
 创建`BeanDefinitionRegistryPostProcessor`接口的实现类，在`postProcessBeanDefinitionRegistry`方法注册`beanClass`属性为占位符的 BeanDefinition。
 
@@ -5889,7 +5889,7 @@ public class BeanClassDefinitionRegistryPostProcessor implements BeanDefinitionR
 }
 ```
 
-#### 2.5.4. 测试
+#### 测试
 
 ```java
 private final ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfiguration.class);
@@ -5905,17 +5905,17 @@ public void testBeanClassByPlaceHolder() {
 }
 ```
 
-### 2.6. Spring 配置文件解析总结
+### Spring 配置文件解析总结
 
 Spring 在属性值（或者一些其他 BeanDefinition 属性，如 `BeanClass`）是可以使用占位符（如`${xx.xx}`），此时需要配合 Spring 提供的 `PropertySourcesPlaceholderConfigurer` 类来对占位符解析成相应 `Environment` 对象或者本地配置文件中的值。如果不配置此类，则会将占位符字符串直接注入属性中。
 
 通过 xml 配置或者 `@Bean` 注解将 `PropertySourcesPlaceholderConfigurer` 类注册到 spring 容器中，会占位符解析方法存入到 `AbstractBeanFactory` 类的 `List<StringValueResolver> embeddedValueResolvers` 容器中，在实例创建的过程依赖注入 `populateBean` 的方法，会使用占位符解析方法进行解析，从而获取到占位符相应的值。
 
-#### 2.6.1. 配置项解析流程图
+#### 配置项解析流程图
 
 ![](images/165115415249086.jpg)
 
-## 3. @Lazy 注解标识构造函数不会出现循环依赖的问题
+## @Lazy 注解标识构造函数不会出现循环依赖的问题
 
 在构造函数中循环依赖会报错的根本原因是：在相互依赖的构造函数中，会多次触发getBean操作，然而在调用有参构造函数时，不会提前将实例放到三级缓存中，然后在第二次触发getBean操作时，缓存不存在实例，所以就会创建实例。此时`singletonsCurrentlyInCreation`容器已存在当前创建的beanName，就会报出异常
 
@@ -5928,15 +5928,15 @@ Spring 在属性值（或者一些其他 BeanDefinition 属性，如 `BeanClass`
 ![](images/20210212155543231_28764.png)
 
 
-## 4. CGlib 动态代理库
+## CGlib 动态代理库
 
-### 4.1. CGlib 简介
+### CGlib 简介
 
 > CGLIB是一个强大的、高性能的代码生成库。其被广泛应用于AOP框架（Spring、dynaop）中，用以提供方法拦截操作。Hibernate作为一个比较受欢迎的ORM框架，同样使用CGLIB来代理单端（多对一和一对一）关联（延迟提取集合使用的另一种机制）。CGLIB作为一个开源项目，其代码托管在github，地址为：https://github.com/cglib/cglib
 >
 > CGLIB代理主要通过对字节码的操作，为对象引入间接级别，以控制对象的访问。CGLIB相比于JDK动态代理更加强大，JDK动态代理虽然简单易用，但是其有一个致命缺陷是，只能对接口进行代理。如果要代理的类为一个普通类、没有接口，那么Java动态代理就没法使用了。
 
-### 4.2. CGlib基础使用示例
+### CGlib基础使用示例
 
 - 引入cglib依赖
 
@@ -6118,9 +6118,9 @@ public void testCglibBasic() {
 
 ![](images/20210220211356040_12819.png)
 
-## 5. 自定义增强型依赖注入注解案例（整理中！）
+## 自定义增强型依赖注入注解案例（整理中！）
 
-### 5.1. 案例需求
+### 案例需求
 
 此案例的需求是：
 
@@ -6141,7 +6141,7 @@ public void testCglibBasic() {
 
 - 所以可以参考`AutowiredAnnotationBeanPostProcessor`类来实现此案例的功能
 
-### 5.2. 功能实现
+### 功能实现
 
 
 

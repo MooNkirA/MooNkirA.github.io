@@ -1,13 +1,13 @@
-## 1. Mockito 简介
+## Mockito 简介
 
 Mockito 是最流行的 Java mock 框架之一.
 
-### 1.1. 官方资料
+### 官方资料
 
 - [Mockito 官方网站](https://site.mockito.org/)
 - [PowerMockito Github](https://github.com/powermock/powermock/)
 
-### 1.2. 什么是 Mock 测试
+### 什么是 Mock 测试
 
 在做单元测试的时候，会发现在要测试的方法会引用很多外部依赖的对象，比如：（发送邮件，网络通讯，远程服务，文件系统等等），而又没法控制这些外部依赖的对象。为了解决这个问题，就需要用到 Mock 工具
 
@@ -15,7 +15,7 @@ Mock 工具就是在测试过程中，对于某些不容易构造（如 `HttpSer
 
 Mock 最大的功能是把单元测试的耦合分解开，如果代码对另一个类或者接口有依赖，它能够模拟这些依赖，并验证所调用的依赖的行为。
 
-### 1.3. Mock 适用场景
+### Mock 适用场景
 
 对于一些应用场景，是非常适合使用 Mock 的：
 
@@ -35,9 +35,9 @@ Mock 最大的功能是把单元测试的耦合分解开，如果代码对另一
 
 在一些压力测试的场景下，也不得不使用 Mock，例如在分布式系统测试中，通常需要测试一些单点（如 namenode，jobtracker）在压力场景下的工作是否正常。而通常测试集群在正常逻辑下无法提供足够的压力（主要原因是受限于机器数量），这时候就需要应用 Mock 去满足。
 
-## 2. Mockito 基础使用
+## Mockito 基础使用
 
-### 2.1. 引入 maven 依赖
+### 引入 maven 依赖
 
 注意：mockito 5 以上版本需要 jdk 11。如果还是使用 JDK 8，只能使用 mockito 4.x 版本。
 
@@ -60,7 +60,7 @@ Mock 最大的功能是把单元测试的耦合分解开，如果代码对另一
 </dependencies>
 ```
 
-### 2.2. 前置准备
+### 前置准备
 
 创建两个简单的类用于测试
 
@@ -85,7 +85,7 @@ public class DemoService {
 }
 ```
 
-### 2.3. 编写测试用例
+### 编写测试用例
 
 ```java
 import com.moon.mockito.dao.DemoDao;
@@ -116,7 +116,7 @@ public class MockitoQuickstart {
 }
 ```
 
-## 3. mock 方法
+## mock 方法
 
 此处涉及一种是类测试，另一种是接口测试。
 
@@ -179,7 +179,7 @@ false
 0.0
 ```
 
-## 4. @Mock 注解
+## @Mock 注解
 
 使用该注解时，要使用 `MockitoAnnotations.initMocks` 方法，让注解生效。比如放在 @Before方法中初始化。
 
@@ -214,11 +214,11 @@ public class MockAnnotationTest {
 }
 ```
 
-## 5. 参数匹配
+## 参数匹配
 
 如果参数匹配既声明了精确匹配，也声明了模糊匹配；又或者同一个值的精确匹配出现了两次，使用时会匹配符合匹配条件的最新声明的匹配。
 
-### 5.1. 使用示例
+### 使用示例
 
 ```java
 import org.junit.Assert;
@@ -258,7 +258,7 @@ public class ParameterTest {
 }
 ```
 
-### 5.2. mockito 的匹配函数
+### mockito 的匹配函数
 
 上例中的 `anyInt` 只是用来匹配参数的工具之一，目前 mockito 有多种匹配函数，部分如下：
 
@@ -283,9 +283,9 @@ public class ParameterTest {
 | `notNull()`          | 非 null                                |
 | `isNotNull()`        | 非 null                                |
 
-## 6. Mock 异常
+## Mock 异常
 
-### 6.1. thenThrow 方法
+### thenThrow 方法
 
 Mockito 使用 `thenThrow` 让方法抛出异常。
 
@@ -348,7 +348,7 @@ public class ThenThrowTest {
 }
 ```
 
-### 6.2. doThrow 方法
+### doThrow 方法
 
 对应返回类型是 `void` 的函数，`thenThrow` 是无效的，要使用 `doThrow`。
 
@@ -394,9 +394,9 @@ public class DoThrowTest {
 - `doNothing()`
 - `doCallRealMethod()`
 
-## 7. spy 和 @Spy 注解
+## spy 和 @Spy 注解
 
-### 7.1. spy 基础使用
+### spy 基础使用
 
 spy 和 mock 不同，不同点是：
 
@@ -444,7 +444,7 @@ class ExampleService {
 }
 ```
 
-### 7.2. @Spy 基础使用
+### @Spy 基础使用
 
 spy 对应注解 `@Spy`，和 `@Mock` 是一样用的。
 
@@ -525,7 +525,7 @@ public class MockitoDemo {
 }
 ```
 
-## 8. 测试隔离
+## 测试隔离
 
 根据 JUnit 单测隔离，当 Mockito 和 JUnit 配合使用时，也会将非 `static` 变量或者非单例隔离开。比如使用 `@Mock` 修饰的 mock 对象在不同的单测中会被隔离开。
 
@@ -595,11 +595,11 @@ test01 先被执行，打桩前调用 `add(1, 2)` 的结果是 0，打桩后是 
 
 
 
-## 9. PowerMock (Mockito 框架增强)
+## PowerMock (Mockito 框架增强)
 
 > TODO: 详细使用参考阿里的《Java工程师必读手册.pdf》电子书的[Java单元测试系列]章节
 
-### 9.1. PowerMock 概述
+### PowerMock 概述
 
 PowerMock 是一个扩展了其它如 EasyMock 等 mock 框架的、功能更加强大的框架。PowerMock 使用一个自定义类加载器和字节码操作来模拟静态方法，构造函数，final 类和方法，私有方法，去除静态初始化器等等。通过使用自定义的类加载器，简化采用的 IDE 或持续集成服务器不需要做任何改变。
 
@@ -607,14 +607,14 @@ PowerMock 能够完美的弥补如今比较流行的 jMock 、EasyMock 、Mockit
 
 熟悉 PowerMock 支持的 mock 框架的开发人员会发现 PowerMock 很容易使用，因为对于静态方法和构造器来说，整个的期望 API 是一样的。PowerMock 旨在用少量的方法和注解扩展现有的 API 来实现额外的功能。目前PowerMock 支持 EasyMock 和 Mockito。
 
-### 9.2. PowerMock 基础使用
+### PowerMock 基础使用
 
-#### 9.2.1. 相关注解
+#### 相关注解
 
 - `@RunWith(PowerMockRunner.class)`
 - `@PrepareForTest({ YourClassWithEgStaticMethod.class })`
 
-#### 9.2.2. 引入依赖
+#### 引入依赖
 
 ```xml
 <dependency>
@@ -633,9 +633,9 @@ PowerMock 能够完美的弥补如今比较流行的 jMock 、EasyMock 、Mockit
 
 > Notes: **使用 powermock 依赖后，已经包含 mockito 相关依赖，因此不需要再单独引入 mockito-core 依赖，否则会出现冲突。**
 
-### 9.3. PowerMock 支持静态方法 Mock 功能
+### PowerMock 支持静态方法 Mock 功能
 
-#### 9.3.1. Mockito 不支持 mock 静态方法
+#### Mockito 不支持 mock 静态方法
 
 因为 Mockito 使用继承的方式实现 mock 功能，用 CGLIB 生成 mock 对象代替真实的对象进行执行，为了 mock 实例的方法，可以在 subclass 中覆盖它。而 static 方法是不能被子类覆盖的，所以 Mockito 不能 mock 静态方法。
 
@@ -667,7 +667,7 @@ public class MockitoDemo {
 }
 ```
 
-#### 9.3.2. Mock 静态方法示例
+#### Mock 静态方法示例
 
 而 PowerMock 弥补 Mockito 缺失的静态方法 mock 功能，因为它直接在 bytecode 上工作。
 
@@ -702,7 +702,7 @@ class PowermockStaticDemoService {
 }
 ```
 
-### 9.4. PowerMockRunner 支持 Mockito 的 @Mock 等注解
+### PowerMockRunner 支持 Mockito 的 @Mock 等注解
 
 可以使用 PowerMockRunner 运行器替代 MockitoJUnitRunner。PowerMock 兼容 `@Mock` 等注解。例如：
 
@@ -730,6 +730,6 @@ public class MockitoDemo {
 }
 ```
 
-## 10. 参考资料
+## 参考资料
 
 - [万字长文：一文详解单元测试干了什么](https://mp.weixin.qq.com/s/9_TQbVSl1CQLQzuUrsrHLQ)

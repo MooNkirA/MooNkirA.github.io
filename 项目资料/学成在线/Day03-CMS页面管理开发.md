@@ -1,15 +1,15 @@
-## 1. 自定义条件查询
+## 自定义条件查询
 
-### 1.1. 需求分析
+### 需求分析
 
 - 在页面输入查询条件，查询符合条件的页面信息。
     - 站点Id：精确匹配
     - 模板Id：精确匹配
     - 页面别名：模糊匹配
 
-### 1.2. 条件查询服务端
+### 条件查询服务端
 
-#### 1.2.1. Dao 层条件查询 API 测试
+#### Dao 层条件查询 API 测试
 
 - 使用Spring Data Mongodb中提供的`<S extends T> List<S> findAll(Example<S> example, Sort sort);`方法实现
 - 测试findAll方法实现自定义条件查询
@@ -59,7 +59,7 @@ public void testFindAllByExample() {
 }
 ```
 
-#### 1.2.2. Service 层
+#### Service 层
 
 在PageService的findlist方法中增加自定义条件查询代码
 
@@ -120,13 +120,13 @@ public QueryResponseResult findList(int page, int size, QueryPageRequest queryPa
 }
 ```
 
-#### 1.2.3. controller层
+#### controller层
 
 无需修改，直接使用swagger测试：http://localhost:31001/swagger-ui.html
 
-### 1.3. 条件查询前端
+### 条件查询前端
 
-#### 1.3.1. 页面管理页面
+#### 页面管理页面
 
 1. 增加查询表单
 
@@ -185,7 +185,7 @@ mounted() {
 }
 ```
 
-#### 1.3.2. API 调用
+#### API 调用
 
 1. 向服务端传递查询条件，修改 cms.js
 
@@ -223,9 +223,9 @@ query() {
 }
 ```
 
-#### 1.3.3. node.js 的 querystring 工具类
+#### node.js 的 querystring 工具类
 
-##### 1.3.3.1. 引入模块
+##### 引入模块
 
 querystring 模块提供用于解析和格式化 URL 查询字符串的实用工具。 它可以使用以下方式访问：
 
@@ -233,7 +233,7 @@ querystring 模块提供用于解析和格式化 URL 查询字符串的实用工
 const querystring = require('querystring');
 ```
 
-##### 1.3.3.2. 常用方法
+##### 常用方法
 
 ```js
 querystring.stringify(obj[, sep[, eq[, options]]])
@@ -265,9 +265,9 @@ querystring.stringify({ w: '中文', foo: 'bar' }, null, null,
                       { encodeURIComponent: gbkEncodeURIComponent });
 ```
 
-## 2. 新增页面
+## 新增页面
 
-### 2.1. 新增页面接口定义
+### 新增页面接口定义
 
 1. 定义响应模型
 
@@ -295,15 +295,15 @@ public class CmsPageResult extends ResponseResult {
 public CmsPageResult add(CmsPage cmsPage);
 ```
 
-### 2.2. 新增页面服务端
+### 新增页面服务端
 
-#### 2.2.1. 页面唯一索引
+#### 页面唯一索引
 
 在cms_page集中上创建页面名称、站点Id、页面webpath为唯一索引
 
 > ps. 使用studio 3T软件去创建唯一索引，详情参考[《MongoDB 安装与使用》 的 《studio3t》 章节](/Database/MongoDb/MongoDB-安装与使用)
 
-#### 2.2.2. Dao 层
+#### Dao 层
 
 1. 在 `CmsPageRepository` 接口，添加根据页面名称、站点Id、页面webpath查询页面方法，此方法用于校验页面是否存在。注：无需实现，spring-data-mongodb 默认实现了
 
@@ -323,7 +323,7 @@ public interface CmsPageRepository extends MongoRepository<CmsPage, String> {
 
 2. 使用 CmsPageRepository 提供的save方法
 
-#### 2.2.3. Service 层
+#### Service 层
 
 ```java
 /**
@@ -350,7 +350,7 @@ public CmsPageResult add(CmsPage cmsPage) {
 }
 ```
 
-#### 2.2.4. Controller 层
+#### Controller 层
 
 ```java
 /**
@@ -366,7 +366,7 @@ public CmsPageResult add(@RequestBody CmsPage cmsPage) {
 }
 ```
 
-#### 2.2.5. 接口测试
+#### 接口测试
 
 使用Postman进行测试，post请求：http://localhost:31001/cms/page/add。请求内容为json数据，测试数据如下：
 
@@ -388,9 +388,9 @@ public CmsPageResult add(@RequestBody CmsPage cmsPage) {
 }
 ```
 
-### 2.3. 新增页面前端
+### 新增页面前端
 
-#### 2.3.1. 编写page_add.vue页面
+#### 编写page_add.vue页面
 
 使用Element-UI的form组件编写添加表单内容，步骤如下：
 
@@ -555,7 +555,7 @@ created() {
 
 7. 运行预览新增页面
 
-#### 2.3.2. 添加返回
+#### 添加返回
 
 进入新增页面后只能通过菜单再次进入页面列表，可以在新增页面添加“返回”按钮，点击返回按钮返回到页面列表。
 
@@ -608,7 +608,7 @@ created() {
 
 **小技巧：使用`||`返回第一个有效值**
 
-#### 2.3.3. 表单校验
+#### 表单校验
 
 1. 配置校验规则，Element-UI的Form组件提供表单校验的方法：
 
@@ -666,7 +666,7 @@ data() {
     },
     ```
 
-#### 2.3.4. Api调用
+#### Api调用
 
 1. 在cms.js中定义page_add方法。
 
@@ -709,14 +709,14 @@ addSubmit() {
 }
 ```
 
-## 3. 修改页面
+## 修改页面
 
 修改页面用户操作流程：
 
 1. 用户进入修改页面，在页面上显示了修改页面的信息
 2. 用户修改页面的内容，点击“提交”，提示“修改成功”或“修改失败
 
-### 3.1. 修改页面接口定义
+### 修改页面接口定义
 
 CmsPageControllerApi.java，定义的修改页面与根据id查询的API如下：
 
@@ -743,14 +743,14 @@ public CmsPageResult edit(String id, CmsPage cmsPage);
 
 **说明：提交数据使用post、put都可以，只是根据http方法的规范，put方法是对服务器指定资源进行修改，所以这里使用put方法对页面修改进行修改。**
 
-### 3.2. 修改页面服务端
+### 修改页面服务端
 
-#### 3.2.1. Dao 层
+#### Dao 层
 
 - 使用 Spring Data 提供的findById方法完成根据主键查询
 - 使用 Spring Data 提供的save方法完成数据保存
 
-#### 3.2.2. Service 层
+#### Service 层
 
 ```java
 /**
@@ -807,7 +807,7 @@ public CmsPageResult update(String id, CmsPage cmsPage) {
 }
 ```
 
-#### 3.2.3. Controller 层
+#### Controller 层
 
 - 实现根据id查询页面接口方法
 
@@ -829,15 +829,15 @@ public CmsPageResult edit(@PathVariable("id") String id, @RequestBody CmsPage cm
 }
 ```
 
-### 3.3. 修改页面前端
+### 修改页面前端
 
-#### 3.3.1. 页面处理流程
+#### 页面处理流程
 
 1. 进入页面，通过钩子方法请求服务端获取页面信息，并赋值给数据模型对象
 2. 页面信息通过数据绑定在表单显示
 3. 用户修改信息点击“提交”请求服务端修改页面信息接口
 
-#### 3.3.2. 编写page_edit页面
+#### 编写page_edit页面
 
 修改页面的布局同添加页面，可以直接复制添加页面，在添加页面基础上修改
 
@@ -883,7 +883,7 @@ edit(pageId) {
 }
 ```
 
-#### 3.3.3. 页面内容显示
+#### 页面内容显示
 
 1. 进入修改页面立即显示要修改的页面信息。修改cms.js文件，定义api方法
 
@@ -923,7 +923,7 @@ created() {
 }
 ```
 
-### 3.4. Api调用修改页面数据
+### Api调用修改页面数据
 
 1. cms.js定义修改的api方法
 
@@ -971,13 +971,13 @@ editSubmit() {
 },
 ```
 
-## 4. 删除页面
+## 删除页面
 
 - 用户操作流程：
     1. 用户进入用户列表，点击“删除”
     2. 执行删除操作，提示“删除成功”或“删除失败”
 
-### 4.1. 删除页面接口定义
+### 删除页面接口定义
 
 ```java
 /**
@@ -990,13 +990,13 @@ editSubmit() {
 public ResponseResult delete(String id);
 ```
 
-### 4.2. 删除页面服务端
+### 删除页面服务端
 
-#### 4.2.1. Dao 层
+#### Dao 层
 
 使用 Spring Data 提供的deleteById方法完成删除操作
 
-#### 4.2.2. Service 层
+#### Service 层
 
 ```java
 /**
@@ -1019,7 +1019,7 @@ public ResponseResult delete(String id) {
 }
 ```
 
-#### 4.2.3. Controller 层
+#### Controller 层
 
 ```java
 @Override
@@ -1029,9 +1029,9 @@ public ResponseResult delete(@PathVariable("id") String id) {
 }
 ```
 
-### 4.3. 删除页面前端
+### 删除页面前端
 
-#### 4.3.1. Api方法
+#### Api方法
 
 ```js
 /* 删除页面 */
@@ -1040,7 +1040,7 @@ export const page_del = (id) => {
 }
 ```
 
-#### 4.3.2. 编写页面
+#### 编写页面
 
 1. 在page_list.vue页面添加删除按钮
 
@@ -1068,9 +1068,9 @@ del(pageId) {
 }
 ```
 
-## 5. 异常处理
+## 异常处理
 
-### 5.1. 异常处理的问题分析
+### 异常处理的问题分析
 
 - 从PageService服务层中的添加页面的add方法中分析存在问题：
     1. 上边的代码只要操作不成功仅向用户返回“错误代码：11111，失败信息：操作失败”，无法区别具体的错误信息。
@@ -1079,7 +1079,7 @@ del(pageId) {
     1. 在Service方法中的编码顺序是先校验判断，有问题则抛出具体的异常信息，最后执行具体的业务操作，返回成功信息。
     2. 在统一异常处理类中去捕获异常，无需controller捕获异常，向用户返回统一规范的响应信息。
 
-### 5.2. 异常处理流程
+### 异常处理流程
 
 系统对异常的处理使用统一的异常处理流程：
 
@@ -1101,9 +1101,9 @@ del(pageId) {
 4. 捕获到非自定义异常类型首先从Map中找该异常类型是否对应具体的错误代码，如果有则取出错误代码和错误信息并响应给用户，如果从Map中找不到异常类型所对应的错误代码则统一为99999错误代码并响应给用户。
 5. 将错误代码及错误信息以Json格式响应给用户。
 
-### 5.3. 可预知异常处理
+### 可预知异常处理
 
-#### 5.3.1. 自定义异常类
+#### 自定义异常类
 
 在common工程定义异常类型
 
@@ -1126,7 +1126,7 @@ public class CustomException extends RuntimeException {
 }
 ```
 
-#### 5.3.2. 异常抛出类
+#### 异常抛出类
 
 ```java
 /**
@@ -1140,7 +1140,7 @@ public class ExceptionCast {
 }
 ```
 
-#### 5.3.3. 异常捕获类
+#### 异常捕获类
 
 使用`@ControllerAdvice`和`@ExceptionHandler`注解来捕获指定类型的异常
 
@@ -1175,9 +1175,9 @@ public class ExceptionCatch {
 }
 ```
 
-#### 5.3.4. 异常处理测试
+#### 异常处理测试
 
-##### 5.3.4.1. 定义错误代码
+##### 定义错误代码
 
 每个业务操作的异常使用异常代码去标识。使用cms模块做为示例
 
@@ -1221,7 +1221,7 @@ public enum CmsCode implements ResultCode {
 }
 ```
 
-##### 5.3.4.2. 自定义异常处理测试
+##### 自定义异常处理测试
 
 1. 抛出异常。在controller、service、 dao中都可以抛出异常。例如：修改PageService的add方法，添加抛出异常的代码
 
@@ -1293,9 +1293,9 @@ addSubmit() {
 },
 ```
 
-### 5.4. 不可预知异常处理
+### 不可预知异常处理
 
-#### 5.4.1. 异常抛出测试
+#### 异常抛出测试
 
 使用postman测试添加页面，不输入cmsPost信息，提交，报错信息如下：
 
@@ -1316,7 +1316,7 @@ org.springframework.http.converter.HttpMessageNotReadableException
 
 上边的响应信息在客户端是无法解析的。所以需要在异常捕获类中添加对Exception异常的捕获
 
-#### 5.4.2. 异常捕获方法
+#### 异常捕获方法
 
 - 针对上边的问题其解决方案是：
     1. 在map中配置HttpMessageNotReadableException和错误代码。
@@ -1379,9 +1379,9 @@ public class ExceptionCatch {
 }
 ```
 
-## 6. 待完善功能
+## 待完善功能
 
-### 6.1. 查询条件完善
+### 查询条件完善
 
 - 页面查询条件增加：页面名称、页面类型。
     - 页面名称对应CmsPage模型类中的pageName属性。
@@ -1390,7 +1390,7 @@ public class ExceptionCatch {
     - 页面名称：模糊查询
     - 页面类型：精确匹配，页面类型包括：静态和动态，在数据库中静态用“0”表示，动态用“1”表示。
 
-### 6.2. 页面属性增加DataUrl
+### 页面属性增加DataUrl
 
 - 在CmsPage.java模型类型中有一个dataUrl属性，此属性在页面静态化时需要填写。
 - 本需求要求：

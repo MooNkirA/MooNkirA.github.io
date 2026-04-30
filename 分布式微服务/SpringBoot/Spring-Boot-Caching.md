@@ -2,9 +2,9 @@
 >
 > 代码示例：https://github.com/MooNkirA/spring-boot-note/tree/spring-boot-2.5.x-sample/spring-boot-2.5.x-sample/14-spring-boot-caching
 
-## 1. 概述
+## 概述
 
-### 1.1. 缓存简介
+### 缓存简介
 
 企业级应用主要作用是信息处理，当需要读取数据时，由于受限于数据库的访问效率，导致整体系统性能偏低。应用程序直接与数据库打交道，访问效率低。
 
@@ -16,7 +16,7 @@
 
 综上所述，缓存是一种介于数据永久存储介质与应用程序之间的数据临时存储介质，使用缓存可以有效的减少低速数据读取过程的次数（例如磁盘IO），提高系统性能。此外缓存不仅可以用于提高永久性存储介质的数据读取效率，还可以提供临时的数据存储空间。而 Spring Boot 提供了对市面上几乎所有的缓存技术提供了整合的方案
 
-### 1.2. Spring Boot 所支持的缓存方案
+### Spring Boot 所支持的缓存方案
 
 > 支持的缓存技术参考官网文档：https://docs.spring.io/spring-boot/docs/2.5.13/reference/html/features.html#features.caching.provider
 
@@ -32,13 +32,13 @@ Spring Boot 将缓存抽象成 `org.springframework.cache.Cache` 和 `org.spring
 8. Caffeine
 9. Simple（默认值）
 
-## 2. Spring Boot 内置缓存
+## Spring Boot 内置缓存
 
 Spring Boot 技术提供有内置的缓存解决方案，可以帮助开发者快速开启缓存技术，并使用缓存技术进行数据的快速操作，例如读取缓存数据和写入数据到缓存。
 
-### 2.1. 基础示例工程准备
+### 基础示例工程准备
 
-#### 2.1.1. 项目依赖
+#### 项目依赖
 
 在项目的 pom.xml 文件引入相关依赖，为了方便，使用 h2 数据库的内存模式
 
@@ -73,7 +73,7 @@ Spring Boot 技术提供有内置的缓存解决方案，可以帮助开发者�
 </dependencies>
 ```
 
-#### 2.1.2. 项目配置与数据库脚本
+#### 项目配置与数据库脚本
 
 - 创建项目项目文件 application.yml
 
@@ -123,7 +123,7 @@ VALUES (1, 'SpringBoot入门', '计算机科学', '这是一本好书'),
        (3, '金田一少年之事件薄', '漫画', '最好的推理漫画');
 ```
 
-#### 2.1.3. 基础业务代码
+#### 基础业务代码
 
 - 表映射实体类
 
@@ -185,9 +185,9 @@ public class BookController {
 
 - 启动类
 
-### 2.2. 实现缓存数据库数据
+### 实现缓存数据库数据
 
-#### 2.2.1. 引入缓存技术依赖
+#### 引入缓存技术依赖
 
 在 pom.xml 文件中引入 Spring Boot 提供的缓存技术相应的依赖 spring-boot-starter-cache
 
@@ -198,7 +198,7 @@ public class BookController {
 </dependency>
 ```
 
-#### 2.2.2. 启用缓存
+#### 启用缓存
 
 在引导类（或者配置类）上标注注解 `@EnableCaching`，配置 Spring Boot 程序启用缓存
 
@@ -212,7 +212,7 @@ public class EmbeddedCachingApplication {
 }
 ```
 
-#### 2.2.3. 业务方法使用缓存
+#### 业务方法使用缓存
 
 在需要使用缓存的业务方法上，标识 `@Cacheable` 注解，声明当前方法的返回值放入缓存中，其中 `value` 属性指定缓存的存储位置；`key` 属性指定当前方法返回值保存在缓存中对应的名称（键名）。
 
@@ -231,29 +231,29 @@ public Book getById(Integer id) {
 
 注：上例中 `value` 属性描述缓存的存储位置，可以理解为是一个存储空间名，`key` 属性描述了缓存中保存数据的名称，字符串 `#id` 代表读取形参中的 `id` 值作为缓存名称。
 
-#### 2.2.4. 功能测试
+#### 功能测试
 
 运行测试。方法使用 `@Cacheable` 注解后，在被执行时，会有以下两种情况：
 
 - 如果发现对应名称在缓存中没有数据，就正常读取数据，然后自动放入缓存
 - 如果对应名称在缓存中有数据，就终止当前业务方法执行，直接返回缓存中的数据。
 
-### 2.3. 实现缓存临时数据
+### 实现缓存临时数据
 
 缓存技术除将保存数据库的数据，还可以将一些临时数据缓存，以下示例是模拟使用缓存保存手机验证码的过程。
 
-#### 2.3.1. 案例需求
+#### 案例需求
 
 - 输入手机号获取验证码，以短信形式发送给用户（后台模拟）
 - 输入手机号和验证码验证结果
 
 > 示例没有前端页面，使用 postman 等工具模拟请求
 
-#### 2.3.2. 基础项目工程准备
+#### 基础项目工程准备
 
 复用上个章节的示例工程代码，使用 Spring Boot 提供的内置缓存技术实现案例需求
 
-#### 2.3.3. 业务实现
+#### 业务实现
 
 要实现以上案例需求，创建两个表现层接口，一个用于模拟发送短信的过程，其实就是根据用户提供的手机号生成一个验证码，然后放入缓存；另一个用于模拟验证码校验的过程，其实就是使用传入的手机号和验证码进行匹配，并返回最终匹配结果。
 
@@ -368,7 +368,7 @@ public class SMSCodeController {
 }
 ```
 
-#### 2.3.4. 功能测试
+#### 功能测试
 
 - 获取短信验证码。发送 GET 请求 http://localhost/sms?tel=13865845254
 - 根据上一步返回值，发送 POST 请求校验接口，上送手机号与验证码
@@ -382,17 +382,17 @@ POST http://localhost/sms
 }
 ```
 
-## 3. Spring Boot 整合 Ehcache 缓存
+## Spring Boot 整合 Ehcache 缓存
 
 Ehcache 是一种缓存技术，使用 Spring Boot 整合 Ehcache 本质就是变更一下缓存技术的实现方式
 
-### 3.1. 基础示例工程准备
+### 基础示例工程准备
 
 > 直接使用上面内置缓存的示例工程代码（只保留手机验证码功能，移除相关依赖）
 
-### 3.2. 实现缓存功能
+### 实现缓存功能
 
-#### 3.2.1. 引入 Ehcache 依赖
+#### 引入 Ehcache 依赖
 
 在项目的 pom.xml 文件中引入 Ehcache 的依赖坐标，不需要指定版本，Spring Boot 父工程已经有依赖管理
 
@@ -405,7 +405,7 @@ Ehcache 是一种缓存技术，使用 Spring Boot 整合 Ehcache 本质就是�
 
 > 这里引入的依赖不是以 starter-xxx 的格式，而是直接引入相应的技术坐标。原因是 Spring Boot 整合缓存技术做的是通用格式，不管是整合哪种第三方的缓存技术，只是改变了其具体的实现，原来的使用方式不变。这体现了 Spring Boot 统一同类技术整合方式的优点
 
-#### 3.2.2. Ehcache 配置
+#### Ehcache 配置
 
 在项目的 application.yml 文件中，通过 `spring.cache.type` 配置缓存技术实现类型为 `ehcache`。值得注意的是，当前 Spring Boot 可以整合的缓存技术中包含有 `ehcach`，所以才能这样配置。此 `type` 属性不可以随便写一个名称就可以整合相关缓存技术，需要当前 Spring Boot 支持。
 
@@ -459,23 +459,23 @@ spring:
 
 值得注意 `<cache>` 标签的 `name` 属性要与案例中数据保存的位置名称（`smsCodeCache`）一致。这个设定需要保障 ehcache 中有一个缓存空间名称叫做 `smsCodeCache` 的配置，并且前后要统一。在企业开发过程中，通过设置不同名称的 `<cache>` 标识来设定不同的缓存策略，应用于不同的缓存数据。
 
-#### 3.2.3. 功能测试
+#### 功能测试
 
 经过以上步骤，Spring Boot 整合 Ehcache 已完成。原始代码并没有任何修改，仅仅是加了一组配置就可以变更缓存供应商了，这也是 Spring Boot 提供了统一的缓存操作接口的优势，变更缓存实现并不影响原始编写的代码。
 
 > 参考内置缓存案例的步骤进行测试即可
 
-## 4. Spring Boot 整合 Redis 缓存
+## Spring Boot 整合 Redis 缓存
 
 Spring Boot 整合 Redis 实现缓存步骤与上面整合 Ehcache 缓存技术一样，引入相关依赖后，修改缓存类型为 redis，在项目配置文件中设置 redis 相关信息
 
-### 4.1. 基础示例工程准备
+### 基础示例工程准备
 
 > 直接使用上面内置缓存的示例工程代码（只保留手机验证码功能，移除相关依赖）
 
-### 4.2. 实现缓存功能
+### 实现缓存功能
 
-#### 4.2.1. 引入 redis 依赖
+#### 引入 redis 依赖
 
 在项目的 pom.xml 文件中引入 spring-boot-starter-data-redis 的依赖坐标，不需要指定版本，Spring Boot 父工程已经有依赖管理
 
@@ -486,7 +486,7 @@ Spring Boot 整合 Redis 实现缓存步骤与上面整合 Ehcache 缓存技术�
 </dependency>
 ```
 
-#### 4.2.2. redis 配置
+#### redis 配置
 
 在项目的 application.yml 文件中，通过 `spring.cache.type` 配置缓存技术实现类型为 `redis`，另外还需要配置 redis 服务的连接信息。
 
@@ -506,13 +506,13 @@ spring:
 
 > 注意：如果需要对 redis 作为缓存进行配置，注意不是对原始的 redis 节点进行配置，而是在 `spring.cache.redis` 节点下设置缓存相关配置，注意不要写错位置
 
-#### 4.2.3. 功能测试
+#### 功能测试
 
 经过以上步骤，Spring Boot 整合 Redis 作为缓存已完成，变更缓存实现并不影响原始编写的代码。参考内置缓存案例的步骤进行测试即可
 
-## 5. Spring Boot 整合 Memcached 缓存技术
+## Spring Boot 整合 Memcached 缓存技术
 
-### 5.1. Memcached 缓存服务概述
+### Memcached 缓存服务概述
 
 Memcached 是一个自由开源的，高性能，分布式内存对象缓存系统。基于内存的 key-value 存储，用来存储小块的任意数据（字符串、对象）。这些数据可以是数据库调用、API 调用或者是页面渲染的结果。
 
@@ -522,7 +522,7 @@ Memcached 简洁而强大。它的简洁设计便于快速开发，减轻开发�
 
 Memcached 官网：https://www.memcached.org/
 
-### 5.2. Memcached 缓存服务安装（windows 版）
+### Memcached 缓存服务安装（windows 版）
 
 官网上并未提供 Memcached 的 Windows 平台安装包。windows 版安装包下载地址：https://www.runoob.com/memcached/window-install-memcached.html
 
@@ -560,17 +560,17 @@ memcached目录路径\memcached.exe -d stop  # 停止服务
 memcached目录路径\memcached.exe -d uninstall
 ```
 
-### 5.3. 整合 Memcached 缓存技术
+### 整合 Memcached 缓存技术
 
 与前面章节中整合的其他缓存技术不同，由于 Memcached 未被 Spring Boot 收录为缓存解决方案，因此整合 Memcached 需要通过手工硬编码的方式来实现。
 
 Memcached 目前提供有三种客户端技术，分别是 Memcached Client for Java、SpyMemcached 和 Xmemcached，其中性能指标各方面最好的客户端是 Xmemcached，所以下面整合示例使用其作为客户端实现技术了。
 
-#### 5.3.1. 基础示例工程准备
+#### 基础示例工程准备
 
 > 直接使用上面内置缓存的示例工程代码（只保留手机验证码功能，移除相关依赖）
 
-#### 5.3.2. 引入 Xmemcached 客户端依赖
+#### 引入 Xmemcached 客户端依赖
 
 在项目的 pom.xml 文件中引入 Xmemcached 的依赖坐标，需要指定版本。在 [MavenRepository](https://mvnrepository.com/) 上查询
 
@@ -582,7 +582,7 @@ Memcached 目前提供有三种客户端技术，分别是 Memcached Client for 
 </dependency>
 ```
 
-#### 5.3.3. 配置 memcached
+#### 配置 memcached
 
 - Spring Boot 并没有收录管理 memcached，因此配置文件中没有相关的设置项。但 Memcached 的使用也有必需的配置，所以在项目的 application.yml 文件定义 memcached 节点信息
 
@@ -634,7 +634,7 @@ public class XMemcachedConfig {
 }
 ```
 
-#### 5.3.4. xmemcached 客户端的使用
+#### xmemcached 客户端的使用
 
 在业务类中注入 `MemcachedClient` 对象，编写 xmemcached 客户端操作缓存代码，`MemcachedClient` 对象的 `set` 方法实现设置值到缓存中，再通过 `get` 方法来从缓存中获取值
 
@@ -683,7 +683,7 @@ public boolean checkCode(SMSCode smsCode) {
 }
 ```
 
-#### 5.3.5. 功能测试
+#### 功能测试
 
 1. 启动 Memcached 服务后，再启动示例项目
 2. 发送 GET 请求 http://localhost/sms?tel=13865845254 ，获取短信验证码。
@@ -700,15 +700,15 @@ POST http://localhost/sms
 
 4. 观察返回结果，正常返回 `true`，继续发送多次请求，但10秒后，缓存失效，此时请求返回 `false`
 
-## 6. Spring Boot 整合 Jetcache 缓存技术
+## Spring Boot 整合 Jetcache 缓存技术
 
-### 6.1. 目前缓解方案存在的问题分析
+### 目前缓解方案存在的问题分析
 
 上面章节中的缓存解决方案中，Redis 需要安装独立的服务器，连接时需要输入对应的服务器地址，属于**远程缓存**；而 Ehcache 是一个典型的内存级缓存，启动后导入 jar 包即有缓存功能，属于**本地缓存**。
 
 Spring Boot 目前针对缓存技术的整合仅仅停留在使用缓存，因为目前整合的缓存技术，都不能同时支持远程缓存和本地缓存。
 
-### 6.2. Jetcache 概述
+### Jetcache 概述
 
 > JetCache 官网：https://github.com/alibaba/jetcache
 
@@ -723,13 +723,13 @@ JetCache 是由阿里巴巴开源的一款通用缓存访问框架。它实现�
   - Redis
   - Tair
 
-### 6.3. 整合 Jetcache 示例
+### 整合 Jetcache 示例
 
-#### 6.3.1. 基础示例工程准备
+#### 基础示例工程准备
 
 > 直接使用上面内置缓存的示例工程代码（分别有临时数据与数据库数据的案例），将原有的缓存注解等相关代码移除
 
-#### 6.3.2. 纯远程缓存方案
+#### 纯远程缓存方案
 
 - 导入 Spring Boot 整合 jetcache 对应的坐标 starter，当前坐标默认使用的远程方案是 redis
 
@@ -853,7 +853,7 @@ public class SMSCodeServiceImpl implements SMSCodeService {
 }
 ```
 
-#### 6.3.3. 纯本地缓存方案
+#### 纯本地缓存方案
 
 纯本地缓存方案与远程方案的使用大致一致，只是配置从 `remote` 节点换成 `local` 节点，并且 `type` 属性缓存类型不相同
 
@@ -885,7 +885,7 @@ public class SMSCodeServiceImpl implements SMSCodeService {
 }
 ```
 
-#### 6.3.4. 本地+远程方案
+#### 本地+远程方案
 
 - 如果本地缓存与远程缓存同时存在时，可以配置文件中，同时配置两种缓存
 
@@ -919,7 +919,7 @@ jetcache:
 
 > 注意：`@CreateCache` 注解的 `cacheType` 属性如果不进行配置，默认值是 `CacheType.REMOTE`，即仅使用远程缓存方案
 
-#### 6.3.5. jetcache 的相关配置
+#### jetcache 的相关配置
 
 |                             属性                             | 默认值 |                             说明                             |
 | ----------------------------------------------------------- | ----- | ----------------------------------------------------------- |
@@ -933,7 +933,7 @@ jetcache:
 | `jetcache.[local\|remote].${area}.expireAfterWriteInMillis` | 无穷大 | 默认过期时间，毫秒单位                                          |
 | `jetcache.local.${area}.expireAfterAccessInMillis`          | 0     | 仅 local 类型的缓存有效，毫秒单位，最大不活动间隔                  |
 
-#### 6.3.6. 方法缓存
+#### 方法缓存
 
 jetcache 与 spring cache 一样，提供了方法缓存方案，在方法上标识注解，方法即自动使用缓存，只是两者的注解的名称不一样。在对应的操作接口方法上使用注解 `@Cached` 即可
 
@@ -1003,7 +1003,7 @@ public class BookServiceImpl implements BookService {
 }
 ```
 
-#### 6.3.7. 远程方案的数据同步
+#### 远程方案的数据同步
 
 由于远程方案中 redis 保存的数据可以被多个客户端共享，这就存在了数据同步问题。jetcache 提供了3个注解解决此问题，分别在更新、删除操作时同步缓存数据，和读取缓存时定时刷新数据
 
@@ -1049,7 +1049,7 @@ public Book getById(Integer id) {
 }
 ```
 
-#### 6.3.8. 数据报表
+#### 数据报表
 
 jetcache 还提供有简单的数据报表功能，帮助开发者快速查看缓存命中信息，只需要在配置 `jetcache.statIntervalMinutes` 选项即可，单位是分钟
 
@@ -1069,11 +1069,11 @@ book_    |   0.66| 75.86%|    29|     22|      0|        0|          28.0|      
 ---------+-------+-------+------+-------+-------+---------+--------------+--------------
 ```
 
-## 7. Spring Boot 整合 j2cache 缓存
+## Spring Boot 整合 j2cache 缓存
 
 jetcache 可以在限定范围内构建多级缓存，但是灵活性不足，不能随意搭配缓存方案。而 j2cache 则是一种可以随意搭配缓存解决方案的缓存整合框架。即可将 Ehcache、Caffeine、redis、Spring Cache 等进行整合。
 
-### 7.1. j2cache 概述
+### j2cache 概述
 
 J2Cache 是 OSChina 目前正在使用的开源的两级缓存框架（要求至少 Java 8）。J2Cache 的两级缓存结构如下：
 
@@ -1086,15 +1086,15 @@ J2Cache 是 OSChina 目前正在使用的开源的两级缓存框架（要求至
 
 J2Cache 从 1.3.0 版本开始支持 JGroups 和 Redis Pub/Sub 两种方式进行缓存事件的通知。在某些云平台上可能无法使用 JGroups 组播方式，可以采用 Redis 发布订阅的方式。
 
-### 7.2. 整合示例
+### 整合示例
 
 下面的示例是 j2cache 整合 Ehcache 与 redis 为例：
 
-#### 7.2.1. 基础示例工程准备
+#### 基础示例工程准备
 
 > 直接使用上面内置缓存的示例工程代码（只保留手机验证码功能，移除相关依赖）
 
-#### 7.2.2. 引入相关依赖
+#### 引入相关依赖
 
 在项目的 pom.xml 文件中引入 j2cache、redis、ehcache 等坐标
 
@@ -1120,7 +1120,7 @@ J2Cache 从 1.3.0 版本开始支持 JGroups 和 Redis Pub/Sub 两种方式进�
 
 > Tips: j2cache 的 starter 中默认包含了 redis 坐标，官方也推荐使用 redis 作为二级缓存，因此无需导入 redis 坐标
 
-#### 7.2.3. j2cache 配置
+#### j2cache 配置
 
 - 因为 j2cache 有其独立的配置文件格式，所以在项目 application.yml 文件中，只需要配置 j2cache 独立配置文件的位置即可
 
@@ -1159,7 +1159,7 @@ redis.namespace = j2cache
 
 - 另外，如果使用 ehcache 还需要单独添加其配置文件，配置内容参考上面整合 ehcache 章节
 
-#### 7.2.4. 缓存功能实现
+#### 缓存功能实现
 
 j2cache 的使用和 jetcache 比较类似，但是无需开启，直接定义缓存对象即可使用，缓存对象名 `CacheChannel`。在业务类中编写缓存的处理代码：
 
@@ -1205,7 +1205,7 @@ public class SMSCodeServiceImpl implements SMSCodeService {
 }
 ```
 
-### 7.3. j2cache 配置示例
+### j2cache 配置示例
 
 因为 j2cache 是一个整合型的缓存框架，配置是 j2cache 的核心。缓存相关的配置很多，可以查阅 j2cache-core 核心包中的 j2cache.properties 示例文件中的说明。如下：
 

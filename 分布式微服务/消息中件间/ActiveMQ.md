@@ -1,4 +1,4 @@
-## 1. ActiveMQ 简介
+## ActiveMQ 简介
 
 > 官网：https://activemq.apache.org/
 
@@ -17,9 +17,9 @@ ActiveMQ 特性如下：
 9. 支持与Axis的整合
 10. 可以很容易的调用内嵌 JMS provider，进行测试
 
-## 2. ActiveMQ 环境搭建
+## ActiveMQ 环境搭建
 
-### 2.1. 下载与安装
+### 下载与安装
 
 ActiveMQ 安装包下载地址：https://activemq.apache.org/components/classic/download/
 
@@ -29,7 +29,7 @@ ActiveMQ 安装包下载地址：https://activemq.apache.org/components/classic/
 
 ![](images/547940016236226.png)
 
-### 2.2. 启动服务器
+### 启动服务器
 
 进入 ActiveMQ 的安装目录中，运行 bin/win32 或 bin/win64 目录（根据自己的操作系统选择）中的 `activemq.bat` 命令脚本即可启动服务，默认对外服务端口 61616
 
@@ -37,7 +37,7 @@ ActiveMQ 安装包下载地址：https://activemq.apache.org/components/classic/
 
 也可以运行 InstallService.bat 安装成系统服务，运行 UninstallService.bat 卸载 ActiveMQ 服务
 
-#### 2.2.1. 启动失败问题解决
+#### 启动失败问题解决
 
 在 ActiveMQ 启动时要占用多个端口，以下为正常启动信息：
 
@@ -45,7 +45,7 @@ ActiveMQ 安装包下载地址：https://activemq.apache.org/components/classic/
 
 其中占用的端口有：61616、5672、61613、1883、61614，如果启动失败，请先管理对应端口即可。如有某个端口占用，查看报错信息，可以从抛出异常的位置看出，启动 5672 端口时端口被占用，显示java.net.BindException: Address already in use: JVM_Bind。Windows 系统中终止端口运行的操作自行查询资料
 
-### 2.3. ActiveMQ 后台管理服务
+### ActiveMQ 后台管理服务
 
 ActiveMQ 启动后会有一个 Web 控制台服务，可以通过该服务管理 ActiveMQ。后台管理服务访问地址是：http://127.0.0.1:8161/
 

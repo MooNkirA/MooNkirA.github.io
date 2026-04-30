@@ -1,10 +1,8 @@
-# Day15 SpringBoot框架&短信微服务&用户中心注册功能
-
-## 1. Spring Boot入门
+## Spring Boot入门
 
 *注：Spring boot此处只有简单的入门介绍，内容都是本次项目使用的到的知识点与代码，详细Spring Booot的使用笔记见《\Java\编程资料笔记\【08】Spring Cloud & Spring Boot\Spring Boot笔记.md》*
 
-### 1.1. 什么是Spring Boot?
+### 什么是Spring Boot?
 
 Spring 诞生时是 Java 企业版（Java Enterprise Edition，JEE，也称 J2EE）的轻量级代替品。无需开发重量级的 Enterprise JavaBean（EJB），Spring 为企业级Java 开发提供了一种相对简单的方法，通过依赖注入和面向切面编程，用简单的Java 对象（Plain Old Java Object，POJO）实现了 EJB 的功能。
 
@@ -33,9 +31,9 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 
 <font color="red">***Spring Boot主要的作用是用于简化spring整合其他框架，自动解决不同框架的依赖jar包的冲突，内嵌了整合其他框架的代码***</font>
 
-### 1.2. Spring Boot 入门demo
+### Spring Boot 入门demo
 
-#### 1.2.1. 起步依赖
+#### 起步依赖
 
 - 创建Maven模块springboot-test（打包方式jar）
 - 在pom.xml中添加依赖，注意：更换父工程spring-boot-starter-parent（不需要指定Web启动器版本，因为已经在父工程进行版本控制）
@@ -64,7 +62,7 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 
 - 配置依赖后，工程会自动添加许多jar包。这些jar包正是做开发时需要导入的jar包。因为这些jar包刚才引入的<font color="red">***spring-boot-starter-web**</font>所引用了，所以引用spring-boot-starter-web后会自动把依赖传递过来
 
-#### 1.2.2. 变更JDK版本
+#### 变更JDK版本
 
 默认情况下工程的JDK版本是1.6，而通常用使用1.8的版本，所以需要在pom.xml中添加以下配置
 
@@ -82,7 +80,7 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 
 **注意：虽然JDK1.6或者1.7都可以使用SpringBoot，但SpringBoot官方建议使用JDK1.8，要使用JDK1.8，首先必须要配置JDK1.8后，才可以使用上述方法设置。**
 
-#### 1.2.3. 引导类
+#### 引导类
 
 Spring Boot不需要配置文件，只需要创建一个引导类，例：在com.moon.springboot包下创建Application.java引导类
 
@@ -138,7 +136,7 @@ public class Application {
 
 *参考《\Java\编程资料笔记\【08】Spring Cloud & Spring Boot\Spring Boot笔记-其他相关内容.md》附录2. Spring-Boot的application.properties中的banner设置，可以通过修改配置文件制定自己的标识*
 
-#### 1.2.4. Spring MVC实现
+#### Spring MVC实现
 
 现在开始使用spring MVC框架，实现json数据的输出。如果按照原来的做法，需要在web.xml中添加一个DispatcherServlet的配置，再添加一个spring的配置文件
 
@@ -185,7 +183,7 @@ public class HelloController {
 
 运行启动类来运行程序，在浏览器地址栏输入 `http://localhost:8080/hello` 即可看到运行结果
 
-#### 1.2.5. 修改tomcat启动端口
+#### 修改tomcat启动端口
 
 在src/main/resources下创建application.properties
 
@@ -196,7 +194,7 @@ server.port=8888
 
 重新运行引导类，地址栏输入：`http://localhost:8888/hello`
 
-#### 1.2.6. 读取配置文件信息与注入业务层
+#### 读取配置文件信息与注入业务层
 
 - 在src/main/resources下的application.properties增加配置
 
@@ -235,15 +233,15 @@ public class HelloController {
 
 ![运行结果2](images/20190215110850570_19347.jpg)
 
-### 1.3. Spring Boot的使用说明（部分）
+### Spring Boot的使用说明（部分）
 
 Spring Boot完整使用笔记详见《\Java\编程资料笔记\【08】Spring Cloud & Spring Boot\Spring Boot笔记.md》或day15 的资料中的《Spring Boot课程讲义.docx》
 
-#### 1.3.1. Spring Boot配置原理
+#### Spring Boot配置原理
 
 Spring Boot框架是一个将整合框架的整合代码都写好了的框架。所以需要知道它的工作原理才能够，找到各种整合框架可以配置的属性，以及属性对应的属性名。
 
-##### 1.3.1.1. 配置原理说明
+##### 配置原理说明
 
 SpringBoot的`spring-boot-autoconfigure-1.5.6.RELEASE.jar`中编写了所有内置支持的框架的自动整合代码。
 
@@ -259,7 +257,7 @@ SpringBoot的`spring-boot-autoconfigure-1.5.6.RELEASE.jar`中编写了所有内�
 
 ![配置原理3](images/20190215111555346_11968.jpg)
 
-##### 1.3.1.2. 配置流程说明
+##### 配置流程说明
 
 - 第一步：配置一个内置整合框架的参数，先到`spring-boot-autoconfigure-1.5.6.RELEASE.jar`找到对应的模块。
 - 第二步：如果该框架有可以配置的参数，那么对应的整合模块中一定有一个XxxProperties类，在里面可以找可以设置的参数。
@@ -267,7 +265,7 @@ SpringBoot的`spring-boot-autoconfigure-1.5.6.RELEASE.jar`中编写了所有内�
 
 ![配置流程说明](images/20190215111729852_9033.jpg)
 
-#### 1.3.2. Spring Boot 配置文件
+#### Spring Boot 配置文件
 
 默认情况下，Spring Boot会加载resources目录下的`application.properties`或`application.yml`来获得配置的参数。
 
@@ -278,7 +276,7 @@ SpringBoot支持一种由SpringBoot框架自制的配置文件格式。后缀为
 - `application.properties`：键值对风格配置文件
 - `application.yml`：层级树键值对风格配置文件
 
-##### 1.3.2.1. application.properties
+##### application.properties
 
 **单配置文件：**
 
@@ -307,7 +305,7 @@ application-freemarker.properties
 spring.profiles.active=database,jpa,freemarker
 ```
 
-##### 1.3.2.2. application.yml
+##### application.yml
 
 YML文件格式是YAML (YAML Aint Markup Language)层级树键值对格式文件。
 
@@ -346,9 +344,9 @@ spring:
      active: database,jpa,freemarker
 ```
 
-### 1.4. Spring Boot与ActiveMQ整合
+### Spring Boot与ActiveMQ整合
 
-#### 1.4.1. 使用内嵌ActiveMQ服务
+#### 使用内嵌ActiveMQ服务
 
 - 在pom.xml中引入ActiveMQ起步依赖（不需要指定版本，因为已经在父工程进行版本控制）
 
@@ -393,7 +391,7 @@ public class MyMessageListener {
 
 测试：启动服务后，在浏览器执行`http://localhost:8888/send?message=moon`即可看到控制台输出消息提示。<font color="red">**Spring Boot内置了ActiveMQ的服务**</font>，所以不用单独启动也可以执行应用程序。
 
-#### 1.4.2. 使用外部ActiveMQ服务
+#### 使用外部ActiveMQ服务
 
 在src/main/resources下的application.properties增加配置, 指定ActiveMQ的地址
 
@@ -404,7 +402,7 @@ spring.activemq.broker-url=tcp://192.168.12.131:61616
 
 运行后，会在activeMQ服务中看到发送的queue
 
-#### 1.4.3. 发送Map类型信息
+#### 发送Map类型信息
 
 - 在发送消息类中增加发送消息方法
 
@@ -432,7 +430,7 @@ public void readMapMessage(Map<String, String> map) {
 }
 ```
 
-### 1.5. ActiveMQ 常用 API
+### ActiveMQ 常用 API
 
 `class JmsTemplate extends JmsDestinationAccessor implements JmsOperations`
 
@@ -445,13 +443,13 @@ public void readMapMessage(Map<String, String> map) {
 
 监听类获取消息，在指定的消费消息的方法上使用`@JmsListener`注解，属性`destination = "消息队列名称"`
 
-## 2. 短信发送平台【阿里大于】
+## 短信发送平台【阿里大于】
 
-### 2.1. 短信发送sdk（旧版）
+### 短信发送sdk（旧版）
 
 具体使用参考项目一与day15教材
 
-#### 2.1.1. 测试项目配置依赖
+#### 测试项目配置依赖
 
 - 创建Maven模块sms-test，pom.xml加入依赖
 
@@ -487,7 +485,7 @@ public void readMapMessage(Map<String, String> map) {
 </project>
 ```
 
-#### 2.1.2. 测试项目工具类
+#### 测试项目工具类
 
 - 定义SmsSendUtil短信发送工具类：
 
@@ -560,9 +558,9 @@ public class SmsSendUtil {
 }
 ```
 
-### 2.2. 短信发送sdk（新版）
+### 短信发送sdk（新版）
 
-#### 2.2.1. 阿里云官网：短信服务SDK升级说明
+#### 阿里云官网：短信服务SDK升级说明
 
 短信服务新版SDK源码已经托管至开源平台Github，您使用GitHub clone的方式使用SDK，也可以使用依赖管理工具安装（PHP除外），<font color="red">***Demo代码可通过OpenAPI Explorer生成，所有SDK均只依赖SDK核心库，使用通用的Request及Response来处理接口请求及响应***</font>。
 
@@ -573,7 +571,7 @@ public class SmsSendUtil {
 
 新版短信服务SDK提供了更稳定、完善的开发环境，建议您尽快升级SDK。
 
-#### 2.2.2. 新版SDK使用说明
+#### 新版SDK使用说明
 
 > 说明 无论您要使用哪个产品的开发工具包，都必须安装SDK核心库。例如，如果要使用ECS的Java SDK，您需要安装Java SDK核心库和ECS的Java SDK。
 
@@ -581,7 +579,7 @@ public class SmsSendUtil {
 
 ![新版短信发送demo生成](images/20190215152128214_26837.png)
 
-#### 2.2.3. 配置依赖
+#### 配置依赖
 
 ```xml
 <dependency>
@@ -596,7 +594,7 @@ public class SmsSendUtil {
 </dependency>
 ```
 
-#### 2.2.4. 新版短信发送Demo
+#### 新版短信发送Demo
 
 ```java
 /**
@@ -645,13 +643,13 @@ public class CommonRpc {
 
 *新版的短信发送比旧版的区别，不需要下载安装`aliyun-java-sdk-dysmsapi`到maven仓库，只需要依赖`aliyun-java-sdk-core`核心包就好*
 
-## 3. 短信微服务
+## 短信微服务
 
-### 3.1. 需求分析
+### 需求分析
 
 构建一个通用的短信发送服务模块，接收ActiveMQ的消息（Map类型）消息包括手机号（phoneNum）、短信模板号（templateCode）、签名（signName）、消息字符串（message）
 
-### 3.2. 使用Spring Boot搭建短信微服务工程
+### 使用Spring Boot搭建短信微服务工程
 
 <font color="red">***注意：本项目当时使用的Spring Boot版本是`1.5.6.RELEASE`，但配置后maven报错，上去官网（2019.2.15）去找当时最新的版本`2.1.2.RELEASE`，项目没有报错，暂时使用，观察是否使用时与1.5.6版有什么区别***</font>
 
@@ -775,7 +773,7 @@ sms:
 
 <font color="red">***注：上传到GIT的发送短信配置id与secret改了，不能正常发送短信的***</font>
 
-### 3.3. 短信工具类
+### 短信工具类
 
 - 参照官网新版短信demo，写短信发送的工具类
 
@@ -849,7 +847,7 @@ public class SmsSendUtil {
 }
 ```
 
-### 3.4. 消息监听类
+### 消息监听类
 
 创建SmsSendListener.java，监听发送消息的队列消息
 
@@ -892,7 +890,7 @@ public class SmsSendListener {
 }
 ```
 
-### 3.5. 代码测试
+### 代码测试
 
 在com.pinyougou.sms.controller包下创建SmsController.java，写测试的方法
 
@@ -929,19 +927,19 @@ public class SmsController {
 - 地址栏输入：`http://127.0.0.1:9004/send`
 - 观察控制台输出；随后短信也成功发送到手机上
 
-## 4. 用户中心
+## 用户中心
 
-### 4.1. 需求分析
+### 需求分析
 
 完成用户注册功能：
 
 ![用户注册](images/20190215174835459_25285.jpg)
 
-### 4.2. 用户服务层与用户表现层-工程搭建
+### 用户服务层与用户表现层-工程搭建
 
 ![用户项目构建](images/20190216085133034_25735.jpg)
 
-#### 4.2.1. pinyougou-user聚合模块
+#### pinyougou-user聚合模块
 
 创建maven项目pinyougou-user，使用pom类型。修改pom.xml配置
 
@@ -977,7 +975,7 @@ public class SmsController {
 </project>
 ```
 
-#### 4.2.2. pinyougou-user-interface服务接口层
+#### pinyougou-user-interface服务接口层
 
 创建maven项目，选择jar类型。修改pom.xml配置
 
@@ -1008,7 +1006,7 @@ public class SmsController {
 </project>
 ```
 
-#### 4.2.3. pinyougou-user-service服务实现层
+#### pinyougou-user-service服务实现层
 
 - 创建maven项目，选择war类型。修改pom.xml配置
 
@@ -1140,7 +1138,7 @@ public class SmsController {
 
 - 创建log4j.properties文件
 
-#### 4.2.4. pinyougou-user-web表现层
+#### pinyougou-user-web表现层
 
 - 创建war工程，将注册功能放入此工程。修改pom.xml配置文件，引入相关依赖
 
@@ -1335,7 +1333,7 @@ public class SmsController {
 
 ![用户中心工程项目结构](images/20190216105403619_896.jpg)
 
-### 4.3. 配置域名访问
+### 配置域名访问
 
 - 修改pinyougou-user-web工程web.xml文件
 
@@ -1368,9 +1366,9 @@ server {
 启动：pinyougou-sms、pinyougou-user、pinyougou-user-web三个项目
 访问地址：http://user.moon.com，可访问用户注册页面
 
-### 4.4. 基本注册功能（无发送短信获取验证码）
+### 基本注册功能（无发送短信获取验证码）
 
-#### 4.4.1. 用户服务接口
+#### 用户服务接口
 
 - 创建pinyougou-user-interface用户服务接口UserService与pinyougou-user-service实现类UserServiceImpl
 
@@ -1419,7 +1417,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-#### 4.4.2. 用户控制层
+#### 用户控制层
 
 修改pinyougou-user-web的UserController.java，增加添加用户的方法
 
@@ -1456,7 +1454,7 @@ public class UserController {
 }
 ```
 
-#### 4.4.3. 用户前端控制器
+#### 用户前端控制器
 
 - 从其他模块中复制base.js、base-pagination.js、baseService.js、baseController.js，创建userController.js，增加添加用户的js方法
 
@@ -1488,7 +1486,7 @@ app.controller('userController', function ($scope, baseService) {
 });
 ```
 
-#### 4.4.4. 修改用户中心前端页面
+#### 修改用户中心前端页面
 
 - 修改页面register.html，引入js
 
@@ -1568,15 +1566,15 @@ app.controller('userController', function ($scope, baseService) {
 </form>
 ```
 
-### 4.5. 注册判断短信验证码
+### 注册判断短信验证码
 
-#### 4.5.1. 实现思路
+#### 实现思路
 
 点击页面上的“获取短信验证码”连接，向后端传递手机号。后端随机生成6位数字作为短信验证码，将其保存在redis中（手机号作为KEY），并发送到短信网关。
 
 用户注册时，后端根据手机号查询redis中的验证码与用户填写的验证码是否相同，如果不同则提示用户不能注册。
 
-#### 4.5.2. 发送验证码
+#### 发送验证码
 
 - 修改pinyougou-user服务工程UserService接口与UserServiceImpl实现类，增加sendSmsCode()方法，发送消息调用发送短信微服务
 
@@ -1656,7 +1654,7 @@ $scope.sendCode = () => {
 <a href="javascript:;" ng-click="sendCode();" style="cursor:pointer">获取短信验证码</a>
 ```
 
-#### 4.5.3. 用户注册检查验证码
+#### 用户注册检查验证码
 
 - 修改pinyougou-user服务的UserService服务接口与UserServiceImpl实现类，增加校验验证码方法
 
@@ -1733,7 +1731,7 @@ $scope.save = () => {
        class="input-xfat input-xlarge">
 ```
 
-#### 4.5.4. 短信验证码发送到手机
+#### 短信验证码发送到手机
 
 - pinyougou-user-service创建消息中间件配置文件applicationContext-jms.xml，注意文件不需要配置读取properties文件，因为applicationContext-service.xml中引入的applicationContext-mapper.xml中已经配置了`<context:property-placeholder location="classpath*:props/*.properties"/>`
 
@@ -1832,7 +1830,7 @@ public void sendSmsCode(String phone) {
 }
 ```
 
-#### 4.5.5. properties文件值为中文时，编码转换的方法
+#### properties文件值为中文时，编码转换的方法
 
 当properties文件属性是中文时，会存在乱码的问题
 

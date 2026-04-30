@@ -1,14 +1,12 @@
-# Day17 购物车解决方案&子系统集成CAS
+## 购物车需求分析与解决方案
 
-## 1. 购物车需求分析与解决方案
-
-### 1.1. 需求分析
+### 需求分析
 
 用户在商品详细页点击加入购物车，提交商品SKU编号和购买数量，添加到购物车。购物车展示页面如下
 
 ![购物车展示效果](images/20190311082227754_1629.jpg)
 
-### 1.2. 实现思路
+### 实现思路
 
 购物车数据的存储结构如下
 
@@ -16,14 +14,14 @@
 
 **当用户在未登录的情况下，将此购物车存入Cookie, 在用户登录的情况下，将购物车数据存入redis。如果用户登录时，Cookie中存在购物车，需要将Cookie的购物车合并到redis中存储。**
 
-### 1.3. 购物车工程搭建
+### 购物车工程搭建
 
 - pinyougou-cart：聚合父模块工程，打包方式采用pom
     - pinyougou-cart-interface：服务接口模块工程，打包方式采用jar
     - pinyougou-cart-service：服务实现模块工程，打包方式采用war
 - pinyougou-cart-web：表现层模块工程，打包方式采用war
 
-#### 1.3.1. pinyougou-cart聚合模块
+#### pinyougou-cart聚合模块
 
 - pom.xml配置文件
 
@@ -58,7 +56,7 @@
 </project>
 ```
 
-#### 1.3.2. pinyougou-cart-interface服务接口
+#### pinyougou-cart-interface服务接口
 
 - pom.xml文件，配置pojo工程的依赖
 
@@ -90,7 +88,7 @@
 </project>
 ```
 
-#### 1.3.3. pinyougou-cart-service服务实现层
+#### pinyougou-cart-service服务实现层
 
 - pom.xml文件，配置相关依赖
 
@@ -210,7 +208,7 @@
 
 - 创建log4j.properties文件
 
-#### 1.3.4. pinyougou-cart-web表现层
+#### pinyougou-cart-web表现层
 
 - 配置pom.xml文件，配置相关依赖（包括单点登陆CAS客户端依赖），配置端口9108
 
@@ -507,7 +505,7 @@
 </dependency>
 ```
 
-#### 1.3.5. 购物车实体类
+#### 购物车实体类
 
 在pinyougou-pojo工程的com.pinyougou.cart包中创建购物车实体类Cart.java
 
@@ -525,7 +523,7 @@ public class Cart implements Serializable {
 
 <font color="red">***说明：这个类是对每个商家的购物车进行的封装。***</font>
 
-### 1.4. 配置域名访问
+### 配置域名访问
 
 - 修改hosts文件，增加映射：`127.0.0.1  cart.pinyougou.com`
 - 修改nginx.conf配置文件，设置携带域名: `proxy_set_header Host $host;`
@@ -547,11 +545,11 @@ server {
 }
 ```
 
-## 2. 购物车系统集成CAS与实现购物车功能【pinyougou-cart-web】
+## 购物车系统集成CAS与实现购物车功能【pinyougou-cart-web】
 
-### 2.1. 集成CAS单点登陆
+### 集成CAS单点登陆
 
-#### 2.1.1. 购物车系统-后端控制层
+#### 购物车系统-后端控制层
 
 创建LoginController.java，获取登陆的用户名返回前端
 
@@ -581,7 +579,7 @@ public class LoginController {
 }
 ```
 
-#### 2.1.2. 购物车系统-前端页面
+#### 购物车系统-前端页面
 
 - 在js/controller目录下创建baseController.js，定义获取用户名请求的方法
 
@@ -636,15 +634,15 @@ app.controller('cartController', function ($scope, $controller, baseService) {
 </li>
 ```
 
-### 2.2. Cookie存储购物车
+### Cookie存储购物车
 
-#### 2.2.1. 需求分析
+#### 需求分析
 
 使用cookie存储购物车数据，服务层负责逻辑，控制层负责读写cookie。
 
 <font color="red">*说明：cookie的value存储`List<Cart>`的json格式字符串数据。*</font>
 
-#### 2.2.2. 购物车-服务接口层
+#### 购物车-服务接口层
 
 pinyougou-cart-interface服务层接口的com.pinyougou.cart.service包下创建CartService接口，定义增加商品到购物车的方法
 
@@ -665,7 +663,7 @@ public interface CartService {
 }
 ```
 
-#### 2.2.3. 购物车-服务实现层
+#### 购物车-服务实现层
 
 - **实现思路：**
 1. 根据SKU商品ID查询SKU商品对象
@@ -836,7 +834,7 @@ public class CartServiceImpl implements CartService {
 }
 ```
 
-#### 2.2.4. 购物车-后端控制层
+#### 购物车-后端控制层
 
 - 实现思路分析：
     - 从Cookie中获取购物车
@@ -926,15 +924,15 @@ public class CartController {
     - 查看购物车：http://cart.moon.com/cart/findCart
     - 添加购物车：http://cart.moon.com/cart/addCart?itemId=1369458&num=100
 
-### 2.3. 购物车前端代码
+### 购物车前端代码
 
-#### 2.3.1. 需求分析
+#### 需求分析
 
 实现购物车页面的展示与相关操作：可以实现购物车列表、数量的增减与移除以及合计数统计。
 
-#### 2.3.2. 购物车列表
+#### 购物车列表
 
-##### 2.3.2.1. 前端控制层
+##### 前端控制层
 
 修改pinyougou-cart-web的cartController.js，定义查询购物车数据的方法
 
@@ -955,7 +953,7 @@ app.controller('cartController', function ($scope, $controller, baseService) {
 });
 ```
 
-##### 2.3.2.2. 购物车前端页面
+##### 购物车前端页面
 
 - 修改cart.html页面，初始化查询方法
 
@@ -1016,9 +1014,9 @@ app.controller('cartController', function ($scope, $controller, baseService) {
 
 <font color="">**注：JavaScript的`toFixed()`方法，可把`Number`四舍五入为指定小数位数的数字。语法：`NumberObject.toFixed(num)`，参数：num规定小数的位数，是0 ~ 20之间的值，包括0和20。**</font>
 
-#### 2.3.3. 购物车数量增减与移除
+#### 购物车数量增减与移除
 
-##### 2.3.3.1. 前端控制层
+##### 前端控制层
 
 - pinyougou-cart-web的cartController.js，定义增加SKU商品到购物车的方法
 
@@ -1038,7 +1036,7 @@ $scope.addCart = (itemId, num) => {
 };
 ```
 
-##### 2.3.3.2. 购物车前端页面
+##### 购物车前端页面
 
 - 修改pinyougou-cart-web的cart.html实现数量增减(113行)
 
@@ -1063,9 +1061,9 @@ $scope.addCart = (itemId, num) => {
 </li>
 ```
 
-#### 2.3.4. 购买商品的总合计金额
+#### 购买商品的总合计金额
 
-##### 2.3.4.1. 前端控制层
+##### 前端控制层
 
 修改cartController.js，修改findCart()方法，增加查询购物车返回的数据处理逻辑
 
@@ -1091,7 +1089,7 @@ $scope.findCart = () => {
 };
 ```
 
-##### 2.3.4.2. 购物车前端页面
+##### 购物车前端页面
 
 修改cart.html(147行)，显示总数量与总金额
 
@@ -1107,17 +1105,17 @@ $scope.findCart = () => {
 </div>
 ```
 
-### 2.4. Redis存储购物车
+### Redis存储购物车
 
-#### 2.4.1. 需求分析
+#### 需求分析
 
 判断当前用户是否登录，如果未登录采用Cookie存储，如果登录则采用Redis存储。登录后要进行Cookie购物车与Redis购物车的合并操作，并清除Cookie购物车。
 
 <font color="red">**说明：redis的value存储`List<Cart>`二进制数据。**</font>
 
-#### 2.4.2. 购物车存取-后端部分
+#### 购物车存取-后端部分
 
-##### 2.4.2.1. 服务接口层
+##### 服务接口层
 
 - 修改pinyougou-cart-interface中CartService.java
     - 定义从Redis查询购物车findCartRedis()方法
@@ -1141,7 +1139,7 @@ List<Cart> findCartRedis(String userName);
 void saveCartToReids(String userName, List<Cart> cartList);
 ```
 
-##### 2.4.2.2. 服务实现层
+##### 服务实现层
 
 修改pinyougou-cart-service中CartServiceImpl.java实现方法，注入Redis模版类，实现接口查询与保存到Redis的方法
 
@@ -1179,7 +1177,7 @@ public void saveCartToReids(String userName, List<Cart> cartList) {
 }
 ```
 
-##### 2.4.2.3. 控制层
+##### 控制层
 
 - 修改pinyougou-cart-web工程控制层CartController的findCart方法，获取登录用户名并判断是否已经登录，登录后调用服务层从Redis中查询购物车数据
 
@@ -1252,9 +1250,9 @@ public boolean addCart(Long itemId, Integer num) {
 }
 ```
 
-#### 2.4.3. 购物车合并-后端部分
+#### 购物车合并-后端部分
 
-##### 2.4.3.1. 服务接口与实现层
+##### 服务接口与实现层
 
 修改pinyougou-cart-interface工程的CartService.java定义合并方法，CartServiceImpl.java实现方法
 
@@ -1283,7 +1281,7 @@ public List<Cart> margeCart(List<Cart> cookieCarts, List<Cart> redisCarts) {
 }
 ```
 
-##### 2.4.3.2. 控制层
+##### 控制层
 
 修改pinyougou-cart-web工程CartController的findCart方法，增加在登陆后先从cookie中获取购物车数据，再合并数据到redis中
 
@@ -1337,9 +1335,9 @@ public List<Cart> findCart() {
 }
 ```
 
-## 3. 门户系统集成CAS【pinyougou-portal-web】
+## 门户系统集成CAS【pinyougou-portal-web】
 
-### 3.1. 配置pom.xml、web.xml文件
+### 配置pom.xml、web.xml文件
 
 - pom.xml文件，引入CAS客户端依赖
 
@@ -1431,7 +1429,7 @@ public List<Cart> findCart() {
 <!--############## CAS单点登录配置-end ################-->
 ```
 
-### 3.2. 后端-控制层
+### 后端-控制层
 
 创建LoginController.java，返回登录用户名
 
@@ -1457,7 +1455,7 @@ public class LoginController {
 }
 ```
 
-### 3.3. 前端页面
+### 前端页面
 
 - 在controller目录中创建baseController.js，定义获取登录用户名方法
 
@@ -1508,9 +1506,9 @@ app.controller('contentController', function ($scope, $controller, baseService) 
 </ul>
 ```
 
-## 4. 搜索系统集成CAS【pinyougou-search-web】
+## 搜索系统集成CAS【pinyougou-search-web】
 
-### 4.1. 配置pom.xml、web.xml文件
+### 配置pom.xml、web.xml文件
 
 - pom.xml文件，引入CAS客户端依赖
 
@@ -1602,7 +1600,7 @@ app.controller('contentController', function ($scope, $controller, baseService) 
 <!--############## CAS单点登录配置-end ################-->
 ```
 
-### 4.2. 后端-控制层
+### 后端-控制层
 
 创建LoginController.java，返回登录用户名
 
@@ -1628,7 +1626,7 @@ public class LoginController {
 }
 ```
 
-### 4.3. 前端页面
+### 前端页面
 
 - 在controller目录中创建baseController.js，定义获取登录用户名方法
 
@@ -1679,9 +1677,9 @@ app.controller('searchController', function ($scope, $location, $controller, bas
 </ul>
 ```
 
-## 5. 详情系统集成CAS【pinyougou-item-web】
+## 详情系统集成CAS【pinyougou-item-web】
 
-### 5.1. 配置pom.xml、web.xml文件
+### 配置pom.xml、web.xml文件
 
 - pom.xml文件，引入CAS客户端依赖
 
@@ -1786,7 +1784,7 @@ app.controller('searchController', function ($scope, $location, $controller, bas
 <!--############## CAS单点登录配置-end ################-->
 ```
 
-### 5.2. 后端-控制层
+### 后端-控制层
 
 创建LoginController.java，返回登录用户名
 
@@ -1812,7 +1810,7 @@ public class LoginController {
 }
 ```
 
-### 5.3. 前端页面
+### 前端页面
 
 - 在controller目录中创建baseController.js，定义获取登录用户名方法
 
@@ -1868,7 +1866,7 @@ app.controller('itemController', function ($scope, $controller) {
 
 <font color="red">*注：因为配置静态网页，里面有\icontroller\temController.js，详情页面优先使用静态资源的js文件，所以需要将静态资源的js删除，或者将新的js文件替换*</font>
 
-## 6. 配置Nginx携带域名
+## 配置Nginx携带域名
 
 修改nginx/conf/nginx.conf文件，增加`proxy_set_header Host $host;`配置
 

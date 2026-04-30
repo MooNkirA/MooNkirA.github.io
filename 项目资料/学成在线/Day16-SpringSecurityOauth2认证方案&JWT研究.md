@@ -1,8 +1,8 @@
 # Day16 Spring Security Oauth2 认证方案 & JWT 研究
 
-## 1. 用户认证需求分析
+## 用户认证需求分析
 
-### 1.1. 用户认证与授权
+### 用户认证与授权
 
 截至目前，项目已经完成了在线学习功能，用户通过在线学习页面点播视频进行学习。如何去记录学生的学习过程呢？要想掌握学生的学习情况就需要知道用户的身份信息，记录哪个用户在什么时间学习什么课程；如果用户要购买课程也需要知道用户的身份信息。所以，去管理学生的学习过程最基本的要实现用户的身份认证
 
@@ -11,7 +11,7 @@
 - 什么是用户授权？
     - 用户认证通过后去访问系统的资源，系统会判断用户是否拥有访问资源的权限，只允许访问有权限的系统资源，没有权限的资源将无法访问，这个过程叫用户授权
 
-### 1.2. 单点登录需求
+### 单点登录需求
 
 本项目包括多个子项目，如：学习系统，教学管理中心、系统管理中心等，为了提高用户体验性需要实现用户只认证一次便可以在多个拥有访问权限的系统中访问，这个功能叫做单点登录
 
@@ -21,7 +21,7 @@
 
 ![SSO的示意图](images/20190819175503415_11619.jpg)
 
-### 1.3. 第三方认证需求
+### 第三方认证需求
 
 作为互联网项目难免需要访问外部系统的资源，同样本系统也要访问第三方系统的资源接口，例如有一个这样的场景：一个微信用户没有在学成在线注册，本系统可以通过请求微信系统来验证该用户的身份，验证通过后该用户便可在本系统学习，它的基本流程如下
 
@@ -35,9 +35,9 @@
 
 ![](images/20190819181525484_8312.jpg)
 
-## 2. 用户认证技术方案
+## 用户认证技术方案
 
-### 2.1. 单点登录技术方案
+### 单点登录技术方案
 
 分布式系统要实现单点登录，通常将认证系统独立抽取出来，并且将用户身份信息存储在单独的存储介质，比如：MySQL、Redis，考虑性能要求，通常存储在Redis中
 
@@ -52,9 +52,9 @@
     2. CAS
     3. Spring security CAS
 
-### 2.2. Oauth2 认证
+### Oauth2 认证
 
-#### 2.2.1. Oauth2 认证流程
+#### Oauth2 认证流程
 
 第三方认证技术方案最主要是解决认证协议的通用标准问题，因为要实现跨系统认证，各系统之间要遵循一定的接口协议
 
@@ -66,7 +66,7 @@ Oauth协议目前发展到2.0版本，1.0版本过于复杂，2.0版本已得到
 >
 > Oauth 协议：https://tools.ietf.org/html/rfc6749
 
-#### 2.2.2. Oauth2 微信认证示例
+#### Oauth2 微信认证示例
 
 ![微信认证的过程1](images/20190819185430717_26910.png)
 
@@ -98,7 +98,7 @@ Oauth协议目前发展到2.0版本，1.0版本过于复杂，2.0版本已得到
 
 > 注意：资源服务器和认证服务器可以是一个服务也可以分开的服务，如果是分开的服务资源服务器通常要请求认证服务器来校验令牌的合法性
 
-#### 2.2.3. Oauth2.0 认证流程
+#### Oauth2.0 认证流程
 
 > 引自Oauth2.0协议rfc6749 https://tools.ietf.org/html/rfc6749
 
@@ -115,7 +115,7 @@ Oauth2包括以下角色：
 4. 资源服务器
     - 存储资源的服务器，比如，学成网用户管理服务器存储了学成网的用户信息，学成网学习服务器存储了学生的学习信息，微信的资源服务存储了微信的用户信息等。客户端最终访问资源服务器获取资源信息
 
-#### 2.2.4. Oauth2 在本项目的应用
+#### Oauth2 在本项目的应用
 
 - Oauth2是一个标准的开放的授权协议，应用程序可以根据自己的要求去使用Oauth2，本项目使用Oauth2实现如下目标：
     1. 学成在线访问第三方系统的资源
@@ -123,7 +123,7 @@ Oauth2包括以下角色：
     3. 学成在线前端（客户端） 访问学成在线微服务的资源。
     4. 学成在线微服务之间访问资源，例如：微服务A访问微服务B的资源，B访问A的资源
 
-### 2.3. Spring security Oauth2 认证解决方案
+### Spring security Oauth2 认证解决方案
 
 本项目采用 Spring security + Oauth2 完成用户认证及用户授权，Spring security 是一个强大的和高度可定制的身份验证和访问控制框架，Spring security 框架集成了Oauth2协议，下图是项目认证架构图
 
@@ -136,9 +136,9 @@ Oauth2包括以下角色：
 5. 资源服务获取令牌，根据令牌完成授权。
 6. 资源服务完成授权则响应资源信息
 
-## 3. JWT 研究
+## JWT 研究
 
-### 3.1. 传统令牌校验
+### 传统令牌校验
 
 传统校验令牌的方法，如下图
 
@@ -146,19 +146,19 @@ Oauth2包括以下角色：
 
 传统授权方法的问题是用户每次请求资源服务，资源服务都需要携带令牌访问认证服务去校验令牌的合法性，并根据令牌获取用户的相关信息，性能低下
 
-### 3.2. JWT 令牌授权流程
+### JWT 令牌授权流程
 
 相对传统的授权校验流程，JWT的解决思路是：用户认证通过会得到一个JWT令牌，JWT令牌中已经包括了用户相关的信息，客户端只需要携带JWT访问资源服务，资源服务根据事先约定的算法自行完成令牌校验，无需每次都请求认证服务完成授权。JWT令牌授权过程如下图：
 
 ![JWT令牌授权流程图](images/20190819122401904_5504.png)
 
-### 3.3. 什么是 JWT
+### 什么是 JWT
 
 - JSON Web Token（JWT）是一个开放的行业标准（RFC 7519），它定义了一种简介的、自包含的协议格式，用于在通信双方传递json对象，传递的信息经过数字签名可以被验证和信任。JWT可以使用HMAC算法或使用RSA的公钥/私钥对来签名，防止被篡改
 - 官网：https://jwt.io/
 - 标准：https://tools.ietf.org/html/rfc7519
 
-#### 3.3.1. JWT 的优缺点
+#### JWT 的优缺点
 
 - JWT令牌的优点：
     1. jwt基于json，非常方便解析。
@@ -168,7 +168,7 @@ Oauth2包括以下角色：
 - 缺点：
     1. JWT令牌较长，占存储空间比较大。
 
-#### 3.3.2. 令牌结构
+#### 令牌结构
 
 JWT令牌由三部分组成，每部分中间使用点（`.`）分隔，比如：`xxxxx.yyyyy.zzzzz`
 
@@ -209,15 +209,15 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
 > - base64UrlEncode(payload)：jwt令牌的第二部分。
 > - secret：签名所使用的密钥
 
-### 3.4. JWT 使用入门
+### JWT 使用入门
 
 Spring Security 提供对JWT的支持，本项目使用Spring Security 提供的JwtHelper来创建JWT令牌，校验JWT令牌等操作
 
-#### 3.4.1. 生成私钥和公钥
+#### 生成私钥和公钥
 
 JWT令牌生成采用非对称加密算法
 
-##### 3.4.1.1. 生成密钥证书
+##### 生成密钥证书
 
 - Keytool是JDK自带提供的证书管理工具，用于密钥和证书管理的工具，进入java安装目录的bin文件夹，输入以下命令查询keytool的帮助
 
@@ -263,7 +263,7 @@ keytool -genkeypair -alias xckey -keyalg RSA -keypass xuecheng -keystore xc.keys
     - `-keystore`：密钥库文件名，xc.keystore保存了生成的证书
     - `-storepass`：密钥库的访问密码
 
-##### 3.4.1.2. 查询证书信息
+##### 查询证书信息
 
 ```bash
 keytool -list -keystore xc.keystore
@@ -271,13 +271,13 @@ keytool -list -keystore xc.keystore
 
 ![查询证书信息](images/20190819134144197_18557.png)
 
-##### 3.4.1.3. 删除别名
+##### 删除别名
 
 ```bash
 keytool -delete -alias xckey -keystore xc.keystore
 ```
 
-#### 3.4.2. 导出公钥
+#### 导出公钥
 
 - openssl是一个加解密工具包，这里使用openssl来导出公钥信息。
 - 下载安装包 openssl：http://slproweb.com/products/Win32OpenSSL.html
@@ -299,7 +299,7 @@ keytool ‐list ‐rfc ‐‐keystore xc.keystore | openssl x509 ‐inform pem �
 -----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnASXh9oSvLRLxk901HANYM6KcYMzX8vFPnH/To2R+SrUVw1O9rEX6m1+rIaMzrEKPm12qPjVq3HMXDbRdUaJEXsB7NgGrAhepYAdJnYMizdltLdGsbfyjITUCOvzZ/QgM1M4INPMD+Ce859xse06jnOkCUzinZmasxrmgNV3Db1GtpyHIiGVUY0lSO1Frr9m5dpemylaT0BV3UwTQWVW9ljm6yR3dBncOdDENumT5tGbaDVyClV0FEB1XdSKd7VjiDCDbUAUbDTG1fm3K9sx7kO1uMGElbXLgMfboJ963HEJcU01km7BmFntqI5liyKheX+HBUCD4zbYNPw236U+7QIDAQAB-----END PUBLIC KEY-----
 ```
 
-#### 3.4.3. 生成JWT令牌
+#### 生成JWT令牌
 
 ```java
 package com.xuecheng.auth;
@@ -368,7 +368,7 @@ public class TestJwt {
 }
 ```
 
-#### 3.4.4. 验证JWT令牌
+#### 验证JWT令牌
 
 ```java
 @Test
@@ -386,9 +386,9 @@ public void testVerify() {
 }
 ```
 
-## 4. Spring Security Oauth2 研究
+## Spring Security Oauth2 研究
 
-### 4.1. 实现目标
+### 实现目标
 
 本项目认证服务基于Spring Security Oauth2进行构建，并在其基础上作了一些扩展，采用JWT令牌机制，并自定义了用户身份信息的内容。在项目中集成Spring Security Oauth2的方法和流程，通过
 spring Security Oauth2的研究需要理解以下内容
@@ -397,15 +397,15 @@ spring Security Oauth2的研究需要理解以下内容
 2. spring Security Oauth2的工作流程
 3. 资源服务集成spring Security框架完成Oauth2认证的流程
 
-### 4.2. 搭建认证服务器
+### 搭建认证服务器
 
-#### 4.2.1. 导入基础工程
+#### 导入基础工程
 
 创建 xc-service-ucenter-auth 工程，该工程是基于Spring Security Oauth2的一个二次封装的工程，导入此工程研究Oauth2认证流程。
 
 > 直接导入使用已经准备好的工程，【\day16  Spring Security Oauth2\资料\xc-service-ucenter-auth.zip】
 
-#### 4.2.2. 创建数据库
+#### 创建数据库
 
 导入资料目录下的 xc_user.sql，创建用户数据库
 
@@ -422,9 +422,9 @@ spring Security Oauth2的研究需要理解以下内容
 >     - refresh_token_validity：刷新token的有效期（秒）
 >     - authorized_grant_type：授权类型，authorization_code,password,refresh_token,client_credential
 
-### 4.3. Oauth2 授权码模式
+### Oauth2 授权码模式
 
-#### 4.3.1. Oauth2 支持的授权模式种类
+#### Oauth2 支持的授权模式种类
 
 Oauth2有以下授权模式：
 
@@ -435,7 +435,7 @@ Oauth2有以下授权模式：
 
 > 其中授权码模式和密码模式应用较多，本次暂时使用授权码模式
 
-#### 4.3.2. 授权码授权流程
+#### 授权码授权流程
 
 上面示例网站使用微信认证的过程就是授权码模式，流程如下：
 
@@ -446,7 +446,7 @@ Oauth2有以下授权模式：
 5. 客户端请求资源服务器的资源，资源服务校验令牌合法性，完成授权
 6. 资源服务器返回受保护资源
 
-#### 4.3.3. 申请授权码
+#### 申请授权码
 
 - 请求认证服务获取授权码(GET请求)
 
@@ -478,7 +478,7 @@ http://localhost:40400/auth/oauth/authorize?client_id=XcWebApp&response_type=cod
 
 ![申请授权码步骤4](images/20190820113119929_13015.png)
 
-#### 4.3.4. 申请令牌
+#### 申请令牌
 
 拿到授权码后，申请令牌（Post请求）
 
@@ -527,15 +527,15 @@ http://localhost:40400/auth/oauth/token
     - scope：范围，与定义的客户端范围一致
     - jti：用户身份的令牌，用于校验用户是否认证
 
-##### 4.3.4.1. 什么是http Basic认证？
+##### 什么是http Basic认证？
 
 > http协议定义的一种认证方式，将客户端id和客户端密码按照“`客户端ID:客户端密码`”的格式拼接，并用base64编码，放在header中请求服务端  
 > 如：`Authorization：Basic WGNXZWJBcHA6WGNXZWJBcHA=`。其中：“WGNXZWJBcHA6WGNXZWJBcHA=”是`用户名:密码`的base64编码  
 > 如果认证失败服务端返回`401 Unauthorized`
 
-#### 4.3.5. 资源服务授权
+#### 资源服务授权
 
-##### 4.3.5.1. 资源服务授权流程
+##### 资源服务授权流程
 
 资源服务拥有要访问的受保护资源，客户端携带令牌访问资源服务，如果令牌合法则可成功访问资源服务中的资源
 
@@ -552,7 +552,7 @@ http://localhost:40400/auth/oauth/token
     - 资源服务接收到令牌，使用公钥校验令牌的合法性。
 5. 令牌有效，资源服务向客户端响应资源信息
 
-##### 4.3.5.2. 资源服务授权配置
+##### 资源服务授权配置
 
 基本上所有微服务都是资源服务，以课程管理服务（xc-service-manage-course）为例，配置授权控制，当配置了授权控制后如要访问课程信息则必须提供令牌
 
@@ -643,7 +643,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 }
 ```
 
-##### 4.3.5.3. 资源服务授权测试
+##### 资源服务授权测试
 
 测试课程图片查询，访问url：http://localhost:31200/course/coursepic/list/4028e58161bd3b380161bd3bcd2f0000。请求时没有携带令牌则报错：
 
@@ -655,7 +655,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 当输入错误的令牌也无法正常访问资源。
 
-##### 4.3.5.4. 解决swagger-ui无法访问
+##### 解决swagger-ui无法访问
 
 当课程管理加了授权之后再访问swagger-ui则报错。修改授权配置类ResourceServerConfig的configure方法，针对swagger-ui的请求路径进行放行
 
@@ -675,7 +675,7 @@ public void configure(HttpSecurity http) throws Exception {
 
 > 注意：通过上边的配置虽然可以访问swagger-ui，但是无法进行单元测试，除非去掉认证的配置或在上边配置中添加所有请求均放行（"/**"）。
 
-### 4.4. Oauth2 密码模式授权
+### Oauth2 密码模式授权
 
 密码模式（Resource Owner Password Credentials）与授权码模式的区别是申请令牌不再使用授权码，而是直接通过用户名和密码即可申请令牌
 
@@ -699,7 +699,7 @@ public void configure(HttpSecurity http) throws Exception {
 
 > 注意：当令牌没有过期时同一个用户再次申请令牌则不再颁发新令牌
 
-### 4.5. 校验令牌
+### 校验令牌
 
 - Spring Security Oauth2提供校验令牌的接口，get 请求：`http://localhost:40400/auth/oauth/check_token?token=`
 - 请求参数
@@ -736,7 +736,7 @@ public void configure(HttpSecurity http) throws Exception {
 - jti：与令牌对应的唯一标识
 - companyId、userpic、name、utype、id：这些字段是本认证服务在Spring Security基础上扩展的用户身份信息
 
-### 4.6. 刷新令牌
+### 刷新令牌
 
 刷新令牌是当令牌快过期时重新生成一个令牌，它于授权码授权和密码授权生成令牌不同，刷新令牌不需要授权码也不需要账号和密码，只需要一个刷新令牌、客户端id和客户端密码
 
@@ -750,8 +750,8 @@ public void configure(HttpSecurity http) throws Exception {
 - 刷新令牌成功，会重新生成新的访问令牌和刷新令牌，令牌的有效期也比旧令牌长
 - 刷新令牌通常是在令牌快过期时进行刷新
 
-## 5. 认证接口开发
-### 5.1. 需求分析
+## 认证接口开发
+### 需求分析
 
 ![用户登录的流程图](images/20190820165456365_27542.jpg)
 
@@ -765,12 +765,12 @@ public void configure(HttpSecurity http) throws Exception {
     1. 实现用户退出注销功能，服务端清除令牌后，即使客户端请求携带token也是无效的。
     2. 由于jwt令牌过长，不宜存储在cookie中，所以将jwt令牌存储在redis，由客户端请求服务端获取并在客户端存储。
 
-### 5.2. Redis 配置
-#### 5.2.1. Redis 服务安装
+### Redis 配置
+#### Redis 服务安装
 
 参考资料：\【04】数据库\【03】Redis\02-Redis 安装.md
 
-#### 5.2.2. 引入redis依赖
+#### 引入redis依赖
 
 修改认证服务的pom.xml文件，引入spring-data-redis的依赖
 
@@ -781,7 +781,7 @@ public void configure(HttpSecurity http) throws Exception {
 </dependency>
 ```
 
-#### 5.2.3. redis 连接配置
+#### redis 连接配置
 
 在认证服务（xc-service-ucenter-auth）的application.yml文件中添加如下redis的配置
 
@@ -801,7 +801,7 @@ spring:
         maxWait: -1 # 连接池最大等行时间，-1代表没有限制
 ```
 
-#### 5.2.4. redis 测试
+#### redis 测试
 
 ```java
 package com.xuecheng.auth;
@@ -851,8 +851,8 @@ public class TestRedis {
 }
 ```
 
-### 5.3. 认证服务
-#### 5.3.1. 需求分析
+### 认证服务
+#### 需求分析
 
 - 认证服务需要实现的功能如下
 1. 登录接口
@@ -866,7 +866,7 @@ public class TestRedis {
 
 ![认证服务业务流程图](images/20190821095853015_27503.jpg)
 
-#### 5.3.2. API 接口
+#### API 接口
 
 在xc-service-api工程，创建com.xuecheng.api.auth.AuthControllerApi接口，定义登陆与退出的接口
 
@@ -893,7 +893,7 @@ public interface AuthControllerApi {
 }
 ```
 
-#### 5.3.3. 配置参数
+#### 配置参数
 
 在xc-service-ucenter-auth工程，配置application.yml的auth验证参数
 
@@ -906,7 +906,7 @@ auth:
   cookieMaxAge: -1
 ```
 
-#### 5.3.4. 申请令牌测试
+#### 申请令牌测试
 
 为了不破坏Spring Security的代码，在Service方法中通过RestTemplate请求Spring Security所暴露的申请令牌接口来申请令牌
 
@@ -1024,11 +1024,11 @@ public class TestClient {
 }
 ```
 
-#### 5.3.5. dao 层
+#### dao 层
 
 *暂时使用静态数据，待用户登录调通再连接数据库校验用户信息*
 
-#### 5.3.6. service 层    
+#### service 层    
 
 此分层主要的处理逻辑是：调用认证服务申请令牌，并将令牌存储到redis
 
@@ -1263,7 +1263,7 @@ public class AuthService {
 }
 ```
 
-#### 5.3.7. Controller 层
+#### Controller 层
 
 在xc-service-ucenter-auth工程中，创建AuthController类实现AuthControllerApi接口
 
@@ -1375,7 +1375,7 @@ public class AuthController implements AuthControllerApi {
 }
 ```
 
-#### 5.3.8. 登录url放行
+#### 登录url放行
 
 - 认证服务默认都要校验用户的身份信息，所以需要将登录url放行。
 - 在 WebSecurityConfig 类中重写 configure(WebSecurity web)方法
@@ -1392,7 +1392,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 5.3.9. 测试认证接口
+#### 测试认证接口
 
 使用postman测试，Post请求：http://localhost:40400/auth/userlogin
 
@@ -1400,7 +1400,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ![测试认证接口](images/20190821182134816_6121.png)
 
-#### 5.3.10. 测试写入Cookie
+#### 测试写入Cookie
 
 cookie最终会写到xuecheng.com域名下，可通过nginx代理进行认证，测试cookie是否写成功
 

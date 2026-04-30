@@ -1,8 +1,8 @@
 > POM 官方参考文档：https://maven.apache.org/pom.html
 
-## 1. POM 的四个层次
+## POM 的四个层次
 
-### 1.1. 超级 POM
+### 超级 POM
 
 Maven 在构建过程中有很多默认的设定。例如：源文件存放的目录、测试源文件存放的目录、构建输出的目录等等。这些配置被 maven 定义在“**超级 POM**” 文件中。
 
@@ -12,21 +12,21 @@ Maven 在构建过程中有很多默认的设定。例如：源文件存放的�
 >
 > 译文：Super POM 是 Maven 的默认 POM。除非明确设置，否则所有 POM 都扩展 Super POM，这意味着 Super POM 中指定的配置由您为项目创建的 POM 继承。
 
-### 1.2. 父 POM
+### 父 POM
 
 和 Java 类一样，POM 之间其实也是单继承的。如果给一个 POM 指定了父 POM，那么继承关系如下图所示：
 
 ![](images/103965022227449)
 
-### 1.3. 有效 POM
+### 有效 POM
 
-#### 1.3.1. 概念
+#### 概念
 
 在 POM 的继承关系中，子 POM 可以覆盖父 POM 中的配置；如果子 POM 没有覆盖，那么父 POM 中的配置将会被继承。按照这个规则，继承关系中的所有 POM 叠加到一起，就得到了一个最终生效的 POM。
 
 Maven 执行构建操作就是按照这个最终生效的 POM 来运行的，此最终生效的 POM 就叫做**有效 POM (英文：effective POM)**
 
-#### 1.3.2. 查看有效 POM
+#### 查看有效 POM
 
 通过以下命令可以查看 maven 项目的 有效 pom
 
@@ -34,7 +34,7 @@ Maven 执行构建操作就是按照这个最终生效的 POM 来运行的，此
 mvn help:effective-pom
 ```
 
-### 1.4. 小结
+### 小结
 
 使用和配置的 POM 分成四个层次组成的：
 
@@ -43,7 +43,7 @@ mvn help:effective-pom
 3. **当前 POM**：即平时关注和最多使用的 pom.xml
 4. **有效 POM**：隐含的一层，最终项目运行时实际真正生效的一层。
 
-## 2. pom.xml 整体配置结构
+## pom.xml 整体配置结构
 
 最基础的 pom.xml 文件结构格式是，由 `<project>` 和 `<modelVersion>` 标签构成，其中 `<modelVersion>` 指定了 pom.xml 文件使用的 XML schema 版本，目前，其最新的版本是 4.0.0
 
@@ -127,7 +127,7 @@ mvn help:effective-pom
 </project>
 ```
 
-## 3. 项目的基本信息相关标签
+## 项目的基本信息相关标签
 
 与项目的基本信息相关的标签，其中必填项如下：
 
@@ -147,7 +147,7 @@ mvn help:effective-pom
 
 另外还有一些特殊标签。
 
-### 3.1. modules 标签
+### modules 标签
 
 `<modules>` 标签用于声明当前 Maven 项目包含的模块子项目，每个子项目都是一个独立的 Maven 项目，具有自己的 pom.xml 文件，可以进行独立构建和测试。在父项目的 pom.xml 文件中，使用 标签来列出所有子项目的名称，如下所示：
 
@@ -168,7 +168,7 @@ mvn help:effective-pom
 
 示例配置表示当前项目是一个 Maven 的多模块项目：它包含了三个子项目 child-project1、child-project2 和 child-project3，这三个子项目与 parent-project 有相同的 groupId 和 version，但是 artifactId 不同，它们的 pom.xml 都位于 parent-project 的根目录下。当使用 Maven 命令在 parent-project 下执行构建时，Maven 会对每个子模块执行构建，最终生成子项目的构件并复制到 parent-project 的 target 目录下。
 
-### 3.2. parent 标签
+### parent 标签
 
 `<parent>` 标签用于声明当前 Maven 项目的父项目，它可以将若干个 Maven 项目组织成一个整体，指定版本号，插件版本号等，便于管理和维护，在一个 Maven 项目中，使用标签来引用父项目，如下所示：
 
@@ -190,7 +190,7 @@ mvn help:effective-pom
 
 示例配置表示当前项目 child-project 是 parent-project 的子项目，它的 groupId 和 version 都继承自 parent-project。`<relativePath>` 标签是一个可选项，它的值是父项目 pom.xml 文件到子项目 pom.xml 文件的相对路径，如果子项目 pom.xml 和父项目 pom.xml 在同一目录下，则可以省略此标签。
 
-### 3.3. scm 标签
+### scm 标签
 
 scm 又叫 Software Configuration Management，即软件配置管理，与版本控制有关，是 Maven 中用于指定源代码版本控制信息的标签。它可以帮助 Maven 获取源代码并将构建生成的二进制文件提交到版本控制系统中。`<scm>` 标签通常用于指定源代码管理系统的类型、URL、开发者连接等详细信息。示例如下：
 
@@ -213,7 +213,7 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 
 通过在 POM 文件中添加 `<scm>` 标签，Maven 可以获取源代码并构建项目，同时还可以自动将构建生成的文件提交到版本控制系统中，方便管理代码版本和协同开发。
 
-### 3.4. properties 标签
+### properties 标签
 
 `<properties>` 标签严格来说，配置的并不一定是项目本身的信息，而是人为设置的属性或者说宏，这个标签用来定义和管理项目中所需要的属性，其主要作用如下：
 
@@ -236,9 +236,9 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 </dependency>
 ```
 
-## 4. 项目的依赖列表相关标签
+## 项目的依赖列表相关标签
 
-### 4.1. dependency 标签
+### dependency 标签
 
 与项目的依赖列表相关标签最外层由 `<dependencies>` 来包裹，内部包含了各种具体的依赖  `<dependency>` 标签，该标签用于指定一个依赖项，它包含以下几个子标签：
 
@@ -253,7 +253,7 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 
 例如引入了 junit 包，该包只是用于测试，不需要在打包时包含，那么就可以将 junit 的 `<scope>` 设置为 `test`。
 
-### 4.2. repository 标签
+### repository 标签
 
 在本项目的 pom 文件中，支持使用 `<repositories>` 和 `<repository>` 标签指定 Maven 仓库，`<repository>` 用于指定一个 Maven 仓库，它包含以下几个子标签：
 
@@ -261,9 +261,9 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 - `<name>`：指定 Maven 仓库的名称。
 - `<url>`：指定 Maven 仓库的 URL
 
-## 5. 项目的构建配置相关标签
+## 项目的构建配置相关标签
 
-### 5.1. build 标签
+### build 标签
 
 `<build>` 标签用于定制构建过程规则，在超级 POM 中有相关默认配置，也可以在具体项目中的 pom.xml 中配置 `<build>` 标签覆盖默认值或补充配置。The Super POM 默认配置如下：
 
@@ -313,7 +313,7 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 
 > Notes: 从本质上来说，在项目中的 pom.xml 中配置 `<build>` 标签都是对超级 POM 配置的叠加。
 
-#### 5.1.1. 定义项目的目录结构
+#### 定义项目的目录结构
 
 用于指定目录的子标签如下：
 
@@ -328,7 +328,7 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 | `<testResources>`         | 测试资源文件存放目录      |
 | `<directory>`             | 构建结果输出目录          |
 
-#### 5.1.2. 插件管理
+#### 插件管理
 
 通过 `<pluginManagement>` 子标签管理插件，用于在父工程中统一管理版本，子工程使用时可以省略版本号。（*类似于 `<dependencyManagement>` 标签*）
 
@@ -359,7 +359,7 @@ scm 又叫 Software Configuration Management，即软件配置管理，与版本
 </build>
 ```
 
-#### 5.1.3. 插件生命周期管理
+#### 插件生命周期管理
 
 `<plugins>` 标签存放在默认生命周期中实际用到的插件，插件坐标与依赖 jar 包的坐标一样，包含 `<artifactId>`、`<version>` 和 `<groupId>` 标签，作为 Maven 的自带插件可以省略 `<groupId>` 标签
 
@@ -424,7 +424,7 @@ SiteMojo 的父类是：`AbstractSiteRenderingMojo`，在父类中可以看到 `
 
 > Notes: <font color=red>**重要结论，插件可设置的内容均由该插件来定义。**</font>
 
-#### 5.1.4. 指定 JDK 版本
+#### 指定 JDK 版本
 
 maven-compiler-plugin 插件，可以通过 `<configuration>` 标签来指定当前工程编译时所使用的 JDK 版本
 
@@ -472,7 +472,7 @@ maven-compiler-plugin 插件，可以通过 `<configuration>` 标签来指定当
 - 在 settings.xml 全局配置中设置 JDK 版本，仅在本地生效，如果脱离当前 settings.xml 能够覆盖的范围，则无法生效。（例如部署到服务器中）
 - 在当前 Maven 工程 pom.xml 中配置 JDK 版本，则项目无论在哪个环境执行编译等构建操作均能生效
 
-#### 5.1.5. 插件的依赖
+#### 插件的依赖
 
 使用 Mybatis 的逆向工程需要使用如下配置，MBG 插件需要配置该插件所需的依赖：
 
@@ -514,9 +514,9 @@ maven-compiler-plugin 插件，可以通过 `<configuration>` 标签来指定当
 </build>
 ```
 
-### 5.2. plugins 标签
+### plugins 标签
 
-#### 5.2.1. 概述
+#### 概述
 
 `<plugins>` 标签的作用是定义 Maven 插件，主要用于扩展 Maven 的功能，帮助开发人员更方便地构建、打包、发布项目。插件可以通过 Maven 的插件中心或者构建的私有仓库来使用，能在构建过程中执行特定的任务，比如编译、打包、测试等。
 
@@ -531,7 +531,7 @@ maven-compiler-plugin 插件，可以通过 `<configuration>` 标签来指定当
 2. 配置插件的参数
 3. 运行插件命令
 
-#### 5.2.2. 基础配置
+#### 基础配置
 
 Maven 插件定义 `<build>` -> `<plugins>` 的子标签 `<plugin>` 中，需要指定 `<groupId>`、`<artifactId>`、`<version>` 等基础信息，相应插件的具体配置在 `<configuration>` 标签中指定。
 
@@ -553,7 +553,7 @@ Maven 插件定义 `<build>` -> `<plugins>` 的子标签 `<plugin>` 中，需要
 
 > Tips: 以下章节的示例配置均省略 `<build>` 与 `<plugins>` 标签！
 
-#### 5.2.3. maven-compiler-plugin
+#### maven-compiler-plugin
 
 maven-compiler-plugin 是编译功能插件，在 pom.xml 中的配置如下：
 
@@ -589,7 +589,7 @@ maven-compiler-plugin 是编译功能插件，在 pom.xml 中的配置如下：
 
 如果按示例中配置，即指定了编译器的源和目标版本为 1.8，当使用 `mvn compile` 命令时，该插件将会编译 Java 代码，并将编译后的 class 文件放置在 target 目录下。
 
-#### 5.2.4. maven-surefire-plugin
+#### maven-surefire-plugin
 
 maven-surefire-plugin 插件是 Maven 中的一个测试框架，用于执行 Java 单元测试和集成测试。主要作用是在构建过程中运行测试，并生成测试报告，在 pom.xml 中的配置如下：
 
@@ -630,7 +630,7 @@ maven-surefire-plugin 插件是 Maven 中的一个测试框架，用于执行 Ja
 - `<includes>`：设置测试文件的过滤规则，支持通配符。
 - `<systemProperties>`：设置传递给测试环境的系统属性，可以在测试代码中通过 `System.getProperty()` 方法获取
 
-#### 5.2.5. maven-jar-plugin
+#### maven-jar-plugin
 
 maven-jar-plugin 用于将项目打包为 JAR 文件，以下示例 pom.xml 中的配置了 Maven 将 com.example.MyApp 作为 JAR 文件的主类：
 
@@ -657,7 +657,7 @@ maven-jar-plugin 用于将项目打包为 JAR 文件，以下示例 pom.xml 中�
 - `<addClasspath>`：是否将依赖项添加到 Class-Path 条目中
 - `<mainClass>`：定义可执行 JAR 文件的入口类
 
-#### 5.2.6. maven-install-plugin
+#### maven-install-plugin
 
 当执行 `mvn install` 命令时，maven-install-plugin 用于将一个特定的文件安装到本地 Maven 仓库中，以便其他项目可以依赖和使用它，在 pom.xml中 的配置如下：
 
@@ -688,7 +688,7 @@ maven-jar-plugin 用于将项目打包为 JAR 文件，以下示例 pom.xml 中�
 - `<createChecksum>`（可选配置项）：是否在安装文件时创建 SHA-1 校验和，默认为true。
 - `<skip>`（可选配置项）：是否跳过该插件的运行，默认为 false，即不跳过。
 
-#### 5.2.7. maven-clean-plugin
+#### maven-clean-plugin
 
 maven-clean-plugin 用于清理 Maven 项目中的目标文件和构建临时文件，以便重新构建项目。它通常被用于在构建之前清理项目，以确保在构建时使用最新的代码和资源 jar 文件，在 pom.xml 中的配置如下：
 
@@ -736,7 +736,7 @@ maven-clean-plugin 用于清理 Maven 项目中的目标文件和构建临时文
 
 <font color=red>**需要注意的是，Maven 的通配符仅支持`*`和`**`，不支持其他通配符（例如`?`）。同时，通配符匹配的范围是相对于构建目录的，即默认情况下是相对于 pom.xml 文件的目录**</font>。
 
-#### 5.2.8. maven-release-plugin
+#### maven-release-plugin
 
 maven-release-plugin 用于在代码库中创建一个稳定的发布版本，并将其发布到 Maven 仓库中，同时更新开发版本号，以便于下次开发版本的迭代。在 pom.xml 中的配置如下：
 
@@ -763,7 +763,7 @@ maven-release-plugin 用于在代码库中创建一个稳定的发布版本，�
 - `<releaseProfiles>`：指定触发发布的 Maven profile。只有在激活该 profile 后才会触发发布操作。在示例配置中，只有当 profile 名称为 release 时，才会触发发布操作。
 - `<branchBase>`：用于指定创建分支的位置，默认值同 tagBase，即和项目的 SCM 地址相同。
 
-### 5.3. profiles 标签
+### profiles 标签
 
 `<profiles>` 用于定义 Maven 运行时的不同配置环境，比如开发环境、测试环境、生产环境等。比如需要在不同的环境中使用不同的配置，在 pom 文件中进行如下配置：
 
@@ -817,9 +817,9 @@ maven-release-plugin 用于在代码库中创建一个稳定的发布版本，�
 mvn clean install -Pprod
 ```
 
-## 6. POM 文件帮助文档(网上资源)
+## POM 文件帮助文档(网上资源)
 
-### 6.1. 附件1：POM文件总体配置说明
+### 附件1：POM文件总体配置说明
 
 > 引用网上资源的最全面版本 pom.xml，后期根据理解修改整理
 
@@ -1751,37 +1751,37 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 </project>
 ```
 
-### 6.2. 附件2：POM文件单项配置说明
+### 附件2：POM文件单项配置说明
 
-#### 6.2.1. localRepository
+#### localRepository
 
 ```XML
  <!-- 本地仓库的路径。默认值为${user.home}/.m2/repository。 -->
  <localRepository>usr/local/maven</localRepository>
 ```
 
-#### 6.2.2. interactiveMode
+#### interactiveMode
 
 ```XML
  <!--Maven是否需要和用户交互以获得输入。如果Maven需要和用户交互以获得输入，则设置成true，反之则应为false。默认为true。-->
  <interactiveMode>true</interactiveMode>
 ```
 
-#### 6.2.3. usePluginRegistry
+#### usePluginRegistry
 
 ```XML
 <!--Maven是否需要使用plugin-registry.xml文件来管理插件版本。如果需要让Maven使用文件${user.home}/.m2/plugin-registry.xml来管理插件版本，则设为true。默认为false。-->
  <usePluginRegistry>false</usePluginRegistry>
 ```
 
-#### 6.2.4. offline
+#### offline
 
 ```XML
  <!--表示Maven是否需要在离线模式下运行。如果构建系统需要在离线模式下运行，则为true，默认为false。当由于网络设置原因或者安全因素，构建服务器不能连接远程仓库的时候，该配置就十分有用。 -->
  <offline>false</offline>
 ```
 
-#### 6.2.5. pluginGroups
+#### pluginGroups
 
 ```XML
 <!--当插件的组织Id（groupId）没有显式提供时，供搜寻插件组织Id（groupId）的列表。该元素包含一个pluginGroup元素列表，每个子元素包含了一个组织Id（groupId）。当我们使用某个插件，并且没有在命令行为其提供组织Id（groupId）的时候，Maven就会使用该列表。默认情况下该列表包含了org.apache.maven.plugins和org.codehaus.mojo -->
@@ -1791,7 +1791,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  </pluginGroups>
 ```
 
-#### 6.2.6. proxies
+#### proxies
 
 ```XML
 <!--用来配置不同的代理，多代理profiles 可以应对笔记本或移动设备的工作环境：通过简单的设置profile id就可以很容易的更换整个代理配置。 -->
@@ -1818,7 +1818,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  </proxies>
 ```
 
-#### 6.2.7. servers
+#### servers
 
 ```XML
 <!--配置服务端的一些设置。一些设置如安全证书不应该和pom.xml一起分发。这种类型的信息应该存在于构建服务器上的settings.xml文件中。-->
@@ -1843,7 +1843,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  </servers>
 ```
 
-#### 6.2.8. mirrors
+#### mirrors
 
 ```XML
 <!--为仓库列表配置的下载镜像列表。高级设置请参阅镜像设置页面 -->
@@ -1862,7 +1862,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  </mirrors>
 ```
 
-#### 6.2.9. profiles
+#### profiles
 
 ```XML
  <!--根据环境参数来调整构建配置的列表。settings.xml中的profile元素是pom.xml中profile元素的裁剪版本。它包含了id，activation, repositories, pluginRepositories和 properties元素。这里的profile元素只包含这五个子元素是因为这里只关心构建系统这个整体（这正是settings.xml文件的角色定位），而非单独的项目对象模型设置。如果一个settings中的profile被激活，它的值会覆盖任何其它定义在POM中或者profile.xml中的带有相同id的profile。 -->
@@ -1873,7 +1873,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
    <id>test</id>
 ```
 
-#### 6.2.10. Activation
+#### Activation
 
 ```XML
 <!--自动触发profile的条件逻辑。Activation是profile的开启钥匙。如POM中的profile一样，profile的力量来自于它能够在某些特定的环境中自动使用某些特定的值；这些环境通过activation元素指定。activation元素并不是激活profile的唯一方式。settings.xml文件中的activeProfile元素可以包含profile的id。profile也可以通过在命令行，使用-P标记和逗号分隔的列表来显式的激活（如，-P test）。-->
@@ -1910,7 +1910,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
    </activation>
 ```
 
-#### 6.2.11. Repositories
+#### Repositories
 
 ```XML
     <!--远程仓库列表，它是Maven用来填充构建系统本地仓库所使用的一组远程项目。 -->
@@ -1957,7 +1957,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  </profiles>
 ```
 
-#### 6.2.12. activeProfiles
+#### activeProfiles
 
 ```XML
 <settings>

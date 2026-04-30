@@ -1,8 +1,8 @@
 # MySQL 数据库 SQL 示例
 
-## 1. 练习示例涉及的数据库表 DDL 脚本
+## 练习示例涉及的数据库表 DDL 脚本
 
-### 1.1. 普通的示例表
+### 普通的示例表
 
 - 部门表
 
@@ -110,7 +110,7 @@ INSERT INTO tempdb.tb_user (name, phone, email, profession, age, gender, status,
 INSERT INTO tempdb.tb_user (name, phone, email, profession, age, gender, status, createtime) VALUES ('姜子牙', '17799990023', '37483844@qq.com', '工程造价', 29, '1', '4', '2003-05-26 00:00:00');
 ```
 
-### 1.2. 多对多关系示例表
+### 多对多关系示例表
 
 - 多对多关系(学生表、课程表、学生课程中间表)
 
@@ -141,7 +141,7 @@ create table student_course(
 insert into student_course values (null,1,1),(null,1,2),(null,1,3),(null,2,2),(null,2,3),(null,3,4);
 ```
 
-### 1.3. 表数据约束示例表
+### 表数据约束示例表
 
 - 用户表（约束）
 

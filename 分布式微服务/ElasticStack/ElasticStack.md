@@ -1,4 +1,4 @@
-## 1. Elastic Stack 简介
+## Elastic Stack 简介
 
 ELK 是三款软件的简称，分别是 Elasticsearch、Logstash、Kibana 组成。在发展的过程中，又有新成员 Beats 的加入，所以就形成了 Elastic Stack。
 
@@ -6,7 +6,7 @@ ELK 是三款软件的简称，分别是 Elasticsearch、Logstash、Kibana 组�
 
 ![](images/20191016090841387_31297.png)
 
-## 2. Elastic Stack 组成
+## Elastic Stack 组成
 
 全系的 Elastic Stack 技术栈包括
 
@@ -33,7 +33,7 @@ Beats 是 elastic 公司开源的一款采集系统监控数据的代理 agent�
 - Metricbeat：可定期获取外部系统的监控指标信息，其可以监控、收集 Apache、HAProxy、MongoDB、MySQL、Nginx、PostgreSQL、Redis、System、Zookeeper 等服务。
 - Winlogbeat：用于监控、收集 Windows 系统的日志信息。
 
-### 2.1. ELK 进行微服务日志收集的一般流程
+### ELK 进行微服务日志收集的一般流程
 
 ![](images/226385508258582.png)
 

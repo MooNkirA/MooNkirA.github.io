@@ -1,6 +1,6 @@
-## 1. Spring 常用 API
+## Spring 常用 API
 
-### 1.1. 获取超类中的泛型
+### 获取超类中的泛型
 
 - 准备测试的相关bean
 
@@ -43,11 +43,11 @@ Class<?> resolve = ResolvableType.forClass(NormalBean.class).getSuperType().getG
 System.out.println(resolve); // 结果 class com.moon.beans.Address
 ```
 
-## 2. 对象操作工具
+## 对象操作工具
 
-### 2.1. BeanUtils
+### BeanUtils
 
-#### 2.1.1. copyProperties 方法的使用注意事项
+#### copyProperties 方法的使用注意事项
 
 1. 属性的类型不匹配，无法进行复制。
 
@@ -235,6 +235,6 @@ public class Test {
 
 11. 因为采用反射机制实现对象的复制，会对程序的效率有影响。
 
-## 3. 待整理参考资料
+## 待整理参考资料
 
 > [Spring自带常用工具类](https://mp.weixin.qq.com/s/kaM2CrPOcujW-I-3_s8QUg)

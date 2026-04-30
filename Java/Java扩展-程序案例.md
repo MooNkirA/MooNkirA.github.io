@@ -1,6 +1,6 @@
 # Java案例
 
-## 1. 将小数类型转成金额形式的字符串
+## 将小数类型转成金额形式的字符串
 
 使用 `NumberFormat` 类进行数值格式，再对截取字符串
 
@@ -26,7 +26,7 @@ public class Test {
 }
 ```
 
-## 2. 获取项目的所在的操作系统
+## 获取项目的所在的操作系统
 
 ```java
 String os = System.getProperties().getProperty("os.name");

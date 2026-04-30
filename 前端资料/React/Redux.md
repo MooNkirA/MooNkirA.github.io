@@ -1,4 +1,4 @@
-## 1. Redux 概述
+## Redux 概述
 
 > - Redux 官网：https://redux.js.org/
 > - Redux 中文官网：https://cn.redux.js.org/

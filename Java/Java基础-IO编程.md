@@ -1,6 +1,6 @@
-## 1. IO 流
+## IO 流
 
-### 1.1. 数据在计算机的表现形式
+### 数据在计算机的表现形式
 
 所有数据(视频、音频、图片、文本文件)在计算机中都是由0和1组成。计算机只能识别0和1；
 
@@ -8,9 +8,9 @@
 
 向一个文件中存储一定的数据(一些数字)，如果使用文本方式打开，则会以文本的方式解释数据。如果以视频的方式打开，则会以视频的方式解释数据。音频、可行执行文件等亦是如此。所以，在文件传输过程中，要时刻明确，传输的始终为二进制数据。
 
-### 1.2. IO 的概念
+### IO 的概念
 
-#### 1.2.1. IO 操作
+#### IO 操作
 
 IO 操作，是指输入和输出操作。
 
@@ -19,7 +19,7 @@ IO 操作，是指输入和输出操作。
 
 例如：当使用集合保存数据时，这些数据都存在于内存中，一旦程序运行结束，这些数据将会从内存中清除，下次再想使用这些数据，已经没有了。如果希望将运算结果永久地保存下来，可以使用 IO，将这些数据持久化存储起来。要把数据持久化存储就需要把内存中的数据存储到内存以外的其他持久化设备(硬盘、光盘、U 盘等)上。此时需要数据的输入(in)输出(out)。数据输入输出相关的类均在 io 包下。
 
-#### 1.2.2. IO 流
+#### IO 流
 
 按流向可分为两种：输入流（I），输出流（O）。
 
@@ -28,9 +28,9 @@ IO 操作，是指输入和输出操作。
 
 例如：将数据写到文件中，实现数据永久化存储；读取文件中已经存在的数据。
 
-### 1.3. IO 模型分类
+### IO 模型分类
 
-#### 1.3.1. 阻塞 IO 模型（Blocking IO）
+#### 阻塞 IO 模型（Blocking IO）
 
 最传统的一种 IO 模型，即在读写数据过程中用户线程会发生阻塞现象。
 
@@ -40,7 +40,7 @@ IO 操作，是指输入和输出操作。
 
 > 在客户端连接数量不高的情况下，性能上是没问题的。但是当面对十万甚至百万级连接的时候，传统的 BIO 模型就会突显性能上的缺陷。
 
-#### 1.3.2. 非阻塞 IO 模型（Nonblocking IO）
+#### 非阻塞 IO 模型（Nonblocking IO）
 
 在非阻塞 I/O 模型中，当用户线程发起一个 read 操作后，并不需要等待，而是马上就得到了一个结果。如果结果是一个 error 时，它就知道数据还没有准备好，于是它可以再次发送 read 操作。期间用户线程会继续不断重试直到数据准备好为止。一旦内核中的数据准备好了，并且又再次收到了用户线程的请求，那么它马上就将数据拷贝到了用户线程，然后返回。
 
@@ -62,7 +62,7 @@ while (true) {
 
 非阻塞 IO 可以一个线程处理多个流事件，只要不停地询所有流事件即可。当然这种方式也不好，当大多数流没数据时，也是会大量浪费 CPU 资源。为了避免 CPU 空转，引进代理(select 和 poll，两种方式相差不大)，代理可以观察多个流 I/O 事件，空闲时会把当前线程阻塞掉，当有一个或多个 I/O 事件时，就从阻塞态醒过来，把所有 IO 流都轮询一遍，于是没有 IO 事件时程序就阻塞在 select 方法处，即便这样依然存在问题，但从 select 处只是知道是否有 IO 事件发生，却不知道是哪几个流，还是只能轮询所有流，epoll 这样的代理就可以把哪个流发生怎样的 IO 事件通知用户线程。
 
-#### 1.3.3. 多路复用 IO 模型（IO multiplexing）
+#### 多路复用 IO 模型（IO multiplexing）
 
 多路复用 IO 模型是目前使用得比较多的模型。**Java NIO 实际上就是多路复用 IO 模型**。
 
@@ -83,7 +83,7 @@ while (true) {
 > - **select 调用**：内核提供的系统调用，它支持一次查询多个系统调用的可用状态。几乎所有的操作系统都支持。
 > - **epoll 调用**：linux 2.6 内核，属于 select 调用的增强版本，优化了 IO 的执行效率。
 
-#### 1.3.4. 信号驱动 IO 模型
+#### 信号驱动 IO 模型
 
 在信号驱动 IO 模型中，当用户线程发起一个 IO 请求操作，会给对应的 socket 注册一个信号函数，然后用户线程会继续执行；当内核数据就绪时会发送一个信号给用户线程，用户线程接收到信号之后，便在信号函数中调用 IO 读写操作来进行实际的 IO 请求操作。
 
@@ -91,7 +91,7 @@ while (true) {
 
 **信号驱动 IO 模型的特点是：等待数据报到达期间进程不被阻塞。主循环可以继续执行，只要等待来自信号处理函数的通知。既可以是数据已准备好被处理，也可以是数据报已准备好被读取**。
 
-#### 1.3.5. 异步 IO 模型（asynchronous IO）
+#### 异步 IO 模型（asynchronous IO）
 
 异步 IO 模型是最理想的 IO 模型，在异步 IO 模型中，当用户线程发起 read 操作之后，立刻就可以开始去做其它的事。而另一方面，从内核的角度，当它受到一个 asynchronous read 之后，它会立刻返回，说明 read 请求已经成功发起了，因此不会对用户线程产生任何 block。然后，内核会等待数据准备完成，再将数据拷贝到用户线程，当这一切都完成之后，内核会给用户线程发送一个信号，告诉它 read 操作完成了。也就说用户线程完全不需要实际的整个 IO 操作是如何进行的，只需要先发起一个请求，当接收内核返回的成功信号时表示 IO 操作已经完成，可以直接去使用数据了。
 
@@ -101,9 +101,9 @@ while (true) {
 
 > Tips: 异步 IO 是需要操作系统的底层支持，在 Java 7 中，提供了 Asynchronous IO。
 
-## 2. File 类
+## File 类
 
-### 2.1. File 简述
+### File 简述
 
 `File` 类：文件和目录路径名的抽象表示形式。即，Java 中把文件或者目录（文件夹）都封装成 `File` 对象。
 
@@ -114,7 +114,7 @@ while (true) {
 - 文档上说明 `File` 类代表文件或文件夹路径，但是我们可以通过路径找到对应的文件或文件夹。
 - 可以认为 `File` 类就代表文件或文件夹(通过路径找到)
 
-### 2.2. 相对路径与绝对路径
+### 相对路径与绝对路径
 
 **绝对路径**
 
@@ -127,9 +127,9 @@ while (true) {
 - 在整个系统中，<font color=red>**不具有唯一性**</font>
 - 相对路径一般是在 Eclipse 中的某个项目当中创建一个文件夹(目录)开始。如 a.txt 相对于 myIO 项目根目录经过了 `a/b/a.txt`，则 `a/b/a.txt` 就是该文件的相对路径
 
-### 2.3. File 类的使用
+### File 类的使用
 
-#### 2.3.1. 成员变量
+#### 成员变量
 
 - 与系统有关的路径分隔符，window是“`;`”，mac与lunix是“`:`”
 
@@ -145,7 +145,7 @@ public static final String separator
 
 > 注：静态成员变量，直接用`file.成员变量名`使用
 
-#### 2.3.2. 构造方法
+#### 构造方法
 
 ```java
 public File(String pathname)
@@ -171,7 +171,7 @@ public File(File parent, String child);
 
 <font color=red>**注意：File的构造方法不会去判断路径是否存在，需要自己去调用方法处理**</font>
 
-#### 2.3.3. 文件创建
+#### 文件创建
 
 ```java
 public boolean createNewFile() throws IOException;
@@ -181,7 +181,7 @@ public boolean createNewFile() throws IOException;
 
 <font color=red>**只能用来创建文件，不能创建文件夹**</font>。在创建文件时，如果文件所在的文件夹不存在，则报错系统找不到指定的路径。<font color=red>**创建文件时，必须确保文件夹已经存在**</font>。
 
-#### 2.3.4. 文件夹创建
+#### 文件夹创建
 
 ```java
 public boolean mkdir();
@@ -200,7 +200,7 @@ public boolean mkdirs();
 - 创建成功返回`true`，否则返回`false`
 - 需要注意：<font color=red>**只能用来创建文件夹，不能创建文件**</font>
 
-#### 2.3.5. 文件/文件夹删除
+#### 文件/文件夹删除
 
 ```java
 public boolean delete();
@@ -211,7 +211,7 @@ public boolean delete();
 - `File`对象是文件：直接删除文件(<font color=red>**Java 删除时，不会使用 windows 的回收站**</font>)
 - `File`对象是文件夹：只删定义路径中最后一个文件夹且只能删除空文件夹，如果不是空文件夹，即不能删除。
 
-#### 2.3.6. 获取文件/文件夹信息
+#### 获取文件/文件夹信息
 
 ```java
 public long length()
@@ -303,7 +303,7 @@ public void testGetFileInfo() {
 相对路径对象的绝对路径是：D:\code\java-technology-stack\java-basic-api\qq.txt
 ```
 
-#### 2.3.7. 判断文件/文件夹
+#### 判断文件/文件夹
 
 此部分的API是用于判断该 `File` 对象是否存在或者判断该 `File` 对象代表一个文件还是代表一个文件夹
 
@@ -325,7 +325,7 @@ public boolean isFile();
 
 - 判断File对象是否为文件，是文件则返回`true`，否则返回`false`
 
-#### 2.3.8. 获取文件/文件夹列表（重点）
+#### 获取文件/文件夹列表（重点）
 
 需要注意：<font color=red>**File 对象必须是文件夹**</font>
 
@@ -371,9 +371,9 @@ public void testGetFileList() {
 null
 ```
 
-### 2.4. File 类基础应用案例
+### File 类基础应用案例
 
-#### 2.4.1. 读取指定文件夹下的所有文件（多个文件夹）
+#### 读取指定文件夹下的所有文件（多个文件夹）
 
 ```java
 import java.io.File;
@@ -405,7 +405,7 @@ public class MoonZero {
 }
 ```
 
-#### 2.4.2. 统计指定文件夹所有文件的大小总和（文件夹下有多个文件夹）
+#### 统计指定文件夹所有文件的大小总和（文件夹下有多个文件夹）
 
 ```java
 package day10;
@@ -466,7 +466,7 @@ public class Test2_02 {
 }
 ```
 
-#### 2.4.3. 删除指定文件夹下的所有文件（多个文件夹）
+#### 删除指定文件夹下的所有文件（多个文件夹）
 
 ```java
 package day10;
@@ -510,9 +510,9 @@ public class Test3_02 {
 }
 ```
 
-## 3. FileFilter 文件过滤器(难点、重点)
+## FileFilter 文件过滤器(难点、重点)
 
-### 3.1. FileFilter 概述
+### FileFilter 概述
 
 `FileFilter` 过滤器是一个函数式接口，用于抽象路径名的过滤器。使用时候要创建一个接口的实现类。**（通常使用匿名内部类或者lambda表达式来完成，因为一般该接口只适用于本次的过滤需求，没有广泛的适用性。）**
 
@@ -534,11 +534,11 @@ public interface FileFilter {
 
 `FileFilter` 接口的唯一方法`accept`，作用是测试指定抽象路径名是否应该包含在某个路径名列表中。
 
-### 3.2. 接口的调用时机
+### 接口的调用时机
 
 每当遍历获得一个子文件或子文件夹时，系统内部会创建一个文件对象，然后将该文件对象作为参数调用，文件过滤的`accept`方法，由`accept`的返回值决定该文件是否要过滤。<font color=red>**返回`false`表示过滤该文件，`ture`则不过滤**</font>。
 
-### 3.3. File 类使用过滤器的方法
+### File 类使用过滤器的方法
 
 根据指定文件过滤器获得当前文件夹下的过滤后的所有文件的`File`对象数组
 
@@ -548,7 +548,7 @@ public File[] listFiles(FileFilter filter)
 
 > API: 返回抽象路径名数组，这些路径名表示此抽象路径名表示的目录中满足指定过滤器的文件和目录。除了返回数组中的路径名必须满足过滤器外，此方法的行为与 `listFiles()` 方法相同。如果给定 `filter` 为 `null`，则接受所有路径名。否则，当且仅当在路径名上调用过滤器的` FileFilter.accept(java.io.File)` 方法返回 `true` 时，该路径名才满足过滤器。
 
-### 3.4. 文件过滤器的使用步骤与示例
+### 文件过滤器的使用步骤与示例
 
 1.	定义一个类实现`FileFilter`接口**（通常使用匿名内部类或者lambda表达式来完成）**
 2.	重写`accept`方法,满足条件的返回`true`,不满足条件的返回`false`
@@ -655,9 +655,9 @@ public class MoonZero {
 }
 ```
 
-## 4. 字符流
+## 字符流
 
-### 4.1. 字符流概述
+### 字符流概述
 
 IO 流用来处理设备之间的数据传输。Java 对数据的操作是通过流的方式，用于操作流的类都在 IO 包中。
 
@@ -665,7 +665,7 @@ IO 流用来处理设备之间的数据传输。Java 对数据的操作是通过
 
 > 注意：<font color=red>**字符流只能操作字符，无法操作其他数据，如声音、视频等**</font>。
 
-### 4.2. FileWriter 输出字符流
+### FileWriter 输出字符流
 
 `FileWriter` 输出字符流在 `java.io` 包中，用于写数据，属于输出流。
 
@@ -673,14 +673,14 @@ IO 流用来处理设备之间的数据传输。Java 对数据的操作是通过
 public class FileWriter extends OutputStreamWriter
 ```
 
-#### 4.2.1. FileWriter 向文件中写数据操作步骤
+#### FileWriter 向文件中写数据操作步骤
 
 1. 使用 FileWriter 流关联文件
 2. 利用 FileWriter 的写方法写数据
 3. 利用 FileWriter 的刷新方法将数据从内存刷到硬盘上
 4. 利用 FileWriter 的关流方法将释放占用的系统底层资源
 
-#### 4.2.2. 构造方法
+#### 构造方法
 
 创建输出流对象时，做了哪些事情:
 
@@ -713,7 +713,7 @@ public FileWriter(File file) throws IOException
 
 - 根据给定的 File 对象构造一个 FileWriter 对象。并且可以通过 append 参数指定是否追加写入。
 
-#### 4.2.3. 常用方法
+#### 常用方法
 
 > Notes: 以下 5 种 write 写数据方法，均调用输出流对象的写数据的方法，向文件对象写入数据，但数据没有直接写到文件，只是写到了内存缓冲区。
 
@@ -765,12 +765,12 @@ public void close() throws IOException
 
 - 通知系统释放和该文件相关的资源关闭流，释放系统底层资源。
 
-#### 4.2.4. close() 和 flush() 方法的区别
+#### close() 和 flush() 方法的区别
 
 - flush(): 刷新缓冲区。流对象还可以继续使用。
 - close(): 先刷新缓冲区，然后通知系统释放资源。流对象不可以再被使用了。
 
-### 4.3. FileReader 输入字符流
+### FileReader 输入字符流
 
 `FileReader` 输出字符流在 `java.io` 包中，从文件中读数据，属于输入流。
 
@@ -778,13 +778,13 @@ public void close() throws IOException
 public class FileReader extends InputStreamReader
 ```
 
-#### 4.3.1. 输入流读文件的步骤
+#### 输入流读文件的步骤
 
 1. 创建输入流对象
 2. 调用输入流对象的读数据方法
 3. 释放资源
 
-#### 4.3.2. 构造方法
+#### 构造方法
 
 ```java
 public FileReader(String fileName) throws FileNotFoundException
@@ -798,7 +798,7 @@ public FileReader(File file) throws FileNotFoundException
 
 - 在给定从中读取数据的 File 的情况下创建一个新 FileReader。
 
-#### 4.3.3. 常用方法
+#### 常用方法
 
 ```java
 public int read() throws IOException
@@ -812,7 +812,7 @@ public int read(char cbuf[]) throws IOException
 
 - 一次读取一个字符数组的数据并保存到 cbuf 数组中，返回的是实际读取的字符个数
 
-#### 4.3.4. 读数据方式1：一次读取一个字符
+#### 读数据方式1：一次读取一个字符
 
 调用输入流对象的读数据方法，一次读取一个字符。循环去就读取文件的数据，通过测试，如果读取数据的返回值是-1的时候，就说明没有数据了，这也作为循环的结束条件。读取出来的是字符的 ASCII 码，所以需要(char)强转。
 
@@ -827,7 +827,7 @@ while ((ch = fr.read()) != -1) {
 }
 ```
 
-#### 4.3.5. 读数据方式2：一次读取一个字符数组
+#### 读数据方式2：一次读取一个字符数组
 
 调用输入流对象的读数据方法，一次读取一个字符数组，通常读取的字符数量为1024及其整数倍
 
@@ -842,16 +842,16 @@ while ((len = fr.read(chs)) != -1) {
 }
 ```
 
-#### 4.3.6. read() 和 read(char cbuf[]) 的区别
+#### read() 和 read(char cbuf[]) 的区别
 
 如果文件中的数据是"a"，两种方法区别如下：
 
 - `int len = fr.read();`，结果是 `len = 97`，数据保存在 len 中
 - `int len = fr.read(arr);`，结果是 `len = 1`，代表的是只读一个数据，实际的数据是保存在 arr 数组中。
 
-### 4.4. BufferedWriter / BufferedReader（缓冲字符流）
+### BufferedWriter / BufferedReader（缓冲字符流）
 
-#### 4.4.1. BufferedWriter
+#### BufferedWriter
 
 `BufferedWriter` 带缓冲的输出字符流在 `java.io` 包中，是文本写入字符输出流，缓冲各个字符，从而提供单个字符、数组和字符串的高效写入。
 
@@ -861,7 +861,7 @@ public class BufferedWriter extends Writer
 
 > Tips: <font color=red>**缓冲流一样是用基本流的方法，只是创建对象的比较麻烦，但缓冲流的效率会比较高，一般都是使用缓冲流。**</font>
 
-##### 4.4.1.1. 构造方法
+##### 构造方法
 
 ```java
 public BufferedWriter(Writer out)
@@ -875,7 +875,7 @@ public BufferedWriter(Writer out)
 BufferedWriter bw = new BufferedWriter(new FileWriter("xxx.txt"));   
 ```
 
-##### 4.4.1.2. 特有方法
+##### 特有方法
 
 ```java
 public void newLine() throws IOException
@@ -883,7 +883,7 @@ public void newLine() throws IOException
 
 - 写一个换行符，此换行符由系统决定，不同的操作系统使用的换行符不同。
 
-#### 4.4.2. BufferedReader
+#### BufferedReader
 
 `BufferedReader` 带缓冲的输出字符流在 `java.io` 包中，从字符输入流中读取文本，缓冲各个字符，从而实现字符、数组和行的高效读取。
 
@@ -891,7 +891,7 @@ public void newLine() throws IOException
 public class BufferedReader extends Reader 
 ```
 
-##### 4.4.2.1. 构造方法
+##### 构造方法
 
 ```java
 public BufferedReader(Reader in)
@@ -905,7 +905,7 @@ public BufferedReader(Reader in)
 BufferedReader br = new BufferedReader(new FileReader("xxx.txt"));
 ```
 
-##### 4.4.2.2. 特有方法
+##### 特有方法
 
 ```java
 public String readLine() throws IOException
@@ -923,7 +923,7 @@ while ((line = br.readLine()) != null) {
 }
 ```
 
-### 4.5. IO 字符流复制文本文件5种实现方式示例
+### IO 字符流复制文本文件5种实现方式示例
 
 ```java
 package com.moon;
@@ -1046,15 +1046,15 @@ public class CopyFileTest {
 }
 ```
 
-## 5. 字节流
+## 字节流
 
-### 5.1. 字符流存在的问题
+### 字符流存在的问题
 
 字符输入和输出流只能操作文本文件，如果操作的是非文本文件（图片，视频，音频...）就会出现数据丢失的问题。
 
-### 5.2. OutputStream 字节输出流
+### OutputStream 字节输出流
 
-#### 5.2.1. 概述
+#### 概述
 
 ```java
 public abstract class OutputStream implements Closeable, Flushable
@@ -1067,7 +1067,7 @@ public abstract class OutputStream implements Closeable, Flushable
 - `java.io.FileOutputStream`
 - `java.io.BufferedOutputStream`
 
-#### 5.2.2. 常用方法
+#### 常用方法
 
 ```java
 public abstract void write(int b) throws IOException;
@@ -1096,7 +1096,7 @@ public void close() throws IOException
 
 - 关闭流释放资源。释放 IO 占用的 windows 底层资源
 
-#### 5.2.3. 常用子类：FileOutputStream (文件字节输出流)
+#### 常用子类：FileOutputStream (文件字节输出流)
 
 ```java
 public class FileOutputStream extends OutputStream
@@ -1130,13 +1130,13 @@ public FileOutputStream(File file, boolean append) throws FileNotFoundException
 
 > Notes: <font color=red>**直接 `new FileOutputStream(file)` 创建对象，写入数据，会覆盖原有的文件**</font>。
 
-#### 5.2.4. 字节输出流的使用步骤
+#### 字节输出流的使用步骤
 
 1. 创建字节输出流对象并关联目标文件
 2. 调用 `write()` 方法写出数据：写一个字节，写一个字节数组，写一个字节数组的一部分。
 3. 关闭流释放资源。
 
-#### 5.2.5. 字节输出流注意事项
+#### 字节输出流注意事项
 
 - 如果文件不存在，则会自动创建该文件。
 - 如果不是追加写出，则默认会先将文件内容清空再输出新内容。
@@ -1149,7 +1149,7 @@ FileOutputStream fos = new FileOutputStream("a.txt", true);
 fos.write("\r\n".getBytes());
 ```
 
-#### 5.2.6. 异常的处理
+#### 异常的处理
 
 1. 假设在 `FileOutputStream fos = new FileOutputStream("c.txt");` 出现异常
 2. 使用 try-catch 捕获 `FileNotFoundException` 异常
@@ -1178,9 +1178,9 @@ try {
 }
 ```
 
-### 5.3. InputStream 字节输入流
+### InputStream 字节输入流
 
-#### 5.3.1. 概述
+#### 概述
 
 ```java
 public abstract class InputStream implements Closeable 
@@ -1193,7 +1193,7 @@ public abstract class InputStream implements Closeable
 - `java.io.FileInputStream`
 - `java.io.BufferedInputStream`
 
-#### 5.3.2. 常用方法
+#### 常用方法
 
 ```java
 public abstract int read() throws IOException;
@@ -1222,7 +1222,7 @@ public void close() throws IOException
 
 - 释放 IO 占用的系统底层资源
 
-#### 5.3.3. 常用子类：FileInputStream (文件字节输入流)
+#### 常用子类：FileInputStream (文件字节输入流)
 
 ```java
 public class FileInputStream extends InputStream
@@ -1242,17 +1242,17 @@ public FileInputStream(File file) throws FileNotFoundException
 
 - 通过 `File` 对象创建 `FileInputStream`
 
-#### 5.3.4. 字节输入流的使用步骤
+#### 字节输入流的使用步骤
 
 1. 创建字节输入流对象并关联目标文件
 2. 调用 `read()` 方法读取数据：读一个字节，读一个字节数组，读一个字节数组的一部分。
 3. 关闭流释放资源。
 
-#### 5.3.5. 字节输入流注意事项
+#### 字节输入流注意事项
 
 - 如果输入流关联的文件不存在，则会抛出异常。
 
-#### 5.3.6. 基础示例
+#### 基础示例
 
 ```java
 package com.moon;
@@ -1283,9 +1283,9 @@ public class Test1_05 {
 }
 ```
 
-### 5.4. BufferedOutputStream / BufferedInputStream（字节缓冲流）
+### BufferedOutputStream / BufferedInputStream（字节缓冲流）
 
-#### 5.4.1. 缓冲流高效原理
+#### 缓冲流高效原理
 
 利用缓冲区临时存储多个数据，统一调用底层资源将数据写入到目标文件中。Java 在常规 IO 流的基础上，提供了更为高效的缓冲流，如下：
 
@@ -1298,7 +1298,7 @@ public class Test1_05 {
 
 > Tips: 凡是字节流都没有 `write.newLine()` 和 `readLine()` 这个方法。
 
-#### 5.4.2. BufferedOutputStream（缓冲输出流、写数据）
+#### BufferedOutputStream（缓冲输出流、写数据）
 
 ```java
 public class BufferedOutputStream extends FilterOutputStream 
@@ -1306,7 +1306,7 @@ public class BufferedOutputStream extends FilterOutputStream
 
 `BufferedOutputStream` 继承了 `FilterOutputStream` 最终是继承 `OutputStream`。
 
-##### 5.4.2.1. 构造方法
+##### 构造方法
 
 ```java
 public BufferedOutputStream(OutputStream out)
@@ -1320,7 +1320,7 @@ public BufferedOutputStream(OutputStream out, int size)
 
 - 可以传递任意的字节输出流对象，可以指定缓冲区大小。
 
-##### 5.4.2.2. 普通方法
+##### 普通方法
 
 ```java
 public synchronized void write(int b) throws IOException
@@ -1340,7 +1340,7 @@ public synchronized void write(byte b[], int off, int len) throws IOException
 
 - 写字节数组的一部分
 
-#### 5.4.3. BufferedInputStream（缓冲输入流、读数据）
+#### BufferedInputStream（缓冲输入流、读数据）
 
 ```java
 public class BufferedInputStream extends FilterInputStream
@@ -1348,7 +1348,7 @@ public class BufferedInputStream extends FilterInputStream
 
 `BufferedInputStream` 继承了 `FilterInputStream` 最终是继承 `InputStream`。
 
-##### 5.4.3.1. 构造方法
+##### 构造方法
 
 ```java
 public BufferedInputStream(InputStream in)
@@ -1362,7 +1362,7 @@ public BufferedInputStream(InputStream in, int size)
 
 - 可以传递任意的字节输入流对象，可以指定缓冲区大小。
 
-##### 5.4.3.2. 普通方法
+##### 普通方法
 
 ```java
 public synchronized int read() throws IOException
@@ -1382,9 +1382,9 @@ private int read1(byte[] b, int off, int len) throws IOException
 
 - 读取数组的部分
 
-### 5.5. 字节流综合案例
+### 字节流综合案例
 
-#### 5.5.1. 案例1：4 种字节流复制文件
+#### 案例1：4 种字节流复制文件
 
 ```java
 package com.moon;
@@ -1508,7 +1508,7 @@ public class Test1_12 {
 }
 ```
 
-#### 5.5.2. 案例2：字节流组合 File 类，复制文件夹下所有文件（包括文件夹与文件）
+#### 案例2：字节流组合 File 类，复制文件夹下所有文件（包括文件夹与文件）
 
 ```java
 package com.moon;
@@ -1592,9 +1592,9 @@ public class Test2_03 {
 }
 ```
 
-## 6. 转换流
+## 转换流
 
-### 6.1. 概念
+### 概念
 
 为什么要使用转换流？因为使用 `FileReader` 或 `BufferedReader` 读取文件时，**默认使用的编码是 GBK**。如果读取的文件的编码格式是 UTF-8 时，则不能使用 `FileReader` 或 `BufferedReader` 读取。此时就需要利用转换流读取文件的内容。
 
@@ -1604,15 +1604,15 @@ public class Test2_03 {
 
 <font color=purple>**构造方法传入字节流对象自身调用字符流的方法**</font>
 
-### 6.2. 字符编码表
+### 字符编码表
 
-#### 6.2.1. 什么是编码表
+#### 什么是编码表
 
 将现实生活中的文字对应数字，存储的是数字的二进制。
 
 **编码表**：就是生活中字符和计算机二进制的对应关系表。
 
-#### 6.2.2. ASCII 码表
+#### ASCII 码表
 
 ASCII 码表：American Standard Code for Information Interchange/美国信息交换标准代码
 
@@ -1620,7 +1620,7 @@ ASCII 码表：American Standard Code for Information Interchange/美国信息�
 
 其他常见码表有：ASCII, ISO-8859-1, GBK, UTF-8
 
-#### 6.2.3. 支持中文的码表
+#### 支持中文的码表
 
 - GB2312：简体中文码表。兼容 ASCII 码表，并加入了中文字符，包含 6000~7000 中文和符号。用两个字节表示。两个字节第一个字节是负数,第二个字节可能是正数
 - GBK：目前最常用的中文码表，兼容 GB2312 码表，2 万的中文和符号。用两个字节表示，其中的一部分文字，第一个字节开头是 1，第二字节开头是 0
@@ -1628,12 +1628,12 @@ ASCII 码表：American Standard Code for Information Interchange/美国信息�
 - Unicode码表：国际码表，包含各国大多数常用字符，每个字符都占 2 个字节，因此有 65536 个字符映射关系。Java 语言使用的 char 类型就是使用 Unicode 码表，如 `char c = 'a';` 占两个字节。
 - UTF-8：基于 unicode，一个字节就可以存储数据，不要用两个字节存储，而且这个码表更加的标准化 中文一般使用 3 个字节表示
 
-#### 6.2.4. 编码/解码
+#### 编码/解码
 
 - 编码：将文字对应到数字，如：`a -> 97`
 - 解码: 将数字对应到文字，如：`97 -> a`
 
-#### 6.2.5. 乱码
+#### 乱码
 
 乱码，是指因为文本在存储时使用的映射码表和在读取时使用的码表不一致造成的。
 
@@ -1641,9 +1641,9 @@ ASCII 码表：American Standard Code for Information Interchange/美国信息�
 
 对于 IO 操作，与字符串编码表使用类似，当以某个码表写出字节数据时，又使用另外码表展示，会出现乱码。
 
-### 6.3. OutputStreamWriter（输出转换流）
+### OutputStreamWriter（输出转换流）
 
-#### 6.3.1. 继承体系
+#### 继承体系
 
 ```java
 public class OutputStreamWriter extends Writer
@@ -1653,7 +1653,7 @@ OutputStreamWriter 是<font color=red>**字符流通向字节流**</font>的桥�
 
 ![](images/216702612256927.jpg)
 
-#### 6.3.2. 构造方法
+#### 构造方法
 
 通过构造函数看出，可以完成**字节输出流转换为字符输出流**。
 
@@ -1681,7 +1681,7 @@ OutputStreamWriter osw1 = new OutputStreamWriter(fos);
 OutputStreamWriter osw2 = new OutputStreamWriter(new FileOutputStream("a.txt"), StandardCharsets.UTF_8);
 ```
 
-#### 6.3.3. 常用方法
+#### 常用方法
 
 ```java
 public void write(int c) throws IOException 
@@ -1713,15 +1713,15 @@ public void write(String str, int off, int len) throws IOException
 
 - 写入字符串的某一部分。
 
-#### 6.3.4. 字符流转字节流的过程
+#### 字符流转字节流的过程
 
 1. 首先通过 `OutputStreamWriter` 查询指定码表，将要输出的内容转换成对应的字节。
 2. 然后将转换的字节交给 `FileOutputStream` 输出到文件。
 3. 最后关闭流释放资源。
 
-### 6.4. InputStreamReader（输入转换流）
+### InputStreamReader（输入转换流）
 
-#### 6.4.1. 继承体系
+#### 继承体系
 
 ```java
 public class InputStreamReader extends Reader
@@ -1731,7 +1731,7 @@ InputStreamReader 是<font color=red>**字节流通向字符流的桥梁**</font
 
 ![](images/198664612249596.jpg)
 
-#### 6.4.2. 构造方法
+#### 构造方法
 
 通过构造函数看出，可以完成**字节输入流转换为字符输入流**。
 
@@ -1759,7 +1759,7 @@ InputStreamReader isr1 = new InputStreamReader(fis);
 InputStreamReader isr2 = new InputStreamReader(new FileInputStream("a.txt"), StandardCharsets.UTF_8);
 ```
 
-#### 6.4.3. 常用方法
+#### 常用方法
 
 ```java
 public int read() throws IOException
@@ -1779,15 +1779,15 @@ public int read(char cbuf[], int offset, int length) throws IOException
 
 - 将字符读入数组中的某一部分。
 
-#### 6.4.4. 字节流转换字符流的过程
+#### 字节流转换字符流的过程
 
 1. 由字节输入流去目标文件中读取数据，获得对应的字节。
 2. 然后将字节交给转换流去查询对应的编码表，得到对应的字符。
 3. 最后关闭流释放资源。
 
-### 6.5. 转换流与字符流子类
+### 转换流与字符流子类
 
-#### 6.5.1. 两者的区别
+#### 两者的区别
 
 `Writer` 字符输出流：
 
@@ -1799,22 +1799,22 @@ public int read(char cbuf[], int offset, int length) throws IOException
 - `InputStreamReader`：转换流读取数据，可以指定字符编码表。
 - `FileReader`：字符输入流，采用默认的字符编码表（GBK）。
 
-#### 6.5.2. FileReader / FileWriter 原理
+#### FileReader / FileWriter 原理
 
 FileReader / FileWriter 构造方法实际上使用的是 InputStreamReader / OutputStreamWriter 的构造方法中的默认码表。
 
 字符流其实用的就是转换流，只是使用默认码表，不能指定编码表而已。
 
-#### 6.5.3. 转换流与字符流使用选择
+#### 转换流与字符流使用选择
 
 什么时候使用转换流，什么时候使用字符流 FileReader / FileWriter？
 
 - 如果需要修改默认的码表，必须使用转换流（默认的码表是：GBK）。可以使用转换流包装字节缓冲输入输出流。
 - 如果不需要指定码表，使用 FileReader / FileWriter (代码简单一点)
 
-## 7. 打印流
+## 打印流
 
-### 7.1. 打印流的概念与分类
+### 打印流的概念与分类
 
 打印流的作用是：为其他流添加功能，使其能方便输出各种数据类型的值。其最大的特点是：<font color=red>**只有输出数据的流，没有读取数据的流**</font>。分成以下两类：
 
@@ -1832,11 +1832,11 @@ public class PrintWriter extends Writer
 
 > Tips: 以上两种流的方法使用是一样的。
 
-### 7.2. 打印流使用方法
+### 打印流使用方法
 
 > `PrintWrite` 与 `PrintStream` 使用方法一样，下面以 `PrintStream` 为示例说明
 
-#### 7.2.1. PrintStream 类构造方法
+#### PrintStream 类构造方法
 
 `PrintStream` 类有很多构造方法，以下是常用的构造方法介绍：
 
@@ -1871,7 +1871,7 @@ public PrintStream(OutputStream out, boolean autoFlush, String encoding)
 PrintStream ps = new PrintStream(new FileOutputStream("ps.txt",true));
 ```
 
-#### 7.2.2. PrintStream 类成员方法
+#### PrintStream 类成员方法
 
 PrintStream 类常用的成员方法主要是 `print` 与 `println`，并有大量的重载方法
 
@@ -1889,15 +1889,15 @@ public void println(数据类型 变量名);
 
 - 将指定数据类型的值打印到流关联目标文件中，换行。
 
-## 8. IO 流总结（字符流和字节流）
+## IO 流总结（字符流和字节流）
 
-### 8.1. Java IO 体系图
+### Java IO 体系图
 
 ![Java IO体系.xmind](images/20210614100907212_13577.png)
 
 ![Java IO 分类总结.drawio](images/20210614104502846_582.jpg)
 
-### 8.2. 字节流与字符流的区别
+### 字节流与字符流的区别
 
 - 字节流：以字节为单位输入输出数据，按照 8 位传输。
 - 字符流：以字符为单位输入输出数据，按照 16 位传输。
@@ -1909,22 +1909,22 @@ public void println(数据类型 变量名);
 - `InputStream`/`OutputStream`：字节流
 - `Writer`/`Reader`：字符流
 
-#### 8.2.1. 字节流和字符流的选择
+#### 字节流和字符流的选择
 
 - 绝大多数情况下使用字节流会更好，因为字节流是字符流的包装，而大多数时候 IO 操作都是直接操作磁盘文件，所以这些流在传输时都是以字节的方式进行的（图片等都是按字节存储的）。
 - 如果操作需要通过 IO 在内存中频繁处理字符串的情况，使用字符流会比较好，因为字符流具备缓冲区，提高了性能。
 
-## 9. BIO 编程
+## BIO 编程
 
 BIO 有的称之为 basic(基本) IO，有的称之为 block(阻塞) IO，主要应用于文件 IO 和网络 IO。
 
 BIO 主要的 API 在 `java.io` 包中，其中重点包含 5 个类（`File`、`OutputStream`、`InputStream`、`Writer`、`Reader`）和 1 个接口（`Serializable`）。
 
-### 9.1. 基于 BIO 的网络 IO
+### 基于 BIO 的网络 IO
 
 在 JDK1.4 之前，我们建立网络连接的时候只能采用 BIO，需要先在服务端启动一个 ServerSocket，然后在客户端启动 Socket 来对服务端进行通信，默认情况下服务端需要对每个请求建立一个线程等待请求，而客户端发送请求后，先咨询服务端是否有线程响应，如果没有则会一直等待或者遭到拒绝，如果有的话，客户端线程会等待请求结束后才继续执行，这就是阻塞式 IO
 
-### 9.2. 基本用法示例（基于 TCP）
+### 基本用法示例（基于 TCP）
 
 - 编写TCP服务端
 
@@ -2014,28 +2014,28 @@ public class TCPClient {
 
 - 上述代码编写了一个客户端程序，通过 9999 端口连接服务器端，getInputStream 方法用来等待服务器端返回数据，如果没有返回，就一直等待，程序会阻塞在`socket.getInputStream()`方法
 
-## 10. NIO 编程
+## NIO 编程
 
-### 10.1. 概述
+### 概述
 
 java.nio 全称 java non-blocking IO，是指 JDK 提供的新 API。从 JDK1.4 开始，Java 提供了一系列改进的输入/输出的新特性，被统称为 NIO(即 New IO)。新增了许多用于处理输入输出的类，这些类都被放在 java.nio 包及子包下，并且对原 java.io 包中的很多类进行改写，新增了满足 NIO 的功能。
 
 ![](images/20191002182312547_11612.png)
 
-#### 10.1.1. Java NIO 和传统 I/O 的区别
+#### Java NIO 和传统 I/O 的区别
 
 Java NIO 和 传统的 BIO 有着相同的目的和作用，但还是有以下的区别：
 
 1. 实现方式不同：传统 I/O 是面向流的，以流的方式处理数据；NIO 是面向缓冲区的，以块的方式处理数据。在流的操作中，数据只能在一个流中连续进行读写，数据没有缓冲；而面向缓冲区的操作，数据可以从一个 Channel 读取到一个 Buffer 中，再从 Buffer 写入 CHannel 中，可以方便地在缓冲区中进行数据的前后移动等操作。块 I/O 的效率比流 I/O 高很多，这种功能在应用层主要用于数据的粘包、拆包等操作。
 2. 传统 I/O 的流操作是阻塞模式的，NIO 是基于多路复用 I/O 模型实现非阻塞模式的。传统的 I/O 中，用户线程调用 `read()` 或者 `write()` 进行 I/O 读写操作时，该线程将一直阻塞，直到数据读写完成；而 NIO 通过 Selector 监听 Channel 上事件的变化，在 Channel 上有数据变化时通知该线程进行读写操作。
 
-#### 10.1.2. NIO 三大核心组件
+#### NIO 三大核心组件
 
 <font color=red>**NIO 主要有三大核心部分：Channel(通道)，Buffer(缓冲区), Selector(选择器)**</font>。
 
 传统的 BIO 基于字节流和字符流进行操作，而 NIO 基于 Channel(通道)和 Buffer(缓冲区)进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。Selector(选择区)用于监听多个通道的事件（比如：连接请求，数据到达等），因此使用单个线程就可以监听多个客户端通道。
 
-#### 10.1.3. NIO 的非阻塞
+#### NIO 的非阻塞
 
 传统 IO 的各种流是阻塞的。即当一个线程调用 `read()` 或 `write()` 时，该线程被阻塞，直到有一些数据被读取，或数据完全写入。该线程在此期间不能再做任何事情了。
 
@@ -2043,7 +2043,7 @@ NIO 的非阻塞模式，使一个线程从某通道发送请求读取数据，�
 
 线程通常将非阻塞 IO 的空闲时间用于在其它通道上执行 IO 操作，所以一个单独的线程现在可以管理多个输入和输出通道（channel）。
 
-#### 10.1.4. NIO 和 IO 适用场景
+#### NIO 和 IO 适用场景
 
 NIO 是为弥补传统 IO 的不足而诞生的，但 NIO 也有自身的缺点。因为 NIO 是面向缓冲区的操作，每一次的数据处理都是对缓冲区进行的，那么在数据处理之前必须要判断缓冲区的数据是否完整或者已经读取完毕，如果没有，假设数据只读取了一部分，那么对不完整的数据处理没有任何意义。所以每次数据处理之前都要检测缓冲区数据。
 
@@ -2054,15 +2054,15 @@ NIO 和 IO 各适用的场景：
 
 使用哪种类型来处理数据，需要在数据的响应等待时间和检查缓冲区数据的时间上作比较来权衡选择。
 
-### 10.2. 通道（Channel）
+### 通道（Channel）
 
-#### 10.2.1. 概述
+#### 概述
 
 通道（Channel）类似于 BIO 中的 Stream(流)。只是 Stream(流)是单向，分为 InputStream(输入流)和 OutputStream(输出流)；而 **NIO 中的通道(Channel)是双向的**，既可以用来进行读操作，也可以用来进行写操作。
 
 > Notes: **BIO 中的 stream 是单向的**，例如 `FileInputStream` 用来建立到目标（文件，网络套接字，硬件设备等）的一个连接，对象只能进行读取数据的操作。
 
-#### 10.2.2. Channel 接口实现类
+#### Channel 接口实现类
 
 NIO 中常用的 `Channel` 实现类有：
 
@@ -2075,7 +2075,7 @@ NIO 中常用的 `Channel` 实现类有：
 
 ![](images/20191002190510596_5957.png)
 
-#### 10.2.3. FileChannel（文件的数据读写）
+#### FileChannel（文件的数据读写）
 
 ```java
 public abstract class FileChannel
@@ -2109,7 +2109,7 @@ public long transferFrom(ReadableByteChannel src, long position, long count);
 public long transferTo(long position, long count, WritableByteChannel target);
 ```
 
-#### 10.2.4. ServerSocketChannel（服务 TCP 的数据读写）
+#### ServerSocketChannel（服务 TCP 的数据读写）
 
 ```java
 public abstract class ServerSocketChannel
@@ -2149,7 +2149,7 @@ public SocketChannel accept()
 public final SelectionKey register(Selector sel, int ops)
 ```
 
-#### 10.2.5. SocketChannel（客户端 TCP 的数据读写）
+#### SocketChannel（客户端 TCP 的数据读写）
 
 ```java
 public abstract class SocketChannel
@@ -2207,9 +2207,9 @@ public final SelectionKey register(Selector sel, int ops, Object att)
 public final void close()
 ```
 
-### 10.3. 缓冲区（Buffer）
+### 缓冲区（Buffer）
 
-#### 10.3.1. 概述
+#### 概述
 
 Java IO 面向流意味着每次从流中读一个或多个字节，直至读取所有字节，它们没有被缓存在任何地方。此外，它也不能前后移动流中的数据。如果需要前后移动从流中读取的数据，需要先将它缓存到一个缓冲区。 
 
@@ -2219,7 +2219,7 @@ Java IO 面向流意味着每次从流中读一个或多个字节，直至读取
 
 ![](images/20191002184623913_10099.png)
 
-#### 10.3.2. Buffer 抽象实现类
+#### Buffer 抽象实现类
 
 在 NIO 中，`java.nio.Buffer` 是一个顶层抽象类，对于 Java 中的不同的基本数据类型都有一个 `Buffer` 类型实现与之相对应。常用的 `Buffer` 子类如下：
 
@@ -2233,7 +2233,7 @@ Java IO 面向流意味着每次从流中读一个或多个字节，直至读取
 | `DoubleBuffer` | 存储小数到缓冲区      |
 | `FloatBuffer`  | 存储小数到缓冲区      |
 
-#### 10.3.3. ByteBuffer（存储字节数据）
+#### ByteBuffer（存储字节数据）
 
 最常用的自然是 ByteBuffer 类（二进制数据），该类的主要方法如下所示
 
@@ -2285,21 +2285,21 @@ public Buffer clear();
 public abstract ByteBuffer compact();
 ```
 
-### 10.4. 选择器（Selector）
+### 选择器（Selector）
 
-#### 10.4.1. 概述
+#### 概述
 
 一般的 IO 操作，如果用阻塞 I/O，需要多线程（浪费内存）；如果用非阻塞 I/O，需要不断重试（耗费CPU）。
 
 Selector（选择器），能够检测多个注册的 Channel 通道上是否有 I/O 事件发生，如果有事件发生，便获取事件然后针对每个事件进行相应的响应和处理。因此只用一个 Selector 单线程去管理多个通道，也就是管理多个连接，并且不必为每个连接都创建一个线程，避免了多线程之间的上下文切换导致的开销。同时，Selector 只有在 Channel 有真正有读写事件发生时，才会调用 I/O 函数来进行读写，从而大大地减少了系统开销。
 
-#### 10.4.2. Selector 类关系图
+#### Selector 类关系图
 
 `Selector` 类关系图如下：
 
 ![](images/253455308231148.png)
 
-#### 10.4.3. Selector 常用方法
+#### Selector 常用方法
 
 - 得到一个选择器对象
 
@@ -2325,7 +2325,7 @@ public Set<SelectionKey> selectedKeys();
 public abstract Set<SelectionKey> keys();
 ```
 
-#### 10.4.4. SelectionKey 类(网络通道key)
+#### SelectionKey 类(网络通道key)
 
 `SelectionKey`，代表了 `Selector` 和网络通道的注册关系，一共四种：
 
@@ -2378,11 +2378,11 @@ public final boolean isReadable()
 public final boolean isWritable()
 ```
 
-### 10.5. 文件 NIO 示例
+### 文件 NIO 示例
 
 测试使用 NIO 进行本地文件的读、写和复制操作，和 BIO 进行对比
 
-#### 10.5.1. 往本地文件中写数据
+#### 往本地文件中写数据
 
 ```java
 /* 往本地文件中写数据 */
@@ -2408,7 +2408,7 @@ public void testWrite() throws Exception {
 
 > NIO 中的通道是从输出流对象里通过 `getChannel` 方法获取到的，该通道是双向的，既可以读，又可以写。在往通道里写数据之前，必须通过 put 方法把数据存到 `ByteBuffer` 中，然后通过通道的 `write` 方法写数据。在 `write` 之前，需要调用 `flip` 方法翻转缓冲区，把内部重置到初始位置，这样在接下来写数据时才能把所有数据写到通道里
 
-#### 10.5.2. 从本地文件中读数据
+#### 从本地文件中读数据
 
 ```java
 /* 从本地文件中读取数据 */
@@ -2431,7 +2431,7 @@ public void test2() throws Exception {
 
 > 上面示例从输入流中获得一个通道，然后提供 ByteBuffer 缓冲区，该缓冲区的初始容量和文件的大小一样，最后通过通道的 read 方法把数据读取出来并存储到了 ByteBuffer 中
 
-#### 10.5.3. 复制本地文件
+#### 复制本地文件
 
 以下示例通过传统的 BIO 复制一个文件，分别通过输入流和输出流实现了文件的复制
 
@@ -2474,9 +2474,9 @@ public void testNioCopy() throws Exception {
 }
 ```
 
-### 10.6. 网络 IO
+### 网络 IO
 
-#### 10.6.1. 概述
+#### 概述
 
 Java NIO 中的网络通道是非阻塞 IO 的实现，基于事件驱动，非常适用于服务器需要维持大量连接，但是数据交换量不大的情况，例如一些即时通信的服务等等...
 
@@ -2496,7 +2496,7 @@ Java NIO 中的网络通道是非阻塞 IO 的实现，基于事件驱动，非�
     - 缺点：线程的开销非常大，连接如果非常多，排队现象会比较严重。
 - <font color=red>**【推荐】**</font>使用 Java 的 NIO，用非阻塞的 IO 方式处理。这种模式可以用一个线程，处理大量的客户端连接
 
-#### 10.6.2. 基础示例
+#### 基础示例
 
 需求分析：实现服务器端和客户端之间的数据通信（非阻塞）。
 
@@ -2604,7 +2604,7 @@ NIO 示例运行效果：
 
 ![NIO示例运行效果](images/20191005091833634_10778.png)
 
-#### 10.6.3. 网络聊天案例
+#### 网络聊天案例
 
 需求：使用NIO实现多人聊天
 
@@ -2899,7 +2899,7 @@ public class TestChat {
 }
 ```
 
-## 11. AIO 编程
+## AIO 编程
 
 JDK 7 引入了 Asynchronous I/O，即 AIO（也称 NIO 2.0），叫做异步不阻塞的 IO 模型，是基于事件和回调机制实现。AIO 引入异步通道的概念，采用了 Proactor 模式，简化了程序编写，一个有效的请求才启动一个线程，它的特点是先由操作系统完成后才通知服务端程序启动线程去处理，一般适用于连接数较多且连接时间较长的应用。
 
@@ -2907,7 +2907,7 @@ JDK 7 引入了 Asynchronous I/O，即 AIO（也称 NIO 2.0），叫做异步不
 
 > *目前 AIO 还没有广泛应用。Netty 之前也尝试使用过 AIO，不过又放弃了。这是因为 Netty 使用了 AIO 之后，在 Linux 系统上的性能并没有多少提升。*
 
-## 12. 不同类型的 IO 对比总结
+## 不同类型的 IO 对比总结
 
 IO 的方式通常分为几种：同步阻塞的 BIO、同步非阻塞的 NIO、异步非阻塞的 AIO。
 
@@ -2930,9 +2930,9 @@ IO 的方式通常分为几种：同步阻塞的 BIO、同步非阻塞的 NIO、
 > - 同步非阻塞：你在饭馆点完餐，就去玩儿了。不过玩一会儿，就回饭馆问一声：好了没啊！
 > - 异步非阻塞：饭馆打电话说，我们知道您的位置，一会给你送过来，安心玩儿就可以了，类似于现在的外卖。
 
-## 13. Properties 类
+## Properties 类
 
-### 13.1. Properties 概述
+### Properties 概述
 
 ```java
 public class Properties extends Hashtable<Object,Object> 
@@ -2944,7 +2944,7 @@ public class Properties extends Hashtable<Object,Object>
 
 `Properies` 类特点：键和值必须是 `String` 类型，不支持泛型。与 IO 有关的集合类，对文件进行操作，文件就叫属性文件。
 
-### 13.2. Properties 属性文件
+### Properties 属性文件
 
 属性文件是 Java 中常用的一种文件类型，其扩展名必须是 `properties`。如：`applicatioin.properties`
 
@@ -2966,7 +2966,7 @@ key=abc
 
 - **文件中如果有空行，则会被忽略**。
 
-### 13.3. 构造方法
+### 构造方法
 
 ```java
 public Properties()
@@ -2980,7 +2980,7 @@ public Properties(Properties defaults)
 
 - 创建一个有默认值的空属性列表。
 
-### 13.4. 属性值操作相关方法
+### 属性值操作相关方法
 
 ```java
 public synchronized Object setProperty(String key, String value)
@@ -3018,7 +3018,7 @@ public Set<String> stringPropertyNames()
 
 - 返回此属性列表中的所有属性名（key 键）的 Set 集合
 
-### 13.5. 将集合中内容存储到文件
+### 将集合中内容存储到文件
 
 ```java
 public void store(OutputStream out, String comments) throws IOException
@@ -3032,7 +3032,7 @@ public void store(Writer writer, String comments) throws IOException
 
 - 保存属性到字符流中，并加上注释。还会加上保存的时间。字符流汉字直接写入。
 
-### 13.6. 读取文件中的数据并保存到属性集合
+### 读取文件中的数据并保存到属性集合
 
 ```java
 public synchronized void load(InputStream inStream) throws IOException
@@ -3045,9 +3045,9 @@ public synchronized void load(Reader reader) throws IOException
 
 - 从字符输入流中读取属性列表（属性名和属性值）
 
-## 14. 序列化与反序列化
+## 序列化与反序列化
 
-### 14.1. 概述
+### 概述
 
 > 引用维基百科对于“序列化”的介绍：
 >
@@ -3062,7 +3062,7 @@ public synchronized void load(Reader reader) throws IOException
 - <font color=red>**序列化：将数据结构或对象转换成二进制字节流的过程**</font>。要实现对象的序列化需要使用的流：`ObjectOutputStream` 继承 `OutputStream`
 - <font color=red>**反序列化：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程**</font>。要实现对象的反序列化需要使用的流：`ObjectInputStream` 继承 `InputStream`
 
-#### 14.1.1. 序列化协议对应于 TCP/IP 四层模型中的层级
+#### 序列化协议对应于 TCP/IP 四层模型中的层级
 
 网络通信的双方必须要采用和遵守相同的协议。TCP/IP 四层模型如下：
 
@@ -3075,13 +3075,13 @@ public synchronized void load(Reader reader) throws IOException
 
 如上图所示，OSI 七层协议模型中，表示层做的事情主要就是对应用层的用户数据进行处理转换为二进制流。反过来的话，就是将二进制流转换成应用层的用户数据。因此，OSI 七层协议模型中的应用层、表示层和会话层对应的都是 TCP/IP 四层模型中的应用层，所以**序列化协议属于 TCP/IP 协议应用层的一部分**。
 
-#### 14.1.2. 实际开发中序列化和反序列化的应用场景
+#### 实际开发中序列化和反序列化的应用场景
 
 1. 对象在进行网络传输（比如远程方法调用 RPC 的时候）之前需要先被序列化，接收到序列化的对象之后需要再进行反序列化
 2. 将对象存储到文件中的时候需要进行序列化，将对象从文件中读取出来需要进行反序列化
 3. 将对象存储到缓存数据库（如 Redis）时需要用到序列化，将对象从缓存数据库中读取出来需要反序列化
 
-#### 14.1.3. 常见序列化协议
+#### 常见序列化协议
 
 常见的序列化协议有：JDK 自带的序列化，比较常用第三方的序列化协议：hessian、kyro、protostuff。
 
@@ -3090,9 +3090,9 @@ public synchronized void load(Reader reader) throws IOException
 - 不支持跨语言调用：如果调用的是其他语言开发的服务的时候就不支持了。
 - 性能差：相比于其他序列化框架性能更低，主要原因是序列化之后的字节数组体积较大，导致传输成本加大。
 
-### 14.2. Serializable 接口
+### Serializable 接口
 
-#### 14.2.1. 概述
+#### 概述
 
 ```java
 package java.io;
@@ -3105,13 +3105,13 @@ public interface Serializable {
 
 > Notes: <font color=red>**被保存的对象要求实现 `Serializable` 接口，否则不能直接保存到文件中。否则会出现`java.io.NotSerializableException`。**</font>
 
-#### 14.2.2. serialVersionUID
+#### serialVersionUID
 
 序列化是将对象的状态信息转换为可存储或传输的形式的过程。虚拟机是否允许反序列化，不仅取决于类路径和功能代码是否一致，一个非常重要的一点是两个类的序列化 ID 是否一致，这个所谓的序列化 ID，就是在代码中定义的 `serialVersionUID`。
 
 序列化号 serialVersionUID 属于版本控制的作用。序列化的时候 serialVersionUID 也会被写入二级制序列，当反序列化时会检查 serialVersionUID 是否和当前类的 serialVersionUID 一致。如果 serialVersionUID 不一致则会抛出 `InvalidClassException` 异常。强烈推荐每个序列化类都手动指定其 serialVersionUID，如果不手动指定，那么编译器会动态生成默认的序列化号。
 
-#### 14.2.3. Externalizable
+#### Externalizable
 
 Java 中还提供了 `Externalizable` 接口，也可以实现它来提供序列化能力。
 
@@ -3128,13 +3128,13 @@ public interface Externalizable extends java.io.Serializable {
 
 `Externalizable` 继承自 Serializable，该接口中定义了两个抽象方法：`writeExternal()` 与 `readExternal()`。当使用 `Externalizable` 接口来进行序列化与反序列化的时候需要开发人员重写该方法。否则所有变量的值都会变成默认值。
 
-### 14.3. ObjectOutputStream（对象序列化流）
+### ObjectOutputStream（对象序列化流）
 
-#### 14.3.1. ObjectOutputStream 的作用
+#### ObjectOutputStream 的作用
 
 对象输出流，将 Java 的对象保存到文件中
 
-#### 14.3.2. 构造方法
+#### 构造方法
 
 ```java
 public ObjectOutputStream(OutputStream out);
@@ -3146,7 +3146,7 @@ public ObjectOutputStream(OutputStream out);
 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("stu.txt"));
 ```
 
-#### 14.3.3. 相关方法
+#### 相关方法
 
 ```java
 public final void writeObject(Object obj)
@@ -3154,7 +3154,7 @@ public final void writeObject(Object obj)
 
 将对象Obj写出到流关联的目标文件中
 
-#### 14.3.4. 序列化步骤
+#### 序列化步骤
 
 1. 定义类，实现 `Serializable` 接口，自定义一个 `serialVersionUID`
 
@@ -3169,13 +3169,13 @@ public class Student implements Serializable {
 4. 调用 `ObjectOutputStream` 对象的 `writeObject` 将对象写入文件中(即保存其状态)
 5. 关流
 
-### 14.4. ObjectInputStream（对象反序列化流）
+### ObjectInputStream（对象反序列化流）
 
-#### 14.4.1. ObjectInputStream 的作用
+#### ObjectInputStream 的作用
 
 将文件中的对象读取到程序中，将对象从文件中读取出来，实现对象的反序列化操作。
 
-#### 14.4.2. 构造方法
+#### 构造方法
 
 ```java
 ObjectInputStream(InputStream in)
@@ -3183,7 +3183,7 @@ ObjectInputStream(InputStream in)
 
 通过字节输入`InputStream`对象创建`ObjectInputStream`
 
-#### 14.4.3. 普通方法
+#### 普通方法
 
 ```java
 public final Object readObject()
@@ -3191,19 +3191,19 @@ public final Object readObject()
 
 从流关联的的文件中读取对象
 
-#### 14.4.4. 反序列化步骤
+#### 反序列化步骤
 
 1. 创建对象输入流
 2. 调用`readObject()`方法读取对象
 3. 关流
 
-### 14.5. 自定义对象输出流(了解)
+### 自定义对象输出流(了解)
 
-#### 14.5.1. 概念
+#### 概念
 
 要自定义对象输出流，就让新建的类继承 `ObjectOutputStream`
 
-#### 14.5.2. WriteStreamHeader 方法的调用时机
+#### WriteStreamHeader 方法的调用时机
 
 ```java
 public class ObjectOutputStream extends OutputStream implements ObjectOutput, ObjectStreamConstants {
@@ -3233,7 +3233,7 @@ public class ObjectOutputStream extends OutputStream implements ObjectOutput, Ob
 
 `WriteStreamHeader()` 方法中 `ObjectOutputStream` 类中的成员方法，每当创建 `ObjectOutputStream` 对象时，在 `ObjectOutputStream` 的构造方法中调用。
 
-#### 14.5.3. WriteStreamHeader 方法的作用
+#### WriteStreamHeader 方法的作用
 
 `WriteStreamHeader()` 方法作用是，写入一个头部信息，如果是要追加写入，则要求第一个对象写入一个头部信息，其他对象则不能写入头部信息。
 
@@ -3245,25 +3245,25 @@ public int available() throws IOException
 
 返回可以不受阻塞地读取的字节数。
 
-### 14.6. 瞬态关键字 transient
+### 瞬态关键字 transient
 
-#### 14.6.1. transient 的作用
+#### transient 的作用
 
 序列化对象时，如果不想保存某一个成员变量的值，该如何处理？`transient` 关键字作用就是用于指定**序列化对象时不保存某个成员变量的值**。
 
 用 `transient` 修饰成员变量，能够保证该成员变量的值不能被序列化到文件中。当对象被反序列化时，被 `transient` 修饰的变量值会设为初始值，如 int 型的是 0，对象型的是 null。
 
-#### 14.6.2. 使用 static 修饰的成员变量（不建议使用）
+#### 使用 static 修饰的成员变量（不建议使用）
 
 可以将该成员变量定义为静态的成员变量。因为对象序列化只会保存对象自己的信息，静态成员变量是属于类的信息，所有不会被保存。**但不建议使用**。
 
-#### 14.6.3. 注意点
+#### 注意点
 
 `transient` 只能修饰变量，不能修饰类和方法
 
-### 14.7. 序列化的常见问题与注意事项
+### 序列化的常见问题与注意事项
 
-#### 14.7.1. InvalidClassException 异常
+#### InvalidClassException 异常
 
 `java.io.InvalidClassException`: 无效的类异常。此异常是<font color=red>**序列号冲突**</font>。
 
@@ -3272,7 +3272,7 @@ public int available() throws IOException
 
 ![](images/20201105141312805_17748.png)
 
-#### 14.7.2. 注意事项总结
+#### 注意事项总结
 
 - 序列化对象必须实现序列化接口。
 - 序列化对象里面的属性是对象的话也要实现序列化接口。
@@ -3285,9 +3285,9 @@ public int available() throws IOException
 - <font color=red>**序列化不会保存静态变量**</font>。
 - 序列化对象会将其状态保存为一组字节；反序列化时，再将这些字节组装成对象。
 
-### 14.8. 扩展
+### 扩展
 
-#### 14.8.1. 其他序列化转换对象的方式
+#### 其他序列化转换对象的方式
 
 除了使用 Java 自带的序列化机制，通过实现 `Serializable` 接口并重写 `readObject` 和 `writeObject` 方法，将对象转换成字节序列，或将字节序列转换成对象。使用 `ObjectInputStream` 和 `ObjectOutputStream` 进行读写操作。还有以下序列化转换对象的方式：
 
@@ -3295,11 +3295,11 @@ public int available() throws IOException
 2. 使用 XML 序列化框架，如 JAXB、XStream 等，通过将对象转换成 XML 格式，或将 XML 格式转换成对象。使用 Marshaller 和 Unmarshaller 进行读写操作。
 3. 使用 Protobuf 序列化框架，通过定义`.proto`文件来描述数据结构，然后使用编译器生成 Java 代码，使用这些生成的代码进行读写操作。
 
-#### 14.8.2. 序列化对象案例
+#### 序列化对象案例
 
 要序列化一个对象，这个对象所在类就必须实现Java序列化的接口：`java.io.Serializable`。
 
-##### 14.8.2.1. 类添加序列化接口
+##### 类添加序列化接口
 
 ```java
 import java.io.Serializable;
@@ -3337,7 +3337,7 @@ public class User implements Serializable {
 }
 ```
 
-##### 14.8.2.2. 序列化/反序列化
+##### 序列化/反序列化
 
 可以借助commons-lang3工具包里面的类实现对象的序列化及反序列化，无需自己写
 

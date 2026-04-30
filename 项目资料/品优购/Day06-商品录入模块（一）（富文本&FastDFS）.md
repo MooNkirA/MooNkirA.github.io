@@ -1,8 +1,8 @@
-## 1. 运营商后台-商品分类功能
+## 运营商后台-商品分类功能
 
-### 1.1. 需求及表结构分析
+### 需求及表结构分析
 
-#### 1.1.1. 需求分析
+#### 需求分析
 
 - 实现三级商品分类列表查询功能
 - 进入页面首先显示所以一级分类，效果如下：
@@ -19,7 +19,7 @@
 
 - 点击面包屑导航，可以进行返回操作。
 
-#### 1.1.2. 表结构分析
+#### 表结构分析
 
 tb_item_cat 商品分类表
 
@@ -30,9 +30,9 @@ tb_item_cat 商品分类表
 |   name    | varchar |      |  分名称类  |
 |  type_id  | bigint  |      | 类型模板ID |
 
-### 1.2. 商品分类列表显示
+### 商品分类列表显示
 
-#### 1.2.1. 分类列表查询-后端部分
+#### 分类列表查询-后端部分
 
 - 修改pinyougou-manager-web工程，商品分类控制层ItemCatController。根据父目录id查询，设置默认传入的父目录参数为0。(因为进入页面默认展示顶级分类)
 
@@ -100,7 +100,7 @@ public List<ItemCat> findItemCatByParentId(Long parentId) {
 }
 ```
 
-#### 1.2.2. 分类列表查询-前端代码
+#### 分类列表查询-前端代码
 
 - 参考其他模块引入js文件(不分页组件)
 - itemCatController.js增加父目录查询条件（将findAll、search等不需要的方法删除）
@@ -151,9 +151,9 @@ $scope.findItemCatByParentId = function (parentId) {
 </tbody>
 ```
 
-### 1.3. 修改面包屑导航部分
+### 修改面包屑导航部分
 
-#### 1.3.1. 功能分析
+#### 功能分析
 
 **面包屑导航:**
 
@@ -163,7 +163,7 @@ $scope.findItemCatByParentId = function (parentId) {
 
 需要返回上级列表，需要通过点击面包屑来实现
 
-#### 1.3.2. 面包屑导航实现前端js
+#### 面包屑导航实现前端js
 
 - 修改itemCatController.js增加点击下一级按钮的方法
 
@@ -223,21 +223,21 @@ $scope.selectList = (entity, grade) => {
 </ol>
 ```
 
-### 1.4. （!待完成）新增商品分类
+### （!待完成）新增商品分类
 
 > TODO: 待完成
 
-### 1.5. （!待完成）修改商品分类
+### （!待完成）修改商品分类
 
 > TODO: 待完成
 
-### 1.6. （!待完成）删除商品分类
+### （!待完成）删除商品分类
 
 > TODO: 待完成
 
-## 2. 电商概念及表结构分析
+## 电商概念及表结构分析
 
-### 2.1. 电商概念SPU与SKU
+### 电商概念SPU与SKU
 
 - SPU = Standard Product Unit （标准产品单位）
     - SPU 是商品信息聚合的最小单位，是一组可复用、易检索的标准化信息的集合，该集合描述了一个产品的特性。
@@ -248,7 +248,7 @@ $scope.selectList = (entity, grade) => {
     - SKU 是物理上不可分割的最小存货单元。在使用时要根据不同业态，不同管理模式来处理。在服装、鞋类商品中使用最多最普遍。
     - 例如：纺织品中一个 SKU 通常表示：规格、颜色、款式。
 
-### 2.2. 表结构分析
+### 表结构分析
 
 - tb_goods 商品 SPU 表(标准商品)
 
@@ -262,14 +262,14 @@ $scope.selectList = (entity, grade) => {
 
 ![表结构分析3](images/20190122124421048_21304.jpg)
 
-## 3. 商家后台-商品录入【基本功能】
+## 商家后台-商品录入【基本功能】
 
-### 3.1. 需要分析
+### 需要分析
 
 1. 在商家后台实现商品录入功能。包括商品名称、副标题、价格、包装列表、售后服务
 2. 实现商品介绍的录入，要求使用富文本编辑器
 
-### 3.2. 商品录入（基本功能）-后端部分
+### 商品录入（基本功能）-后端部分
 
 - 修改Goods实体类，用于封装商品录入信息
     - 定义GoodsDesc对象用于封装商品描述
@@ -373,9 +373,9 @@ public class GoodsServiceImpl implements GoodsService {
 }
 ```
 
-### 3.3. 商品录入（基本功能）-前端部分
+### 商品录入（基本功能）-前端部分
 
-#### 3.3.1. 控制层js代码
+#### 控制层js代码
 
 修改goodsController.js（将无用方法删除，只剩saveOrUpdate方法），在增加成功后弹出提示，并清空实体（因为编辑页面无列表）
 
@@ -395,7 +395,7 @@ public class GoodsServiceImpl implements GoodsService {
     };
 ```
 
-#### 3.3.2. 页面goods_edit.html
+#### 页面goods_edit.html
 
 - 参考其他模块导入js文件。引入控制器
 
@@ -460,18 +460,18 @@ public class GoodsServiceImpl implements GoodsService {
 </button>
 ```
 
-## 4. 商家后台-商品录入【富文本编辑器】
+## 商家后台-商品录入【富文本编辑器】
 
-### 4.1. 富文本编辑器介绍
+### 富文本编辑器介绍
 
 - 富文本编辑器，Rich Text Editor, 简称 RTE, 它提供类似于 Microsoft Word 的编辑功能。常用的富文本编辑器：
     - KindEditor：http://kindeditor.net/
     - UEditor：http://ueditor.baidu.com/website/
     - CKEditor：http://ckeditor.com/
 
-### 4.2. 使用kindeditor完成商品介绍的录入
+### 使用kindeditor完成商品介绍的录入
 
-#### 4.2.1. 初始化kindeditor编辑器
+#### 初始化kindeditor编辑器
 
 在goods_edit.html页面中添加JS代码，用于初始化kindeditor：
 
@@ -493,7 +493,7 @@ public class GoodsServiceImpl implements GoodsService {
 
 *说明：allowFileManager【是否允许浏览服务器已上传文件】，默认值是：false*
 
-#### 4.2.2. 获取kindeditor编辑器的内容
+#### 获取kindeditor编辑器的内容
 
 - 在goodsController.js中的saveOrUpdate()方法中添加富文本的处理
 
@@ -537,9 +537,9 @@ $scope.saveOrUpdate = function () {
 </p>
 ```
 
-## 5. FastDFS【分布式文件系统】
+## FastDFS【分布式文件系统】
 
-### 5.1. 图片服务器介绍
+### 图片服务器介绍
 
 - 要实现图片上传功能，需要有一个图片服务器。图片服务器的特点：
     1. 存储空间可扩展
@@ -549,11 +549,11 @@ $scope.saveOrUpdate = function () {
     1. 使用FastDFS分布式文件系统。
     2. 使用Nginx服务器。
 
-### 5.2. 什么是FastDFS
+### 什么是FastDFS
 
 FastDFS(Fast Distributed file system)是用c语言编写的一款开源的分布式文件系统。FastDFS为互联网量身定制，充分考虑了冗余备份、负载均衡、横向扩展等机制，并注重高可用、高性能等指标，使用FastDFS很容易搭建一套高性能的文件服务器集群提供文件上传、下载等服务。
 
-### 5.3. FastDFS架构
+### FastDFS架构
 
 FastDFS架构包括**Tracker server**和**Storage server**。客户端请求Tracker server进行文件上传、下载，通过Tracker server调度最终由Storage server完成文件上传和下载。
 
@@ -567,27 +567,27 @@ Tracker 管理集群，收集信息，处理信息，为了保证高可用，可
 
 Storage 保存文件，分为很多组，组和组之间的数据不一样，组内成员数据是一样的，保证数据的高可用，可以增加组，达到扩容的效果。
 
-### 5.4. 文件上传流程
+### 文件上传流程
 
 内容详见：编程资料笔记\【07】分布式架构 & 微服务架构\05-FastDFS 分布式文件系统.md 的『2.2.2. 文件上传流程』
 
-### 5.5. 文件下载流程
+### 文件下载流程
 
 内容详见：编程资料笔记\【07】分布式架构 & 微服务架构\05-FastDFS 分布式文件系统.md 的『2.2.3. 文件下载流程』
 
-### 5.6. 搭建文件服务器
+### 搭建文件服务器
 
-#### 5.6.1. 架构图
+#### 架构图
 
 ![文件服务器架构图](images/20190123151019608_10709.jpg)
 
-#### 5.6.2. 安装FastDFS
+#### 安装FastDFS
 
 安装详见【`\07-编程工具资料\03-Java相关框架+源代码\FastDFS【分布式文件系统】\文档\Linux安装FastDFS.docx`】
 
-## 6. 使用图片服务器（pyg-test工程）
+## 使用图片服务器（pyg-test工程）
 
-### 6.1. 添加依赖
+### 添加依赖
 
 学习使用FastDFS需要有对应的Java客户端来支持；而遗憾的是FastDFS的作者没有把FastDFS的依赖放置到maven中央仓库提供下载；但可以自行导入项目并安装，然后再引用它。
 
@@ -601,9 +601,9 @@ Storage 保存文件，分为很多组，组和组之间的数据不一样，组
 
 使用install命令，安装fastdfs-client到本地仓库
 
-### 6.2. 创建fastdfs-test工程，初始化相关配置
+### 创建fastdfs-test工程，初始化相关配置
 
-#### 6.2.1. FastDFS依赖
+#### FastDFS依赖
 
 创建fastdfs-test工程，pom.xml依赖信息如下：
 
@@ -630,7 +630,7 @@ Storage 保存文件，分为很多组，组和组之间的数据不一样，组
 </project>
 ```
 
-#### 6.2.2. 配置tracker server地址
+#### 配置tracker server地址
 
 新增`src/test/resources/fastdfs_client.conf`文件，配置内容：
 
@@ -641,15 +641,15 @@ tracker_server=192.168.12.131:22122
 
 注：key的值是固定的：【tracker_server】，value值是分布式文件系统服务器的地址
 
-### 6.3. 文件上传、下载、删除测试
+### 文件上传、下载、删除测试
 
-#### 6.3.1. 开启fastDFS文件系统
+#### 开启fastDFS文件系统
 
 ![开启fastDFS服务1](images/20190123164118391_24534.jpg)
 
 ![开启fastDFS服务2](images/20190123164124665_2076.jpg)
 
-#### 6.3.2. 文件上传测试
+#### 文件上传测试
 
 ```java
 /*文件上传(FastDFS)*/
@@ -685,7 +685,7 @@ public void uploadFile() throws Exception {
 
 测试访问地址：http://192.168.12.131/group1/M00/00/01/wKgMg1xIKfGAaS6JAACq8qaZ-jA965.jpg
 
-#### 6.3.3. 文件下载测试
+#### 文件下载测试
 
 ```java
 /*文件下载(FastDFS)*/
@@ -716,7 +716,7 @@ public void downloadFile() throws Exception {
 }
 ```
 
-#### 6.3.4. 文件删除测试
+#### 文件删除测试
 
 ```java
 /*删除文件(FastDFS)*/
@@ -748,9 +748,9 @@ public void deleteFile() throws Exception {
 
 ![删除文件效果2](images/20190123165657428_21641.png)
 
-### 6.4. 上传、下载、删除步骤小结
+### 上传、下载、删除步骤小结
 
-#### 6.4.1. 上传步骤
+#### 上传步骤
 
 1. 加载tracker server的配置文件地址，配置文件为tracker server的地址；在这里设置了`tracker_server=192.168.12.131:22122`
 2. 获取配置文件的绝对路径
@@ -773,7 +773,7 @@ String[] upload_file(String local_filename, String file_ext_name, NameValuePair[
 
 6. 解析并获取上传结果，返回组名和文件的相对路径
 
-#### 6.4.2. 下载步骤
+#### 下载步骤
 
 1~4. 与上传步骤一样
 
@@ -790,7 +790,7 @@ byte[] download_file(String group_name, String remote_filename)
 
 6. 使用文件输出流，将字节数组写入到本地
 
-#### 6.4.3. 删除步骤
+#### 删除步骤
 
 1~4. 与上传步骤一样
 
@@ -805,15 +805,15 @@ byte[] download_file(String group_name, String remote_filename)
 int delete_file(String group_name, String remote_filename)
 ```
 
-## 7. 商家后台-商品录入【商品图片上传】
+## 商家后台-商品录入【商品图片上传】
 
-### 7.1. 需求分析
+### 需求分析
 
 在商品录入界面实现多图片上传。当用户点击新建按钮，弹出上传窗口。
 
-### 7.2. 相关配置
+### 相关配置
 
-#### 7.2.1. 配置依赖
+#### 配置依赖
 
 pinyougou-shop-web工程pom.xml引入依赖
 
@@ -830,7 +830,7 @@ pinyougou-shop-web工程pom.xml引入依赖
 </dependency>
 ```
 
-#### 7.2.2. 配置文件
+#### 配置文件
 
 1. 将“fastdfs-test”工程中的`fastdfs_client.conf`文件拷贝到pinyougou-shop-web工程`src/main/resources`目录下。
 
@@ -864,9 +864,9 @@ fileServerUrl=http://192.168.12.131
 
 **注：配置文件上传解析器时，id必须是固定的multipartResolver**
 
-### 7.3. 文件上传-后端控制层
+### 文件上传-后端控制层
 
-#### 7.3.1. 实现步骤
+#### 实现步骤
 
 1. 使用MultipartFile接收表单提交的文件
 2. 定义`Map<String, Object>`集合封装返回数据，返回响应的状态码（成功200，失败500）
@@ -880,7 +880,7 @@ fileServerUrl=http://192.168.12.131
 7. 返回状态与上传图片的url
 
 
-#### 7.3.2. 后端代码
+#### 后端代码
 
 在pinyougou-shop-web新建UploadController.java
 
@@ -960,9 +960,9 @@ public class UploadController {
 }
 ```
 
-### 7.4. 文件上传-前端部分
+### 文件上传-前端部分
 
-#### 7.4.1. 创建uploadService.js服务层
+#### 创建uploadService.js服务层
 
 - anjularjs对于post和get请求默认的Content-Type header 是application/json。通过设置‘Content-Type’: undefined，这样浏览器会帮我们把Content-Type 设置为 multipart/form-data.
 - 设置 transformRequest : angular.identity，anjularjs transformRequest function 将序列化我们的formdata object
@@ -1003,7 +1003,7 @@ app.controller('goodsController', function ($scope, $controller, baseService, up
 <script src="/js/service/uploadService.js"></script>
 ```
 
-#### 7.4.2. 前端控制层上传图片方法
+#### 前端控制层上传图片方法
 
 - goodsController增加上传图片的方法
 
@@ -1065,7 +1065,7 @@ $scope.uploadFile = function () {
 </table>
 ```
 
-#### 7.4.3. 前端图片列表显示
+#### 前端图片列表显示
 
 - goods_edit.html，修改上传窗口的保存按钮绑定点击事件，调用方法，将上传的文件对象放到一个数组中
 
@@ -1111,11 +1111,11 @@ $scope.add_image_entity = function () {
 </tbody>
 ```
 
-### 7.5. 删除图片（增加删除文件服务器部分）
+### 删除图片（增加删除文件服务器部分）
 
 原来教程只将图片从前端显示列表中移除，没有真正删除服务器上的文件。这里增加删除文件服务器的操作功能
 
-#### 7.5.1. 上传图片时增加部分代码
+#### 上传图片时增加部分代码
 
 - 在UploadController的upload方法中，增加返回文件存储的组名与文件名
 
@@ -1139,7 +1139,7 @@ $scope.image_entity.group = response.data.group;
 $scope.image_entity.fileName = response.data.fileName;
 ```
 
-#### 7.5.2. 文件删除-后端控制层部分
+#### 文件删除-后端控制层部分
 
 - 在UploadController中增加删除文件的方法（为了方便，不想新增多的controller）
 
@@ -1188,7 +1188,7 @@ public boolean deleteFile(@RequestBody Map<String, Object> map) {
 }
 ```
 
-#### 7.5.3. 文件删除-前端代码
+#### 文件删除-前端代码
 
 - goodsController.js增加删除图片的方法
 

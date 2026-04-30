@@ -1,8 +1,6 @@
-# Day10 搜索解决方案（一）-SpringDataSolr
+## Solr安装与配置
 
-## 1. Solr安装与配置
-
-### 1.1. 什么是Solr
+### 什么是Solr
 
 大多数搜索引擎应用都必须具有某种搜索功能，问题是搜索功能往往是巨大的资源消耗并且它们由于沉重的数据库加载而拖垮你的应用的性能。
 
@@ -16,23 +14,23 @@ Solr可以和Hadoop一起使用。由于Hadoop处理大量数据，Solr帮助我
 
 总之，Solr是一个可扩展的，可部署，搜索/存储引擎，优化搜索大量以文本为中心的数据。
 
-### 1.2. Solr安装
+### Solr安装
 
-#### 1.2.1. Linux安装单机版Solr
+#### Linux安装单机版Solr
 
 参考安装文档：\Java编程工具资料\Java源代码\Apache Lucene&solr\Solr相关资料（项目2）\Linux安装单机版Solr.docx
 
-#### 1.2.2. Linux安装集群版Solr
+#### Linux安装集群版Solr
 
 参考安装文档：\Java编程工具资料\Java源代码\Apache Lucene&solr\Solr相关资料（项目2）\Linux安装集群版Solr.docx
 
-## 2. 中文分析器IK Analyzer
+## 中文分析器IK Analyzer
 
-### 2.1. IK Analyzer简介
+### IK Analyzer简介
 
 IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分词工具包。从2006年12月推出1.0版开始，IKAnalyzer已经推出了4个大版本。最初，它是以开源项目Luence为应用主体的，结合词典分词和文法分析算法的中文分词组件。从3.0版本开始，IK发展为面向Java的公用分词组件，独立于Lucene项目，同时提供了对Lucene的默认优化实现。在2012版本中，IK实现了简单的分词歧义排除算法，标志着IK分词器从单纯的词典分词向模拟语义分词衍化。
 
-### 2.2. IK Analyzer配置
+### IK Analyzer配置
 
 - 配置步骤：
     1. 把IKAnalyzer2012FF_u1.jar 添加到 solr 应用lib 目录下
@@ -46,7 +44,7 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
 </fieldType>
 ```
 
-### 2.3. 配置域
+### 配置域
 
 - 域相当于数据库的表字段，用户存放数据，因此用户根据业务需要去定义相关的Field（域），一般来说，每一种对应着一种数据，用户对同一种数据进行相同的操作。
 - 域的常用属性：
@@ -57,7 +55,7 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
     - `required`：是否必须
     - `multiValued`：是否多值
 
-#### 2.3.1. 域
+#### 域
 
 修改solrhome的schema.xml文件，设置业务系统 Field
 
@@ -73,7 +71,7 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
 <field name="updateTime" type="date" indexed="true" stored="true"/>
 ```
 
-#### 2.3.2. 复制域
+#### 复制域
 
 复制域的作用在于将某一个Field中的数据复制到另一个域中
 
@@ -86,7 +84,7 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
 <copyField source="brand" dest="keywords"/>
 ```
 
-#### 2.3.3. 动态域
+#### 动态域
 
 当需要动态扩充字段时，需要使用动态域。对于品优购，规格的值是不确定的，所以需要使用动态域来实现。需要实现的效果如下
 
@@ -94,14 +92,14 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
 <dynamicField name="spec_*" type="string" indexed="true" stored="true"/>
 ```
 
-#### 2.3.4. 主键
+#### 主键
 
 ```xml
 <!-- 唯一的key主键 -->
 <uniqueKey>id</uniqueKey>
 ```
 
-### 2.4. 配置solrconfig.xml
+### 配置solrconfig.xml
 1. 注释所有的`<lib />`标签
 
 ```xml
@@ -132,7 +130,7 @@ IK Analyzer是一个开源的，基于java语言开发的轻量级的中文分�
 </searchComponent> -->
 ```
 
-## 3. SolrCloud简介
+## SolrCloud简介
 
 SolrCloud(solr云)是Solr提供的分布式搜索方案，当你需要大规模，容错，分布式索引和检索能力时使用SolrCloud。当一个系统的索引数据量少的时候是不需要使用SolrCloud的，当索引量很大，搜索请求并发很高，这时需要使用SolrCloud来满足这些需求。
 
@@ -144,29 +142,29 @@ SolrCloud是基于Solr和Zookeeper的分布式搜索方案，它的主要思想�
     3. 实时搜索
     4. 查询时自动负载均衡
 
-### 3.1. Zookeeper简介
+### Zookeeper简介
 
 Apache Hbase和Apache Solr的分布式集群都用到了zookeeper；<font color="red">***zookeeper是一个分布式的、开源的程序协调服务***</font>，是hadoop项目下的一个子项目。
 
-### 3.2. Zookeeper功能
+### Zookeeper功能
 
-#### 3.2.1. 配置管理
+#### 配置管理
 
 在我们的应用中除了代码外，还有一些就是各种配置文件。比如数据库连接等。一般我们都是使用配置文件的方式，在代码中引入这些配置文件。但是当我们只有一种配置，只有一台服务器，并且不经常修改的时候，使用配置文件是一个很好的做法，但是如果我们配置非常多，有很多服务器都需要这个配置，而且还可能是动态的话使用配置文件就不是个好主意了。这个时候往往需要寻找一种集中管理配置的方法，我们在这个集中的地方修改了配置，所有对这个配置感兴趣的都可以获得变更。比如我们可以把配置放在数据库里，然后所有需要配置的服务都去这个数据库读取配置。但是，因为很多服务的正常运行都非常依赖这个配置，所以需要这个集中提供配置服务的服务具备很高的可靠性。一般我们可以用一个集群来提供这个配置服务，但是用集群提升可靠性，那如何保证配置在集群中的一致性呢？ 这个时候就需要使用一种实现了一致性协议的服务了。Zookeeper就是这种服务，它使用Zab这种一致性协议来提供一致性。现在有很多开源项目使用Zookeeper来维护配置，比如在HBase中，客户端就是连接一个Zookeeper，获得必要的HBase集群的配置信息，然后才可以进一步操作。还有在开源的消息队列Kafka中，也使用Zookeeper来维护broker的信息。在Alibaba开源的SOA框架Dubbo中也广泛的使用Zookeeper管理一些配置来实现服务治理。
 
-#### 3.2.2. 名字服务
+#### 名字服务
 
 比如为了通过网络访问一个系统，我们需知道对方的IP地址，但是IP地址对人非常不友好，这个时候我们就需要使用域名来访问。但是计算机是不能识别域名的。怎么办呢？如果我们每台机器里都备有一份域名到IP地址的映射，这个倒是能解决一部分问题，但是如果域名对应的IP发生变化了又该怎么办呢？于是我们有了DNS这个东西。我们只需要访问一个大家熟知的(known)的点，它就会告诉你这个域名对应的IP是什么。在我们的应用中也会存在很多这类问题，特别是在我们的服务特别多的时候，如果我们在本地保存服务的地址的时候将非常不方便，但是如果我们只需要访问一个大家都熟知的访问点，这里提供统一的入口，那么维护起来将方便得多了。
 
-#### 3.2.3. 分布式锁
+#### 分布式锁
 
 Zookeeper是一个分布式协调服务。这样我们就可以利用Zookeeper来协调多个分布式进程之间的活动。比如在一个分布式环境中，为了提高可靠性，我们的集群的每台服务器上都部署着同样的服务。但是，一件事情如果集群中的每个服务器都进行的话，那相互之间就要协调，编程起来将非常复杂。而如果我们只让一个服务进行操作，那又存在单点。通常还有一种做法就是使用分布式锁，在某个时刻只让一个服务去干活，当这台服务出问题的时候锁释放，立即fail over到另外的服务。这在很多分布式系统中都是这么做，这种设计有一个更好听的名字叫Leader Election(leader选举)。比如HBase的Master就是采用这种机制。但要注意的是分布式锁跟同一个进程的锁还是有区别的，所以使用的时候要比同一个进程里的锁更谨慎的使用。
 
-#### 3.2.4. 集群管理
+#### 集群管理
 
 在分布式的集群中，经常会由于各种原因，比如硬件故障，软件故障，网络问题，有些节点会进进出出。有新的节点加入进来，也有老的节点退出集群。这个时候，集群中其他机器需要感知到这种变化，然后根据这种变化做出对应的决策。比如我们是一个分布式存储系统，有一个中央控制节点负责存储的分配，当有新的存储进来的时候我们要根据现在集群目前的状态来分配存储节点。这个时候我们就需要动态感知到集群目前的状态。还有，比如一个分布式的SOA架构中，服务是一个集群提供的，当消费者访问某个服务时，就需要采用某种机制发现现在有哪些节点可以提供该服务(这也称之为服务发现，比如Alibaba开源的SOA框架Dubbo就采用了Zookeeper作为服务发现的底层机制)。还有开源的Kafka队列就采用了Zookeeper作为Consumer的上下线管理。
 
-### 3.3. SolrCloud结构
+### SolrCloud结构
 
 SolrCloud为了降低单机的处理压力，需要由多台服务器共同来完成索引和搜索任务。实现的思路是将索引数据进行Shard（分片）拆分，每个分片由多台的服务器共同完成，当一个索引或搜索请求过来时会分别从不同的Shard的服务器中操作索引。
 
@@ -174,11 +172,11 @@ SolrCloud需要Solr基于Zookeeper部署，由于SolrCloud需要由多台服务�
 
 ![SolrCloud结构](images/20190202173008967_7427.png)
 
-#### 3.3.1. 物理结构
+#### 物理结构
 
 六台Solr物理机服务器（ 每台服务器包括一个solr core(solr应用服务器 包括完整的索引和搜索)），组成一个SolrCloud。
 
-#### 3.3.2. 逻辑结构
+#### 逻辑结构
 
 索引集合包括两个Shard（shard1和shard2），shard1和shard2分别由三个Core（solr应用服务器(tomcat)）组成，其中一个Master(主)两个Slave(从)，zookeeper控制每个shard上三个Core的索引数据一致，解决高可用问题。用户发起索引请求分别从shard1和shard2上获取，解决高并发问题。
 
@@ -202,13 +200,13 @@ Master是master-slave结构中的主节点（通常说主服务器），Slave是
 
 Collection的逻辑分片
 
-### 3.4. SolrCloud搭建架构分析
+### SolrCloud搭建架构分析
 
-#### 3.4.1. SolrCloud构架图
+#### SolrCloud构架图
 
 ![SolrCloud集群结构](images/20190203072512340_15564.png)
 
-#### 3.4.2. 两大组成部分
+#### 两大组成部分
 
 1. zookeeper集群
     1. zookeeper需要保证高可用，需要搭建集群
@@ -225,15 +223,15 @@ Collection的逻辑分片
 
 ![SolrCloud服务url](images/20190203072647552_14117.jpg)
 
-## 4. Spring Data Solr入门
+## Spring Data Solr入门
 
-### 4.1. Spring Data Solr简介
+### Spring Data Solr简介
 
 Spring Data Solr就是为了方便Solr的开发所研制的一个框架，其底层是对SolrJ（官方API）的封装。
 
-### 4.2. Spring Data Solr入门Demo
+### Spring Data Solr入门Demo
 
-#### 4.2.1. 搭建Maven工程
+#### 搭建Maven工程
 
 在pyg-test项目中创建maven工程spring-data-solr-test，在pom.xml中引入依赖
 
@@ -252,7 +250,7 @@ Spring Data Solr就是为了方便Solr的开发所研制的一个框架，其底
 </dependencies>
 ```
 
-#### 4.2.2. 创建Item实体类
+#### 创建Item实体类
 
 创建`com.moon.pojo`包，将品优购的Item实体类拷入本工程，属性使用@Field注解标识，如果属性与配置文件定义的域名称不一致，需要在注解中指定域名称。
 
@@ -286,7 +284,7 @@ public class Item implements Serializable {
 }
 ```
 
-### 4.3. 操作Solr单机版
+### 操作Solr单机版
 
 - 在src/main/resources下创建applicationContext-solr.xml
 
@@ -440,7 +438,7 @@ public class Solr01Test {
 }
 ```
 
-### 4.4. 操作Solr集群版
+### 操作Solr集群版
 
 - 在src/main/resources下创建applicationContext-solrcloud.xml，配置集群版solr
 
@@ -481,13 +479,13 @@ public class Solr02Test {
 }
 ```
 
-## 5. 项目索引库-批量数据导入
+## 项目索引库-批量数据导入
 
-### 5.1. 需求分析
+### 需求分析
 
 编写专门的导入程序，将商品数据导入到Solr索引库中
 
-### 5.2. 数据导入Solr索引库-pojo工程模块创建封装索引实体类
+### 数据导入Solr索引库-pojo工程模块创建封装索引实体类
 
 1. 在pinyougou-pojo模块的pom.xml中引入spring-data-solr依赖
 
@@ -502,9 +500,9 @@ public class Solr02Test {
 
 2. 将spring-data-solr-test工程中添加了`@Field`注解的实体类Item拷贝到pinyougou-pojo的com.pinyougou.solr包下更名为SolrItem
 
-### 5.3. 搭建solr工具模块-查询商品数据列表
+### 搭建solr工具模块-查询商品数据列表
 
-#### 5.3.1. 工程搭建
+#### 工程搭建
 
 1. 创建pinyougou-solr-util模块，打包方式jar
 2. pinyougou-solr-util/pom.xml，引入pinyougou-mapper（mapper模块已经导入了pojo类，而在pojo工程中导入了spring-data-solr）以及spring关依赖
@@ -563,7 +561,7 @@ public class Solr02Test {
 </beans>
 ```
 
-#### 5.3.2. 调用模板类导入solr
+#### 调用模板类导入solr
 
 - pinyougou-solr-util工程创建com.pinyougou.solr.util包
 - 创建类SolrUtils，实现商品数据的查询(已审核商品)，查询后使用solrItem封装索引库的数据
@@ -634,9 +632,9 @@ public class SolrUtils {
 }
 ```
 
-### 5.4. 规格导入动态域
+### 规格导入动态域
 
-#### 5.4.1. @Dynamic 注解，封装动态域数据
+#### @Dynamic 注解，封装动态域数据
 
 - 修改SolrItem.java，添加属性，用于封装动态域数据
 
@@ -655,7 +653,7 @@ public void setSpecMap(Map<String, String> specMap) {
 }
 ```
 
-#### 5.4.2. 修改导入工具类SolrUtils
+#### 修改导入工具类SolrUtils
 
 - 修改pinyougou-solr-util的SolrUtils.java，增加封装动态域数据的代码
 
@@ -681,13 +679,13 @@ public void importItemData() {
 }
 ```
 
-## 6. 项目搜索系统-关键字搜索
+## 项目搜索系统-关键字搜索
 
-### 6.1. 需求分析
+### 需求分析
 
 打开搜索页面，在搜索框输入要搜索的关键字，点击搜索按钮即可进行搜索，展示搜索结果
 
-### 6.2. 搭建搜索系统
+### 搭建搜索系统
 
 - 搜索系统表现层：
     - pinyougou-search-web
@@ -696,9 +694,9 @@ public void importItemData() {
     - pinyougou-search-interface 服务接口
     - pinyougou-search-service 服务实现
 
-### 6.3. 搜索系统服务层(pinyougou-search)
+### 搜索系统服务层(pinyougou-search)
 
-#### 6.3.1. pinyougou-search聚合模块
+#### pinyougou-search聚合模块
 
 创建选择类型：pom。修改pinyougou-search/pom.xml，添加依赖
 
@@ -735,7 +733,7 @@ public void importItemData() {
 </project>
 ```
 
-#### 6.3.2. pinyougou-search-interface服务接口模块
+#### pinyougou-search-interface服务接口模块
 
 - 打包方式为jar。修改pinyougou-search-interface/pom.xml，引入相关pojo模块和FastJson依赖
 
@@ -789,7 +787,7 @@ public interface ItemSearchService {
 }
 ```
 
-#### 6.3.3. pinyougou-search-service服务实现模块
+#### pinyougou-search-service服务实现模块
 
 - 创建工程，打包方式为war，修改pinyougou-search-service/pom.xml，添加相关依赖
 
@@ -947,7 +945,7 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c]-[%p] %m%n
 ```
 
-#### 6.3.4. 服务实现类ItemSearchServiceImpl
+#### 服务实现类ItemSearchServiceImpl
 
 编写服务实现类ItemSearchServiceImpl.java，实现搜索的方法
 
@@ -1003,9 +1001,9 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 }
 ```
 
-### 6.4. 搜索系统表现层(pinyougou-search-web)
+### 搜索系统表现层(pinyougou-search-web)
 
-#### 6.4.1. pinyougou-search-web模块
+#### pinyougou-search-web模块
 
 - 创建maven工程，打包方式为war。在pinyougou-search-web/pom.xml配置依赖
 
@@ -1188,7 +1186,7 @@ public class ItemSearchServiceImpl implements ItemSearchService {
 
 - 添加src/main/resources/log4j.properties的配置文件
 
-#### 6.4.2. 创建搜索控制器类
+#### 创建搜索控制器类
 
 创建包com.pinyougou.search.controller，编写控制器类ItemSearchController
 
@@ -1220,11 +1218,11 @@ public class ItemSearchController {
 
 <font color="red">***注：控制映射的注解@PostMapping的参数不能与web.xml配置默认跳转的页面一样，所以此处【/Search】***</font>
 
-#### 6.4.3. 拷贝静态资源
+#### 拷贝静态资源
 
 将【资料\搜索系统静态资源】拷贝至pinyougou-search-web的webapp目录下
 
-#### 6.4.4. 视图控制层
+#### 视图控制层
 
 pinyougou-search-web工程定义搜索的控制器searchController.js，编写条件搜索的方法
 
@@ -1247,7 +1245,7 @@ app.controller('searchController', function ($scope, baseService) {
 });
 ```
 
-#### 6.4.5. 页码代码
+#### 页码代码
 
 - pinyougou-search-web工程search.html引入js
 
@@ -1312,7 +1310,7 @@ app.controller('searchController', function ($scope, baseService) {
 </div>
 ```
 
-#### 6.4.6. 配置域名与nginx
+#### 配置域名与nginx
 
 - 访问域名：http://search.moon.com
 - 配置hosts：127.0.0.1  search.moon.com

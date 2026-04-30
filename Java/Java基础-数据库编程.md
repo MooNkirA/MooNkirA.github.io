@@ -1,4 +1,4 @@
-## 1. JDBC（Java数据库连接）概述
+## JDBC（Java数据库连接）概述
 
 JDBC（Java DataBase Connectivity, java数据库连接）是一种用于执行 SQL 语句的 Java API。JDBC 是 Java访问数据库的标准规范，作用是可以为不同的关系型数据库提供统一访问方式，它由一组用Java语言编写的接口和类组成。具体的实现类由各大数据库厂商来编写。
 
@@ -6,7 +6,7 @@ JDBC 需要连接驱动，驱动是两个设备要进行通信，满足一定通
 
 ![](images/20211224190630913_6149.png)
 
-### 1.1. MySQL 数据库 JDBC 相关资源
+### MySQL 数据库 JDBC 相关资源
 
 MySQL 驱动官网下载地址：https://dev.mysql.com/downloads/connector/j/
 
@@ -15,9 +15,9 @@ MySQL 驱动官网下载地址：https://dev.mysql.com/downloads/connector/j/
 - src 文件夹是源代码
 - docs 文件夹是 API
 
-## 2. JDBC 开发
+## JDBC 开发
 
-### 2.1. JDBC 执行流程
+### JDBC 执行流程
 
 ![](images/20211224191654104_27445.png)
 
@@ -28,7 +28,7 @@ MySQL 驱动官网下载地址：https://dev.mysql.com/downloads/connector/j/
 - 连接字符串：jdbc:mysql://localhost:3306/数据库?参数名=参数值
 - 数据库驱动类，如 MySQL数据库驱动是 `com.mysql.jdbc.Driver`，8.0版本后驱动类是 `com.mysql.cj.jdbc.Driver`
 
-### 2.2. JDBC 开发步骤（以 MySQL 为例）
+### JDBC 开发步骤（以 MySQL 为例）
 
 1. 加载并注册数据库驱动，即告知JVM使用的是哪一个数据库的驱动，通常使用反射技术 `Class.forName()` 方法将驱动类加入到内存中。
 
@@ -53,7 +53,7 @@ Connection conn = DriverManager.getConnection(url, user, password);
 >
 > <font color=red>JDBC 访问数据库的基础包，在 JavaSE 中的包。导包注意要选择java.sql包</font>
 
-### 2.3. 项目（程序）引入驱动 jar 包（MySQL 的驱动）
+### 项目（程序）引入驱动 jar 包（MySQL 的驱动）
 
 - MySQL 相关jar包：mysql-connector-java-x.x.xx-bin.jar
     - MySQL驱动相关文件夹mysql-connector-java-x.x.xx
@@ -69,9 +69,9 @@ Connection conn = DriverManager.getConnection(url, user, password);
     </dependency>
     ```
 
-## 3. JDBC 的核心 API 使用
+## JDBC 的核心 API 使用
 
-### 3.1. 核心 API 概述
+### 核心 API 概述
 
 - `Driver` 接口：数据库驱动的接口，由数据库的厂商实现。
 - `DriverManager` 类：用来管理和注册数据库驱动的类
@@ -79,7 +79,7 @@ Connection conn = DriverManager.getConnection(url, user, password);
 - `Statement`/`PrepareStatement` 接口：操作数据库 SQL 语句的对象
 - `ResultSet` 接口：用来封装数据库返回符合查询条件的结果集
 
-### 3.2. Driver 接口
+### Driver 接口
 
 每个驱动程序都应该提供一个实现 Driver 接口的类。`DriverManager` 会试着加载尽可能多的它可以找到的驱动程序，这意味着用户可以通过调用以下程序加载和注册一个驱动程序类对象。
 
@@ -87,15 +87,15 @@ Connection conn = DriverManager.getConnection(url, user, password);
 Class.forName("foo.bah.Driver");
 ```
 
-### 3.3. DriverManager 类
+### DriverManager 类
 
-#### 3.3.1. 类作用
+#### 类作用
 
 `java.sql.DriverManager` 类用于管理和注册一组 JDBC 驱动程序的基本服务。
 
 `DriverManager` 是一个工厂类，通过它来创建数据库连接。当 JDBC 的 `Driver` 类被加载进来时，它会自己注册到 `DriverManager` 类里面，然后会把数据库配置信息传成 `DriverManager.getConnection()` 方法，`DriverManager` 会使用注册到它里面的驱动来获取数据库连接，并返回给调用的程序。
 
-#### 3.3.2. 注册驱动程序方法
+#### 注册驱动程序方法
 
 ```java
 public static void registerDriver(new Driver());
@@ -117,7 +117,7 @@ Class.forName("com.mysql.jdbc.Driver");
 
 > <font color=red>**注：从JDK1.6开始，JDBC的版本是4.0版本后，可以不用写注册驱动的代码了，但是为了兼容之前的版本，注册驱动的代码一般都会保留。**</font>
 
-#### 3.3.3. 类常用方法
+#### 类常用方法
 
 获取连接对象方式1：通过指定 url（需要连接的数据库地址），用户名和密码得到一个 `Connection` 接口的实现类。用于连接数据库并获得连接对象。
 
@@ -155,11 +155,11 @@ info.load(ConnectionDemo.class.getResourceAsStream("/jdbc.properties"));
 Connection conn = DriverManager.getConnection("jdbc:mysql://10.211.55.3:3306/tempDb", info);
 ```
 
-#### 3.3.4. 连接数据库的 URL 地址格式
+#### 连接数据库的 URL 地址格式
 
 URL 用于标识数据库的位置，程序员通过 URL 地址告诉 JDBC 程序连接哪个数据库，
 
-##### 3.3.4.1. url 地址格式
+##### url 地址格式
 
 格式：
 
@@ -179,7 +179,7 @@ jdbc:mysql://localhost:3306/temp
 jdbc:mysql:///temp
 ```
 
-##### 3.3.4.2. 各类数据库连接字符串
+##### 各类数据库连接字符串
 
 JDBC 的 URL = 协议名 + 子协议名 + 数据源名
 
@@ -187,7 +187,7 @@ JDBC 的 URL = 协议名 + 子协议名 + 数据源名
 - 子协议名由 JDBC 驱动程序的编写者决定。
 - 数据源名也可能包含用户与口令等信息；这些信息也可单独提供。
 
-##### 3.3.4.3. 几种常见的数据库连接
+##### 几种常见的数据库连接
 
 **Oracle**
 
@@ -217,7 +217,7 @@ JDBC 的 URL = 协议名 + 子协议名 + 数据源名
     - `machine_name`：数据库所在的机器的名称；
     - `port`：端口号，默认是5000
 
-#### 3.3.5. 解决 JDBC 无法连接 MySQL 数据库的问题
+#### 解决 JDBC 无法连接 MySQL 数据库的问题
 
 MySQL 数据连接时只能使用 localhost 连接，但不能用 IP 连接问题的解决方案
 
@@ -238,7 +238,7 @@ flush privileges;
 
 5. 之后关闭mysql服务，然后启动mysql服务，大功告成
 
-#### 3.3.6. mysql 8.0+以上版本驱动连接失败
+#### mysql 8.0+以上版本驱动连接失败
 
 使用 mysql 8.0+ 版本后，一些项目连接数据会报以下的错误：
 
@@ -266,13 +266,13 @@ spring:
 
 > Notes: 如果使用的 mysql 是 8.0+，建议最好把以上三个参数设置下，避免发生一些莫名错误。
 
-### 3.4. Connection 接口
+### Connection 接口
 
-#### 3.4.1. 接口作用
+#### 接口作用
 
 用来和数据库建立连接，和获取 `Statement` 对象
 
-#### 3.4.2. 常用方法
+#### 常用方法
 
 ```java
 Statement createStatement() throws SQLException;
@@ -293,9 +293,9 @@ void close() throws SQLException
 
 - 立即释放此 `Connection` 对象的数据库和 JDBC 资源，建议最好在调用 `close` 方法之前，应用程序显式提交或回滚一个活动事务。
 
-### 3.5. Statement 接口（操作数据库）
+### Statement 接口（操作数据库）
 
-#### 3.5.1. 接口概述
+#### 接口概述
 
 用来发送SQL语句给数据库执行，对数据库进行增删改查操作。通过 `Connection` 对象的 `createStatement()` 方法获取 `Statement` 对象。
 
@@ -310,7 +310,7 @@ CRUD(增删改查操作):
 - U: `Update`
 - D: `Delete`
 
-#### 3.5.2. 常用方法
+#### 常用方法
 
 ```java
 boolean execute(String sql) throws SQLException;
@@ -345,9 +345,9 @@ void close() throws SQLException;
 
 > 注：关闭 `Statement` 对象时，还将同时关闭其当前的 `ResultSet` 对象（如果有）。
 
-### 3.6. ResultSet 接口（查询/处理结果）
+### ResultSet 接口（查询/处理结果）
 
-#### 3.6.1. 接口概述
+#### 接口概述
 
 ```java
 public interface ResultSet extends Wrapper, AutoCloseable
@@ -361,7 +361,7 @@ public interface ResultSet extends Wrapper, AutoCloseable
 
 值得注意的是，当生成 `ResultSet` 的 `Statement` 对象要关闭或者重新执行或是获取下一个 `ResultSet` 的时候，之前的 `ResultSet` 对象也会自动关闭。
 
-#### 3.6.2. 常用方法
+#### 常用方法
 
 ```java
 boolean next() throws SQLException;
@@ -381,14 +381,14 @@ void close() throws SQLException;
 
 - 即释放此 `ResultSet` 对象的数据库和 JDBC 资源
 
-#### 3.6.3. getXxx 方法注意事项
+#### getXxx 方法注意事项
 
 1. 如果指针在指向结果集第一行前面时调用 `resultSet.getXX()` 获取列值，会抛出异常：`Before start of result set`
 2. 如果指针在指向结果集最后一行后面时，调用 `resultSet.getXX()` 获取列值，会抛出异常：`After end of result set`
 3. 如果查询结果集为空，还调用 `resultSet.getXX()` 获取列值，会抛出异常：`Illegal operation on empty result set`
 4. 使用完毕以后要关闭结果集 `ResultSet`，再关闭 `Statement`，再关闭 `Connection`
 
-#### 3.6.4. 常用数据类型转换表
+#### 常用数据类型转换表
 
 |         SQL 类型         |     JDBC  对应方法     |      返回类型       |
 | ------------------------ | --------------------- | ------------------ |
@@ -405,13 +405,13 @@ void close() throws SQLException;
 
 > **查询乱码的问题**：如果汉字查询出现乱码，要将数据库的字符集设置成 UTF-8，因为多数 IDE 默认使用 utf-8 的编码
 
-### 3.7. PreparedStatement 接口
+### PreparedStatement 接口
 
-#### 3.7.1. SQL 注入的概念
+#### SQL 注入的概念
 
 SQL 注入是指，用户输入的内容作为了 SQL 语法的一部分，改变了原有 SQL 语句的含义。
 
-#### 3.7.2. 接口概述
+#### 接口概述
 
 用于 SQL 语句的发送，是继承 `Statement` 的子接口，拥有父类所有的功能。可以防止 SQL 注入的问题，比父类更安全。然后可以使用此对象多次高效地执行该语句。
 
@@ -419,7 +419,7 @@ SQL 注入是指，用户输入的内容作为了 SQL 语法的一部分，改�
 
 > 实际开发时使用 `PreparedStatement` 比较多
 
-#### 3.7.3. 常用方法
+#### 常用方法
 
 ```java
 int executeUpdate() throws SQLException;
@@ -440,7 +440,7 @@ void setXxx(int index, Xxx xxx);
 
 将指定参数值 `xxx` 赋值给第 `index` 个占位符 `?` 。再将此值发送到数据库时，驱动程序将它转换成一个 SQL Xxx类型值。
 
-#### 3.7.4. 预编译
+#### 预编译
 
 数据库在接收到 SQL 语句后，需要对词法和语义解析，优化 SQL 语句，制定执行计划等一系列处理，这需要花费一些时间。如果一条 SQL 语句需要反复执行，每次都进行语法检查和优化，显然会造成性能与时间的浪费。
 
@@ -454,7 +454,7 @@ JDBC 中使用对象 `PreparedStatement` 来抽象预编译语句，使用预编
 - 预编译语句对象可以重复利用。将一个 sql 预编译后产生的 `PreparedStatement` 对象缓存下来，下次对于同一个 sql，可以直接使用这个缓存的对象。
 - 防止 SQL 注入。使用预编译，对注入的参数将**不会再进行 SQL 编译**。即后面注入进来的参数系统将不会认为它会是一条 SQL 语句，而默认其是一个参数。
 
-#### 3.7.5. Statement 和 PreparedStatement 的区别
+#### Statement 和 PreparedStatement 的区别
 
 1. 安全性
     - `PreparedStatement` 可以防止 SQL 注入问题，安全
@@ -469,7 +469,7 @@ JDBC 中使用对象 `PreparedStatement` 来抽象预编译语句，使用预编
     - `PreparedStatement` 效率高，因为数据库系统对相同的 SQL 语句不会再次编译
     - `Statement` 效率低
 
-#### 3.7.6. PreparedStatement 使用步骤
+#### PreparedStatement 使用步骤
 
 1. 准备要执行的SQL语句，使用 `?` 临时代替真实的参数
 2. 调用 `Connection` 对象的 `preparedStatement()` 方法创建 `PreparedStatement` 对象，并传递SQL语句
@@ -478,15 +478,15 @@ JDBC 中使用对象 `PreparedStatement` 来抽象预编译语句，使用预编
 
 <font color=red>**注：要先使用 `setXxx()` 方法给占位符 `?` 赋值后再调用 `executeXxx()` 方法**</font>
 
-### 3.8. 释放资源
+### 释放资源
 
 1. 需要释放的对象和顺序：`ResultSet` -> `Statement` -> `Connection`
 2. `Connection` 对象释放原则：尽可能晚的打开，尽可能早的释放。因为 `Connection` 资源比较占用内存的，而且使用频率高，是公共的，稀缺的资源。
 3. 释放资源的操作放在 `finally` 语句块中
 
-### 3.9. API 示例
+### API 示例
 
-#### 3.9.1. 使用 executeUpdate 执行 DML 操作数据库练习代码
+#### 使用 executeUpdate 执行 DML 操作数据库练习代码
 
 Code Demo: 给数据库insert、update、delete create、drop等操作
 
@@ -560,7 +560,7 @@ public class MoonZero {
 }
 ```
 
-#### 3.9.2. 解析 executeQuery 返回的数据库结果集练习代码
+#### 解析 executeQuery 返回的数据库结果集练习代码
 
 Code Demo: 解析 executeQuery 返回的数据库结果集(执行 DQL 操作)
 
@@ -604,7 +604,7 @@ public class MoonZero {
 }
 ```
 
-#### 3.9.3. 自定义数据库工具类练习
+#### 自定义数据库工具类练习
 
 Code Demo: 自定义原生JDBC数据库工具类，用来创建连接和关闭资源，用户名和密码使用读取 properties 属性文件的方式
 
@@ -703,9 +703,9 @@ user=root
 password=123456
 ```
 
-## 4. JDBC 事务操作
+## JDBC 事务操作
 
-### 4.1. JDBC 事务处理的分类
+### JDBC 事务处理的分类
 
 事务处理方式主要分为两种：**自动处理**和**手动处理**。
 
@@ -716,7 +716,7 @@ password=123456
 1. 先调用 `setAutoCommit(false)` 开启事务，取消自动提交
 2. 在 SQL 执行完后调用 `commit()` 提交事务；如果出现异常则调用 `rollback()` 回滚事务。
 
-### 4.2. Connection 接口与事务处理相关的方法
+### Connection 接口与事务处理相关的方法
 
 ```java
 void setAutoCommit(boolean autoCommit) throws SQLException;
@@ -738,7 +738,7 @@ void rollback() throws SQLException;
 
 - 回滚事务
 
-### 4.3. JDBC 事务操作基础示例
+### JDBC 事务操作基础示例
 
 ```java
 import java.sql.Connection;
@@ -790,29 +790,29 @@ public class MoonZero {
 }
 ```
 
-## 5. JDBC 连接池
+## JDBC 连接池
 
-### 5.1. 连接池概述
+### 连接池概述
 
 **连接池**是一个用来创建和管理数据连接对象的容器。
 
 <font color=red>**连接池的核心思想：连接复用**</font>，为数据库连接建立一个“缓冲池”。预先在缓冲池中放入一定数量的连接，当需要建立数据库连接时，只需从“缓冲池”中取出一个连接，使用完毕之后再放回池中。可以通过设定连接池最大连接数来防止系统无限制地与数据库连接，更为重要的是可以通过连接池的管理机制监视数据库的连接的数量、使用情况，为系统开发，测试及性能调整提供依据。
 
-#### 5.1.1. JDBC 中连接数据的问题
+#### JDBC 中连接数据的问题
 
 获取连接对象需要消耗比较多的资源，而每次操作都要重新获取新的连接对象，执行一次操作就把连接关闭，这样连接对象的使用率低。而数据库创建连接通常需要消耗相对较多的资源，创建时间也较长。
 
 使用连接池技术可以避免频繁创建数据库连接对象和销毁连接对象带来的开销。
 
-#### 5.1.2. 连接池的使用步骤
+#### 连接池的使用步骤
 
 - 创建：程序启动时创建连接池(容器)并初始化连接对象。放在一块内存中，这块内存称为连接池。
 - 获取(使用)：直接从连接池中获得一个已经创建好的连接对象来操作数据库
 - 关闭：关闭的时候不是真正关闭连接，而是将连接对象再次放回到连接池中，等待复用。
 
-### 5.2. DataSource 数据库连接池 API
+### DataSource 数据库连接池 API
 
-#### 5.2.1. 数据源(连接池)接口
+#### 数据源(连接池)接口
 
 `javax.sql.DataSource` 接口表示数据源。只要是实现类实现了该接口的类，就是一个连接池类。
 
@@ -820,7 +820,7 @@ public class MoonZero {
 public interface DataSource  extends CommonDataSource, Wrapper
 ```
 
-#### 5.2.2. 连接池接口常用方法
+#### 连接池接口常用方法
 
 ```java
 Connection getConnection() throws SQLException;
@@ -828,37 +828,37 @@ Connection getConnection() throws SQLException;
 
 从数据源（连接池）中获取一个连接对象
 
-#### 5.2.3. 连接池相关参数
+#### 连接池相关参数
 
 1. 初始连接数：一开始连接池中创建多少个连接对象。
 2. 最大连接数：连接池中最多可以有多少个连接对象。
 3. 最长等待时间：当一个会话要从连接池中得到连接对象的时候，最长等待多久。
 4. 最长空闲时间：当一个连接对象在指定时间内没有被使用时，则回收该连接对象。
 
-### 5.3. 常用数据库连接池（第三方工具）
+### 常用数据库连接池（第三方工具）
 
 - C3P0 连接池
 - DBCP 连接池
 
-### 5.4. C3P0 连接池技术
+### C3P0 连接池技术
 
-#### 5.4.1. C3P0 连接池概述
+#### C3P0 连接池概述
 
 C3P0 是一个开源的第三方 JDBC 连接池工具，它实现了数据源和 JNDI 绑定，支持 JDBC3 规范和 JDBC2 的标准扩展。目前使用它的开源项目有 Hibernate，Spring 等。
 
 > 官网下载地址：https://sourceforge.net/projects/c3p0/
 
-#### 5.4.2. C3P0 连接池的特点
+#### C3P0 连接池的特点
 
 1. 免费开源的连接池技术
 2. 很多主流的第三方框架都是使用该连接池技术。比如：Spring 和 Hibernate 框架，默认推荐使用 C3P0 作为连接池实现
 
-#### 5.4.3. c3p0 与 DBCP 区别
+#### c3p0 与 DBCP 区别
 
 - dbcp 没有自动回收空闲连接的功能
 - c3p0 有自动回收空闲连接功能
 
-#### 5.4.4. C3P0 的使用步骤
+#### C3P0 的使用步骤
 
 1. 导入 jar 库 c3p0-0.9.5.2.jar 和 mchange-commons-java-0.2.11.jar。（*注：数据库驱动mysql-connector-java-5.1.37-bin.jar也不能少*）
 2. 创建连接池对象 ComboPooledDataSource 对象
@@ -938,9 +938,9 @@ public class MoonZero {
 }
 ```
 
-#### 5.4.5. C3P0 连接池(使用 xml 配置文件加载)
+#### C3P0 连接池(使用 xml 配置文件加载)
 
-##### 5.4.5.1. 使用配置文件的好处
+##### 使用配置文件的好处
 
 1. 配置信息和操作数据库代码分离，降低了程序的耦合性。
 2. 配置信息不是硬编码到 Java 源码中，后期维护更加方便。
@@ -948,12 +948,12 @@ public class MoonZero {
 4. 可以连接不同的数据库。如：db1,db2
 5. 可以连接不同厂商的数据库。如：Oracle 或 MySQL
 
-##### 5.4.5.2. 配置文件的要求
+##### 配置文件的要求
 
 1. 文件名命名要求：`c3p0-config.xml`
 2. 位置要求：放在类路径下，源代码即 src 目录下。
 
-##### 5.4.5.3. C3P0 配置文件的使用方式
+##### C3P0 配置文件的使用方式
 
 方式1： 使用默认配置（default-config）
 
@@ -1054,7 +1054,7 @@ public class MoonZero {
 }
 ```
 
-#### 5.4.6. 自定义 C3P0 连接池工具类
+#### 自定义 C3P0 连接池工具类
 
 Code Demo: 自定义C3P0工具类
 
@@ -1087,15 +1087,15 @@ public class C3P0Utils {
 }
 ```
 
-### 5.5. DBCP 连接池技术
+### DBCP 连接池技术
 
-#### 5.5.1. DBCP 连接池概述
+#### DBCP 连接池概述
 
 DBCP: DataBase Connection Pool 数据库连接池。
 
 DBCP 是 Apache 旗下组织开发的一款产品，免费开源的，也是 Tomcat 服务器的默认使用连接池
 
-#### 5.5.2. DBCP 使用步骤
+#### DBCP 使用步骤
 
 1. 导入 dbcp 相关的 jar 包
 		目前使用版本
@@ -1185,9 +1185,9 @@ public class MoonZero {
 10 : 445884362
 ```
 
-#### 5.5.3. 使用 Properties 配置文件加载 DBCP 连接池
+#### 使用 Properties 配置文件加载 DBCP 连接池
 
-##### 5.5.3.1. DBCP配置文件要求
+##### DBCP配置文件要求
 
 1. 文件名命名要求：xxx.properties，一般使用 dbcp.properties
 2. 位置要求：放在类路径下，源代码即 src 目录下。
@@ -1210,7 +1210,7 @@ maxWait=3000
 maxIdle=7
 ```
 
-##### 5.5.3.2. DBCP 使用配置文件加载连接池步骤
+##### DBCP 使用配置文件加载连接池步骤
 
 1. 创建 `Properties` 属性文件，配置相关参数
 2. 通过类对象的 `getResourceAsStream("/dbcp.properties")` 方法，从类路径下加载文件，以字节流的方式加载。
@@ -1256,13 +1256,13 @@ public class MoonZero {
 }
 ```
 
-## 6. JPA（Java Persistence API）
+## JPA（Java Persistence API）
 
-### 6.1. 概述
+### 概述
 
 JPA 是 Java Persistence API 的简称，中文名 Java 持久层 API，是 JDK 5.0 注解或 XML 描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。
 
-### 6.2. Persistence 类
+### Persistence 类
 
 `Persistence` 类主要是用于读取配置文件，获得实体管理工厂。常用方法如下所示：
 
@@ -1278,7 +1278,7 @@ public static EntityManagerFactory createEntityManagerFactory(String persistence
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("crm");
 ```
 
-### 6.3. EntityManagerFactory 接口
+### EntityManagerFactory 接口
 
 用于管理数据库的连接，获得操作对象实体管理类 `EntityManager`。`EntityManagerFactory` 是一个线程安全的对象，并且其创建极其浪费资源，所以编程的时候要保持它是单例的。常用方法如下所示：
 
@@ -1295,7 +1295,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("crm");
 EntityManager entityManager = emf.createEntityManager();
 ```
 
-### 6.4. EntityManager 接口
+### EntityManager 接口
 
 在 JPA 规范中，EntityManager 实体管理类是操作数据库的重要 API，它是线程不安全的，需要保持线程独有。常用方法如下所示：
 
@@ -1347,11 +1347,11 @@ public <T> TypedQuery<T> createQuery(String qlString, Class<T> resultClass);
 
 - 获取 JPQL 操作对象，用于查询操作
 
-### 6.5. EntityTransaction 接口
+### EntityTransaction 接口
 
 EntityTransaction 接口用于管理事务（开始，提交，回滚）。获取事务（没有开启事务）：
 
-#### 6.5.1. 获取实例
+#### 获取实例
 
 ```java
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("crm");
@@ -1359,7 +1359,7 @@ EntityManager em = emf.createEntityManager();
 EntityTransaction transaction = em.getTransaction();
 ```
 
-#### 6.5.2. 常用方法
+#### 常用方法
 
 ```java
 public void begin();
@@ -1379,18 +1379,18 @@ public void rollback();
 
 - 回滚事务
 
-### 6.6. TypedQuery 接口
+### TypedQuery 接口
 
 `TypedQuery` 接口继承 `Query` 接口。用于操作 JPQL 的查询的。JPQL 和 HQL 一样。为什么 JPA 的标准，查询需要指定类型，目的就是为了让返回的数据没有没有警告。
 
-#### 6.6.1. 获取实例
+#### 获取实例
 
 ```java
 EntityManager em = xxx;
 TypedQuery<Xxx> query = em.createQuery("xxx", Xxx.class);
 ```
 
-#### 6.6.2. 常用方法
+#### 常用方法
 
 ```java
 int executeUpdate();
@@ -1440,18 +1440,18 @@ X getSingleResult();
 
 - 返回查询的结果是一条数据，常用聚合函数 `count()`，相当于 `uniqueResult()`
 
-### 6.7. Query 接口
+### Query 接口
 
 用于操作SQL的查询接口，执行没有返回数据的JPQL（增删改），<font color=red>**用于删除和更新**</font>
 
-#### 6.7.1. 获取实例
+#### 获取实例
 
 ```java
 EntityManager em = xxx;
 Query query = em.createQuery("xxx");
 ```
 
-#### 6.7.2. 常用方法
+#### 常用方法
 
 ```java
 int executeUpdate();
@@ -1475,10 +1475,10 @@ Query setParameter(String name, Object value);
     - `String name`：命名参数的名字，不带 `:` 号
     - `Object value`：命名参数的值
 
-### 6.8. CriteriaBuilder 接口
+### CriteriaBuilder 接口
 
 用户使用标准查询接口 Criteria 查询接口
 
-## 7. 常用数据库编程工具类库
+## 常用数据库编程工具类库
 
 - Apache Commons DBUtils，详见[《Apache Commons 工具类库》笔记](/后端框架/工具框架/Apache-Commons)的『Commons DBUtils』章节

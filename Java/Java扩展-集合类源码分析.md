@@ -1,6 +1,6 @@
-## 1. ArrayList 源码分析
+## ArrayList 源码分析
 
-### 1.1. 属性分析
+### 属性分析
 
 ```java
 /**
@@ -36,7 +36,7 @@ private int size;
 private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 ```
 
-#### 1.1.1. 扩展：什么是序列化
+#### 扩展：什么是序列化
 
 序列化是指：将对象转换成以字节序列的形式来表示，以便用于持久化和传输。
 
@@ -44,7 +44,7 @@ private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
 然后用的时候拿出来进行反序列化即可又变成Java对象。
 
-#### 1.1.2. transient 关键字修饰的 elementData 属性解析
+#### transient 关键字修饰的 elementData 属性解析
 
 ```java
 /**
@@ -91,7 +91,7 @@ private void writeObject(java.io.ObjectOutputStream s)
 
 原因在于`elementData`是一个缓存数组，它通常会预留一些容量，等容量不足时再扩充容量，那么有些空间可能就没有实际存储元素，采用上述的方式来实现序列化时，就可以保证只序列化实际存储的那些元素，而不是整个数组，从而**节省空间和时间**。
 
-### 1.2. 构造方法分析
+### 构造方法分析
 
 根据initialCapacity 初始化一个空数组，如果值为0，则初始化一个空数组:
 
@@ -140,9 +140,9 @@ public ArrayList(Collection<? extends E> c) {
 }
 ```
 
-### 1.3. 主干方法
+### 主要方法
 
-#### 1.3.1. trimToSize() 方法
+#### trimToSize() 方法
 
 > 用来最小化实例存储，将容器大小调整为当前元素所占用的容量大小。
 
@@ -160,7 +160,7 @@ public void trimToSize() {
 }
 ```
 
-#### 1.3.2. clone() 方法
+#### clone() 方法
 
 > 用来克隆出一个新数组。
 
@@ -180,7 +180,7 @@ public Object clone() {
 
 通过调用`Object`的`clone()`方法来得到一个新的`ArrayList`对象，然后将`elementData`复制给该对象并返回。
 
-#### 1.3.3. add(E e) 方法
+#### add(E e) 方法
 
 > 在数组末尾添加元素
 
@@ -252,7 +252,7 @@ private void grow(int minCapacity) {
 }
 ```
 
-##### 1.3.3.1. size+1的问题
+##### size+1的问题
 
 > 好了，那到这里可以说一下为什么要size+1。
 
@@ -276,7 +276,7 @@ public static void main(String[] args) {
 
 事实上上面的代码是证明不了容量大小的，因为size只会在调用`add()`方法时才会自增。有办法的小伙伴可以在评论区大显神通。
 
-#### 1.3.4. add(int index, E element) 方法
+#### add(int index, E element) 方法
 
 ```java
 public void add(int index, E element) {
@@ -296,7 +296,7 @@ public void add(int index, E element) {
 public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)
 ```
 
-##### 1.3.4.1. 代码解释
+##### 代码解释
 
 - Object src : 原数组
 - int srcPos : 从元数据的起始位置开始
@@ -308,7 +308,7 @@ public static void arraycopy(Object src, int srcPos, Object dest, int destPos, i
 
 > ![ArrayList增加元素说明](images/20190218230525072_18679.png)
 
-##### 1.3.4.2. 异常处理
+##### 异常处理
 
 ```java
 private void rangeCheckForAdd(int index) {
@@ -317,7 +317,7 @@ private void rangeCheckForAdd(int index) {
 }
 ```
 
-#### 1.3.5. set(int index, E element) 方法
+#### set(int index, E element) 方法
 
 ```java
 public E set(int index, E element) {
@@ -335,7 +335,7 @@ E elementData(int index) {
 
 逻辑很简单，覆盖旧值并返回。
 
-#### 1.3.6. indexOf(Object o) 方法
+#### indexOf(Object o) 方法
 
 > 根据Object对象获取数组中的索引值。
 
@@ -358,7 +358,7 @@ public int indexOf(Object o) {
 
 注意：通过源码可以看到，该方法是允许传空值进来的。
 
-#### 1.3.7. get(int index) 方法
+#### get(int index) 方法
 
 > 返回指定下标处的元素的值。
 
@@ -372,7 +372,7 @@ public E get(int index) {
 
 `rangeCheck(index)`会检测index值是否合法，如果合法则返回索引对应的值。
 
-#### 1.3.8. remove(int index) 方法
+#### remove(int index) 方法
 
 > 删除指定下标的元素。
 
@@ -399,7 +399,7 @@ public E remove(int index) {
 
 大概思路：将该元素后面的元素前移，最后一个元素置空。
 
-### 1.4. 集合的快速失败机制 “fail-fast”
+### 集合的快速失败机制 “fail-fast”
 
 “fail-fast”，即快速失败，它是 Java 集合进行结构上的改变的操作时的一种错误检测机制。当多个线程对集合（非 fail-safe 的集合类）进行结构上的改变的操作时，有可能会产生 fail-fast 机制，这个时候就会抛出 `ConcurrentModificationException`（当方法检测到对象的并发修改，但不允许这种修改时就抛出该异常）。
 
@@ -407,7 +407,7 @@ public E remove(int index) {
 
 例如：假设存在两个线程（线程1、线程2），线程1通过 Iterator 在遍历集合A中的元素，在某个时候线程2修改了集合A的结构（是结构上面的修改，而不是简单的修改集合元素的内容），那么这个时候程序就会抛出 `ConcurrentModificationException` 异常，从而触发 fail-fast 机制。
 
-#### 1.4.1. 源码分析
+#### 源码分析
 
 以下参考 `ArrayList` 源码的处理：
 
@@ -433,7 +433,7 @@ public void forEach(Consumer<? super E> action) {
 
 每当迭代器使用`hashNext()`/`next()` 遍历下一个元素之前，都会检测 `modCount` 变量是否为 `expectedmodCount` 值，是的话就返回遍历；否则抛出异常，终止遍历并抛出 `ConcurrentModificationException`。
 
-#### 1.4.2. 对集合进行 add/remove 正常操作方式
+#### 对集合进行 add/remove 正常操作方式
 
 1. 直接使用普通 for 循环进行操作，因为普通 for 循环并没有用到 Iterator 的遍历，所以压根就没有进行 fail-fast 的检验。但这种方案其实存在一个问题，那就是 remove 操作会改变 List 中元素的下标，可能存在漏删的情况。
 2. 直接使用 Iterator 提供的 `remove` 方法进行操作。该方法可以修改到 `expectedModCount` 的值，那么就不会再抛出异常了。
@@ -477,7 +477,7 @@ for (String userName : userNames) {
 > Tips: java.util.concurrent 包下的容器都是安全失败，可以在多线程下并发使用，并发修改。
 6. 在遍历过程中，所有涉及到改变 `modCount` 值得地方全部加上 `synchronized`
 
-### 1.5. 手写ArrayList(网上资料)
+### 手写ArrayList(网上资料)
 
 那面试手写ArrayList应该就不是问题了。下面网上资料的手写一个简单阉割版的ArrayList：
 
@@ -580,16 +580,16 @@ public class MyArrayList {
 }
 ```
 
-## 2. HashMap 源码分析
+## HashMap 源码分析
 
-### 2.1. 解决哈希冲突的方案
+### 解决哈希冲突的方案
 
 - **开放定址法（Open Addressing）**：也称为再散列法，基本思想就是，如果 `p=H(key)` 出现冲突时，则以 p 为基础，再次 hash，即 `p1=H(p)`，如果 p1 再次出现冲突，则以 p1 为基础，以此类推，直到找到一个不冲突的哈希地址 pi。因此开放定址法所需要的 hash 表的长度要大于等于所需要存放的元素，而且因为存在再次 hash，所以只能在删除的节点上做标记，而不能真正删除节点。
 - **再哈希法（Rehashing）**：双重散列，多重散列，提供多个不同的 hash 函数，当 `R1=H1(key1)` 发生冲突时，再计算 `R2=H2(key1)`，直到没有冲突为止。这样做虽然不易产生堆集，但增加了计算的时间，适用于元素数量较少的情况。
 - **链地址法（Separate Chaining）**：拉链法，将哈希值相同的元素构成一个同义词的单链表，并将单链表的头指针存放在哈希表的第i个单元中，查找、插入和删除主要在同义词链表中进行。链表法适用于经常进行插入和删除的情况。
 - **建立公共溢出区**：将哈希表分为公共表和溢出表，当溢出发生时，将所有溢出数据统一放到溢出区。
 
-### 2.2. HashMap 数据存储实现原理
+### HashMap 数据存储实现原理
 
 HashMap 是基于哈希表的 Map 接口的非同步实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
 
@@ -600,7 +600,7 @@ HashMap 是基于哈希表的 Map 接口的非同步实现。此实现提供所�
 
 所以将数组和链表结合在一起，发挥两者各自的优势，使用一种叫做**拉链法**的方式可以解决哈希冲突。HashMap 的数据结构实际上是一个“链表散列”的数据结构，即数组和链表的结合体。
 
-#### 2.2.1. Hash 算法实现过程
+#### Hash 算法实现过程
 
 HashMap 基于 Hash 算法实现的，具体如下：
 
@@ -614,13 +614,13 @@ HashMap 基于 Hash 算法实现的，具体如下：
 
 > 需要注意 Jdk 1.8 中对 HashMap 的实现做了优化，当链表中的节点数据超过八个之后，该链表会转为红黑树来提高查询效率，从原来的 `O(n)` 到 `O(logn)`
 
-#### 2.2.2. JDK1.7 解决哈希冲突
+#### JDK1.7 解决哈希冲突
 
 JDK1.7 采用的是拉链法。拉链法：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
 ![](images/249015516248892.png)
 
-#### 2.2.3. JDK1.8 解决哈希冲突
+#### JDK1.8 解决哈希冲突
 
 相比于之前的版本，jdk1.8 在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）并且数组长度达到 64 时，将链表转化为红黑树，以减少搜索时间。
 
@@ -629,7 +629,7 @@ JDK1.7 采用的是拉链法。拉链法：将链表和数组相结合。也就�
 数组+链表。通过计算 key 的 hashCode 的值，再去取模来决定当前 Entry 对象存储的索引位置，如果当前位置为空，则直接存储；如果当时位置已经存在内容，则将给存储的数据加上 next 指针，指向之前存在的数据。
 jdk8 主要是对 HashMap 做了红黑树的优化，使树的结构相对平衡，减小链的长度，达到加快查询的速度
 
-#### 2.2.4. JDK1.7 VS JDK1.8
+#### JDK1.7 VS JDK1.8
 
 JDK1.8 主要解决或优化了一下问题：
 
@@ -652,7 +652,7 @@ JDK1.7 VS JDK1.8 具体的区别：
     - JDK1.7 全部按照原来方法进行计算（即`hashCode ->> 扰动函数 ->> (h&length-1)`）
     - JDK1.8 按照扩容后的规律计算（即`扩容后的位置 = 原位置` 或者 `扩容后的位置= 原位置 + 旧容量`）
 
-### 2.3. HashMap 重点属性
+### HashMap 重点属性
 
 ```java
 public class HashMap<K,V> extends AbstractMap<K,V>
@@ -719,11 +719,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
 
 > Tips: 扩容阈值 = 数组容量 × 加载因子
 
-### 2.4. put 方法设置值的具体流程
+### put 方法设置值的具体流程
 
 当 put 元素的时候，首先计算 key 的 hash 值，这里调用了 hash 方法，hash 方法实际是让`key.hashCode()`与`key.hashCode()>>>16`进行异或操作，高 16bit 补 0，一个数和 0 异或不变，所以 hash 函数大概的作用就是：**高 16bit 不变，低 16bit 和高 16bit 做了一个异或，目的是减少碰撞**。按照函数注释，因为 bucket 数组大小是 2 的幂，计算下标`index = (table.length - 1) & hash`，如果不做 hash 处理，相当于散列生效的只有几个低 bit 位，为了减少散列的碰撞，设计者综合考虑了速度、作用、质量之后，使用高 16bit 和低 16bit 异或来简单处理减少碰撞，而且 JDK8 中用了复杂度 `O(logn)`的树结构来提升碰撞下的性能。
 
-#### 2.4.1. putVal 方法执行流程图
+#### putVal 方法执行流程图
 
 `final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict)` 流程图：
 
@@ -740,7 +740,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     3. 遍历 `table[i]`，链表的尾部插入数据，然后判断链表长度是否大于8。若是，则把链表转换为红黑树，在红黑树中执行插入操作，遍历过程中若发现 key 已经存在直接覆盖 value
 5. 插入成功后，判断实际存在的键值对数量 size 是否超多了最大容量 threshold（`数组长度 * 0.75`），如果超过，执行 `resize()` 进行扩容。
 
-#### 2.4.2. putVal 方法源码分析
+#### putVal 方法源码分析
 
 > 以下为 JDK 1.8 源码
 
@@ -806,11 +806,11 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 }
 ```
 
-### 2.5. HashMap 的 resize 扩容机制
+### HashMap 的 resize 扩容机制
 
 当 HashMap 的数组大小达到一定的阈值（默认为 75%），会触发扩容操作。扩容的过程会重新计算每个键值对的哈希值，然后将其存储在新的数组位置上。扩容操作需要耗费一定的时间，因此需要在初始化时预估 HashMap 中键值对的数量，以便尽可能地减少扩容操作的次数。
 
-#### 2.5.1. 扩容流程图
+#### 扩容流程图
 
 ![HashMap源码分析.drawio - resize扩容流程](images/223695812230952.jpg)
 
@@ -821,7 +821,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
   - 如果是红黑树，走红黑树的添加
   - 如果是链表，则需要遍历链表，可能需要拆分链表，判断 `(e.hash & oldCap)` 是否为0，该元素的位置要么停留在原始位置，要么移动到`原始位置+增加的数组大小`这个位置上
 
-#### 2.5.2. resize 方法源码分析
+#### resize 方法源码分析
 
 ```java
 // 扩容、初始化数组
@@ -929,7 +929,7 @@ final Node<K,V>[] resize() {
 }
 ```
 
-#### 2.5.3. （待整理）为什么 HashMap 默认加载因子是 0.75 而不是其他数值
+#### （待整理）为什么 HashMap 默认加载因子是 0.75 而不是其他数值
 
 > 参考整理：https://mp.weixin.qq.com/s/a3qfatEWizKK1CpYaxVBbA
 
@@ -941,7 +941,7 @@ HashMap 负载因子 loadFactor 的默认值是 0.75，为什么是 0.75 呢？�
 
 **结论：负载因子 loadFactor 是 HashMap 在进行扩容时的一个阈值，扩容的计算公式是：`initialCapacity * loadFactor = HashMap` 扩容。作为一般规则，默认负载因子（0.75）提供了在时间复杂度和空间成本之间的良好平衡，是很好的折衷方案**。
 
-#### 2.5.4. 扩展：为何 HashMap 的数组长度一定是2的次幂？
+#### 扩展：为何 HashMap 的数组长度一定是2的次幂？
 
 - **计算索引时效率更高**。如果是 2 的 n 次幂可以使用位与运算代替取模
 - **扩容时重新计算索引效率更高**。`hash & oldCap == 0` 的元素留在原来位置，否则`新位置 = 旧位置 + oldCap`
@@ -953,9 +953,9 @@ HashMap 负载因子 loadFactor 的默认值是 0.75，为什么是 0.75 呢？�
 >
 > 如果进一步分析，还会发现空间浪费非常大，以 `length=15` 为例，在 1、3、5、7、9、11、13、15 这8处没有存放数据。因为 hash 值在与14（即 1110）进行`&`运算时，得到的结果最后一位永远都是0，即 0001、0011、0101、0111、1001、1011、1101、1111 位置处是不可能存储数据的。
 
-### 2.6. HashMap 的寻址算法
+### HashMap 的寻址算法
 
-#### 2.6.1. 计算键的 hash 值的源码分析
+#### 计算键的 hash 值的源码分析
 
 在 `HashMap` 类的 `put(K key, V value)` 方法中，会调用 `hash(key)` 方法来计算 key 的 hash 值。
 
@@ -980,19 +980,19 @@ static final int hash(Object key) {
 
 ![](images/355165122230950.png)
 
-##### 2.6.1.1. JDK 8 为什么要 hashcode 异或其右移十六位的值
+##### JDK 8 为什么要 hashcode 异或其右移十六位的值
 
 因为在 JDK 7 中扰动了 4 次，计算 hash 值的性能会稍差。从速度、功效、质量来考虑，JDK 8 优化了高位运算的算法，通过 `hashCode()` 的高 16 位异或低 16 位实现：`(h = k.hashCode()) ^ (h >>> 16)`。
 
 这么做可以在数组 table 的 length 比较小的时候，也能保证考虑到高低 Bit 都参与到 Hash 的计算中，同时不会有太大的开销。
 
-##### 2.6.1.2. 计算数组下标时为什么要 hash 值与 length-1 相与
+##### 计算数组下标时为什么要 hash 值与 length-1 相与
 
 把 hash 值对数组长度取模运算，模运算的消耗很大，没有位运算快。
 
 当 length 总是 2 的 n 次方时，`h & (length-1)` 运算等价于对 length 取模，即 `h % length`，但是 `&` 比 `%` 具有更高的效率。
 
-#### 2.6.2. get 方法源码分析
+#### get 方法源码分析
 
 > 以下为 JDK 1.8 源码
 
@@ -1028,7 +1028,7 @@ final Node<K,V> getNode(int hash, Object key) {
 }
 ```
 
-### 2.7. JDK 1.7 版本 HashMap 多线程死循环问题
+### JDK 1.7 版本 HashMap 多线程死循环问题
 
 由于 JDK 1.7 的 HashMap 数据结构是：数组+链表。在数组进行扩容的时候，因为链表采用的是<u>**头插法**</u>，在进行数据迁移的过程中，有可能导致死循环。
 
@@ -1039,7 +1039,7 @@ final Node<K,V> getNode(int hash, Object key) {
 - JDK 1.7 中的链表采用的头插法
 - 在数据迁移的过程中并没有新的对象产生，只是改变了对象的引用
 
-#### 2.7.1. 产生死循环的过程分析
+#### 产生死循环的过程分析
 
 1. 假设线程1和线程2的变量 e 和 next 都引用了这个两个节点
 
@@ -1071,9 +1071,9 @@ final Node<K,V> getNode(int hash, Object key) {
 
 在 JDK 8 以后，已经将扩容算法做了调整，不再将元素加入链表头，而是采用了保持与扩容前一样的顺序的**尾插法**，避免了 JDK 7 中死循环的问题。
 
-### 2.8. HashMap 综合问题小结
+### HashMap 综合问题小结
 
-#### 2.8.1. JDK 1.8 的 HashMap 数据结构示意图
+#### JDK 1.8 的 HashMap 数据结构示意图
 
 ![](images/309095316240157.png)
 
@@ -1084,21 +1084,21 @@ final Node<K,V> getNode(int hash, Object key) {
 - 如果 `链表长度 > 8 & 数组大小>=64`，链表转为红黑树
 - 如果 `红黑树节点个数 < 6`，转为链表
 
-#### 2.8.2. 为什么要使用红黑树而不是二叉树
+#### 为什么要使用红黑树而不是二叉树
 
 主要是因为红黑树在插入和删除操作时，能够自动平衡树的结构，使得整棵树的高度保持在一个较小的范围内，从而保证查找、插入和删除操作的时间复杂度稳定在 `O(logn)`。而二叉树没有自平衡的特性，如果插入和删除操作不当，可能会导致树的高度过高，使得查找时间复杂度变为 `O(n)`，因此不适合用于高效的 Map 实现。
 
-#### 2.8.3. 为什么使用 8 作为链表改为红黑树的阈值
+#### 为什么使用 8 作为链表改为红黑树的阈值
 
 从作者在源码中的注释可知，理想情况下使用随机的哈希码，容器中节点分布在 hash 桶中的频率遵循泊松分布，按照泊松分布的计算公式计算出了桶中元素个数和概率的对照表，可以看到链表中元素个数为 8 时的概率已经非常小，再多的就更少了，所以原作者在选择链表元素个数时选择了 8，是根据概率统计而选择的。
 
-#### 2.8.4. 解决 hash 冲突的时为什么选择先用链表，再转红黑树
+#### 解决 hash 冲突的时为什么选择先用链表，再转红黑树
 
 当元素小于 8 个的时候，此时做查询操作，链表结构已经能保证查询性能。当元素大于 8 个的时候，红黑树搜索时间复杂度是 `O(logn)`，而链表是 `O(n)`，此时需要红黑树来加快查询速度，因为红黑树需要进行左旋，右旋，变色这些操作来保持平衡，而单链表不需要，但是此时新增节点的效率会变慢。
 
 因此，如果一开始就用红黑树结构，元素太少，新增效率又比较慢，无疑这是浪费性能的。
 
-## 3. HashSet 源码分析
+## HashSet 源码分析
 
 ```java
 public class HashSet<E>

@@ -1,18 +1,18 @@
-## 1. 工作流介绍
+## 工作流介绍
 
-### 1.1. 概念
+### 概念
 
 工作流(Workflow)，就是通过计算机对业务流程自动化执行管理。它主要解决的是“使在多个参与者之间按照某种预定义的规则自动进行传递文档、信息或任务的过程，从而实现某个预期的业务目标，或者促使此目标的实现”。
 
-### 1.2. 工作流系统
+### 工作流系统
 
 一个软件系统中具有工作流的功能，我们把它称为工作流系统，一个系统中工作流的功能是什么？就是对系统的业务流程进行自动化管理，所以工作流是建立在业务流程的基础上，所以一个软件的系统核心根本上还是系统的业务流程，工作流只是协助进行业务流程管理。即使没有工作流业务系统也可以开发运行，只不过有了工作流可以更好的管理业务流程，提高系统的可扩展性。
 
-### 1.3. 适用行业
+### 适用行业
 
 消费品行业，制造业，电信服务业，银证险等金融服务业，物流服务业，物业服务业，物业管理，大中型进出口贸易公司，政府事业机构，研究院所及教育服务业等，特别是大的跨国企业和集团公司。
 
-### 1.4. 具体应用
+### 具体应用
 
 1. 关键业务流程：订单、报价处理、合同审核、客户电话处理、供应链管理等
 2. 行政管理类:出差申请、加班申请、请假申请、用车申请、各种办公用品申请、购买申请、日报周报等凡是原来手工流转处理的行政表单。
@@ -21,15 +21,15 @@
 5. 客户服务类：客户信息管理、客户投诉、请求处理、售后服务管理等。
 6. 特殊服务类：ISO 系列对应流程、质量管理对应流程、产品数据信息管理、贸易公司报关处理、物流公司货物跟踪处理等各种通过表单逐步手工流转完成的任务均可应用工作流软件自动规范地实施。
 
-### 1.5. 实现方式
+### 实现方式
 
 在没有专门的工作流引擎之前，要实现流程控制，通常的做法就是采用状态字段的值来跟踪流程的变化情况。这样不用角色的用户，通过状态字段的取值来决定记录是否显示。针对有权限可以查看的记录，当前用户根据自己的角色来决定审批是否合格的操作。如果合格将状态字段设置一个值，来代表合格；当然如果不合格也需要设置一个值来代表不合格的情况。
 
 以上是最为原始的方式，通过状态字段虽然做到了流程控制，但是当流程发生变更的时候，这种方式所编写的代码也要进行调整。而 activiti 工作流引擎就是使用专业的方式来实现工作流的管理，并且可以做到业务流程变化之后，程序可以不用改变，使业务系统的适应能力得到了极大提升。
 
-## 2. Activiti7 概述
+## Activiti7 概述
 
-### 2.1. 简介
+### 简介
 
 Alfresco 软件在 2010 年 5 月 17 日宣布 Activiti 业务流程管理（BPM）开源项目的正式启动，而 jbpm 、activiti 都是工作流引擎。
 
@@ -41,17 +41,17 @@ Activiti Cloud 是新一代的商业自动化平台，提供了一套云端原�
 
 > Activiti 官方网站：https://www.activiti.org/
 
-#### 2.1.1. BPM
+#### BPM
 
 BPM（Business Process Management）即业务流程管理，是一种规范化的构造端到端的业务流程，以持续的提高组织业务效率。常见商业管理教育如 EMBA、MBA 等均将 BPM 包含在内。
 
-#### 2.1.2. BPM 软件
+#### BPM 软件
 
 BPM 软件就是根据企业中业务环境的变化，推进人与人之间、人与系统之间以及系统与系统之间的整合及调整的经营方法与解决方案的 IT 工具。通过 BPM 软件对企业内部及外部的业务流程的整个生命周期进行建模、自动化、管理监控和优化，使企业成本降低，利润得以大幅提升。
 
 BPM 软件在企业中应用领域广泛，凡是有业务流程的地方都可以 BPM 软件进行管理，比如企业人事办公管理、采购流程管理、公文审批流程管理、财务管理等。
 
-#### 2.1.3. BPMN
+#### BPMN
 
 BPMN（Business Process Model AndNotation）业务流程模型和符号，是由 BPMI（BusinessProcess Management Initiative）开发的一套标准的业务流程建模符号，使用 BPMN 提供的符号可以创建业务流程。
 
@@ -123,45 +123,45 @@ Bpmn 图形表示业务流程，实质最终是生成 xml 文件，使用文本�
 </definitions>
 ```
 
-### 2.2. 使用步骤
+### 使用步骤
 
-#### 2.2.1. 部署 activiti
+#### 部署 activiti
 
 Activiti 是一个工作流引擎本质是由多个 jar 包组成的 API，业务系统访问（操作）activiti 的接口，就可以方便的操作流程相关数据，这样就可以把工作流环境与业务系统的环境集成在一起。
 
-#### 2.2.2. 流程定义
+#### 流程定义
 
 使用 activiti 流程建模工具(activity-designer)定义业务流程，最终生成 .bpmn 文件。
 
 .bpmn 文件就是业务流程定义文件，本质是通过 xml 定义业务流程。
 
-#### 2.2.3. 流程定义部署
+#### 流程定义部署
 
 activiti 部署业务流程定义（.bpmn 文件）。使用 activiti 提供的 api 把流程定义内容存储起来，在 Activiti 执行过程中可以查询定义的内容。
 
 Activiti 执行会把流程定义内容存储在数据库中
 
-#### 2.2.4. 启动一个流程实例
+#### 启动一个流程实例
 
 流程实例（ProcessInstance），启动一个流程实例表示开始一次业务流程的运行。
 
 例如：在员工请假流程定义部署完成后，如果张三要请假就可以启动一个流程实例，如果李四要请假也启动一个流程实例，两个流程的执行互相不影响。
 
-#### 2.2.5. 用户查询待办任务(Task)
+#### 用户查询待办任务(Task)
 
 如系统的业务流程交给 activiti 管理，通过 activiti 就可以查询当前流程执行到哪了，当前用户需要办理什么任务了，这些都由 activiti 进行管理与实现，而不需要开发人员自己编写在 sql 语句查询。
 
-#### 2.2.6. 用户办理任务
+#### 用户办理任务
 
 用户查询待办任务后，就可以办理某个任务，如果这个任务办理完成还需要其它用户办理，比如采购单创建后由部门经理审核，这个过程也是由 activiti 来完成
 
-#### 2.2.7. 流程结束
+#### 流程结束
 
 当任务办理完成没有下一个任务结点了，这个流程实例就完成了。
 
-## 3. Activiti 开发前置准备
+## Activiti 开发前置准备
 
-### 3.1. 开发环境要求
+### 开发环境要求
 
 - Jdk1.8 或以上版本
 - Mysql 5 及以上的版本
@@ -170,11 +170,11 @@ Activiti 执行会把流程定义内容存储在数据库中
 
 **注意：IDEA 与 Eclipse 开发工具均可安装相应的 activiti 流程定义工具插件**
 
-### 3.2. Activiti 开发环境准备
+### Activiti 开发环境准备
 
 本次学习使用的 Activiti 版本是：7.1.0-M16。默认支持 spring5
 
-#### 3.2.1. 下载 activiti7
+#### 下载 activiti7
 
 使用 Activiti 7 工作流引擎，可以直接在项目中引入从官网下载的相关 jar 包，或者使用 Maven 依赖的方式。本次学习使用 maven 依赖的方式，修改项目的 pom.xml 文件添加如下依赖：
 
@@ -192,7 +192,7 @@ Activiti 执行会把流程定义内容存储在数据库中
 </dependencyManagement>
 ```
 
-#### 3.2.2. IDEA 流程设计器插件 - Activiti BPMN visualizer
+#### IDEA 流程设计器插件 - Activiti BPMN visualizer
 
 - 点击 IDEA 的 【File】->【Settings】->【Plugins】，在【Marketplace】搜索 Activiti BPMN visualizer 插件，它就是 Activiti Designer 的 IDEA 版本，点击 Install 安装。
 
@@ -202,7 +202,7 @@ Activiti 执行会把流程定义内容存储在数据库中
 
 后面的 Activiti 学习研究，会使用这个流程设计器进行 Activiti 的流程设计。
 
-### 3.3. Activiti 的数据库支持
+### Activiti 的数据库支持
 
 Activiti 在运行时需要数据库的支持，会使用 25 张表，把流程定义节点内容读取到数据库表中，以供后续使用。activiti 支持的数据库和版本如下：
 
@@ -217,11 +217,11 @@ Activiti 在运行时需要数据库的支持，会使用 25 张表，把流程�
 
 > 本次学习研究使用 mysql 数据库
 
-### 3.4. 使用 Java 程序生成 Activiti 相关表格
+### 使用 Java 程序生成 Activiti 相关表格
 
 这里使用 Activiti 提供的默认方式生成 MySQL 数据库相关的表格
 
-#### 3.4.1. 创建数据库
+#### 创建数据库
 
 创建给 Activiti 使用的 mysql 数据库（_名称随意_）
 
@@ -229,7 +229,7 @@ Activiti 在运行时需要数据库的支持，会使用 25 张表，把流程�
 CREATE DATABASE activiti_sample DEFAULT CHARACTER SET utf8;
 ```
 
-#### 3.4.2. 添加项目依赖
+#### 添加项目依赖
 
 使用 idea 创建 java 的 maven 工程，加入 ProcessEngine 所依赖的坐标（jar 包），包括：
 
@@ -319,7 +319,7 @@ CREATE DATABASE activiti_sample DEFAULT CHARACTER SET utf8;
 </dependencies>
 ```
 
-#### 3.4.3. 添加日志配置（非必需）
+#### 添加日志配置（非必需）
 
 示例使用 slf4j + log4j2 日志包，在 resources 下创建 log4j2.xml 日志配置文件
 
@@ -364,7 +364,7 @@ CREATE DATABASE activiti_sample DEFAULT CHARACTER SET utf8;
 
 > tips: 日志配置可以根据需要自行配置，也可以更换其他的日志实现
 
-#### 3.4.4. 添加 activiti 默认配置文件
+#### 添加 activiti 默认配置文件
 
 因此示例使用 activiti 提供的默认方式来创建 mysql 数据库表。默认方式的要求是在 resources 下创建 activiti.cfg.xml 文件（注意：<font color=purple>**默认方式目录和文件名不能修改**</font>，因为 activiti 的源码中已经设置，到固定的目录读取固定文件名的文件。）
 
@@ -431,7 +431,7 @@ CREATE DATABASE activiti_sample DEFAULT CHARACTER SET utf8;
 </beans>
 ```
 
-#### 3.4.5. 编写程序生成数据表
+#### 编写程序生成数据表
 
 创建一个测试类，使用 activiti 提供的工具类 `ProcessEngines`，调用其 `getDefaultProcessEngine` 方法创建 `ProcessEngine` 对象，会默认读取 classpath 下的 activiti.cfg.xml 文件，读取其中的数据库配置，在创建 ProcessEngine 时会自动创建 activiti 需要的数据库表。
 
@@ -463,9 +463,9 @@ public void test01() {
 
 以上完成 Activiti 运行需要的数据库和表的创建
 
-### 3.5. Activiti 表结构介绍
+### Activiti 表结构介绍
 
-#### 3.5.1. 表的命名规则和作用
+#### 表的命名规则和作用
 
 所有 Activiti 相关的表名称前缀都是 `ACT_`
 
@@ -476,7 +476,7 @@ public void test01() {
 - `ACT_HI`：'HI'表示 history。这种前缀的表包含历史数据，比如历史流程实例、变量、任务等
 - `ACT_GE`：'GE'表示 general。这种前缀的表是存储通用数据，用于不同场景下
 
-#### 3.5.2. Activiti 数据表介绍
+#### Activiti 数据表介绍
 
 - 一般数据
 
@@ -517,23 +517,23 @@ public void test01() {
 | ACT_RU_TASK         | 运行时任务                                         |
 | ACT_RU_VARIABLE     | 运行时变量表                                       |
 
-## 4. Activiti 核心类说明
+## Activiti 核心类说明
 
-### 4.1. 核心类关系图
+### 核心类关系图
 
 ![](images/582775919247124.jpg)
 
 通过测试，发现 `IdentityService` 与 `FormService` 这两个类在新版本(7.x)中均已经删除，此两个只在存在旧的版本中
 
-### 4.2. activiti.cfg.xml 默认配置文件
+### activiti.cfg.xml 默认配置文件
 
 activiti.cfg.xml 是 Activiti 的引擎配置文件，包括：`ProcessEngineConfiguration` 对象的定义、数据源定义、事务管理器等，此文件本质是一个 spring 配置文件
 
-### 4.3. ProcessEngineConfiguration 流程引擎配置类
+### ProcessEngineConfiguration 流程引擎配置类
 
 通过流程引擎的抽象配置类 `ProcessEngineConfiguration`，可以创建工作流引擎 `ProceccEngine` 实例。有如下两个常用的实现类：
 
-#### 4.3.1. StandaloneProcessEngineConfiguration
+#### StandaloneProcessEngineConfiguration
 
 `StandaloneProcessEngineConfigurationActiviti` 是单独运行，用来创建 `ProcessEngine`，Activiti 会自动处理事务
 
@@ -541,13 +541,13 @@ activiti.cfg.xml 是 Activiti 的引擎配置文件，包括：`ProcessEngineCon
 
 > _具体两种配置方式详见基础示例的《activiti 默认配置文件》章节_
 
-#### 4.3.2. SpringProcessEngineConfiguration
+#### SpringProcessEngineConfiguration
 
 `org.activiti.spring.SpringProcessEngineConfiguration` 实现类是用来与 Spring 进行整合。通过需要创建 spring 与 activiti 的整合配置文件：activity-spring.cfg.xml（名称随意修改）
 
 > _具体配置方式详见《Activiti 与 Spring 整合》章节_
 
-#### 4.3.3. ProcessEngineConfiguration 的创建方式
+#### ProcessEngineConfiguration 的创建方式
 
 通过 `ProcessEngineConfiguration` 类的静态方法 `createProcessEngineConfigurationFromResource` 可自定义创建 `ProcessEngineConfiguration` 实例，方法参数分别指定配置文件名称与 bean 实例的名称，即意味着 activiti 的配置文件名称可以自定义，创建 `processEngineConfiguration` 实例的 id 也可以自定义
 
@@ -559,11 +559,11 @@ ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
 System.out.println(processEngine);
 ```
 
-### 4.4. ProcessEngine 工作流引擎
+### ProcessEngine 工作流引擎
 
 工作流引擎（`ProcessEngine`）接口，是一个门面接口，通过 `ProcessEngineConfiguration` 来创建，再通过 `ProcessEngine` 创建各个 service 接口。
 
-#### 4.4.1. 默认创建方式
+#### 默认创建方式
 
 通过 avtiviti 提供的工具类 `ProcessEngines` 的 `getDefaultProcessEngine` 方法。该方式要求 activiti.cfg.xml 文件名及路径固定，需放在 resources 目录下，并且配置文件中必须有一个名称为 `processEngineConfiguration` 的 bean。因此该方式不够灵活
 
@@ -571,7 +571,7 @@ System.out.println(processEngine);
 ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 ```
 
-#### 4.4.2. 通用创建方式
+#### 通用创建方式
 
 通过先构造 `ProcessEngineConfiguration`，再通过 `ProcessEngineConfiguration` 创建 `ProcessEngine`，该方式不受配置文件名、路径、配置 bean 的 id 等因素的限制
 
@@ -583,11 +583,11 @@ ProcessEngine processEngine = processEngineConfiguration.buildProcessEngine();
 System.out.println(processEngine);
 ```
 
-### 4.5. Servcie 服务接口
+### Servcie 服务接口
 
 Service 是工作流引擎提供用于进行工作流部署、执行、管理的服务接口，使用这些接口相当于操作服务对应的数据表
 
-#### 4.5.1. Service 服务的创建方式
+#### Service 服务的创建方式
 
 通过 `ProcessEngine` 对象可以创建不同的 Service 接口实例
 
@@ -599,7 +599,7 @@ RepositoryService repositoryService = processEngine.getRepositoryService();
 TaskService taskService = processEngine.getTaskService();
 ```
 
-#### 4.5.2. 各种 Service 接口简介
+#### 各种 Service 接口简介
 
 各种 Serivce 接口与作用如下表：
 
@@ -613,7 +613,7 @@ TaskService taskService = processEngine.getTaskService();
 
 > tips: 以上这些接口实质都是操作 Activity 各张数据库表
 
-##### 4.5.2.1. RepositoryService
+##### RepositoryService
 
 Activiti 的资源管理类，提供了管理和控制流程发布包和流程定义的操作。使用工作流建模工具设计的业务流程图需要使用此 service 将流程定义文件的内容部署到计算机。
 
@@ -623,23 +623,23 @@ Activiti 的资源管理类，提供了管理和控制流程发布包和流程�
 
 获得流程定义的 pojo 版本，可以用来通过 java 解析流程，而不必通过 xml。
 
-##### 4.5.2.2. RuntimeService
+##### RuntimeService
 
 Activiti 的流程运行管理类。可以从这个服务类中获取很多关于流程执行相关的信息
 
-##### 4.5.2.3. TaskService
+##### TaskService
 
 Activiti 的任务管理类。可以从这个类中获取任务的信息。
 
-##### 4.5.2.4. HistoryService
+##### HistoryService
 
 Activiti 的历史管理类，可以查询历史信息，执行流程时，引擎会保存很多数据（根据配置），比如流程实例启动时间、任务的参与者、完成任务的时间、每个流程实例的执行路径等等。这个服务主要通过查询功能来获得这些数据。
 
-##### 4.5.2.5. ManagementService
+##### ManagementService
 
 Activiti 的引擎管理类，提供了对 Activiti 流程引擎的管理和维护功能，这些功能不在工作流驱动的应用程序中使用，主要用于 Activiti 系统的日常维护。
 
-## 5. Activiti 快速入门
+## Activiti 快速入门
 
 创建一个 Activiti 工作流，并启动这个流程，具体包含如下步骤：
 
@@ -647,29 +647,29 @@ Activiti 的引擎管理类，提供了对 Activiti 流程引擎的管理和维�
 2. 部署流程：把画好的流程定义文件，加载到数据库中，生成表的数据
 3. 启动流程：使用程序来操作数据库表中的内容
 
-### 5.1. 流程符号
+### 流程符号
 
 BPMN 2.0 是业务流程建模符号 2.0 的缩写。它由 Business Process Management Initiative 这个非营利协会创建并不断发展。作为一种标识，BPMN 2.0 是使用一些**符号**来明确业务流程设计流程图的一整套符号规范，它能增进业务建模时的沟通效率。
 
 目前 BPMN 2.0 是最新的版本，它用于在 BPM 上下文中进行布局和可视化的沟通。在流程设计中 BPMN 2.0 常见的**基本符合**主要包含：
 
-#### 5.1.1. 事件 Event
+#### 事件 Event
 
 ![](images/302460216220668.png)
 
-#### 5.1.2. 活动 Activity
+#### 活动 Activity
 
 活动是工作或任务的一个通用术语。一个活动可以是一个任务，还可以是一个当前流程的子处理流程；其次，还可以为活动指定不同的类型。常见活动如下：
 
 ![](images/272950316239094.png)
 
-#### 5.1.3. 网关 GateWay
+#### 网关 GateWay
 
 网关用来处理决策，有几种常用网关需要了解：
 
 ![](images/485750316226961.png)
 
-##### 5.1.3.1. 排他网关 (x)
+##### 排他网关 (x)
 
 只有一条路径会被选择。流程执行到该网关时，按照输出流的顺序逐个计算：
 
@@ -679,35 +679,35 @@ BPMN 2.0 是业务流程建模符号 2.0 的缩写。它由 Business Process Man
 
 排他网关需要和条件顺序流结合使用，default 属性指定默认顺序流，当所有的条件不满足时会执行默认顺序流。
 
-##### 5.1.3.2. 并行网关 (+)
+##### 并行网关 (+)
 
 所有路径会被同时选择
 
 - **拆分**：并行执行所有输出顺序流，为每一条顺序流创建一个并行执行线路。
 - **合并**：所有从并行网关拆分并执行完成的线路均在此等候，直到所有的线路都执行完成才继续向下执行。
 
-##### 5.1.3.3. 包容网关 (+)
+##### 包容网关 (+)
 
 可以同时执行多条线路，也可以在网关上设置条件
 
 - **拆分**：计算每条线路上的表达式，当表达式计算结果为 true 时，创建一个并行线路并继续执行
 - **合并**：所有从并行网关拆分并执行完成的线路均在此等候，直到所有的线路都执行完成才继续向下执行
 
-##### 5.1.3.4. 事件网关 (+)
+##### 事件网关 (+)
 
 专门为中间捕获事件设置的，允许设置多个输出流指向多个不同的中间捕获事件。当流程执行到事件网关后，流程处于等待状态，需要等待抛出事件才能将等待状态转换为活动状态。
 
-#### 5.1.4. 流向 Flow
+#### 流向 Flow
 
 流是连接两个流程节点的连线。常见的流向包含以下几种：
 
 ![](images/346870616247127.png)
 
-### 5.2. 流程设计器使用（IDEA）插件
+### 流程设计器使用（IDEA）插件
 
 > 注：此学习笔记是使用 IDEA 的 Activiti BPMN visualizer 插件，其他相关的流程设计器软件使用方法大同小异
 
-#### 5.2.1. 新建流程图
+#### 新建流程图
 
 在 idea 中安装插件即可使用，在项目目录中右键生成 Activiti BPMN 文件（其实最终是生成一个 xml 文件）
 
@@ -717,7 +717,7 @@ BPMN 2.0 是业务流程建模符号 2.0 的缩写。它由 Business Process Man
 
 ![](images/455282216232105.png)
 
-#### 5.2.2. Palette（画板）
+#### Palette（画板）
 
 使用 Activiti BPMN visualizer 插件打开的文件，在画板的空白处，右键可以看到包括以下结点：
 
@@ -734,7 +734,7 @@ BPMN 2.0 是业务流程建模符号 2.0 的缩写。它由 Business Process Man
 
 > Tips: 在画板中，可以将流程图导出图片
 
-#### 5.2.3. 绘制流程
+#### 绘制流程
 
 在工程的 resources 目录创建 bpmn 目录，右键使用【New】->【New Activiti 6.x BPMN 2.0 file】。在弹出如下图所示框，输入文件名 evection，表示出差审批流程：
 
@@ -756,17 +756,17 @@ BPMN 2.0 是业务流程建模符号 2.0 的缩写。它由 Business Process Man
 
 > 番外：如果打开的流程图出现中文乱码的问题，解决方案详见[《IntelliJ IDEA 常用配置》](/其他/software/IDEA)的“修改默认字符集”章节
 
-#### 5.2.4. 注意事项
+#### 注意事项
 
 Activiti BPMN visualizer 插件有比较坑人的地方是，此插件不能定义监听器功能，如果需要定义，则使用 Camunda Modeler 工具来实现
 
-### 5.3. 流程定义部署
+### 流程定义部署
 
 将上面在设计器中定义的流程部署到 activiti 数据库中，就是流程定义部署。
 
 通过调用 activiti 的 api 将流程定义的 bpmn 和 png 两个文件添加部署到 activiti 中，也可以将两个文件打成 zip 包进行部署。
 
-#### 5.3.1. 单个文件部署方式
+#### 单个文件部署方式
 
 分别将 bpmn 文件和 png 图片文件部署。通过 `RepositoryService` 对象将指定的 bpm 文件和图片文件保存在 activiti 数据库。
 
@@ -789,7 +789,7 @@ public void testDeployment() {
 }
 ```
 
-#### 5.3.2. 压缩包部署方式
+#### 压缩包部署方式
 
 将 evection.bpmn 和 evection.png 压缩成 zip 包，通过 `RepositoryService` 对象将指定的 bpm 文件和图片文件保存在 activiti 数据库。
 
@@ -815,7 +815,7 @@ public void testDeployByZip() {
 }
 ```
 
-#### 5.3.3. 定义部署操作的数据表
+#### 定义部署操作的数据表
 
 流程定义部署后操作 activiti 数据库以下的 3 张表如下：
 
@@ -845,13 +845,13 @@ act_re_deployment 和 act_re_procdef 一对多关系，一次部署在流程部�
 
 建议：一次部署一个流程，这样部署表和流程定义表是一对一有关系，方便读取流程部署及流程定义信息。
 
-### 5.4. 启动流程实例
+### 启动流程实例
 
 流程定义部署在 activiti 之后，就可以通过工作流管理业务流程了。_即前面部署的出差申请流程示例可以使用了_
 
 针对示例的流程，启动一个流程实例即表示发起一个新的出差申请单，类似于 java 中的类与对象的关系，类定义好后使用 new 关键字创建一个对象后即可使用，也可以 new 多个对象。对于出差申请流程，张三发起一个出差申请单需要启动一个流程实例，出差申请单发起一个出差单也需要启动一个流程实例。
 
-#### 5.4.1. 代码实现
+#### 代码实现
 
 ```java
 @Test
@@ -877,7 +877,7 @@ public void testStartProcess() {
 当前活动的ID：null
 ```
 
-#### 5.4.2. 启动流程实例涉及操作的数据表
+#### 启动流程实例涉及操作的数据表
 
 - act_hi_actinst：流程实例执行历史
 - act_hi_identitylink：流程的参与用户历史信息
@@ -887,11 +887,11 @@ public void testStartProcess() {
 - act_ru_identitylink：流程的参与用户信息
 - act_ru_task：任务信息
 
-### 5.5. 任务查询
+### 任务查询
 
 流程启动后，任务的负责人就可以查询自己当前需要处理的任务，查询出来的任务都是该用户的待办任务。
 
-#### 5.5.1. 代码实现
+#### 代码实现
 
 ```java
 @Test
@@ -924,7 +924,7 @@ public void testTaskQueryByAssignee() {
 任务名称：创建出差申请
 ```
 
-#### 5.5.2. 执行流程分析
+#### 执行流程分析
 
 观察控制台日志的输出，查询关键字：`act_`
 
@@ -946,11 +946,11 @@ ORDER BY
 	LIMIT 2147483647 OFFSET 0;
 ```
 
-### 5.6. 流程任务处理
+### 流程任务处理
 
 任务负责人查询待办任务，选择任务进行处理，完成任务。
 
-#### 5.6.1. 代码实现
+#### 代码实现
 
 ```java
 @Test
@@ -969,7 +969,7 @@ public void testCompletTask() {
 }
 ```
 
-#### 5.6.2. 执行流程分析
+#### 执行流程分析
 
 同样观察控制台日志的输出，查询关键字：`act_` 来分析任务完成的整个流程
 
@@ -1034,7 +1034,7 @@ WHERE
 delete from ACT_RU_TASK where ID_ = '5005' and REV_ = 1
 ```
 
-### 5.7. 流程定义信息查询
+### 流程定义信息查询
 
 查询流程相关信息，包含流程定义，流程部署，流程定义版本
 
@@ -1077,7 +1077,7 @@ public void testQueryProcessDefinition() {
 流程部署ID:2501
 ```
 
-### 5.8. 流程删除
+### 流程删除
 
 删除流程部署信息，删除时涉及操作的表如下：
 
@@ -1087,7 +1087,7 @@ public void testQueryProcessDefinition() {
 
 > <font color=red>**notes: 若当前的流程实例启动并且没有完成，删除时需要使用级联删除，否则会报错**</font>
 
-#### 5.8.1. 代码实现
+#### 代码实现
 
 ```java
 @Test
@@ -1106,7 +1106,7 @@ public void testDeleteDeployMent() {
 }
 ```
 
-#### 5.8.2. 流程删除注意事项
+#### 流程删除注意事项
 
 流程删除需要注意几点：
 
@@ -1114,7 +1114,7 @@ public void testDeleteDeployMent() {
 2. 如果该流程定义下没有正在运行的流程，则可以用普通删除。
 3. 如果该流程定义下存在已经运行的流程，使用普通删除报错，可使用级联删除方法将流程及相关记录全部删除。原理是先删除没有完成流程节点，最后就可以完全删除流程定义信息。<u>_项目开发中级联删除操作一般只开放给超级管理员使用_</u>
 
-### 5.9. 流程资源下载
+### 流程资源下载
 
 在前面流程定义部署时，流程资源文件已经上传到数据库了，如果其他用户想要查看这些资源文件，可以从数据库中把资源文件下载到本地。解决方案有两种：
 
@@ -1180,7 +1180,7 @@ public void testGetDeployMentResources() throws Exception {
 
 最后的将输入流中的图片资源进行输出。
 
-### 5.10. 查看流程历史信息
+### 查看流程历史信息
 
 即使流程定义已经删除了，流程执行的历史信息依然保存在 activiti 的 `act_hi_*` 相关的表中。所以还是可以通过 `HistoryService` 历史管理类来查询流程执行的相关历史信息。
 

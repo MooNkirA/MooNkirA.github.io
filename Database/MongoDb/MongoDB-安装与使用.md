@@ -1,4 +1,4 @@
-## 1. MongoDB 官网下载地址
+## MongoDB 官网下载地址
 
 MongoDB 的下载地址：
 
@@ -7,9 +7,9 @@ MongoDB 的下载地址：
 
 下载的安装包也有两种形式，一种是一键安装的 msi 文件，还有一种是解压缩就能使用的 zip 文件，哪种形式均可
 
-## 2. MongoDB（windows 版）安装与使用
+## MongoDB（windows 版）安装与使用
 
-### 2.1. msi 安装
+### msi 安装
 
 运行 mongodb-win32-x86_64-2008plus-ssl-4.0.8-signed.msi 安装
 
@@ -27,13 +27,13 @@ MongoDB 的下载地址：
 
 ![安装MongoDB](images/20190408123431914_20189.png)
 
-### 2.2. zip 解压安装
+### zip 解压安装
 
 下载 zip 包后，解压即可。与安装版一样，其中 bin 目录包含了所有 mongodb 的可执行命令。mongodb 在运行时需要指定一个数据存储的目录，所以创建一个数据存储目录，通常放置在安装目录中，此处创建 data 的目录用来存储数据。解压缩与创建完毕后会得到如下文件：
 
 ![](images/263033815239596.png)
 
-### 2.3. 安装过程可能出现的问题
+### 安装过程可能出现的问题
 
 在 win7 系统安装 mongodb 需要 vc++ 运行库，如果没有则会提示“无法启动此程序，因为计算机中丢失“VCRUNTIME140.dll”。上网查找安装
 
@@ -45,9 +45,9 @@ MongoDB 的下载地址：
 regsvr32 vcruntime140_1.dll
 ```
 
-### 2.4. 启动 MongoDB
+### 启动 MongoDB
 
-#### 2.4.1. 进入MongoDB的安装目录，创建相关文件
+#### 进入MongoDB的安装目录，创建相关文件
 
 有几个文件夹具体如下（如果安装的版本没有，则手动创建）
 
@@ -57,7 +57,7 @@ regsvr32 vcruntime140_1.dll
 
 ![MongoDB目录结构](images/20190408123816591_13462.png)
 
-#### 2.4.2. 创建配置文件mongo.conf
+#### 创建配置文件mongo.conf
 
 增加如下内容
 
@@ -76,7 +76,7 @@ quiet=true
 port=27017
 ```
 
-#### 2.4.3. 安装 MongoDB服务
+#### 安装 MongoDB服务
 
 打开 CMD 命令窗口，进入MongoDB 的安装位置的 bin 目录中
 
@@ -99,7 +99,7 @@ mongod.exe --config "D:\development\MongoDB\Server\4.0\mongo.conf" --install
 mongod.exe --dbpath=..\data\db
 ```
 
-#### 2.4.4. 启动 MongoDB 服务（需要使用管理员打开）
+#### 启动 MongoDB 服务（需要使用管理员打开）
 
 ```shell
 # 使用显示名称
@@ -108,7 +108,7 @@ net start "MongoDB Server"
 net start MongoDB
 ```
 
-#### 2.4.5. 关闭 MongoDB 服务（需要使用管理员打开）
+#### 关闭 MongoDB 服务（需要使用管理员打开）
 
 ```shell
 # 使用显示名称
@@ -117,19 +117,19 @@ net stop "MongoDB Server"
 net start MongoDB
 ```
 
-#### 2.4.6. 移除 MongoDB 服务
+#### 移除 MongoDB 服务
 
 ```shell
 "d:\MongoDB\Server\3.4\bin\mongod.exe" --remove
 ```
 
-#### 2.4.7. 测试是否启动成功
+#### 测试是否启动成功
 
 启动 mongodb 服务，命令执行后，浏览器中输入 http://127.0.0.1:27017 看到如下界面即说明启动成功
 
 ![](images/20190408130442382_5581.png)
 
-#### 2.4.8. 启动客户端
+#### 启动客户端
 
 也可以通过 bin 目录下的 mongo.exe 连接 mongodb
 
@@ -137,13 +137,13 @@ net start MongoDB
 mongo --host=127.0.0.1 --port=27017
 ```
 
-## 3. MongoDB（docker版）安装与启动
+## MongoDB（docker版）安装与启动
 
-### 3.1. 查看可用的 MongoDB 版本
+### 查看可用的 MongoDB 版本
 
 访问 MongoDB 镜像库地址： https://hub.docker.com/_/mongo?tab=tags&page=1。
 
-### 3.2. 安装dokcer版本MongoDB
+### 安装dokcer版本MongoDB
 
 - 创建MongoDB容器
 
@@ -171,7 +171,7 @@ docker ps -a
 
 ![](images/20200419085029850_6991.png)
 
-### 3.3. 进入容器
+### 进入容器
 
 - 连接容器
 
@@ -214,7 +214,7 @@ security：
 docker restart mongo
 ```
 
-### 3.4. 进入mongoDB
+### 进入mongoDB
 
 - 启动容器之后，使用admin进入
 
@@ -243,11 +243,11 @@ exit
 firewall-cmd --zone=public --add-port=27017/tcp --permanent
 ```
 
-### 3.5. 测试docker容器是否已经对外开放服务
+### 测试docker容器是否已经对外开放服务
 
 ![](images/20200419094225020_23794.png)
 
-### 3.6. 使用Navicat连接测试（连接有问题，暂未解决）
+### 使用Navicat连接测试（连接有问题，暂未解决）
 
 ![](images/20200419095323556_12399.png)
 
@@ -276,7 +276,7 @@ B、
 
 > <font color="red">**注：按网上的方法暂时无法解决，但使用studio3t是可以连接**</font>
 
-## 4. studio3t 客户端使用
+## studio3t 客户端使用
 
 studio3t 是 mongodb 优秀的客户端工具。官方网站：https://studio3t.com/
 
@@ -296,7 +296,7 @@ studio3t 是 mongodb 优秀的客户端工具。官方网站：https://studio3t.
 
 ![](images/20190408142622245_12800.png)
 
-## 5. Robot3t 客户端使用
+## Robot3t 客户端使用
 
 Robot3t 是一款绿色软件，无需安装，解压缩即可。解压缩完毕后进入安装目录双击 robot3t.exe 即可使用。
 

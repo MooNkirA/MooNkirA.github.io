@@ -1,10 +1,10 @@
 # Java 基础面试题
 
-## 1. String 是最基本的数据类型吗？
+## String 是最基本的数据类型吗？
 
 答：Java 中的基本数据类型只有 8 个：byte、short、int、long、float、double、char、boolean；除了基本类型（primitive type），剩下的都是引用类型（reference type），Java 5 以后引入的枚举类型也算是一种比较特殊的引用类型。
 
-## 2. 请说说你对反射的了解？
+## 请说说你对反射的了解？
 
 得分点 反射概念,通过反射机制可以实现什么
 
@@ -28,7 +28,7 @@ Java 的反射机制在实际项目中应用广泛,常见的应用场景有：
 - 多数框架都支持注解/XML 配置,从配置中解析出来的类是字符串,需要利用反射机制实例化；
 - 面向切面编程（AOP）的实现方案,是在程序运行时创建目标对象的代理类,这必须由反射机制来实现。
 
-## 3. java 中四种修饰符的限制范围
+## java 中四种修饰符的限制范围
 
 private < 默认 < protected < public
 
@@ -37,7 +37,7 @@ private < 默认 < protected < public
 - 默认(包权限): 同包下的任意类都可以访问
 - private: 只能在本类中使用
 
-## 4. Object 类中的方法
+## Object 类中的方法
 
 toString(), equals(), clone(), getClass(), hashCode(), wait(), notify(), notifyAll()
 
@@ -55,21 +55,21 @@ toString(), equals(), clone(), getClass(), hashCode(), wait(), notify(), notifyA
 
 jdk1.8 之后，接口可以定义非抽象方法，实现类不需要现实该方法
 
-## 5. 动态代理的两种方式，以及区别
+## 动态代理的两种方式，以及区别
 
 实现方式有两种，一种是基于接口（使用 JDK 的 Proxy 类），一种是基于子类（使用第三方 jar 包 cglib）
 
 - JDK 动态接口代理：通过反射去调用目标类的代码，将增加部分的代码。Proxy 类利用 InvocationHandler 动态创建一个接口的实例
 - CGlib 动态代理：与 JDK 的方法主要区别在于，在运行期动态生成新的 class
 
-## 6. Java 序列化的方式
+## Java 序列化的方式
 
 - ObjectOutputStream:提供序列化对象并把其写入流的方法
 - ObjectInputStream：读取流并反序列化对象
 - Serializable：一个对象想要被序列化，那么它的类就要实现 此接口，这个对象的所有属性（包括 private 属性、包括其引用的对象）都可以被序列化和反序列化来保存、传递。
 - Externalizable：他是 Serializable 接口的子类，有时我们不希望序列化那么多，可以使用这个接口，这个接口的 writeExternal()和 readExternal()方法可以指定序列化哪些属性;
 
-## 7. 传值和传引用的区别，Java 是怎么样的，有没有传值引用
+## 传值和传引用的区别，Java 是怎么样的，有没有传值引用
 
 传值，作为方法的形参，方法中修改值不会影响原来的值
 
@@ -79,7 +79,7 @@ jdk1.8 之后，接口可以定义非抽象方法，实现类不需要现实该�
 
 # Java 集合面试题
 
-## 1. 一个 ArrayList 在循环过程中删除，会不会出问题，为什么
+## 一个 ArrayList 在循环过程中删除，会不会出问题，为什么
 
 方式 1：如果使用 for 循环中删除一个元素，因为 ArrayList 的删除元素是重新复制新的数组，所以原来的数组的 size 就减 1，此时索引+1，就会出现跳过下一个元素遍历的情况
 
@@ -91,13 +91,13 @@ jdk1.8 之后，接口可以定义非抽象方法，实现类不需要现实该�
 
 总结：Iterator 调用 ArrayList 的删除方法报错，Iterator 调用迭代器自己的删除方法，单线程不会报错，多线程会报错。
 
-## 2. Map 的常用实现类 HashMap / LinkedHashMap / TreeMap 的区别
+## Map 的常用实现类 HashMap / LinkedHashMap / TreeMap 的区别
 
 1. HashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键（<font color=purple>**HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null。**</font>），<font color=red>**键是唯一，存储和取出没有顺序**</font>。
 2. LinkedHashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键，<font color=red>**键是唯一，存储和取出有顺序**</font>
 3. TreeMap：从功能上讲，TreeMap 有着比 HashMap 更为强大的功能，它实现了 SortedMap 接口，这意味着它可以对元素进行排序。TreeMap 的性能略微低于 HashMap。如果在开发中需要对元素进行<font color=red>排序</font>，那么使用 HashMap 便无法实现这种功能，使用 TreeMap 的迭代输出将会以元素顺序进行。<font color=red>**LinkedHashMap 是基于元素进入集合的顺序或者被访问的先后顺序排序，TreeMap 则是基于元素的固有顺序 (由 Comparator 或者 Comparable 确定)。即：LinkedHashMap 是根据元素增加或者访问的先后顺序进行排序，而 TreeMap 则根据元素的 Key 进行排序**</font>。
 
-## 3. 说说 HashMap 底层原理？
+## 说说 HashMap 底层原理？
 
 得分点 数据结构、put()流程、扩容机制
 
@@ -129,7 +129,7 @@ put()方法的执行过程中,主要包含四个步骤：
 
 HashMap 是非线程安全的,在多线程环境下,多个线程同时触发 HashMap 的改变时,有可能会发生冲突。所以,在多线程环境下不建议使用 HashMap,可以考虑使用 Collections 将 HashMap 转为线程安全的 HashMap,更为推荐的方式则是使用 ConcurrentHashMap。
 
-## 4. 说说 ConcurrentHashMap？
+## 说说 ConcurrentHashMap？
 
 得分点 数组+链表+红黑树、锁的粒度
 
@@ -144,12 +144,12 @@ HashMap 是非线程安全的,在多线程环境下,多个线程同时触发 Has
 
 ConcurrentHashMap 实现线程安全的难点在于多线程并发扩容,即当一个线程在插入数据时,若发现数组正在扩容,那么它就会立即参与扩容操作,完成扩容后再插入数据到新数组。在扩容的时候,多个线程共同分担数据迁移任务,每个线程负责的迁移数量是 `(数组长度 >>> 3) / CPU核心数`。 也就是说,为线程分配的迁移任务,是充分考虑了硬件的处理能力的。多个线程依据硬件的处理能力,平均分摊一部分槽的迁移工作。另外,如果计算出来的迁移数量小于 16,则强制将其改为 16,这是考虑到目前服务器领域主流的 CPU 运行速度,每次处理的任务过少,对于 CPU 的算力也是一种浪费。
 
-## 5. HashMap 、ConcurrentHashMap 和 Hashtable 的区别
+## HashMap 、ConcurrentHashMap 和 Hashtable 的区别
 
 1. 线程安全：HashMap 是线程不安全；而 ConcurrentHashMap 和 Hashtable 是线程安全的。
 2. key 是否允许有 null 值：HashMap 允许有 null，但只能存在一个；而 ConcurrentHashMap 和 Hashtable 都不允许。
 
-## 6. 你知道哪些线程安全的集合？
+## 你知道哪些线程安全的集合？
 
 得分点 Collections、java.util.concurrent (JUC)
 
@@ -173,7 +173,7 @@ Collections 还提供了如下三类方法来返回一个不可变的集合,这�
 
 # Java IO 面试题
 
-## 1. BIO,NIO,AIO 有什么区别?
+## BIO,NIO,AIO 有什么区别?
 
 - BIO：Block IO 同步阻塞式 IO，就是我们平常使用的传统 IO，它的特点是模式简单使用方便，并发处理能力低。
 - NIO：Non IO 同步非阻塞 IO，是传统 IO 的升级，客户端和服务器端通过 Channel（通道）通讯，实现了多路复用。
@@ -187,7 +187,7 @@ Collections 还提供了如下三类方法来返回一个不可变的集合,这�
 
 # Java 异常面试题
 
-## 1. JVM 的异常处理
+## JVM 的异常处理
 
 Java 通过面向对象的方法进行异常处理，一旦方法抛出异常，系统自动根据该异常对象寻找合适异常处理器（Exception Handler）来处理该异常，把各种不同的异常进行分类，并提供了良好的接口。
 
@@ -195,7 +195,7 @@ Java 通过面向对象的方法进行异常处理，一旦方法抛出异常，
 
 JVM 会顺着调用栈去查找看是否有可以处理异常的代码，如果有，则调用异常处理代码。当 JVM 发现可以处理异常的代码时，会把发生的异常传递给它。如果 JVM 没有找到可以处理该异常的代码块，JVM 就会将该异常转交给默认的异常处理器（默认处理器为 JVM 的一部分），默认异常处理器打印出异常信息并终止应用程序。
 
-## 2. NoClassDefFoundError 和 ClassNotFoundException 区别？
+## NoClassDefFoundError 和 ClassNotFoundException 区别？
 
 NoClassDefFoundError 是一个 Error 类型的异常，是由 JVM 引起的，不应该尝试捕获这个异常。引起该异常的原因是 JVM 或 ClassLoader 尝试加载某类时在内存中找不到该类的定义，该动作发生在运行期间，即编译时该类存在，但是在运行时却找不到了，可能是变异后被删除了等原因导致；
 

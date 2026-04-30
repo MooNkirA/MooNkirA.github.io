@@ -1,4 +1,4 @@
-## 1. 动态 SQL 主要标签
+## 动态 SQL 主要标签
 
 MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 
@@ -14,7 +14,7 @@ MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 
 ![](images/20200621120321367_6088.jpg)
 
-## 2. if 标签
+## if 标签
 
 作用：根据判断条件是否拼接标签体内的内容
 
@@ -39,7 +39,7 @@ MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 
 ![](images/20200621120614153_30466.jpg)
 
-## 3. where 标签
+## where 标签
 
 为了解决`<if>`标签判断后会出现错误拼接sql语句，使用`<where>`标签，将SQL语句中where替换成`<where>`标签。其作用如下：
 
@@ -65,7 +65,7 @@ MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 </select>
 ```
 
-## 4. set 标签
+## set 标签
 
 标签作用：
 
@@ -95,7 +95,7 @@ MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 </update>
 ```
 
-## 5. foreach 标签
+## foreach 标签
 
 `<foreach>` 标签作用是，循环遍历处理参数集合（List、数组）。主要的属性如下：
 
@@ -109,7 +109,7 @@ MyBatis 中用于实现动态 SQL 的元素，主要存放在`<select>`标签中
 - `separator`：表示在每次进行迭代之间以什么符号作为分隔符，常用“`,`”；
 - `close`：表示该语句以什么结束，常用“`)`”。
 
-### 5.1. 示例1：批量新增用户
+### 示例1：批量新增用户
 
 - 批量新增用户的sql语句
 
@@ -169,7 +169,7 @@ public void batchInsertUsersTest() {
 }
 ```
 
-### 5.2. 示例2：批量删除用户
+### 示例2：批量删除用户
 
 - 批量删除用户的sql语句
 
@@ -223,7 +223,7 @@ public void batchDeleteUsersTest() {
 
 <font color=purple>*批量删除时需要注意：在foreach标签中，collection的取值只能是array，如果是“list”会报错*</font>
 
-## 6. choose、when、otherwise 标签
+## choose、when、otherwise 标签
 
 `choose` 元素，它有点像 Java 中的 `switch` 语句
 
@@ -246,7 +246,7 @@ public void batchDeleteUsersTest() {
 </select>
 ```
 
-## 7. trim 标签
+## trim 标签
 
 `<trim>`标签是一个格式化的标记，可以完成`<set>`或者是`<where>`标签的功能，示例代码如下：
 

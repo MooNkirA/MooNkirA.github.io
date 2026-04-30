@@ -1,4 +1,4 @@
-## 1. Criteria（Hibernate 标准查询）概述
+## Criteria（Hibernate 标准查询）概述
 
 ```java
 public interface Criteria extends CriteriaSpecification
@@ -8,7 +8,7 @@ public interface Criteria extends CriteriaSpecification
 
 值得注意的是 Criteria 接口也是轻量级的，它不能在 Session 之外使用。
 
-## 2. Criteria 对象获取
+## Criteria 对象获取
 
 `Session` 是 `Criteria` 实例的工厂，通过其 `createCriteria` 方法获取 `Criteria` 对象。
 
@@ -25,7 +25,7 @@ Criteria createCriteria(String entityName, String alias);
 
 其中参数 `persistentClass` 是指定查询的类字节码对象。
 
-## 3. 查询所有
+## 查询所有
 
 ```java
 public List list() throws HibernateException;
@@ -33,9 +33,9 @@ public List list() throws HibernateException;
 
 - 返回查询的结果 List 集合（查询所有的数据）
 
-## 4. 条件查询
+## 条件查询
 
-### 4.1. 增加条件
+### 增加条件
 
 ```java
 public Criteria add(Criterion criterion);
@@ -43,7 +43,7 @@ public Criteria add(Criterion criterion);
 
 - 添加查询条件，用于检索结果集。参数 `Criterion criterion` 是查询的限制条件，相当于 SQL 语句中 where 后面的条件，取值是通过 `org.hibernate.criterion.Restrictions` 相应静态方法获取的 `Criterion` 对象。
 
-### 4.2. Restrictions 类（QBC 限制条件）
+### Restrictions 类（QBC 限制条件）
 
 QBC 限制条件 Restrictions 类常用方法：
 
@@ -125,7 +125,7 @@ public static Criterion sqlRestriction(String sql)
 
 - SQL 限定查询 
 
-## 5. 分页查询
+## 分页查询
 
 ```java
 public Criteria setFirstResult(int firstResult);
@@ -139,7 +139,7 @@ public Criteria setMaxResults(int maxResults);
 
 - 设置分页查询的每页记录数
 
-## 6. 统计查询
+## 统计查询
 
 ```java
 public Criteria setProjection(Projection projection);
@@ -147,7 +147,7 @@ public Criteria setProjection(Projection projection);
 
 - QBC 使用聚合函数统计查询。参数 `Projection`：要添加的查询投影。
 
-### 6.1. Projection
+### Projection
 
 ```java
 public interface Projection extends Serializable 
@@ -155,7 +155,7 @@ public interface Projection extends Serializable
 
 `org.hibernate.criterion.Projection` 接口是作为离线查询对象的聚合函数条件。
 
-### 6.2. Projections 工具类常用方法
+### Projections 工具类常用方法
 
 ```java
 public static CountProjection count(String propertyName)
@@ -169,7 +169,7 @@ public static Projection rowCount()
 
 - 返回 `Projection` 对象，设置离线对象的查询条件，相当于 `count(*)`。
 
-### 6.3. 示例
+### 示例
 
 ```java
 // QBC使用聚合函数：统计查询
@@ -192,15 +192,15 @@ public void testProjection() {
 }
 ```
 
-## 7. 离线查询 DetachedCriteria
+## 离线查询 DetachedCriteria
 
-### 7.1. 概述
+### 概述
 
 Criteria 对象是一个在线对象，它是由一个可用的（活动的）Session 对象获取的出来的。当 session 失效时，就无法再获取该对象了。
 
 有与 Criteria 相对的一个对象，它也可以用于设置条件，但是获取的时候并不需要 Session 对象。该对象就叫做离线对象：`DetachedCriteria`。使用该对象进行的查询就叫做：**离线查询**。
 
-### 7.2. 常用方法
+### 常用方法
 
 ```java
 public static DetachedCriteria forClass(Class clazz);
@@ -221,7 +221,7 @@ public DetachedCriteria setProjection(Projection projection)
 
 - 给离线查询对象增加聚合函数的查询条件。例如，`dc.setProjection(Projections.rowCount())`；如果去掉聚合函数条件则 `dc.setProjection(null)`
 
-### 7.3. 基础示例
+### 基础示例
 
 ```java
 // 离线查询
@@ -258,7 +258,7 @@ public List<Customer> daoFindAllCustomer(DetachedCriteria dCriteria) {
 }
 ```
 
-### 7.4. HibernateTemplate 关于离线查询的方法
+### HibernateTemplate 关于离线查询的方法
 
 ```java
 public class HibernateTemplate implements HibernateOperations, InitializingBean
@@ -278,7 +278,7 @@ public List<?> findByCriteria(DetachedCriteria criteria, int firstResult, int ma
 
 - 根据离线查询条件 criteria、开始记录索引 firstResult、每页最大记录数 maxResults 查询返回对象集合。
 
-## 8. 使用示例
+## 使用示例
 
 ```java
 public class TestHibernate_Criteria {

@@ -1,14 +1,12 @@
-# Day14 JMS-消息中间件解决方案&FreeMarker静态化
+## JMS介绍
 
-## 1. JMS介绍
+### 消息中间件
 
-### 1.1. 消息中间件
-
-#### 1.1.1. 品优购系统模块
+#### 品优购系统模块
 
 目前已经完成了5个web模块和3个服务模块。其中运营商后台的调用关系最多，用到了商家商品服务、内容服务、搜索服务。这种模块之间的依赖也称之为耦合。而耦合越多，之后的维护工作就越困难。那么如何改善系统模块调用关系、<font color="red">***减少模块之间的耦合、提高系统的吐吞量***</font>？接下来就介绍一种解决方案----消息中间件。
 
-#### 1.1.2. 什么是消息中间件
+#### 什么是消息中间件
 
 消息中间件利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。通过提供消息传递和消息排队模型，它可以在分布式环境下扩展进程间的通信。对于消息中间件，常见的角色大致也就有Producer（生产者）、Consumer（消费者）
 
@@ -29,15 +27,15 @@
 - 另一种处理事务的方案是，将不同的服务做成一个服务，当成本地事务处理即可。
 
 
-#### 1.1.3. 改造系统模块调用关系
+#### 改造系统模块调用关系
 
 ![改造模块调用关系](images/20190213125001191_29420.jpg)
 
 通过引入消息中间件ActiveMQ，使得运营商后台系统与搜索系统、商品详情系统解除了耦合，提高运营商后台系统的吞吐量
 
-### 1.2. JMS简介
+### JMS简介
 
-#### 1.2.1. 什么是JMS
+#### 什么是JMS
 
 JMS（Java Messaging Service）是Java平台上有关面向消息中间件的技术规范，它便于消息系统中的Java应用程序进行消息交换,并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。
 
@@ -51,7 +49,7 @@ JMS 定义了五种不同的消息正文格式，以及调用的消息类型，�
 - `BytesMessage` -- 一个字节的数据流
 - `StreamMessage` -- Java 原始值的数据流
 
-#### 1.2.2. JMS消息传递类型
+#### JMS消息传递类型
 
 对于消息的传递有两种类型：
 
@@ -63,13 +61,13 @@ JMS 定义了五种不同的消息正文格式，以及调用的消息类型，�
 
 ![JMS消息传递类型2](images/20190213141126423_16449.jpg)
 
-### 1.3. ActiveMQ下载与安装
+### ActiveMQ下载与安装
 
-#### 1.3.1. 下载
+#### 下载
 
 官方网站下载：http://activemq.apache.org/
 
-#### 1.3.2. 安装（Linux）
+#### 安装（Linux）
 
 参考：【\Java编程工具资料\Java源代码\Apache ActiveMQ【消息中间件】\ActiveMQ资料（项目2）\Linux安装ActiveMQ.docx】
 
@@ -89,7 +87,7 @@ mv apache-activemq-5.14.5 activemq
 rm -rf apache-activemq-5.14.5-bin.tar.gz
 ```
 
-#### 1.3.3. 启动
+#### 启动
 
 ```shell
 # 进入解压后的文件夹的bin/linux-x86-64/目录
@@ -109,7 +107,7 @@ cd activemq/bin/linux-x86-64/
 /usr/local/activemq/bin/linux-x86-64/activemq status
 ```
 
-#### 1.3.4. 关闭防火墙
+#### 关闭防火墙
 
 ```shell
 # 停止防火墙
@@ -119,7 +117,7 @@ systemctl stop firewalld.service
 systemctl disable firewalld.service
 ```
 
-#### 1.3.5. 访问
+#### 访问
 
 - 打开浏览器访问：`http://192.168.12.131:8161/admin/`
     - 账号：admin
@@ -130,7 +128,7 @@ systemctl disable firewalld.service
     2. 修改用户名与密码：打开`activemq\conf\users.properties`文件进行修改
     3. 修改连接端口：打开activemq\conf\activemq.xml文件，修改113行：`tcp://0.0.0.0:61616`
 
-#### 1.3.6. 点对点消息列表界面介绍：
+#### 点对点消息列表界面介绍：
 
 ![点对点消息队列界面](images/20190213142102571_21060.jpg)
 
@@ -141,11 +139,11 @@ systemctl disable firewalld.service
 
 *注：消息队列是先进先出，消费是按顺序的，如何使用队列消息（点对点），不会出来重复消费的问题。*
 
-## 2. JMS入门示例
+## JMS入门示例
 
 jms的具体的使用步骤与API在项目1时已经使用，可以参考结合项目1 day15的内容。下面只有案例，没有详细步骤
 
-### 2.1. 创建项目
+### 创建项目
 
 在pyg-test项目中，创建maven工程activemq-test，选择jar类型，引入依赖
 
@@ -178,11 +176,11 @@ jms的具体的使用步骤与API在项目1时已经使用，可以参考结合�
 </project>
 ```
 
-### 2.2. 点对点模式
+### 点对点模式
 
 点对点的模式主要建立在一个队列上面，当连接一个列队的时候，发送端不需要知道接收端是否正在接收，可以直接向ActiveMQ发送消息，发送的消息，将会先进入队列中，如果有接收端在监听，则会发向接收端，如果没有接收端接收，则会保存在activemq服务器，直到接收端接收消息，点对点的消息模式可以有多个发送端，多个接收端，但是一条消息，只会被一个接收端给接收到，哪个接收端先连上ActiveMQ，则会先接收到，而后来的接收端则接收不到那条消息。
 
-#### 2.2.1. 消息生产者
+#### 消息生产者
 
 创建ProducerTest.java，配置消息生产者(点对点)
 
@@ -245,7 +243,7 @@ public class ProducerTest {
     - DUPS_OK_ACKNOWLEDGE = 3   重复确定应答
     - SESSION_TRANSACTED = 0    会话事务
 
-#### 2.2.2. 消息消费者
+#### 消息消费者
 
 创建ConsumerTest类，循环监听，消费消息
 
@@ -306,13 +304,13 @@ public class ConsumerTest {
 }
 ```
 
-#### 2.2.3. 运行测试
+#### 运行测试
 
 同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<font color="red">**只有一个消费者会接收到消息**</font>。
 
-### 2.3. 发布/订阅模式
+### 发布/订阅模式
 
-#### 2.3.1. 消息生产者
+#### 消息生产者
 
 创建ProducerTest类，配置消息生产者(主题)
 
@@ -358,7 +356,7 @@ public class ProducerTest {
 }
 ```
 
-#### 2.3.2. 消息消费者
+#### 消息消费者
 
 创建ConsumerTest类，监听消息
 
@@ -411,13 +409,13 @@ public class ConsumerTest {
 }
 ```
 
-#### 2.3.3. 运行测试
+#### 运行测试
 
 同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<font color="red">**每个消费者会接收到消息**</font>。
 
-## 3. Spring 整合 JMS
+## Spring 整合 JMS
 
-### 3.1. 配置依赖
+### 配置依赖
 
 ```java
 <!-- spring-jms -->
@@ -428,9 +426,9 @@ public class ConsumerTest {
 </dependency>
 ```
 
-### 3.2. 点对点模式
+### 点对点模式
 
-#### 3.2.1. spring 配置
+#### spring 配置
 
 在src/main/resources下创建applicationContext-queue.xml
 
@@ -489,7 +487,7 @@ public class ConsumerTest {
 </beans>
 ```
 
-#### 3.2.2. 消息生产者与消费者
+#### 消息生产者与消费者
 
 - com.moon.activemq.spring包下创建QueueTest消息生产者
 
@@ -533,9 +531,9 @@ public class QueueMessageListener implements SessionAwareMessageListener<TextMes
 }
 ```
 
-### 3.3. 发布/订阅模式
+### 发布/订阅模式
 
-#### 3.3.1. spring 配置
+#### spring 配置
 
 在src/main/resources下创建spring文件applicationContext-topic.xml
 
@@ -594,7 +592,7 @@ public class QueueMessageListener implements SessionAwareMessageListener<TextMes
 </beans>
 ```
 
-#### 3.3.2. 消息生产者与消费者
+#### 消息生产者与消费者
 
 - com.moon.activemq.spring包下创建TopicTest消息生产者
 
@@ -642,15 +640,15 @@ public class TopicMessageListener implements SessionAwareMessageListener<MapMess
 }
 ```
 
-## 4. 商品审核-导入Solr索引库
+## 商品审核-导入Solr索引库
 
-### 4.1. 需求分析
+### 需求分析
 
 运用消息中间件ActiveMQ实现运营商后台与搜索系统的零耦合。运营商执行商品审核后，向ActiveMQ发送消息（goodsIds与status），搜索服务从ActiveMQ接收到消息查询审批通的SKU数据并导入到solr索引库。
 
-### 4.2. 消息生产者【运营商后台】
+### 消息生产者【运营商后台】
 
-#### 4.2.1. 解除耦合
+#### 解除耦合
 
 - 修改pinyougou-manager-web的pom.xml，~~删除搜索服务接口依赖~~
 
@@ -715,7 +713,7 @@ public boolean deleteGoods(@RequestParam("ids") Long[] ids) {
 }
 ```
 
-#### 4.2.2. 引入与配置activemq与spring jms依赖
+#### 引入与配置activemq与spring jms依赖
 
 - pinyougou-manager-web工程的pom.xml，引入依赖
 
@@ -781,7 +779,7 @@ public boolean deleteGoods(@RequestParam("ids") Long[] ids) {
 brokerURL=tcp://192.168.12.131:61616
 ```
 
-#### 4.2.3. 修改运营商后台审核商品
+#### 修改运营商后台审核商品
 
 修改pinyougou-manager-web工程的GoodsController.java的updateStatus()方法，商品审核通过后发送队列消息
 
@@ -824,9 +822,9 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 }
 ```
 
-### 4.3. 消息消费者【搜索系统】
+### 消息消费者【搜索系统】
 
-#### 4.3.1. 引入ActiveMQ消息中间件依赖与相关配置
+#### 引入ActiveMQ消息中间件依赖与相关配置
 
 - 修改pinyougou-search-web工程，在pom.xml中添加依赖
 
@@ -931,7 +929,7 @@ brokerURL=tcp://192.168.12.131:61616
 </servlet-mapping>
 ```
 
-#### 4.3.2. 创建消息消费者监听类
+#### 创建消息消费者监听类
 
 在pinyougou-search-web的com.pinyougou.search.listener新增监听类
 
@@ -996,16 +994,16 @@ public class ItemMessageListener implements SessionAwareMessageListener<MapMessa
 
 ---
 
-## 5. 商品删除-移除Solr索引库记录
+## 商品删除-移除Solr索引库记录
 
-### 5.1. 需求分析
+### 需求分析
 
 - 运营商删除商品时，发送消息通知搜索系统删除索引库该SPU对应SKU商品的所有索引。
 - 商家修改商品时，发送消息通知搜索系统删除索引库该SPU对应SKU商品的所有索引。
 
-### 5.2. 消息生产者（运营商后台）
+### 消息生产者（运营商后台）
 
-#### 5.2.1. 配置文件（applicationContext-jms.xml）
+#### 配置文件（applicationContext-jms.xml）
 
 修改pinyougou-manager-web工程的applicationContext-jms.xml，增加队列目标bean配置
 
@@ -1017,7 +1015,7 @@ public class ItemMessageListener implements SessionAwareMessageListener<MapMessa
 </bean>
 ```
 
-#### 5.2.2. 修改运营商后台删除商品方法
+#### 修改运营商后台删除商品方法
 
 修改pinyougou-manager-web工程GoodsController原有删除方法deleteGoods()，发送删除的队列消息
 
@@ -1048,9 +1046,9 @@ public boolean deleteGoods(@RequestParam("ids") Long[] ids) {
 }
 ```
 
-### 5.3. 消息生产者（商家后台）
+### 消息生产者（商家后台）
 
-#### 5.3.1. 配置文件
+#### 配置文件
 
 - pinyougou-shop-web工程pom.xml添加activeMQ与spring jms依赖
 
@@ -1116,7 +1114,7 @@ public boolean deleteGoods(@RequestParam("ids") Long[] ids) {
 brokerURL=tcp://192.168.12.131:61616
 ```
 
-#### 5.3.2. 修改商家后台控制层-更新商品方法
+#### 修改商家后台控制层-更新商品方法
 
 修改pinyougou-shop-web工程的GoodsController.java原有update()方法，在修改商品信息后发送删除索引库的队列消息
 
@@ -1145,9 +1143,9 @@ public boolean update(@RequestBody Goods goods) {
 }
 ```
 
-### 5.4. 消息消费者（搜索系统）
+### 消息消费者（搜索系统）
 
-#### 5.4.1. 配置文件（applicationContext-jms.xml）
+#### 配置文件（applicationContext-jms.xml）
 
 修改pinyougou-search-web工程的applicationContext-jms.xml，添加删除索引的监听类配置
 
@@ -1164,7 +1162,7 @@ public boolean update(@RequestBody Goods goods) {
 <bean id="deleteMessageListener" class="com.pinyougou.search.listener.DeleteMessageListener"/>
 ```
 
-#### 5.4.2. 创建消息消费者监听类（删除索引）
+#### 创建消息消费者监听类（删除索引）
 
 在pinyougou-search-web的com.pinyougou.search.listener新增监听类
 
@@ -1193,9 +1191,9 @@ public class DeleteMessageListener implements SessionAwareMessageListener<Object
 
 ---
 
-## 6. Nginx静态资源服务器
+## Nginx静态资源服务器
 
-### 6.1. 添加资源到html存储路径
+### 添加资源到html存储路径
 
 - 复制/pinyougou-item-web/src/main/webapp路径下的css、js、img、plugins文件夹到生成html的路径下。
 
@@ -1208,7 +1206,7 @@ public class DeleteMessageListener implements SessionAwareMessageListener<Object
 page.dir=E:/pyg/item/
 ```
 
-### 6.2. 配置nginx.conf
+### 配置nginx.conf
 
 在nginx的配置文件nginx.conf中添加如下配置信息
 
@@ -1234,15 +1232,15 @@ server {
 }
 ```
 
-### 6.3. 注意
+### 注意
 
 <font color="red">***说明：商品详细页是静态页，在开发阶段我们可以使用tomcat来进行测试。部署在生产环境是部署在Nginx中。***</font>
 
 ---
 
-## 7. 商品审核-执行网页静态化
+## 商品审核-执行网页静态化
 
-### 7.1. 为什么需要静态化
+### 为什么需要静态化
 
 商品详情页是消费者了解商品的主要途径，访问的频率非常高。所以需要对商品详情页进行优化，提高访问的速度。
 
@@ -1257,19 +1255,19 @@ server {
         2. 稳定性高
         3. 静态页面相对于动态页面更容易被搜索引擎收录（SEO）
 
-### 7.2. 静态化访问流程
+### 静态化访问流程
 
 ![静态化访问流程](images/20190214142954241_15455.png)
 
-### 7.3. 需求分析
+### 需求分析
 
 运用消息中间件ActiveMQ实现运营商后台系统与商品详情系统零耦合。运营商执行商品审核后，向ActiveMQ发送消息（商品ID），商品详情系统从ActiveMQ接收到消息后执行网页生成操作。
 
 <font color="red">***注：此处网页静态化使用主题订阅而不使用消息队列的原因是：后面需要对商品详情页面做集群。多个tomcat都需要更新详情页面***</font>
 
-### 7.4. 消息生产者（运营商后台）
+### 消息生产者（运营商后台）
 
-#### 7.4.1. 配置文件（applicationContext-jms.xml）
+#### 配置文件（applicationContext-jms.xml）
 
 修改配置文件applicationContext-jms.xml，添加配置发送更新详情静态页面的主题消息
 
@@ -1281,7 +1279,7 @@ server {
 </bean>
 ```
 
-#### 7.4.2. 修改运营商后台审核商品
+#### 修改运营商后台审核商品
 
 修改pinyougou-manager-web的GoodsController.java原有updateStatus()方法，发送审核的商品id主题消息
 
@@ -1330,8 +1328,8 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 
 <font color="red">***注：此处因为使用MapMessage消息体，其中setObject()的方法，不能放数组，所以只能比较麻烦地先将数组转成集合，消费时再才集合转回数组***</font>
 
-### 7.5. 消息消费者（商品详情）
-#### 7.5.1. 工程配置
+### 消息消费者（商品详情）
+#### 工程配置
 
 - 在pinyougou-item-web工程pom.xml中引入依赖
 
@@ -1428,7 +1426,7 @@ page.dir=E:/pyg/item/
 </servlet-mapping>
 ```
 
-#### 7.5.2. 商品详情工程创建消息监听器
+#### 商品详情工程创建消息监听器
 
 - com.pinyougou.Item.listener创建消息监听器PageMessageListener
 
@@ -1486,16 +1484,16 @@ public class PageMessageListener implements SessionAwareMessageListener<TextMess
 
 ---
 
-## 8. 商品删除-删除商品详细页
+## 商品删除-删除商品详细页
 
-### 8.1. 需求分析
+### 需求分析
 
 - 运营商执行商品删除后，同时删除商品详情系统的商品详细静态html页面
 - 商家执行商品修改后，同时删除商品详情系统的商品详细静态html页面
 
-### 8.2. 消息生产者（运营商后台）
+### 消息生产者（运营商后台）
 
-#### 8.2.1. 配置文件（applicationContext-jms.xml）
+#### 配置文件（applicationContext-jms.xml）
 
 修改pinyougou-manager-web的applicationContext-jms.xml，增加删除的主题消息目标
 
@@ -1507,7 +1505,7 @@ public class PageMessageListener implements SessionAwareMessageListener<TextMess
 </bean>
 ```
 
-#### 8.2.2. 运营商后台控制层-删除商品方法
+#### 运营商后台控制层-删除商品方法
 
 修改pinyougou-manager-web的GoodsController.java原有deleteGoods()方法，增加发送主题消息
 
@@ -1558,8 +1556,8 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 }
 ```
 
-### 8.3. 消息生产者（商家后台）
-#### 8.3.1. 配置文件（applicationContext-jms.xml）
+### 消息生产者（商家后台）
+#### 配置文件（applicationContext-jms.xml）
 
 修改pinyougou-shop-web的applicationContext-jms.xml，增加删除主题消息目标
 
@@ -1571,7 +1569,7 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 </bean>
 ```
 
-#### 8.3.2. 商家后台控制层-修改商品的方法
+#### 商家后台控制层-修改商品的方法
 
 修改pinyougou-shop-web的GoodsController.java原有的update方法，增加在修改商品后发送主题消息删除商品详情页面
 
@@ -1614,9 +1612,9 @@ public boolean update(@RequestBody Goods goods) {
 }
 ```
 
-### 8.4. 消息消费者（商品详情）
+### 消息消费者（商品详情）
 
-#### 8.4.1. 配置文件（applicationContext-jms.xml）
+#### 配置文件（applicationContext-jms.xml）
 
 修改pinyougou-item-web的applicationContext-jms.xml，增加删除商品详情的监听器
 
@@ -1634,7 +1632,7 @@ public boolean update(@RequestBody Goods goods) {
 <bean id="deleteMessageListener" class="com.pinyougou.item.listener.DeleteMessageListener"/>
 ```
 
-#### 8.4.2. 商品详情工程创建主题消息监听器
+#### 商品详情工程创建主题消息监听器
 
 在pinyougou-item-web工程com.pinyougou.page.listener包下创建监听器DeleteMessageListener，删除商品详情静态html页面
 

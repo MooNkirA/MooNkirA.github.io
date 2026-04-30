@@ -2,7 +2,7 @@
 
 > TODO: [Drools 规则引擎应用 看这一篇就够了](https://zhuanlan.zhihu.com/p/482763434)。参考资料，阅后删除
 
-## 1. 业务规则问题的引出
+## 业务规则问题的引出
 
 现有一个在线申请信用卡的业务场景，用户需要录入个人信息，如下图所示：
 
@@ -97,9 +97,9 @@ public Integer determineCreditCardLimit(User user){
 
 为了优化以上业务规则所存在的问题，需要使用“**规则引擎**”来实现上面的业务场景
 
-## 2. 规则引擎概述
+## 规则引擎概述
 
-### 2.1. 什么是规则引擎
+### 什么是规则引擎
 
 **规则引擎**，全称为**业务规则管理系统**，英文名为BRMS(即Business Rule Management System)。规则引擎的主要思想是将应用程序中的业务决策部分从应用程序代码中分离出来，并使用预定义的语义模块编写业务决策（业务规则），由用户或开发者在需要时进行配置、管理。**规则引擎其实就是一个输入输出平台**，接收数据输入，解释业务规则，并根据业务规则做出业务决策。
 
@@ -111,7 +111,7 @@ public Integer determineCreditCardLimit(User user){
 
 > Notes: 规则引擎并不是一个具体的技术框架，而是指的一类系统，即业务规则管理系统。目前市面上具体的规则引擎产品有：drools、VisualRules、iLog 等。
 
-### 2.2. 规则引擎的优势
+### 规则引擎的优势
 
 使用规则引擎的优势如下：
 
@@ -122,7 +122,7 @@ public Integer determineCreditCardLimit(User user){
 5. 减少了硬编码业务规则的成本和风险
 6. 使用规则引擎提供的规则编辑工具，使复杂的业务规则实现变得的简单
 
-### 2.3. 规则引擎应用场景
+### 规则引擎应用场景
 
 对于一些存在比较复杂的业务规则并且业务规则会频繁变动的系统比较适合使用规则引擎，如下：
 
@@ -131,16 +131,16 @@ public Integer determineCreditCardLimit(User user){
 3. 决策平台系统：财务计算
 4. 促销平台系统：满减、打折、加价购
 
-## 3. Drools 快速入门
+## Drools 快速入门
 
-### 3.1. Drools 简介
+### Drools 简介
 
 drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则引擎，可以将复杂且多变的业务规则从硬编码中解放出来，以规则脚本的形式存放在文件或特定的存储介质中(例如存放在数据库中)，使得业务规则的变更不需要修改项目代码、重启服务器就可以在线上环境立即生效。
 
 - [Drools 官网地址](https://drools.org/)
 - [Drools 源码仓库](https://github.com/kiegroup/drools)
 
-### 3.2. Drools 的使用步骤
+### Drools 的使用步骤
 
 在项目中使用 drools 时，即可以单独使用也可以整合 spring 使用。如果单独使用只需要导入如下 maven 坐标即可：
 
@@ -170,13 +170,13 @@ drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则
 >
 > ![](images/43681217250270.png)
 
-### 3.3. drools API 开发步骤
+### drools API 开发步骤
 
 ![](images/65142916232390.png)
 
-### 3.4. 入门案例
+### 入门案例
 
-#### 3.4.1. 案例实现的业务场景说明
+#### 案例实现的业务场景说明
 
 业务场景：消费者在图书商城购买图书，下单后需要根据以下的规则计算优惠后的价格，并在支付页面显示该价格。具体优惠规则如下：
 
@@ -187,7 +187,7 @@ drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则
 |    3     | 规则三   | 所购图书总价在200到300元的优惠50元 |
 |    4     | 规则四   | 所购图书总价在300元以上的优惠100元 |
 
-#### 3.4.2. 引入依赖
+#### 引入依赖
 
 创建 maven 工程 drools-quickstart 并导入 drools 相关坐标
 
@@ -200,7 +200,7 @@ drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则
 </dependency>
 ```
 
-#### 3.4.3. drools 默认配置
+#### drools 默认配置
 
 根据 drools 要求，在 resources/META-INF 目录中，创建 kmodule.xml 配置文件
 
@@ -224,7 +224,7 @@ drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则
 
 > Notes: <font color=red>**drools 默认配置文件的名称和位置都是固定写法，不能更改**</font>
 
-#### 3.4.4. 创建数据输入输出的实体类
+#### 创建数据输入输出的实体类
 
 创建实体类Order，用于 drools 接收数据输入与解释业务规则后返回
 
@@ -260,7 +260,7 @@ public class Order {
 }
 ```
 
-#### 3.4.5. 创建规则文件
+#### 创建规则文件
 
 在 resources/rules 目录中，创建规则文件 bookDiscount.drl（任意命名）
 
@@ -313,7 +313,7 @@ end
 >
 > ![](images/49980423220953.png)
 
-#### 3.4.6. 测试
+#### 测试
 
 编写单元测试
 
@@ -352,15 +352,15 @@ public void test1() {
 优惠后价格：400.0
 ```
 
-#### 3.4.7. 小结
+#### 小结
 
 通过上面的入门案例可以发现，使用 drools 规则引擎主要工作就是编写规则文件，在规则文件中定义相关的业务规则（例如入门案例定义的 就是图书优惠规则）。规则定义好后就需要调用drools 提供的 API 将数据提供给规则引擎进行规则模式匹配，规则引擎会执行匹配成功的规则计算的结果并将返回
 
 使用 drools 框架后，不需要在代码中编写规则的判断逻辑，而是在规则文件中编写了业务规则。使用规则引擎时业务规则可以做到动态管理。业务人员可以像管理数据一样对业务规则进行管理，比如查询、添加、更新、统计、提交业务规则等。这样就可以做到在不重启服务的情况下调整业务规则。
 
-## 4. Drools 介绍
+## Drools 介绍
 
-### 4.1. 规则引擎构成
+### 规则引擎构成
 
 drools 规则引擎由以下三部分构成：
 
@@ -378,7 +378,7 @@ drools 规则引擎由以下三部分构成：
 
 ![](images/156540523239379.png)
 
-### 4.2. 相关概念说明
+### 相关概念说明
 
 - **Working Memory**：工作内存，drools 规则引擎会从 Working Memory 中获取数据并和规则文件中定义的规则进行模式匹配，所以我们开发的应用程序只需要将我们的数据插入到 Working Memory 中即可，例如本案例中调用 `kieSession.insert(order)` 就是将 order 对象插入到了工作内存中。
 - **Fact**：事实，是指在 drools 规则应用当中，将一个普通的 JavaBean 插入到 Working Memory 后的对象就是 Fact 对象，例如本案例中的 Order 对象就属于 Fact 对象。Fact 对象是应用和规则引擎进行数据交互的桥梁或通道。
@@ -387,11 +387,11 @@ drools 规则引擎由以下三部分构成：
 - **Agenda**：议程，用于存放通过匹配器进行模式匹配后被激活的规则。
 - **Execution Engine**：执行引擎，执行 Agenda 中被激活的规则。
 
-### 4.3. 规则引擎执行过程
+### 规则引擎执行过程
 
 ![](images/37321023227246.png)
 
-### 4.4. KIE 介绍
+### KIE 介绍
 
 在操作 Drools 时经常使用的 API 以及它们之间的关系如下图：
 
@@ -403,9 +403,9 @@ drools 规则引擎由以下三部分构成：
 
 通过上图可以看到，Drools 是整个 KIE 项目中的一个组件，Drools 中还包括一个 Drools-WB 的模块，它是一个可视化的规则编辑器。
 
-## 5. Drools 基础语法
+## Drools 基础语法
 
-### 5.1. 规则文件构成
+### 规则文件构成
 
 在使用 Drools 时非常重要的一个工作就是编写规则文件，通常规则文件的后缀为 `.drl`。drl 是 Drools Rule Language 的缩写。在规则文件中编写具体的规则内容。
 
@@ -422,7 +422,7 @@ drools 规则引擎由以下三部分构成：
 
 <font color=purple>**Drools 支持的规则文件，除了 drl 形式，还有 Excel 文件类型的。**</font>
 
-### 5.2. 规则体语法结构
+### 规则体语法结构
 
 规则体是规则文件内容中的重要组成部分，是进行业务规则判断、处理业务结果的部分。规则体语法结构如下：
 
@@ -446,7 +446,7 @@ end
 - `RHS`(Right Hand Side)：是规则的后果或行动部分的通用名称。
 - `end`：关键字，表示一个规则结束
 
-### 5.3. 注释
+### 注释
 
 在 drl 形式的规则文件中使用注释和 Java 类中使用注释一致，分为单行注释和多行注释。
 
@@ -471,7 +471,7 @@ rule "rule2"
 end
 ```
 
-### 5.4. Pattern 模式匹配
+### Pattern 模式匹配
 
 Drools 中的匹配器可以将 Rule Base 中的所有规则与 Working Memory 中的 Fact 对象进行模式匹配，那么就需要在规则体的 LHS 部分定义规则并进行模式匹配。LHS 部分由一个或者多个条件组成，条件又称为 pattern。
 
@@ -524,7 +524,7 @@ rule "book_discount_2"
 end
 ```
 
-### 5.5. 比较操作符
+### 比较操作符
 
 Drools 提供的比较操作符，如下表：
 
@@ -543,7 +543,7 @@ Drools 提供的比较操作符，如下表：
 |   matches    | 判断一个Fact对象的属性是否与提供的标准的Java正则表达式进行匹配   |
 | not matches  | 判断一个Fact对象的属性是否不与提供的标准的Java正则表达式进行匹配 |
 
-#### 5.5.1. 语法
+#### 语法
 
 - contains | not contains 语法结构
 
@@ -566,7 +566,7 @@ Object(field matches "正则表达式")
 Object(field not matches "正则表达式")
 ```
 
-#### 5.5.2. 使用示例
+#### 使用示例
 
 - 创建用于测试比较操作符的实体类
 
@@ -666,7 +666,7 @@ public void test2() {
 }
 ```
 
-### 5.6. 执行指定规则
+### 执行指定规则
 
 在上面的案例中，调用规则代码时，满足条件的规则都会被执行。Drools 提供了通过<font color=red>**规则过滤器**</font>来实现执行指定某个的规则。对于规则文件不用做任何修改，只需要修改 Java 代码即可，如下：
 
@@ -692,14 +692,14 @@ session.fireAllRules(new RuleNameEqualsAgendaFilter("rule_comparison_notcontains
 session.dispose();
 ```
 
-### 5.7. 关键字
+### 关键字
 
 Drools 的关键字分为：**硬关键字(Hard keywords)**和**软关键字(Soft keywords)**。
 
 - 硬关键字是在规则文件中定义包名或者规则名时明确不能使用的，否则程序会报错。包含：`true`、`false`、`null`
 - 软关键字虽然可以使用，但是不建议使用。包括：lock-on-active date-effective date-expires no-loop auto-focus activation-group agenda-group ruleflow-group entry-point duration package import dialect salience enabled attributes rule extend when then template query declare function global eval not in or and exists forall accumulate collect from action reverse result end over init
 
-### 5.8. Drools 内置方法
+### Drools 内置方法
 
 规则文件的 `RHS` 部分的主要作用是通过插入，删除或修改工作内存中的 Fact 数据，来达到控制规则引擎执行的目的。Drools 提供了一些方法可以用来操作工作内存中的数据，操作完成后规则引擎会重新进行相关规则的匹配，原来没有匹配成功的规则在我们修改数据完成后有可能就会匹配成功了。
 
@@ -714,7 +714,7 @@ public class Student {
 }
 ```
 
-#### 5.8.1. update 方法
+#### update 方法
 
 update 方法的作用是更新工作内存中的数据，并让相关的规则重新匹配。
 
@@ -770,7 +770,7 @@ session.dispose();
 
 通过控制台的输出可以看到规则文件中定义的三个规则都触发了，因为 update 方法会再次触发规则的校验。<font color=red>**在更新数据时需要注意防止发生死循环**</font>。
 
-#### 5.8.2. insert 方法
+#### insert 方法
 
 insert 方法的作用是向工作内存中插入数据，并让相关的规则重新匹配。
 
@@ -832,7 +832,7 @@ session.dispose();
 
 通过控制台输出可以发现，两个规则都触发了，这是因为首先进行规则匹配时只有第一个规则可以匹配成功，但是在第一个规则中向工作内存中插入了一个数据导致重新进行规则匹配，此时第二个规则可以匹配成功。
 
-#### 5.8.3. retract 方法
+#### retract 方法
 
 retract 方法的作用是删除工作内存中的数据，并让相关的规则重新匹配。
 
@@ -883,7 +883,7 @@ session.dispose();
 
 通过控制台输出可以发现，只有第一个规则触发了，因为在第一个规则中将工作内存中的数据删除了导致第二个规则并没有匹配成功。
 
-### 5.9. 规则属性
+### 规则属性
 
 前面规则体的构成中，`attributes`就是针对规则体的属性部分。Drools中提供的属性如下表(部分属性)：
 
@@ -900,7 +900,7 @@ session.dispose();
 |    auto-focus    | 自动获取焦点，一般结合agenda-group一起使用       |
 |     no-loop      | 防止死循环                                     |
 
-#### 5.9.1. enabled 属性
+#### enabled 属性
 
 enabled 属性对应的取值为true和false，默认值为true。用于指定当前规则是否启用，如果设置的值为 false 则当前规则无论是否匹配成功都不会触发。
 
@@ -940,7 +940,7 @@ session.fireAllRules();
 session.dispose();
 ```
 
-#### 5.9.2. dialect 属性
+#### dialect 属性
 
 dialect 属性用于指定当前规则使用的语言类型，取值为`java`和`mvel`，默认值为`java`。
 
@@ -956,7 +956,7 @@ rule "dialect_rule"
 end
 ```
 
-#### 5.9.3. salience 属性
+#### salience 属性
 
 `salience` 属性用于指定规则的执行优先级，取值类型为 `Integer`，<font color=red>**数值越大越优先执行**</font>。每个规则都有一个默认的执行顺序，如果不设置 `salience` 属性（默认值为0），规则体的执行顺序为由上到下。
 
@@ -1008,7 +1008,7 @@ session.dispose();
 
 通过控制台可以看到，规则文件执行的顺序是按照我们设置的 `salience` 值由大到小顺序执行的。如果不指定 salience 属性（默认值都为0），则执行的顺序是按照规则文件中规则的顺序由上到下执行的。一般建议在编写规则时使用 `salience` 属性明确指定执行优先级。
 
-#### 5.9.4. no-loop 属性
+#### no-loop 属性
 
 `no-loop` 属性用于防止死循环，当规则通过 update 之类的函数修改了 Fact 对象时，可能使当前规则再次被激活从而导致死循环。取值类型为 Boolean，默认值为 false。测试步骤如下：
 
@@ -1056,7 +1056,7 @@ rule "rule_noloop"
 end
 ```
 
-#### 5.9.5. lock-on-active 属性
+#### lock-on-active 属性
 
 `lock-on-active` 属性用于限制当前规则只会被执行一次，包括当前规则的重复执行不是由本身触发的。取值类型为 `Boolean`，默认值为 false。测试步骤如下：
 
@@ -1111,7 +1111,7 @@ session.dispose();
 
 `no-loop` 属性的作用是限制因为 modify 等更新操作导致规则重复执行，但是只限定于当前规则中进行更新而导致当前规则重复执行的情况，并不会防止其他规则更新相同的 fact 对象而导致当前规则更新。`lock-on-active` 属性可以看作是 `no-loop` 的加强版，不仅能限制自己的更新，还能限制别人的更新造成的死循环。
 
-#### 5.9.6. activation-group 属性
+#### activation-group 属性
 
 `activation-group` 属性是指激活分组，取值为 String 类型。具有相同分组名称的规则只能有一个规则被触发。
 
@@ -1169,7 +1169,7 @@ session.dispose();
 
 通过控制台可以发现，上面设置了 `activation-group` 属性且值为相同的两个规则因为属于同一个分组，所以只有一个触发了。同一个分组中的多个规则如果都能够匹配成功，具体哪一个最终能够被触发可以通过 `salience` 属性确定。
 
-#### 5.9.7. agenda-group 属性
+#### agenda-group 属性
 
 `agenda-group` 属性为议程分组，属于另一种可控的规则执行方式。用户可以通过设置 `agenda-group` 来控制规则的执行，只有获取焦点的组中的规则才会被触发。
 
@@ -1235,7 +1235,7 @@ session.dispose();
 
 通过控制台可以看到，只有获取焦点的分组中的规则才会触发。与 `activation-group` 属性不同的是，`activation-group` 属性定义的分组中只能够有一个规则可以被触发，而 `agenda-group` 分组中的多个规则都可以被触发(前提是符合条件)。
 
-#### 5.9.8. auto-focus 属性
+#### auto-focus 属性
 
 `auto-focus` 属性为自动获取焦点，取值类型为 Boolean，默认值为 false。一般结合 `agenda-group` 属性使用，当一个议程分组未获取焦点时，可以设置 `auto-focus` 属性来控制。
 
@@ -1302,7 +1302,7 @@ session.dispose();
 
 通过控制台可以看到，设置 `auto-focus` 属性为 true 的规则，不需要通过代码获取焦点，都会触发了。
 
-#### 5.9.9. timer 属性
+#### timer 属性
 
 `timer` 属性可以通过定时器的方式指定规则执行的时间，使用方式有两种：
 
@@ -1311,7 +1311,7 @@ session.dispose();
 
 > Tips: 以下单元测试的代码和以前的有所不同，因为规则文件中使用到了 timer 进行定时执行，需要程序能够持续一段时间才能够看到定时器触发的效果。
 
-##### 5.9.9.1. 方式1实现
+##### 方式1实现
 
 - 第一步：创建规则文件 /resources/rules/attributes-timer.drl
 
@@ -1349,7 +1349,7 @@ session.halt();
 session.dispose();
 ```
 
-##### 5.9.9.2. 方式2实现
+##### 方式2实现
 
 - 第一步：创建规则文件 /resources/rules/attributes-timer.drl
 
@@ -1397,7 +1397,7 @@ session.dispose();
 规则：rule_timer_2触发了...触发的时间为：2022-09-25 15:11:00
 ```
 
-#### 5.9.10. date-effective 属性
+#### date-effective 属性
 
 `date-effective` 属性用于指定规则的生效时间，即只有当前系统时间大于等于设置的时间或者日期规则才有可能触发。默认日期格式为：`dd-MMM-yyyy`。用户也可以自定义日期格式，使用时需要指定自定义的格式，否则会报错。
 
@@ -1438,7 +1438,7 @@ java.lang.RuntimeException: Error while creating KieBase[Message [id=1, kieBase=
    text=Wrong date-effective value: Invalid date input format: [2022-09-25 10:00] it should follow: [dd-MMM-yyyy]]]
 ```
 
-#### 5.9.11. date-expires 属性
+#### date-expires 属性
 
 date-expires 属性用于指定规则的失效时间，即只有当前系统时间小于设置的时间或者日期规则才有可能触发。默认日期格式为：`dd-MMM-yyyy`。用户也可以自定义日期格式，使用时需要指定自定义的格式，否则会报错。
 
@@ -1472,11 +1472,11 @@ session.dispose();
 
 注意：上面的代码需要系统环境变量设置日期格式，并且变量名称固定为 `drools.dateformat`，否则在规则文件中写的日期格式和默认的日期格式不匹配程序会报错。
 
-## 6. Drools 高级语法
+## Drools 高级语法
 
 前面基础语法已经知道了一套完整的规则文件包含的内容，此章节主要学习 global（全局变量）、function（自定义函数）、query（查询）、rule end（规则体）等关键字的使用
 
-### 6.1. global 全局变量
+### global 全局变量
 
 `global` 关键字用于在规则文件中定义全局变量，它可以让应用程序的对象在规则文件中能够被访问。可以用来为规则文件提供数据或服务。语法结构如下：
 
@@ -1575,7 +1575,7 @@ session.dispose();
 执行规则后全局变量globalStudent的name属性：MooNZero
 ```
 
-### 6.2. query 查询
+### query 查询
 
 query 查询提供了一种查询 working memory 中符合约束条件的 Fact 对象的简单方法。它仅包含规则文件中的 LHS 部分，不用指定“when”和“then”部分并且以 end 结束。具体语法结构如下：
 
@@ -1661,7 +1661,7 @@ size=1
 com.moon.drools.entity.Student@127f9161
 ```
 
-### 6.3. function 函数
+### function 函数
 
 `function` 关键字用于在规则文件中定义函数，就相当于 Java 类中的方法一样。可以在规则体中调用定义的函数。使用函数的好处是可以将业务逻辑集中放置在一个地方，根据需要可以对函数进行修改。函数定义的语法结构如下：
 
@@ -1720,11 +1720,11 @@ session.dispose();
 调用sayHello函数，获得返回结果：hello MooNkirA
 ```
 
-### 6.4. LHS（规则的条件部分）进阶
+### LHS（规则的条件部分）进阶
 
 在规则体中的 LHS 部分是介于 `when` 和 `then` 之间的部分，主要用于模式匹配，只有匹配结果为 true 时，才会触发 RHS 部分的执行。
 
-#### 6.4.1. 复合值限制 in/not in
+#### 复合值限制 in/not in
 
 复合值限制是指超过一种匹配值的限制条件，类似于 SQL 语句中的 `in` 关键字。Drools 规则体中的 LHS 部分可以使用 `in` 或者 `not in` 进行复合值的匹配。具体语法结构如下：
 
@@ -1780,7 +1780,7 @@ session.dispose();
 规则：rule_lhs_2触发了...
 ```
 
-#### 6.4.2. 条件元素 eval
+#### 条件元素 eval
 
 `eval` 用于规则体的 LHS 部分，并返回一个 Boolean 类型的值。语法结构如下：
 
@@ -1822,7 +1822,7 @@ session.dispose();
 规则：rule_lhs_eval 触发了...
 ```
 
-#### 6.4.3. 条件元素 not
+#### 条件元素 not
 
 `not` 用于判断 Working Memory 中是否存在某个 Fact 对象，如果不存在则返回 true，如果存在则返回 false。语法结构如下：
 
@@ -1870,7 +1870,7 @@ session.dispose();
 规则：rule_lhs_not 触发了...
 ```
 
-#### 6.4.4. 条件元素 exists
+#### 条件元素 exists
 
 `exists` 的作用与 `not` 相反，用于判断 Working Memory 中是否存在某个 Fact 对象，如果存在则返回 true，不存在则返回 false。语法结构如下：
 
@@ -1935,7 +1935,7 @@ session.dispose();
 
 > Notes: 从上面示例可知，第一个使用 `exists` 关键字的规则只会执行一次，因为 Working Memory 中存在两个满足条件的 Fact 对象，第二个没有使用 `exists` 的规则会执行两次。
 
-#### 6.4.5. 规则继承
+#### 规则继承
 
 规则之间可以使用 `extends` 关键字进行规则条件部分的继承，类似于 Java 类之间的继承。例如：
 
@@ -1986,13 +1986,13 @@ session.dispose();
 
 以上示例无任何输出，因为第二规则继承了第一个规则，即 age 属性需要大于 10 同时小于 20 才能匹配成功。
 
-### 6.5. RHS（规则的行动部分）进阶
+### RHS（规则的行动部分）进阶
 
 RHS 部分是规则体的重要组成部分，当 LHS 部分的条件匹配成功后，对应的 RHS 部分就会触发执行。一般在 RHS 部分中需要进行业务处理。在 RHS 部分 Drools 为提供了一个内置对象，名称是 `drools`。
 
 以下是几个 `drools` 对象提供的方法。
 
-#### 6.5.1. halt 方法
+#### halt 方法
 
 `halt` 方法的作用是立即终止后面所有规则的执行
 
@@ -2012,7 +2012,7 @@ rule "rule_halt_2"
 end
 ```
 
-#### 6.5.2. getWorkingMemory 方法
+#### getWorkingMemory 方法
 
 `getWorkingMemory` 方法的作用是返回工作内存对象
 
@@ -2024,7 +2024,7 @@ rule "rule_getWorkingMemory"
 end
 ```
 
-#### 6.5.3. getRule 方法
+#### getRule 方法
 
 `getRule` 方法的作用是返回规则对象
 
@@ -2036,7 +2036,7 @@ rule "rule_getRule"
 end
 ```
 
-#### 6.5.4. 综合示例
+#### 综合示例
 
 - 第一步：编写规则文件 /resources/rules/rhs-drools.drl
 
@@ -2091,7 +2091,7 @@ rule_rhs_1
 null
 ```
 
-### 6.6. 规则文件编码规范
+### 规则文件编码规范
 
 drl 类型的规则文件编写时尽量遵循如下规范：
 
@@ -2102,9 +2102,9 @@ drl 类型的规则文件编写时尽量遵循如下规范：
 - 每个规则最好都加上 `salience` 属性，明确执行顺序
 - Drools 默认 `dialect` 为"Java"，尽量避免使用 dialect "mvel"
 
-## 7. Spring 整合 Drools
+## Spring 整合 Drools
 
-### 7.1. Spring 简单整合 Drools
+### Spring 简单整合 Drools
 
 在项目中使用 Drools 时往往会跟 Spring 整合来使用。具体整合步骤如下：
 
@@ -2226,7 +2226,7 @@ public class DroolsSpringTest {
 }
 ```
 
-### 7.2. Spring web 整合 Drools
+### Spring web 整合 Drools
 
 Drools 和 Spring Web 的整合，具体操作步骤如下：
 
@@ -2389,7 +2389,7 @@ public class HelloController {
 
 ![](images/442192223220971.png)
 
-### 7.3. Spring Boot 整合 Drools（推荐）
+### Spring Boot 整合 Drools（推荐）
 
 目前企业级开发的主流是使用 Spring Boot 整合 Drools，具体操作步骤如下：
 
@@ -2608,13 +2608,13 @@ public class DroolsApplication {
 
 ![](images/140582207221042.png)
 
-## 8. Drools 实战1 - 个人所得税计算器
+## Drools 实战1 - 个人所得税计算器
 
 本案例通过 Drools 规则引擎来根据规则计算个人所得税，最终页面效果如下：
 
 ![](images/364171809236142.png)
 
-### 8.1. 名词解释
+### 名词解释
 
 - 税前月收入：即税前工资，指交纳个人所得税之前的总工资
 - 应纳税所得额：指按照税法规定确定纳税人在一定期间所获得的所有应税收入减除在该纳税期间依法允许减除的各种支出后的余额
@@ -2623,7 +2623,7 @@ public class DroolsApplication {
 - 扣税额：是指实际缴纳的税额
 - 税后工资：是指扣完税后实际到手的工资收入
 
-### 8.2. 计算规则
+### 计算规则
 
 要实现个人所得税计算器，需要了解如下计算规则：
 
@@ -2639,7 +2639,7 @@ public class DroolsApplication {
 |    8     | 设置税率，应纳税所得额在80000以上        | 税率为0.45，速算扣除数为13505                             |
 |    9     | 计算税后工资                           | 扣税额=应纳税所得额*税率-速算扣除数 税后工资=税前工资-扣税额 |
 
-### 8.3. 实现步骤
+### 实现步骤
 
 > 本案例基于 spring Boot 整合 Drools 的方式来实现。
 
@@ -2920,13 +2920,13 @@ public class RuleController {
 - 第九步：导入测试使用的静态资源文件到 resources/static 目录下
 - 第十步：启动服务，访问请求 `http://127.0.0.1:8080/calculation.html`，输入不同类型数据进行测试
 
-## 9. Drools 实战2 - 信用卡申请
+## Drools 实战2 - 信用卡申请
 
 本案例需要通过 Drools 规则引擎来根据规则进行申请人的合法性检查，检查通过后再根据规则确定信用卡额度，最终页面效果如下：
 
 ![](images/178963908221043.png)
 
-### 9.1. 计算规则
+### 计算规则
 
 合法性检查规则如下：
 
@@ -2947,7 +2947,7 @@ public class RuleController {
 |    4     | 规则4 | 如果申请人有房没车或者没房但有车，月收入在10000以下，那么发放的信用卡额度为5000         |
 |    5     | 规则5 | 如果申请人有房没车或者是没房但有车，月收入在10000~20000之间，那么发放的信用卡额度为8000 |
 
-### 9.2. 实现步骤
+### 实现步骤
 
 > 本案例基于 spring Boot 整合 Drools 的方式来实现。
 
@@ -3164,9 +3164,9 @@ public class RuleController {
 - 第九步：导入测试使用的静态资源文件到 resources/static 目录下
 - 第十步：启动服务，访问请求 `http://127.0.0.1:8080/creditCardApply.html`，输入不同类型数据进行测试
 
-## 10. Drools 实战3 - 保险产品准入规则
+## Drools 实战3 - 保险产品准入规则
 
-### 10.1. 决策表
+### 决策表
 
 前面示例编写的规则文件都是 drl 形式的文件，Drools 除了支持 drl 形式的文件外还支持 xls 格式的文件（即Excel文件）。这种 xls 格式的文件通常称为决策表（decision table）。
 
@@ -3174,7 +3174,7 @@ public class RuleController {
 
 ![](images/356243316221043.png)
 
-#### 10.1.1. 决策表语法
+#### 决策表语法
 
 |    关键字     |                                                          说明                                                          |                            是否必须                             |
 | :----------: | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -3190,7 +3190,7 @@ public class RuleController {
 
 在决策表中还经常使用到占位符，语法为`$`后面加数字，用于替换每条规则中设置的具体值。
 
-#### 10.1.2. 决策表转换为 drl 文件示例
+#### 决策表转换为 drl 文件示例
 
 上面的决策表例子转换为drl格式的规则文件内容如下：
 
@@ -3229,7 +3229,7 @@ rule "personCheck_12"
 end
 ```
 
-#### 10.1.3. 决策表的依赖与 API
+#### 决策表的依赖与 API
 
 要进行决策表相关操作，需要导入如下maven坐标：
 
@@ -3263,7 +3263,7 @@ kieHelper.addContent(drl, ResourceType.DRL);
 KieSession session = kieHelper.build().newKieSession();
 ```
 
-#### 10.1.4. 基于决策表的入门案例
+#### 基于决策表的入门案例
 
 - 第一步：创建 maven 工程 drools-decisiontable-demo 并配置 pom.xml 文件
 
@@ -3329,7 +3329,7 @@ public void test1() throws Exception{
 }
 ```
 
-### 10.2. 案例规则介绍
+### 案例规则介绍
 
 各保险公司针对人身、财产推出了不同的保险产品，作为商业保险公司，筛选出符合公司利益最大化的客户是非常重要的，即各保险产品的准入人群是不同的，也就是说保险公司会针对不同的人群特征，制定不同的产品缴费和赔付规则。
 
@@ -3349,7 +3349,7 @@ public void test1() throws Exception{
 
 在本案例中规则文件是一个 Excel 文件，业务人员可以直接更改这个文件中指标的值，系统不需要做任何变更。
 
-### 10.3. 实现步骤
+### 实现步骤
 
 > 本案例基于 spring Boot 整合 Drools 的方式来实现。
 
@@ -3533,9 +3533,9 @@ public class RuleController {
 - 第八步：创建启动类
 - 第九步：启动服务，访问请求 `http://127.0.0.1:8080/rule/insuranceInfoCheck`，查看检查返回结果。可以直接修改代码中的测试值，重启服务后再测试。
 
-## 11. WorkBench（了解）
+## WorkBench（了解）
 
-### 11.1. 简介
+### 简介
 
 WorkBench 是 KIE 组件中的元素，也称为 KIE-WB，是 Drools-WB 与 JBPM-WB 的结合体。它是一个可视化的规则编辑器。WorkBench 其实就是一个 war 包，安装到 tomcat 中就可以运行。使用 WorkBench 可以在浏览器中创建数据对象、创建规则文件、创建测试场景并将规则部署到 maven 仓库供其他应用使用。
 
@@ -3543,7 +3543,7 @@ WorkBench 是 KIE 组件中的元素，也称为 KIE-WB，是 Drools-WB 与 JBPM
 
 > Notes: 以下示例使用的是 kie-drools-wb-7.6.0.Final-tomcat8.war。下载的 war 包需要部署到 tomcat8 中。
 
-### 11.2. WorkBench 安装步骤
+### WorkBench 安装步骤
 
 以下示例使用的软件环境如下：
 
@@ -3597,13 +3597,13 @@ CATALINA_OPTS="-Xmx512M \
 
 ![](images/352612708227335.png)
 
-### 11.3. 使用方式
+### 使用方式
 
-#### 11.3.1. 创建空间、项目
+#### 创建空间、项目
 
 WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需要创建空间（Space），在空间中创建项目，在项目中创建数据对象、规则文件等。
 
-##### 11.3.1.1. 创建空间
+##### 创建空间
 
 第一步：登录 WorkBench 后进行系统首页，点击首页中的 Design 区域进入项目列表页面：
 
@@ -3623,7 +3623,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/529673508247963.png)
 
-##### 11.3.1.2. 创建项目
+##### 创建项目
 
 在 WorkBench 中需要先创建空间，在空间中才能创建项目。基于上面创建的一个空间中创建项目。
 
@@ -3645,7 +3645,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/8864008244282.png)
 
-#### 11.3.2. 创建数据对象
+#### 创建数据对象
 
 数据对象其实就是 JavaBean，一般都是在 drl 规则文件中使用进行规则匹配。
 
@@ -3689,7 +3689,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/553894908224903.png)
 
-#### 11.3.3. 创建 DRL 规则文件
+#### 创建 DRL 规则文件
 
 第一步：在 pro1 项目页面点击右上角【Create New Asset】按钮，选择【DRL文件】，弹出创建DRL文件窗口
 
@@ -3715,7 +3715,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/299365408240719.png)
 
-#### 11.3.4. 创建测试场景
+#### 创建测试场景
 
 前面已经创建了Person数据对象和person规则文件，现在需要测试一下规则文件中的规则，可以通过创建测试场景来进行测试。
 
@@ -3763,7 +3763,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/588030309230895.png)
 
-#### 11.3.5. 设置 KieBase 和 KieSession
+#### 设置 KieBase 和 KieSession
 
 第一步：在pro1项目页面点击右上角【Settings】按钮进入设置页面
 
@@ -3781,7 +3781,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 ![](images/156430809251334.png)
 
-#### 11.3.6. 编译、构建、部署
+#### 编译、构建、部署
 
 前面已经在 WorkBench 中创建了一个空间，并且在此空间中创建了一个项目pro1，在此项目中创建了数据文件、规则文件和测试场景，如下图：
 
@@ -3793,7 +3793,7 @@ WorkBench 中存在空间和项目的概念。在使用 WorkBench 时首先需�
 
 将上面的jar包进行解压，可以看到创建的数据对象Person和规则文件person以及 kmodule.xml 都已经打到 jar 包中了。
 
-#### 11.3.7. 在项目中使用部署的规则
+#### 在项目中使用部署的规则
 
 前面已经在 WorkBench 中创建了 pro1 项目，并且在 pro1 项目中创建了数据文件、规则文件等。最后将此项目打成 jar 包部署到了 maven 仓库中。本小节就需要在外部项目中使用自定义的规则。
 
@@ -3870,6 +3870,6 @@ public void test1() throws Exception{
 
 执行单元测试可以发现控制台已经输出了相关内容。通过 WorkBench 修改规则输出内容并发布，再次执行单元测试可以发现控制台输出的内容也发生了变化。
 
-### 11.4. 小结
+### 小结
 
 通过上面的案例可以发现，在 IEDA 中开发的项目中并没有编写规则文件，规则文件是通过 WorkBench 开发并安装部署到 maven 仓库中，开发的项目只需要远程加载 maven 仓库中的 jar 包就可以完成规则的调用。这种开发方式的好处是应用可以和业务规则完全分离，同时通过 WorkBench 修改规则后应用不需要任何修改就可以加载到最新的规则从而实现规则的动态变更。

@@ -1,6 +1,6 @@
-## 1. Spring Boot 整合 MongoDB 概述
+## Spring Boot 整合 MongoDB 概述
 
-### 1.1. 简介
+### 简介
 
 MongoDB 是一个开源、高性能、无模式的文档型数据库，它是 NoSQL 数据库产品中的一种，是最像关系型数据库的非关系型数据库。
 
@@ -8,7 +8,7 @@ MongoDB 是一个开源、高性能、无模式的文档型数据库，它是 No
 
 > 本笔记重点为 Spring Boot 如何整合 MongoDB，更多关于 MongoDB 的内容详见[《MongoDB 笔记》](/Database/MongoDb/MongoDB-基础)
 
-### 1.2. 使用场景
+### 使用场景
 
 以下场景均可考虑使用 MongoDB 作为数据存储（*注：并非必须使用*）
 
@@ -25,11 +25,11 @@ MongoDB 是一个开源、高性能、无模式的文档型数据库，它是 No
   - 存储位置：Mongodb
   - 特征：临时存储，修改频度飞速
 
-### 1.3. 安装
+### 安装
 
 MongoDB 详细的安装说明详见[《MongoDB 安装与使用》 的 《studio3t》 章节](/Database/MongoDb/MongoDB-安装与使用)
 
-## 2. 整合 MongoDB 示例
+## 整合 MongoDB 示例
 
 Spring Boot 整合 MongoDB 操作步骤如下：
 
@@ -37,7 +37,7 @@ Spring Boot 整合 MongoDB 操作步骤如下：
 - 第二，配置必要信息
 - 第三，使用提供的 API 操作MongoDB
 
-### 2.1. 引入依赖
+### 引入依赖
 
 导入 Spring Boot 整合 MongoDB 的坐标 spring-boot-starter-data-redis
 
@@ -52,7 +52,7 @@ Spring Boot 整合 MongoDB 操作步骤如下：
 
 ![](images/226743323220468.png)
 
-### 2.2. 基础配置
+### 基础配置
 
 在 Spring Boot 项目配置文件 application.yml 中，设置 MongoDB 相关配置
 
@@ -65,7 +65,7 @@ spring:
 
 > 操作 MongoDB 需要的配置与其他的 NOSQL 服务一样，最基本的信息都是操作哪一台服务器，区别就是连接的服务器IP地址和端口不同，书写格式不同而已。
 
-### 2.3. 基础使用示例
+### 基础使用示例
 
 使用 Spring Boot 整合 MongoDB 的专用客户端接口 `MongoTemplate` 执行相应的操作
 

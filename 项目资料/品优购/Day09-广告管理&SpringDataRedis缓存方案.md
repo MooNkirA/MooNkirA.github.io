@@ -1,8 +1,6 @@
-# Day09 广告管理&Spring Data Redis缓存方案
+## 网站前台分析
 
-## 1. 网站前台分析
-
-### 1.1. 网站前台有哪些页面
+### 网站前台有哪些页面
 
 - 网站首页
 - 商家（店铺）首页
@@ -15,14 +13,14 @@
 - 用户登录页
 - 用户中心页等
 
-### 1.2. 网站首页广告
+### 网站首页广告
 
 - 首页海报（轮播图）
 - 今日推荐
 - 猜你喜欢
 - 楼层广告
 
-### 1.3. 数据库广告相关表结构分析
+### 数据库广告相关表结构分析
 
 - tb_content_category 广告分类表
 
@@ -43,15 +41,15 @@
 |   status    | varchar |  1   |    状态    |
 | sort_order  |   int   |      |    排序    |
 
-## 2. 运营商后台【广告类型及广告管理】
+## 运营商后台【广告类型及广告管理】
 
-### 2.1. 需求分析
+### 需求分析
 
 实现广告类型表与广告表的增删改查
 
-### 2.2. 搭建广告服务工程
+### 搭建广告服务工程
 
-#### 2.2.1. pinyougou-content聚合项目
+#### pinyougou-content聚合项目
 
 参考之前模块与讲义，pinyougou-content的web端口9002
 
@@ -93,7 +91,7 @@
 </project>
 ```
 
-#### 2.2.2. pinyougou-content-interface服务接口模块
+#### pinyougou-content-interface服务接口模块
 
 - 参考之前模块与讲义，创建jar类型的maven工程pinyougou-content-interface服务接口
 
@@ -143,7 +141,7 @@
 </project>
 ```
 
-#### 2.2.3. pinyougou-content-service服务实现模块
+#### pinyougou-content-service服务实现模块
 
 参考之前模块与讲义。创建web类型的maven工程pinyougou-content-service
 
@@ -286,16 +284,16 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 </dependency>
 ```
 
-#### 2.2.4. idea创建启动内容服务设置
+#### idea创建启动内容服务设置
 
 - 选择Run/Debug Configurations，新增Maven启动
 - 设置Working directory为pinyougou-content
 - 设置Command line为`clean tomcat7:run`
 - 保存，启动
 
-### 2.3. 创建广告服务(content)-服务层（准备工作）
+### 创建广告服务(content)-服务层（准备工作）
 
-#### 2.3.1. 创建内容接口
+#### 创建内容接口
 
 - pinyougou-content-interface创建ContentCategoryService接口
 
@@ -317,7 +315,7 @@ public interface ContentService {
 }
 ```
 
-#### 2.3.2. 创建实现类
+#### 创建实现类
 
 - pinyougou-content-service创建ContentCategoryServiceImpl实现类
 
@@ -357,7 +355,7 @@ public class ContentServiceImpl implements ContentService {
 }
 ```
 
-#### 2.3.3. 创建表现层控制器
+#### 创建表现层控制器
 
 - pinyougou-manager-web创建ContentCategoryController
 
@@ -397,9 +395,9 @@ public class ContentController {
 
 *说明：测试运行广告分类管理和广告管理页面*
 
-### 2.4. 广告分类管理
+### 广告分类管理
 
-#### 2.4.1. content_category.html页面
+#### content_category.html页面
 
 content_category.html页面，引入相关js，引入控制器(之前提供的资料里，已经完成此部分代码，但需要修改部分地方，与控制器的参数一致)
 
@@ -447,7 +445,7 @@ content_category.html页面，引入相关js，引入控制器(之前提供的�
 		ng-click="saveOrUpdate();">保存</button>
 ```
 
-#### 2.4.2. 分页查询、添加、修改、删除
+#### 分页查询、添加、修改、删除
 
 - pinyougou-manager-web控制层ContentCategoryController增加，查询、添加、修改、删除的方法，参考之前模块
 
@@ -654,9 +652,9 @@ public interface ContentCategoryMapper extends Mapper<ContentCategory> {
 </delete>
 ```
 
-### 2.5. 广告管理
+### 广告管理
 
-#### 2.5.1. 广告图片上传
+#### 广告图片上传
 
 - 第一步：将pinyougou-shop-web的以下资源拷贝到pinyougou-manager-web：
 
@@ -766,7 +764,7 @@ $scope.uploadFile = function () {
 <img src="{{entity.pic}}" width="200px" height="100px">
 ```
 
-#### 2.5.2. 新增时关闭弹出框，删除已经上传的图片
+#### 新增时关闭弹出框，删除已经上传的图片
 
 - 修改contentController控制器，增加删除图片的代码
 
@@ -810,7 +808,7 @@ $scope.deleteFile = function () {
 	aria-hidden="true">关闭</button>
 ```
 
-#### 2.5.3. 广告类目选择
+#### 广告类目选择
 
 - 运营商pinyougou-manager-web工程控制层ContentCategoryController，增加查询所有内容类目的方法
 
@@ -880,11 +878,11 @@ $scope.findContentCategoryList = function () {
 </td>
 ```
 
-#### 2.5.4. 广告管理分页显示、查询、添加、修改、删除
+#### 广告管理分页显示、查询、添加、修改、删除
 
 参考广告分类管理，将代码复制后修改即可
 
-##### 2.5.4.1. 广告管理-后端部分
+##### 广告管理-后端部分
 
 - 修改控制层ContentController，增加分页查询、新增、修改和删除的方法
 
@@ -1089,7 +1087,7 @@ public interface ContentMapper extends Mapper<Content> {
 </delete>
 ```
 
-##### 2.5.4.2. 广告管理-前端部分
+##### 广告管理-前端部分
 
 - 将【资料/content.html】复制到pinyougou-manager-web工程中
 - 修改pinyougou-manager-web工程的content.html页面，引入相关js，引入控制器(需要修改部分地方，与后端控制器的参数一致)
@@ -1181,7 +1179,7 @@ public interface ContentMapper extends Mapper<Content> {
 </button>
 ```
 
-##### 2.5.4.3. 广告状态
+##### 广告状态
 
 - 修改contentController.js，增加状态字典数组
 
@@ -1198,15 +1196,15 @@ $scope.status = ['无效', '有效'];
 
 *注：在广告内容修改时有一个bug，不勾选“是否有效”时，还是绑定到对象是勾选的值。后端接收到的数据永远都是1*
 
-## 3. 网站首页【广告展示】
+## 网站首页【广告展示】
 
-### 3.1. 需求分析
+### 需求分析
 
 修改门户网站的首页，当其轮播广告图根据后台设置的广告列表动态产生
 
-### 3.2. 搭建工程
+### 搭建工程
 
-#### 3.2.1. 配置文件
+#### 配置文件
 
 创建war模块pinyougou-portal-web，此工程为网站前台的入口，参照其它war模块编写配置文件，不需要添加SpringSecurity框架
 
@@ -1397,12 +1395,12 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c]-[%p] %m%n
 ```
 
-#### 3.2.2. 前端资源
+#### 前端资源
 
 1. 把【资料\网站首页静态资源】拷贝到pinyougou-portal-web模块的webapp目录下
 2. 在js文件夹创建base.js 和 base-pagination.js，创建service 和controller文件夹。
 
-#### 3.2.3. 配置nginx
+#### 配置nginx
 
 - 配置hosts:
 
@@ -1427,11 +1425,11 @@ server {
 }
 ```
 
-### 3.3. 门户网站广告查询-后端部分
+### 门户网站广告查询-后端部分
 
 根据广告类型id查询数据
 
-#### 3.3.1. 内容控制层
+#### 内容控制层
 
 pinyougou-portal-web创建控制器类ContentController，增加查询广告内容的方法
 
@@ -1467,7 +1465,7 @@ public class ContentController {
 }
 ```
 
-#### 3.3.2. 内容服务层
+#### 内容服务层
 
 pinyougou-content-service模块ContentService与ContentServiceImpl实现查询方法
 
@@ -1514,9 +1512,9 @@ public List<Content> findContentByCategoryId(Long categoryId) {
 }
 ```
 
-### 3.4. 门户网站广告查询-前端部分
+### 门户网站广告查询-前端部分
 
-#### 3.4.1. 控制层（contentController.js）
+#### 控制层（contentController.js）
 
 pinyougou-portal-web创建contentController.js，从其他工程拷贝baseService.js到本工程中
 
@@ -1534,7 +1532,7 @@ app.controller('contentController', function ($scope, baseService) {
 });
 ```
 
-#### 3.4.2. 修改index.html页面
+#### 修改index.html页面
 
 - pinyougou-portal-web工程的index.html引入js，与初始化指令，页面加载时调用查询广告内容方法，查询分类是1的广告
 
@@ -1574,19 +1572,19 @@ app.controller('contentController', function ($scope, baseService) {
 </div>
 ```
 
-## 4. SpringDataRedis 简介
+## SpringDataRedis 简介
 
-### 4.1. 项目常见问题思考
+### 项目常见问题思考
 
 目前的系统已经实现了广告后台管理和广告前台展示，但是对于首页每天有大量的人访问，对数据库造成很大的访问压力，甚至是瘫痪。那如何解决呢？通常的做法有两种：**一种是数据缓存、一种是网页静态化**
 
-### 4.2. Redis
+### Redis
 
 redis是一款开源的高性能的Key-Value数据库，运行在内存中，由ANSI C编写。企业开发通常采用Redis来实现缓存。同类的产品还有memcached、MongoDB等。
 
-#### 4.2.1. Redis集群原理
+#### Redis集群原理
 
-##### 4.2.1.1. Redis-cluster架构图
+##### Redis-cluster架构图
 
 ![Redis-cluster架构图1](images/20190202075859293_15741.jpg)
 
@@ -1599,7 +1597,7 @@ Redis集群中内置了16384个哈希槽，当需要在Redis集群中放置一�
 
 ![Redis-cluster架构图2](images/20190202080441768_18088.png)
 
-##### 4.2.1.2. Redis-cluster投票&容错
+##### Redis-cluster投票&容错
 
 ![Redis-cluster投票&容错](images/20190202080232736_8489.jpg)
 
@@ -1611,11 +1609,11 @@ A：如果集群任意master挂掉,且当前master没有slave.集群进入fail�
 
 B：如果集群**超过半数以上master挂掉**，无论是否有slave，集群进入fail状态。
 
-#### 4.2.2. Linux安装Redis单机版
+#### Linux安装Redis单机版
 
 参考安装文档：`\Java编程工具资料\数据库\Redis\redis-安装文档与安装包（项目2）\Linux安装Redis单机版.docx`
 
-#### 4.2.3. Linux安装Redis集群版
+#### Linux安装Redis集群版
 
 参考安装文档：`\Java编程工具资料\数据库\Redis\redis-安装文档与安装包（项目2）\Linux安装Redis集群版.docx`
 
@@ -1623,9 +1621,9 @@ B：如果集群**超过半数以上master挂掉**，无论是否有slave，集�
 
 **一共需要6台redis服务器；可以使用6个redis实例。6个redis实例的端口号：7001~7006**
 
-#### 4.2.4. Redis集群连接
+#### Redis集群连接
 
-##### 4.2.4.1. 工具连接
+##### 工具连接
 
 redis的单机版，默认是16个数据库，但是redis-Cluster集群版，有n个数据库(多个主数据库则多少个，整个集群算是一个数据库)。
 
@@ -1641,7 +1639,7 @@ cd /usr/local/redis/bin
 
 说明：使用图形客户端连接时；因为有3台主redis数据库，所以需要连接3台。
 
-##### 4.2.4.2. 代码连接
+##### 代码连接
 
 ```java
 /** 使用JedisCluster集群对象 */
@@ -1668,11 +1666,11 @@ public void test() throws Exception{
 }
 ```
 
-### 4.3. Jedis
+### Jedis
 
 Jedis是Redis官方推出的一款面向Java的客户端，提供了很多接口供Java语言调用。可以在Redis官网下载，当然还有一些开源爱好者提供的客户端，如Jredis、SRP等等，**推荐使用Jedis**。
 
-### 4.4. Spring Data Redis
+### Spring Data Redis
 
 Spring-Data-Redis是Spring的大家庭一部分，提供了在Spring应用中通过简单的配置访问Redis服务，对Reids底层开发包(Jedis，JRedis and RJC)进行了高度封装，RedisTemplate提供了Redis各种操作、异常处理及序列化，支持发布订阅，并对Spring 3.1 cache进行了实现。
 
@@ -1686,9 +1684,9 @@ Spring-Data-Redis针对jedis提供了如下功能：
     - `HashOperations`：hash类型的数据操作
     - `ListOperations`：list类型的数据操作
 
-### 4.5. Spring Data Redis入门Demo
+### Spring Data Redis入门Demo
 
-#### 4.5.1. 搭建项目
+#### 搭建项目
 
 - 构建Maven模块spring-data-redis-test（jar）类型
 - pom.xml引入jedis、spring-data-redis、spring-test依赖
@@ -1713,7 +1711,7 @@ Spring-Data-Redis针对jedis提供了如下功能：
 </dependencies>
 ```
 
-#### 4.5.2. 操作Redis单机版（相关配置）
+#### 操作Redis单机版（相关配置）
 
 - 在src/main/resources下创建redis-config.properties
 
@@ -1757,7 +1755,7 @@ redis.port=6379
 
 ![开启单机版Redis](images/20190202082431647_8229.jpg)
 
-#### 4.5.3. Redis单机版常用操作Demo
+#### Redis单机版常用操作Demo
 
 ```java
 /**
@@ -1857,7 +1855,7 @@ public class Redis01Test {
 }
 ```
 
-#### 4.5.4. 操作Redis集群版
+#### 操作Redis集群版
 
 - linux系统，开启集群版
 
@@ -1926,15 +1924,15 @@ public class RedisClusterTest {
 }
 ```
 
-## 5. 网站首页【缓存广告数据】
+## 网站首页【缓存广告数据】
 
-### 5.1. 需求分析
+### 需求分析
 
 现在首页的广告每次都是从数据库读取，这样当网站访问量达到高峰时段，对数据库压力很大，并且影响执行效率。所以需要将这部分广告数据缓存起来
 
-### 5.2. 读取缓存
+### 读取缓存
 
-#### 5.2.1. 公共组件层
+#### 公共组件层
 
 因为缓存对于整个的系统来说是通用功能。广告需要用，其它数据可能也会用到，所以我们将配置放在公共组件层（pinyougou-common）中较为合理
 
@@ -2043,7 +2041,7 @@ public class RedisClusterTest {
 <import resource="classpath:applicationContext-redis.xml"/>
 ```
 
-### 5.3. 服务实现层(增加操作缓存部分)
+### 服务实现层(增加操作缓存部分)
 
 修改pinyougou-content-service的ContentServiceImpl，增加存入缓存的代码
 
@@ -2118,7 +2116,7 @@ public List<Content> findContentByCategoryId(Long categoryId) {
 }
 ```
 
-### 5.4. 更新缓存（新增/修改/删除广告后清除缓存）
+### 更新缓存（新增/修改/删除广告后清除缓存）
 
 修改pinyougou-content-service工程ContentServiceImpl.java 的saveContent（新增）、updateContent（修改）、deleteContent（删除）方法，当广告数据发生变更时，增加清除缓存的代码即可，这样再次查询才能获取最新的数据，因为每次查询广告的方法都先从缓存中拿数据，如果没有则查询数据库并将数据更新到缓存中
 
