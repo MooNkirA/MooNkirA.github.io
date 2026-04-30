@@ -90,7 +90,6 @@
 
     <!-- docsify-themeable 插件 -->
     <!-- <script src="./resources/js/docsify-themeable@0.8.4/docsify-themeable.min.js"></script> -->
-
     <!-- mermaid 语法生成图表插件(在线) -->
     <script src="//fastly.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <!-- mermaid 语法生成图表插件(本地) -->
@@ -196,6 +195,49 @@
             toogleImage: 'url(./resources/images/docsify-darklight-theme/moon.svg)',
           },
         },
+        // 自定义插件：完整支持 Obsidian 所有Wiki链接
+        plugins: [
+          function (hook, vm) {
+            let fileMap = {};
+
+            // 初始化加载文件索引
+            hook.init(async function () {
+              try {
+                const res = await fetch("/resources/file-map.json");
+                fileMap = await res.json();
+                console.log("✅ 文档索引加载成功", fileMap);
+              } catch (e) {
+                console.error("❌ 索引加载失败", e);
+              }
+            });
+
+            // 解析前替换所有 Obsidian 链接（支持4种格式）
+            hook.beforeEach(function (content) {
+              if (!fileMap || Object.keys(fileMap).length === 0) return content;
+
+              // 【终极正则】匹配所有4种Obsidian链接格式
+              const obsidianRegex = /\[\[([^\#|\]]+)(?:#([^|\]]+))?(?:\|([^\]]+))?\]\]/g;
+
+              return content.replace(obsidianRegex, (match, fileName, anchor, alias) => {
+                // 1. 查找文件真实路径
+                const realPath = fileMap[fileName.trim()];
+                if (!realPath) return match; // 找不到文件，保留原文
+
+                // 2. 处理显示文本（别名优先，无别名用文件名）
+                const displayText = (alias || fileName).trim();
+
+                // 3. 处理锚点（标题）
+                let url = realPath;
+                if (anchor) {
+                  url += `#${anchor.trim()}`;
+                }
+
+                // 4. 返回标准Markdown链接
+                return `[${displayText}](${url})`;
+              });
+            });
+          }
+        ]
       }
     </script>
     <!-- 

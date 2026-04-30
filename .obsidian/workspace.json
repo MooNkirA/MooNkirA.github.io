@@ -21,24 +21,8 @@
               "icon": "lucide-file",
               "title": "Python-类和对象"
             }
-          },
-          {
-            "id": "27315a13ec61e7e0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "DevOps/版本管理工具/Git-基础.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Git-基础"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -184,10 +168,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Python/Python-基础.md"
+                "file": "Python/Python-类和对象.md"
               },
               "icon": "lucide-info",
-              "title": "Python-基础的笔记属性"
+              "title": "Python-类和对象的笔记属性"
             }
           },
           {
@@ -196,12 +180,12 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "advanced-tables-toolbar"
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -220,11 +204,18 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "27315a13ec61e7e0",
+  "active": "ea1fde4daaecd29d",
   "lastOpenFiles": [
-    "Python/Python-类和对象.md",
+    "resources/file-map.json",
+    "resources/update-file-map.bat",
+    "resources/run-moon-system-wt.bat",
+    "resources/file_map_generator.py",
+    "file_map_generator.py",
+    "README.md",
     "Index.md",
+    "Python/Python-类和对象.md",
     "其他/software/Common-Software.md",
+    "DevOps/版本管理工具/Git-基础.md",
     "其他/tools/Markdown.md",
     "Python/Python-数据模型.md",
     "Java/Java基础-对象与类.md",
@@ -236,7 +227,6 @@
     "attachments/Python/python-3.14-docs-html.zip",
     "attachments/Python",
     "attachments/新建文件夹",
-    "DevOps/版本管理工具/Git-基础.md",
     "DevOps/版本管理工具/Git-安装.md",
     "DevOps/版本管理工具/GitHub.md",
     "后端框架/工具框架/Java-Logging.md",
@@ -254,19 +244,13 @@
     "其他/software/everything.md",
     "其他/software/Development-Tools.md",
     "其他/software/Windows.md",
-    "README.md",
     "Database/MongoDb/MongoDB-基础.md",
     "Database/MySQL/MySQL-安装与部署.md",
     "Database/MySQL/MySQL-函数.md",
     "Inbox/testing.md",
     "Database/MySQL/MySQL-索引.md",
-    "分布式微服务/SpringBoot/Spring-Boot-基础篇.md",
     "Inbox/images/Inbox/images",
     "Inbox/images/Inbox",
-    "Inbox/images",
-    "Inbox",
-    "vx_recycle_bin/20260420/Inbox",
-    "vx_recycle_bin/20260420",
-    "vx_notebook/notebook.db-journal"
+    "Inbox/images"
   ]
 }
