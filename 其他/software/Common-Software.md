@@ -69,7 +69,7 @@ Typora 是一款 Markdown 文档编写工具，整个软件的界面感非常简
 
 #### 一些配置
 
-1. 设置 源码编辑器 的宽度。Typora 安装目录，默认为 `x:\xxx\Typora\resources\style\` 下，找到 base-control.css 文件 ，打开后搜索 `#typora-source` ，找到 max-width （或者直接搜索 max-width ） ，将其值改为1200。
+1. 设置 源码编辑器 的宽度。Typora 安装目录，默认为 `x:\xxx\Typora\resources\style\` 下，找到 base-control.css 文件 ，打开后搜索 `typora-source .CodeMirror-lines{padding-top:30px;padding-bottom:60px;padding-left:60px;padding-right:30px;max-width:800px;margin:0 auto}` ，找到 max-width （或者直接搜索 max-width ） ，将其值改为1200。
 2. Typora 主题样式位置：`C:\Users\${USER}\AppData\Roaming\Typora\themes`
 3. 常用的主题。（目前已经弃用，待重新使用时再整理）
 

@@ -563,6 +563,8 @@ tags:
 
 <ul class="docs">
   <li><a href="#/Python/Python-基础">Python - 基础</a></li>
+  <li><a href="#/Python/Python-数据模型">Python - 数据模型</a></li>
+  <li><a href="#/Python/Python-函数">Python - 函数</a></li>
 </ul>
 
 ## 其他

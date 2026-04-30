@@ -448,6 +448,9 @@ tags:
 ## 🐍 Python
 
 - [[Python-基础|Python 基础]]
+- [[Python-数据模型|Python Data model(数据模型)]]
+- [[Python-函数|Python 函数]]
+- [[Python-类和对象|Python 类和对象]]
 
 ## 其他
 

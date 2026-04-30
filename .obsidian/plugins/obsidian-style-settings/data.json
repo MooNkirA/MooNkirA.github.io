@@ -16,7 +16,7 @@
   "anuppuccin-theme-settings@@anp-callout-fold-position": "0",
   "anuppuccin-theme-settings@@anp-custom-checkboxes": false,
   "anuppuccin-theme-settings@@anp-speech-bubble": false,
-  "anuppuccin-theme-settings@@anp-codeblock-numbers": true,
+  "anuppuccin-theme-settings@@anp-codeblock-numbers": false,
   "anuppuccin-theme-settings@@anp-toggle-preview": false,
   "anuppuccin-theme-settings@@anp-color-transition-toggle": false,
   "anuppuccin-theme-settings@@anp-button-metadata-toggle": false,
@@ -64,5 +64,6 @@
   "anuppuccin-theme-settings@@anp-editor-font-source": "Cascadia Code",
   "anuppuccin-theme-settings@@anp-editor-font-lp": "Cascadia Code",
   "anuppuccin-theme-settings@@anp-editor-font-rv": "Cascadia Code",
-  "anuppuccin-theme-settings@@anp-hide-external-link-icon": true
+  "anuppuccin-theme-settings@@anp-hide-external-link-icon": true,
+  "anuppuccin-theme-settings@@list-indent": 0
 }

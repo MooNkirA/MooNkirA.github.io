@@ -119,7 +119,7 @@ JUL 全称 Java util Logging，从 JDK1.4 开始提供的 Java 原生的日志�
 
 ### 架构介绍
 
-![image-20221013085818698](images\image-20221013085818698.png)
+![](images/image-20221013085818698.png)
 
 ![](images/314041018239084.jpg)
 
