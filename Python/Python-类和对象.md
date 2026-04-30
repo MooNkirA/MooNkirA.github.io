@@ -1310,4 +1310,275 @@ print(p.get_age())     # 可以通过其他接口方法安全读取私人方法
 
 > **使用场景**：敏感数据（如密码、年龄），需要强访问控制。
 
+## Object 类
+
+### 概述
+
+Object 类是 Python 3 中**所有类的顶层基类（根类）**，所有自定义类默认隐式继承 `object`（Python 2 需显式声明 `class A(object):`）。其核心作用是，提供 Python 对象的通用基础行为和默认实现，如打印、比较、哈希、实例创建等魔术方法，是所有对象的“共同模板”。
+
+关键特性：
+
+- 隐式继承：Python 3 中定义的所有类，父类默认都是 `object`
+- 可重写性：子类可重写 `object` 的魔术方法，自定义对象行为
+- 无耦合性：所有 Python 对象共享 `object` 的方法，无需额外依赖
+
+### Object 核心内置方法
+
+- `object.__str__(self)`：调用 `print(obj)` 或 `str(obj)` 时自动触发，返回对象的**用户友好字符串表示**，用于自定义对象的打印文案，默认返回对象内存地址与类名。
+    - 参数`self`：当前实例对象
+    - 返回值：字符串类型（`str`），必须返回字符串，否则抛出`TypeError`
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    # 重写__str__自定义打印格式
+    def __str__(self):
+        return f"Person实例：姓名={self.name}"
+
+p = Person("Alice")
+print(p)       # 触发__str__，输出：Person实例：姓名=Alice
+print(str(p))  # 同样触发__str__，输出同上
+```
+
+- `object.__repr__(self)`：调用 `repr(obj)` 或交互式环境直接输入对象时自动触发，返回对象的**开发者友好字符串表示**，默认与 `__str__` 类似，子类可重写。
+    - 参数`self`：当前实例对象
+    - 返回值：字符串类型（`str`）
+
+```python
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    # 重写__repr__，用于调试场景
+    def __repr__(self):
+        return f"Person('{self.name}')"
+
+p = Person("Alice")
+print(repr(p))  # 输出：Person('Alice')
+# 交互式环境中直接输入p，会调用__repr__
+```
+
+- `object.__eq__(self, other)`：执行 `obj1 == obj2` 时自动触发，定义对象的相等性判断逻辑，默认比较对象的内存地址（与 `is` 行为一致），子类可重写自定义相等规则。
+    - 参数`self`：当前实例（运算符左侧对象）
+    - 参数`other`：运算符右侧的对比对象
+    - 返回值：布尔值（`bool`），`True` 表示对象相等，`False` 表示不等
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # 重写：姓名+年龄相同则视为相等
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age
+        return False
+
+p1 = Person("Alice", 20)
+p2 = Person("Alice", 20)
+p3 = Person("Bob", 25)
+print(p1 == p2)  # 输出：True（按属性判断，而非内存地址）
+print(p1 == p3)  # 输出：False
+print(p1 is p2)  # 输出：False（内存地址不同，`is`仍为False）
+```
+
+- `object.__hash__(self)`：调用 `hash(obj)` 时自动触发，返回对象的哈希值，用于字典键、集合元素等可哈希场景，默认基于对象内存地址生成。
+    - 参数`self`：当前实例对象
+    - 返回值：整数（`int`），对象的哈希值
+    - 注意：重写 `__eq__` 时必须同步重写 `__hash__`，否则对象会变为不可哈希
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        if isinstance(other, Person):
+            return self.name == other.name and self.age == other.age
+        return False
+
+    # 同步重写__hash__，基于不可变属性生成哈希值
+    def __hash__(self):
+        return hash((self.name, self.age))
+
+p1 = Person("Alice", 20)
+p2 = Person("Alice", 20)
+print(hash(p1) == hash(p2))  # 输出：True
+# 可作为字典键使用
+user_dict = {p1: "user_info"}
+print(user_dict[p2])  # 输出：user_info
+```
+
+- `object.__bool__(self)`：执行 `bool(obj)` 或在 `if/while` 条件中使用对象时自动触发，定义对象的布尔值判断逻辑，默认返回 `True`（非None/非空对象）。
+    - 参数`self`：当前实例对象
+    - 返回值：布尔值（`bool`）
+
+```python
+class User:
+    def __init__(self, name, is_active):
+        self.name = name
+        self.is_active = is_active
+
+    # 重写：仅激活用户返回True
+    def __bool__(self):
+        return self.is_active
+
+user1 = User("Alice", True)
+user2 = User("Bob", False)
+print(bool(user1))  # 输出：True
+print(bool(user2))  # 输出：False
+if user1:
+    print("用户已激活")  # 会执行
+```
+
+## 多态
+
+### 概念
+
+多态，面向对象三大核心特性之一，指**不同对象对同一消息（方法调用）做出不同响应的能力**，通过统一接口调用不同实现，实现代码解耦与扩展。两种实现方式：
+
+1. **标准多态（继承多态）**：基于继承+方法重写实现，依赖统一父类
+2. **鸭子多态（Duck Typing）**：Python 特有实现，不依赖继承，仅关注对象的行为/方法
+
+### 标准多态
+
+#### 标准多态的概念
+
+基于**继承 + 方法重写**实现的多态，子类继承父类并重写同名方法，通过父类引用指向子类对象，调用方法时自动执行子类的重写逻辑（类似 Java / C++ 的强类型多态）。
+
+实现多态的核心前提：
+
+1. 存在明确的继承关系（子类继承父类）
+2. 子类重写父类的同名方法（方法签名一致）
+3. 父类引用指向子类实例
+
+#### 标准多态的语法
+
+```python
+# 父类（定义通用接口）
+# 父类（定义通用接口）
+class 父类:
+    def 通用方法(self):
+        raise NotImplementedError("子类必须实现该方法")
+
+# 子类继承并实现方法
+class 子类1(父类):
+    def 通用方法(self):
+        # 子类1专属逻辑
+
+class 子类2(父类):
+    def 通用方法(self):
+        # 子类2专属逻辑
+
+# 多态调用：统一父类类型，传入不同子类实例
+def 通用函数(父类对象: 父类):
+    父类对象.通用方法()
+```
+
+示例：
+
+```python
+# 父类：定义支付通用接口
+class Payment:
+    def pay(self, amount):
+        raise NotImplementedError("子类必须实现支付方法")
+
+# 子类1：微信支付
+class WeChatPay(Payment):
+    def pay(self, amount):
+        print(f"微信支付：{amount}元")
+
+# 子类2：支付宝支付
+class Alipay(Payment):
+    def pay(self, amount):
+        print(f"支付宝支付：{amount}元")
+
+# 多态通用函数：统一调用支付接口
+def process_payment(payment: Payment, amount):
+    payment.pay(amount)
+
+
+# 调用：传入不同子类实例，执行不同支付逻辑
+wechat = WeChatPay()
+alipay = Alipay()
+process_payment(wechat, 100)  # 输出：微信支付：100元
+process_payment(alipay, 200)  # 输出：支付宝支付：200元
+```
+
+#### 使用场景与注意事项
+
+- 适用场景：层级清晰、强类型约束的业务场景（如支付方式、图形绘制、数据存储）
+- 注意事项：
+    1. 方法签名必须一致：子类重写的方法，参数列表需与父类完全一致，否则会变成重载而非重写（Python 不支持方法重载）
+    2. 强制子类实现：可使用 `abc` 模块的抽象基类，避免子类漏实现方法
+    3. 耦合度较高：依赖父类，新增子类需继承父类，无法脱离继承关系使用
+
+### 鸭子多态（Duck Typing，Python 特有）
+
+#### 鸭子多态的概念
+
+不关注对象的**类型/继承关系**，仅关注对象是否具备**所需的方法/行为**，即“走路像鸭子、叫起来像鸭子，那它就是鸭子”，无需显式继承同一父类。
+
+核心前提是，对象实现了通用函数所需的同名方法，无需继承任何父类。
+
+#### 鸭子多态的语法
+
+```python
+# 无需统一父类，只要有同名方法即可
+class 类1:
+    def 通用方法(self):
+        # 类1的实现
+
+class 类2:
+    def 通用方法(self):
+        # 类2的实现
+
+# 通用函数：不限制参数类型，只要对象有通用方法即可
+def 通用函数(obj):
+    obj.通用方法()
+```
+
+示例：
+
+```python
+# 类1：本地文件（无父类）
+class LocalFile:
+    def read(self):
+        print("读取本地文件数据")
+
+# 类2：网络文件（无父类）
+class NetworkFile:
+    def read(self):
+        print("读取网络文件数据")
+
+# 类3：内存文件（无父类，完全无关的类）
+class MemoryFile:
+    def read(self):
+        print("读取内存文件数据")
+
+# 通用函数：仅要求对象有read方法，不限制类型
+def read_file(file_obj):
+    file_obj.read()
+
+# 鸭子多态调用：不同类型对象，只要有read方法即可传入
+local = LocalFile()
+network = NetworkFile()
+memory = MemoryFile()
+read_file(local)  # 输出：读取本地文件数据
+read_file(network)  # 输出：读取网络文件数据
+read_file(memory)  # 输出：读取内存文件数据
+```
+
+#### 使用场景与注意事项
+
+- 适用场景：需要通用接口、弱耦合的工具类场景（如文件读写、日志输出、数据序列化）
+- 注意事项：
+    - 运行时检查：Python 不会在编译时验证对象是否有对应方法，运行时不存在方法会抛出 `AttributeError`，可使用 `hasattr(obj, "method")` 提前检查
+    - 接口一致性：不同类的同名方法需保持行为一致（如都叫 `read`，但一个返回字符串、一个返回数字会导致逻辑混乱）
+    - 静态类型提示：可使用 `typing.Protocol`（Python 3.8+）定义结构化鸭子类型接口，实现静态检查
+
 

@@ -64,7 +64,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "file:readme",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -168,10 +168,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Python/Python-类和对象.md"
+                "file": "README.md"
               },
               "icon": "lucide-info",
-              "title": "Python-类和对象的笔记属性"
+              "title": "README的笔记属性"
             }
           },
           {
@@ -206,14 +206,17 @@
   },
   "active": "ea1fde4daaecd29d",
   "lastOpenFiles": [
+    "README.md",
+    "面试手册/面试-README.md",
+    "项目资料/国际物流云商系统/国际物流云商-README.md",
+    "项目资料/品达通用权限系统/品达通用权限-README.md",
+    "Python/Python-类和对象.md",
     "resources/file-map.json",
     "resources/update-file-map.bat",
     "resources/run-moon-system-wt.bat",
     "resources/file_map_generator.py",
     "file_map_generator.py",
-    "README.md",
     "Index.md",
-    "Python/Python-类和对象.md",
     "其他/software/Common-Software.md",
     "DevOps/版本管理工具/Git-基础.md",
     "其他/tools/Markdown.md",
@@ -247,10 +250,7 @@
     "Database/MongoDb/MongoDB-基础.md",
     "Database/MySQL/MySQL-安装与部署.md",
     "Database/MySQL/MySQL-函数.md",
-    "Inbox/testing.md",
-    "Database/MySQL/MySQL-索引.md",
     "Inbox/images/Inbox/images",
-    "Inbox/images/Inbox",
-    "Inbox/images"
+    "Inbox/images/Inbox"
   ]
 }
