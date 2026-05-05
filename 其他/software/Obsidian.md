@@ -417,13 +417,50 @@ header-auto-numbering:
 
 - [ ] Editing toolbar
 - [ ] Quick Explorer - Obsidian 更快的切换文件，快捷资源管理器。
-- [ ] Notebook Navigator
 - [ ] Excalidraw
 - [ ] Manual Sorting - 文件夹拖拽排序 
-- [ ] Iconize - 修改文件夹和颜色 
-- [ ] Style Settings / ViewTuner 
 - [ ] MySnippets 状态栏管理css片段
 - [ ] Samrt connections 
 - [ ] Mind Map 笔记转成思维导图
 - [ ] weread 导入微信读书书摘
-- [x] file cleaner 无用附件清理，<font color=red>**还不熟悉删除插件的执行规则，会出现大量删除仓库中除了md格式文件之外，没有在文档中链接的文件，应该不能使用，慎重测试中！！！**</font>
+- [ ] Open in new tab - 可设置默认单击在新的 tab 中打开文件
+- [ ] ViewTuner - 样式调整
+
+## Obsidian 接入 AI
+
+### 开启 Obsidian CLI 功能
+
+将 Obsidian 升级到最新版，在设置页面中打开【命令行界面】选项，会弹出是否将 Obsidian 注册到环境变量中，点击注册即可。
+
+![](images/20260504192000064.jpg)
+
+### 安装 Claudian 插件
+
+此插件主要功能是，将 Claude Code 的功能集成到 Obsidian 的工作界面中。
+
+Github 仓库地址：https://github.com/YishenTu/claudian
+
+此插件未上架到官方插件市场，需要自行到 Github 去下载下图中红色框内的 3 个文件。
+
+![](images/20260504192533246.jpg)
+
+然后到 Obsidian 仓库项目的 `\.obsidian\plugins\` 目录中，创建 Claudian 文件夹，将前面下载的 3 个文件放入到此文件夹中。重启 Obsidian 后，在设置面板的【第三方插件】中开启即可。
+
+### 推荐安装的 Skill
+
+下面是关于 Obsidian 常用的一些操作的 Skill
+
+| Skill             | Description                                                                                                                         |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| obsidian-markdown | Create and edit Obsidian Flavored Markdown (`.md`) with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax |
+| obsidian-bases    | Create and edit Obsidian Bases (`.base`) with views, filters, formulas, and summaries                                               |
+| json-canvas       | Create and edit JSON Canvas files (`.canvas`) with nodes, edges, groups, and connections                                            |
+| obsidian-cli      | Interact with Obsidian vaults via the Obsidian CLI including plugin and theme development                                           |
+| defuddle          | Extract clean markdown from web pages using Defuddle, removing clutter to save tokens                                               |
+
+打开 [Obsidian Skill Github](https://github.com/kepano/obsidian-skills) 仓库，点击下载 Zip 包。
+
+![](images/20260504194417639.jpg)
+
+
+

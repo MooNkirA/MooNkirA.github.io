@@ -764,6 +764,90 @@ Windows Registry Editor Version 5.00
 [-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}]
 ```
 
+### Win 10 右键菜单文件哈希校验功能
+
+- 添加 Hash 文件哈希校验右键菜单的方法.reg
+
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\hash]
+"MUIVerb"="校验文件 Hash"
+"SubCommands"=""
+"Icon"="PowerShell.exe"
+
+; SHA1
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\01menu]
+"MUIVerb"="SHA1"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\01menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm SHA1 | format-list"
+
+; SHA256
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\02menu]
+"MUIVerb"="SHA256"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\02menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm SHA256 | format-list"
+
+; SHA384
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\03menu]
+"MUIVerb"="SHA384"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\03menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm SHA384 | format-list"
+
+; SHA512
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\04menu]
+"MUIVerb"="SHA512"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\04menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm SHA512 | format-list"
+
+; MACTripleDES
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\05menu]
+"MUIVerb"="MACTripleDES"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\05menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm MACTripleDES | format-list"
+
+; MD5
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\06menu]
+"MUIVerb"="MD5"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\06menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm MD5 | format-list"
+
+; RIPEMD160
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\07menu]
+"MUIVerb"="RIPEMD160"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\07menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm RIPEMD160 | format-list"
+
+; Allget-filehash -literalpath '%1' -algorithm RIPEMD160 | format-list
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\08menu]
+"CommandFlags"=dword:00000020
+"MUIVerb"="校验全部"
+
+[HKEY_CLASSES_ROOT\*\shell\hash\shell\08menu\command]
+@="powershell -noexit get-filehash -literalpath '%1' -algorithm SHA1 | format-list;get-filehash -literalpath '%1' -algorithm SHA256 | format-list;get-filehash -literalpath '%1' -algorithm SHA384 | format-list;get-filehash -literalpath '%1' -algorithm SHA512 | format-list;get-filehash -literalpath '%1' -algorithm MACTripleDES | format-list;get-filehash -literalpath '%1' -algorithm MD5 | format-list;get-filehash -literalpath '%1' -algorithm RIPEMD160 | format-list"
+```
+
+> [!info] 注意事项 (中文乱码问题)：
+> 
+> 在复制代码保存时，编码必须选择 `UTF-16 LE` 格式，否则右键菜单的中文会乱码。
+
+- 当想要删除这个文件 Hash 右键菜单的功能时，只需运行以下代码即可。同样也可以保存成 `.reg`，只需双击导入，如：**卸载删除哈希校验右键菜单.reg**
+
+```reg
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\*\shell\hash]
+```
+
+> 参考资料：[免费给 Win10 加上右键菜单文件哈希校验功能（计算文件 Hash 工具 MD5 / SHA1 等）](https://www.iplaysoft.com/file-hash-menu.html)
+
 ## winget（Windows 软件商店平替）
 
 ### winget 概述

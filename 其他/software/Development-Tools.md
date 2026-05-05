@@ -73,9 +73,38 @@ SwitchHosts! 是一款可以方便管理和一键切换多个 hosts 方案的免
 
 > 如果这样还不生效，那么只能再试试重启电脑了，一般都 OK 了。要这样还是不行，可能就是的 hosts 写错了。
 
+### 代码小抄 - 代码片段管理
+
+> 官网：https://www.codecopy.cn/
+
+这是一个简单易用的代码分享工具，可以快速、跨设备地自由分享代码。完全免费，无论电脑或手机的都有不错的阅读体验。更多优点如下：
+
+- 界面很像常用的代码编辑器，可以新增、删除代码片段
+- 支持多种分享范围（公开、加密、仅个人可见）
+- 支持多种分享方式（复制链接、QQ 分享、手机扫码、微信小程序等）
+- 还有代码库功能，可以查看并学习其他人分享的优质代码
+- 支持在线运行代码、AI 智能代码分析和纠错
 
 ## AIXcoder 智能编程助手（未使用，待移动整理）
 
 > 官网：https://www.aixcoder.com/#/
 
 aiXcoder 极速本地版，智能编程助手。功能包括：代码智能补全、支持主流 IDE、支持多编程语言、本地深度学习模型。支持多种主流 IDE，包含 IntelliJ IDEA，Eclipse，PyCharm，Android Studio，PhpStorm，WebStorm、Clion，Visual Studio Code
+
+## CC Switch
+
+开源工具 CC Switch 是一款适用于多种平台的桌面、一体化、可视化管理模型配置辅助工具，适用于 Claude Code、Codex、OpenCode、openclaw 及 Gemini CLI。它内置了 50 多个供应商预设，一键切换不同的模型供应商，不用手动修改配置文件。
+
+官方 Github 仓库：https://github.com/farion1231/cc-switch
+
+以切换智谱的 glm-4.7-flash 为例，操作步骤如下：
+
+1. 到仓库中下载并安装 CC Switch（或者使用便携版）
+2. 打开软件后点击右上角“+”号，添加新供应商。如选择【Zhipu GLM】
+3. 填写从智谱开放平台获取的 API Key
+4. 设置主模型。示例选用了【glm-4.7-flash】
+5. 保存并启用，重新进入 Claude Code 即可使用
+
+![](images/20260504191216057.jpg)
+
+如上图所示，下面就生成对应 CLI 的配置项。

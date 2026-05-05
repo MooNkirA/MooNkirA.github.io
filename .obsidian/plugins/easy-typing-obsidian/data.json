@@ -1,0 +1,45 @@
+{
+  "Tabout": true,
+  "SmartPaste": true,
+  "BetterCodeEdit": true,
+  "BetterBackspace": false,
+  "AutoFormat": true,
+  "AutoFormatPaste": true,
+  "ExcludeFiles": "",
+  "AutoCapital": false,
+  "languagePairs": [
+    {
+      "a": "chinese",
+      "b": "english"
+    },
+    {
+      "a": "chinese",
+      "b": "digit"
+    },
+    {
+      "a": "digit",
+      "b": "english"
+    }
+  ],
+  "PrefixDictionary": "n8n, /[1234][dD]/\npython3, Python3",
+  "SoftSpaceLeftSymbols": "-",
+  "SoftSpaceRightSymbols": "-",
+  "customScriptCategories": [],
+  "InlineCodeSpaceMode": 1,
+  "InlineFormulaSpaceMode": 1,
+  "InlineLinkSpaceMode": 1,
+  "InlineLinkSmartSpace": true,
+  "UserDefinedRegSwitch": true,
+  "UserDefinedRegExp": "{{.*?}}|++\n<.*?>|--\n\\[\\!.*?\\][-+]{0,1}|-+\n(file:///|https?://|ftp://|obsidian://|zotero://|www.)[^\\s（）《》。,，！？;；：“”‘’\\)\\(\\[\\]\\{\\}']+|--\n\n[a-zA-Z0-9_\\-.]+@[a-zA-Z0-9_\\-.]+|++\n// Tags in Obsidian//(?<!#)#[\\u4e00-\\u9fa5\\w-\\/]+|++",
+  "UserRulesRespectUserDefinedRegexBlocks": false,
+  "debug": false,
+  "StrictModeEnter": false,
+  "StrictLineMode": "enter_twice",
+  "EnhanceModA": false,
+  "TryFixChineseIM": true,
+  "FixMacOSContextMenu": false,
+  "TryFixMSIME": false,
+  "CollapsePersistentEnter": false,
+  "deletedBuiltinRuleIds": [],
+  "rulesStoragePath": ""
+}

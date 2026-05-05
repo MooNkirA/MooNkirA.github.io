@@ -1169,7 +1169,7 @@ print(stu.name)       # 继承父类：小明
 print(stu.student_id) # 子类专属：NO.001
 ```
 
-- `issubclass(subclass, superclass)`：判断一个类是否为另一个类的直系/链式子类
+- `issubclass(subclass, superclass)`：判断一个类是否为另一个类的直系/链式子类，抽象基类同样适用。
     - 参数`subclass`：需要判断的子类
     - 参数`superclass`：对比的父类，也可传入父类元组匹配多个
     - 返回值：布尔值，满足继承关系返回`True`，反之返回`False`
@@ -1179,9 +1179,9 @@ print(issubclass(Student, Person)) # True
 print(issubclass(Person, Student)) # False
 ```
 
-- `isinstance(object, classinfo)`：判断实例对象归属，会自动向上识别全部继承父类
+- `isinstance(object, classinfo)`：判断实例对象归属，会自动向上识别全部继承父类，会自动识别抽象基类的继承关系。
     - 参数`object`：实例化对象
-    - 参数`classinfo`：目标类/类元组
+    - 参数 `classinfo`：目标类/类元组/抽象基类
     - 返回值：布尔值，匹配返回`True`
 
 ```python
@@ -1523,7 +1523,7 @@ process_payment(alipay, 200)  # 输出：支付宝支付：200元
 
 不关注对象的**类型/继承关系**，仅关注对象是否具备**所需的方法/行为**，即“走路像鸭子、叫起来像鸭子，那它就是鸭子”，无需显式继承同一父类。
 
-核心前提是，对象实现了通用函数所需的同名方法，无需继承任何父类。
+核心前提：对象实现了通用函数所需的同名方法，无需继承任何父类。
 
 #### 鸭子多态的语法
 
@@ -1573,6 +1573,29 @@ read_file(network)  # 输出：读取网络文件数据
 read_file(memory)  # 输出：读取内存文件数据
 ```
 
+#### 扩展：结构化鸭子类型（typing.Protocol）
+
+Python 3.8+ 支持 `Protocol`，定义鸭子类型接口，实现静态类型检查：
+
+```python
+from typing import Protocol
+
+# 定义鸭子类型接口：只要有read方法，就视为FileLike对象
+class FileLike(Protocol):
+    def read(self) -> None:
+        ...
+
+class LocalFile:
+    def read(self):
+        print("读取本地文件")
+
+# 类型提示：参数为FileLike类型，IDE会自动验证是否有read方法
+def read_file(file: FileLike):
+    file.read()
+
+read_file(LocalFile())  # 合法，通过静态检查
+```
+
 #### 使用场景与注意事项
 
 - 适用场景：需要通用接口、弱耦合的工具类场景（如文件读写、日志输出、数据序列化）
@@ -1580,5 +1603,253 @@ read_file(memory)  # 输出：读取内存文件数据
     - 运行时检查：Python 不会在编译时验证对象是否有对应方法，运行时不存在方法会抛出 `AttributeError`，可使用 `hasattr(obj, "method")` 提前检查
     - 接口一致性：不同类的同名方法需保持行为一致（如都叫 `read`，但一个返回字符串、一个返回数字会导致逻辑混乱）
     - 静态类型提示：可使用 `typing.Protocol`（Python 3.8+）定义结构化鸭子类型接口，实现静态检查
+
+### 多态总结
+
+**标准多态 vs 鸭子多态对比表**
+
+| 对比维度 | 标准多态（继承多态）       | 鸭子多态（Python特有）      |
+| -------- | -------------------------- | -------------------- |
+| 核心依赖 | 继承关系 + 方法重写        | 对象的方法/行为，无继承要求 |
+| 类型检查 | 静态检查（依赖父类）       | 动态检查（运行时验证）      |
+| 耦合度   | 高（与父类强绑定）         | 低（无继承耦合）            |
+| 灵活性   | 较低，必须继承父类         | 极高，只要有方法即可        |
+| 适用场景 | 强类型约束、层级清晰的业务 | 通用接口、弱耦合的工具类    |
+
+## 抽象类（Abstract Base Classes）
+
+### 抽象类核心概念
+
+- **抽象类**：是**无法直接实例化**的特殊类，主要用于定义**通用接口规范**，强制其子类必须实现指定的抽象方法，是面向对象中“接口定义”的 Python 实现。它就像一份“行为契约”，所有继承它的子类都必须遵循这份契约，保证多态的一致性。
+- **抽象方法**：只有方法声明、没有具体实现（或仅提供默认实现）的方法，被装饰为抽象方法后，子类必须重写并实现该方法，否则子类仍是抽象类，无法实例化。
+
+核心特性：
+
+- **不可实例化**：直接创建包含未实现抽象方法的抽象类实例，会抛出 `TypeError`。
+- **强制规范**：子类必须实现所有抽象方法，否则无法实例化。
+- **可混合内容**：抽象类中可以包含普通方法、实例属性、类属性，也可以有具体实现。
+- **支持多继承**：抽象类可以继承多个基类，也可以被多个子类继承。
+
+### 抽象类基础语法
+
+Python 通过标准库 `abc`（Abstract Base Classes）实现抽象类，核心组件：
+
+- `abc.ABC`：抽象基类的辅助父类，继承它的类会被标记为**抽象基类**。
+- `@abc.abstractmethod`：装饰器，标记方法为**抽象方法**，强制子类实现。
+
+#### 完整抽象类定义步骤
+
+1. 导入 `abc` 模块
+2. 定义抽象基类（继承 `abc.ABC`）
+3. 定义抽象方法（用 `@abc.abstractmethod` 装饰）
+4. 定义子类，继承抽象基类并实现所有抽象方法
+5. 实例化子类
+
+#### 抽象基类辅助类
+
+Python 3.4+ 提供 `abc.ABC` 抽象基类辅助类，继承它的类会被标记为抽象基类，并使其支持抽象方法 `@abstractmethod` 装饰器。
+
+- 如果仅继承 `ABC` 但**无抽象方法**的类仍可实例化。
+
+```python
+from abc import ABC
+
+# 抽象基类，继承ABC
+class Animal(ABC):
+    pass
+
+# 无抽象方法时，抽象基类可实例化
+a = Animal()
+print(type(a))  # <class '__main__.Animal'>
+```
+
+- 如果不继承 `abc.ABC`，会导致类中 `@abstractmethod` 标记无效，此类（其实本身并非抽象类）可以正常被实例化。
+
+```python
+from abc import ABC, abstractmethod
+
+# 错误示例：未继承ABC，抽象方法标记无效
+class Animal:
+    @abstractmethod
+    def speak(self):
+        pass
+
+a = Animal()  # 不会报错，抽象方法标记无效
+```
+
+- 抽象类可以包含普通方法和属性：子类可以直接继承使用这些非抽象成员。
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    species = "动物"  # 类属性，子类直接继承
+
+    @abstractmethod
+    def speak(self):
+        pass
+
+    # 普通方法，子类直接继承
+    def info(self):
+        print(f"这是一个{self.species}")
+
+class Dog(Animal):
+    def speak(self):
+        print("汪汪汪！")
+
+d = Dog()
+d.info()  # 输出：这是一个动物
+```
+
+#### 抽象方法装饰器
+
+`@abc.abstractmethod` 抽象方法装饰器，标记方法为抽象方法，强制子类必须重写并实现该方法，否则子类无法实例化。有以下使用要点：
+
+- 子类必须实现**所有抽象方法**：只要有一个抽象方法未实现，子类仍是抽象类，**无法直接实例化**，会抛出 `TypeError`。
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    # 抽象方法：子类必须实现
+    @abstractmethod
+    def speak(self):
+        pass
+    @abstractmethod
+    def move(self):
+        pass
+
+# 错误示例：未实现全部的抽象方法，子类仍是抽象类，无法实例化
+# class Cat(Animal):
+#     def speak(self):
+#        print("喵喵喵！")
+# c = Cat()  # 报错：TypeError: Can't instantiate abstract class Cat with abstract method speak
+
+# 正确示例：实现所有抽象方法的子类
+class Dog(Animal):
+    def speak(self):
+        print("汪汪汪！")
+    def move(self):
+        print("跑得快！")
+
+d = Dog()
+d.speak()  # 输出：汪汪汪！
+```
+
+- 抽象方法可以提供默认实现，子类可通过 `super().方法名()` 调用父类的默认实现。
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def speak(self):
+        print("动物发出声音（默认实现）")
+
+class Cat(Animal):
+    def speak(self):
+        # 调用父类抽象方法的默认实现
+        super().speak()
+        print("喵喵喵！")
+
+c = Cat()
+c.speak()
+# 输出：
+# 动物发出声音（默认实现）
+# 喵喵喵！
+```
+
+- 抽象方法定义了参数，子类实现时参数不匹配，导致调用时报错。
+
+```python
+class Animal(ABC):
+    @abstractmethod
+    def eat(self, food):
+        pass
+
+class Cat(Animal):
+    # 错误：未接收food参数
+    def eat(self):
+        print("猫吃东西")
+
+c = Cat()
+c.eat()  # 报错：eat() takes 1 positional argument but 2 were given
+```
+
+#### 抽象属性的标准实现方式
+
+`@property + @abc.abstractmethod` 抽象属性的标准实现方式，替代旧版 `abc.abstractproperty`，支持 getter/setter 规范。标记属性为**抽象属性**，强制子类实现该属性。
+
+用法：`@property` 装饰后，再叠加 `@abstractmethod`。
+
+```python
+from abc import ABC, abstractmethod
+
+class Person(ABC):
+    @property
+    @abstractmethod
+    def age(self):
+        """年龄属性，子类必须实现"""
+        pass
+
+class Student(Person):
+    def __init__(self, age):
+        self._age = age
+
+    @property
+    def age(self):
+        return self._age
+
+s = Student(18)
+print(s.age)  # 输出：18
+
+```
+
+### 抽象基类的其他装饰器
+
+- `@abc.abstractstaticmethod` 抽象静态方法装饰器，标记静态方法为抽象方法，子类必须实现。
+
+```python
+from abc import ABC, abstractstaticmethod
+
+class Math(ABC):
+    @abstractstaticmethod
+    def add(a, b):
+        pass
+
+class BasicMath(Math):
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+print(BasicMath.add(1, 2))  # 输出：3
+```
+
+> [!warning] Python 3.3 开始废弃 `@abstractstaticmethod`，推荐直接使用 `@staticmethod`
+
+![](images/20260503191402264.jpg)
+
+### 【了解】元类方式定义抽象类（旧版兼容）
+
+Python 2 中没有 `ABC` 辅助类，需要通过 `ABCMeta` 元类定义抽象基类，Python 3 中已**不推荐**，但可作为了解：
+
+```python
+from abc import ABCMeta, abstractmethod
+
+# 旧版方式：设置metaclass
+class Animal(metaclass=ABCMeta):
+    @abstractmethod
+    def speak(self):
+        pass
+```
+
+### 抽象类对比总结
+
+| 对比维度 | 抽象类                 | 普通类            | 鸭子类型            |
+| -------- | ---------------------- | ----------------- | ------------- |
+| 实例化   | 不可直接实例化         | 可直接实例化      | 无限制                 |
+| 接口约束 | 编译/实例化时强制检查  | 无强制约束        | 运行时动态检查         |
+| 耦合度   | 与子类强绑定           | 无绑定            | 低耦合，仅依赖方法行为 |
+| 适用场景 | 强规范、层级清晰的业务 | 通用数据/逻辑封装 | 灵活通用的工具类       |
 
 

@@ -13,7 +13,7 @@ header-auto-numbering:
 - [Awesome-Linux-Software GitHub](https://github.com/luong-komorebi/Awesome-Linux-Software/blob/master/README_zh-CN.md)
 - [Awesome-MacOS GitHub](https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md)
 
-## 系统管理类
+## 系统类
 
 ### Total Commander
 
@@ -47,6 +47,40 @@ Geek Uninstall 是一款高效快速，小巧便携，完全免费的程序卸�
 详见 [[everything|《Everything - 本地高效搜索神器》]]
 
 ### 坚果云
+
+#### 4.x 版本
+
+因为 5.x 版本后，操作界面没有了【选择性同步】这个功能入口，所以在此功能回归前，先保留使用 4.3.3 版本，安装后会自动升级到 4.3.5 版本。为了防止可能会自动升级到 5.x 版本，将 `Nutstore\bin-4.x.x\Updater.exe` 改名或者删除
+
+> [!warning] 好像目前 4.x 已无法使用，启动后会强制要求升级版本
+
+#### 删除坚果云图标
+
+**手动删除操作步骤**：
+
+1. 运行 `regedit` 进入注册表。
+2. 查找位置：`计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace`
+3. 删除键：`{c18463bf-812e-4ba5-abd3-c5ea6c473ae2}`
+
+也可以保存**注册表脚本**，双击运行即可。代码如下：
+
+- 删除坚果云图标.reg
+
+```reg
+Windows Registry Editor Version 5.00
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{c18463bf-812e-4ba5-abd3-c5ea6c473ae2}]
+@=坚果云
+```
+
+- 恢复坚果云图标.reg
+
+```reg
+Windows Registry Editor Version 5.00
+ 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{c18463bf-812e-4ba5-abd3-c5ea6c473ae2}]
+@="坚果云"
+```
 
 #### 配置忽略同步
 
@@ -148,6 +182,40 @@ D:\Workspace\.git
     - 确保规则格式正确（无多余空格、换行符）
     - 重启坚果云客户端刷新规则
 - **已同步的文件不会自动删除**：忽略规则仅阻止新文件同步，已同步的文件需手动删除或取消同步
+
+### 命令行工具
+
+#### cmder
+
+> - 官网地址：https://cmder.app/
+> - 代码仓库：https://github.com/cmderdev/cmder
+
+Cmder 是一款命令行工具，分两个版本：
+
+- mini 版功能简单，很小巧，只有 4 M 多，主要是 cmd 和 powershell
+- full 版功能强大，包含了 git、powershell、bash、chocolatey、Cygwin、SDK 等功能
+
+设置 cmder 为 windows 的默认终端：点击【setting..】-> 集成 -> 默认终端 -> 勾选【强制使用ConEmu作为控制台应用程序的默认终端】
+
+永久修改 cmder 的字符编码
+	
+打开 cmder，按下快捷键 `Win + Alt + P`，在搜索框中输入 `chcp` 后回车，可看到 cmder 的配置输入框（等同于 Settings -> Startup -> Environment）。然后在配置框中，添加：
+	
+```bash
+chcp 65001
+set LANG=zh_CN.UTF8
+```
+
+> 一些网上使用参考教程：
+> 
+> - https://zhuanlan.zhihu.com/p/65105636
+> - https://blog.csdn.net/csdn_moming/article/details/50968258
+
+### Desktopcal 桌面日历
+
+在 Windows 系统桌面显示的一款日历小软件。官网：https://chs.desktopcal.com/chs/
+
+> 双击桌面即可记录琐事，非常方便，非常实用。桌面日历能帮轻松管理约会、待办事项、日程安排 ... 不仅如此，桌面日历还提供万年农历、24 节气与各种常见的节庆、纪念日等信息。
 
 ## 文字编辑器
 

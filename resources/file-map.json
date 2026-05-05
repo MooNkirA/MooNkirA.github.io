@@ -1,7 +1,11 @@
 {
+  "CLAUDE": "/CLAUDE.md",
   "README": "/README.md",
   "_coverpage": "/_coverpage.md",
   "_navbar": "/_navbar.md",
+  "AI-基础": "/AI/AI-基础.md",
+  "AI-编程工具": "/AI/AI-编程工具.md",
+  "Claude-Code": "/AI/Claude-Code.md",
   "数据库概述": "/Database/数据库概述.md",
   "Java基础-IO编程": "/Java/Java基础-IO编程.md",
   "Java基础-Java8新特性": "/Java/Java基础-Java8新特性.md",
@@ -388,5 +392,11 @@
   "font-red": "/attachments/templates/font-red.md",
   "font-underline": "/attachments/templates/font-underline.md",
   "Insert-Callouts": "/attachments/templates/Insert-Callouts.md",
-  "人工智能训练师考试笔记": "/AI/人工智能训练师/人工智能训练师考试笔记.md"
+  "人工智能训练师考试笔记": "/AI/人工智能训练师/人工智能训练师考试笔记.md",
+  "SKILL": "/.claude/skills/obsidian-markdown/SKILL.md",
+  "CALLOUTS": "/.claude/skills/obsidian-markdown/references/CALLOUTS.md",
+  "EMBEDS": "/.claude/skills/obsidian-markdown/references/EMBEDS.md",
+  "PROPERTIES": "/.claude/skills/obsidian-markdown/references/PROPERTIES.md",
+  "FUNCTIONS_REFERENCE": "/.claude/skills/obsidian-bases/references/FUNCTIONS_REFERENCE.md",
+  "EXAMPLES": "/.claude/skills/json-canvas/references/EXAMPLES.md"
 }

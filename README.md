@@ -2,6 +2,12 @@
 
 ## 🤖 Artificial Intelligence（人工智能）
 
+### AI 编程
+
+- [[AI-基础|AI 基础概念]]
+- [[AI-编程工具|AI 编程工具]]
+- [[Claude-Code|Claude Code]]
+
 ### AI 相关考试
 
 [[人工智能训练师考试笔记]]
@@ -51,7 +57,7 @@
 - [[JVM-性能调优|JVM 性能调优]]
 - [[JVM-指令手册|JVM 指令手册]]
 - [[JVM-源码分析|JVM 源码分析]]
-- [[Arthas|>Arthas - Alibaba 开源的 Java 诊断工具]]
+- [[Arthas|Arthas - Alibaba 开源的 Java 诊断工具]]
 
 ## 后端框架
 
