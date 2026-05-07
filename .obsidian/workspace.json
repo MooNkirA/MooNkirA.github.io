@@ -152,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "其他/software/Obsidian.md",
+                "file": "AI/AI-基础.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -162,7 +162,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Obsidian 的反向链接列表"
+              "title": "AI-基础 的反向链接列表"
             }
           },
           {
@@ -171,12 +171,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "其他/software/Obsidian.md",
+                "file": "AI/AI-基础.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Obsidian 的出链列表"
+              "title": "AI-基础 的出链列表"
             }
           },
           {
@@ -231,7 +231,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -246,31 +246,39 @@
       "bases:新建数据库": false,
       "graph:查看关系图谱": true,
       "templater-obsidian:Templater": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "oz-clear-unused-images:Clear Unused Images": false
     }
   },
   "active": "1865c9ab092020b8",
   "lastOpenFiles": [
-    "AI/images/20260505230922059.jpg",
+    "AI/images/20260507232235212.jpg",
+    "AI/images/20260507232107686.jpg",
+    "AI/images/20260507224919179.jpg",
+    "AI/images/20260507224728804.jpg",
+    "AI/images/20260507223819351.jpg",
+    "AI/images/20260507222410289.jpg",
+    "AI/images/20260507220117418.jpg",
+    "AI/images/20260507190707286.jpg",
+    "AI/images/20260507181010491.jpg",
+    "AI/images/20260507173612537.jpg",
+    "AI/images/20260507172924457.jpg",
+    "其他/software/Obsidian.md",
+    "Java/Java基础-JDK.md",
+    "AI/AI-基础.md",
+    "Java/Java扩展-设计模式.md",
+    "其他/tools/Markdown.md",
     "AI/images",
     "Python/Python-类和对象.md",
-    "AI/AI-基础.md",
-    "其他/software/Obsidian.md",
     "其他/software/Development-Tools.md",
     "README.md",
     "AI/AI-编程工具.md",
     "CLAUDE.md",
     "CLAUDE.md.tmp.17628.1777895976114",
-    "其他/software/images/20260504194417639.jpg",
-    "其他/software/images/20260504192533246.jpg",
-    "其他/software/images/20260504192000064.jpg",
-    "其他/software/images/20260504191216057.jpg",
     "AI/Claude-Code.md",
     "其他/software/Common-Software.md",
     "其他/software/Windows.md",
-    "其他/tools/Markdown.md",
     "前端资料/前端工程化工具/node.md",
-    "Python/images/20260503191402264.jpg",
     "copilot/copilot-conversations/格式化表格源码@20260501_183748.md",
     "copilot/copilot-conversations/补充Markdown内容@20260501_181909.md",
     "copilot/copilot-conversations/Gravity's_Equal_Effect@20260501_180336.md",
@@ -283,19 +291,12 @@
     "copilot/copilot-custom-prompts/Rewrite as tweet.md",
     "copilot/copilot-custom-prompts/Remove URLs.md",
     "copilot/copilot-custom-prompts/Generate glossary.md",
-    "copilot/copilot-custom-prompts/Generate table of contents.md",
-    "copilot/copilot-custom-prompts/Make longer.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "resources/file-map.json",
     "resources/update-file-map.bat",
     "resources/run-moon-system-wt.bat",
     "resources/file_map_generator.py",
-    "file_map_generator.py",
-    "Python/images/20260429214700578.jpg",
-    "后端框架/工具框架/images/image-20221013085818698.png",
-    "DevOps/版本管理工具/images/20211212154343848_25152.png",
-    "resources/images/website-icon.jpg",
-    "resources/images/moon-logo.png"
+    "file_map_generator.py"
   ]
 }

@@ -518,15 +518,15 @@
     ]
   },
   "其他/software/Obsidian.md": {
-    "scroll": 446.2037760416667,
+    "scroll": 415.59014033825116,
     "cursor": {
       "from": {
-        "line": 452,
-        "ch": 37
+        "line": 422,
+        "ch": 24
       },
       "to": {
-        "line": 452,
-        "ch": 37
+        "line": 422,
+        "ch": 24
       }
     },
     "expandedKeys": [
@@ -540,28 +540,82 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 144.94490521327015,
+    "scroll": 688.4804502369668,
     "cursor": {
       "from": {
-        "line": 166,
+        "line": 708,
+        "ch": 35
+      },
+      "to": {
+        "line": 708,
+        "ch": 35
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-47"
+    ]
+  },
+  "Java/Java基础-JDK.md": {
+    "scroll": 44.511067708333336,
+    "cursor": {
+      "from": {
+        "line": 68,
         "ch": 39
       },
       "to": {
-        "line": 166,
+        "line": 68,
         "ch": 39
       }
     },
     "expandedKeys": [
       "item-2-0",
-      "item-2-12",
-      "item-2-20",
-      "item-2-33",
+      "item-2-3",
+      "item-2-7",
+      "item-2-13",
+      "item-3-16"
+    ]
+  },
+  "Java/Java扩展-设计模式.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-1-4",
+      "item-2-7",
+      "item-1-16",
+      "item-1-20",
+      "item-2-22",
+      "item-1-27",
+      "item-2-29",
+      "item-2-32",
+      "item-1-36",
+      "item-1-39",
+      "item-2-40",
       "item-2-43",
-      "item-2-53",
-      "item-2-57",
-      "item-2-65",
-      "item-2-72",
-      "item-3-4"
+      "item-2-47",
+      "item-1-52",
+      "item-1-58",
+      "item-2-61",
+      "item-2-64",
+      "item-3-66",
+      "item-1-70",
+      "item-1-72",
+      "item-2-75",
+      "item-2-79",
+      "item-3-82",
+      "item-4-87",
+      "item-5-88",
+      "item-1-96"
     ]
   }
 }

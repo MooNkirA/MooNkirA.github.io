@@ -1,6 +1,7 @@
 {
   "deleteOption": ".trash",
   "logsModal": true,
-  "excludedFolders": "attachments,resources,Work",
+  "excludedFolders": "attachments,resources",
   "ribbonIcon": true,
-  "excludeSubfolders": t
+  "excludeSubfolders": true
+}
