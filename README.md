@@ -5,6 +5,7 @@
 ### AI 编程
 
 - [[AI-基础|AI 基础概念]]
+- [[Vibe-Coding|Vibe Coding 氛围编程]]
 - [[AI-编程工具|AI 编程工具]]
 - [[Claude-Code|Claude Code]]
 

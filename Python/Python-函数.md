@@ -255,25 +255,6 @@ changeme(mylist)  # 函数内取值:  [10, 20, 30, [1, 2, 3, 4]]
 print("函数外取值: ", mylist)  # 函数外取值:  [10, 20, 30, [1, 2, 3, 4]]
 ```
 
-## return 语句
-
-函数返回值：函数执行完毕后，会把执行结果返回给调用者，这个执行结果就是返回值。`return [表达式]` 语句来实现返回的功能，其有以下几种作用：
-
-- 用于退出函数
-- 选择性地向调用方返回一个表达式
-- 不带参数值的 `return` 语句默认返回 `None`。
-
-```python
-def sum(arg1, arg2):
-    total = arg1 + arg2
-    print("函数内 : ", total)
-    return total
-
-# 调用 sum 函数
-total = sum(10, 20)
-print("函数外 : ", total)
-```
-
 ## 全局作用域 vs 局部作用域
 
 作用域是指：**变量能起作用的范围**。即规定「变量在代码里的哪个位置可以正常调用、哪个位置无法使用」。
@@ -324,42 +305,6 @@ print(f"函数执行后全局count：{count}")  # 输出 999
 2. 仅读取全局变量，**不用加 `global` **；只要要修改，**必须加 `global` **
 3. 开发建议：尽量少定义全局变量，容易造成数据污染、代码可读性变差
 4. 函数的形参、函数内直接赋值的变量，天生就是局部变量
-
-## 匿名函数
-
-可以使用 lambda 来创建匿名函数。所谓匿名，即不再使用 `def` 语句这样标准的形式定义一个函数。
-
-- lambda 只是一个表达式，函数体比 `def` 简单很多。
-- lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
-- lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
-- 虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，内联函数的目的是调用小函数时不占用栈内存从而减少函数调用的开销，提高代码的执行速度。
-
-lambda 函数的语法只包含一个语句，语法格式：
-
-```python
-lambda [arg1 [, arg2, ...argn]]:expression
-```
-
-示例：
-
-```python
-sum = lambda arg1, arg2: arg1 + arg2
-# 调用 lambda 函数 sum
-print("相加后的值为 : ", sum(10, 20))
-```
-
-还可以将<u>**匿名函数封装在一个函数内，并以返回值的形式返回**</u>，这样可以使用同样的代码来创建多个匿名函数。
-
-```python
-def myfunc(n):
-    return lambda a: a * n
-
-mydoubler = myfunc(2)
-mytripler = myfunc(3)
-
-print(mydoubler(11))  # 22
-print(mytripler(11))  # 33
-```
 
 ## 强制关键字参数
 
@@ -417,10 +362,10 @@ f(10, 20, 30, 40, 50, f=60)  # e 必须使用关键字参数的形式
 
 - **语法**：`def 函数名(*args):`
 - **规则**：
-  1. `*` 必须写在形参名前，`args` 是约定俗成的名称（可自定义）
-  2. 接收函数调用时传入的**所有多余位置参数**
-  3. 打包后的数据类型是**元组（tuple）**
-  4. 支持接收 0 个、1 个、多个位置参数
+    1. `*` 必须写在形参名前，`args` 是约定俗成的名称（可自定义）
+    2. 接收函数调用时传入的**所有多余位置参数**
+    3. 打包后的数据类型是**元组（tuple）**
+    4. 支持接收 0 个、1 个、多个位置参数
 
 ```python
 # 定义函数，使用*args组包位置参数
@@ -439,9 +384,9 @@ demo("Python", 3.14, True)  # 混合类型：('Python', 3.14, True)
 
 - **语法**：`def 函数名(**kwargs):`
 - **规则**：
-  1. `**` 必须写在形参名前，`kwargs` 是约定俗成的名称
-  2. 接收函数调用时传入的**所有多余关键字参数**
-  3. 打包后的数据类型是**字典（dict）**：`键=参数名`，`值=参数值`
+    1. `**` 必须写在形参名前，`kwargs` 是约定俗成的名称
+    2. 接收函数调用时传入的**所有多余关键字参数**
+    3. 打包后的数据类型是**字典（dict）**：`键=参数名`，`值=参数值`
 
 ```python
 # 定义函数，使用**kwargs组包关键字参数
@@ -605,3 +550,241 @@ def demo(**kwargs, *args):
 3. **不可变限制**：组包后的 `args` 是元组，无法修改
 4. **匹配规则**：解包后的参数数量/名称，必须与函数形参匹配
 5. **通用场景**：`*args` 和 `**kwargs` 是编写**通用函数、装饰器**的核心语法
+
+## 函数返回值
+
+### 核心概念概述
+
+函数返回值：函数执行完毕后返回给调用者的结果。通过返回值，函数可以将内部计算或处理的结果传递给外部代码使用，实现数据的“输出”功能。
+
+### return 语句的作用
+
+`return` 是 Python 中用于指定函数返回值的关键字，其核心作用包括：
+
+- 终止函数的执行。一旦执行到 `return`，函数立即停止，后续代码不再运行。
+- 将 `return` 后面的表达式结果返回给函数调用者。
+
+**基本语法**：
+
+```python
+def 函数名(参数列表):
+    # 函数体
+    return 表达式  # 表达式的结果即为返回值
+```
+
+**无返回值的两种写法**:
+
+```python
+# 写法1：无 return 语句
+def func1():
+    print("仅执行操作，无显式返回")
+
+# 写法2：return 后无表达式
+def func2():
+    print("执行操作后返回")
+    return  # 等价于 return None
+```
+
+示例：
+
+```python
+def sum(arg1, arg2):
+    total = arg1 + arg2
+    print("函数内 : ", total)
+    return total
+
+# 调用 sum 函数
+total = sum(10, 20)
+print("函数外 : ", total)
+```
+
+### 默认返回值（None）
+
+以下场景函数会默认返回 `None`（Python 中表示“空值”的特殊对象）：
+
+1. 函数中没有显式使用 `return` 语句。
+2. `return` 后无任何表达式。
+3. 显式写 `return None`。
+
+> [!note] 注意：不要混淆 `return None` 和无返回值的情况
+
+**显式返回 `None` 的使用场景**：函数执行失败或无需返回有效结果时，显式返回 `None` 便于调用者判断。
+
+```python
+def divide(a, b):
+    if b == 0:
+        print("除数不能为0")
+        return None  # 显式返回 None 表示失败
+    return a / b
+
+result = divide(10, 0)
+if result is None:
+    print("计算失败")
+else:
+    print(f"结果: {result}")
+```
+
+### 返回值的使用要点及注意事项
+
+#### return 会立即终止函数执行
+
+函数中一旦执行到 `return`，后续的所有代码都不会被执行。一般使用场景是，在条件判断中**提前终止函数**（如参数校验失败时直接返回）。
+
+```python
+def check_positive(num):
+    if num <= 0:
+        return "参数必须为正数"  # 条件满足时直接返回，后续代码不执行
+    return f"{num} 是正数"
+
+print(check_positive(-5))  # 输出：参数必须为正数
+print(check_positive(10))  # 输出：10 是正数
+```
+
+#### 函数中可以有多个 return 语句
+
+多个 `return` 通常配合条件判断使用，不同分支返回不同结果。
+
+```python
+def calculate_score(score):
+    if score >= 90:
+        return "优秀"
+    elif score >= 80:
+        return "良好"
+    elif score >= 60:
+        return "及格"
+    else:
+        return "不及格"
+
+print(calculate_score(85))  # 输出：良好
+```
+
+#### 多个返回值
+
+Python 支持通过 `return` 返回多个值，本质是返回一个**元组**（也可返回列表、字典等容器）。
+
+- **返回元组（默认方式）**：需要同时返回多个关联结果（如计算两个数的和、差、积）。
+
+```python
+def calculate(a, b):
+    sum_ab = a + b
+    diff_ab = a - b
+    product_ab = a * b
+    return sum_ab, diff_ab, product_ab  # 等价于 return (sum_ab, diff_ab, product_ab)
+
+# 调用时可直接解包接收
+s, d, p = calculate(10, 3)
+print(f"和: {s}, 差: {d}, 积: {p}")  # 输出：和: 13, 差: 7, 积: 30
+
+# 也可接收为元组
+result = calculate(5, 2)
+print(result)  # 输出：(7, 3, 10)
+```
+
+- **返回列表**：返回的多个值需要后续修改（列表是可变对象）。
+
+```python
+def get_even_numbers(n):
+    return [i for i in range(n) if i % 2 == 0]
+
+evens = get_even_numbers(10)
+evens.append(10)  # 可修改返回的列表
+print(evens)  # 输出：[0, 2, 4, 6, 8, 10]
+```
+
+- **返回字典**：返回的多个值需要通过键名明确标识（提高可读性）。
+
+```python
+def get_user_info():
+    return {
+        "name": "张三",
+        "age": 25,
+        "city": "广州"
+    }
+
+user = get_user_info()
+print(user["name"])  # 输出：张三
+```
+
+#### 返回函数（闭包）
+
+Python 中函数也可以作为返回值返回（通常用于实现闭包或工厂函数）。
+
+示例：根据参数动态生成不同的处理函数（如根据配置生成不同的计算函数）。
+
+```python
+def create_multiplier(factor):
+    # 定义内部函数，使用外部函数的 factor 变量
+    def multiplier(n):
+        return n * factor
+    return multiplier  # 返回内部函数
+
+# 生成两个不同的乘法函数
+double = create_multiplier(2)
+triple = create_multiplier(3)
+
+print(double(5))   # 输出：10
+print(triple(5))   # 输出：15
+```
+
+### 返回值类型注解
+
+Python 3.5+ 支持类型注解，可通过 `-> 类型` 标注函数的返回值类型（仅为提示，不强制检查）。其核心作用是，提高代码可读性，便于 IDE 进行类型检查和提示。
+
+```python
+def add(a: int, b: int) -> int:
+    """
+    计算两个整数的和
+    :param a: 第一个整数
+    :param b: 第二个整数
+    :return: 两数之和（整数类型）
+    """
+    return a + b
+
+# 调用时 IDE 会提示返回值为 int 类型
+result = add(3, 5)
+print(result)  # 输出：8
+```
+
+## 匿名函数
+
+可以使用 lambda 来创建匿名函数。所谓匿名，即不再使用 `def` 语句这样标准的形式定义一个函数。
+
+- lambda 只是一个表达式，函数体比 `def` 简单很多。
+- lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
+- lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
+- 虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，内联函数的目的是调用小函数时不占用栈内存从而减少函数调用的开销，提高代码的执行速度。
+
+lambda 函数的语法只包含一个语句，语法格式：
+
+```python
+lambda [arg1 [, arg2, ...argn]]:expression
+```
+
+示例：
+
+```python
+sum = lambda arg1, arg2: arg1 + arg2
+# 调用 lambda 函数 sum
+print("相加后的值为 : ", sum(10, 20))
+```
+
+还可以将<u>**匿名函数封装在一个函数内，并以返回值的形式返回**</u>，这样可以使用同样的代码来创建多个匿名函数。
+
+```python
+def myfunc(n):
+    return lambda a: a * n
+
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+
+print(mydoubler(11))  # 22
+print(mytripler(11))  # 33
+```
+
+### 生成器函数
+
+#### yield 关键字
+
+`yield` 是生成器函数的关键字，用于“暂停”函数执行并返回一个值，下次调用时从暂停处继续执行（与 `return` 不同，`yield` 不会终止函数）。
+
+

@@ -57,7 +57,9 @@ AI 代码编辑器是有图形界面的软件，可以看到文件列表、代�
 
 **CLI 是 AI 的母语**。AI 模型从诞那天起就在学习海量的代码、命令操作、终端输出。让它读一命令、执行一个操作，相当简单。但很难让 AI 去操作图形界（如：打开浏览器、等待页面加载、找到按钮、处理网页元素，中间有大量和内容无关的干扰信息）
 
-**面向 AI 做产品，给 AI 使用，越简单直接越好**。现在都是比谁先把自己的产品 CLI 化，谁就能先被 AI Agent 接入，才能在 AI 时代保持竞争力。以前产品之间的互通靠 API，现在 AI 时代产品和 AI 之间的互通靠 CLI。
+**面向 AI 做产品，给 AI 使用，越简单直接越好**。现在都是比谁先把自己的产品 CLI 化，谁就能先被 AI Agent 接入，才能在 AI 时代保持竞争力。以前产品之间的互通靠 API，现在 AI 时代产品和 AI 之间的互通靠 CLI。现在大厂们纷纷开源自己产品的 CLI 工具（Google、飞书、钉钉、企业微信等），本质上就是在给 AI 提供操作自己产品的接口。
+
+以前做产品只考虑人类用户怎么用，现在还得考虑 AI 怎么用。所以未来的产品可能会有两套前端：一套给人类看的 GUI，一套给 AI 用的 CLI。
 
 ### 常用 AI CLI
 
@@ -114,18 +116,18 @@ curl -fsSL https://opencode.ai/install | bash
 
 ### 一、核心免费大模型 API 平台对比总览表
 
-|平台|核心免费模型|免费额度|有效期|并发限制|上下文窗口|关键优势|
-|---|---|---|---|---|---|---|
-|**智谱 AI**|GLM-4.7-Flash|完全免费，无 token 上限|永久|30|128K|编程能力强，30B 级最强模型，OpenAI 兼容|
-|**阿里云百炼**|Qwen-Turbo|每月 100 万 token|永久|5|128K|中文效果好，长文档处理强，模型最全|
-|**百度文心一言**|ERNIE-Bot|每月 100 万 token|长期|5|128K|中文理解地道，数理逻辑准确率 92%+|
-|**讯飞星火**|Spark Lite|永久免费，每月 20 万 token|永久|3|32K|语音能力突出，多语言支持 130+|
-|**腾讯混元**|Hunyuan-Lite|100 万 token 共享包|1 年|5|64K|腾讯生态深度集成，多模态能力强|
-|**月之暗面 Kimi**|Kimi-K2.5|Tier 0 免费额度|长期|2|128K|长文本处理专家，支持 100 万字上下文|
-|**DeepSeek**|DeepSeek-Flash|新用户 100 万 token|30 天|3|128K|推理速度快，代码生成能力优异|
-|**MiniMax**|MiniMax-M1|新用户 15 元代金券|长期|6 RPM|64K|对话自然度高，适合聊天机器人|
-|**魔搭 ModelScope**|Qwen 系列|每天 2000 次调用|长期|10|64K|开源模型丰富，支持本地部署|
-|**硅基流动**|多模型聚合|新用户 2000 万 token|永久|5|128K|一站式调用多模型，国内直连|
+| 平台                | 核心免费模型   | 免费额度                   | 有效期 | 并发限制 | 上下文窗口 | 关键优势                                |
+| ------------------- | -------------- | -------------------------- | ------ | -------- | ---------- | --------------------------------------- |
+| **智谱 AI**         | GLM-4.7-Flash  | 完全免费，无 token 上限    | 永久   | 30       | 128K       | 编程能力强，30B 级最强模型，OpenAI 兼容 |
+| **阿里云百炼**      | Qwen-Turbo     | 每月 100 万 token          | 永久   | 5        | 128K       | 中文效果好，长文档处理强，模型最全      |
+| **百度文心一言**    | ERNIE-Bot      | 每月 100 万 token          | 长期   | 5        | 128K       | 中文理解地道，数理逻辑准确率 92%+       |
+| **讯飞星火**        | Spark Lite     | 永久免费，每月 20 万 token | 永久   | 3        | 32K        | 语音能力突出，多语言支持 130+           |
+| **腾讯混元**        | Hunyuan-Lite   | 100 万 token 共享包        | 1 年   | 5        | 64K        | 腾讯生态深度集成，多模态能力强          |
+| **月之暗面 Kimi**   | Kimi-K2.5      | Tier 0 免费额度            | 长期   | 2        | 128K       | 长文本处理专家，支持 100 万字上下文     |
+| **DeepSeek**        | DeepSeek-Flash | 新用户 100 万 token        | 30 天  | 3        | 128K       | 推理速度快，代码生成能力优异            |
+| **MiniMax**         | MiniMax-M1     | 新用户 15 元代金券         | 长期   | 6 RPM    | 64K        | 对话自然度高，适合聊天机器人            |
+| **魔搭 ModelScope** | Qwen 系列      | 每天 2000 次调用           | 长期   | 10       | 64K        | 开源模型丰富，支持本地部署              |
+| **硅基流动**        | 多模型聚合     | 新用户 2000 万 token       | 永久   | 5        | 128K       | 一站式调用多模型，国内直连              |
 
 ### 二、各平台详细介绍与关键配置
 
@@ -141,14 +143,14 @@ curl -fsSL https://opencode.ai/install | bash
 
 **关键配置参数**：
 
-|参数|推荐值|说明|
-|---|---|---|
-|基础 URL|`https://open.bigmodel.cn/api/paas/v4`|OpenAI 兼容接口|
-|模型 ID|`glm-4.7-flash`|免费主力模型|
-|max_tokens|16384|最大输出长度|
-|temperature|0.7|创造力控制|
-|top_p|0.6|智谱官方推荐|
-|top_k|2|智谱官方推荐|
+| 参数        | 推荐值                                 | 说明            |
+| ----------- | -------------------------------------- | --------------- |
+| 基础 URL    | `https://open.bigmodel.cn/api/paas/v4` | OpenAI 兼容接口 |
+| 模型 ID     | `glm-4.7-flash`                        | 免费主力模型    |
+| max_tokens  | 16384                                  | 最大输出长度    |
+| temperature | 0.7                                    | 创造力控制      |
+| top_p       | 0.6                                    | 智谱官方推荐    |
+| top_k       | 2                                      | 智谱官方推荐    |
 
 **调用示例（Python）**：
 
@@ -180,14 +182,14 @@ print(response.choices[0].message.content)
 
 **关键配置参数**：
 
-|参数|推荐值|说明|
-|---|---|---|
-|兼容 URL|`https://dashscope.aliyuncs.com/compatible-mode/v1`|OpenAI 兼容接口|
-|官方 URL|`https://dashscope.aliyuncs.com/api/v1`|原生接口|
-|模型 ID|`qwen-turbo`/`qwen-7b`/`qwen-14b`|免费模型|
-|max_tokens|8192|最大输出长度|
-|temperature|0.7|创造力控制|
-|repetition_penalty|1.05|避免重复|
+| 参数               | 推荐值                                              | 说明            |
+| ------------------ | --------------------------------------------------- | --------------- |
+| 兼容 URL           | `https://dashscope.aliyuncs.com/compatible-mode/v1` | OpenAI 兼容接口 |
+| 官方 URL           | `https://dashscope.aliyuncs.com/api/v1`             | 原生接口        |
+| 模型 ID            | `qwen-turbo`/`qwen-7b`/`qwen-14b`                   | 免费模型        |
+| max_tokens         | 8192                                                | 最大输出长度    |
+| temperature        | 0.7                                                 | 创造力控制      |
+| repetition_penalty | 1.05                                                | 避免重复        |
 
 **调用示例（Python）**：
 
@@ -219,13 +221,13 @@ print(response.choices[0].message.content)
 
 **关键配置参数**：
 
-|参数|推荐值|说明|
-|---|---|---|
-|基础 URL|`https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_bot`|原生接口|
-|模型 ID|`ernie_bot`/`ernie_speed`/`ernie_4.0`|免费模型|
-|max_output_tokens|4096|最大输出长度|
-|temperature|0.8|创造力控制|
-|top_p|0.8|采样参数|
+| 参数              | 推荐值                                                                        | 说明         |
+| ----------------- | ----------------------------------------------------------------------------- | ------------ |
+| 基础 URL          | `https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_bot` | 原生接口     |
+| 模型 ID           | `ernie_bot`/`ernie_speed`/`ernie_4.0`                                         | 免费模型     |
+| max_output_tokens | 4096                                                                          | 最大输出长度 |
+| temperature       | 0.8                                                                           | 创造力控制   |
+| top_p             | 0.8                                                                           | 采样参数     |
 
 **调用示例（Python）**：
 
@@ -257,14 +259,14 @@ print(response.json()["result"])
 
 **关键配置参数**：
 
-|参数|推荐值|说明|
-|---|---|---|
-|基础 URL|`https://spark-api.xfyun.cn/v3.5/chat/completions`|原生接口|
-|模型 ID|`spark-lite`|免费模型|
-|max_tokens|8192|最大输出长度|
-|temperature|0.7|创造力控制|
-|top_p|0.9|采样参数|
-|voice_enable|False|是否启用语音输出|
+| 参数         | 推荐值                                             | 说明             |
+| ------------ | -------------------------------------------------- | ---------------- |
+| 基础 URL     | `https://spark-api.xfyun.cn/v3.5/chat/completions` | 原生接口         |
+| 模型 ID      | `spark-lite`                                       | 免费模型         |
+| max_tokens   | 8192                                               | 最大输出长度     |
+| temperature  | 0.7                                                | 创造力控制       |
+| top_p        | 0.9                                                | 采样参数         |
+| voice_enable | False                                              | 是否启用语音输出 |
 
 **调用示例（Python）**：
 

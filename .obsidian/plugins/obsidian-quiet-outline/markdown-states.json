@@ -264,12 +264,12 @@
     "scroll": 0,
     "cursor": {
       "from": {
-        "line": 6,
-        "ch": 9
+        "line": 9,
+        "ch": 29
       },
       "to": {
-        "line": 6,
-        "ch": 4
+        "line": 9,
+        "ch": 29
       }
     },
     "expandedKeys": [
@@ -540,20 +540,25 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 688.4804502369668,
+    "scroll": 112.47981770833333,
     "cursor": {
       "from": {
-        "line": 708,
-        "ch": 35
+        "line": 135,
+        "ch": 46
       },
       "to": {
-        "line": 708,
-        "ch": 35
+        "line": 135,
+        "ch": 46
       }
     },
     "expandedKeys": [
       "item-2-0",
-      "item-2-47"
+      "item-2-57",
+      "item-2-61",
+      "item-2-71",
+      "item-2-80",
+      "item-2-20",
+      "item-2-12"
     ]
   },
   "Java/Java基础-JDK.md": {
@@ -616,6 +621,115 @@
       "item-4-87",
       "item-5-88",
       "item-1-96"
+    ]
+  },
+  "AI/AI-编程工具.md": {
+    "scroll": 113.46354166666667,
+    "cursor": {
+      "from": {
+        "line": 112,
+        "ch": 0
+      },
+      "to": {
+        "line": 112,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-4",
+      "item-3-8",
+      "item-3-16",
+      "item-2-14"
+    ]
+  },
+  "AI/VibeCoding.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": []
+  },
+  "AI/Vibe-Coding.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 6,
+        "ch": 71
+      },
+      "to": {
+        "line": 6,
+        "ch": 71
+      }
+    },
+    "expandedKeys": []
+  },
+  "Python/Python-函数.md": {
+    "scroll": 764.047619047619,
+    "cursor": {
+      "from": {
+        "line": 786,
+        "ch": 0
+      },
+      "to": {
+        "line": 786,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-4",
+      "item-3-8",
+      "item-2-12",
+      "item-2-19",
+      "item-3-21",
+      "item-3-25",
+      "item-2-31",
+      "item-3-35",
+      "item-2-41",
+      "item-3-42"
+    ]
+  },
+  "Python/Python-基础.md": {
+    "scroll": 1465.5078125,
+    "cursor": {
+      "from": {
+        "line": 1464,
+        "ch": 5
+      },
+      "to": {
+        "line": 1464,
+        "ch": 5
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-3",
+      "item-3-8",
+      "item-2-14",
+      "item-3-18",
+      "item-3-22",
+      "item-2-28",
+      "item-3-31",
+      "item-3-39",
+      "item-3-43",
+      "item-2-52",
+      "item-2-61",
+      "item-3-62",
+      "item-4-67",
+      "item-3-69",
+      "item-2-71",
+      "item-3-75",
+      "item-2-87",
+      "item-3-89",
+      "item-3-93",
+      "item-3-81"
     ]
   }
 }

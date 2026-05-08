@@ -13,13 +13,28 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/AI-编程工具.md",
+                "file": "AI/Vibe-Coding.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "AI-编程工具"
+              "title": "Vibe-Coding"
+            }
+          },
+          {
+            "id": "598f0adc865d15ca",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
             }
           },
           {
@@ -53,22 +68,22 @@
             }
           },
           {
-            "id": "1b83c93a9e95862a",
+            "id": "c4b87f2a6a93d32e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/Python-类和对象.md",
+                "file": "Python/Python-函数.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Python-类和对象"
+              "title": "Python-函数"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -250,29 +265,31 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "1865c9ab092020b8",
+  "active": "0b18f97d4457c32a",
   "lastOpenFiles": [
-    "AI/images/20260507232235212.jpg",
-    "AI/images/20260507232107686.jpg",
-    "AI/images/20260507224919179.jpg",
-    "AI/images/20260507224728804.jpg",
-    "AI/images/20260507223819351.jpg",
-    "AI/images/20260507222410289.jpg",
-    "AI/images/20260507220117418.jpg",
-    "AI/images/20260507190707286.jpg",
-    "AI/images/20260507181010491.jpg",
-    "AI/images/20260507173612537.jpg",
-    "AI/images/20260507172924457.jpg",
+    "Python/Python-基础.md",
+    "Python/Python-函数.md",
+    "AI/AI-基础.md",
+    "Python/Python-类和对象.md",
+    "AI/Vibe-Coding.md",
+    "README.md",
+    "AI/AI-编程工具.md",
+    "AI/images/20260508123636125.jpg",
+    "AI/images/20260508123631351.jpg",
+    "AI/images/20260508121332543.jpg",
+    "AI/images/20260508114845713.jpg",
+    "AI/images/20260508112033903.jpg",
+    "AI/images/20260508111524460.jpg",
+    "AI/images/20260508110254320.jpg",
+    "AI/images/20260508101553469.jpg",
+    "AI/images/20260508101139654.jpg",
+    "AI/images/20260508091823184.jpg",
     "其他/software/Obsidian.md",
     "Java/Java基础-JDK.md",
-    "AI/AI-基础.md",
     "Java/Java扩展-设计模式.md",
     "其他/tools/Markdown.md",
     "AI/images",
-    "Python/Python-类和对象.md",
     "其他/software/Development-Tools.md",
-    "README.md",
-    "AI/AI-编程工具.md",
     "CLAUDE.md",
     "CLAUDE.md.tmp.17628.1777895976114",
     "AI/Claude-Code.md",
@@ -289,8 +306,6 @@
     "copilot/copilot-custom-prompts/Clip YouTube Transcript.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet thread.md",
     "copilot/copilot-custom-prompts/Rewrite as tweet.md",
-    "copilot/copilot-custom-prompts/Remove URLs.md",
-    "copilot/copilot-custom-prompts/Generate glossary.md",
     "copilot/copilot-custom-prompts",
     "copilot",
     "resources/file-map.json",

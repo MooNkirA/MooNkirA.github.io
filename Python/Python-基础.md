@@ -1336,6 +1336,150 @@ for code in [200, 301, 403, 500, 418]:
     print(f"状态码 {code}: {check_permission(code)}")
 ```
 
+### 条件表达式
+
+#### 条件表达式的概念
+
+条件表达式是 Python 中一种**简化版的 `if-else` 分支结构**，允许在一行代码中根据条件判断返回两个值中的一个，因包含三个操作数（条件、真值结果、假值结果）也被称为“三目运算符”。
+
+条件表达式本质是普通 `if-else` 的语法糖，功能完全等价，但仅适用于**单条件、双分支、直接返回值**的场景，无法处理多分支或复杂逻辑块。
+
+**使用场景**：当仅需根据简单条件返回两个不同值时（如变量赋值、函数返回值简化），可替代多行 `if-else` 提高代码简洁性。
+
+#### 条件表达式的语法
+
+```python
+真值结果 if 条件表达式 else 假值结果
+```
+
+等价于：
+
+```python
+if 条件表达式:
+    变量 = 真值结果
+else:
+    变量 = 假值结果
+```
+
+#### 条件表达式的使用与注意事项
+
+- **条件表达式的执行顺序（从右到左判断条件）**：会先计算 `if` 右侧的**条件表达式**，若结果为 `True`（或真值），返回 `if` 左侧的**真值结果**；否则返回 `else` 右侧的**假值结果**。
+
+```python
+score = 75
+result = "及格" if score >= 60 else "不及格"
+print(result)  # 输出：及格
+```
+
+- **支持嵌套使用（但不建议过度嵌套）**：实现类似多分支 `if-elif-else` 的功能，但嵌套超过 2 层会严重降低可读性，需谨慎使用。
+
+```python
+score = 88
+level = "优秀" if score >= 90 else "良好" if score >= 80 else "其他"
+print(level)  # 输出：良好
+
+# 等价的普通写法（更清晰）
+if score >= 90:
+    level = "优秀"
+elif score >= 80:
+    level = "良好"
+else:
+    level = "其他"
+```
+
+- **真值结果和假值结果可以是任意表达式**：`if` 左侧和 `else` 右侧的内容不仅可以是变量、常量，还可以是函数调用、算术运算、列表推导式等任意合法的 Python 表达式。
+
+```python
+a, b = 10, 3
+max_minus_min = (a - b) if a > b else (b - a)
+print(max_minus_min)  # 输出：7
+
+# 示例2：根据条件调用不同函数
+def func1():
+    return "执行了 func1"
+
+def func2():
+    return "执行了 func2"
+
+flag = True
+output = func1() if flag else func2()
+print(output)  # 输出：执行了 func1
+```
+
+- **注意优先级（条件表达式优先级较低）**：条件表达式的优先级**低于算术运算、比较运算、逻辑运算**，仅高于赋值运算。若需改变执行顺序，需使用**圆括号**包裹。
+
+```python
+# 示例1：无括号时的默认优先级
+x = 5
+y = 3
+# 等价于：z = (x + 1) if (x > y) else (y + 1)
+z = x + 1 if x > y else y + 1
+print(z)  # 输出：6
+
+# 示例2：使用圆括号改变优先级
+# 等价于：z = x + (1 if x > y else y) + 1
+z = x + (1 if x > y else y) + 1
+print(z)  # 输出：7
+```
+
+- **避免在条件表达式中写副作用代码**：副作用代码指会改变程序状态的代码（如修改全局变量、打印信息、文件读写等）。虽然 Python 允许在条件表达式中写，但会降低代码可读性和可维护性，建议在条件表达式中返回值，副作用代码放在普通 `if-else` 中。
+
+```python
+# 反例（不推荐）
+count = 0
+flag = True
+# 条件表达式中修改全局变量 count
+result = (count := count + 1, "成功") if flag else (count, "失败")
+print(result)  # 输出：(1, '成功')
+print(count)   # 输出：1
+
+# 正例（推荐）
+count = 0
+flag = True
+if flag:
+    count += 1
+    result = "成功"
+else:
+    result = "失败"
+print(result)  # 输出：成功
+print(count)   # 输出：1
+```
+
+#### 条件表达式的类型注解
+
+Python 3.5+ 支持类型注解，条件表达式的类型注解需标注在整个表达式的赋值目标上，或函数的返回值类型上（若条件表达式作为函数返回值）。
+
+```python
+# 示例1：变量赋值时的类型注解
+score: int = 75
+result: str = "及格" if score >= 60 else "不及格"
+print(result)  # 输出：及格
+
+# 示例2：函数返回值时的类型注解
+def get_level(score: int) -> str:
+    return "优秀" if score >= 90 else "良好" if score >= 80 else "其他"
+
+print(get_level(88))  # 输出：良好
+```
+
+#### and-or 组合的旧写法（已不推荐）
+
+在 Python 2.5 引入条件表达式之前，开发者常用 `真值结果 and 条件表达式 or 假值结果` 的组合模拟三目运算符，但这种写法**存在缺陷**：当 `真值结果` 本身为假值（如 `0`、`""`、`None`、`[]`）时，即使条件为 `True`，也会返回 `假值结果`。
+
+> [!failure] 仅在维护 Python 2.5 之前的旧代码时可能遇到，新代码禁止使用。
+
+```python
+# 缺陷示例：真值结果为 0（假值）
+score = 0
+# 期望返回 "零分"，但实际返回 "非零分"
+result = "零分" and score == 0 or "非零分"
+print(result)  # 输出：非零分
+
+# 正确的条件表达式写法
+result = "零分" if score == 0 else "非零分"
+print(result)  # 输出：零分
+```
+
 ## 循环语句
 
 Python 中的循环语句有 `for` 和 `while`。
