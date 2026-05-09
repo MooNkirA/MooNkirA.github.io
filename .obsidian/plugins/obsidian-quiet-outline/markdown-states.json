@@ -83,14 +83,14 @@
     ]
   },
   "Python/Python-数据模型.md": {
-    "scroll": 0,
+    "scroll": 1468.0260416666667,
     "cursor": {
       "from": {
-        "line": 0,
+        "line": 1487,
         "ch": 0
       },
       "to": {
-        "line": 0,
+        "line": 1487,
         "ch": 0
       }
     },
@@ -261,15 +261,15 @@
     ]
   },
   "README.md": {
-    "scroll": 0,
+    "scroll": 332.9372037914692,
     "cursor": {
       "from": {
-        "line": 9,
-        "ch": 29
+        "line": 341,
+        "ch": 63
       },
       "to": {
-        "line": 9,
-        "ch": 29
+        "line": 341,
+        "ch": 63
       }
     },
     "expandedKeys": [
@@ -518,7 +518,7 @@
     ]
   },
   "其他/software/Obsidian.md": {
-    "scroll": 415.59014033825116,
+    "scroll": 384.58798128823315,
     "cursor": {
       "from": {
         "line": 422,
@@ -540,15 +540,15 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 112.47981770833333,
+    "scroll": 119.81575520833333,
     "cursor": {
       "from": {
-        "line": 135,
-        "ch": 46
+        "line": 127,
+        "ch": 9
       },
       "to": {
-        "line": 135,
-        "ch": 46
+        "line": 127,
+        "ch": 9
       }
     },
     "expandedKeys": [
@@ -672,28 +672,26 @@
     "expandedKeys": []
   },
   "Python/Python-函数.md": {
-    "scroll": 764.047619047619,
+    "scroll": 989.4702380952381,
     "cursor": {
       "from": {
-        "line": 786,
-        "ch": 0
+        "line": 1011,
+        "ch": 86
       },
       "to": {
-        "line": 786,
-        "ch": 0
+        "line": 1011,
+        "ch": 86
       }
     },
     "expandedKeys": [
       "item-2-4",
-      "item-3-8",
-      "item-2-12",
-      "item-2-19",
-      "item-3-21",
-      "item-3-25",
-      "item-2-31",
-      "item-3-35",
-      "item-2-41",
-      "item-3-42"
+      "item-2-14",
+      "item-3-36",
+      "item-3-45",
+      "item-2-32",
+      "item-2-42",
+      "item-2-52",
+      "item-3-54"
     ]
   },
   "Python/Python-基础.md": {
@@ -730,6 +728,183 @@
       "item-3-89",
       "item-3-93",
       "item-3-81"
+    ]
+  },
+  "attachments/templates/font-red.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 49
+      },
+      "to": {
+        "line": 0,
+        "ch": 49
+      }
+    },
+    "expandedKeys": []
+  },
+  "attachments/templates/font-underline.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 33
+      },
+      "to": {
+        "line": 0,
+        "ch": 33
+      }
+    },
+    "expandedKeys": []
+  },
+  "attachments/templates/Insert-Callouts.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 7,
+        "ch": 40
+      },
+      "to": {
+        "line": 7,
+        "ch": 40
+      }
+    },
+    "expandedKeys": []
+  },
+  "Frontend/CSS/CSS-基础.md": {
+    "scroll": 770.7936197916666,
+    "cursor": {
+      "from": {
+        "line": 783,
+        "ch": 0
+      },
+      "to": {
+        "line": 783,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-5",
+      "item-4-8",
+      "item-2-12",
+      "item-3-15",
+      "item-4-17",
+      "item-4-22",
+      "item-3-26",
+      "item-4-32",
+      "item-4-38",
+      "item-4-42",
+      "item-2-47",
+      "item-3-48",
+      "item-3-54",
+      "item-2-59",
+      "item-3-63",
+      "item-3-71",
+      "item-4-78",
+      "item-3-83",
+      "item-2-87",
+      "item-3-90",
+      "item-3-93",
+      "item-3-98",
+      "item-3-105",
+      "item-3-108",
+      "item-2-113",
+      "item-3-115",
+      "item-3-120",
+      "item-3-128",
+      "item-2-133",
+      "item-3-135",
+      "item-3-139",
+      "item-3-142",
+      "item-4-147",
+      "item-3-150",
+      "item-2-156",
+      "item-3-160",
+      "item-4-161",
+      "item-4-165",
+      "item-4-169",
+      "item-4-173",
+      "item-4-177",
+      "item-4-182",
+      "item-3-186",
+      "item-4-188",
+      "item-4-191",
+      "item-4-194",
+      "item-3-197"
+    ]
+  },
+  "Frontend/HTML/HTML-基础语法.md": {
+    "scroll": 969.7700892857143,
+    "cursor": {
+      "from": {
+        "line": 974,
+        "ch": 42
+      },
+      "to": {
+        "line": 974,
+        "ch": 42
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-8",
+      "item-2-11",
+      "item-3-15",
+      "item-2-19",
+      "item-3-20",
+      "item-3-22",
+      "item-3-27",
+      "item-4-31",
+      "item-3-34",
+      "item-3-43",
+      "item-3-48",
+      "item-2-53",
+      "item-3-61",
+      "item-2-64",
+      "item-3-65",
+      "item-3-69",
+      "item-3-73",
+      "item-2-77",
+      "item-3-79",
+      "item-4-84",
+      "item-3-83"
+    ]
+  },
+  "项目资料/好客租房/Day01-ES6新特性以及ReactJS入门.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 14,
+        "ch": 9
+      },
+      "to": {
+        "line": 14,
+        "ch": 9
+      }
+    },
+    "expandedKeys": []
+  },
+  "项目资料/学成在线/Day02-CMS前端开发.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 15,
+        "ch": 117
+      },
+      "to": {
+        "line": 15,
+        "ch": 117
+      }
+    },
+    "expandedKeys": [
+      "item-2-1",
+      "item-3-2",
+      "item-2-9",
+      "item-3-10",
+      "item-3-15",
+      "item-3-18"
     ]
   }
 }

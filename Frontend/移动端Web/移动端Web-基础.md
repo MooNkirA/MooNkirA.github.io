@@ -296,7 +296,7 @@ body {
 
 flex 布局是一种"弹性布局"，特别适用于移动端
 
-> 关于flex布局详见[《CSS 基础知识》笔记](/前端资料/CSS/CSS-基础)中的『flex 伸缩布局』章节
+> 关于flex布局详见[《CSS 基础知识》笔记](CSS-基础.md)中的『flex 伸缩布局』章节
 
 ## rem适配布局（推荐）
 
@@ -774,7 +774,7 @@ body {
 
 ### Bootstrap 前端开发框架
 
-Bootstrap 框架笔记详见[《Bootstrap 基础入门》](/前端资料/Bootstrap/Bootstrap-基础)章节
+Bootstrap 框架笔记详见[《Bootstrap 基础入门》](Bootstrap-基础.md)章节
 
 ### 响应式布局案例 - 仿阿里百秀首页
 

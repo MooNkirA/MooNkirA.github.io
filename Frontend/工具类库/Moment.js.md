@@ -442,4 +442,4 @@ String(nativeDate1) === String(nativeDate2) // true
 
 ## Moment.js的官网相关的格式的字符
 
-![格拭字符列表](images/20190905112003145_13095.png)
+![](images/20190905112003145_13095.png)

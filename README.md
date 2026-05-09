@@ -206,7 +206,7 @@
 - [[Lodash|Lodash 工具函数库]]
 - [[Moment.js|Moment.js 轻量级时间工具库]]
 - [[Axios|Axios 网络请求库]]
-- [[前端其他相关资料|前端其他相关资料]]
+- [[前端其他相关资料]]
 
 ## 🔢 数据库
 
@@ -338,17 +338,17 @@
 
 - [[Spring-Cloud-Overview|Spring Cloud 概述]]
 - Spring Cloud Netflix（包含Eureka、Ribbon、Feign、Hystrix、Zuul 等组件）
-	- [[Spring-Cloud-Netflix-Eureka|Spring Cloud Netflix Eureka 服务注册和发现]]
-	- [[Spring-Cloud-Netflix-Ribbon|Spring Cloud Netflix Ribbon 基于客户端的服务调用负载均衡工具]]
-	- Spring Cloud Netflix Feign 详见《[[Spring Cloud OpenFeign]]》笔记
-	- [[Spring-Cloud-Netflix-Hystrix|Spring Cloud Netflix Hystrix 服务容错解决方案]]
-	- [[Spring-Cloud-Netflix-Zuul|Spring Cloud Netflix Zuul 微服务网关]]
+    - [[Spring-Cloud-Netflix-Eureka|Spring Cloud Netflix Eureka 服务注册和发现]]
+    - [[Spring-Cloud-Netflix-Ribbon|Spring Cloud Netflix Ribbon 基于客户端的服务调用负载均衡工具]]
+    	- Spring Cloud Netflix Feign 详见《[[Spring Cloud OpenFeign]]》笔记
+        	- [[Spring-Cloud-Netflix-Hystrix|Spring Cloud Netflix Hystrix 服务容错解决方案]]
+        	- [[Spring-Cloud-Netflix-Zuul|Spring Cloud Netflix Zuul 微服务网关]]
 - Spring Cloud Alibaba (包含Nacos、Sentinel、SMS短信服务、Seata等组件)
-	- [[Spring-Cloud-Alibaba|Spring Cloud Alibaba 概述]]
-	- [[Spring-Cloud-Alibaba-Nacos|Spring Cloud Alibaba Nacos 服务注册与配置管理]]
-	- [[Spring-Cloud-Alibaba-Sentinel|Spring Cloud Alibaba Sentinel 服务容错的综合性解决方案]]
-	- [[Spring-Cloud-Alibaba-SMS|Spring Cloud Alibaba SMS 阿里云短信服务]]
-	- [[Spring-Cloud-Alibaba-Seata|Spring Cloud Alibaba Seata 分布式事务解决方案]]
+    - [[Spring-Cloud-Alibaba|Spring Cloud Alibaba 概述]]
+    - [[Spring-Cloud-Alibaba-Nacos|Spring Cloud Alibaba Nacos 服务注册与配置管理]]
+    - [[Spring-Cloud-Alibaba-Sentinel|Spring Cloud Alibaba Sentinel 服务容错的综合性解决方案]]
+    - [[Spring-Cloud-Alibaba-SMS|Spring Cloud Alibaba SMS 阿里云短信服务]]
+    - [[Spring-Cloud-Alibaba-Seata|Spring Cloud Alibaba Seata 分布式事务解决方案]]
 - [[Spring-Cloud-OpenFeign|Spring Cloud OpenFeign 服务调用]]
 - [[Spring-Cloud-Consul|Spring Cloud Consul 注册中心]]
 - [[Spring-Cloud-Gateway|Spring Cloud Gateway 服务网关]]
@@ -452,7 +452,7 @@
 ## 🐍 Python
 
 - [[Python-基础|Python 基础]]
-- [[Python-数据模型|Python Data model(数据模型)]]
+- [[Python-数据模型|Python 数据模型]]
 - [[Python-函数|Python 函数]]
 - [[Python-类和对象|Python 类和对象]]
 

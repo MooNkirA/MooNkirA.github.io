@@ -201,9 +201,94 @@ test4('MooNkirA', '男', '运动', '摄影', c='天锁斩月', age=24, height=18
 
 ```
 
+### 强制关键字参数
+
+声明函数时，参数中可以有单独出现星号 `*` ，则星号 `*` 后的参数必须用关键字传入。例如:
+
+```python
+def f(a, b, *, c):
+    return a + b + c
+
+# f(1, 2, 3)  # 报错 TypeError: f() takes 2 positional arguments but 3 were given
+f(1, 2, c=3)  # 正常调用，* 后参数必须用关键字传入
+```
+
+### 强制位置参数
+
+Python 3.8 新增了一个函数形参语法 `/`，用来指明函数形参必须使用指定位置参数，不能使用关键字参数的形式。
+
+```python
+def f(a, b, /, c, d, *, e, f):
+    print(a, b, c, d, e, f)
+```
+
+> [!info] 在以上示例，形参 a 和 b 必须使用指定位置参数，c 或 d 可以是位置形参或关键字形参，而 e 和 f 要求为关键字形参
+
+```python
+def f(a, b, /, c, d, *, e, f):
+    print(a, b, c, d, e, f)
+
+# 正确调用
+f(10, 20, 30, d=40, e=50, f=60)
+# 错误调用
+f(10, b=20, c=30, d=40, e=50, f=60)  # b 不能使用关键字参数的形式
+f(10, 20, 30, 40, 50, f=60)  # e 必须使用关键字参数的形式
+```
+
 ## 参数传递
 
 在 python 中，类型属于对象，对象有不同类型的区分，变量是没有类型的：
+
+### 全局作用域 VS 局部作用域
+
+作用域是指：**变量能起作用的范围**。即规定「变量在代码里的哪个位置可以正常调用、哪个位置无法使用」。
+
+- **全局作用域**：整个 `.py` 代码文件**最外层**的代码范围。
+- **局部作用域**：`def` 定义的**函数内部**的代码范围。
+
+### 全局变量 VS 局部变量
+
+- **全局变量**：定义在文件最外层（全局作用域），在当前整个 Python 文件的任意位置，都可以正常使用。
+- **局部变量**：定义在函数内部（局部作用域），仅能在定义它的当前函数内部使用，函数外部无法访问。
+
+```python
+# 全局变量（全局作用域）
+a = 100
+b = 200
+
+def test():
+    # 局部变量（局部作用域）
+    c = 'Hello'
+    d = 'MooN'
+```
+
+`global` 关键字，允许在函数**内部修改全局变量的值**。
+
+```python
+count = 100
+def modify_demo():
+    # 先声明：要操作的是全局变量count
+    global count
+    print(f"修改前：{count}")
+    # 真正修改全局变量本身
+    count = 999
+
+modify_demo()
+# 全局变量本身被永久改变
+print(f"函数执行后全局count：{count}")  # 输出 999
+```
+
+** `global` 使用场景**：
+
+- 函数内需要**修改**全局变量的值
+- 需要在函数内部，向外层全局作用域新增变量
+
+**全局变量与局部变量注意事项**：
+
+1. 函数**外部永远无法访问**函数内的局部变量，强行调用直接报 `NameError`
+2. 仅读取全局变量，**不用加 `global` **；只要要修改，**必须加 `global` **
+3. 开发建议：尽量少定义全局变量，容易造成数据污染、代码可读性变差
+4. 函数的形参、函数内直接赋值的变量，天生就是局部变量
 
 ### 可变(mutable)与不可变(immutable)对象
 
@@ -253,91 +338,6 @@ def changeme(mylist):
 mylist = [10, 20, 30]
 changeme(mylist)  # 函数内取值:  [10, 20, 30, [1, 2, 3, 4]]
 print("函数外取值: ", mylist)  # 函数外取值:  [10, 20, 30, [1, 2, 3, 4]]
-```
-
-## 全局作用域 vs 局部作用域
-
-作用域是指：**变量能起作用的范围**。即规定「变量在代码里的哪个位置可以正常调用、哪个位置无法使用」。
-
-- **全局作用域**：整个 `.py` 代码文件**最外层**的代码范围。
-- **局部作用域**：`def` 定义的**函数内部**的代码范围。
-
-全局变量 VS 局部变量
-
-- **全局变量**：定义在文件最外层（全局作用域），在当前整个 Python 文件的任意位置，都可以正常使用。
-- **局部变量**：定义在函数内部（局部作用域），仅能在定义它的当前函数内部使用，函数外部无法访问。
-
-```python
-# 全局变量（全局作用域）
-a = 100
-b = 200
-
-def test():
-    # 局部变量（局部作用域）
-    c = 'Hello'
-    d = 'MooN'
-```
-
-`global` 关键字，允许在函数**内部修改全局变量的值**。
-
-```python
-count = 100
-def modify_demo():
-    # 先声明：要操作的是全局变量count
-    global count
-    print(f"修改前：{count}")
-    # 真正修改全局变量本身
-    count = 999
-
-modify_demo()
-# 全局变量本身被永久改变
-print(f"函数执行后全局count：{count}")  # 输出 999
-```
-
-** `global` 使用场景**：
-
-- 函数内需要**修改**全局变量的值
-- 需要在函数内部，向外层全局作用域新增变量
-
-**全局变量与局部变量注意事项**：
-
-1. 函数**外部永远无法访问**函数内的局部变量，强行调用直接报 `NameError`
-2. 仅读取全局变量，**不用加 `global` **；只要要修改，**必须加 `global` **
-3. 开发建议：尽量少定义全局变量，容易造成数据污染、代码可读性变差
-4. 函数的形参、函数内直接赋值的变量，天生就是局部变量
-
-## 强制关键字参数
-
-声明函数时，参数中可以有单独出现星号 `*` ，则星号 `*` 后的参数必须用关键字传入。例如:
-
-```python
-def f(a, b, *, c):
-    return a + b + c
-
-# f(1, 2, 3)  # 报错 TypeError: f() takes 2 positional arguments but 3 were given
-f(1, 2, c=3)  # 正常调用，* 后参数必须用关键字传入
-```
-
-## 强制位置参数
-
-Python 3.8 新增了一个函数形参语法 `/`，用来指明函数形参必须使用指定位置参数，不能使用关键字参数的形式。
-
-```python
-def f(a, b, /, c, d, *, e, f):
-    print(a, b, c, d, e, f)
-```
-
-> [!info] 在以上示例，形参 a 和 b 必须使用指定位置参数，c 或 d 可以是位置形参或关键字形参，而 e 和 f 要求为关键字形参
-
-```python
-def f(a, b, /, c, d, *, e, f):
-    print(a, b, c, d, e, f)
-
-# 正确调用
-f(10, 20, 30, d=40, e=50, f=60)
-# 错误调用
-f(10, b=20, c=30, d=40, e=50, f=60)  # b 不能使用关键字参数的形式
-f(10, 20, 30, 40, 50, f=60)  # e 必须使用关键字参数的形式
 ```
 
 ## 函数参数的组包与解包
@@ -747,28 +747,120 @@ print(result)  # 输出：8
 
 ## 匿名函数
 
-可以使用 lambda 来创建匿名函数。所谓匿名，即不再使用 `def` 语句这样标准的形式定义一个函数。
+### 核心概念
 
-- lambda 只是一个表达式，函数体比 `def` 简单很多。
-- lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
+匿名函数是 Python 中**无需使用 `def` 关键字定义、没有函数名称**的小型函数，通过 `lambda` 关键字创建，因此也常被称为“lambda 函数”。它仅能包含**一个表达式**，执行后自动返回表达式的结果，适合处理简单、一次性使用的逻辑。与普通 `def` 函数的区别如下：
+
+| 特性                    | 匿名函数（lambda）       | 普通函数（def）        |
+| ----------------------- | ------------------------ | ---------------------- |
+| 定义方式                | `lambda` 关键字          | `def` 关键字           |
+| 函数名称                | 无（仅绑定到变量时有名） | 必须指定函数名         |
+| 主体内容                | 仅一个表达式             | 可包含多个语句、代码块 |
+| 返回值                  | 自动返回表达式结果       | 需显式使用 `return`    |
+| 文档字符串（docstring） | 不支持                   | 支持                   |
+
+**lambda 函数的特点**：
+
 - lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
 - 虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，内联函数的目的是调用小函数时不占用栈内存从而减少函数调用的开销，提高代码的执行速度。
 
-lambda 函数的语法只包含一个语句，语法格式：
+### lambda 函数语法格式
 
 ```python
-lambda [arg1 [, arg2, ...argn]]:expression
+lambda 参数列表: 表达式
+# 无参数
+lambda: 表达式
 ```
 
-示例：
+基础示例：
 
 ```python
-sum = lambda arg1, arg2: arg1 + arg2
-# 调用 lambda 函数 sum
-print("相加后的值为 : ", sum(10, 20))
+# 匿名函数示例：计算两数之和
+add_lambda = lambda x, y: x + y
+
+# 等价的普通函数
+def add_def(x, y):
+    return x + y
+
+# 调用方式完全相同
+print(add_lambda(3, 5))  # 输出：8
+print(add_def(3, 5))     # 输出：8
 ```
 
-还可以将<u>**匿名函数封装在一个函数内，并以返回值的形式返回**</u>，这样可以使用同样的代码来创建多个匿名函数。
+### 使用要点及注意事项
+
+#### 只能包含一个表达式
+
+lambda 函数的主体必须是**单个表达式**，不能包含语句/代码块（如 `print`、`if-else` 多分支、`for` 循环等），但支持使用**条件表达式（三目运算符）**实现简单分支。
+
+```python
+# 示例1：使用条件表达式判断正负
+check_sign = lambda x: "正数" if x > 0 else "非正数"
+print(check_sign(10))   # 输出：正数
+print(check_sign(-5))   # 输出：非正数
+
+# 反例：不能包含 print 语句（print 是语句，不是表达式）
+# error_lambda = lambda x: print(x)  # 语法上允许，但不推荐用于复杂副作用
+```
+
+#### 参数支持多种形式
+
+lambda 函数的参数规则与普通函数一致，支持位置参数、默认参数、可变参数（`*args`）、关键字可变参数（`**kwargs`）。可以根据不同需求灵活传递参数。
+
+```python
+# 示例1：位置参数
+multiply = lambda x, y: x * y
+print(multiply(3, 4))  # 输出：12
+
+# 示例2：默认参数
+power = lambda x, y=2: x ** y
+print(power(3))        # 输出：9（默认 y=2）
+print(power(3, 3))     # 输出：27
+
+# 示例3：可变参数（*args）
+sum_all = lambda *args: sum(args)
+print(sum_all(1, 2, 3, 4))  # 输出：10
+
+# 示例4：关键字可变参数（**kwargs）
+sum_kwargs = lambda **kwargs: sum(kwargs.values())
+print(sum_kwargs(a=1, b=2, c=3))  # 输出：6
+```
+
+#### 自动返回表达式结果
+
+lambda 函数无需显式使用 `return`，表达式的计算结果会自动作为返回值返回，简化简单函数的返回逻辑。
+
+```python
+# 示例：直接返回列表推导式结果
+get_evens = lambda n: [i for i in range(n) if i % 2 == 0]
+print(get_evens(10))  # 输出：[0, 2, 4, 6, 8]
+```
+
+#### 作用域与变量捕获（闭包注意事项）
+
+lambda 函数可以捕获外部作用域的变量（形成闭包），但需注意：lambda 捕获的是**变量的引用**，而非变量的当前值。若外部变量在 lambda 定义后发生变化，lambda 的执行结果也会改变。**一般使用场景**：实现简单的闭包，但需避免变量捕获的常见陷阱。
+
+```python
+# 反例：变量捕获的陷阱（循环中定义 lambda）
+funcs = []
+for i in range(3):
+    funcs.append(lambda: i)  # 所有 lambda 都捕获变量 i 的引用
+
+for f in funcs:
+    print(f())  # 输出：2, 2, 2（循环结束后 i=2）
+
+# 正例：用默认参数绑定当前值（利用默认参数在函数定义时求值的特性）
+funcs = []
+for i in range(3):
+    funcs.append(lambda i=i: i)  # 默认参数 i=i 绑定当前循环的 i 值
+
+for f in funcs:
+    print(f())  # 输出：0, 1, 2
+```
+
+#### 以返回值的形式返回
+
+可以将<u>**匿名函数封装在一个函数内，并以返回值的形式返回**</u>，这样可以使用同样的代码来创建多个匿名函数。
 
 ```python
 def myfunc(n):
@@ -781,10 +873,300 @@ print(mydoubler(11))  # 22
 print(mytripler(11))  # 33
 ```
 
+### 匿名函数使用场景总结
+
+- **适用场景**：
+    1. 作为高阶函数（`sorted()`、`map()`、`filter()`）的参数。
+    2. 实现简单的闭包。
+    3. 一次性使用的简单逻辑（无需复用），避免为临时逻辑定义完整的 `def` 函数。
+- **不适用场景**：
+    1. 复杂逻辑（多分支、循环、异常处理）；
+    2. 需要文档字符串（docstring）说明函数用途；
+    3. 需要复用的函数（建议用 `def` 定义）。
+
+## 高阶函数
+
+### 高阶函数的概念
+
+Python 中的函数是“一等公民”（First-class Citizen），这意味着函数具备以下特性：
+
+- 可以赋值给变量
+- 可以作为参数传递给其他函数
+- 可以作为其他函数的返回值
+- 可以存储在数据结构（如列表、字典）中
+
+以上的特性是高阶函数存在的基础。在 Python 中，**高阶函数（Higher-order Function）** 是指满足以下**任意一个条件**的函数：
+
+1. **接受一个或多个函数作为参数**，将函数作为输入参数。
+2. **返回一个函数作为结果**，将函数作为输出返回值。
+
+高阶函数是**函数式编程**的核心特性之一，它允许将函数像普通变量一样传递、操作和返回，从而实现更灵活的代码抽象和逻辑复用。常用场景如下：
+
+- 对数据进行批量处理（如排序、映射、过滤）
+- 动态生成特定功能的函数（如工厂函数、闭包）
+- 实现代码的解耦和复用（如装饰器）
+
+```python
+# 示例：函数作为一等公民的基本操作
+def greet(name):
+    return f"你好，{name}！"
+
+# 1. 函数赋值给变量
+say_hello = greet
+print(say_hello("张三"))  # 输出：你好，张三！
+
+# 2. 函数存储在列表中
+func_list = [greet, str.upper]
+print(func_list[0]("李四"))  # 输出：你好，李四！
+print(func_list[1]("hello"))  # 输出：HELLO
+```
+
+### 常用高阶函数
+
+#### sorted 函数
+
+- `sorted(iterable, key=None, reverse=False)`：对可迭代对象进行**排序**，返回一个**新的排序后的列表**（不修改原可迭代对象）。
+    - 参数 `iterable`：待排序的可迭代对象（如列表、元组、字符串、字典等）。
+    - 参数 `key`：可选，函数类型，用于指定生成排序键的函数（默认 `None`，直接比较元素）。
+    - 参数 `reverse`：可选，布尔值，`True` 表示降序，`False` 表示升序（默认 `False`）。
+    - 返回值：新的排序后的列表。
+
+**使用场景**：对任意可迭代对象进行灵活排序（如按字符串长度、元组指定字段、对象属性排序）。
+
+```python
+# 示例1：基础排序（升序/降序）
+nums = [3, 1, 4, 1, 5, 9, 2, 6]
+sorted_nums_asc = sorted(nums)  # 升序（默认）
+sorted_nums_desc = sorted(nums, reverse=True)  # 降序
+print(sorted_nums_asc)  # 输出：[1, 1, 2, 3, 4, 5, 6, 9]
+print(sorted_nums_desc)  # 输出：[9, 6, 5, 4, 3, 2, 1, 1]
+
+# 示例2：按 key 函数排序（字符串长度）
+words = ["apple", "banana", "cherry", "date"]
+sorted_words = sorted(words, key=lambda x: len(x))
+print(sorted_words)  # 输出：['date', 'apple', 'banana', 'cherry']
+
+# 示例3：按元组的第二个元素排序
+tuples = [(1, 3), (2, 1), (3, 2)]
+sorted_tuples = sorted(tuples, key=lambda x: x[1])
+print(sorted_tuples)  # 输出：[(2, 1), (3, 2), (1, 3)]
+
+# 示例4：对字典排序（按 key 或 value）
+scores = {"张三": 85, "李四": 92, "王五": 78}
+# 按 key 排序
+sorted_by_key = sorted(scores.items(), key=lambda x: x[0])
+# 按 value 降序排序
+sorted_by_value = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+print(sorted_by_key)  # 输出：[('张三', 85), ('李四', 92), ('王五', 78)]
+print(sorted_by_value)  # 输出：[('李四', 92), ('张三', 85), ('王五', 78)]
+```
+
+#### list.sort 方法
+
+- `list.sort(key=None, reverse=False)`：对列表**本身进行排序**（直接修改原列表，无返回值），参数规则与 `sorted()` 完全一致。
+    - 参数 `key`：可选，函数类型，生成排序键的函数。
+    - 参数 `reverse`：可选，布尔值，`True` 降序，`False` 升序（默认）。
+    - 返回值：`None`（注意：不会返回新列表，直接修改原列表）。
+
+**使用场景**：当不需要保留原列表，仅需对列表本身进行排序时（节省内存）。
+
+```python
+# 示例：原地排序
+nums = [3, 1, 4, 1, 5]
+result = nums.sort()  # 无返回值
+print(nums)  # 输出：[1, 1, 3, 4, 5]（原列表被修改）
+print(result)  # 输出：None
+```
+
+#### map 函数
+
+- `map(function, iterable, ...)`：将 `function` 应用于 `iterable` 的**每个元素**，返回一个包含处理结果的**迭代器**。若提供多个可迭代对象，`function` 需接受对应数量的参数，并行处理元素（元素数量以最短的可迭代对象为准）。
+    - 参数 `function`：应用于每个元素的函数（可以是 lambda、普通函数或内置函数）。
+    - 参数 `iterable`：一个或多个可迭代对象。
+    - 返回值：迭代器，包含 `function` 处理后的结果。
+
+**使用场景**：对数据进行批量转换或计算（如元素平方、字符串格式化、多列表元素相加）。
+
+```python
+# 示例1：单个可迭代对象（元素平方）
+nums = [1, 2, 3, 4]
+squared = map(lambda x: x ** 2, nums)
+print(list(squared))  # 输出：[1, 4, 9, 16]（迭代器转列表）
+
+# 示例2：多个可迭代对象（并行相加）
+a = [1, 2, 3]
+b = [4, 5, 6]
+c = [7, 8]  # 最短的可迭代对象，结果长度为 2
+sum_abc = map(lambda x, y, z: x + y + z, a, b, c)
+print(list(sum_abc))  # 输出：[12, 15]
+
+# 示例3：使用内置函数（字符串转整数）
+str_nums = ["1", "2", "3"]
+int_nums = map(int, str_nums)
+print(list(int_nums))  # 输出：[1, 2, 3]
+```
+
+#### filter 函数
+
+- `filter(function, iterable)`：用 `function` 过滤 `iterable` 中的元素，返回一个包含**使 `function` 为 `True`（或真值）的元素**的迭代器。
+    - 参数 `function`：判断函数，接受一个参数，返回布尔值（或真值/假值）；<font color=red>**若为 `None`，则直接判断元素是否为真值**</font>。
+    - 参数 `iterable`：待过滤的可迭代对象。
+    - 返回值：迭代器，包含过滤后的元素。
+
+**使用场景**：从数据集中筛选符合条件的元素（如过滤偶数、过滤非空字符串、过滤真值）。
+
+```python
+# 示例1：过滤偶数
+nums = [1, 2, 3, 4, 5, 6]
+evens = filter(lambda x: x % 2 == 0, nums)
+print(list(evens))  # 输出：[2, 4, 6]
+
+# 示例2：过滤非空字符串
+words = ["apple", "", "banana", None, "cherry", "   "]
+non_empty = filter(lambda x: x and x.strip(), words)
+print(list(non_empty))  # 输出：['apple', 'banana', 'cherry']
+
+# 示例3：function 为 None（过滤真值）
+values = [0, 1, "", "hello", None, [], [1, 2]]
+truthy = filter(None, values)
+print(list(truthy))  # 输出：[1, 'hello', [1, 2]]
+```
+
+#### functools.reduce 函数
+- `functools.reduce(function, iterable[, initializer])`：将 `function` **累积应用**于 `iterable` 的元素（从左到右），最终返回一个**单一值**。
+  - 参数 `function`：接受两个参数的函数，第一个参数是**累积值**，第二个参数是**当前元素**。
+  - 参数 `iterable`：待处理的可迭代对象。
+  - 参数 `initializer`：可选，初始累积值；若提供，先与第一个元素处理；否则第一个元素为初始值。
+  - 返回值：最终累积值。
+
+**使用场景**：对数据进行累积计算（如求和、求积、字符串拼接、找最大值）。
+
+```python
+from functools import reduce
+
+# 示例1：求和（带/不带初始值）
+nums = [1, 2, 3, 4]
+sum_without_init = reduce(lambda x, y: x + y, nums)  # 等价于 (((1+2)+3)+4)
+sum_with_init = reduce(lambda x, y: x + y, nums, 10)  # 等价于 ((((10+1)+2)+3)+4)
+print(sum_without_init)  # 输出：10
+print(sum_with_init)  # 输出：20
+
+# 示例2：求积
+product = reduce(lambda x, y: x * y, nums)
+print(product)  # 输出：24
+
+# 示例3：找最大值
+max_num = reduce(lambda x, y: x if x > y else y, nums)
+print(max_num)  # 输出：4
+
+# 示例4：字符串拼接
+words = ["Hello", " ", "World", "!"]
+sentence = reduce(lambda x, y: x + y, words)
+print(sentence)  # 输出：Hello World!
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## 函数的扩展知识
+
 ### 生成器函数
 
 #### yield 关键字
 
-`yield` 是生成器函数的关键字，用于“暂停”函数执行并返回一个值，下次调用时从暂停处继续执行（与 `return` 不同，`yield` 不会终止函数）。
+`yield` 是生成器函数的关键字，用于“暂停”函数执行并返回一个值，下次调用时从暂停处继续执行（与 `return` 不同，`yield` 不会终止函数）。一般的使用场景是，处理大数据集时，通过生成器逐个返回值，节省内存（无需一次性生成所有数据）。
 
+#### 内置函数 next()
 
+- `next(iterator)`：从迭代器（包括生成器）中获取下一个值。
+    - 参数 `iterator`：可迭代对象（如生成器、列表迭代器等）。
+    - 返回值：迭代器的下一个值；若没有更多值，抛出 `StopIteration` 异常。
+
+```python
+def count_down(n):
+    while n > 0:
+        yield n  # 暂停并返回 n
+        n -= 1
+
+# 创建生成器对象
+gen = count_down(3)
+
+# 使用 next() 逐个获取值
+print(next(gen))  # 输出：3
+print(next(gen))  # 输出：2
+print(next(gen))  # 输出：1
+# print(next(gen))  # 再次调用会抛出 StopIteration 异常
+
+# 也可通过 for 循环遍历（自动处理 StopIteration）
+for num in count_down(5):
+    print(num, end=" ")  # 输出：5 4 3 2 1
+```
+
+### 递归函数的返回值
+
+递归函数中必须确保每一层递归都能正确返回值，且最终能收敛到基准情况（否则会返回 `None` 或陷入无限递归）。常见使用场景是，处理可分解为子问题的场景（如阶乘计算、斐波那契数列）。
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1  # 基准情况，直接返回 1
+    return n * factorial(n - 1)  # 递归调用并返回结果
+
+print(factorial(5))  # 输出：120 (5*4*3*2*1)
+```
+
+### 使用 namedtuple 或 dataclass 返回结构化数据
+
+返回值包含多个字段且需要明确的属性名时，使用 `collections.namedtuple` 或 `dataclasses.dataclass` 比字典更安全（属性名固定，避免拼写错误）。
+
+#### namedtuple
+
+- `namedtuple(typename, field_names)`：内置模块 `collections.namedtuple`，用于创建一个具名元组子类。
+    - 参数 `typename`：具名元组的类名（字符串）。
+    - 参数 `field_names`：字段名列表（如 `["x", "y"]` 或 `"x y"`）。
+    - 返回值：一个新的具名元组类，可通过属性名访问字段。
+
+```python
+from collections import namedtuple
+
+# 定义具名元组类 Point
+Point = namedtuple("Point", ["x", "y"])
+
+def get_coordinate():
+    return Point(x=10, y=20)  # 返回具名元组对象
+
+point = get_coordinate()
+print(point.x)  # 输出：10（通过属性名访问，比字典更直观）
+print(point.y)  # 输出：20
+```
+
+#### dataclass （Python 3.7+）
+
+- `@dataclass`：`dataclasses.dataclass` 是 Python 3.7+ 版本新增的装饰器，作用是自动为类生成 `__init__`、`__repr__` 等方法。
+    - 无额外必填参数，直接装饰类即可。
+    - 类中定义的变量会自动成为实例属性。
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    name: str
+    age: int
+    city: str
+
+def get_user():
+    return User(name="李四", age=30, city="深圳")
+
+user = get_user()
+print(user.name)  # 输出：李四
+print(user)       # 输出：User(name='李四', age=30, city='深圳')（自动生成 __repr__）
+```

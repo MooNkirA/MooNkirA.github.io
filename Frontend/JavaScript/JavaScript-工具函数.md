@@ -808,7 +808,7 @@ export function validatenumord(num, type) {
 
 运行效果：
 
-![运行效果图](images/20191104172347775_380.jpg)
+![](images/20191104172347775_380.jpg)
 
 ### JS实现浏览器：加入收藏、设为首页、保存到桌面的方法功能
 
