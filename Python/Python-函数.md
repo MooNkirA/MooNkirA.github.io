@@ -101,7 +101,7 @@ printinfo(age=23, name="MooNkirA")
 printinfo(name="N") # 年龄: 25
 ```
 
-> [!Important] 注意：<font color=red>**默认参数必须要放在必选参数的后面。或者某个形参，一旦设置了默认值，那它后面的所有形参，也必须要写默认值！**</font>
+> [!Important] 注意：<span style="color: red;">**默认参数必须要放在必选参数的后面。或者某个形参，一旦设置了默认值，那它后面的所有形参，也必须要写默认值！**</span>
 
 ### 可变参数
 
@@ -109,7 +109,7 @@ printinfo(name="N") # 年龄: 25
 
 #### 元组类型的可变参数
 
-**元组类型的不定长参数**：定义函数时，在形参名前加星号 `*`，会以元组(tuple)的形式导入，可以接收<font color=red>**任意数量的位置参数**</font>。如果在函数调用时没有指定参数，它就是一个空元组。也可以不向函数传递未命名的变量。
+**元组类型的不定长参数**：定义函数时，在形参名前加星号 `*`，会以元组(tuple)的形式导入，可以接收<span style="color: red;">**任意数量的位置参数**</span>。如果在函数调用时没有指定参数，它就是一个空元组。也可以不向函数传递未命名的变量。
 
 ```python
 def functionname([formal_args,] *var_args_tuple ):
@@ -135,7 +135,7 @@ printinfo(70, 60, 50)
 
 #### 字典类型的可变参数
 
-**字典类型的不定长参数**：定义函数时，在形参名前加两个星号 `**`，会以字典(dict)的形式导入，可以接收<font color=red>**任意数量的关键字参数**</font>。
+**字典类型的不定长参数**：定义函数时，在形参名前加两个星号 `**`，会以字典(dict)的形式导入，可以接收<span style="color: red;">**任意数量的关键字参数**</span>。
 
 ```python
 def functionname([formal_args,] **var_args_dict ):
@@ -166,8 +166,8 @@ printinfo(1, a=2, b=3)
 
 > [!Important] 注意事项
 > 
-> - <font color=red>**可变位置参数、可变关键字参数，可以同时使用，但必须先写可变位置参数!!**</font>
-> - 可变位置参数、可变关键字参数，也能<font color=red>**与其他类型的参数一起使用**</font>。
+> - <span style="color: red;">**可变位置参数、可变关键字参数，可以同时使用，但必须先写可变位置参数!!**</span>
+> - 可变位置参数、可变关键字参数，也能<span style="color: red;">**与其他类型的参数一起使用**</span>。
 
 示例：
 
@@ -838,7 +838,24 @@ print(get_evens(10))  # 输出：[0, 2, 4, 6, 8]
 
 #### 作用域与变量捕获（闭包注意事项）
 
-lambda 函数可以捕获外部作用域的变量（形成闭包），但需注意：lambda 捕获的是**变量的引用**，而非变量的当前值。若外部变量在 lambda 定义后发生变化，lambda 的执行结果也会改变。**一般使用场景**：实现简单的闭包，但需避免变量捕获的常见陷阱。
+lambda 函数可以捕获外部作用域的变量（形成闭包），但需注意：lambda 捕获的是**变量的引用**，而非变量的当前值。若外部变量在 lambda 定义后发生变化，lambda 的执行结果也会改变，需注意避免变量捕获的常见陷阱。
+
+捕获外部作用域的变量示例:
+
+```python
+def make_multiplier(factor):
+    # 返回一个 lambda 闭包，捕获外部变量 factor
+    return lambda x: x * factor
+
+# 生成两个不同的乘法函数
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(5))  # 输出：10
+print(triple(5))  # 输出：15
+```
+
+变量捕获的常见陷阱示例：
 
 ```python
 # 反例：变量捕获的陷阱（循环中定义 lambda）
@@ -871,6 +888,46 @@ mytripler = myfunc(3)
 
 print(mydoubler(11))  # 22
 print(mytripler(11))  # 33
+```
+
+### 类型注解支持（Python 3.6+）
+
+Python 3.6+ 支持对 lambda 函数进行类型注解，需通过变量注解或函数返回值注解实现（lambda 本身无法直接写注解）。提高代码可读性，便于 IDE 进行类型检查。
+
+```python
+from typing import Callable
+
+# 示例1：变量注解标注 lambda 的类型
+add: Callable[[int, int], int] = lambda x, y: x + y
+print(add(3, 5))  # 输出：8
+
+# 示例2：函数返回值注解标注返回的 lambda 类型
+def create_adder() -> Callable[[int, int], int]:
+    return lambda x, y: x + y
+
+adder = create_adder()
+print(adder(2, 4))  # 输出：6
+```
+
+### 在 GUI 编程中的简单应用
+
+lambda 函数可作为 GUI 框架（如 Tkinter）中按钮、菜单等组件的回调函数，作为简单的 GUI 事件处理，避免为简单回调定义单独的 `def` 函数。
+
+```python
+import tkinter as tk
+
+root = tk.Tk()
+root.title("Lambda 回调示例")
+
+# 用 lambda 直接定义按钮点击回调
+btn = tk.Button(
+    root,
+    text="点击我",
+    command=lambda: print("按钮被点击了！")
+)
+btn.pack(pady=20)
+
+root.mainloop()
 ```
 
 ### 匿名函数使用场景总结
@@ -1009,7 +1066,7 @@ print(list(int_nums))  # 输出：[1, 2, 3]
 #### filter 函数
 
 - `filter(function, iterable)`：用 `function` 过滤 `iterable` 中的元素，返回一个包含**使 `function` 为 `True`（或真值）的元素**的迭代器。
-    - 参数 `function`：判断函数，接受一个参数，返回布尔值（或真值/假值）；<font color=red>**若为 `None`，则直接判断元素是否为真值**</font>。
+    - 参数 `function`：判断函数，接受一个参数，返回布尔值（或真值/假值）；<span style="color: red;">**若为 `None`，则直接判断元素是否为真值**</span>。
     - 参数 `iterable`：待过滤的可迭代对象。
     - 返回值：迭代器，包含过滤后的元素。
 
@@ -1033,11 +1090,12 @@ print(list(truthy))  # 输出：[1, 'hello', [1, 2]]
 ```
 
 #### functools.reduce 函数
+
 - `functools.reduce(function, iterable[, initializer])`：将 `function` **累积应用**于 `iterable` 的元素（从左到右），最终返回一个**单一值**。
-  - 参数 `function`：接受两个参数的函数，第一个参数是**累积值**，第二个参数是**当前元素**。
-  - 参数 `iterable`：待处理的可迭代对象。
-  - 参数 `initializer`：可选，初始累积值；若提供，先与第一个元素处理；否则第一个元素为初始值。
-  - 返回值：最终累积值。
+    - 参数 `function`：接受两个参数的函数，第一个参数是**累积值**，第二个参数是**当前元素**。
+    - 参数 `iterable`：待处理的可迭代对象。
+    - 参数 `initializer`：可选，初始累积值；若提供，先与第一个元素处理；否则第一个元素为初始值。
+    - 返回值：最终累积值。
 
 **使用场景**：对数据进行累积计算（如求和、求积、字符串拼接、找最大值）。
 
@@ -1065,16 +1123,184 @@ sentence = reduce(lambda x, y: x + y, words)
 print(sentence)  # 输出：Hello World!
 ```
 
+#### functools.partial 偏函数
 
+- `functools.partial(func, *args, **keywords)`：**偏函数**，用于固定原函数的部分参数（位置参数或关键字参数），返回一个新的函数（调用新函数时只需传入剩余参数）。
+    - 参数 `func`：原函数。
+    - 参数 `*args`：要固定的位置参数。
+    - 参数 `**keywords`：要固定的关键字参数。
+    - 返回值：新的函数，已固定部分参数。
 
+常用场景：简化频繁调用的函数（如固定进制转换、固定排序规则）。
 
+```python
+from functools import partial
 
+# 示例1：固定 int() 的 base 参数（二进制转十进制）
+# 原函数：int(x, base=10)
+bin_to_dec = partial(int, base=2)
+print(bin_to_dec("1010"))  # 输出：10（等价于 int("1010", base=2)）
+print(bin_to_dec("1111"))  # 输出：15
 
+# 示例2：固定 sorted() 的 key 和 reverse 参数
+sort_by_len_desc = partial(sorted, key=lambda x: len(x), reverse=True)
+words = ["apple", "banana", "cherry", "date"]
+print(sort_by_len_desc(words))  # 输出：['banana', 'cherry', 'apple', 'date']
+```
 
+### 高阶函数的使用要点及注意事项
 
+#### 合理使用 lambda 作为参数
 
+`lambda` 函数适合作为高阶函数的简单参数（如 `sorted()` 的 `key`、`map()` 的转换函数），但如果逻辑复杂（超过一个表达式），应定义普通 `def` 函数以提高可读性。
 
+- **反例**：过度复杂的 `lambda`（难以阅读）。
+- **正例**：简单逻辑用 `lambda`，复杂逻辑用 `def`。
 
+```python
+# 反例：复杂逻辑用 lambda（不推荐）
+data = [(1, "apple", 3.5), (2, "banana", 2.5), (3, "cherry", 4.0)]
+# 按第三个元素（价格）降序，若价格相同按第二个元素（名称）升序
+sorted_data = sorted(data, key=lambda x: (-x[2], x[1]))
+
+# 正例：复杂逻辑用 def（推荐）
+def sort_key(item):
+    return (-item[2], item[1])  # 清晰的返回值，可加注释
+
+sorted_data = sorted(data, key=sort_key)
+print(sorted_data)  # 输出：[(3, 'cherry', 4.0), (1, 'apple', 3.5), (2, 'banana', 2.5)]
+```
+
+#### 正确处理返回的迭代器
+
+`map()`、`filter()` 返回的是**迭代器**（而非列表），迭代器只能遍历一次，遍历后会“<span style="color: red;">**耗尽**</span>”。若需要多次使用或查看结果，需将其转换为列表（`list()`）或其他可迭代对象。
+
+```python
+# 示例：迭代器的耗尽问题
+nums = [1, 2, 3]
+squared = map(lambda x: x ** 2, nums)
+
+# 第一次遍历（正常）
+print(list(squared))  # 输出：[1, 4, 9]
+# 第二次遍历（迭代器已耗尽，无输出）
+print(list(squared))  # 输出：[]
+
+# 正例：转换为列表保存结果
+squared_list = list(map(lambda x: x ** 2, nums))
+print(squared_list)  # 输出：[1, 4, 9]
+print(squared_list)  # 输出：[1, 4, 9]（可多次使用）
+```
+
+#### 避免过度使用高阶函数
+
+高阶函数虽强大，但过度使用（如嵌套 `map`/`filter`、复杂的 `reduce`）会降低代码可读性。对于简单逻辑，**列表推导式**或**生成器表达式**通常更直观。
+
+```python
+# 示例：map/filter vs 列表推导式
+nums = [1, 2, 3, 4, 5]
+
+# 方式1：map + filter（可读性一般）
+result1 = map(lambda x: x ** 2, filter(lambda x: x % 2 == 0, nums))
+
+# 方式2：列表推导式（更直观，推荐）
+result2 = [x ** 2 for x in nums if x % 2 == 0]
+
+print(list(result1))  # 输出：[4, 16]
+print(result2)  # 输出：[4, 16]
+```
+
+#### 注意作用域与变量捕获（闭包）
+
+当高阶函数返回一个内部函数（闭包）时，内部函数会捕获外部作用域的**变量引用**，而非变量的当前值。若外部变量在闭包定义后发生变化，闭包的执行结果也会改变（需用默认参数绑定当前值）。
+
+```python
+# 反例：闭包变量捕获陷阱
+def create_funcs():
+    funcs = []
+    for i in range(3):
+        # 所有 lambda 都捕获变量 i 的引用
+        funcs.append(lambda: i)
+    return funcs
+
+funcs = create_funcs()
+for f in funcs:
+    print(f())  # 输出：2, 2, 2（循环结束后 i=2）
+
+# 正例：用默认参数绑定当前值
+def create_funcs():
+    funcs = []
+    for i in range(3):
+        # 默认参数 i=i 在函数定义时绑定当前 i 的值
+        funcs.append(lambda i=i: i)
+    return funcs
+
+funcs = create_funcs()
+for f in funcs:
+    print(f())  # 输出：0, 1, 2
+```
+
+#### 性能考虑
+
+- `map()` 的性能通常略高于列表推导式（因为 `map` 是内置函数，底层优化更好），但差异在大多数场景下可忽略。
+- `reduce()` 的性能通常不如直接使用循环（尤其是简单的求和/求积，建议用内置函数 `sum()`、`max()`、`min()` 替代）。
+
+```python
+# 示例：用内置函数替代 reduce（更高效、更可读）
+nums = [1, 2, 3, 4, 5]
+
+# 不推荐：reduce 求和
+sum_reduce = reduce(lambda x, y: x + y, nums)
+# 推荐：内置 sum() 函数
+sum_builtin = sum(nums)
+
+print(sum_reduce)  # 输出：15
+print(sum_builtin)  # 输出：15
+```
+
+### 装饰器（Decorator）
+
+装饰器是一种**特殊的高阶函数**，它接受一个函数作为参数，返回一个新的函数（通常会增强原函数的功能，而不修改原函数的代码）。装饰器是 Python 中非常常用的代码复用工具。常用场景有，日志记录、性能计时、权限验证、缓存等。
+
+```python
+# 示例：简单的计时装饰器
+import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} 执行耗时：{end - start:.4f} 秒")
+        return result
+    return wrapper
+
+# 使用装饰器（@timer 等价于 slow_func = timer(slow_func)）
+@timer
+def slow_func(n):
+    time.sleep(n)
+    return f"等待了 {n} 秒"
+
+print(slow_func(1))
+# 输出：
+# slow_func 执行耗时：1.0001 秒
+# 等待了 1 秒
+```
+
+### 函数式编程工具库
+
+Python 提供了两个常用的函数式编程工具库，包含更多高阶函数：
+
+- **`itertools`**：提供用于操作迭代器的高效工具（如 `itertools.starmap`、`itertools.filterfalse`、`itertools.accumulate` 等）。
+- **`functools`**：除了 `reduce` 和 `partial`，还提供 `functools.lru_cache`（缓存装饰器）、`functools.wraps`（装饰器辅助工具）等。
+
+```python
+# 示例：itertools.accumulate（累积迭代器，类似 reduce 但返回中间结果）
+from itertools import accumulate
+
+nums = [1, 2, 3, 4]
+acc = accumulate(nums, lambda x, y: x + y)
+print(list(acc))  # 输出：[1, 3, 6, 10]（每次累积的结果）
+```
 
 ## 函数的扩展知识
 

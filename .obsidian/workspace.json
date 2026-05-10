@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/AI-基础.md",
+                "file": "attachments/templates/font-css.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "AI-基础"
+              "title": "font-css"
             }
           },
           {
@@ -53,18 +53,18 @@
             }
           },
           {
-            "id": "684c4cd2592421ec",
+            "id": "b7fd63ac2f63be97",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "attachments/templates/font-red.md",
+                "file": "Python/Python-基础.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "font-red"
+              "title": "Python-基础"
             }
           },
           {
@@ -83,28 +83,7 @@
             }
           }
         ],
-        "currentTab": 1
-      },
-      {
-        "id": "6401c2c68459cfb8",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "29c1eb1b56e28ebb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "attachments/templates/Insert-Callouts.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Insert-Callouts"
-            }
-          }
-        ]
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -167,7 +146,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -285,22 +265,25 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "887be6577aa678c7",
+  "active": "c4b87f2a6a93d32e",
   "lastOpenFiles": [
+    "Python/Python-基础.md",
     "Python/Python-函数.md",
-    "attachments/templates/font-red.md",
     "Python/Python-数据模型.md",
-    "项目资料/学成在线/Day02-CMS前端开发.md",
+    "其他/software/Common-Software.md",
+    "AI/Vibe-Coding.md",
+    "attachments/templates/font-red.md",
+    "attachments/templates/font-css.md",
+    "attachments/templates/Insert-Callouts.md",
+    "test.js",
     "attachments/templates/font-underline.md",
+    "AI/AI-基础.md",
+    "项目资料/学成在线/Day02-CMS前端开发.md",
     "项目资料/好客租房/Day01-ES6新特性以及ReactJS入门.md",
     "Frontend/CSS/CSS-基础.md",
     "Frontend/HTML/HTML-基础语法.md",
-    "AI/AI-基础.md",
-    "attachments/templates/Insert-Callouts.md",
     "README.md",
-    "AI/Vibe-Coding.md",
     "其他/software/Obsidian.md",
-    "Python/Python-基础.md",
     "Python/Python-类和对象.md",
     "AI/AI-编程工具.md",
     "AI/images/20260508123636125.jpg",
@@ -321,17 +304,13 @@
     "CLAUDE.md",
     "CLAUDE.md.tmp.17628.1777895976114",
     "AI/Claude-Code.md",
-    "其他/software/Common-Software.md",
     "其他/software/Windows.md",
-    "Frontend/前端工程化工具/node.md",
-    "copilot/copilot-conversations/格式化表格源码@20260501_183748.md",
     "copilot/copilot-conversations",
     "copilot/copilot-custom-prompts",
     "copilot",
     "resources/file-map.json",
     "resources/update-file-map.bat",
     "resources/run-moon-system-wt.bat",
-    "resources/file_map_generator.py",
-    "file_map_generator.py"
+    "resources/file_map_generator.py"
   ]
 }

@@ -20,6 +20,7 @@ header-auto-numbering:
 Total Commander，简称 TC，原名 Windows Commander，是一款功能非常强大的全能文件管理器。Total Commander 是共享软件，官网下载版本为一个月试用版。支持随意自定义的菜单、工具栏、快捷键，给您最大的自由，打造个性 TC。一般的文件操作，如搜索、复制、移动、改名、删除等功能应有尽有。
 
 - 官网 https://www.ghisler.com/index.htm
+- 第三方插件及工具网站 http://totalcmd.net/
 - Total Commander 飞扬时空版下载
    - [蓝奏云](https://www.lanzoui.com/b405514/)
    - [百度网盘](https://yun.baidu.com/s/1cp9zuY#list/path=%2F)

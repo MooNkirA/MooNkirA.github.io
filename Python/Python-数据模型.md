@@ -74,7 +74,7 @@ result1 = msg + 'hello'  # 报错：TypeError: unsupported operand type(s) for +
 
 Python 3.x 的 Number 类型包含 **int、float、bool、complex（复数）**。
 
-> [!Note] 值得注意：Python 3.x <font color=red>**只有一种整数类型 int**</font>，表示为长整型，没有 Python 2.x 中的 Long 类型。
+> [!Note] 值得注意：Python 3.x <span style="color: red;">**只有一种整数类型 int**</span>，表示为长整型，没有 Python 2.x 中的 Long 类型。
 
 ### int(整型)
 
@@ -504,7 +504,7 @@ print(colorList[0:4])  # ['red', 'green', 'blue', 'yellow']
 print("list[1:-2]: ", colorList[1:-2])  # list[1:-2]:  ['green', 'blue', 'yellow']
 ```
 
-> [!info] <font color=red>**值得注意，读取的范围包含开始下标的元素，但不包含结束下标的元素**</font>
+> [!info] <span style="color: red;">**值得注意，读取的范围包含开始下标的元素，但不包含结束下标的元素**</span>
 
 ### 修改列表元素
 
@@ -529,7 +529,7 @@ print("list[1:-2]: ", colorList[1:-2])  # list[1:-2]:  ['green', 'blue', 'yellow
 - `max(list)`：返回列表元素最大值
 - `min(list)`：返回列表元素最小值
 - `list(seq)`：将元组转换为列表
-- `sum(list)`：对列表中所有元素进行求和，将返回计算值。<font color=red>**注意：列表中存在字符串则不能使用 sum 函数**</font>
+- `sum(list)`：对列表中所有元素进行求和，将返回计算值。<span style="color: red;">**注意：列表中存在字符串则不能使用 sum 函数**</span>
 - `sorted(list, reverse=布尔值)`：对列表排序(默认从小到大)，不会改变原列表
     - 参数 `reverse` 用于控制排序方式。默认为 `False` 正序，`True` 倒序
     - 返回值：经过排序后的新的列表
@@ -640,7 +640,7 @@ print(t3)
 print(t4)
 ```
 
-- 创建单元素元组：`元组名 = (元素,)`。需要注意核心细节，<font color=red>**⚠️ 必须在元素后加逗号(`,`)，否则括号会被当作数学运算符，不是元组！**</font>
+- 创建单元素元组：`元组名 = (元素,)`。需要注意核心细节，<span style="color: red;">**⚠️ 必须在元素后加逗号(`,`)，否则括号会被当作数学运算符，不是元组！**</span>
 
 ```python
 # 单元素元组正确的创建方式
@@ -1386,7 +1386,7 @@ for item in s:
     print(item)
 ```
 
-2. 带序号遍历。<font color=red>**注意此方式的生成的序号非索引，只是遍历时的顺序编号**</font>
+2. 带序号遍历。<span style="color: red;">**注意此方式的生成的序号非索引，只是遍历时的顺序编号**</span>
 
 ```python
 s = {10, 30, 20, 30}
