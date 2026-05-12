@@ -452,9 +452,11 @@
 ## 🐍 Python
 
 - [[Python-基础|Python 基础]]
-- [[Python-数据模型|Python 数据模型]]
-- [[Python-函数|Python 函数]]
-- [[Python-类和对象|Python 类和对象]]
+- [[Python-data-model|Python 数据模型]]
+- [[Python-controlflow|Python 控制流]]
+- [[Python-function|Python 函数]]
+- [[Python-classes|Python 类和对象]]
+- [[Python-namespace-scope|Python 命名空间和作用域]]
 
 ## 其他
 
