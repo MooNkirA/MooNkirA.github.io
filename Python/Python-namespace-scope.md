@@ -66,7 +66,7 @@ outer_func()
 global 变量名1, 变量名2, ...
 ```
 
-**使用场景**：在函数内部需要修改全局变量的值。
+**使用场景**：在函数内部需要修改全局变量的值，或需要在函数内部，向外层全局作用域新增变量。
 
 ```python
 count = 0  # 全局变量
@@ -106,32 +106,6 @@ counter()  # 输出：2
 counter()  # 输出：3
 ```
 
-## 作用域的注意事项
-
-### 变量遮蔽（Shadowing）问题
-
-当内部作用域定义了与外部作用域同名的变量时，内部变量会**遮蔽**外部变量，即内部作用域只能访问到内部变量，无法直接访问外部同名变量。通常是尽量避免变量名冲突，如果必须同名的话，需注意不要意外遮蔽重要的外部变量（尤其是内建函数）。
-
-```python
-# 示例1：局部变量遮蔽全局变量
-x = 10  # 全局变量
-
-def func():
-    x = 20  # 局部变量，遮蔽了全局变量 x
-    print("局部 x：", x)
-
-func()  # 输出：局部 x：20
-print("全局 x：", x)  # 输出：全局 x：10（全局变量未被修改）
-
-# 示例2：危险！遮蔽内建函数
-len = 10  # 全局变量遮蔽了内建函数 len()
-# print(len("hello"))  # 报错：TypeError: 'int' object is not callable
-
-# 恢复内建函数
-del len
-print(len("hello"))  # 输出：5
-```
-
 ### global 与 nonlocal 的核心区别
 
 这是新手最容易混淆的知识点，必须明确区分：
@@ -168,6 +142,32 @@ outer()
 # inner x：11
 # outer x：10（外层变量未被修改）
 print("全局 x：", x)  # 输出：11（全局变量被修改）
+```
+
+## 作用域的注意事项
+
+### 变量遮蔽（Shadowing）问题
+
+当内部作用域定义了与外部作用域同名的变量时，内部变量会**遮蔽**外部变量，即内部作用域只能访问到内部变量，无法直接访问外部同名变量。通常是尽量避免变量名冲突，如果必须同名的话，需注意不要意外遮蔽重要的外部变量（尤其是内建函数）。
+
+```python
+# 示例1：局部变量遮蔽全局变量
+x = 10  # 全局变量
+
+def func():
+    x = 20  # 局部变量，遮蔽了全局变量 x
+    print("局部 x：", x)
+
+func()  # 输出：局部 x：20
+print("全局 x：", x)  # 输出：全局 x：10（全局变量未被修改）
+
+# 示例2：危险！遮蔽内建函数
+len = 10  # 全局变量遮蔽了内建函数 len()
+# print(len("hello"))  # 报错：TypeError: 'int' object is not callable
+
+# 恢复内建函数
+del len
+print(len("hello"))  # 输出：5
 ```
 
 ### 作用域在函数定义时确定，而非调用时
@@ -276,6 +276,86 @@ print(funcs[2]())  # 输出：2
 - 如果需要在函数之间共享数据，使用参数传递或返回值。
 - 仅在必要时使用全局变量（如配置常量），且命名使用大写字母。
 
+## 作用域扩展知识
+
+### 模块级作用域
+
+每个 Python 模块（.py 文件）都有自己独立的全局作用域，不同模块之间的全局变量互不干扰。当一个模块被导入时，它的全局变量会成为模块对象的属性。
+
+```python
+# module1.py
+x = 10  # module1 的全局变量
+
+def func():
+    print(x)
+```
+
+```python
+# main.py
+import module1
+
+print(module1.x)  # 输出：10
+module1.func()    # 输出：10
+
+# 修改 module1 的全局变量
+module1.x = 100
+module1.func()    # 输出：100
+
+# 不会创建 main 的全局变量 x
+print(x)  # 报错：NameError: name 'x' is not defined
+```
+
+### 类作用域的特殊性
+
+类作用域是 Python 中一种特殊的作用域，**不属于 LEGB 规则的一部分**。在类内部定义的变量（类属性），在类的方法中不能直接通过 LEGB 规则访问，必须通过 `self` 或类名来访问。
+
+```python
+class MyClass:
+    class_var = "我是类变量"  # 类作用域
+    
+    def method(self):
+        # 错误：不能直接访问类变量
+        # print(class_var)  # 报错：NameError: name 'class_var' is not defined
+        
+        # 正确：通过 self 或类名访问
+        print(self.class_var)    # 输出：我是类变量
+        print(MyClass.class_var) # 输出：我是类变量
+```
+
+### 闭包与作用域的关系
+
+闭包（Closure）是指**引用了外层函数变量的内部函数**，它会保留外层函数的作用域，即使外层函数已经执行结束。闭包的实现依赖于 Python 的作用域机制和变量捕获。主要用于实现工厂函数、装饰器、状态保持等。
+
+```python
+def make_counter():
+    count = 0  # 外层变量
+    
+    def counter():
+        nonlocal count
+        count += 1
+        return count
+    
+    return counter  # 返回内部函数（闭包）
+
+# 外层函数执行结束，但 count 变量被闭包保留
+c1 = make_counter()
+print(c1())  # 输出：1
+print(c1())  # 输出：2
+
+# 每个闭包都有独立的作用域
+c2 = make_counter()
+print(c2())  # 输出：1
+print(c1())  # 输出：3（c1 的 count 不受 c2 影响）
+```
+
+### 作用域与垃圾回收
+
+Python 的垃圾回收机制基于引用计数，当一个对象的引用计数变为 0 时，会被自动回收。作用域决定了变量的生命周期，当作用域销毁时，该作用域内的变量引用会被释放，从而可能导致对象的引用计数减少。
+
+- 局部作用域：函数执行结束后，局部变量的引用被释放。
+- 外层嵌套作用域：当内部函数（闭包）销毁后，外层变量的引用才会被释放。
+- 全局作用域：程序退出时才会释放所有全局变量的引用。
+
 ## Python 命名空间（Namespace）
 
 命名空间是 Python 中用于**隔离同名变量**的核心机制，本质上是一个**字典（dict）**，其中**键是变量名（字符串），值是变量对应的对象**。核心作用：
@@ -345,9 +425,19 @@ print(globals().keys())  # 输出包含 '__name__', '__doc__', 'global_var' 等�
 - **包含内容**：Python 内置的函数（如 `len()`、`print()`）、异常（如 `NameError`）、常量（如 `True`、`False`）等
 - **特点**：所有模块共享同一个内建命名空间
 
+内建命名空间实际上是 `__builtins__` 模块的命名空间。在全局作用域中，`__builtins__` 是 `builtins` 模块的引用；在函数内部，`__builtins__` 是一个字典，包含所有内置函数和变量。
+
 ```python
+# 全局作用域中 __builtins__ 是模块
+print(__builtins__)  # 输出：<module 'builtins' (built-in)>
 # 查看内建命名空间的内容
 print(dir(__builtins__))  # 输出所有内置函数和变量的列表
+
+# 函数内部 __builtins__ 是字典
+def func():
+    print(type(__builtins__))  # 输出：<class 'dict'>
+
+func()
 ```
 
 ### 命名空间的查找顺序（LEGB 规则的本质）
@@ -380,19 +470,26 @@ Python 提供了三个内置函数，用于访问和操作命名空间：
 
 #### globals 函数
 
-`globals()`：返回当前所有全局命名空间的字典（键值对）。使用要点：
-
-- 修改该字典会直接修改全局变量。
-- 可以通过该字典动态添加、删除全局变量。
+`globals()`：返回当前所有全局命名空间的字典（键值对）。Python 的命名空间是**动态的**，可以运行时通过该字典动态添加、修改、删除全局变量。
 
 ```python
 # 添加全局变量
 globals()["new_var"] = "我是动态添加的全局变量"
 print(new_var)  # 输出：我是动态添加的全局变量
-
+# 修改全局变量
+globals()["new_var"] = 100
+print(new_var)  # 输出：100
 # 删除全局变量
 del globals()["new_var"]
 # print(new_var)  # 报错：NameError
+
+# 动态添加实例属性
+class Person:
+    pass
+
+p = Person()
+p.name = "张三"  # 动态添加到实例的命名空间
+print(p.name)  # 输出：张三
 ```
 
 #### locals 函数
@@ -442,6 +539,42 @@ obj.instance_var = 20
 print(vars(obj))  # 输出：{'instance_var': 20}
 ```
 
+### 其他命名空间
+
+#### 包命名空间
+
+Python 的包（Package）也有自己的命名空间，对应包的 `__init__.py` 文件的全局命名空间。当导入包时，包的命名空间会被创建，包中的模块和子包会成为包命名空间的属性。
+
+```python
+# 导入包
+import numpy as np
+
+# 访问包命名空间中的模块
+print(np.array)  # 输出：<built-in function array>
+```
+
+#### 类与实例的命名空间
+
+- 类有自己的命名空间（`类名.__dict__`），存储类属性和方法。
+- 每个实例有自己的命名空间（`实例名.__dict__`），存储实例属性。
+
+当访问实例的属性时，会先查找实例的命名空间，再查找类的命名空间。
+
+```python
+class MyClass:
+    class_var = "类变量"
+    
+    def __init__(self):
+        self.instance_var = "实例变量"
+
+obj = MyClass()
+
+# 实例命名空间
+print(vars(obj))  # 输出：{'instance_var': '实例变量'}
+
+# 类命名空间
+print(vars(MyClass))  # 输出包含 'class_var', '__init__' 等键
+```
 
 ## 命名空间与作用域小结
 
@@ -472,53 +605,7 @@ print(vars(obj))  # 输出：{'instance_var': 20}
 
 当要找一个变量时，会按照权限顺序打开盒子查找。
 
-## 整理中
-
-### 全局作用域 VS 局部作用域
-
-作用域是指：**变量能起作用的范围**。即规定「变量在代码里的哪个位置可以正常调用、哪个位置无法使用」。
-
-- **全局作用域**：整个 `.py` 代码文件**最外层**的代码范围。
-- **局部作用域**：`def` 定义的**函数内部**的代码范围。
-
-### 全局变量 VS 局部变量
-
-- **全局变量**：定义在文件最外层（全局作用域），在当前整个 Python 文件的任意位置，都可以正常使用。
-- **局部变量**：定义在函数内部（局部作用域），仅能在定义它的当前函数内部使用，函数外部无法访问。
-
-```python
-# 全局变量（全局作用域）
-a = 100
-b = 200
-
-def test():
-    # 局部变量（局部作用域）
-    c = 'Hello'
-    d = 'MooN'
-```
-
-`global` 关键字，允许在函数**内部修改全局变量的值**。
-
-```python
-count = 100
-def modify_demo():
-    # 先声明：要操作的是全局变量count
-    global count
-    print(f"修改前：{count}")
-    # 真正修改全局变量本身
-    count = 999
-
-modify_demo()
-# 全局变量本身被永久改变
-print(f"函数执行后全局count：{count}")  # 输出 999
-```
-
-** `global` 使用场景**：
-
-- 函数内需要**修改**全局变量的值
-- 需要在函数内部，向外层全局作用域新增变量
-
-**全局变量与局部变量注意事项**：
+### 全局变量与局部变量注意事项
 
 1. 函数**外部永远无法访问**函数内的局部变量，强行调用直接报 `NameError`
 2. 仅读取全局变量，**不用加 `global` **；只要要修改，**必须加 `global` **

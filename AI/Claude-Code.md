@@ -201,6 +201,99 @@ claude-code "这个依赖项的版本是多少？"
 claude-code "查找所有使用某个函数的地方"
 ```
 
+## "/" 命令
+
+Claude Code 提供了一系列斜杠命令（slash commands）来快速执行常用操作。这些命令可以直接在交互模式中输入：
+
+### 常用 "/" 命令
+
+| 命令 | 功能说明 |
+|------|----------|
+| `/help` | 显示帮助信息，列出所有可用命令 |
+| `/clear` | 清除对话上下文，重置当前会话 |
+| `/remember <内容>` | 记住重要信息，用于跨会话记忆 |
+| `/schedule <时间> <任务>` | 设置定时提醒任务（支持 cron 表达式） |
+| `/loop <间隔> <提示>` | 设置定期执行的任务循环 |
+| `/exit` 或 `/quit` | 退出交互模式 |
+
+### Skills 相关命令
+
+Claude Code 预置了多个内置 Skills，可通过斜杠命令快速调用：
+
+| 命令 | 功能说明 |
+|------|----------|
+| `/config` | 配置 Claude Code 设置 |
+| `/keybindings` | 查看或自定义键盘快捷键 |
+| `/loop` | 设置重复任务循环（/loop 5m /foo, 默认 10 分钟） |
+| `/babysit-prs` | 监控并报告 Pull Request 状态 |
+| `/loop 30s check-build` | 每 30 秒检查构建状态 |
+| `/loop 5m /check-status` | 每 5 分钟执行 /check-status 命令 |
+
+### 监控和管理命令
+
+| 命令 | 功能说明 |
+|------|----------|
+| `/tasks` | 列出当前任务列表，查看任务状态和依赖 |
+| `/task <id>` | 获取指定任务的详细信息 |
+| `/task-complete <id>` | 标记任务为已完成 |
+| `/task-cancel <id>` | 取消指定任务 |
+| `/task-add <subject> <description>` | 创建新任务 |
+| `/status` | 查看当前会话状态 |
+| `/history` | 查看历史命令记录 |
+
+### Git 操作命令
+
+| 命令 | 功能说明 |
+|------|----------|
+| `/git status` | 查看仓库状态 |
+| `/git diff` | 查看文件变更 |
+| `/git log` | 查看提交历史 |
+| `/git branch` | 查看分支信息 |
+| `/git commit` | 创建提交 |
+| `/git push` | 推送到远程仓库 |
+| `/git pull` | 从远程拉取更新 |
+
+### 编程技能命令
+
+| 命令 | 功能说明 |
+|------|----------|
+| `/init` | 初始化项目文档，创建 CLAUDE.md |
+| `/review` | 审查代码质量和最佳实践 |
+| `/security-review` | 进行安全审查 |
+| `/simplify` | 简化和优化代码 |
+| `/defuddle <URL>` | 从网页提取清理后的 markdown 内容 |
+| `/json-canvas` | 创建或编辑 JSON Canvas 文件 |
+| `/obsidian-cli` | 通过 Obsidian CLI 交互 |
+| `/obsidian-markdown` | 创建或编辑 Obsidian Markdown 文件 |
+| `/obsidian-bases` | 创建或编辑 Obsidian Bases |
+| `/claude-api` | 构建、调试 Claude API 应用 |
+
+### 示例用法
+
+```bash
+# 显示帮助
+/help
+
+# 清除上下文
+/clear
+
+# 记住项目重要信息
+/remember 我需要在本周五前完成用户认证模块的开发
+
+# 设置定时提醒
+/schedule 17:00 检查项目构建状态
+
+# 每小时检查一次依赖更新
+/loop 1h npm outdated
+
+# 创建任务并标记完成
+/task-add 优化数据库查询性能 针对慢查询日志分析
+/task-complete 1
+
+# 退出交互模式
+/exit
+```
+
 ## 命令快捷键
 
 ### 交互模式快捷键
@@ -425,5 +518,5 @@ Claude Code 是一个强大的编程助手，能够显著提高开发效率。�
 
 ---
 
-**最后更新**: 2026/05/03
+**最后更新**: 2026/05/13
 **适用版本**: Claude Code 4.x

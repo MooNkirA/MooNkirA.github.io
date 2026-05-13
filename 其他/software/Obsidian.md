@@ -461,6 +461,3 @@ Github 仓库地址：https://github.com/YishenTu/claudian
 打开 [Obsidian Skill Github](https://github.com/kepano/obsidian-skills) 仓库，点击下载 Zip 包。
 
 ![](images/20260504194417639.jpg)
-
-
-
