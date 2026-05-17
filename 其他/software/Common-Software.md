@@ -280,6 +280,141 @@ Notepad++ 是一款完全免费的源代码编辑器，支持多种编程开发�
 
 在使用 notepad++ 工具的时候，很多情况下会遇到批量替换空行的操作，操作方法是使用快捷键 `Crtl+h` 调出窗口选择替换栏，在查找目标栏中输入 `\r\n\r\n`，替换栏中输入 `\r\n` 并选择全部替换，从而实现批量删除空行的操作。
 
+### SumatraPDF
+
+> 官网： https://www.sumatrapdfreader.org/free-pdf-reader
+
+SumatraPDF 是一款 PDF、电子书（epub、mobi）、漫画书（cbz/cbr）、DjVu、XPS、CHM、适用于 Windows 系统的图像查看器。它速度快、体积小、功能丰富、可自定义、免费。
+
+#### settings 设置背景颜色
+
+在菜单栏打开：【设置】->【选项】->【高级选项】，即打开 `SumatraPDF-settings.txt`。里面的配置也都几乎都是一看就明白设置的内容了，例如：其中的 `TextColor` 代表字颜色、`BackgroundColor` 代表背景色、`NoHomeTab` 打开软件时不显示首页。
+
+以下是一套绿色护眼配置。主要是修改 `BackgroundColor = #c7edcc`、`NoHomeTab = true` 等。
+
+```properties
+# For documentation, see https://www.sumatrapdfreader.org/settings/settings3-6.html
+
+CheckForUpdates = true
+CustomScreenDPI = 0
+DefaultDisplayMode = automatic
+DefaultZoom = fit page
+EnableTeXEnhancements = false
+EscToExit = false
+FullPathInTitle = false
+LazyLoading = false
+MainWindowBackground = #80fff200
+NoHomeTab = true
+HomePageSortByFrequentlyRead = false
+ReloadModifiedDocuments = true
+RememberOpenedFiles = true
+RememberStatePerDocument = true
+RestoreSession = true
+ReuseInstance = true
+ShowMenubar = true
+ShowToolbar = true
+ShowFavorites = false
+ShowToc = true
+ShowLinks = false
+ShowStartPage = true
+SidebarDx = 254
+ScrollbarInSinglePage = false
+SmoothScroll = false
+FastScrollOverScrollbar = false
+PreventSleepInFullscreen = true
+TabWidth = 300
+Theme = Light
+TocDy = 0
+ToolbarSize = 18
+TreeFontName = automatic
+TreeFontSize = 0
+UIFontSize = 0
+DisableAntiAlias = false
+UseSysColors = false
+UseTabs = true
+ZoomLevels = 
+ZoomIncrement = 0
+
+FixedPageUI [
+    TextColor = #000000
+    BackgroundColor = #c7edcc
+    SelectionColor = #f5fc0c
+    WindowMargin = 2 4 2 4
+    PageSpacing = 4 4
+    InvertColors = false
+    HideScrollbars = false
+]
+
+EBookUI [
+    FontSize = 0
+    LayoutDx = 0
+    LayoutDy = 0
+    IgnoreDocumentCSS = false
+]
+
+ComicBookUI [
+    WindowMargin = 0 0 0 0
+    PageSpacing = 4 4
+    CbxMangaMode = false
+]
+
+ChmUI [
+    UseFixedPageUI = false
+]
+
+Annotations [
+    HighlightColor = #ffff00
+    UnderlineColor = #00ff00
+    SquigglyColor = #ff00ff
+    StrikeOutColor = #ff0000
+    FreeTextColor = 
+    FreeTextBackgroundColor = 
+    FreeTextOpacity = 100
+    FreeTextSize = 12
+    FreeTextBorderWidth = 1
+    TextIconColor = 
+    TextIconType = 
+    DefaultAuthor = 
+]
+
+ExternalViewers [
+]
+
+ForwardSearch [
+    HighlightOffset = 0
+    HighlightWidth = 15
+    HighlightColor = #6581ff
+    HighlightPermanent = false
+]
+
+PrinterDefaults [
+    PrintScale = shrink
+]
+
+SelectionHandlers [
+]
+
+Shortcuts [
+]
+
+Themes [
+]
+
+# You're not expected to change those manually
+UiLanguage = cn
+WindowState = 2
+WindowPos = 561 0 797 1032
+FileStates [
+]
+SessionData [
+]
+TimeOfLastUpdateCheck = 0 0
+OpenCountWeek = 802
+
+# Settings below are not recognized by the current version
+```
+
+
 ### Rime 输入法设置
 
 特殊字符输入

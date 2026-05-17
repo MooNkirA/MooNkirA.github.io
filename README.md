@@ -451,6 +451,7 @@
 
 ## 🐍 Python
 
+- [[Python-usage|Python 安装和使用]]
 - [[Python-基础|Python 基础]]
 - [[Python-data-model|Python 数据模型]]
 - [[Python-controlflow|Python 控制流]]

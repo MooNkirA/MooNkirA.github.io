@@ -150,14 +150,14 @@
     ]
   },
   "其他/software/Common-Software.md": {
-    "scroll": 25.41054502369668,
+    "scroll": 421.0515402843602,
     "cursor": {
       "from": {
-        "line": 38,
+        "line": 420,
         "ch": 0
       },
       "to": {
-        "line": 38,
+        "line": 420,
         "ch": 0
       }
     },
@@ -165,23 +165,22 @@
       "item-2-1",
       "item-3-4",
       "item-2-18",
-      "item-3-20",
-      "item-3-24",
-      "item-3-27",
-      "item-3-30",
-      "item-4-38",
-      "item-2-43",
-      "item-2-53",
-      "item-3-54",
-      "item-3-60",
-      "item-3-64",
-      "item-2-66",
-      "item-3-67",
-      "item-2-70",
-      "item-2-75",
-      "item-3-76",
+      "item-4-40",
+      "item-2-45",
+      "item-2-55",
+      "item-3-56",
+      "item-3-62",
+      "item-3-66",
+      "item-2-68",
+      "item-3-69",
+      "item-2-72",
+      "item-2-77",
+      "item-3-78",
       "item-3-15",
-      "item-3-8"
+      "item-3-8",
+      "item-3-27",
+      "item-3-29",
+      "item-3-32"
     ]
   },
   "Index.md": {
@@ -261,19 +260,20 @@
     ]
   },
   "README.md": {
-    "scroll": 38.72215639810427,
+    "scroll": 434.5592417061611,
     "cursor": {
       "from": {
-        "line": 15,
-        "ch": 0
+        "line": 451,
+        "ch": 12
       },
       "to": {
-        "line": 15,
-        "ch": 0
+        "line": 451,
+        "ch": 12
       }
     },
     "expandedKeys": [
-      "item-2-16"
+      "item-2-16",
+      "item-2-3"
     ]
   },
   "项目资料/国际物流云商系统/README.md": {
@@ -459,32 +459,35 @@
     ]
   },
   "其他/software/Windows.md": {
-    "scroll": 833.2393353174604,
+    "scroll": 287.65252976190476,
     "cursor": {
       "from": {
-        "line": 840,
-        "ch": 82
+        "line": 265,
+        "ch": 141
       },
       "to": {
-        "line": 840,
-        "ch": 82
+        "line": 265,
+        "ch": 141
       }
     },
     "expandedKeys": [
       "item-2-0",
+      "item-3-12",
+      "item-3-17",
+      "item-3-21",
+      "item-3-24",
+      "item-3-38",
+      "item-2-55",
+      "item-2-60",
+      "item-2-74",
       "item-3-2",
-      "item-2-8",
-      "item-3-10",
-      "item-2-12",
-      "item-3-15",
-      "item-3-19",
-      "item-3-22",
-      "item-2-72",
-      "item-2-48"
+      "item-2-2",
+      "item-2-10",
+      "item-3-8"
     ]
   },
   "AI/Claude-Code.md": {
-    "scroll": 255.6469953220583,
+    "scroll": 283.4002976190476,
     "cursor": {
       "from": {
         "line": 260,
@@ -696,38 +699,33 @@
     ]
   },
   "Python/Python-基础.md": {
-    "scroll": 1275.2662760416667,
+    "scroll": 0,
     "cursor": {
       "from": {
-        "line": 1313,
-        "ch": 13
+        "line": 6,
+        "ch": 0
       },
       "to": {
-        "line": 1313,
-        "ch": 13
+        "line": 6,
+        "ch": 0
       }
     },
     "expandedKeys": [
-      "item-3-3",
       "item-3-8",
-      "item-3-18",
-      "item-3-22",
-      "item-3-31",
-      "item-3-39",
-      "item-3-43",
-      "item-3-62",
-      "item-4-67",
-      "item-3-69",
-      "item-3-91",
+      "item-3-48",
+      "item-4-53",
+      "item-3-55",
+      "item-3-77",
+      "item-3-83",
+      "item-4-86",
+      "item-3-90",
       "item-3-97",
-      "item-4-100",
-      "item-3-104",
-      "item-3-111",
-      "item-2-28",
-      "item-2-61",
-      "item-2-90",
-      "item-2-71",
-      "item-3-73"
+      "item-2-76",
+      "item-2-57",
+      "item-3-59",
+      "item-2-0",
+      "item-2-38",
+      "item-2-14"
     ]
   },
   "attachments/templates/font-red.md": {
@@ -1005,7 +1003,7 @@
     ]
   },
   "Python/Python-function.md": {
-    "scroll": 271.61011904761904,
+    "scroll": 199.14285714285714,
     "cursor": {
       "from": {
         "line": 237,
@@ -1115,6 +1113,27 @@
       "item-3-25",
       "item-3-16",
       "item-3-30"
+    ]
+  },
+  "Python/Python-usage.md": {
+    "scroll": 215.24052132701422,
+    "cursor": {
+      "from": {
+        "line": 239,
+        "ch": 11
+      },
+      "to": {
+        "line": 239,
+        "ch": 11
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-4",
+      "item-3-8",
+      "item-4-8",
+      "item-2-8",
+      "item-2-4"
     ]
   }
 }

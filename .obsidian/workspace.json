@@ -38,6 +38,36 @@
             }
           },
           {
+            "id": "ed3ca1b88668214c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "其他/software/Common-Software.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Common-Software"
+            }
+          },
+          {
+            "id": "aa45a6ef0b15ce3d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Python/Python-usage.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Python-usage"
+            }
+          },
+          {
             "id": "b6d39da183e813f5",
             "type": "leaf",
             "state": {
@@ -66,24 +96,9 @@
               "icon": "lucide-file",
               "title": "Python-namespace-scope"
             }
-          },
-          {
-            "id": "fe336659efb6ad28",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AI/Agent-Skills.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Agent-Skills"
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -265,15 +280,17 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "7ded38f25a4f9c91",
+  "active": "0b18f97d4457c32a",
   "lastOpenFiles": [
-    "AI/Agent-Skills.md",
-    "Python/Python-namespace-scope.md",
-    "Python/Python-function.md",
-    "AI/Claude-Code-教程.md",
-    "AI/Claude-Code.md",
-    "README.md",
+    "其他/software/Windows.md",
     "Python/Python-基础.md",
+    "README.md",
+    "Python/Python-usage.md",
+    "AI/Claude-Code.md",
+    "Python/Python-function.md",
+    "Python/Python-namespace-scope.md",
+    "AI/Agent-Skills.md",
+    "AI/Claude-Code-教程.md",
     "其他/software/Obsidian.md",
     "Python/Python-data-model.md",
     "Python/Python-controlflow.md",
@@ -302,8 +319,6 @@
     "AI/images/20260508101139654.jpg",
     "AI/images/20260508091823184.jpg",
     "Java/Java基础-JDK.md",
-    "Java/Java扩展-设计模式.md",
-    "其他/tools/Markdown.md",
     "AI/images",
     "CLAUDE.md.tmp.17628.1777895976114",
     "copilot/copilot-conversations",

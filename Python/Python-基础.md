@@ -37,7 +37,7 @@ Python 有两个主要版本：**Python 2** 和 **Python 3**。
   - 相对于 Python 的早期版本，Python 3.x 是一个较大的升级。
   - 在设计时没有考虑向下兼容，以避免带入过多累赘。许多基于早期 Python 版本设计的程序无法在 Python 3.0 上正常执行。
 
-> Tips: <font color=red>**Python 3.0 与 Python 2.0 不兼容的**</font>。新的 Python 程序建议使用 Python 3.x 版本的语法
+> Tips: <span style="color: red;">**Python 3.0 与 Python 2.0 不兼容的**</span>。新的 Python 程序建议使用 Python 3.x 版本的语法
 
 #### Python 的 3.x 版本
 
@@ -123,292 +123,11 @@ Python 的 3.0 版本，常被称为 Python 3000，或简称 Py3k。相对于 Py
 - 代码不能加密：如果要发布 Python 程序，实际上就是发布源代码，这一点跟 C 语言不同，C 语言不用发布源代码，只需要把编译后的机器码（也就是在 Windows 上常见的 exe 文件）发布出去。要从机器码反推出 C 代码是不可能的，所以，凡是编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。
 - 内存消耗略大：相比 C、C++ 这种紧凑型语言，Python 会更“吃内存”，不太适合资源受限设备，比如一些微控制器等。
 
-## Python 环境搭建
-
-想要使用 Python 语言编写程序，必须下载 Python 安装包并配置Python环境。最新安装包[下载地址](https://www.python.org/downloads/)。*更新笔记时 Python 最新版本是：3.14.4（发布于2024年6月6日）*
-
-![](images/92368367322634.png)
-
-如果是系统信息中显示是『基于 x64 的处理器』，选择第1个安装包即可。
-
-![](images/244208717072171.png)
-
-如果是系统信息中显示是『基于 ARM 的处理器』，则选择第3个（ARM64）安装包。
-
-![](images/99267197533397.png)
-
-### 安装步骤（Windows）
-
-1. **建议使用管理员身份**去打开下载的安装包。勾选相关选项，并选择自定义安装
-
-![](images/468943218456736.png)
-
-2. 选择安装位置，其他默认即可
-
-![](images/312594236665211.png) ![](images/397994634749242.png)
-
-3. 安装完成
-
-![](images/500433694138233.png)
-
-4. 运行 cmd 打开“命令提示符”程序，输入 `python` 并回车
-
-![](images/113946911687031.png)
-
-### 安装步骤（MacOS）
-
-> 基于 MacOS 12.4。下载地址：https://www.python.org/downloads/macos/
-
-![](images/56040715993970.png)
-
-1. 双击打开下载好的 python-3.10.4-macos11.pkg 文件，开始安装。
-
-![](images/160471920886548.png)
-
-2. 找到 mac 中的“终端”程序并打开：
-
-![](images/276620627624382.png)
-
-3. 直接在终端中输入命令：`python3`
-
-![](images/152591267575029.png)
-
-> 如上图，最新版 3.10.4 已经安装成功。
-
-4. 如果想要使用 python 命令，而非 python3 命令执行 python。那么可以设置环境变量来解决，在终端中执行如下代码：
-
-```python
-echo 'alias python=python3' >> .bash_profile
-```
-
-退出且重新打开终端，然后执行：
-
-![](images/499381927228001.png)
-
-### 安装步骤（Linux）
-
-> Tips: 在 Linux 上安装 Python 需要相关前置技能。有过 Linux 系统的使用经验，熟悉 Linux 操作系统的常见命令，如：yum、cd、wget、vi 编辑器、软链接等。
-
-1. 在 Linux 上安装 Python 需要先安装前置依赖程序。登陆到 Linux 中，使用 yum 程序进行依赖程序安装，执行如下命令：
-
-```shell
-yum install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make zlib zlib-devel libffi-devel -y
-```
-
-2. Linux 版本下载地址 https://www.python.org/downloads/source/
-
-拖动网页到最下方，如下图
-
-![](images/367083479991265.png)
-
-找到 Gzipped source tarball 按钮，点击右键，选择复制链接
-
-![](images/588666147577020.png)
-
-3. 进入到 Linux 系统内，使用 `wget` 命令，粘贴复制的下载链接，执行下载：
-
-```shell
-cd ~
-wget https://www.python.org/ftp/python/3.10.4/Python-3.10.4.tgz
-```
-
-![](images/362045013502451.png)
-
-4. 下载完成后，即可看到已下载好的安装包文件：
-
-![](images/525044532407792.png)
-
-5. 解压安装包，执行：
-
-```shell
-tar -xvf Python-3.10.4.tgz
-```
-
-![](images/199804522501597.png)
-
-6. 切换目录到解压后的 Python 安装文件夹：
-
-```shell
-# 切换目录
-cd Python-3.10.4
-```
-
-- 配置
-
-```shell
-./configure --prefix=/usr/local/python3.10.4
-```
-
-- 编译
-
-```shell
-make && make install
-```
-
-- 编译完成后，可以配置软链接，方便快速使用 python：
-
-```shell
-# 删除系统自带的老版本(python2)的软链接
-rm -f /usr/bin/python
-
-# 创建软链接
-ln -s /usr/local/python3.10.4/bin/python3.10 /usr/bin/python
-```
-
-7. 创建软链接后，会破坏 yum 程序的正常使用（只能使用系统自带的 python2）。修改如下2个文件：
-
-```shell
-/usr/bin/yum
-/usr/libexec/urlgrabber-ext-down
-```
-
-使用 vi 编辑器，将这 2 个文件的第一行，从
-
-```shell
-#!/usr/bin/python
-```
-
-修改为：
-
-```shell
-#!/usr/bin/python2
-```
-
-8. 在 Linux 系统命令行窗口内，直接执行 `python` 并回车：
-
-![](images/31532851663524.png)
-
-如图，看到 Python 3.10.4 字样，即表明安装成功。
-
-### 环境变量配置
-
-程序和可执行文件可以在许多目录，而这些路径很可能不在操作系统提供可执行文件的搜索路径中。
-
-path(路径)存储在环境变量中，这是由操作系统维护的一个命名的字符串。这些变量包含可用的命令行解释器和其他程序的信息。
-
-- Unix 或 Windows 中路径变量为 `PATH`（UNIX区分大小写，Windows不区分大小写）。
-- 在 Mac OS 中，安装程序过程中改变了 python 的安装路径。如果你需要在其他目录引用 Python，你必须在 path 中添加 Python 目录。
-
-#### 在 Unix/Linux 设置环境变量
-
-- 在 csh shell: 输入以下命令后回车
-
-```shell
-setenv PATH "$PATH:/usr/local/bin/python"
-```
-
-- 在 bash shell (Linux): 输入以下命令后回车
-
-```shell
-export PATH="$PATH:/usr/local/bin/python"
-```
-
-- 在 sh 或者 ksh shell: 输入以下命令后回车
-
-```shell
-PATH="$PATH:/usr/local/bin/python" 
-```
-
-> Notes: `/usr/local/bin/python` 是 Python 的安装目录。
-
-#### 在 Windows 设置环境变量
-
-可以在命令提示框中(cmd)，环境变量中添加 Python 目录：
-
-```shell
-path=%path%;C:\Python 
-```
-
-> Notes: C:\Python 是 Python 的安装目录。
-
-也可以通过控制面板来设置。
-
-1. 右键点击"计算机"，然后点击"属性"
-2. 然后点击"高级系统设置"
-3. 选择"系统变量"窗口下面的"Path",双击即可！
-4. 然后在"Path"行，添加 python 安装路径即可。**ps：记住，路径直接用分号`;`隔开！**
-5. 最后设置成功以后，在 cmd 命令行，输入命令 `python`，就可以有相关显示。
-
-![](images/572105486593783.png)
-
-#### Python 重要的环境变量
-
-- `PYTHONPATH`：是 Python 搜索路径，默认 import 的模块都会从此路径中寻找。
-- `PYTHONSTARTUP`：Python 启动后，先寻找此环境变量，然后执行此变量指定的文件中的代码。
-- `PYTHONCASEOK`：加入此环境变量，就会使 Python 导入模块的时候不区分大小写.
-- `PYTHONHOME`：另一种模块搜索路径。它通常内嵌于的 `PYTHONSTARTUP` 或 `PYTHONPATH` 目录中，使得两个模块库更容易切换。
-
-### 运行 Python
-
-有三种方式可以运行 Python。
-
-#### 交互式解释器
-
-可以通过命令行窗口进入 Python，并在交互式解释器中开始编写 Python 代码。即在 Unix、DOS 或任何其他提供了命令行或者 shell 的系统进行 Python 编码工作。
-
-```shell
-$ python # Unix/Linux
-# 或者
-C:>python # Windows/DOS
-```
-
-Python 命令行参数：
-
-- `-d`：在解析时显示调试信息
-- `-O`：生成优化代码（`.pyo` 文件）
-- `-S`：启动时不引入查找 Python 路径的位置
-- `-V`：输出 Python 版本号
-- `-X`：从 1.6 版本之后基于内建的异常（仅仅用于字符串）已过时。
-- `-c cmd`：执行 Python 脚本，并将运行结果作为 cmd 字符串
-- `file`：在给定的 python 文件执行 python 脚本。
-
-输入 `exit()` 可以退出解释器
-
-```python
->>> exit()
-```
-
-或者在 python 解释器中，按热键 `ctrl + d` 也可以退出解释器。
-
-#### 命令行脚本
-
-在应用程序中通过引入解释器可以在命令行中执行 Python 脚本，如下所示：
-
-```shell
-$ python script.py # Unix/Linux
-# 或者
-C:>python script.py # Windows/DOS
-```
-
-> Notes: 在执行脚本时，请检查脚本是否有可执行权限。
-
-#### 集成开发环境（IDE：Integrated Development Environment）
-
-Python 最常见的开发环境是 PyCharm。此集成开发工具（IDE），是当下全球 Python 开发者，使用最频繁的工具软件
-
-#### Python AI 编程助手
-
-AI 是一个可靠的编程助手，可以提供实时的建议和解决方案，无论是快速修复错误、提升代码质量，或者查找关键文档和资源，AI 作为编程助手都能让事半功倍。
-
-推荐一款适配了 Viusal Studio，VS Code(本文使用)，JetBrains 系列(本文使用)以及Vim等多种编译器环境的插件 Fitten Code，Fitten Code 是由非十大模型驱动的 AI 编程助手，它可以自动生成代码，提升开发效率，帮助调试 Bug，另外还可以对话聊天，解决编程的问题。Fitten Code 免费且支持 80 多种语言：Python、C++、Javascript、Typescript、Java等。
-
-### 查看 Python 版本
-
-可以在命令窗口(Windows 使用 win+R 调出 cmd 运行框)使用以下命令查看当前使用的 Python 版本：
-
-```python
-python -V
-# 或
-python --version
-```
-
-> Note: 需要注意 `-V` 参数是<font color=red>**大写字母**</font>
-
 ## Python 基础语法
 
 ### 标识符
 
-标示符就是在程序中定义的**变量名**、**函数名**。在 Python 里，所有标识符可以包括英文字母、数字以及下划线(`_`)，但不能以数字开头，不能使用保留字符（关键字）。值得注意的是：Python 中的标识符是<font color=red>**区分大小写**</font>的。如果标识符中包含多个名词，Python 官方推荐使用蛇形命名法（即 `user_name`）。
+标示符就是在程序中定义的**变量名**、**函数名**。在 Python 里，所有标识符可以包括英文字母、数字以及下划线(`_`)，但不能以数字开头，不能使用保留字符（关键字）。值得注意的是：Python 中的标识符是<span style="color: red;">**区分大小写**</span>的。如果标识符中包含多个名词，Python 官方推荐使用蛇形命名法（即 `user_name`）。
 
 以下划线开头的标识符是有特殊意义的。
 
@@ -434,7 +153,7 @@ python --version
 变量名 = 变量值
 ```
 
-等号（`=`）用来给变量赋值。等号（`=`）运算符左边是变量名，等号（`=`）运算符右边是存储在变量中的值。<font color=red>**`=` 两边要留一个空格**</font>。示例如下：
+等号（`=`）用来给变量赋值。等号（`=`）运算符左边是变量名，等号（`=`）运算符右边是存储在变量中的值。<span style="color: red;">**`=` 两边要留一个空格**</span>。示例如下：
 
 ```python
 counter = 100   # 整型变量  
@@ -471,7 +190,7 @@ year = 2024
 print(year)
 ```
 
-<font color=red>**不同类型的变量也可以进行修改、重新赋值，与类型无关**</font>。
+<span style="color: red;">**不同类型的变量也可以进行修改、重新赋值，与类型无关**</span>。
 
 ```python
 money = 10
@@ -481,7 +200,7 @@ print(money)
 
 #### 常量
 
-程序在运行的过程中，值永远不会发生改变的变量称之为**常量**。Python 没有专门的常量类型，一般约定<font color=red>**使用大写表示常量**</font>。
+程序在运行的过程中，值永远不会发生改变的变量称之为**常量**。Python 没有专门的常量类型，一般约定<span style="color: red;">**使用大写表示常量**</span>。
 
 ### 保留字符（关键字）
 
@@ -512,9 +231,9 @@ Python 的标准库提供了一个 keyword 模块，可以输出当前版本的�
 
 ### 行和缩进
 
-Python 与其他语言最大的区别就是，**Python 的代码块不使用大括号 `{}` 来控制类，函数以及其他逻辑判断**。python 最具特色的就是<font color=red>**用缩进来写模块**</font>。
+Python 与其他语言最大的区别就是，**Python 的代码块不使用大括号 `{}` 来控制类，函数以及其他逻辑判断**。python 最具特色的就是<span style="color: red;">**用缩进来写模块**</span>。
 
-<font color=red>**缩进的空白数量是可变的，但是所有代码块语句必须包含相同的缩进空白数量，这个必须严格执行**</font>。以下实例缩进为四个空格:
+<span style="color: red;">**缩进的空白数量是可变的，但是所有代码块语句必须包含相同的缩进空白数量，这个必须严格执行**</span>。以下实例缩进为四个空格:
 
 ```python
 if True:
@@ -555,7 +274,7 @@ Python 的代码块中必须使用相同数目的行首缩进空格数，建议�
 
 ### 多行语句
 
-Python 语句中<font color=red>**一般以新行作为语句的结束符**</font>。但是也可以使用斜杠（`\`）将一行的语句分为多行显示，如下所示：
+Python 语句中<span style="color: red;">**一般以新行作为语句的结束符**</span>。但是也可以使用斜杠（`\`）将一行的语句分为多行显示，如下所示：
 
 ```python
 total = item_one + \
@@ -615,7 +334,7 @@ paragraph = """这是一个段落。
 
 **注释**：是指在程序代码中对程序代码进行解释说明的文字。
 
-注释不是程序，<font color=red>**不能被执行**</font>，其作用只是对程序代码进行解释说明，让别人可以看懂程序代码的作用，能够大大增强程序的可读性。
+注释不是程序，<span style="color: red;">**不能被执行**</span>，其作用只是对程序代码进行解释说明，让别人可以看懂程序代码的作用，能够大大增强程序的可读性。
 
 #### 单行注释
 
@@ -655,7 +374,7 @@ DocStrings (文档字符串)，是一个重要工具，用于解释文档程序�
 
 在函数体的第一行使用一对三个单引号 `'''` 或者一对三个双引号号 `"""` 来定义文档字符串。一般编写的**规范**是：**首行简述函数功能，第二行空行，第三行为函数的具体描述**。
 
-**输出文档说明的内容**：可以使用 `__doc__`（<font color=red>**注意双下划线**</font>）调用函数中的文档字符串属性。
+**输出文档说明的内容**：可以使用 `__doc__`（<span style="color: red;">**注意双下划线**</span>）调用函数中的文档字符串属性。
 
 ```python
 def add(num1, num2):
@@ -699,9 +418,9 @@ SyntaxError: Non-ASCII character '\xe4' in file test.py on line 2, but no encodi
 print( "你好，世界" )
 ```
 
-> Notes: <font color=red>**`# coding=utf-8` 的 `=` 号两边不要空格**</font>。另外，在第一种语法中，`-*-` 并没有实际意义，只是为了美观才加上去了，因此，第一种语法格式中也可以直接将前后的 `-*-` 去掉（即示例中第三种写法）。
+> Notes: <span style="color: red;">**`# coding=utf-8` 的 `=` 号两边不要空格**</span>。另外，在第一种语法中，`-*-` 并没有实际意义，只是为了美观才加上去了，因此，第一种语法格式中也可以直接将前后的 `-*-` 去掉（即示例中第三种写法）。
 
-<font color=red>**注意：Python3.X 源码文件默认使用 utf-8 编码，所以可以正常解析中文，无需指定 UTF-8 编码**</font>。但如果使用编辑器(IDE)，同时需要设置 py 文件存储的格式为 UTF-8，否则会出现类似以下错误信息：
+<span style="color: red;">**注意：Python3.X 源码文件默认使用 utf-8 编码，所以可以正常解析中文，无需指定 UTF-8 编码**</span>。但如果使用编辑器(IDE)，同时需要设置 py 文件存储的格式为 UTF-8，否则会出现类似以下错误信息：
 
 ```
 SyntaxError: (unicode error) ‘utf-8’ codec can’t decode byte 0xc4 in position 0:
@@ -721,7 +440,7 @@ invalid continuation byte
 
 函数之间或类的方法之间用空行分隔，表示一段新的代码的开始。类和函数入口之间也用一行空行分隔，以突出函数入口的开始。
 
-> Notes: <font color=red>**空行与代码缩进不同，空行并不是 Python 语法的一部分，却是程序代码的一部分。书写时不插入空行，Python 解释器运行也不会出错。但是空行的作用在于分隔两段不同功能或含义的代码，便于日后代码的维护或重构。**</font>
+> Notes: <span style="color: red;">**空行与代码缩进不同，空行并不是 Python 语法的一部分，却是程序代码的一部分。书写时不插入空行，Python 解释器运行也不会出错。但是空行的作用在于分隔两段不同功能或含义的代码，便于日后代码的维护或重构。**</span>
 
 ### 转义字符
 
@@ -940,10 +659,10 @@ else:
 
 > [!note] `and` 和 `or` 都具备“逻辑短路”的功能。*类似 Java 中的 `&&` 和 `||` *
 
-需要注意：<font color=red>**`and` 和 `or` 运算符返回值是某个参与计算的值本身！**</font>。具体处理规则如下：
+需要注意：<span style="color: red;">**`and` 和 `or` 运算符返回值是某个参与计算的值本身！**</span>。具体处理规则如下：
 
-1. `and` 运算符先对左边的表达式或者值进行处理，若参与运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。如果左边的结果是“假”，则直接返回<font color=red>**左边的值**</font>，否则返回<font color=red>**右边的值**</font>。
-2. `or` 运算符先对左边的表达式或者值进行处理，若参与运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。如果左边的结果是“真”，则直接返回<font color=red>**左边的值**</font>，否则返回<font color=red>**右边的值**</font>。
+1. `and` 运算符先对左边的表达式或者值进行处理，若参与运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。如果左边的结果是“假”，则直接返回<span style="color: red;">**左边的值**</span>，否则返回<span style="color: red;">**右边的值**</span>。
+2. `or` 运算符先对左边的表达式或者值进行处理，若参与运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。如果左边的结果是“真”，则直接返回<span style="color: red;">**左边的值**</span>，否则返回<span style="color: red;">**右边的值**</span>。
 
 ```python
 print(2 - 2 and True)  # 0
@@ -957,7 +676,7 @@ print(False or 8 / 2)  # 4.0
 print(2 - 2 or 3 * 4)  # 12
 ```
 
-<font color=red>**`not` 运算符返回值一定是布尔值！**</font>。若参与 `not` 运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。
+<span style="color: red;">**`not` 运算符返回值一定是布尔值！**</span>。若参与 `not` 运算的值不是布尔值，那 Python 会自动转为布尔值，然后再进行逻辑操作。
 
 ```python
 print(not 0)  # True

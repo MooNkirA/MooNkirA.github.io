@@ -1,6 +1,6 @@
-## 常用DOS命令
+## DOS 命令
 
-- d: 回车	盘符切换
+- `d:` 回车	盘符切换
 - dir(directory):列出当前目录下的文件以及文件夹
 - cd (change directory)改变指定目录(进入指定目录)
     - 进入	cd 目录；cd 多级目录\\多级目录2
@@ -45,9 +45,9 @@ taskkill /F /PID "进程PID号"
 taskkill -f -t -im "进程名称"
 ```
 
-### 自用的系统脚本
+## 自用的系统脚本
 
-#### 内外网IP切换（适用win10系统）.20171122
+### 内外网IP切换（适用win10系统）20171122
 
 ```bash
 @echo off
@@ -104,7 +104,7 @@ goto 3
 exit
 ```
 
-#### 内外网IP切换（适用win7系统）
+### 内外网IP切换（适用win7系统）
 
 ```bash
 @echo off
@@ -160,7 +160,7 @@ goto 3
 exit
 ```
 
-#### 一键删除电脑中的空文件夹脚本（未测试！！）
+### 一键删除电脑中的空文件夹脚本（未测试！！）
 
 在任意目录中创建“xxx.bat”的批处理文件，复制以下脚本代码再双击运行即可。
 
@@ -192,7 +192,7 @@ rd "%%a"
 pause
 ```
 
-#### 启用/禁用网络本地连接
+### 启用/禁用网络本地连接
 
 启用/禁用网络连接脚本，**注意：需要使用管理员身份运行脚本**。
 
@@ -258,6 +258,106 @@ goto MENU
 ### 批处理(bat)脚本命令汇总（待整理）
 
 > 参考：[详细的批处理文件bat脚本命令](https://blog.csdn.net/ankang654321/article/details/103644637)
+
+### PowerShell 脚本
+
+#### 禁止 Windows 自动锁屏
+
+脚本的核心原理：Windows 自动锁屏的判定依据是「系统空闲时间」（无键盘 / 鼠标输入），代码通过**每隔指定时间发送 ScrollLock 按键事件**（两次发送是切换 + 恢复 ScrollLock 状态，本质是产生用户输入活动），让系统判定 “非空闲”，从而阻止自动锁屏。
+
+```powershell
+<#
+.SYNOPSIS
+阻止Windows自动锁屏的PowerShell脚本
+.DESCRIPTION
+通过周期性发送键盘按键/鼠标移动事件，模拟用户活动，避免系统因空闲自动锁屏
+.INPUTS
+无
+.OUTPUTS
+控制台日志输出
+.NOTES
+1. 运行时请勿关闭控制台窗口
+2. 按 Ctrl+C 可优雅退出脚本
+3. 无需安装额外模块（仅依赖系统自带的.NET程序集）
+#>
+
+# 配置项：可根据需求修改（建议设为小于系统自动锁屏时间的值）
+$INTERVAL_SECONDS = 180  # 3分钟（若系统锁屏时间是5分钟，建议设为240秒）
+$KEY_TO_SEND = '{SCROLLLOCK}'  # 发送的按键（ScrollLock不影响正常操作）
+$ENABLE_MOUSE_MOVE = $true     # 可选：补充鼠标移动（部分系统对键盘按键检测不敏感）
+
+# 1. 加载必要的.NET程序集（带错误处理）
+try {
+    Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop
+    Add-Type -AssemblyName System.Drawing -ErrorAction Stop  # 鼠标移动需依赖
+    Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 程序集加载成功" -ForegroundColor Green
+}
+catch {
+    Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 加载程序集失败：$_" -ForegroundColor Red
+    exit 1
+}
+
+# 2. 注册Ctrl+C退出事件（优雅终止循环）
+$exitEvent = $false
+[Console]::TreatControlCAsInput = $true
+Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 脚本启动（间隔${INTERVAL_SECONDS}秒发送活动信号）" -ForegroundColor Cyan
+Write-Host "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 按 Ctrl+C 可退出脚本`n" -ForegroundColor Cyan
+
+# 3. 主循环：周期性发送用户活动信号
+while (-not $exitEvent) {
+    try {
+        # 检查是否按下Ctrl+C
+        if ([Console]::KeyAvailable) {
+            $key = [Console]::ReadKey($true)
+            if ($key.Modifiers -eq 'Control' -and $key.Key -eq 'C') {
+                $exitEvent = $true
+                continue
+            }
+        }
+
+        # 输出当前时间和操作日志
+        $currentTime = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+        Write-Host "[$currentTime] 发送活动信号（按键：$KEY_TO_SEND）" -ForegroundColor White
+
+        # 发送键盘按键事件（两次发送恢复ScrollLock初始状态）
+        [System.Windows.Forms.SendKeys]::SendWait($KEY_TO_SEND)
+        Start-Sleep -Milliseconds 50  # 避免按键发送过快导致失效
+        [System.Windows.Forms.SendKeys]::SendWait($KEY_TO_SEND)
+
+        # 可选：补充鼠标移动（更稳妥的空闲检测规避）
+        if ($ENABLE_MOUSE_MOVE) {
+            $curPos = [System.Windows.Forms.Cursor]::Position
+            [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point($curPos.X + 1, $curPos.Y)
+            Start-Sleep -Milliseconds 50
+            [System.Windows.Forms.Cursor]::Position = $curPos  # 移回原位置，无视觉干扰
+            Write-Host "[$currentTime] 补充鼠标微动（无视觉干扰）" -ForegroundColor Gray
+        }
+
+    }
+    catch {
+        # 捕获并输出异常详情（含堆栈）
+        $errorTime = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+        Write-Host "[$errorTime] 执行异常：$($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[$errorTime] 异常堆栈：$($_.ScriptStackTrace)" -ForegroundColor DarkRed
+    }
+
+    # 周期性休眠（若未触发退出）
+    if (-not $exitEvent) {
+        Start-Sleep -Seconds $INTERVAL_SECONDS
+    }
+}
+
+# 4. 退出清理
+Write-Host "`n[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 脚本已优雅退出" -ForegroundColor Green
+```
+
+使用说明：
+
+- 运行方式：以普通用户权限运行即可（无需管理员），直接在 PowerShell 中执行脚本；
+- 调整间隔：`$INTERVAL_SECONDS` 建议设为**小于系统自动锁屏时间**（比如系统 5 分钟锁屏，设为 240 秒）；
+- 兼容性：支持 Windows 10/11 所有 PowerShell 版本（5.1+/7.x）；
+- 退出方式：按 `Ctrl+C` 即可优雅退出，无需强制关闭窗口。
+
 
 ## 系统运行命令
 
