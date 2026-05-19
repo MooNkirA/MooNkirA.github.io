@@ -358,7 +358,6 @@ Write-Host "`n[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 脚本已优雅退出"
 - 兼容性：支持 Windows 10/11 所有 PowerShell 版本（5.1+/7.x）；
 - 退出方式：按 `Ctrl+C` 即可优雅退出，无需强制关闭窗口。
 
-
 ## 系统运行命令
 
 > 以下均为运行面板(Win+R)中输入的命令

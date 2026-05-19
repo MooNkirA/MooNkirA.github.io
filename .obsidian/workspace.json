@@ -43,13 +43,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "其他/software/Common-Software.md",
+                "file": "其他/software/Visual-Studio-Code.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Common-Software"
+              "title": "Visual-Studio-Code"
             }
           },
           {
@@ -280,12 +280,13 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "0b18f97d4457c32a",
+  "active": "ed3ca1b88668214c",
   "lastOpenFiles": [
+    "其他/software/Common-Software.md",
+    "Python/Python-usage.md",
     "其他/software/Windows.md",
     "Python/Python-基础.md",
     "README.md",
-    "Python/Python-usage.md",
     "AI/Claude-Code.md",
     "Python/Python-function.md",
     "Python/Python-namespace-scope.md",
@@ -297,7 +298,6 @@
     "AI/Vibe-Coding.md",
     "Python/Python-classes.md",
     "attachments/templates/font-css.md",
-    "其他/software/Common-Software.md",
     "attachments/templates/font-red.md",
     "attachments/templates/Insert-Callouts.md",
     "test.js",

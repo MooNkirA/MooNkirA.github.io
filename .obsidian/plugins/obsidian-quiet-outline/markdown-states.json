@@ -153,12 +153,12 @@
     "scroll": 421.0515402843602,
     "cursor": {
       "from": {
-        "line": 420,
-        "ch": 0
+        "line": 427,
+        "ch": 11
       },
       "to": {
-        "line": 420,
-        "ch": 0
+        "line": 427,
+        "ch": 11
       }
     },
     "expandedKeys": [
@@ -459,15 +459,15 @@
     ]
   },
   "其他/software/Windows.md": {
-    "scroll": 287.65252976190476,
+    "scroll": 339.1979166666667,
     "cursor": {
       "from": {
-        "line": 265,
-        "ch": 141
+        "line": 355,
+        "ch": 47
       },
       "to": {
-        "line": 265,
-        "ch": 141
+        "line": 355,
+        "ch": 47
       }
     },
     "expandedKeys": [
@@ -1134,6 +1134,36 @@
       "item-4-8",
       "item-2-8",
       "item-2-4"
+    ]
+  },
+  "其他/software/Visual-Studio-Code.md": {
+    "scroll": 53.15217391304348,
+    "cursor": {
+      "from": {
+        "line": 71,
+        "ch": 0
+      },
+      "to": {
+        "line": 71,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-3",
+      "item-3-7",
+      "item-2-16",
+      "item-3-19",
+      "item-2-24",
+      "item-2-26",
+      "item-3-27",
+      "item-3-32",
+      "item-3-34",
+      "item-3-38",
+      "item-3-43",
+      "item-3-53",
+      "item-4-57",
+      "item-3-4"
     ]
   }
 }

@@ -19,17 +19,65 @@ https://az764295.vo.msecnd.net/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/V
 https://vscode.cdn.azure.cn/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/VSCode-win32-x64-1.72.0.zip
 ```
 
-### VSCode 插件目录
-
-```
-C:\Users\{用户名}\.vscode\extensions
-```
-
 ### [待整理] VSCode 修改扩展和用户文件夹目录位置(Windows)
 
 > TODO: 参考 https://blog.csdn.net/weixin_53510183/article/details/126906182
 
 ## 常用配置
+
+### VSCode 插件和配置目录
+
+Windows 系统，VSCode 的扩展和用户数据都是默认在 C 盘下的。
+
+| 目录类型                  | 默认路径（Windows）                      | 作用                           |
+| ------------------------- | ---------------------------------------- | ------------------------- |
+| **插件目录 (extensions)** | `C:\Users\<用户名>\.vscode\extensions`   | 已安装插件、插件缓存           |
+| **全局配置目录 (Code)**   | `C:\Users\<用户名>\AppData\Roaming\Code` | 用户设置、快捷键、工作区、日志 |
+| **用户数据目录**          | 同上（Code 目录）                        | 包含所有用户相关数据           |
+
+> [!tip] 这里建议迁移整个 `.vscode` 目录，更方便保管。
+
+#### 符号链接法修改扩展和配置位置（Windows）
+
+通过创建目录符号链接将默认路径映射到新位置，**适用于所有操作系统和所有 VS Code 目录**，效果彻底且对使用无影响。具体操作步骤如下：
+
+1. 完全关闭 VS Code，结束所有 Code 进程（`Ctrl+Shift+Esc` 打开【任务管理器】）。否则文件占用会导致剪切 / 链接失败。
+2. 在目标盘（如 D 盘）创建新插件和配置的目录。如 `D:\Apps\VSCode\.vscode\` 和 `D:\Apps\VSCode\Code\`。**路径不要中文、空格、特殊符号**，建议全英文 / 数字。
+3. 迁移原目录。剪切以下默认目录到新位置：
+    - `C:\Users\<用户名>\.vscode` -> 移动到 `D:\Apps\VSCode\.vscode`
+    - `C:\Users\<用户名>\AppData\Roaming\Code` -> 移动到 `D:\Apps\VSCode\Code`
+4. 确认原位置目录已删除（移动后自动删除）
+5. 打开终端（cmd 或者 wt），**必须管理员权限（Windows）**，普通用户无法创建系统级符号链接。运行以下命令。*注：win 11 只能打开Windows 终端，需要设置使用 cmd 命令行。*
+
+```cmd
+mklink /D "C:\Users\<你的用户名>\.vscode" "D:\Apps\VSCode\.vscode"
+mklink /D "C:\Users\<你的用户名>\AppData\Roaming\Code" "D:\Apps\VSCode\Code"
+
+:: 使用系统变量的方式（效果同上）
+mklink /D "%USERPROFILE%\.vscode" "D:\Apps\VSCode\.vscode"
+mklink /D "%USERPROFILE%\AppData\Roaming\Code" "D:\Apps\VSCode\Code"
+```
+
+> [!note] 比较链接 `.vscode` 与 `.vscode\extensions` 的区别：
+> 
+> - **直接链接整个 `.vscode`（推荐）**
+>     - ✅ 一条命令搞定，不用管 `extensions`。
+>     - ✅ 后续 VS Code 若在 `.vscode` 下新增子目录（如缓存），自动落到其他位置。
+>     - ✅ 更干净，原目录结构完全镜像。
+> - **只链接 `.vscode\extensions` **
+>     - 同样实现需求，但多一步操作。
+>     - 未来若 `.vscode` 有其他内容，仍留在 C 盘。
+
+#### 恢复默认配置的位置
+
+1. 删除符号链接，此操作不会删实际文件。
+
+```cmd
+rmdir "%USERPROFILE%\.vscode"
+rmdir "%USERPROFILE%\AppData\Roaming\Code"
+```
+
+2. 将 `.vscode` 和 `Code` 目录从其他位置移回 C 盘默认的位置即可。
 
 ### 用户设置和工作区设置的区别
 
