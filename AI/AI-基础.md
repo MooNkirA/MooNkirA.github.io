@@ -1009,3 +1009,9 @@ BaaS（Backend as a Service 后端即服务）是提供现成后端功能的云�
 - Supabase：开源的 Firebase 替代品，提供数据库、用户认证、文件存储等功能。
 - Firebase：Google 的 BaaS 平台，功能全面，支持多种平台应用。
 - PlanetScale：托管的 MySQL 服务，专注于数据库服务，性能稳定。
+
+## AI 学习资源
+
+- [微软官方 AI 入门课程（microsoft/generative-ai-for-beginners）](https://github.com/microsoft/generative-ai-for-beginners)：21 Lessons, Get Started Building with Generative AI.
+- [AI 学习完整路线图（armankhondker/awesome-ai-ml-resources）](https://github.com/armankhondker/awesome-ai-ml-resources)：This repository contains free resources and a roadmap to learn Machine Learning and Artificial Intelligence in 2025.
+- [生成式 AI 完整指南（aishwaryanr/awesome-generative-ai-guide）](https://github.com/aishwaryanr/awesome-generative-ai-guide)：A one stop repository for generative AI research updates, interview resources, notebooks and much more!

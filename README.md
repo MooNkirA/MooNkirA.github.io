@@ -9,10 +9,6 @@
 - [[AI-编程工具|AI 编程工具]]
 - [[Claude-Code|Claude Code]]
 
-### AI 相关考试
-
-[[人工智能训练师考试笔记]]
-
 ## Java 核心技术
 
 ### ☕ JavaSE

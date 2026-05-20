@@ -260,20 +260,23 @@
     ]
   },
   "README.md": {
-    "scroll": 434.5592417061611,
+    "scroll": 0,
     "cursor": {
       "from": {
-        "line": 451,
-        "ch": 12
+        "line": 9,
+        "ch": 29
       },
       "to": {
-        "line": 451,
-        "ch": 12
+        "line": 9,
+        "ch": 29
       }
     },
     "expandedKeys": [
-      "item-2-16",
-      "item-2-3"
+      "item-2-15",
+      "item-2-2",
+      "item-2-42",
+      "item-3-50",
+      "item-2-0"
     ]
   },
   "项目资料/国际物流云商系统/README.md": {
@@ -487,15 +490,15 @@
     ]
   },
   "AI/Claude-Code.md": {
-    "scroll": 283.4002976190476,
+    "scroll": 282.6815476190476,
     "cursor": {
       "from": {
-        "line": 260,
-        "ch": 27
+        "line": 289,
+        "ch": 29
       },
       "to": {
-        "line": 260,
-        "ch": 27
+        "line": 289,
+        "ch": 29
       }
     },
     "expandedKeys": [
@@ -505,7 +508,6 @@
       "item-2-42",
       "item-2-46",
       "item-2-9",
-      "item-2-1",
       "item-2-13",
       "item-3-36",
       "item-2-35",
@@ -535,25 +537,25 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 119.81575520833333,
+    "scroll": 995.997037914692,
     "cursor": {
       "from": {
-        "line": 127,
-        "ch": 9
+        "line": 1017,
+        "ch": 0
       },
       "to": {
-        "line": 127,
-        "ch": 9
+        "line": 1017,
+        "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-0",
       "item-2-57",
       "item-2-61",
       "item-2-71",
       "item-2-80",
       "item-2-20",
-      "item-2-12"
+      "item-2-12",
+      "item-2-0"
     ]
   },
   "Java/Java基础-JDK.md": {
@@ -1137,15 +1139,15 @@
     ]
   },
   "其他/software/Visual-Studio-Code.md": {
-    "scroll": 53.15217391304348,
+    "scroll": 37.75,
     "cursor": {
       "from": {
-        "line": 71,
-        "ch": 0
+        "line": 62,
+        "ch": 28
       },
       "to": {
-        "line": 71,
-        "ch": 0
+        "line": 62,
+        "ch": 28
       }
     },
     "expandedKeys": [
@@ -1164,6 +1166,28 @@
       "item-3-53",
       "item-4-57",
       "item-3-4"
+    ]
+  },
+  "AI/人工智能训练师/人工智能训练师考试笔记.md": {
+    "scroll": 25.396484375,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-6",
+      "item-2-12",
+      "item-3-13",
+      "item-3-18",
+      "item-3-22",
+      "item-3-26"
     ]
   }
 }

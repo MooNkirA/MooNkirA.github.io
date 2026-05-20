@@ -23,6 +23,21 @@
             }
           },
           {
+            "id": "fad7553e7d9f93c5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AI/AI-基础.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "AI-基础"
+            }
+          },
+          {
             "id": "c4b87f2a6a93d32e",
             "type": "leaf",
             "state": {
@@ -35,21 +50,6 @@
               },
               "icon": "lucide-file",
               "title": "Python-function"
-            }
-          },
-          {
-            "id": "ed3ca1b88668214c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "其他/software/Visual-Studio-Code.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Visual-Studio-Code"
             }
           },
           {
@@ -83,6 +83,21 @@
             }
           },
           {
+            "id": "bd61cb8d71f30e7a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "其他/software/Visual-Studio-Code.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Visual-Studio-Code"
+            }
+          },
+          {
             "id": "7ded38f25a4f9c91",
             "type": "leaf",
             "state": {
@@ -98,7 +113,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -280,14 +295,17 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "ed3ca1b88668214c",
+  "active": "bd61cb8d71f30e7a",
   "lastOpenFiles": [
-    "其他/software/Common-Software.md",
+    "AI/Claude-Code.md",
+    "README.md",
+    "AI/AI-基础.md",
     "Python/Python-usage.md",
+    "AI/人工智能训练师/人工智能训练师考试笔记.md",
+    "其他/software/Visual-Studio-Code.md",
+    "其他/software/Common-Software.md",
     "其他/software/Windows.md",
     "Python/Python-基础.md",
-    "README.md",
-    "AI/Claude-Code.md",
     "Python/Python-function.md",
     "Python/Python-namespace-scope.md",
     "AI/Agent-Skills.md",
@@ -302,12 +320,10 @@
     "attachments/templates/Insert-Callouts.md",
     "test.js",
     "attachments/templates/font-underline.md",
-    "AI/AI-基础.md",
     "项目资料/学成在线/Day02-CMS前端开发.md",
     "项目资料/好客租房/Day01-ES6新特性以及ReactJS入门.md",
     "Frontend/CSS/CSS-基础.md",
     "Frontend/HTML/HTML-基础语法.md",
-    "AI/AI-编程工具.md",
     "AI/images/20260508123636125.jpg",
     "AI/images/20260508123631351.jpg",
     "AI/images/20260508121332543.jpg",
@@ -318,7 +334,6 @@
     "AI/images/20260508101553469.jpg",
     "AI/images/20260508101139654.jpg",
     "AI/images/20260508091823184.jpg",
-    "Java/Java基础-JDK.md",
     "AI/images",
     "CLAUDE.md.tmp.17628.1777895976114",
     "copilot/copilot-conversations",
