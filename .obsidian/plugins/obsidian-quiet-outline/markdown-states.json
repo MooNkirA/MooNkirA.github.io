@@ -462,31 +462,33 @@
     ]
   },
   "其他/software/Windows.md": {
-    "scroll": 339.1979166666667,
+    "scroll": 26.718009478672986,
     "cursor": {
       "from": {
-        "line": 355,
-        "ch": 47
+        "line": 45,
+        "ch": 11
       },
       "to": {
-        "line": 355,
-        "ch": 47
+        "line": 45,
+        "ch": 11
       }
     },
     "expandedKeys": [
       "item-2-0",
-      "item-3-12",
-      "item-3-17",
-      "item-3-21",
+      "item-3-3",
+      "item-2-9",
+      "item-3-15",
+      "item-2-17",
+      "item-3-19",
+      "item-2-21",
       "item-3-24",
-      "item-3-38",
-      "item-2-55",
-      "item-2-60",
-      "item-2-74",
-      "item-3-2",
-      "item-2-2",
-      "item-2-10",
-      "item-3-8"
+      "item-3-28",
+      "item-3-31",
+      "item-3-45",
+      "item-2-57",
+      "item-2-62",
+      "item-2-67",
+      "item-2-81"
     ]
   },
   "AI/Claude-Code.md": {
@@ -1139,15 +1141,15 @@
     ]
   },
   "其他/software/Visual-Studio-Code.md": {
-    "scroll": 37.75,
+    "scroll": 60.427083333333336,
     "cursor": {
       "from": {
-        "line": 62,
-        "ch": 28
+        "line": 65,
+        "ch": 24
       },
       "to": {
-        "line": 62,
-        "ch": 28
+        "line": 65,
+        "ch": 24
       }
     },
     "expandedKeys": [
