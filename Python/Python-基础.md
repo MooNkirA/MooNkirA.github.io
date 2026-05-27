@@ -21,8 +21,8 @@ Python 是一个高层次的结合了解释性、编译性、互动性和面向�
 
 ### 官方资源
 
-- 官网：https://www.python.org/
-- Python 官方文档：https://docs.python.org/zh-cn/3/
+- 官网 https://www.python.org/
+- Python 官方文档 https://docs.python.org/zh-cn/3/
 
 ### Python 的版本
 

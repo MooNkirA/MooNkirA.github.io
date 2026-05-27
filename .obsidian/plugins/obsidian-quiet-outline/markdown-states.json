@@ -260,23 +260,21 @@
     ]
   },
   "README.md": {
-    "scroll": 0,
+    "scroll": 430.55983412322274,
     "cursor": {
       "from": {
-        "line": 9,
-        "ch": 29
+        "line": 452,
+        "ch": 24
       },
       "to": {
-        "line": 9,
-        "ch": 29
+        "line": 452,
+        "ch": 24
       }
     },
     "expandedKeys": [
-      "item-2-15",
       "item-2-2",
-      "item-2-42",
-      "item-3-50",
-      "item-2-0"
+      "item-2-61",
+      "item-2-42"
     ]
   },
   "项目资料/国际物流云商系统/README.md": {
@@ -623,23 +621,25 @@
     ]
   },
   "AI/AI-编程工具.md": {
-    "scroll": 113.46354166666667,
+    "scroll": 22.19575386829795,
     "cursor": {
       "from": {
-        "line": 112,
-        "ch": 0
+        "line": 31,
+        "ch": 15
       },
       "to": {
-        "line": 112,
-        "ch": 0
+        "line": 31,
+        "ch": 15
       }
     },
     "expandedKeys": [
-      "item-2-0",
-      "item-2-4",
-      "item-3-8",
-      "item-3-16",
-      "item-2-14"
+      "item-2-15",
+      "item-3-19",
+      "item-3-27",
+      "item-2-25",
+      "item-2-1",
+      "item-3-2",
+      "item-5-5"
     ]
   },
   "AI/VibeCoding.md": {
@@ -703,33 +703,19 @@
     ]
   },
   "Python/Python-基础.md": {
-    "scroll": 0,
+    "scroll": 2.8333333333333335,
     "cursor": {
       "from": {
-        "line": 6,
+        "line": 25,
         "ch": 0
       },
       "to": {
-        "line": 6,
+        "line": 25,
         "ch": 0
       }
     },
     "expandedKeys": [
-      "item-3-8",
-      "item-3-48",
-      "item-4-53",
-      "item-3-55",
-      "item-3-77",
-      "item-3-83",
-      "item-4-86",
-      "item-3-90",
-      "item-3-97",
-      "item-2-76",
-      "item-2-57",
-      "item-3-59",
-      "item-2-0",
-      "item-2-38",
-      "item-2-14"
+      "item-2-0"
     ]
   },
   "attachments/templates/font-red.md": {
@@ -1171,7 +1157,7 @@
     ]
   },
   "AI/人工智能训练师/人工智能训练师考试笔记.md": {
-    "scroll": 25.396484375,
+    "scroll": 0,
     "cursor": {
       "from": {
         "line": 0,
@@ -1191,5 +1177,19 @@
       "item-3-22",
       "item-3-26"
     ]
+  },
+  "Python/Python-Guide.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": []
   }
 }

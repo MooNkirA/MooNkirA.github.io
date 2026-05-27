@@ -447,8 +447,10 @@
 
 ## 🐍 Python
 
+> [Python 官方文档](https://docs.python.org/zh-cn/3/)
+
 - [[Python-usage|Python 安装和使用]]
-- [[Python-基础|Python 基础]]
+- [[Python-基础|Python 基础语法]]
 - [[Python-data-model|Python 数据模型]]
 - [[Python-controlflow|Python 控制流]]
 - [[Python-function|Python 函数]]
