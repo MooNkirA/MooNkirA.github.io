@@ -347,7 +347,7 @@ void sayHello(String str) {
 - **值传递**：指的是在方法调用时，方法接收的是实参值的拷贝，会创建副本，传递后就互不相关了。
 - **引用传递**：指的是在方法调用时，方法接收的直接是实参所引用的对象在堆中的地址，不会创建副本，即传递前和传递后都指向同一个引用（也就是同一个内存空间）。对形参的修改将影响到实参。
 
-很多程序设计语言（比如 C++、Pascal）提供了两种参数传递的方式，<font color=red>**值得注意的是，在 Java 中只有值传递**</font>。
+很多程序设计语言（比如 C++、Pascal）提供了两种参数传递的方式，<span style="color: red;">**值得注意的是，在 Java 中只有值传递**</span>。
 
 #### Java 只有通过值传递参数
 
@@ -355,7 +355,7 @@ void sayHello(String str) {
 
 > Notes: 程序设计语言中有关将参数传递给方法（或函数）的一些专业术语。**按值调用(call by value)表示方法接收的是调用者提供的值，而按引用调用（call by reference)表示方法接收的是调用者提供的变量地址。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。**它用来描述各种程序设计语言（不只是Java)中方法参数传递方式。
 
-Java 程序设计语言总是采用按值调用。即：<font color=red>**方法得到的是所有参数值的一个拷贝，方法不能修改传递给它的任何参数变量的内容**</font>。
+Java 程序设计语言总是采用按值调用。即：<span style="color: red;">**方法得到的是所有参数值的一个拷贝，方法不能修改传递给它的任何参数变量的内容**</span>。
 
 案例证明：
 
@@ -399,7 +399,7 @@ xiaoLi:小李
 
 方法重载(overloading) 是在一个类里面，定义方法名字相同，而参数不同、返回类型可以相同也可以不同的相关方法（与返回值类型无关）。每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。**最常见就是构造器的重载**。
 
-<font color=purple>**重载(Overload)是一个类中多态性的一种表现**</font>。方法重载的规则如下：
+<span style="color: purple;">**重载(Overload)是一个类中多态性的一种表现**</span>。方法重载的规则如下：
 
 - 被重载的方法必须改变参数列表(参数个数、类型、顺序，其中一项不相同即可)
 - 被重载的方法可以改变返回类型
@@ -407,7 +407,7 @@ xiaoLi:小李
 - 被重载的方法可以声明新的或更广的检查异常
 - 方法能够在同一个类中或者在一个子类中被重载
 
-> Notes: <font color=red>**不能以返回值类型、访问权限、抛出的异常（数量）等不同作为重载函数的区分标准**</font>
+> Notes: <span style="color: red;">**不能以返回值类型、访问权限、抛出的异常（数量）等不同作为重载函数的区分标准**</span>
 
 ### 方法的特点总结
 
@@ -479,7 +479,7 @@ public class 子类名 extends 父类名{
 
 ### 继承的类型
 
-Java 只<font color=red>**支持单继承，不支持多继承**</font>(即 `extends` 后面不能跟多个父类)。但支持多层继承，例如：
+Java 只<span style="color: red;">**支持单继承，不支持多继承**</span>(即 `extends` 后面不能跟多个父类)。但支持多层继承，例如：
 
 ```java
 Foo extends Bar;
@@ -491,12 +491,12 @@ Bar extends SuperBar;
 
 ### 继承的特点
 
-1. <font color=red>子类拥有(除构造方法以外)父类的所有成员(成员变量和成员方法)</font>
-2. <font color=red>子类能够直接访问父类非 `private` 修饰的成员</font>
+1. <span style="color: red;">子类拥有(除构造方法以外)父类的所有成员(成员变量和成员方法)</span>
+2. <span style="color: red;">子类能够直接访问父类非 `private` 修饰的成员</span>
 3. 子类可以在父类的基础上添加特有属性
 4. 子类可以对父类的方法进行功能扩展(方法重写)
 5. 子类可以在父类的基础上添加特有的方法
-6. 构造方法不能被继承，但是子类可以<font color=red>通过 `super` 关键字间接调用父类的构造方法</font>。实际中一般成员变量都用 `private` 修饰，父类的成员变量要提供相应的 getXxx/setXxx 方法让子类调用来访问
+6. 构造方法不能被继承，但是子类可以<span style="color: red;">通过 `super` 关键字间接调用父类的构造方法</span>。实际中一般成员变量都用 `private` 修饰，父类的成员变量要提供相应的 getXxx/setXxx 方法让子类调用来访问
 
 ### 继承的注意事项
 
@@ -520,7 +520,7 @@ Bar extends SuperBar;
 #### 方法重写的注意事项
 
 - 子类重写父类的方法后，通过子类对象调用的是重写后的方法。
-- <font color=red>子类在重写父类方法时，访问权限修饰符要大于或等于(`>=`)父类的方法访问权限修饰符</font>。(`private < 默认 < protected < public`)。一般重写方法都修饰符一致即可。
+- <span style="color: red;">子类在重写父类方法时，访问权限修饰符要大于或等于(`>=`)父类的方法访问权限修饰符</span>。(`private < 默认 < protected < public`)。一般重写方法都修饰符一致即可。
 - 如果父类的方法用 `private` 修饰，则不能被子类重写，即使子类有声明一样的方法，也不属于重写，属于定义了一个同名的新方法
 - 当需要扩展父类方法(父类方法功能不能满足需求时)，就可以使用方法重写。最常用的用法是，在重写的方法中用 `super.xxx()`，这样既保留父类的功能，双达到增强功能的效果。
 
@@ -741,7 +741,7 @@ public class Outer{
 
 **匿名内部类**是指，通过继承一个父类或者实现一个接口的方式，直接定义并创建实例对象的类。
 
-<font color=red>**匿名内部类只继承一个父类或者实现一个接口，同时它也是没有 class 关键字，这是因为匿名内部类是直接使用 `new` 关键字生成一个对象的引用**</font>。可以理解为将定义子类与创建子类对象两个步骤由一个格式一次完成，两个步骤是连在一起的、即时的。
+<span style="color: red;">**匿名内部类只继承一个父类或者实现一个接口，同时它也是没有 class 关键字，这是因为匿名内部类是直接使用 `new` 关键字生成一个对象的引用**</span>。可以理解为将定义子类与创建子类对象两个步骤由一个格式一次完成，两个步骤是连在一起的、即时的。
 
 > Tips: 匿名内部类是局部内部类的一种。
 
@@ -840,7 +840,7 @@ public static void enter(Sport s) {
 
 > Tips: 
 >
-> - <font color=red>**子类继承抽象类的话，就必须要重写抽象类中的抽象方法**</font>
+> - <span style="color: red;">**子类继承抽象类的话，就必须要重写抽象类中的抽象方法**</span>
 > - 什么情况下要定义抽象类和抽象方法？当某种功能(方法)无法确定的时候，子类都需要重写该方法的时候，就将方法定义成抽象方法。
 
 ### 抽象类的特点
@@ -854,7 +854,7 @@ public static void enter(Sport s) {
 - 抽象类中可以有构造方法，意义是让子类可以能过 `super` 调用父类的构造方法给父类的成员变量赋值
 - 一个抽象类不作为父类出现，没有任何意义。
 - 抽象类中可以定义普通方法(非抽象方法)。
-- 抽象关键字 `abstract` 不能和 `private` 关键字一起使用。<font color=red>因为一般继承了抽象类的子类，要求要重写全部的抽象方法，如果用 `private` 关键字修饰了，就不能重写该方法，就相互矛盾。</font>
+- 抽象关键字 `abstract` 不能和 `private` 关键字一起使用。<span style="color: red;">因为一般继承了抽象类的子类，要求要重写全部的抽象方法，如果用 `private` 关键字修饰了，就不能重写该方法，就相互矛盾。</span>
 - 抽象类可以继承普通类。
 - 抽象类可以定义静态的 `main` 方法。
 
@@ -904,7 +904,7 @@ Java 中使用变量，遵循“就近原则”：局部 -> 本类成员 -> 父�
 
 1. **必须是在构造方法中使用，并且在第一行有效语句**。不能在非构造方法中通过 `this()`/`super()` 调用本类/父类构造方法。
 2. `this` 只会在本类找对应构造方法，不会去父类查找，因为父类的构造方法是不能被继承的。
-4. <font color=red>**`this()` 和 `super()` 不能同时出现在构造方法中**</font>。
+4. <span style="color: red;">**`this()` 和 `super()` 不能同时出现在构造方法中**</span>。
 
 ### this 与 super 的区别
 
@@ -923,7 +923,7 @@ Java 中使用变量，遵循“就近原则”：局部 -> 本类成员 -> 父�
 3. 通过 `super` 调用父类的构造方法时，该语句必须是第一行有效语句，必须在构造方法中使用
 4. 不能在子类的非构造方法中通过 `super` 调用父类的构造方法
 
-<font color=red>**总结：`this` 用于调用本类的构造方法，`super` 用于调用父类的构造方法**</font>
+<span style="color: red;">**总结：`this` 用于调用本类的构造方法，`super` 用于调用父类的构造方法**</span>
 
 > Tips: 
 >
@@ -1204,7 +1204,7 @@ public interface EventListener {
 
 ### Java 中实现多态的机制
 
-实现多态的机制就是，<font color=red>**父类或接口定义的引用变量可以指向子类或具体实现类的实例对象**</font>。而程序调用的方法在运行期才动态绑定，就是引用变量所指向的具体实例对象的方法，也就是内存里正在运行的那个对象的方法，而不是引用变量的类型中定义的方法。
+实现多态的机制就是，<span style="color: red;">**父类或接口定义的引用变量可以指向子类或具体实现类的实例对象**</span>。而程序调用的方法在运行期才动态绑定，就是引用变量所指向的具体实例对象的方法，也就是内存里正在运行的那个对象的方法，而不是引用变量的类型中定义的方法。
 
 基础语法定义：
 
@@ -1271,13 +1271,13 @@ Play p = new Student();
 
 多态情况下，当子父类出现同名的成员变量时，通过父类引用访问成员变量时，访问的是父类的成员变；当子父类出现同名的成员方法时，通过父类引用调用成员方法时，调用的是子类重写后的方法。
 
-- <font color=purple>**成员变量属于静态绑定**</font>：在程序运行之前就确定了访问的成员变量是哪个对象的。
-- <font color=purple>**成员方法属于动态绑定**</font>：在程序运行过程中才去确定调用哪个对象的，如果子类重写了，则调用子类的，否则调用父类的。
+- <span style="color: purple;">**成员变量属于静态绑定**</span>：在程序运行之前就确定了访问的成员变量是哪个对象的。
+- <span style="color: purple;">**成员方法属于动态绑定**</span>：在程序运行过程中才去确定调用哪个对象的，如果子类重写了，则调用子类的，否则调用父类的。
 
 小结：
 
-- <font color=red>**如果访问的是成员变量，编译看左边，运行也看左边。**</font>
-- <font color=red>**如果调用的是成员方法，编译看左边，运行看右边。**</font>
+- <span style="color: red;">**如果访问的是成员变量，编译看左边，运行也看左边。**</span>
+- <span style="color: red;">**如果调用的是成员方法，编译看左边，运行看右边。**</span>
 
 ### 多态的实现原理
 
@@ -1330,13 +1330,13 @@ public String getDesc{
 }
 ```
 
-<font color=red>**值得注意的是，根据 JavaBean 的定义，此时属性名是 `desc`，而非 `description`**</font>
+<span style="color: red;">**值得注意的是，根据 JavaBean 的定义，此时属性名是 `desc`，而非 `description`**</span>
 
 ## Object 类
 
 ### 概述
 
-<font color=red>**`Object` 是类层次结构中的根类，所有的类都直接或者间接的继承自该类**</font>。
+<span style="color: red;">**`Object` 是类层次结构中的根类，所有的类都直接或者间接的继承自该类**</span>。
 
 如果一个方法的形式参数是Object，那么这里我们就可以传递它的任意的子类对象。
 
@@ -1522,7 +1522,7 @@ public final native void wait(long timeout) throws InterruptedException;
 public final void wait(long timeout, int nanos) throws InterruptedException
 ```
 
-- 当前线程调用对象的 `wait()` 方法之后，当前线程会释放对象锁，进入等待状态。等待其他线程调用此对象的 `notify()`/`notifyAll()` 唤醒或者等待超时时间 `wait(long timeout)` 自动唤醒。<font color=red>**线程必须获取 Object 对象锁之后才能通过对象调用 `wait()`**</font>。
+- 当前线程调用对象的 `wait()` 方法之后，当前线程会释放对象锁，进入等待状态。等待其他线程调用此对象的 `notify()`/`notifyAll()` 唤醒或者等待超时时间 `wait(long timeout)` 自动唤醒。<span style="color: red;">**线程必须获取 Object 对象锁之后才能通过对象调用 `wait()`**</span>。
 
 ```java
 public final native void notify();
@@ -1548,7 +1548,7 @@ equals 与 hashcode 的关系：
 - 如果两个对象调用 equals 比较返回 true，那么它们的 hashCode 值一定要相同；
 - 如果两个对象的 hashCode 相同，它们并不一定相同。
 
-hashcode 方法主要是用来<font color=red>**提升对象比较的效率**</font>，先进行 hashcode() 的比较，如果不相同，那就不必在进行 equals 的比较，这样就大大减少了 equals 比较的次数，当比较对象的数量很大的时候能提升效率。
+hashcode 方法主要是用来<span style="color: red;">**提升对象比较的效率**</span>，先进行 hashcode() 的比较，如果不相同，那就不必在进行 equals 的比较，这样就大大减少了 equals 比较的次数，当比较对象的数量很大的时候能提升效率。
 
 之所以重写 `equals()` 时也要重写 `hashcode()` ，是为了保证 `equals()` 方法返回 true 的情况下 hashcode 值也要一致；如果重写了 `equals()` 没有重写 `hashcode()`，就会出现两个对象相等但 hashcode 不相等的情况。这样，当用其中的一个对象作为键保存到 HashMap、HashTable 或 HashSet 中，再以另一个对象作为键值去查找他们的时候，则会查找不到。
 
@@ -1575,7 +1575,7 @@ public final class String
 }
 ```
 
-`String` 字符串类，由多个字符组成的一串数据，<font color=red>**字符串其本质是一个字符数组**</font>。有以下特点：
+`String` 字符串类，由多个字符组成的一串数据，<span style="color: red;">**字符串其本质是一个字符数组**</span>。有以下特点：
 
 - **不能被继承与修改**：`String` 类是 `final` 关键字修饰，此类不能被继承。并且该类的所有成员变量也都是 `final` 修饰。
 - "abc"是 `String` 类的一个实例，或者成为 String 类的一个对象，也可以看成是一个字符串对象(相当于`char data[] = {'a', 'b', 'c'};`)
@@ -1590,7 +1590,7 @@ public final class String
 
 #### 构造方法
 
-把字符串数据封装成字符串对象，或者是简写成 `String s = "xxx";` 可直接创建对象。<font color=purple>**注意：只有 String 类型才能直接赋值创建对象**</font>
+把字符串数据封装成字符串对象，或者是简写成 `String s = "xxx";` 可直接创建对象。<span style="color: purple;">**注意：只有 String 类型才能直接赋值创建对象**</span>
 
 ```java
 public String()
@@ -1765,13 +1765,13 @@ public String replace(CharSequence target, CharSequence replacement)
 public String replaceAll(String regex, String replacement)
 ```
 
-- 使用给定的 replacement 替换此字符串<font color=red>**所有**</font>匹配给定的正则表达式的子字符串。
+- 使用给定的 replacement 替换此字符串<span style="color: red;">**所有**</span>匹配给定的正则表达式的子字符串。
 
 ```java
 public String replaceFirst(String regex, String replacement)
 ```
 
-- 使用给定的 replacement 替换此字符串匹配给定的正则表达式的<font color=red>**第一个**</font>子字符串。
+- 使用给定的 replacement 替换此字符串匹配给定的正则表达式的<span style="color: red;">**第一个**</span>子字符串。
 
 #### 字符串转换方法
 
@@ -1896,7 +1896,7 @@ for (char c : chars) {
 这两种方式创建的字符串对象地址值是不同，但是里面保存的内容是相同的，所以不能用 `==` 来判断字符串(String)是否相等。`==` 比较运算符可用于以下情况：
 
 - 用于基本数据类型：比较的是基本数据类型的值是否相同
-- 用于引用数据类型：比较的是引用数据类型的地址值是否相同。<font color=red>**(不同类型是不能比较，会直接报错)**</font>
+- 用于引用数据类型：比较的是引用数据类型的地址值是否相同。<span style="color: red;">**(不同类型是不能比较，会直接报错)**</span>
 
 ### StringBuilder
 

@@ -6,7 +6,7 @@ CS的特点：
 
 - 客户端安装必须安装软件
 - 如果服务器端升级，所有的客户端都必须升级
-- 程序员<font color=red>**主要是开发客户端**</font>。如：QQ
+- 程序员<span style="color: red;">**主要是开发客户端**</span>。如：QQ
 
 CS 的优点：
 
@@ -26,7 +26,7 @@ BS的特点
 
 - 客户端不需要安装，只要有浏览器就可以了，浏览器一般系统都有。
 - 如果服务器升级，客户端不用升级，直接可以使用
-- 程序员开发<font color=red>**主要是针对服务器端**</font>
+- 程序员开发<span style="color: red;">**主要是针对服务器端**</span>
 
 BS的优点：
 
@@ -41,12 +41,12 @@ BS的缺点：
 
 ### 静态网站与动态网站
 
-<font color=red>**程序是否在服务器端运行，是静态网站与动态网站重要标志**</font>
+<span style="color: red;">**程序是否在服务器端运行，是静态网站与动态网站重要标志**</span>
 
 #### 概述
 
-- **静态网站**：<font color=red>运行于客户端的网页属于静态网页</font>，例如html页、Flash、JavaScript、VBScript等等，只要不是主动去修改，则网页是永远不变的。
-- **动态网站**：<font color=red>在服务器端运行的程序属于动态网页</font>，它们会随不同客户、不同时间，返回不同的网页，例如PHP、JSP、ASP.net等。
+- **静态网站**：<span style="color: red;">运行于客户端的网页属于静态网页</span>，例如html页、Flash、JavaScript、VBScript等等，只要不是主动去修改，则网页是永远不变的。
+- **动态网站**：<span style="color: red;">在服务器端运行的程序属于动态网页</span>，它们会随不同客户、不同时间，返回不同的网页，例如PHP、JSP、ASP.net等。
 
 #### 两者的区别
 
@@ -95,7 +95,7 @@ Web 容器就是指 Web 服务器，容器中存放的就是 Java 代码。后�
 
 ### Web 服务器概述
 
-<font color=red>**使用 Java 程序编写的 Web 容器**</font>，运行在服务器端，它可以调用 Java 程序 Servlet，对用户的请求做出处理，并且返回响应给浏览器。将服务器的资源发送给浏览器。
+<span style="color: red;">**使用 Java 程序编写的 Web 容器**</span>，运行在服务器端，它可以调用 Java 程序 Servlet，对用户的请求做出处理，并且返回响应给浏览器。将服务器的资源发送给浏览器。
 
 Web 服务器：由 Java 语言编写。就是实现了JavaEE 规范的 Java 程序。可以调用放在自己容器内部的 Java 程序，如：Servlet。
 
@@ -104,7 +104,7 @@ Web 服务器：由 Java 语言编写。就是实现了JavaEE 规范的 Java 程
 - Weblogic：大型服务器
 - WebSphere：大型服务器
 - GlassFish：小型服务器
-- <font color=red>**Tomcat**</font>：免费的 Web 服务器，属于小型，该服务器支持全部 JSP 以及 Servlet 规范。在小型的应用系统或者有特殊需要的系统中使用
+- <span style="color: red;">**Tomcat**</span>：免费的 Web 服务器，属于小型，该服务器支持全部 JSP 以及 Servlet 规范。在小型的应用系统或者有特殊需要的系统中使用
 
 ## Tomcat
 
@@ -137,7 +137,7 @@ Apache Tomcat Versions 一览表（2023.10.21 更新）
 
 ### Tomcat 目录结构
 
-解压 tomcat zip 到非中文无空格目录中，该目录下包含了 Tomcat 的 bin、conf 目录等，称之为<font color=red>**Tomcat 的安装目录或根目录**</font>。
+解压 tomcat zip 到非中文无空格目录中，该目录下包含了 Tomcat 的 bin、conf 目录等，称之为<span style="color: red;">**Tomcat 的安装目录或根目录**</span>。
 
 ![](images/509021323221171.png)
 

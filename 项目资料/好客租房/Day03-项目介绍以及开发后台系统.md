@@ -484,7 +484,7 @@ docker start zk
 
 #### 创建实体对象
 
-创建用于测试dubbo调用接口时传输的封装的实体类。<font color=red>**注：dubbo框架接口调用用来传输数据的对象必须实现序列化接口`java.io.Serializable`**</font>
+创建用于测试dubbo调用接口时传输的封装的实体类。<span style="color: red;">**注：dubbo框架接口调用用来传输数据的对象必须实现序列化接口`java.io.Serializable`**</span>
 
 ```java
 // 注：使用dubbo传输的对象要求必须实现序列化接口

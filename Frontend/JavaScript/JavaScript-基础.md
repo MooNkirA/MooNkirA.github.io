@@ -4,7 +4,7 @@ JavaScript 这门语言属于一系列 Web 标准套件中的一部分，这些�
 
 ### 作用
 
-一种高级编程语言，<font color=red>**运行在浏览器上的一种脚本语言**</font>。原名 livescript，为了提高 HTML 网页与用户之间的交互功能，提高用户的体验。其它的脚本语言如：vbscript，jscript, tcl。
+一种高级编程语言，<span style="color: red;">**运行在浏览器上的一种脚本语言**</span>。原名 livescript，为了提高 HTML 网页与用户之间的交互功能，提高用户的体验。其它的脚本语言如：vbscript，jscript, tcl。
 
 运行在浏览器上的语言，是可以看到源代码。
 
@@ -45,7 +45,7 @@ JavaScript 这门语言属于一系列 Web 标准套件中的一部分，这些�
 ### 引入方式
 
 1. JS 脚本放在 HTML 文件中内部，写在 HTML 内部时需要写在 `<script>` 标签中
-2. JS 脚本以文件方式存在于 HTML 外部，扩展名叫 js。写在 HTML 外部 js 文件中，直接写脚本内容即可。<font color=red>**使用的时候需要导入。(常用)**</font>
+2. JS 脚本以文件方式存在于 HTML 外部，扩展名叫 js。写在 HTML 外部 js 文件中，直接写脚本内容即可。<span style="color: red;">**使用的时候需要导入。(常用)**</span>
 
 ### script 标签
 
@@ -68,7 +68,7 @@ JavaScript 这门语言属于一系列 Web 标准套件中的一部分，这些�
 - 标签出现的位置：可以出现在 HTML 中任意位置，甚至可以出现在 HTML 的标签之外。
 - 关于语句后面的分号：如果每条语句写一行，则可以省略分号。如果一行出现多条语句，分号就不能省略。建议以后都不要省略。
 - 大小写敏感性：与 Java 相同，JS 中的大小写也是敏感的，区分大小写。
-- <font color=red>**所有 HTML 中 JS 代码都要写在`<script>`这个标签中，如果是写在 JS 文件中，则不需要`<script>`标签，但在HTML引用时也需要**</font>
+- <span style="color: red;">**所有 HTML 中 JS 代码都要写在`<script>`这个标签中，如果是写在 JS 文件中，则不需要`<script>`标签，但在HTML引用时也需要**</span>
 
 ```html
 <script type="text/javascript">
@@ -94,7 +94,7 @@ JavaScript 这门语言属于一系列 Web 标准套件中的一部分，这些�
 
 #### JS中关于字符和字符串类型
 
-在 JS 中没有字符和字符串区分，<font color=red>**只有字符串类型，没有字符类型**</font>。字符串即可以使用双引号，也可以使用单引号
+在 JS 中没有字符和字符串区分，<span style="color: red;">**只有字符串类型，没有字符类型**</span>。字符串即可以使用双引号，也可以使用单引号
 
 ```js
 var str = "abc";
@@ -380,7 +380,7 @@ do {
 } while(条件);
 ```
 
-注：<font color=red>**最少执行1次循环**</font>
+注：<span style="color: red;">**最少执行1次循环**</span>
 
 #### for 语句
 
@@ -511,7 +511,7 @@ sayHi2("鸟人");
 1. 调用的时候，先会将形参的值赋值给arguments数组
 2. 执行的时候，实参从arguments数组中按顺序取出值，再进行计算
 
-<font color=red>**结论：函数的形参的个数与调用时实参的个数不用相等，可以不同。建议还是写成相同的个数。**</font>
+<span style="color: red;">**结论：函数的形参的个数与调用时实参的个数不用相等，可以不同。建议还是写成相同的个数。**</span>
 
 Code Demo: 输出 arguments 的长度和数组中的每个元素
 
@@ -803,7 +803,7 @@ decodeURI(uri)
 
 在 js 中 `eval()` 函数的基本使用以及一些特殊的使用方式如下：
 
-- `eval` 函数只能在<font color=red>**非严格模式**</font>中进行使用，在 `use strict` 中是不允许使用这个方法的。
+- `eval` 函数只能在<span style="color: red;">**非严格模式**</span>中进行使用，在 `use strict` 中是不允许使用这个方法的。
 - `eval` 函数接收一个参数 s，如果 s 不是字符串，则直接返回 s。否则执行 s 语句。
 
 ```js
@@ -867,7 +867,7 @@ var m = eval('('+ data + ')')
 
 类就是对象的模板，对象就是类的实例。在 ES6之前，JS 中并没用引入类的概念。
 
-在 ES6之前，对象不是基于类创建的，而是用一种称为<font color=red>**构建函数**</font>的特殊函数来定义对象和它们的特征。
+在 ES6之前，对象不是基于类创建的，而是用一种称为<span style="color: red;">**构建函数**</span>的特殊函数来定义对象和它们的特征。
 
 创建对象可以通过以下三种方式：
 
@@ -897,8 +897,8 @@ jieye.sing()
 
 在 JS 中，使用构造函数时要注意以下两点：
 
-- 构造函数用于创建某一类对象，<font color=red>**其首字母要大写**</font>
-- <font color=red>**构造函数要和`new`一起使用**</font>才有意义
+- 构造函数用于创建某一类对象，<span style="color: red;">**其首字母要大写**</span>
+- <span style="color: red;">**构造函数要和`new`一起使用**</span>才有意义
 
 **new 对象在执行时会做四件事情**：
 
@@ -911,8 +911,8 @@ jieye.sing()
 
 JavaScript 的构造函数中可以添加一些成员，可以在构造函数本身上添加，也可以在构造函数内部的 `this` 上添加。通过这两种方式添加的成员，就分别称为静态成员和实例成员。
 
-- **静态成员**：在构造函数本上添加的成员称为静态成员，<font color=red>**只能由构造函数本身来访问**</font>
-- **实例成员**：在构造函数内部创建的对象成员称为实例成员，<font color=red>**只能由实例化的对象来访问**</font>
+- **静态成员**：在构造函数本上添加的成员称为静态成员，<span style="color: red;">**只能由构造函数本身来访问**</span>
+- **实例成员**：在构造函数内部创建的对象成员称为实例成员，<span style="color: red;">**只能由实例化的对象来访问**</span>
 
 ```js
 // 构造函数中的属性和方法称为成员, 成员可以添加
@@ -939,7 +939,7 @@ console.log(ldh.sex) // 不能通过对象来访问
 
 #### 构造函数原型 prototype
 
-JavaScript 规定，<font color=red>**每一个构造函数都有一个 `prototype` 属性**</font>，指向另一个对象。注意这个 `prototype` 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有，所有通过此构造函数生成的对象都共享此`prototype`对象。
+JavaScript 规定，<span style="color: red;">**每一个构造函数都有一个 `prototype` 属性**</span>，指向另一个对象。注意这个 `prototype` 就是一个对象，这个对象的所有属性和方法，都会被构造函数所拥有，所有通过此构造函数生成的对象都共享此`prototype`对象。
 
 所以可以把那些不变的方法，直接定义在 `prototype` 对象上，这样所有对象的实例就可以共享这些方法。
 
@@ -970,7 +970,7 @@ jieye.sing()
 
 #### 对象原型 proto
 
-<font color=red>**对象都会有一个属性 `__proto__` 指向构造函数的 `prototype` 原型对象**</font>
+<span style="color: red;">**对象都会有一个属性 `__proto__` 指向构造函数的 `prototype` 原型对象**</span>
 
 - `__proto__`对象原型和原型对象 `prototype` 是等价的
 - `__proto__`对象原型的意义就在于为对象的查找机制提供一个方向，或者说一条路线，但是它是一个非标准属性，因此实际开发中，不可以使用这个属性，它只是内部指向原型对象 `prototype`
@@ -999,7 +999,7 @@ console.log(shiyuan.__proto__ === Star.prototype)
 
 `constructor` 主要用于记录该对象引用于哪个构造函数，它可以让原型对象重新指向原来的构造函数
 
-<font color=red>**一般情况下，对象的方法都在构造函数的原型对象中设置**</font>。如果有多个对象的方法，可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象 `constructor`  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个 `constructor` 指向原来的构造函数。
+<span style="color: red;">**一般情况下，对象的方法都在构造函数的原型对象中设置**</span>。如果有多个对象的方法，可以给原型对象采取对象形式赋值，但是这样就会覆盖构造函数原型对象原来的内容，这样修改后的原型对象 `constructor`  就不再指向当前构造函数了。此时，我们可以在修改后的原型对象中，添加一个 `constructor` 指向原来的构造函数。
 
 ```js
 function Star(uname, age) {
@@ -1441,13 +1441,13 @@ clearTimeout(计时器对象)
 setInterval("函数名", 间隔毫秒数)
 ```
 
-- 不停止地每过指定的时间间隔以后调用一次函数。<font color=red>**返回一个当前计时对象，可以利用这个变量清除计时器**</font>
+- 不停止地每过指定的时间间隔以后调用一次函数。<span style="color: red;">**返回一个当前计时对象，可以利用这个变量清除计时器**</span>
 
 ```js
 clearInterval(计时器对象)
 ```
 
-- 清除 `setInterval()` 生成的计时器。<font color=red>**`clearInterval()`清空对象，只是把 timer 所指定的计时器清除，timer 的值不会发生变化。timer 的值在这里是一个整数，是 number 类型。**</font>
+- 清除 `setInterval()` 生成的计时器。<span style="color: red;">**`clearInterval()`清空对象，只是把 timer 所指定的计时器清除，timer 的值不会发生变化。timer 的值在这里是一个整数，是 number 类型。**</span>
 
 > Notes: 所有 window 对象的属性和方法，都可以省略 window
 
@@ -1616,7 +1616,7 @@ go(delta?: number): void;
 
 Document Object Model 文档对象模型，用于操作网页中的各种元素。对应 JS 中的一个名为 `document` 对象。
 
-<font color=red>**注：使用 `document.write()` 方法时需要注意，如果直接使用，相当于重新写了一个新的文档，会覆盖原来的网页的元素。**</font>
+<span style="color: red;">**注：使用 `document.write()` 方法时需要注意，如果直接使用，相当于重新写了一个新的文档，会覆盖原来的网页的元素。**</span>
 
 ### 获取 DOM 结点(元素)
 
@@ -1656,7 +1656,7 @@ document.getElementById("moon").innerHTML = "abc";
 
 #### innerText
 
-元素对象的 `innerText`，可以得到或设置元素的内容，主体是<font color=red>**纯文本内容，标签不起作用**</font>。
+元素对象的 `innerText`，可以得到或设置元素的内容，主体是<span style="color: red;">**纯文本内容，标签不起作用**</span>。
 
 #### innerHTML 与 value 选择
 
@@ -1845,8 +1845,8 @@ element.previousSibling
 		<script src="js/Day30Test03.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<font style="font-size: 28px;">操作成功！！</font><br />
-		<font style="font-size: 28px;"><span id="num">5</span>秒后回到主页</font>&nbsp;&nbsp;
+		<span style="font-size: 28px;">操作成功！！</span><br />
+		<span style="font-size: 28px;"><span id="num">5</span>秒后回到主页</span>&nbsp;&nbsp;
 		<a href="http://ntlias-stu.boxuegu.com">返回</a>
 	</body>
 </html>
@@ -1855,7 +1855,7 @@ element.previousSibling
 编写 js 实现功能（可以写在页面上的`<script>`标签，或者定义在外部js文件中）
 
 ```js
-/变量
+//变量
 var n = 5;
 
 // 2. 编写定时器定时执行的函数
@@ -2162,7 +2162,7 @@ HTML 文件代码：
 
 通过获取元素对象，再根据对应样式属性名称修改即可。
 
-在 JavaScript 中，样式的命名规则是：<font color=red>**CSS的名字，多个单词，首字母小写，第二个单词去掉减号，首字母大写**</font>。
+在 JavaScript 中，样式的命名规则是：<span style="color: red;">**CSS的名字，多个单词，首字母小写，第二个单词去掉减号，首字母大写**</span>。
 
 #### 方式一：单个元素修改
 
@@ -2280,9 +2280,9 @@ JavaScript 有两种方式设置事件
 
 #### 加载完成事件
 
-`onload` 事件：用于一个元素<font color=red>**加载完毕**</font>以后执行的代码。一般用在页面或图片加载完毕以后激活的事件
+`onload` 事件：用于一个元素<span style="color: red;">**加载完毕**</span>以后执行的代码。一般用在页面或图片加载完毕以后激活的事件
 
-<font color=red>**如果使用匿名函数的方式设置事件，要注意要在设置事件之前，要设置在页面加载后再触发匿名函数事件，即 `window.onload = function(){}`，因为匿名函数一般需要先得到元素，即`document.getElementById("xxx")`，如果不设置 `onload` 事件，那么不一定能得到元素，如果加载 script 放在最后，那就可以得到元素**</font>
+<span style="color: red;">**如果使用匿名函数的方式设置事件，要注意要在设置事件之前，要设置在页面加载后再触发匿名函数事件，即 `window.onload = function(){}`，因为匿名函数一般需要先得到元素，即`document.getElementById("xxx")`，如果不设置 `onload` 事件，那么不一定能得到元素，如果加载 script 放在最后，那就可以得到元素**</span>
 
 面试题：在页面加载后就能触发函数执行的三种写法：
 
@@ -2413,7 +2413,7 @@ window.onload = function(){
 - onmousemove 鼠标移动到某个元素上面，激活事件
 - onmouseout 鼠标从元素上移走，激活事件。
 
-> Notes: <font color=red>**如果是图片的鼠标移动事件，要设置图片的大小**</font>
+> Notes: <span style="color: red;">**如果是图片的鼠标移动事件，要设置图片的大小**</span>
 
 鼠标按下与松开、移动事件示例：
 
@@ -2466,7 +2466,7 @@ window.onload = function(){
 
 `onchange` 一般用于文本框内容改变，或下拉列表选项发生变化
 
-> Notes: <font color=red>**文本框必须是失去焦点以后才激活改变事件**</font>
+> Notes: <span style="color: red;">**文本框必须是失去焦点以后才激活改变事件**</span>
 
 #### 键盘相关事件
 
@@ -2508,7 +2508,7 @@ window.onload = function(){
 
 ## 继承（ES6以前的实现方式）
 
-ES6之前并没有提供 `extends` 继承。但可以<font color=red>**通过构造函数+原型对象模拟实现继承，被称为组合继承**</font>
+ES6之前并没有提供 `extends` 继承。但可以<span style="color: red;">**通过构造函数+原型对象模拟实现继承，被称为组合继承**</span>
 
 ### call() 函数
 
@@ -2562,7 +2562,7 @@ console.log(son)
 
 ### 借用原型对象继承父类型方法
 
-<font color=red>**一般情况下，对象的方法都在构造函数的原型对象中设置，通过构造函数无法继承父类方法**</font>。实现的核心原理：
+<span style="color: red;">**一般情况下，对象的方法都在构造函数的原型对象中设置，通过构造函数无法继承父类方法**</span>。实现的核心原理：
 
 1. 将子类所共享的方法提取出来，让子类的 `prototype 原型对象 = new 父类()`
 2. 本质：子类原型对象等于是实例化父类，因为父类实例化之后另外开辟空间，就不会影响原来父类原型对象
@@ -2610,7 +2610,7 @@ console.log(Son.prototype.constructor)
 str.trim();
 ```
 
-> <font color=red>**注：`trim()`方法并不影响原字符串本身，它返回的是一个新的字符串。**</font>
+> <span style="color: red;">**注：`trim()`方法并不影响原字符串本身，它返回的是一个新的字符串。**</span>
 
 ### replace 方法
 
@@ -2662,7 +2662,7 @@ Math.floor(Math.random()*(max-min+1)+min);
 
 ### AJAX 概述
 
-AJAX 全称 Asynchronous Javascript And XML （异步 JavaScript 和 XML），可以使网页实现<font color=red>**异步更新**</font>，就是不重新加载整个网页的情况下，对网页的某部分进行更新（<font color=red>**局部刷新**</font>）。传统的网页（不使用AJAX）如果需要更新内容，必须重载整个网页页面。
+AJAX 全称 Asynchronous Javascript And XML （异步 JavaScript 和 XML），可以使网页实现<span style="color: red;">**异步更新**</span>，就是不重新加载整个网页的情况下，对网页的某部分进行更新（<span style="color: red;">**局部刷新**</span>）。传统的网页（不使用AJAX）如果需要更新内容，必须重载整个网页页面。
 
 AJAX = 异步 JavaScript 和 XML，是一种新的思想，整合之前的多种技术，用于创建快速交互式网页应用的网页开发技术。
 
@@ -3129,7 +3129,7 @@ JavaScript 把待执行的任务分为了两类：
 4. JavaScript **主线程的执行栈被清空后，会读取任务队列中的回调函数，次序执行**
 5. JavaScript **主线程不断重复上面的第 4 步**
 
-<font color=red>**JavaScript 主线程从“任务队列”中读取异步任务的回调函数，放到执行栈中依次执行。这个过程是循环不断的，所以整个的这种运行机制又称为 EventLoop（事件循环）。**</font>
+<span style="color: red;">**JavaScript 主线程从“任务队列”中读取异步任务的回调函数，放到执行栈中依次执行。这个过程是循环不断的，所以整个的这种运行机制又称为 EventLoop（事件循环）。**</span>
 
 #### 结合 EventLoop 分析输出的顺序案例（面试题）
 

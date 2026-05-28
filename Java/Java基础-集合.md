@@ -67,7 +67,7 @@ boolean addAll(Collection<? extends E> c);
 boolean remove(Object o);
 ```
 
-- 移除此集合中首次出现的指定元素（如果存在），返回删除是否成功(true/false)。<font color=red>**删除元素是影响本来的集合**</font>。
+- 移除此集合中首次出现的指定元素（如果存在），返回删除是否成功(true/false)。<span style="color: red;">**删除元素是影响本来的集合**</span>。
 
 ```java
 boolean removeAll(Collection<?> c);
@@ -170,7 +170,7 @@ public interface List<E> extends Collection<E>
 
 List 是一个元素存取有序、带有索引、并且可以存储重复元素的集合。例如：存元素的顺序是11、22、33。那么集合中，元素的存储就是按照11、22、33的顺序完成的；通过索引就可以精确的操作集合中的元素（与数组的索引是一个道理）
 
-由于 List 集合拥有索引，因此 List 集合迭代方式除了使用迭代器之外，还可以使用索引进行迭代。遍历方法分别是：<font color=red>**普通for，增强for，迭代器**</font>。
+由于 List 集合拥有索引，因此 List 集合迭代方式除了使用迭代器之外，还可以使用索引进行迭代。遍历方法分别是：<span style="color: red;">**普通for，增强for，迭代器**</span>。
 
 ### List 集合存储数据的结构
 
@@ -214,7 +214,7 @@ boolean remove(Object e);
 boolean remove(int index);
 ```
 
-- 从集合中删除将指定索引处的元素，并返回被删除的元素。<font color=red>**值得注意的是，若调用方法时传入的参数 index 是 `Integer` 类型的，调用的是 `remove(Object object)` 方法，而不是 `remove(int index)`，所以会出现无法删除指定的索引处的元素的情况，传入的一定要是基本数据类型哦!**</font>
+- 从集合中删除将指定索引处的元素，并返回被删除的元素。<span style="color: red;">**值得注意的是，若调用方法时传入的参数 index 是 `Integer` 类型的，调用的是 `remove(Object object)` 方法，而不是 `remove(int index)`，所以会出现无法删除指定的索引处的元素的情况，传入的一定要是基本数据类型哦!**</span>
 
 ```java
 void clear();
@@ -259,9 +259,9 @@ public class ArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 ```
 
-<font color=red>**ArrayList 集合底层数据存储的结构是数组结构。数组实现的特点：<u>元素查询快，增删慢，线程不安全（效率高）</u>**</font>。ArrayList 是一个长度可变的高级的数组，可以在集合中存储任意**对象类型**的数据，集合本身也是一个对象。由于日常开发中使用最多的功能为查询数据、遍历数据，所以 ArrayList 是最常用的集合。
+<span style="color: red;">**ArrayList 集合底层数据存储的结构是数组结构。数组实现的特点：<u>元素查询快，增删慢，线程不安全（效率高）</u>**</span>。ArrayList 是一个长度可变的高级的数组，可以在集合中存储任意**对象类型**的数据，集合本身也是一个对象。由于日常开发中使用最多的功能为查询数据、遍历数据，所以 ArrayList 是最常用的集合。
 
-> Notes: <font color=red>**集合只能存储对象（引用类型）的数据，不能存在基本数据类型**</font>。
+> Notes: <span style="color: red;">**集合只能存储对象（引用类型）的数据，不能存在基本数据类型**</span>。
 
 需要注意**线程安全性**：对 ArrayList 的操作一般分为两个步骤，改变位置(size)和操作元素(e)。所以这个过程在多线程的环境下是不能保证具有原子性的，因此 ArrayList 在多线程的环境下是线程不安全的。
 
@@ -319,8 +319,8 @@ for (int x = 0; x < array.size(); x++) {
 
 数组实现的特点：查询快，增删慢，线程不安全（效率高）。原因：
 
-- <font color=red>**查询快**</font>：由于数组的索引支持，那么可以通过索引直接计算出元素的地址值，因此就可以直接通过元素的地址值获取到指定的元素
-- <font color=red>**增删慢**</font>：由于在添加元素的时候，实际上底层会先创建一个新数组(新数组的长度为原数组的长度+1)，那么在添加新元素的时候，先需要对数组中原有的数据进行拷贝，其次在末尾进行添加新的元素。因此，这样操作的效率的极低的(删除元素刚好和添加的操作相反)
+- <span style="color: red;">**查询快**</span>：由于数组的索引支持，那么可以通过索引直接计算出元素的地址值，因此就可以直接通过元素的地址值获取到指定的元素
+- <span style="color: red;">**增删慢**</span>：由于在添加元素的时候，实际上底层会先创建一个新数组(新数组的长度为原数组的长度+1)，那么在添加新元素的时候，先需要对数组中原有的数据进行拷贝，其次在末尾进行添加新的元素。因此，这样操作的效率的极低的(删除元素刚好和添加的操作相反)
 
 > Tips: 增删慢的情况是基于，数组的原长度不够，并且非在数组尾部插入数据的情况。若数组的长度足够并且在尾部插入新的元素，其他操作的效率甚至比链表更快。
 
@@ -328,26 +328,26 @@ for (int x = 0; x < array.size(); x++) {
 
 ArrayList 的 `contains` 方法，会调用方法传入的元素的 equals 方法依次与集合中的旧元素所比较，从而根据返回的布尔值判断是否有重复元素。
 
-当 ArrayList 存放**自定义类型**时，由于自定义类型在未重写 equals 方法前，判断是否重复的依据是比较对象的地址值，所以<font color=red>**如果想根据内容判断是否为重复元素，需要重写元素的 equals 方法**</font>
+当 ArrayList 存放**自定义类型**时，由于自定义类型在未重写 equals 方法前，判断是否重复的依据是比较对象的地址值，所以<span style="color: red;">**如果想根据内容判断是否为重复元素，需要重写元素的 equals 方法**</span>
 
 ### LinkedList
 
 #### 概述
 
-<font color=red>**LinkedList 集合底层数据存储的实现是双向链表结构，<u>查询慢，增删快，线程不安全（效率高）</u>**</font>。
+<span style="color: red;">**LinkedList 集合底层数据存储的实现是双向链表结构，<u>查询慢，增删快，线程不安全（效率高）</u>**</span>。
 
 > Notes: 数据结构基础之双向链表。双向链表也叫双链表，是链表的一种，它的每个数据结点中都有两个指针，分别指向直接后继和直接前驱。所以，从双向链表中的任意一个结点开始，都可以很方便地访问它的前驱结点和后继结点。
 
 LinkedList 与 ArrayList 不同的是，在对 LinkedList 进行插入和删除操作时，只需在对应的节点上插入或删除元素，并将前后的节点元素的指针指向该节点即可，数据不需要进行复制移动，因此随机插入和删除效率很高。
 
-LinkedList 还提供了在 List 接口中未定义，<font color=red>用于操作链表头部和尾部的元素</font>的方法，因此有时也可以被当作堆栈、队列或双向队列使用。
+LinkedList 还提供了在 List 接口中未定义，<span style="color: red;">用于操作链表头部和尾部的元素</span>的方法，因此有时也可以被当作堆栈、队列或双向队列使用。
 
 #### LinkedList 链表实现的原理
 
 链表结构：查询慢，增删快，线程不安全（效率高）。其原因：
 
-- <font color=red>**查询慢**</font>：由于不能直接找到元素的地址，需要上一个元素推导出下一个元素的地址，因为在进行随机访问时，需要从链表头部一直遍历到要查找的节点为止，这种查询速度较慢。
-- <font color=red>**增删快**</font>：在添加的时候，只需要更改元素所记录的地址值即可
+- <span style="color: red;">**查询慢**</span>：由于不能直接找到元素的地址，需要上一个元素推导出下一个元素的地址，因为在进行随机访问时，需要从链表头部一直遍历到要查找的节点为止，这种查询速度较慢。
+- <span style="color: red;">**增删快**</span>：在添加的时候，只需要更改元素所记录的地址值即可
 
 链表查询元素是判断索引是否大于集合元素个数的一半来决定从表头还是表尾开始查询。如果大于一半，则从表尾开始查找，否则从表头开始查找。
 
@@ -479,7 +479,7 @@ public static <T> List<T> asList(T... a);
 
 Arrays 工具类的静态方法，将数组的内容添加到一个集合中，并返回集合对象。。方法的形参是可变参数类型，可变参数本质也是数组，传入实际数组，将该数组转成集合返回
 
-> Notes: 通过 `asList` 方法将数组转成集合之后，<font color=red>**获得的集合是固定大小的集合，不支持向集合中添加或删除元素。**</font>，否则会抛出 `UnsupportedOperationException` 异常
+> Notes: 通过 `asList` 方法将数组转成集合之后，<span style="color: red;">**获得的集合是固定大小的集合，不支持向集合中添加或删除元素。**</span>，否则会抛出 `UnsupportedOperationException` 异常
 
 可以使用有参数构造方法，将其转成可以增删的新的集合
 
@@ -530,7 +530,7 @@ List<Object> syncLinkedList = Collections.synchronizedList(new LinkedList<>());
 
 - 如果需要大量非首尾增删元素，则建议使用 LinkedList
 - 如果只是遍历查询元素，不进行增删操作，则建议使用 ArrayList
-- <font color=red>**遍历 LinkedList 必须使用 Iterator 而不使用 for 循环，因为每次 for 循环体内通过 `get(i)` 方法获取指定元素时，需要对整个集合重新进行遍历，性能消耗极大**</font>
+- <span style="color: red;">**遍历 LinkedList 必须使用 Iterator 而不使用 for 循环，因为每次 for 循环体内通过 `get(i)` 方法获取指定元素时，需要对整个集合重新进行遍历，性能消耗极大**</span>
 - 尽量不要试图使用 `indexOf` 等方法返回元素的索引，并利用其进行遍历。使用 `indexOf` 对集合进行遍历，当结果为空时会遍历整个集合。
 
 #### ArrayList 和 Vector 的区别
@@ -555,7 +555,7 @@ public interface Iterator<E>
 
 Iterator 迭代器，是一个接口，集合迭代(集合遍历)的工具。可以从一个 Collection 中使用迭代器方法来获取迭代器实例。迭代器取代了 Java 集合框架中的 Enumeration，并且迭代器允许调用者在迭代过程中移除元素。
 
-> Tips: 不同的容器完成不同方式的数据存储。不同集合的特点不同，ArrayList 有序且可重复且带索引的集合。但是有的集合不带索引。所以如果使用其他集合，可能无法通过 `get+索引` 的方式获取元素。<font color=red>**所有集合的通用获取元素方法并不是通过索引获取，而是通过迭代器获取。**</font>
+> Tips: 不同的容器完成不同方式的数据存储。不同集合的特点不同，ArrayList 有序且可重复且带索引的集合。但是有的集合不带索引。所以如果使用其他集合，可能无法通过 `get+索引` 的方式获取元素。<span style="color: red;">**所有集合的通用获取元素方法并不是通过索引获取，而是通过迭代器获取。**</span>
 
 #### 迭代器的好处
 
@@ -584,7 +584,7 @@ E next()
 
 - 用来返回指针指向位置的元素，并把指针向后移动一位。**集合用来持有数据，所有常用集合都具备了可迭代功能 Iterator 方法，该方法用于迭代集合，是最为通用的集合迭代方法。**
 
-> Notes: 如果集合中没有元素可迭代了，仍然调用 `next()` 方法，就会抛出异常（`java.util.NoSuchElementException`）。<font color=red>**真正使指针向后移动的是调用 `next()` 方法**</font>
+> Notes: 如果集合中没有元素可迭代了，仍然调用 `next()` 方法，就会抛出异常（`java.util.NoSuchElementException`）。<span style="color: red;">**真正使指针向后移动的是调用 `next()` 方法**</span>
 
 ```java
 default void remove() {
@@ -673,7 +673,7 @@ for (int i = 0; i < array.size(); i++) {
 }
 ```
 
-2. 使用 `ListIterator` 迭代器遍历，<font color=red>**添加元素时不要调用集合对象的 `add` 方法，而是调用 `ListIterator` 对象的 `void add(E e)` 方法**</font>
+2. 使用 `ListIterator` 迭代器遍历，<span style="color: red;">**添加元素时不要调用集合对象的 `add` 方法，而是调用 `ListIterator` 对象的 `void add(E e)` 方法**</span>
 
 ```java
 // 使用 ListIterator 解决并发修改问题
@@ -927,7 +927,7 @@ LinkedHashSet(继承HashSet)
 
 当向哈希表中存放元素时，需要根据元素的特有数据结合相应的算法，这个算法其实就是 `Object` 类中的 `hashCode` 方法。由于任何对象都是 `Object` 类的子类，所以任何对象有拥有这个方法。即就是在给哈希表中存放对象时，会调用对象的 `hashCode` 方法，算出对象在表中的存放位置，这里需要注意，如果两个对象 `hashCode` 方法算出结果一样，这样现象称为哈希冲突，这时会调用对象的 `equals` 方法，比较这两个对象是不是同一个对象，如果 `equals` 方法返回的是 true，那么就不会把第二个对象存放在哈希表中，如果返回的是 false，就会把这个值存放在哈希表中。
 
-<font color=purple>**总结：保证 `HashSet` 集合元素的唯一，其实就是根据对象的 `hashCode` 和 `equals` 方法来决定的。如果往集合中存放自定义的对象，那么保证其唯一则必须重写 `hashCode` 和 `equals` 方法，建立属于当前对象的比较方式。**</font>
+<span style="color: purple;">**总结：保证 `HashSet` 集合元素的唯一，其实就是根据对象的 `hashCode` 和 `equals` 方法来决定的。如果往集合中存放自定义的对象，那么保证其唯一则必须重写 `hashCode` 和 `equals` 方法，建立属于当前对象的比较方式。**</span>
 
 #### Object 的 hashCode 方法
 
@@ -994,7 +994,7 @@ public HashMap() {
 }
 ```
 
-比如：<font color=red>加载因子是0.75</font>，数组的长度为16，其中存入`16 * 0.75 = 12`个元素。如果再存入第十三个(大于12)元素。那么此时会扩充哈希表(再哈希)，底层会开辟一个长度为原长度<font color=red>2倍</font>的数组。把老元素拷贝到新数组中，再把新元素添加数组中。当`存入元素数量 > 哈希表长度 * 加载因子`，就要扩容，因此加载因子决定扩容时机。
+比如：<span style="color: red;">加载因子是0.75</span>，数组的长度为16，其中存入`16 * 0.75 = 12`个元素。如果再存入第十三个(大于12)元素。那么此时会扩充哈希表(再哈希)，底层会开辟一个长度为原长度<span style="color: red;">2倍</span>的数组。把老元素拷贝到新数组中，再把新元素添加数组中。当`存入元素数量 > 哈希表长度 * 加载因子`，就要扩容，因此加载因子决定扩容时机。
 
 #### HashSet 保存元素的原理
 
@@ -1037,7 +1037,7 @@ HashSet 集合由于是无序的，其判断唯一的依据是元素类型的 `h
 
 ##### 使用 HashSet 存储自定义类型
 
-当使用HashSet存储<font color=red>自定义类型</font>，如果没有重写该类的 hashCode 与 equals 方法，则判断重复时，使用的是地址值，如果想<font color=red>**通过内容比较元素是否相同，需要重写该元素类的 `hashcode` 与 `equals` 方法**</font>
+当使用HashSet存储<span style="color: red;">自定义类型</span>，如果没有重写该类的 hashCode 与 equals 方法，则判断重复时，使用的是地址值，如果想<span style="color: red;">**通过内容比较元素是否相同，需要重写该元素类的 `hashcode` 与 `equals` 方法**</span>
 
 ### LinkedHashSet 集合
 
@@ -1332,7 +1332,7 @@ V getValue();
 
 ### 遍历 Map 集合的方式
 
-> Notes: <font color=red>**不能直接使用增强 for 或迭代器遍历，因为 Map 没有继承 `Iterable<E>` 接口**</font>。以下三种遍历方式，若 Map 本身的变化会影响其遍历的结果。
+> Notes: <span style="color: red;">**不能直接使用增强 for 或迭代器遍历，因为 Map 没有继承 `Iterable<E>` 接口**</span>。以下三种遍历方式，若 Map 本身的变化会影响其遍历的结果。
 
 #### 通过 keySet 方法遍历
 
@@ -1416,9 +1416,9 @@ public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneabl
 HashMap 有如下特点：
 
  - 键是唯一，基于键的 HashCode 值唯一标识一条数据，同时基于键的 HashCode 值进行数据的存取。
- - <font color=red>**存储和取出无法保证顺序一致**</font>。
+ - <span style="color: red;">**存储和取出无法保证顺序一致**</span>。
  - 非线程安全。同一时间有多个线程同时对 HashMap 进行写操作，将可能导致数据的不一致。*如需要满足线程安全的条件，可使用 `Collections` 的 `synchronizedMap` 方法使 HashMap 具有线程安全的能力，或者使用 `ConcurrentHashMap`*。
- - 允许使用 `null` 的值和 `null` 的键（<font color=purple>**HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null**</font>）
+ - 允许使用 `null` 的值和 `null` 的键（<span style="color: purple;">**HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null**</span>）
 
 > Tips: 更多实现原理详见[《Java扩展-集合类源码分析》笔记](/Java/Java扩展-集合类源码分析)
 
@@ -1461,7 +1461,7 @@ System.out.println(changeMap.get(list)); // 输出结果：null
 
 ### LinkedHashMap
 
-`LinkedHashMap` 继承 `HashMap`，是 `Map` 接口的实现类，并允许使用 null 值和 null 键，<font color=red>**键是唯一，存储和取出有顺序**</font>。
+`LinkedHashMap` 继承 `HashMap`，是 `Map` 接口的实现类，并允许使用 null 值和 null 键，<span style="color: red;">**键是唯一，存储和取出有顺序**</span>。
 
 `LinkedHashMap` 是基于哈希表(HashTable)的数据结构，该结构保证 key 唯一；使用链表(Linked)结构保存元素，从而保证元素有序性，怎么存就怎么取。*注：这些约束都是针对键起作用*
 
@@ -1481,7 +1481,7 @@ TreeMap 是基于二叉树数据结构存储数据。从功能上讲，有比 Ha
 
 TreeMap 要求存放的键值对所映射的键对象必须实现 `Comparable` 接口，重写 `compareTo` 方法，从而根据键对元素进行排序。否则会抛出 `java.lang.ClassCastException` 异常。
 
-TreeMap 的性能略微低于 HashMap。如果在开发中需要对元素进行<font color=red>排序</font>，那么使用 HashMap 便无法实现这种功能，使用 TreeMap 的迭代输出将会以元素顺序进行。
+TreeMap 的性能略微低于 HashMap。如果在开发中需要对元素进行<span style="color: red;">排序</span>，那么使用 HashMap 便无法实现这种功能，使用 TreeMap 的迭代输出将会以元素顺序进行。
 
 #### 继承结构
 
@@ -1558,7 +1558,7 @@ public interface Comparator<T> {
 - **返回负数**：左边小于右边
 - **返回正数**：左边大于右边
 
-> Notes: <font color=red>**如果用两个不是整数类型的相减做为判断，需要强转。字符串可以用自带的方法 `compareTo` 进行比较**</font>
+> Notes: <span style="color: red;">**如果用两个不是整数类型的相减做为判断，需要强转。字符串可以用自带的方法 `compareTo` 进行比较**</span>
 
 ### Comparable 接口
 
@@ -1571,7 +1571,7 @@ public interface Comparable<T> {
 
 `java.lang.Comparable` 接口是用于对象的自然排序。其中 `compareTo` 关键方法就是实现排序的规则，方法返回 int 类型数值。例如：`i = x.compareTo(y);`
 
-- 如果返回数值为 0，也表明两个对象排序上是相等的(<font color=red>**并非意味 `equals` 方法为 true，但是jdk api上强烈建议这样处理**</font>)
+- 如果返回数值为 0，也表明两个对象排序上是相等的(<span style="color: red;">**并非意味 `equals` 方法为 true，但是jdk api上强烈建议这样处理**</span>)
 - 如果返回数值大于 0，则表示 `x > y`
 - 如果返回数值小于 0，则表示 `x < y`
 

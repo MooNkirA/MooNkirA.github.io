@@ -703,19 +703,23 @@
     ]
   },
   "Python/Python-基础.md": {
-    "scroll": 2.8333333333333335,
+    "scroll": 183.94010416666666,
     "cursor": {
       "from": {
-        "line": 25,
-        "ch": 0
+        "line": 131,
+        "ch": 18
       },
       "to": {
-        "line": 25,
-        "ch": 0
+        "line": 131,
+        "ch": 18
       }
     },
     "expandedKeys": [
-      "item-2-0"
+      "item-2-0",
+      "item-3-3",
+      "item-3-8",
+      "item-2-14",
+      "item-3-17"
     ]
   },
   "attachments/templates/font-red.md": {

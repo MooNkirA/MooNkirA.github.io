@@ -893,7 +893,7 @@ public abstract class BaseServiceImpl<T extends BasePojo> {
 
 #### 编写业务层 service
 
-<font color=red>**注意：此处的 Service 层是基于 Spring 框架的 service，不是 dubbo 服务，因为需要控制事务以及一些逻辑。**</font>
+<span style="color: red;">**注意：此处的 Service 层是基于 Spring 框架的 service，不是 dubbo 服务，因为需要控制事务以及一些逻辑。**</span>
 
 - 定义业务接口
 

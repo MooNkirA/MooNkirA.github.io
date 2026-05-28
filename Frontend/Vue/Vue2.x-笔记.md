@@ -15,7 +15,7 @@ Vue.js 是渐进式 JavaScript 框架。易学易用，性能出色，适用场�
 
 MVVM 框架，针对具有复杂交互逻辑的前端应用，提供基础的架构抽象，通过 Ajax 数据持久化，保存前端用户体验
 
-Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的<font color=red>**渐进式框架**</font>。
+Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的<span style="color: red;">**渐进式框架**</span>。
 
 ![](images/20211114170151123_978.jpg)
 
@@ -25,18 +25,18 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的<font 
 
 vue 框架的特性，主要体现在如下两方面：
 
-- <font color=red>**数据驱动视图**</font>
-- <font color=red>**双向数据绑定**</font>
+- <span style="color: red;">**数据驱动视图**</span>
+- <span style="color: red;">**双向数据绑定**</span>
 
 #### 数据驱动视图
 
-在使用了 vue 的页面中，vue 会<font color=red>**监听数据的变化**</font>，从而<font color=red>**自动重新渲染**</font>页面的结构。示意图如下：
+在使用了 vue 的页面中，vue 会<span style="color: red;">**监听数据的变化**</span>，从而<span style="color: red;">**自动重新渲染**</span>页面的结构。示意图如下：
 
 ![](images/20211114170633632_21730.png)
 
 数据驱动视图的优点是：当页面数据发生变化时，页面会自动重新渲染！
 
-值得注意是：<font color=red>**数据驱动视图是单向的数据绑定**</font>。
+值得注意是：<span style="color: red;">**数据驱动视图是单向的数据绑定**</span>。
 
 #### 双向数据绑定
 
@@ -68,7 +68,7 @@ MVVM 是 vue 实现**数据驱动视图**和**双向数据绑定**的核心原�
 
 #### MVVM 的工作原理
 
-<font color=red>ViewModel 作为 MVVM 的核心</font>，是它把当前页面的数据源（Model）和页面的结构（View）连接在了一起。
+<span style="color: red;">ViewModel 作为 MVVM 的核心</span>，是它把当前页面的数据源（Model）和页面的结构（View）连接在了一起。
 
 ![](images/20211114172150685_15403.png)
 
@@ -134,7 +134,7 @@ var vm = new Vue({
 ### 数据与方法
 
 - 当一个 Vue 实例被创建时，它将 `data` 对象中的所有的 property 加入到 Vue 的**响应式系统**中。当这些 property 的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。当这些数据改变时，视图会进行重渲染。
-- <font color=red>**值得注意的是只有当实例被创建时就已经存在于 data 中的 property 才是响应式的**</font>。如果创建实例后再添加一个新的 property，那么此 property 改变将不会触发任何视图的更新。
+- <span style="color: red;">**值得注意的是只有当实例被创建时就已经存在于 data 中的 property 才是响应式的**</span>。如果创建实例后再添加一个新的 property，那么此 property 改变将不会触发任何视图的更新。
 - 除了数据 property，Vue 实例还暴露了一些有用的实例 property 与方法。它们都有前缀 `$`，以便与用户定义的 property 区分开来。
 
 示例：
@@ -201,7 +201,7 @@ vm.a = 10; // 触发 vue 实例的 watch 方法
 - beforeDestroy
 - destroyed
 
-以上生命周期钩子函数，在实例生命周期的不同阶段被调用。<font color=red>**生命周期钩子的 `this` 上下文指向调用它的 Vue 实例**</font>。
+以上生命周期钩子函数，在实例生命周期的不同阶段被调用。<span style="color: red;">**生命周期钩子的 `this` 上下文指向调用它的 Vue 实例**</span>。
 
 > **特别注意**：不要在选项对象 property 或回调上使用箭头函数，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。
 >
@@ -229,11 +229,11 @@ new Vue({
 
 ![](images/20211126154023858_2366.jpg)
 
-<font color=red>**特别值得注意的是：`created`钩子函数和`mounted`钩子函数的区别**</font>
+<span style="color: red;">**特别值得注意的是：`created`钩子函数和`mounted`钩子函数的区别**</span>
 
 ## vue 的指令
 
-指令（Directives）是 vue 为开发者提供的<font color=red>**模板语法**</font>，用于**辅助开发者渲染页面的基本结构**。
+指令（Directives）是 vue 为开发者提供的<span style="color: red;">**模板语法**</span>，用于**辅助开发者渲染页面的基本结构**。
 
 vue 中的指令按照不同的用途可以分为如下 6 大类：
 
@@ -258,7 +258,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 #### v-text
 
-`v-text` 作为元素的属性来定义，更新标签体内容。<font color=red>**注意：`v-text` 指令会覆盖元素内默认的值**</font>。
+`v-text` 作为元素的属性来定义，更新标签体内容。<span style="color: red;">**注意：`v-text` 指令会覆盖元素内默认的值**</span>。
 
 ```html
 <span v-text="msg"></span>
@@ -1091,7 +1091,7 @@ vue 提供了 `v-model` 指令，在表单 `<input>`、`<textarea>` 及 `<select
 </div>
 ```
 
-<font color=red>**注意：`v-else` 指令必须紧跟在带 `v-if` 或者 `v-else-if` 元素的后面使用，否则它将不会被识别！**</font>
+<span style="color: red;">**注意：`v-else` 指令必须紧跟在带 `v-if` 或者 `v-else-if` 元素的后面使用，否则它将不会被识别！**</span>
 
 #### v-else-if
 
@@ -1112,7 +1112,7 @@ vue 提供了 `v-model` 指令，在表单 `<input>`、`<textarea>` 及 `<select
 </div>
 ```
 
-<font color=red>**注意：`v-else-if` 指令必须紧跟在带 `v-if` 元素的后面使用，否则它将不会被识别！**</font>
+<span style="color: red;">**注意：`v-else-if` 指令必须紧跟在带 `v-if` 元素的后面使用，否则它将不会被识别！**</span>
 
 #### v-show
 
@@ -1124,7 +1124,7 @@ vue 提供了 `v-model` 指令，在表单 `<input>`、`<textarea>` 及 `<select
 
 不同的是带有 `v-show` 的元素始终会被渲染并保留在 DOM 中。`v-show` 只是简单地将元素的属性 `display: none`。
 
-<font color=red>**注意，`v-show` 不支持 `<template>` 元素，也不支持 `v-else`**</font>
+<span style="color: red;">**注意，`v-show` 不支持 `<template>` 元素，也不支持 `v-else`**</span>
 
 #### v-if 与 v-show 区别
 
@@ -1172,7 +1172,7 @@ v-for="(item, index) in items"
 </li>
 ```
 
-<font color=red>也可以用 `of` 替代 `in` 作为分隔符，因为它更接近 JavaScript 迭代器的语法</font>：
+<span style="color: red;">也可以用 `of` 替代 `in` 作为分隔符，因为它更接近 JavaScript 迭代器的语法</span>：
 
 ```html
 <div v-for="item of items"></div>
@@ -1382,7 +1382,7 @@ watch: {
 }
 ```
 
-> <font color=red>**注意，不应该使用箭头函数来定义 `watcher` 函数 (例如 `searchQuery: newValue => this.updateAutocomplete(newValue))`。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 `undefined`。**</font>
+> <span style="color: red;">**注意，不应该使用箭头函数来定义 `watcher` 函数 (例如 `searchQuery: newValue => this.updateAutocomplete(newValue))`。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.updateAutocomplete` 将是 `undefined`。**</span>
 
 ### computed 计算属性
 
@@ -1394,7 +1394,7 @@ watch: {
 
 #### 计算属性的特点
 
-- 虽然计算属性在声明的时候被定义为方法，但是<font color=red>计算属性的本质是一个属性</font>
+- 虽然计算属性在声明的时候被定义为方法，但是<span style="color: red;">计算属性的本质是一个属性</span>
 - 计算属性会缓存计算的结果，只有计算属性依赖的数据变化时，才会重新进行运算
 
 #### 基础示例
@@ -1449,7 +1449,7 @@ methods: {
 }
 ```
 
-与定义方法不同的是，<font color=red>计算属性是基于它们的响应式依赖进行缓存的</font>。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+与定义方法不同的是，<span style="color: red;">计算属性是基于它们的响应式依赖进行缓存的</span>。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
 
 相比之下，定义方法的方式，每当触发重新渲染时，调用方法将总会再次执行函数。*但如果不希望有缓存，则使用方法方式来替代计算属性*。
 
@@ -1549,7 +1549,7 @@ new Vue({
 })
 ```
 
-<font color=red>**注意：当全局过滤器和局部过滤器重名时，会优先使用局部过滤器。**</font>
+<span style="color: red;">**注意：当全局过滤器和局部过滤器重名时，会优先使用局部过滤器。**</span>
 
 
 ### 过滤器串联调用
@@ -1572,7 +1572,7 @@ new Vue({
 
 以上示例，`filterA` 被定义为接收三个参数的过滤器函数。其中 `message` 的值作为第一个参数，普通字符串 `'arg1'` 作为第二个参数，表达式 `arg2` 的值作为第三个参数。
 
-<font color=red>**注意：过滤器函数的第1个参数永远都是“管道符”前面待处理数值**</font>
+<span style="color: red;">**注意：过滤器函数的第1个参数永远都是“管道符”前面待处理数值**</span>
 
 ### 过滤器的兼容性
 
@@ -1628,7 +1628,7 @@ export default {
 </script>
 ```
 
-vue 规定：<font color=red>**组件中的 data 必须是一个函数**</font>，不能直接指向一个数据对象。
+vue 规定：<span style="color: red;">**组件中的 data 必须是一个函数**</span>，不能直接指向一个数据对象。
 
 ```js
 data: { // 组件中，不能直接让 data 指向一个数据对象（会报错）
@@ -1794,7 +1794,7 @@ export default {
 
 对于 `components` 属性对象中的每个 property 来说，其 property 名就是自定义元素的名字，其 property 值就是这个组件的选项对象。
 
-<font color=violet>**值得注意：局部注册的组件在其子组件中不可用**</font>。
+<span style="color: violet;">**值得注意：局部注册的组件在其子组件中不可用**</span>。
 
 #### 全局注册组件
 
@@ -1820,7 +1820,7 @@ new Vue({
 
 全局注册意味着，在所有组件的各自内部也都可以相互使用。
 
-<font color=red>**注意：全局注册的行为必须在根 Vue 实例 (通过 `new Vue`) 创建之前。**</font>
+<span style="color: red;">**注意：全局注册的行为必须在根 Vue 实例 (通过 `new Vue`) 创建之前。**</span>
 
 #### 模块系统下的注册
 
@@ -1903,7 +1903,7 @@ requireComponent.keys().forEach(fileName => {
 })
 ```
 
-<font color=red>**需要注意：全局注册的行为必须在根 Vue 实例 (通过 `new Vue`) 创建之前。**</font>
+<span style="color: red;">**需要注意：全局注册的行为必须在根 Vue 实例 (通过 `new Vue`) 创建之前。**</span>
 
 ### Prop
 
@@ -2115,7 +2115,7 @@ Vue.component('my-component', {
 })
 ```
 
-> 注意：那些 prop 会在一个<font color=red>**组件实例创建之前进行验证**</font>，所以实例的 property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。
+> 注意：那些 prop 会在一个<span style="color: red;">**组件实例创建之前进行验证**</span>，所以实例的 property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。
 
 `type` 可以是下列原生构造函数中的一个：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`。另外 `type` 还可以是一个自定义的构造函数，并且通过 `instanceof` 来进行检查确认。
 
@@ -2136,7 +2136,7 @@ Vue.component('blog-post', {
 
 #### 单向数据流（只读）
 
-vue 规定：组件中封装的<font color=red>**自定义属性是只读的**</font>，不能直接修改 props 的值。
+vue 规定：组件中封装的<span style="color: red;">**自定义属性是只读的**</span>，不能直接修改 props 的值。
 
 所有的 prop 都使得其父子 prop 之间形成了一个**单向下行绑定**：父组件所传递的 prop 的更新会向下更新到子组件中。但是不能反过来，为了防止从子组件意外变更父级组件的状态，从而导致应用的数据流向难以理解。
 
@@ -2168,13 +2168,13 @@ computed: {
 }
 ```
 
-> <font color=red>**注意：在 JavaScript 中对象和数组是引用类型，所以对于一个数组或对象类型的 prop 来说，在子组件中改变变更这个对象或数组本身将会影响到父组件的状态。**</font>
+> <span style="color: red;">**注意：在 JavaScript 中对象和数组是引用类型，所以对于一个数组或对象类型的 prop 来说，在子组件中改变变更这个对象或数组本身将会影响到父组件的状态。**</span>
 
 ### 组件的样式
 
 #### 组件之间的样式冲突问题
 
-默认情况下，写在 vue <font color=red>**组件中的样式会全局生效**</font>，因此很容易造成多个组件之间的样式冲突问题。导致组件之间样式冲突的根本原因是：
+默认情况下，写在 vue <span style="color: red;">**组件中的样式会全局生效**</span>，因此很容易造成多个组件之间的样式冲突问题。导致组件之间样式冲突的根本原因是：
 
 1. 单页面应用程序中，所有组件的 DOM 结构，都是基于唯一的 index.html 页面进行呈现的
 2. 每个组件中的样式，都会影响整个 index.html 页面中的 DOM 元素
@@ -2191,7 +2191,7 @@ vue 为 `<style>` 节点提供了 `scoped` 属性，从而防止组件之间的�
 
 #### 样式穿透 deep
 
-如果给当前组件的 `<style>` 节点添加了 `scoped` 属性，则当前组件的样式对其子组件是不生效的。<font color=red>**如果想让某些样式对子组件生效，可以使用深度选择器**</font>。有如下几种定义方式：
+如果给当前组件的 `<style>` 节点添加了 `scoped` 属性，则当前组件的样式对其子组件是不生效的。<span style="color: red;">**如果想让某些样式对子组件生效，可以使用深度选择器**</span>。有如下几种定义方式：
 
 1. 当 style 为 css 时的写法如下
 
@@ -2207,7 +2207,7 @@ vue 为 `<style>` 节点提供了 `scoped` 属性，从而防止组件之间的�
 
 ![](images/20211126144357539_31359.png)
 
-- 第二种方式：使用 `::v-deep`。<font color=red>**切记必须是双冒号**</font>
+- 第二种方式：使用 `::v-deep`。<span style="color: red;">**切记必须是双冒号**</span>
 
 ```scss
 <style lang="scss" scoped>
@@ -2872,7 +2872,7 @@ Props 属性：
 </div>
 ```
 
-> 需要注意的是：<font color=violet>**一个不带 `name` 属性的 `<slot>` 插槽会带有隐含的名字“`default`”**</font>。
+> 需要注意的是：<span style="color: violet;">**一个不带 `name` 属性的 `<slot>` 插槽会带有隐含的名字“`default`”**</span>。
 
 在向具名插槽提供内容的时候，可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式指定相应渲染的插槽名称
 
@@ -2916,7 +2916,7 @@ Props 属性：
 </template>
 ```
 
-> <font color=purple>**值得注意的是： `v-slot` 只能添加在 `<template>` 上**</font>
+> <span style="color: purple;">**值得注意的是： `v-slot` 只能添加在 `<template>` 上**</span>
 
 ##### 具名插槽的缩写
 
@@ -3088,7 +3088,7 @@ this.$root.baz()
 
 和 `$root` 类似，`$parent` 可以用于一个子组件访问父组件的实例。它提供了一种机会，可以在后期随时触达父级组件，以替代将数据以 `prop` 的方式传入子组件的方式。
 
-> *注：在绝大多数情况下，触达父级组件会使得应用更难调试和理解，尤其是当变更了父级组件的数据的时候，后面很难找出那个变更是从哪里发起的。针对需要向任意更深层级的组件提供上下文信息时推荐<font color=purple>依赖注入</font>*
+> *注：在绝大多数情况下，触达父级组件会使得应用更难调试和理解，尤其是当变更了父级组件的数据的时候，后面很难找出那个变更是从哪里发起的。针对需要向任意更深层级的组件提供上下文信息时推荐<span style="color: purple;">依赖注入</span>*
 
 ### 访问子组件实例或子元素
 
