@@ -248,6 +248,10 @@
 - [[MongoDB-基础|MongoDB 基础笔记]]
 - [[MongoDB-安装与使用|MongoDB 安装与使用]]
 
+### 数据库产品
+
+- [[Supabase|托管原生 PostgreSQL 数据库的开源 BaaS 平台]] - 封装认证、存储、实时订阅、边缘函数等全套后端能力，无需管理服务器，即可快速构建全栈应用。
+
 ## DevOps 工具
 
 ### 🪒 项目构建工具
@@ -468,7 +472,7 @@
 
 ### 💻 编程开发软件
 
-- [[IDEA|IntelliJ IDEA 使用教程]]
+- [[IDEA|IntelliJ IDEA 使用教程]] 2
 - [[eclipse|Eclipse 使用教程]]
 - [[Visual-Studio-Code|Visual Studio Code 使用教程]]
 - [[PyCharm|PyCharm 使用教程]]

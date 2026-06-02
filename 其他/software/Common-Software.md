@@ -627,16 +627,16 @@ FastStone 官方网站： http://www.faststone.org/
 
 解压 Keygen.7z 选择相应的 FastStone 的产品，随便输入一个用户名，然后生成相应的注册码即可。
 
-#### FastStone Image Viewer（目前更新至8.3版本）
+#### FastStone Image Viewer（目前更新至8.4版本）
 
 官方网站（无法打开）： https://www.faststone.org/FSViewerDetail.htm
 
 官方简体中文版下载地址：（官网无法打开，但下载地址可以下载）
 
 - 安装版 :
-    - https://www.faststonesoft.net/DN/FSViewerSetup83.zip
-    - https://www.faststonesoft.net/DN/FSViewerSetup83.exe
-- 便携版 : https://www.faststonesoft.net/DN/FSViewer83.zip
+    - https://www.faststonesoft.net/DN/FSViewerSetup84.zip
+    - https://www.faststonesoft.net/DN/FSViewerSetup84.exe
+- 便携版 : https://www.faststonesoft.net/DN/FSViewer84.zip
 
 > 建议使用迅雷或IDM下载
 

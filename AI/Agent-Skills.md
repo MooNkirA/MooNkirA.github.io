@@ -4,9 +4,15 @@ tags:
   - Skills
 ---
 
-## 什么是 Skills
+## 什么是 Agent Skills？
 
-Skills 是 Claude Code 中的可重用工具集，每个 Skill 都是一个专门的 AI 能力，用于处理特定类型的任务。Skills 通过 `/<skill-name>` 命令调用，为用户提供了专业的功能支持。
+[Agent Skills](https://claude.com/blog/skills) 是 Anthropic 推出的[一套开放标准](https://platform.claude.com/docs/zh-CN/agents-and-tools/agent-skills/overview)，目的是让 AI 能够学习使用各种专业技能，而不用每次都重复输入提示词。
+
+它定义了一种**封装 AI 工作流**的标准：开发者可以把复杂的任务指令、脚本和资源打包成一个**技能（Skill）**。作为用户，只需要安装这些技能，AI 就能立刻学会这项本事，不用重复造轮子。
+
+简单来说，它就是给 AI 装备的 **技能包**。技能包里有精心设计的提示词、代码脚本、还有各种资源文件。
+
+可以将 Skills 理解为可重用工具集，每个 Skill 都是一个专门的 AI 能力，用于处理特定类型的任务。Skills 通过 `/<skill-name>` 命令调用，为用户提供了专业的功能支持。
 
 ## 内置 Skills 列表
 
@@ -372,14 +378,14 @@ skill-creator docs --api
 
 ### 常见问题
 
-#### Q: skill-creator 命令找不到？
+#### skill-creator 命令找不到？
 
 A: 确保：
 1. skill-creator 已正确安装（`npm install -g @anthropic/skill-creator`）
 2. Node.js 在 PATH 中
 3. 重启终端后重试
 
-#### Q: 如何调试 Skill？
+#### 如何调试 Skill？
 
 A: 使用调试模式：
 ```bash
@@ -388,14 +394,14 @@ skill-creator debug
 
 然后运行你的 Skill，查看详细的调试信息。
 
-#### Q: Skill 无法触发怎么办？
+#### Skill 无法触发怎么办？
 
 A: 检查：
 1. `skill.yaml` 中的触发条件是否正确
 2. Skill 是否已安装（`skill-creator list`）
 3. 查看日志：`skill-creator logs`
 
-#### Q: 如何更新 skill-creator？
+#### 如何更新 skill-creator？
 
 A:
 ```bash

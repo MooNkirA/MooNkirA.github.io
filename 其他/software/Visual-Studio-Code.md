@@ -19,10 +19,6 @@ https://az764295.vo.msecnd.net/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/V
 https://vscode.cdn.azure.cn/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/VSCode-win32-x64-1.72.0.zip
 ```
 
-### [待整理] VSCode 修改扩展和用户文件夹目录位置(Windows)
-
-> TODO: 参考 https://blog.csdn.net/weixin_53510183/article/details/126906182
-
 ## 常用配置
 
 ### VSCode 插件和配置目录
@@ -81,7 +77,7 @@ rmdir "%USERPROFILE%\AppData\Roaming\Code"
 
 ### 用户设置和工作区设置的区别
 
-> “用户设置”会应用于用户打开的所有工程；“工作区设置”仅适用于当前目录的 VSCode 的设置。<font color=red>**注：“工作区设置”会覆盖“用户设置”。**</font>
+> “用户设置”会应用于用户打开的所有工程；“工作区设置”仅适用于当前目录的 VSCode 的设置。<span style="color: red;">**注：“工作区设置”会覆盖“用户设置”。**</span>
 
 - 用户设置：这种方式进行的设置，会应用于该用户打开的所有工程；
 - 工作空间设置：工作空间是指使用 VSCode 打开的某个文件夹，在该文件夹下会创建一个名为 .vscode 的隐藏文件夹，里面包含着仅适用于当前目录的 VSCode 的设置，工作空间的设置会覆盖用户的设置。
@@ -718,7 +714,7 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
 
 #### Vetur 插件配置
 
-<font color=red>**注意：VSCode中使用vetur插件格式化vue文件时，js代码会被添加上分号且单引号会转变为双引号。**</font>设置vscode配置文件
+<span style="color: red;">**注意：VSCode中使用vetur插件格式化vue文件时，js代码会被添加上分号且单引号会转变为双引号。**</span>设置vscode配置文件
 
 ```json
 "vetur.format.defaultFormatter.js": "vscode-typescript"
@@ -1071,7 +1067,7 @@ module.exports ={
 }
 ```
 
-> <font color=red>**注意：需要使用vscode打开项目根目录（即 package.json 所在的目录），否则 `@` 路径提示将失效**</font>
+> <span style="color: red;">**注意：需要使用vscode打开项目根目录（即 package.json 所在的目录），否则 `@` 路径提示将失效**</span>
 
 ##### Path Autocomplete 配置 @ 路径提示（原插件配置）
 

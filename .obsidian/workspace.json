@@ -13,88 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Python/Python-基础.md",
+                "file": "AI/Agent-Skills.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Python-基础"
-            }
-          },
-          {
-            "id": "fad7553e7d9f93c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AI/AI-编程工具.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "AI-编程工具"
-            }
-          },
-          {
-            "id": "c4b87f2a6a93d32e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Python/Python-function.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Python-function"
-            }
-          },
-          {
-            "id": "aa45a6ef0b15ce3d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Python/Python-usage.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Python-usage"
-            }
-          },
-          {
-            "id": "b6d39da183e813f5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AI/Claude-Code.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Claude-Code"
-            }
-          },
-          {
-            "id": "7ded38f25a4f9c91",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Python/Python-namespace-scope.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Python-namespace-scope"
+              "title": "Agent-Skills"
             }
           }
         ]
@@ -139,7 +64,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "file:readme",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -243,10 +168,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "其他/software/Windows.md"
+                "file": "AI/AI-编程工具.md"
               },
               "icon": "lucide-info",
-              "title": "Windows的笔记属性"
+              "title": "AI-编程工具的笔记属性"
             }
           },
           {
@@ -260,7 +185,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -281,43 +206,43 @@
   },
   "active": "ea1fde4daaecd29d",
   "lastOpenFiles": [
-    "AI/AI-编程工具.md",
-    "Python/Python-基础.md",
-    "Python/Python-usage.md",
-    "README.md",
-    "Python/Python-function.md",
-    "Python/Python-Guide.md",
+    "分布式微服务/分布式文件系统/FastDFS.md",
+    "attachments/工具框架/FastDFS安装教程.pdf",
+    "DevOps/项目构建工具/Maven-全局配置.md",
+    "AI/Agent-Skills.md",
+    "DevOps/项目构建工具/Maven-POM.md",
+    "DevOps/项目构建工具/Maven-基础.md",
+    "DevOps/项目构建工具/Maven-私服.md",
     "AI/Vibe-Coding.md",
     "AI/AI-基础.md",
+    "AI/AI-编程工具.md",
+    "其他/software/Visual-Studio-Code.md",
+    "其他/software/Development-Tools.md",
+    "Database/Supabase.md",
+    "README.md",
     "Python/Python-namespace-scope.md",
+    "AI/Claude-Code.md",
+    "Python/Python-usage.md",
+    "Python/Python-function.md",
+    "Database/images/20260601130646998.jpg",
+    "Database/images/20260601130432856.jpg",
+    "Database/images/20260601130331945.jpg",
+    "Database/images/20260601125915490.jpg",
+    "Database/images/20260601125729907.jpg",
+    "Database/images/20260601125609006.jpg",
+    "Database/images/20260601125340672.jpg",
+    "Database/images/20260601125230200.jpg",
+    "Database/images/20260601125020370.jpg",
+    "Database/images/20260601124439058.jpg",
+    "Python/Python-基础.md",
+    "其他/software/Common-Software.md",
+    "其他/编程开发相关.md",
+    "Python/Python-Guide.md",
     "AI/人工智能训练师/人工智能训练师考试笔记.md",
     "其他/software/Windows.md",
-    "其他/software/Visual-Studio-Code.md",
-    "AI/Claude-Code.md",
-    "其他/software/Common-Software.md",
-    "AI/Agent-Skills.md",
     "AI/Claude-Code-教程.md",
     "其他/software/Obsidian.md",
-    "Python/Python-data-model.md",
-    "Python/Python-controlflow.md",
-    "Python/Python-classes.md",
-    "attachments/templates/font-css.md",
-    "attachments/templates/font-red.md",
-    "attachments/templates/Insert-Callouts.md",
     "test.js",
-    "attachments/templates/font-underline.md",
-    "项目资料/学成在线/Day02-CMS前端开发.md",
-    "项目资料/好客租房/Day01-ES6新特性以及ReactJS入门.md",
-    "AI/images/20260508123636125.jpg",
-    "AI/images/20260508123631351.jpg",
-    "AI/images/20260508121332543.jpg",
-    "AI/images/20260508114845713.jpg",
-    "AI/images/20260508112033903.jpg",
-    "AI/images/20260508111524460.jpg",
-    "AI/images/20260508110254320.jpg",
-    "AI/images/20260508101553469.jpg",
-    "AI/images/20260508101139654.jpg",
-    "AI/images/20260508091823184.jpg",
     "AI/images",
     "CLAUDE.md.tmp.17628.1777895976114",
     "copilot/copilot-conversations",
@@ -325,7 +250,6 @@
     "copilot",
     "resources/file-map.json",
     "resources/update-file-map.bat",
-    "resources/run-moon-system-wt.bat",
-    "resources/file_map_generator.py"
+    "resources/run-moon-system-wt.bat"
   ]
 }

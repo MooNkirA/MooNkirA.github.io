@@ -145,6 +145,115 @@ Bolt.new 提供多种定价方案，满足不同用户需求：
 | **Cursor** | 本地 IDE 集成 AI，支持代码补全和生成 | 专业开发者日常开发，需要本地环境控制 |
 | **Replit** | 多语言在线 IDE，支持协作 | 学习编程，快速测试代码片段 |
 
+## AI 代码编程器
+
+### Cursor
+
+Cursor 是目前最的 AI 代码编辑器，被称为“AI 时代的 VSCode"。因为它基于 VSCode 改造，保留了 VSCode 的所有优点，同时加入了强大的 AI 功能。
+
+### TRAE
+
+> - 官网 https://www.trae.cn/
+> - 官方文档 https://docs.trae.cn/
+> - 官方飞书知识库 https://lcnziv86vkx6.feishu.cn/wiki/GEEnwlfTQi8qZrkFsPycfkUKnul
+
+TRAE 是字节跳动推出的 AI 原生编程工具。有 2 种开发模式：
+
+- IDE 模式类似 Cursor，保留传统开发流程
+- SOLO 模式让 AI 主导，自动推进开发任务
+
+TRAE 的 SOLO 模式是它最大的亮点，区别于传统的人类主导 + AI 辅助编程，SOLO 模式让 AI 主导任务并自动执行开发。只需要有一个想法，AI 就能自动生成产品需求文档、技术架构档，然后自主编写代码、安装依赖、测试验证，直到项目可以正常运行。
+
+TRAE 支持集成第三方服务，比如 Supabase 数据库、Stripe 支付、OpenRouter AI 服务等，不用看文档就能傻瓜式集成。可以快速开发包含完整前端和后端的商业级产品。
+
+#### 自定义 Trae 缓存目录
+
+Trae（含 Trae CN）默认将缓存、配置和运行时数据存储在 C 盘用户目录下，容易导致 C 盘空间不足。目前有两种主要方法自定义这些目录位置：**修改配置文件**（适用于部分缓存类型）和**创建符号链接**（适用于所有目录，推荐）。
+
+**缓存核心目录说明**：
+
+| 目录名称     | 默认路径（Windows）                         | 作用                       |
+| ------------ | ------------------------------------------- | ------------------------ |
+| **Trae CN**  | `C:\Users\<用户名>\AppData\Roaming\Trae CN` | 模型缓存、插件、运行时数据 |
+| **.trae-cn** | `C:\Users\<用户名>\.trae-cn`                | 项目快照、配置、扩展插件   |
+
+> [!tip] 国际版缓存目录的名称不一样，替换成实际目录操作即可。
+
+**符号链接法（推荐，全目录迁移）**：通过创建符号链接，将默认目录映射到新位置，Trae 会继续读写原路径，但实际数据存储在新位置。**适用于所有 Trae 目录**，包括 `Trae CN` 和 `.trae-cn`。
+
+Windows 系统 Trae 缓存目录迁移操作步骤（需要管理员权限）
+
+- 完全关闭 Trae，结束所有进程
+- 在目标磁盘（如 D 盘）创建新目录，例如：`D:\TraeData`
+- 在新目录下创建对应文件夹：`D:\TraeData\Trae CN` 和 `D:\TraeData\.trae-cn`
+- 迁移原目录
+    - `C:\Users\<你的用户名>\AppData\Roaming\Trae CN` -> 粘贴到 `D:\TraeData\Trae CN`
+    - `C:\Users\<你的用户名>\.trae-cn` -> 粘贴到 `D:\TraeData\.trae-cn`
+- 确认原位置目录已删除（剪切后自动删除）。**必须删除，否则他那符号链接时会报错**。
+- 以管理员身份运行 `CMD`（搜索 "cmd" -> 右键 -> 以管理员身份运行）。执行以下命令（替换`<用户名>`和目标路径）：
+
+```cmd
+mklink /D "C:\Users\<用户名>\AppData\Roaming\Trae CN" "D:\TraeData\Trae CN"
+mklink /D "C:\Users\<用户名>\.trae-cn" "D:\TraeData\.trae-cn"
+
+:: 使用系统变量的方式（效果同上）
+mklink /D "%APPDATA%\Trae CN" "D:\TraeData\Trae CN"
+mklink /D "%USERPROFILE%\.trae-cn" "D:\TraeData\.trae-cn"
+```
+
+### Qoder
+
+> - 官网 https://qoder.com/
+> - 官方文档 https://docs.qoder.com/zh
+
+Qoder 是面向真实软件的智能体编程平台。
+
+#### 自定义 Qoder 缓存目录
+
+> [!info] Qoder 的国际版与国内版的缓存目录路径可能不同，请实际修改即可。
+
+**Qoder 核心目录**
+
+- `%USERPROFILE%\.qoder`：核心配置、模型缓存、运行时数据、日志、插件、本地索引。占用空间大（模型缓存为主）。
+- `%APPDATA%\Qoder`：用户配置、会话缓存、Cookies、界面设置。占用空间小
+
+**符号链接法迁移**操作步骤以下：
+
+- **完全关闭 Qoder/Qoder CN**，任务管理器结束所有相关进程。
+- 目标盘新建总目录（示例：`D:\QoderData`），用于存放所有迁移数据
+- **必须用管理员权限 CMD** 执行命令
+
+```cmd
+mkdir D:\QoderData\.qoder
+mkdir D:\QoderData\Qoder
+```
+
+- 迁移原目录（剪切，不是复制），并且确保原路径**文件夹已消失**。
+    - 剪切 `%USERPROFILE%\.qoder` -> `D:\QoderData\.qoder`
+    - 剪切 `%APPDATA%\Qoder` -> `D:\QoderData\Qoder`
+- 使用管理员 CMD 创建符号链接
+
+```cmd
+:: 迁移核心目录 .qoder
+mklink /D "%USERPROFILE%\.qoder" "D:\QoderData\.qoder"
+
+:: 迁移配置缓存目录 Qoder
+mklink /D "%APPDATA%\Qoder" "D:\QoderData\Qoder"
+```
+
+- 删除符号链接（恢复默认）
+
+```cmd
+rmdir "%USERPROFILE%\.qoder"
+rmdir "%APPDATA%\Qoder"
+```
+
+### AIXcoder 智能编程助手（未使用，可删）
+
+> 官网：https://www.aixcoder.com/#/
+
+aiXcoder 极速本地版，智能编程助手。功能包括：代码智能补全、支持主流 IDE、支持多编程语言、本地深度学习模型。支持多种主流 IDE，包含 IntelliJ IDEA，Eclipse，PyCharm，Android Studio，PhpStorm，WebStorm、Clion，Visual Studio Code
+
 ## AI 命令行编程工具
 
 ### 命令行工具和代码编辑器的区别
@@ -515,3 +624,4 @@ print(response.choices[0].message.content)
 2. 完成实名认证（个人认证即可，通常需要身份证）
 3. 进入 API Key 管理页面创建密钥（注意：密钥仅显示一次，需妥善保存）
 4. 在代码中配置 API Key 和基础 URL，即可开始调用
+

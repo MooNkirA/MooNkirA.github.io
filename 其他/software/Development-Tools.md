@@ -73,23 +73,44 @@ SwitchHosts! 是一款可以方便管理和一键切换多个 hosts 方案的免
 
 > 如果这样还不生效，那么只能再试试重启电脑了，一般都 OK 了。要这样还是不行，可能就是的 hosts 写错了。
 
-### 代码小抄 - 代码片段管理
+### 文本/代码对比工具
 
-> 官网：https://www.codecopy.cn/
+#### Beyond Compare
 
-这是一个简单易用的代码分享工具，可以快速、跨设备地自由分享代码。完全免费，无论电脑或手机的都有不错的阅读体验。更多优点如下：
+Beyond Compare（简称 BC）是美国 Scooter Software 公司开发的跨平台专业**文件 / 文件夹对比、合并、同步工具**，广泛用于开发、运维、文档比对、备份同步等场景，支持 Windows /macOS/ Linux。提供 30 天全功能免费试用，付费后永久授权，分标准版（Standard）与专业版（Pro）。
 
-- 界面很像常用的代码编辑器，可以新增、删除代码片段
-- 支持多种分享范围（公开、加密、仅个人可见）
-- 支持多种分享方式（复制链接、QQ 分享、手机扫码、微信小程序等）
-- 还有代码库功能，可以查看并学习其他人分享的优质代码
-- 支持在线运行代码、AI 智能代码分析和纠错
+> 官网 https://beyond-compare.com/
 
-## AIXcoder 智能编程助手（未使用，待移动整理）
+**重置试用时间**：打开记录本，输入以下代码，另存为 `.reg` 格式的 Windows 注册表脚本文件。当 Beyond Compare 试用时间结束前双击运行即可重置继续免费试用。
 
-> 官网：https://www.aixcoder.com/#/
+```reg
+Windows Registry Editor Version 5.00
 
-aiXcoder 极速本地版，智能编程助手。功能包括：代码智能补全、支持主流 IDE、支持多编程语言、本地深度学习模型。支持多种主流 IDE，包含 IntelliJ IDEA，Eclipse，PyCharm，Android Studio，PhpStorm，WebStorm、Clion，Visual Studio Code
+;删除缓存
+[HKEY_CURRENT_USER\SOFTWARE\Scooter Software\Beyond Compare 5\]
+"CacheID"=-
+```
+
+> [!info] 安装不同的版本时，需要注意修改脚本相应的版本号
+
+#### WinMerge
+
+WinMerge 是 Windows 平台专属、GPLv2 开源、完全免费的**文件 / 文件夹对比与合并工具**，主打可视化差异高亮、文本 / 目录双向合并、编码与行尾处理，适合代码、配置、文档比对与简单合并场景。仅支持 Windows，无 macOS/Linux 版本；个人 / 企业均可免费商用。
+
+> - 官网 https://winmerge.org/
+> - GitHub https://github.com/WinMerge/winmerge
+
+#### Diffuse
+
+Diffuse 在命令行中的速度是相当快的，支持像 C++、Python、Java、XML 等语言的语法高亮显示。可视化比较，非常直观，支持两相比较和三相比较。这就是说，使用 Diffuse 可以同时比较两个或三个文本文件。支持常见的版本控制工具，包括 CVS、subversion、git、mercurial 等，可以通过 Diffuse 直接从版本控制系统获取源代码，以便对其进行比较和合并。
+
+#### Code Compare
+
+Code Compare 是一款用于程序代码文件的比较工具，目前 Code Compare 支持的对比语言有：C#、C++、CSS、HTML、Java、JavaScrip 等代码语言。Visual Studio 环境源代码比较是一个方便，易于使用的工具，独特的 Visual Studio 集成，可以同时在一个环境内，使所有的方便程序开发设计。
+
+#### AptDiff
+
+AptDiff 是一个文件比较工具，可以对文本和二进制文件进行比较和合并，适用于软件开发、网络设计和其它的专业领域。它使用方便，支持键盘快捷键，可以同步进行横向和纵向卷动，支持 Unicode 格式和大于 4GB 的文件，可以生成 HTML 格式的比较报告。
 
 ## CC Switch
 
