@@ -264,12 +264,12 @@
     "scroll": 0,
     "cursor": {
       "from": {
-        "line": 8,
-        "ch": 16
+        "line": 9,
+        "ch": 6
       },
       "to": {
-        "line": 8,
-        "ch": 16
+        "line": 9,
+        "ch": 6
       }
     },
     "expandedKeys": [
@@ -494,7 +494,7 @@
     ]
   },
   "AI/Claude-Code.md": {
-    "scroll": 280.6815476190476,
+    "scroll": 279.6815476190476,
     "cursor": {
       "from": {
         "line": 289,
@@ -541,37 +541,41 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 994.9757109004739,
+    "scroll": 428.27843601895734,
     "cursor": {
       "from": {
-        "line": 1004,
-        "ch": 33
+        "line": 435,
+        "ch": 15
       },
       "to": {
-        "line": 1004,
-        "ch": 33
+        "line": 435,
+        "ch": 15
       }
     },
-    "expandedKeys": []
+    "expandedKeys": [
+      "item-3-36",
+      "item-2-36"
+    ]
   },
   "Java/Java基础-JDK.md": {
-    "scroll": 44.511067708333336,
+    "scroll": 46.07217261904762,
     "cursor": {
       "from": {
-        "line": 68,
-        "ch": 39
+        "line": 54,
+        "ch": 11
       },
       "to": {
-        "line": 68,
-        "ch": 39
+        "line": 54,
+        "ch": 11
       }
     },
     "expandedKeys": [
       "item-2-0",
       "item-2-3",
-      "item-2-7",
-      "item-2-13",
-      "item-3-16"
+      "item-2-11",
+      "item-2-17",
+      "item-3-20",
+      "item-3-6"
     ]
   },
   "Java/Java扩展-设计模式.md": {
@@ -617,28 +621,24 @@
     ]
   },
   "AI/AI-编程工具.md": {
-    "scroll": 267.00296208530807,
+    "scroll": 265.7037760416667,
     "cursor": {
       "from": {
-        "line": 280,
+        "line": 281,
         "ch": 0
       },
       "to": {
-        "line": 280,
+        "line": 281,
         "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-1",
       "item-3-2",
       "item-4-5",
-      "item-2-15",
-      "item-2-22",
-      "item-3-26",
-      "item-2-32",
-      "item-3-34",
       "item-3-17",
-      "item-3-19"
+      "item-3-19",
+      "item-3-26",
+      "item-3-34"
     ]
   },
   "AI/VibeCoding.md": {
@@ -656,15 +656,15 @@
     "expandedKeys": []
   },
   "AI/Vibe-Coding.md": {
-    "scroll": 1.9973958333333335,
+    "scroll": 0,
     "cursor": {
       "from": {
-        "line": 24,
-        "ch": 75
+        "line": 11,
+        "ch": 0
       },
       "to": {
-        "line": 24,
-        "ch": 75
+        "line": 11,
+        "ch": 0
       }
     },
     "expandedKeys": [
@@ -1392,6 +1392,353 @@
       "item-3-6",
       "item-3-13",
       "item-3-18"
+    ]
+  },
+  "AI/Claude-Code-教程.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-2",
+      "item-2-5",
+      "item-3-7",
+      "item-2-14",
+      "item-3-16",
+      "item-3-21",
+      "item-2-25",
+      "item-3-26",
+      "item-3-29",
+      "item-3-33",
+      "item-3-37",
+      "item-2-41",
+      "item-3-42",
+      "item-3-50",
+      "item-3-53",
+      "item-2-56",
+      "item-3-57",
+      "item-3-59",
+      "item-3-61",
+      "item-3-64",
+      "item-3-67",
+      "item-3-71",
+      "item-2-74",
+      "item-3-75",
+      "item-3-79",
+      "item-3-83",
+      "item-3-86",
+      "item-3-89",
+      "item-3-92"
+    ]
+  },
+  "AI/AI-Tools/Claude-Code-教程.md": {
+    "scroll": 45.16725726435153,
+    "cursor": {
+      "from": {
+        "line": 9,
+        "ch": 32
+      },
+      "to": {
+        "line": 9,
+        "ch": 32
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-2",
+      "item-2-5",
+      "item-3-7",
+      "item-2-14",
+      "item-3-16",
+      "item-3-21",
+      "item-2-25",
+      "item-3-26",
+      "item-3-29",
+      "item-3-33",
+      "item-3-37",
+      "item-2-41",
+      "item-3-42",
+      "item-3-50",
+      "item-3-53",
+      "item-2-56",
+      "item-3-57",
+      "item-3-59",
+      "item-3-61",
+      "item-3-64",
+      "item-3-67",
+      "item-3-71",
+      "item-2-74",
+      "item-3-75",
+      "item-3-79",
+      "item-3-83",
+      "item-3-86",
+      "item-3-89",
+      "item-3-92"
+    ]
+  },
+  "AI/AI-Tools/Claude-Code.md": {
+    "scroll": 279.6815476190476,
+    "cursor": {
+      "from": {
+        "line": 289,
+        "ch": 29
+      },
+      "to": {
+        "line": 289,
+        "ch": 29
+      }
+    },
+    "expandedKeys": [
+      "item-2-1",
+      "item-3-3",
+      "item-2-9",
+      "item-2-13",
+      "item-2-19",
+      "item-2-26",
+      "item-2-29",
+      "item-2-35",
+      "item-3-36",
+      "item-2-42",
+      "item-2-46"
+    ]
+  },
+  "AI/AI-Develop/Claude-Code.md": {
+    "scroll": 502.4388020833333,
+    "cursor": {
+      "from": {
+        "line": 517,
+        "ch": 0
+      },
+      "to": {
+        "line": 517,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-13",
+      "item-3-36",
+      "item-2-35"
+    ]
+  },
+  "AI/AI-Develop/Claude-Code-教程.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-2",
+      "item-2-5",
+      "item-3-7",
+      "item-2-14",
+      "item-3-16",
+      "item-3-21",
+      "item-2-25",
+      "item-3-26",
+      "item-3-29",
+      "item-3-33",
+      "item-3-37",
+      "item-2-41",
+      "item-3-42",
+      "item-3-50",
+      "item-3-53",
+      "item-2-56",
+      "item-3-57",
+      "item-3-59",
+      "item-3-61",
+      "item-3-64",
+      "item-3-67",
+      "item-3-71",
+      "item-2-74",
+      "item-3-75",
+      "item-3-79",
+      "item-3-83",
+      "item-3-86",
+      "item-3-89",
+      "item-3-92"
+    ]
+  },
+  "AI/AI-Assistance/Agent-Skills.md": {
+    "scroll": 20.54983807124865,
+    "cursor": {
+      "from": {
+        "line": 32,
+        "ch": 13
+      },
+      "to": {
+        "line": 32,
+        "ch": 13
+      }
+    },
+    "expandedKeys": [
+      "item-2-1",
+      "item-2-9",
+      "item-3-11",
+      "item-3-16",
+      "item-3-25",
+      "item-3-30"
+    ]
+  },
+  "项目资料/自用信息管理系统/MoonSystem项目开发笔记.md": {
+    "scroll": 50.032269893656036,
+    "cursor": {
+      "from": {
+        "line": 78,
+        "ch": 71
+      },
+      "to": {
+        "line": 78,
+        "ch": 71
+      }
+    },
+    "expandedKeys": [
+      "item-2-3",
+      "item-3-4",
+      "item-3-10",
+      "item-2-12",
+      "item-3-17",
+      "item-2-20",
+      "item-3-21",
+      "item-3-24",
+      "item-2-27",
+      "item-2-29",
+      "item-3-30",
+      "item-3-33",
+      "item-3-36",
+      "item-3-40",
+      "item-3-44",
+      "item-3-47",
+      "item-2-51",
+      "item-2-0"
+    ]
+  },
+  "分布式微服务/系统架构/架构-基础.md": {
+    "scroll": 947.12890625,
+    "cursor": {
+      "from": {
+        "line": 959,
+        "ch": 24
+      },
+      "to": {
+        "line": 959,
+        "ch": 24
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-4",
+      "item-2-8",
+      "item-3-9",
+      "item-3-19",
+      "item-2-25",
+      "item-2-29",
+      "item-3-30",
+      "item-3-38",
+      "item-3-41",
+      "item-2-46",
+      "item-3-49",
+      "item-3-54",
+      "item-3-58",
+      "item-3-62",
+      "item-2-68",
+      "item-2-72",
+      "item-3-76",
+      "item-2-80",
+      "item-2-84",
+      "item-3-88",
+      "item-2-93",
+      "item-2-100",
+      "item-3-101"
+    ]
+  },
+  "其他/编程资源分享.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 2,
+        "ch": 0
+      },
+      "to": {
+        "line": 2,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-5",
+      "item-3-8",
+      "item-3-10",
+      "item-2-13",
+      "item-2-17",
+      "item-2-21",
+      "item-3-22",
+      "item-3-24",
+      "item-4-25",
+      "item-3-40"
+    ]
+  },
+  "其他/学习资源/Spring事务管理（一）快速入门.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-1",
+      "item-2-6",
+      "item-2-11",
+      "item-2-13",
+      "item-2-17"
+    ]
+  },
+  "DevOps/项目构建工具/Gradle.md": {
+    "scroll": 140.35872395833334,
+    "cursor": {
+      "from": {
+        "line": 147,
+        "ch": 126
+      },
+      "to": {
+        "line": 147,
+        "ch": 126
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-1",
+      "item-2-4",
+      "item-3-7",
+      "item-2-13",
+      "item-3-15",
+      "item-3-18",
+      "item-4-19",
+      "item-4-24",
+      "item-2-31",
+      "item-3-33",
+      "item-3-38",
+      "item-2-42"
     ]
   }
 }

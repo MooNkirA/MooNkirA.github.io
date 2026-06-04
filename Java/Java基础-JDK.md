@@ -15,49 +15,118 @@ Java 是一门面向对象的编程语言，不仅吸收了 C++ 语言的各种�
 
 JDK (Java Development Kit) 是 Java 语言的软件开发工具包(SDK)，主要用于移动设备、嵌入式设备上的 Java 应用程序。JDK 是整个 Java 开发的核心，它包含了 JAVA 的运行环境（JVM+Java 系统类库）和 JAVA 工具。
 
-> JDK 官网：https://www.oracle.com/java/
+> JDK 官网 https://www.oracle.com/java/
 
 ### JDK 版本号的选择
 
-Oracle JDK 8u211 及以上版本进行具有商业用途(盈利目的)的应用或工具的开发时是要收费的
-
-JDK8 最后一个免费版本，JDK 8u202。但推荐下载 JDK 8u201？！说好的最后一个免费版本，为什么写了两个版本号 8u201 和 8u202 呢？到底要用哪一个？
+Oracle JDK 8u211 及以上版本进行具有商业用途(盈利目的)的应用或工具的开发时是要收费的。JDK8 最后一个免费版本，JDK 8u202。但推荐下载 JDK 8u201？！说好的最后一个免费版本，为什么写了两个版本号 8u201 和 8u202 呢？到底要用哪一个？
 
 这就涉及到 Oracle 跟 Oracle JDK 的使用者之间的一个小小的约定或小常识了！**下载奇数版本！！！**
 
 从 2014 年 10 月发布 Java SE 7 Update 71 (Java SE 7u71) 开始，Oracle 在发布 Oracle JDK 关键补丁更新 (CPUs：Critical Patch Updates) 的同时一般会发布相应的补丁集更新 (PSUs：Patch Set Updates)。那么 CPUs 和 PSUs 之间有什么区别呢？
 
-Oracle JDK 关键补丁更新 (CPUs) 包含安全漏洞修复和重要漏洞修复，Oracle 强烈建议所有 Oracle JDK 用户及时升级到最新的 CPU 版本，Oracle JDK 关键补丁更新 (CPUs) 版本号采用奇数编号！
-
-Oracle JDK 补丁集更新 (PSUs) 包含相应 CPUs 中的所有修复以及其他非重要修复，仅当您受到Oracle JDK关键补丁更新 (CPUs)版本之外的其他漏洞的影响时才应当使用相应的补丁集更新 (PSUs) ，Oracle JDK 补丁集更新 (PSUs) 版本号采用偶数编号！
+- Oracle JDK 关键补丁更新 (CPUs) 包含安全漏洞修复和重要漏洞修复，Oracle 强烈建议所有 Oracle JDK 用户及时升级到最新的 CPU 版本，Oracle JDK 关键补丁更新 (CPUs) 版本号采用奇数编号！
+- Oracle JDK 补丁集更新 (PSUs) 包含相应 CPUs 中的所有修复以及其他非重要修复，仅当您受到Oracle JDK关键补丁更新 (CPUs)版本之外的其他漏洞的影响时才应当使用相应的补丁集更新 (PSUs) ，Oracle JDK 补丁集更新 (PSUs) 版本号采用偶数编号！
 
 所以，一般情况下只要下载奇数编号的最新版本更新就行了！但要记住：商业收费版本的不要用于商业用途！
 
 ### Oracle JDK 与 Open JDK
 
-Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技术可以去 Open JDK 官网学习。
+Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技术可以去 Open JDK 官网学习。JDK Enhancement Proposals(JDK 增强建议)。通俗的讲 JEP 就是 JDK 的新特性
 
 > Open JDK 官网：http://openjdk.java.net/
-
-JDK Enhancement Proposals(JDK增强建议)。通俗的讲JEP就是JDK的新特性
 
 ### LST 版本
 
 普通非 LTS 版本生命周期只有六个月，但 LTS（长期支持）版本会有多年的官方支持。目前主要关注的 LTS 版本：
 
-| 版本    | 发布时间 | 类型 | 支持状态                                        |
-| ------- | -------- | ---- | ------------------------------------------- |
-| Java 8  | 2014-03  | LTS  | 第三方厂商（Azul、Amazon Corretto）仍在维护     |
-| Java 11 | 2018-09  | LTS  | Oracle 商业支持延长中                           |
-| Java 17 | 2021-09  | LTS  | <font color=red>**主流生产推荐版本之一**</font> |
-| Java 21 | 2023-09  | LTS  | 当前最新 LTS，推荐迁移目标                      |
-| Java 25 | 2025-09  | LTS  | 最新 LTS，2025年9月发布                         |
+| 版本                                                                     | 发布时间 | 类型 | 支持状态                                        |
+| ------------------------------------------------------------------------ | -------- | ---- | ----------------------------------------------- |
+| [Java 8](https://www.oracle.com/cn/java/technologies/downloads/#java8)   | 2014-03  | LTS  | 第三方厂商（Azul、Amazon Corretto）仍在维护     |
+| [Java 11](https://www.oracle.com/cn/java/technologies/downloads/#java11) | 2018-09  | LTS  | Oracle 商业支持延长中                           |
+| [Java 17](https://www.oracle.com/cn/java/technologies/downloads/#java17) | 2021-09  | LTS  | <font color=red>**主流生产推荐版本之一**</font> |
+| [Java 21](https://www.oracle.com/cn/java/technologies/downloads/#java21) | 2023-09  | LTS  | 当前最新 LTS，推荐迁移目标                      |
+| [Java 25](https://www.oracle.com/cn/java/technologies/downloads/#java25) | 2025-09  | LTS  | 最新 LTS，2025年9月发布                         |
 
 > [!info] 如果关注这个领域的话，现在主流生产环境的迁移目标其实是 Java 21。Java 25 是更新的 LTS，但 21 已经有了相当大的生态积累，很多团队把它作为迁移目标。
 
+#### Java 11 (2018 年发布，LTS)
+
+- **核心特性**：
+    - 模块化系统 (JPMS)，实现代码解耦与轻量化部署
+    - 内置 HTTP Client API，替代老旧的 HttpURLConnection
+    - ZGC 垃圾回收器 (实验性)，暂停时间压至毫秒级
+    - 移除 Java EE 和 CORBA 模块，精简 JDK 体积
+- **企业价值**：
+    - 平衡稳定性和现代特性，适合传统企业系统升级
+    - 官方支持至 2026 年，商业扩展支持可至 2027 年
+    - 多数中间件和框架已全面兼容，迁移风险低
+
+#### Java 17 (2021 年发布，LTS)
+
+- **核心特性**：
+    - 密封类 (Sealed Classes)，精确控制类继承边界，提升代码安全性
+    - 模式匹配 (`instanceof` 优化)，减少类型转换代码，提升可读性
+    - 文本块 (`"""`)，支持多行字符串，简化 SQL/JSON 等代码编写
+    - ZGC 和 Shenandoah 垃圾回收器正式生产可用，亚毫秒级停顿
+    - 强封装 JDK 内部 API，提升安全性
+- **企业价值**：
+    - 性能显著提升：较 Java 11 吞吐量提升 23%，内存占用降低 15%
+    - 支持周期长：官方支持至 2026 年 9 月，扩展支持至 2029 年 9 月
+    - 生态全面支持：Spring Framework 6.0 和 Spring Boot 3.0 + 最低要求版本
+    - 安全性增强：默认启用强封装，减少安全漏洞风险
+
+#### Java 21 (2023 年发布，LTS)
+
+- **核心特性**：
+    - 虚拟线程 (Virtual Threads)，轻量级线程，大幅提升 I/O 密集型应用吞吐量
+    - 分代 ZGC，优化内存管理，提升大堆场景性能
+    - 字符串模板 (String Templates)，简化字符串拼接，提升可读性和安全性
+    - 记录模式 (Record Patterns) 和 switch 模式匹配，进一步简化数据处理代码
+- **企业价值**：
+    - 高并发场景革命性提升：电商订单系统并发量从 1000 QPS 提升至 5000 QPS，延迟从 200 ms 降至 50 ms
+    - 开发效率跃升：虚拟线程使并发编程门槛大幅降低，无需手动管理线程池
+    - 支持周期最长：官方支持至 2028 年 9 月，扩展支持至 2031 年 9 月
+    - 云原生友好：更小的内存占用，更快的启动速度，完美适配 K 8 s 环境
+
+#### 目前企业 Java 主流版本选择建议（更新于 2026.06.03）
+
+**目前企业 Java 开发中，除 Java 8 外，使用最多的是 Java 11，而综合来看最好的是 Java 17（2026 年主流选择），Java 21 则是未来高并发场景的趋势**。
+
+- 选择 Java 11 的场景
+    - 传统金融 / 政府系统，对稳定性要求极高，短期内无法进行大规模升级
+    - 正在从 Java 8 迁移的系统，需要一个平稳过渡的中间版本
+    - 依赖的第三方库或中间件尚未完全支持 Java 17+
+    - 预算有限，无法承担大规模重构成本的企业
+- 选择 Java 17 的场景（**推荐大多数企业**）
+    - 新建企业级项目，需要平衡稳定性和现代特性
+    - 微服务架构，需要更好的性能和容器支持
+    - 使用 Spring Boot 3.x 及以上版本的项目（强制要求）
+    - 注重安全性和长期支持，希望减少未来升级频率
+    - 希望获得显著性能提升而无需大幅修改代码的企业
+- 选择 Java 21 的场景
+    - 高并发 I/O 密集型应用（Web 服务器、数据库访问、文件处理）
+    - 微服务网关、实时通信系统（WebSocket 长连接）
+    - 批处理系统，需要并行处理海量数据
+    - 技术前瞻性企业，希望提前布局未来技术栈
+    - 云原生环境，追求极致的资源利用率和弹性扩展能力
+
+**总结与行动建议**：
+
+- **使用最多**：Java 11 目前仍占据约 45-50% 的市场份额，是企业从 Java 8 升级的首选过渡版本
+- **综合最好**：Java 17 是当前最佳 LTS 版本，兼顾稳定性、性能、安全性和生态兼容性，支持周期长，适合大多数企业级开发
+- **未来趋势**：Java 21 凭借虚拟线程等革命性特性，正在快速获得企业认可，特别是在高并发和云原生场景中
+
+**行动建议**：
+
+- 新项目：优先选择 Java 17，若涉及高并发 I/O 场景可考虑 Java 21
+- 现有 Java 8 项目：制定迁移计划，先迁移至 Java 11，再逐步升级到 Java 17
+- 现有 Java 11 项目：评估升级到 Java 17 的成本与收益，建议在 2026 年前完成升级
+- 关注 Java 21 生态发展，为未来高并发项目做好技术储备
+
 ## windows 系统安装 JDK
 
-### JDK变量环境配置
+### JDK 变量环境配置
 
 最好的配置方式：将位置切割成两段，一段用`JAVA_HOME`保存，一段用\bin保存。如下例：
 

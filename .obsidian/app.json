@@ -6,7 +6,7 @@
   "attachmentFolderPath": "attachments",
   "newLinkFormat": "shortest",
   "alwaysUpdateLinks": true,
-  "trashOption": "local",
+  "trashOption": "system",
   "readableLineLength": false,
   "livePreview": false,
   "showUnsupportedFiles": true,

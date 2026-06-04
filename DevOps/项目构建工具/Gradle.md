@@ -143,7 +143,7 @@ set GRADLE_OPTS="-Dgradle.user.home=E:\deployment-environment\.gradle\"
 
 在 idea 中修改 gradle 用户目录，此方式只适用于使用 idea 进行开发。
 
-在某个项目打开设置(快捷键Ctrl+alt+S)，定位到 Gradle 菜单，做如下设置：
+在某个项目打开设置(快捷键 Ctrl+alt+S)，定位到 Gradle 菜单，做如下设置：
 
 - 将【Use Gradle From】选项改为【Specified location】，然后右侧就会出现一个框，选择 Gradle 安装目录（即将 `%GRADLE_HOME%` 的路径复制到这里即可）。如果是多模块项目，需要将每个模块都修改才可以。
 - 修改【Gradle user home】，填写jar包保存路径（即复制环境变量中的【`GRADLE_USER_HOME`】的值）。**注：如果配置与环境变量不同的目录，会覆盖默认的 gradle 本地仓库**

@@ -4,25 +4,56 @@
     "type": "split",
     "children": [
       {
-        "id": "ee200645549a512f",
+        "id": "ae39f9cd9910d485",
         "type": "tabs",
         "children": [
           {
-            "id": "ea1fde4daaecd29d",
+            "id": "9e6a2a1ee3db7973",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/Agent-Skills.md",
+                "file": "AI/Vibe-Coding.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Agent-Skills"
+              "title": "Vibe-Coding"
+            }
+          },
+          {
+            "id": "c627367061265209",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "分布式微服务/系统架构/架构-基础.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "架构-基础"
+            }
+          },
+          {
+            "id": "3d7cb1b20b5fdabe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "DevOps/项目构建工具/Gradle.md",
+                "mode": "source",
+                "source": true,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Gradle"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -204,24 +235,34 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "ea1fde4daaecd29d",
+  "active": "3d7cb1b20b5fdabe",
   "lastOpenFiles": [
+    "分布式微服务/系统架构/架构-基础.md",
+    "AI/AI-Develop/Claude-Code.md",
+    "其他/编程资源分享.md",
+    "AI/Vibe-Coding.md",
+    "其他/学习资源/Spring事务管理（一）快速入门.md",
+    "AI/AI-Assistance/Agent-Skills.md",
+    "项目资料/自用信息管理系统/MoonSystem项目开发笔记.md",
+    "Java/Java基础-JDK.md",
+    "AI/AI-编程工具.md",
+    "AI/AI-Experience",
+    "AI/AI-Develop/Claude-Code-教程.md",
+    "AI/AI-基础.md",
+    "AI/AI-Develop",
+    "README.md",
+    "AI/AI-Assistance",
+    "AI/未命名.md",
     "分布式微服务/分布式文件系统/FastDFS.md",
     "attachments/工具框架/FastDFS安装教程.pdf",
     "DevOps/项目构建工具/Maven-全局配置.md",
-    "AI/Agent-Skills.md",
     "DevOps/项目构建工具/Maven-POM.md",
     "DevOps/项目构建工具/Maven-基础.md",
     "DevOps/项目构建工具/Maven-私服.md",
-    "AI/Vibe-Coding.md",
-    "AI/AI-基础.md",
-    "AI/AI-编程工具.md",
     "其他/software/Visual-Studio-Code.md",
     "其他/software/Development-Tools.md",
     "Database/Supabase.md",
-    "README.md",
     "Python/Python-namespace-scope.md",
-    "AI/Claude-Code.md",
     "Python/Python-usage.md",
     "Python/Python-function.md",
     "Database/images/20260601130646998.jpg",
@@ -236,20 +277,11 @@
     "Database/images/20260601124439058.jpg",
     "Python/Python-基础.md",
     "其他/software/Common-Software.md",
-    "其他/编程开发相关.md",
-    "Python/Python-Guide.md",
-    "AI/人工智能训练师/人工智能训练师考试笔记.md",
-    "其他/software/Windows.md",
-    "AI/Claude-Code-教程.md",
-    "其他/software/Obsidian.md",
     "test.js",
     "AI/images",
     "CLAUDE.md.tmp.17628.1777895976114",
     "copilot/copilot-conversations",
     "copilot/copilot-custom-prompts",
-    "copilot",
-    "resources/file-map.json",
-    "resources/update-file-map.bat",
-    "resources/run-moon-system-wt.bat"
+    "copilot"
   ]
 }

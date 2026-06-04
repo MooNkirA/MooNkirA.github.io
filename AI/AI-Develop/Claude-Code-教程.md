@@ -2,13 +2,13 @@
 
 ## 目录
 
-- [什么是 Claude Code](#什么是-claude-code)
-- [Claude Code 的安装](#claude-code-的安装)
-- [基本配置](#基本配置)
-- [使用指南](#使用指南)
-- [高级功能](#高级功能)
-- [最佳实践](#最佳实践)
-- [常见问题](#常见问题)
+- [什么是 Claude Code](Claude-Code-教程.md#什么是-claude-code)
+- [Claude Code 的安装](Claude-Code-教程.md#claude-code-的安装)
+- [基本配置](Claude-Code-教程.md#基本配置)
+- [使用指南](Claude-Code-教程.md#使用指南)
+- [高级功能](Claude-Code-教程.md#高级功能)
+- [最佳实践](Claude-Code-教程.md#最佳实践)
+- [常见问题](Claude-Code-教程.md#常见问题)
 
 ---
 

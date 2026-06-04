@@ -516,7 +516,6 @@ Claude Code 是一个强大的编程助手，能够显著提高开发效率。�
 
 建议定期查看官方更新，探索新功能，并根据个人习惯调整配置。
 
----
+## 参考资料
 
-**最后更新**: 2026/05/13
-**适用版本**: Claude Code 4.x
+- [Learn Claude Code](https://learn.shareai.run/zh/)
