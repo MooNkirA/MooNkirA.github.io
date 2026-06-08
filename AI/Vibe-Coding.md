@@ -38,3 +38,68 @@ Vibe Coding 用正式的语言来解释是：**以自然语言提示驱动大型
 - 支持多种分享方式（复制链接、QQ 分享、手机扫码、微信小程序等）
 - 还有代码库功能，可以查看并学习其他人分享的优质代码
 - 支持在线运行代码、AI 智能代码分析和纠错
+
+
+## AI 编程规范（待整理、移动）
+
+### Spring Boot 项目 CLAUDE.md 模板
+
+`CLAUDE.md` 是每次对话都加载的项目级上下文，配合 Skills 使用效果最佳。
+
+```markdown
+# 项目名称
+
+## 技术栈
+
+- Spring Boot 4.x / Java 25
+- PostgreSQL + JPA/Hibernate
+- Spring Security + JWT
+- Redis 缓存
+- Docker + Kubernetes
+
+## 关键命令
+
+-`./mvnw spring-boot:run` — 启动开发服务器
+-`./mvnw test` — 运行测试
+-`./mvnw clean package -DskipTests` — 打包
+
+## 代码规范
+
+- 构造器注入（不用 @Autowired 字段注入）
+- Service 层不加 @Transactional（只在需要的方法上加）
+- Entity 不直接暴露给 API（用 DTO 转换）
+- 日志用 SLF4J，不用 System.out
+
+## Skills
+
+本项目已安装以下 Skills：
+
+- spring-boot-rest-api：REST API 开发
+- spring-boot-testing：测试编写
+- code-reviewer：代码审查
+```
+
+### 推荐的 Spring Boot + Agent Skills 工作流
+
+#### 6.1 标准工作流
+
+```plaintext
+1. 探索阶段：让 Agent 读取代码库，理解架构  
+2. 规划阶段：使用 /plan 模式，Agent 输出实现方案  
+3. 编码阶段：Agent 按规划逐步实现（自动加载匹配的 Skills）  
+4. 验证阶段：运行测试，确认通过  
+5. 提交阶段：Git commit + push
+```
+
+#### 6.2 多 Agent 协作模式
+
+对于复杂 Spring Boot 项目，可以按角色分配不同 Skills：
+
+| Agent 角色 | 职责                     | 推荐 Skill                       |
+| ---------- | ------------------------ | -------------------------------- |
+| 架构师     | 设计微服务架构、模块拆分 | Java Architect                   |
+| 开发者     | 编写具体代码             | Spring Boot Engineer / Dr JSkill |
+| 测试工程师 | 编写和运行测试           | TDD Mastery                      |
+| 安全审计   | 安全漏洞扫描             | Security Hardening               |
+| 代码审查   | 代码质量把关             | Code Reviewer                    |
+

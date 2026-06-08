@@ -211,53 +211,28 @@
     ]
   },
   "DevOps/版本管理工具/Git-基础.md": {
-    "scroll": 735.69140625,
+    "scroll": 1225.58203125,
     "cursor": {
       "from": {
-        "line": 744,
+        "line": 1228,
         "ch": 0
       },
       "to": {
-        "line": 744,
+        "line": 1228,
         "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-0",
-      "item-3-2",
-      "item-3-6",
-      "item-2-11",
-      "item-3-14",
-      "item-3-17",
+      "item-1-0",
       "item-4-19",
-      "item-2-24",
-      "item-2-27",
-      "item-2-31",
+      "item-4-24",
       "item-3-33",
       "item-3-38",
-      "item-3-45",
-      "item-3-51",
-      "item-4-57",
-      "item-3-61",
       "item-3-66",
-      "item-3-75",
-      "item-3-83",
-      "item-4-85",
-      "item-2-90",
-      "item-2-94",
-      "item-3-97",
-      "item-3-100",
-      "item-4-102",
       "item-2-113",
       "item-3-114",
-      "item-3-121",
-      "item-3-125",
-      "item-3-131",
-      "item-3-133",
-      "item-2-137",
-      "item-3-139",
-      "item-3-144",
-      "item-3-147"
+      "item-3-100",
+      "item-2-94"
     ]
   },
   "README.md": {
@@ -541,20 +516,25 @@
     ]
   },
   "AI/AI-基础.md": {
-    "scroll": 428.27843601895734,
+    "scroll": 676.953125,
     "cursor": {
       "from": {
-        "line": 435,
-        "ch": 15
+        "line": 679,
+        "ch": 0
       },
       "to": {
-        "line": 435,
-        "ch": 15
+        "line": 679,
+        "ch": 0
       }
     },
     "expandedKeys": [
       "item-3-36",
-      "item-2-36"
+      "item-2-36",
+      "item-2-61",
+      "item-2-71",
+      "item-2-80",
+      "item-2-57",
+      "item-2-47"
     ]
   },
   "Java/Java基础-JDK.md": {
@@ -656,19 +636,21 @@
     "expandedKeys": []
   },
   "AI/Vibe-Coding.md": {
-    "scroll": 0,
+    "scroll": 61.71279761904762,
     "cursor": {
       "from": {
-        "line": 11,
+        "line": 71,
         "ch": 0
       },
       "to": {
-        "line": 11,
+        "line": 71,
         "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-1"
+      "item-2-1",
+      "item-2-4",
+      "item-3-6"
     ]
   },
   "Python/Python-函数.md": {
@@ -1132,33 +1114,33 @@
     ]
   },
   "其他/software/Visual-Studio-Code.md": {
-    "scroll": 755.7157738095239,
+    "scroll": 0,
     "cursor": {
       "from": {
-        "line": 729,
-        "ch": 70
+        "line": 22,
+        "ch": 0
       },
       "to": {
-        "line": 729,
-        "ch": 70
+        "line": 22,
+        "ch": 0
       }
     },
     "expandedKeys": [
       "item-2-0",
-      "item-2-2",
-      "item-3-3",
-      "item-3-6",
-      "item-2-15",
-      "item-3-18",
-      "item-2-23",
-      "item-2-25",
-      "item-3-26",
-      "item-3-31",
-      "item-3-33",
-      "item-3-37",
-      "item-3-42",
-      "item-3-52",
-      "item-4-56"
+      "item-2-3",
+      "item-3-4",
+      "item-3-7",
+      "item-2-16",
+      "item-3-19",
+      "item-2-24",
+      "item-2-26",
+      "item-3-27",
+      "item-3-32",
+      "item-3-34",
+      "item-3-38",
+      "item-3-43",
+      "item-3-53",
+      "item-4-57"
     ]
   },
   "AI/人工智能训练师/人工智能训练师考试笔记.md": {
@@ -1574,57 +1556,47 @@
     ]
   },
   "AI/AI-Assistance/Agent-Skills.md": {
-    "scroll": 20.54983807124865,
+    "scroll": 576.0473933649289,
     "cursor": {
       "from": {
-        "line": 32,
-        "ch": 13
+        "line": 587,
+        "ch": 45
       },
       "to": {
-        "line": 32,
-        "ch": 13
+        "line": 587,
+        "ch": 9
       }
     },
     "expandedKeys": [
-      "item-2-1",
-      "item-2-9",
-      "item-3-11",
+      "item-3-46",
+      "item-3-47",
+      "item-3-53",
+      "item-2-40",
+      "item-2-14",
+      "item-3-35",
       "item-3-16",
-      "item-3-25",
-      "item-3-30"
+      "item-2-4",
+      "item-2-12",
+      "item-2-1",
+      "item-2-46"
     ]
   },
   "项目资料/自用信息管理系统/MoonSystem项目开发笔记.md": {
-    "scroll": 50.032269893656036,
+    "scroll": 167.25651041666666,
     "cursor": {
       "from": {
-        "line": 78,
-        "ch": 71
+        "line": 205,
+        "ch": 66
       },
       "to": {
-        "line": 78,
-        "ch": 71
+        "line": 205,
+        "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-3",
-      "item-3-4",
-      "item-3-10",
-      "item-2-12",
-      "item-3-17",
-      "item-2-20",
+      "item-2-0",
       "item-3-21",
-      "item-3-24",
-      "item-2-27",
-      "item-2-29",
-      "item-3-30",
-      "item-3-33",
-      "item-3-36",
-      "item-3-40",
-      "item-3-44",
-      "item-3-47",
-      "item-2-51",
-      "item-2-0"
+      "item-2-30"
     ]
   },
   "分布式微服务/系统架构/架构-基础.md": {
@@ -1717,12 +1689,12 @@
     "scroll": 140.35872395833334,
     "cursor": {
       "from": {
-        "line": 147,
-        "ch": 126
+        "line": 131,
+        "ch": 30
       },
       "to": {
-        "line": 147,
-        "ch": 126
+        "line": 131,
+        "ch": 30
       }
     },
     "expandedKeys": [
@@ -1739,6 +1711,100 @@
       "item-3-33",
       "item-3-38",
       "item-2-42"
+    ]
+  },
+  "项目资料/品达通用权限系统/04-权限服务开发.md": {
+    "scroll": 372.95238095238096,
+    "cursor": {
+      "from": {
+        "line": 392,
+        "ch": 29
+      },
+      "to": {
+        "line": 392,
+        "ch": 29
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-1",
+      "item-3-8",
+      "item-2-14",
+      "item-3-15",
+      "item-3-21",
+      "item-3-26",
+      "item-2-30"
+    ]
+  },
+  "项目资料/红包雨场景案例/02-系统设计.md": {
+    "scroll": 326.61160714285717,
+    "cursor": {
+      "from": {
+        "line": 329,
+        "ch": 53
+      },
+      "to": {
+        "line": 329,
+        "ch": 53
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-1",
+      "item-3-3",
+      "item-3-10",
+      "item-2-13",
+      "item-3-16",
+      "item-3-23",
+      "item-2-32",
+      "item-2-39",
+      "item-3-40",
+      "item-3-44",
+      "item-3-47",
+      "item-3-51",
+      "item-3-54",
+      "item-3-57",
+      "item-3-60",
+      "item-2-63",
+      "item-3-64",
+      "item-3-68",
+      "item-3-71",
+      "item-3-75"
+    ]
+  },
+  "分布式微服务/SpringBoot/Spring-Boot-部署运维篇.md": {
+    "scroll": 654.1889168765744,
+    "cursor": {
+      "from": {
+        "line": 474,
+        "ch": 0
+      },
+      "to": {
+        "line": 474,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-3-1",
+      "item-3-3",
+      "item-3-6",
+      "item-3-10",
+      "item-2-14",
+      "item-2-17",
+      "item-3-18",
+      "item-4-20",
+      "item-3-25",
+      "item-3-29",
+      "item-3-34",
+      "item-2-38",
+      "item-2-42",
+      "item-3-43",
+      "item-2-50",
+      "item-3-54",
+      "item-2-58",
+      "item-2-61",
+      "item-3-63"
     ]
   }
 }

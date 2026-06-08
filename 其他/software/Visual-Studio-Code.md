@@ -19,6 +19,13 @@ https://az764295.vo.msecnd.net/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/V
 https://vscode.cdn.azure.cn/stable/64bbfbf67ada9953918d72e1df2f4d8e537d340e/VSCode-win32-x64-1.72.0.zip
 ```
 
+### 下载 Previous release versions
+
+> [Visual Studio Code Previous release versions](https://code.visualstudio.com/docs/supporting/faq#_previous-release-versions)
+
+- Windows x64 zip `https://update.code.visualstudio.com/{version}/win32-x64-archive/stable`
+- Windows x64 System installer `	https://update.code.visualstudio.com/{version}/win32-x64/stable`
+
 ## 常用配置
 
 ### VSCode 插件和配置目录
