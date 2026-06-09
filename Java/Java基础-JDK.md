@@ -128,7 +128,7 @@ Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技�
 
 ### JDK 变量环境配置
 
-最好的配置方式：将位置切割成两段，一段用`JAVA_HOME`保存，一段用\bin保存。如下例：
+最好的配置方式：将位置切割成两段，一段用 `JAVA_HOME` 保存，一段用\bin 保存。如下例：
 
 ```
 JAVA_HOME = C:\Program Files\Java\jdk1.8.0_91
@@ -139,7 +139,7 @@ JAVA_HOME = C:\Program Files\Java\jdk1.8.0_91
 
 ### 安装多个 JDK
 
-安装过程都一样。只是配置环境变量时改动一下。分别将多个不同版本的jdk设置一个环境变量，然后最终让`JAVA_HOME`指定当前需要使用的版本的变量即可
+安装过程都一样。只是配置环境变量时改动一下。分别将多个不同版本的 jdk 设置一个环境变量，然后最终让 `JAVA_HOME` 指定当前需要使用的版本的变量即可
 
 ```
 JAVA_HOME_8 = D:\development\Java\jdk1.8.0_311
@@ -149,11 +149,11 @@ JAVA_HOME = %JAVA_HOME_8%
 
 ![](images/20220114152301619_11430.png)
 
+或者直接到 Path 变量修改对应的 `%JAVA_HOME_{版本号}%\bin`
+
 ### JDK 11 手动生成 jre 目录
 
-许多java软件的运行需要依赖jre，但是在安装jdk11后，发现jdk11并没有自动安装jre环境。其实 jdk11 的安装包里是自带 jre 的，只不过没有自动安装，手动安装一下就可以了。
-
-使用cmd命令行窗口进入jdk 安装目录输入以下命令，即可生成 jre 目录：
+许多 java 软件的运行需要依赖 jre，但是在安装 jdk 11 后，发现 jdk 11 并没有自动安装 jre 环境。其实 jdk 11 的安装包里是自带 jre 的，只不过没有自动安装，手动安装一下就可以了。使用 cmd 命令行窗口进入 jdk 安装目录输入以下命令，即可生成 jre 目录：
 
 ```bash
 bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
@@ -161,7 +161,7 @@ bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre
 
 ### 注意事项
 
-如果是安装版，请务必到以下位置删除这几个文件。(二者其一有)
+如果是安装版，请务必到以下位置删除这几个文件。(会默认指向最近安装的版本目录)
 
 > - C:\Program Files (x86)\Common Files\Oracle\Java\javapath
 > - C:\Program Files\Common Files\Oracle\Java\javapath

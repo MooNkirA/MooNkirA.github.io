@@ -13,9 +13,9 @@
 
 Agent Skills 不仅仅是个技术概念，更是一种新的工作方式。可以把它融入到日常工作中，比如把重复的任务封装成技能、把团队的最佳实践固化成技能，让 AI 真正成为得力助手。
 
-## Agent Skills 入门实战
+## Claude Code Skills
 
-目前对 Agent Skills 支持最完善的工具是 Anthropic 官方的 [Claude Code](https://claude.com/product/claude-code)，以此为例，安装并使用 Skills。
+目前对 Agent Skills 支持最完善的工具是 Anthropic 官方的 [Claude Code](https://claude.com/product/claude-code)
 
 ### 安装 Skills 技能
 
@@ -51,15 +51,15 @@ skill install anthropic-agent-skills:frontend-design
 
 ![](images/20260604194535109.jpg)
 
-## Claude Code 内置 Skills 列表
+### Claude Code 内置 Skills
 
-### 核心开发 Skills
+#### 核心开发 Skills
 
 - **init** - 初始化新的 CLAUDE.md 文档，为代码库生成文档
 - **review** - 审查拉取请求（PR）
 - **security-review** - 对当前分支的待更改内容进行安全审查
 
-### Claude API 相关 Skills
+#### Claude API 相关 Skills
 
 - **claude-api** - 构建、调试和优化 Claude API / Anthropic SDK 应用。包括：
     - 提示词缓存（prompt caching）
@@ -67,19 +67,19 @@ skill install anthropic-agent-skills:frontend-design
     - 迁移现有代码在不同 Claude 模型版本间（4.5 → 4.6, 4.6 → 4.7, 已退役模型替换）
     - 模型选择和优化建议
 
-### Python/代码质量 Skills
+#### Python/代码质量 Skills
 
 - **simplify** - 审查修改后的代码，评估可重用性、质量和效率，然后修复发现的问题
 - **fewer-permission-prompts** - 扫描对话记录中的常见只读 Bash 和 MCP 工具调用，然后添加优先级 allowlist 到项目 .claude/settings.json 以减少权限提示
 
-### 编辑器 Skills
+#### 编辑器 Skills
 
 - **obsidian-markdown** - 创建和编辑 Obsidian Flavored Markdown（Wiki 链接、嵌入、属性等）
 - **obsidian-cli** - 使用 Obsidian CLI 交互 vault（读取、创建、搜索、管理笔记、任务等）
 - **obsidian-bases** - 创建和编辑 Obsidian Bases（视图、过滤器、公式、摘要等）
 - **json-canvas** - 创建和编辑 JSON Canvas 文件（节点、边、组、连接）
 
-### 主题开发 Skills
+#### 主题开发 Skills
 
 - **obsidian-style-settings** - 用于 Obsidian 主题开发的专用工具
 - **obsidian-hover-editor** - 在 Obsidian 中悬停预览笔记
@@ -87,15 +87,71 @@ skill install anthropic-agent-skills:frontend-design
 - **obsidian-quiet-outline** - 视觉大纲显示
 - **obsidian-custom-attachment-location** - 附件位置管理
 
-### 实用工具 Skills
+#### 实用工具 Skills
 
 - **keybindings-help** - 自定义键盘快捷键、重新绑定键、添加和弦绑定、修改 ~/.claude/keybindings.json
 - **update-config** - 配置 Claude Code harness（通过 settings.json 自动化行为）
 - **defuddle** - 使用 Defuddle CLI 从网页提取干净的 markdown 内容，移除杂乱内容和导航
 
-### 定期任务 Skills
+#### 定期任务 Skills
 
 - **loop** - 按定期间隔运行提示词或斜杠命令（例如 `/loop 5m /foo`，默认 10 分钟）
+
+## Codex Skills
+
+Codex 启动时，会读取所有已安装 Skill 的名称与描述（大约只占 2%的上下文预算），当发起任务时系统自动匹配并加载对应 Skill 的完整指令。如无匹配，则不占用任何上下文，非常高效。
+
+> [!tip] Skills 格式是开放标准。同一份 SKILL.md 在 **Codex CLI、Claude Code、Gemini CLI、Cursor 以及 GitHub Copilot** 等主流 AI 编程工具中通用。
+
+### Skill 三个作用域
+
+![](images/20260608221927965.png)
+
+- 个人作用域：`~/.agents/skills/`
+- 项目作用域：`.agents/skills/
+- 管理员作用域：`/etc/codex/skills/`
+
+### Skill 触发方式
+
+Skill 触发方式有两种：
+
+- **显式调用**：在 CLI 中输入 `$skill名称`
+- **隐式触发**：任务描述与 Skill 描述自动匹配时自动激活
+
+### 安装 Codex Skill
+
+#### 方式1：手动克隆安装（适合所有 Skill）
+
+将 Skill 仓库克隆到 Codex 的 Skills 目录即可：
+
+```bash
+# 创建Codex技能目录
+mkdir -p ~/.agents/skills
+# 克隆Skill到该目录下（以superpowers为例）
+git clone https://github.com/obra/superpowers.git ~/.agents/skills/superpowers
+# 如果使用Codex App，某些版本也可能需要同步到.codex/skills
+mkdir -p ~/.codex/skillscp -r ~/.agents/skills/superpowers ~/.codex/skills/
+```
+
+#### 方式2：官方 skill-installer 工具（推荐）
+
+OpenAI 官方提供了一套通过 `$skill-installer` 命令安装的机制。对于官方技能库中的 Skill，可以直接用该工具安装：
+
+```bash
+# 安装官方技能
+$skill-installer <skill-name>
+# 安装实验性技能
+$skill-installer install https://github.com/openai/skills/tree/main/skills/.experimental/<skill-name>
+```
+
+#### 方式3：使用社区自动化工具
+
+- `@supercorks/skills-installer`：一键安装技能，支持 Git 稀疏检出和 Codex Agent 转换。安装方式：`npx @supercorks/skills-installer install`
+- `@sstar/skill-install`：支持公开URL、Wiki、本地文件，自动解压验证。安装方式：`skill-install install [URL或本地文件] --tool codex`
+- `@goodpostidea-tech/skills`：从任何 GitHub 仓库安装，交互式选择工具。安装方式：`npx @goodpostidea-tech/skills add [repo-url] --skill [name]`
+- `@bbhxwl/skills`：从 Registry 安装，支持更新和卸载。安装方式：`npx @bbhxwl/skills install [name] --target codex`
+
+安装完成后，执行 `codex restart` 清空当前会话缓存并重载 SKILL.md 中定义的触发关键词和前置条件，使新技能元数据生效。
 
 ## Agent Skills 内部原理
 
@@ -240,13 +296,13 @@ skill-creator list
 # 创建新 Skill
 skill-creator create my-custom-skill
 
-# 这会自动创建以下文件：
+# 这会
 # - .claude/skills/my-custom-skill.md
 # - .claude/skills/my-custom-skill.ts
 # - skill.yaml
 ```
 
-创建后，你需要编辑以下文件：
+执行命令会自动创建并需要编辑以下文件：
 
 - **skill.yaml** - 定义 Skill 的元数据和触发条件
 - **.claude/skills/my-custom-skill.ts** - TypeScript 实现
@@ -570,6 +626,14 @@ mkdir -p .claude/skills/spring-boot-rest-api/references
 - **模板复用**：使用模板文件，放在 `templates/` 目录供 Agent 复制使用
 - **团队共享**：提交到版本控制，让团队共享
 
+### 让不同的 AI 工具共享 Skill
+
+如果希望所有 AI 工具共享同一个 Skill 目录，可以用<span style="color: red;">**软链接**</span>实现。例如 Codex 默认不自动读取 `.claude/skills`，可以通过以下命令统一管理：
+
+```bash
+ln -s ~/.claude/skills ~/.agents/skills
+```
+
 ## 参考资源链接
 
 - [Claude Code GitHub Repository](https://github.com/anthropics/claude-code)
@@ -579,11 +643,83 @@ mkdir -p .claude/skills/spring-boot-rest-api/references
 
 ## Skill 推荐
 
+### create-plan
+
+create-plan 强制 Codex 在写任何代码之前，先拆解任务、输出可审阅的执行计划。**通过在写代码前强制 AI 输出可审阅计划，从根本上解决了“prompt-first 乱写”的问题**。安装后，向 Codex 描述需求，它会先输出一个结构化的执行计划（格式化为 `<NAME>_PLAN.md`），先确认后再开始写代码。
+
+> [!info] Codex 已经将 create-plan 部分内置到 Codex CLI 中，`Shift+Tab` 即可在 Plan 和 Code 模式之间自由切换。
+
+- 开源地址 https://github.com/openai/skills/tree/main/skills/.experimental/create-plan
+- Codex 安装命令：
+
+```bash
+# 官方安装
+$skill-installer install create-plan
+```
+
+- 从 LobeHub 安装，访问 https://lobehub.com/skills 搜索 create-plan
+
+### Superpowers
+
+Superpowers 的核心理念是**强制 TDD（测试驱动开发）+ 自动代码审查**。它内部包含了 14 个技能（Skills）和 1 个代理（Agent），在 Codex 写任何功能代码之前，先要求它生成测试用例；写完代码后，主动执行代码审查。这种“先测试、后实现、再检查”的流程，能显著减少逻辑漏洞和边界条件遗漏。
+
+Superpowers 的工作流程覆盖了完整的开发链路：**brainstorming（头脑风暴）-> writing-plans（编写计划）-> test-driven-development（测试驱动开发）-> subagent-driven-development（子代理开发）-> requesting-code-review（请求代码审查）verification-before-completion（完成前验证）-> finishing-a-development-branch（完成开发分支）** 。
+
+- 开源地址 https://github.com/obra/superpowers
+- Codex 安装命令：
+
+```bash
+# 方法一：直接克隆
+git clone https://github.com/obra/superpowers.git ~/.agents/skills/superpowers
+# 方法二：使用 npx 安装器
+npx @supercorks/skills-installer install
+# 然后在交互界面中勾选superpowers
+# 方法三：使用skill-install工具
+skill-install -t codex install https://github.com/obra/superpowers/archive/main.zip
+```
+
+**安装后必须重启 Codex**，因为 Superpowers 依赖会话启动时的钩子来完成技能发现与注入。
+
+### frontend-skill
+
+frontend-skill 将设计规范和组件风格编码进指令，让 Codex 生成更具设计感的前端页面。Skill 内部封装了常见的设计原则（间距、色彩、字体、圆角、阴影）以及现代 UI 框架的组件模式，让 AI 在生成页面时自动应用。
+
+- 开源地址 https://github.com/anthropics/skills/tree/main/skills/frontend-design
+- Codex 安装命令：
+
+```bash
+# 从官方Anthropic仓库安装
+git clone https://github.com/anthropics/skills.git ~/.agents/skills/anthropic-skills
+# 然后进入~/.agents/skills/anthropic-skills/skills/frontend-design 即可使用
+# 或使用TokRepo一键安装
+npx tokrepo install frontend-design
+```
+
+### gh-fix-ci
+
+gh-fix-ci 主要是解决 GitHub Actions 失败排查耗时耗力。很多后端和 DevOps 工程师每周可能要花几个小时在排查 CI 失败上。gh-fix-ci 会自动读取失败的 GitHub Actions 运行记录，汇总错误原因并给出具体修复建议。它把“AI 读取错误日志 -> 理解失败原因 -> 分析相关代码 -> 定位问题根源 -> 给出修复方案”的链路完全自动化了。
+
+Skill 内部执行了 8 步结构化流程：验证 `gh` CLI 认证状态 -> 识别失败的 PR 检查 -> 提取失败日志 -> 区分 GitHub Actions 内外部范围 -> 汇总失败摘要 -> 请求用户批准修复方案 -> 实施修复 -> 推回验证。
+
+- 官方版 https://github.com/openai/skills/tree/main/skills/gh-fix-ci
+- 社区版 https://github.com/davila7/claude-code-templates
+- Codex 安装命令：
+
+```bash
+# 方式一：官方安装
+$skill-installer install gh-fix-ci
+# 方式二：从LobeHub安装 
+curl https://lobehub.com/skills/composiohq-awesome-codex-skills-gh-fix-ci/skill.md
+# 然后按照提示完成安装配置
+# 方式三：从Community Registry安装
+npx @bbhxwl/skills install gh-fix-ci --target codex
+```
+
 ### Spring Boot 专用 Agent Skills
 
 以下 Skills 专为 Spring Boot 开发设计，直接提升 AI Agent 在 Spring Boot 项目中的编码质量。
 
-#### Dr JSkill — Spring Boot 项目脚手架生成
+#### dr-jskill（Spring Boot 项目脚手架生成）
 
 Gihub 仓库 https://github.com/jdubois/dr-jskill
 
@@ -592,7 +728,7 @@ Gihub 仓库 https://github.com/jdubois/dr-jskill
 - **兼容**：Claude Code、GitHub Copilot CLI、Windsurf
 - **安装**：克隆到 skills 目录，AI Agent 自动发现
 
-#### Spring Boot Skills 集合 — 生产级开发规范
+#### spring-boot-skills（生产级开发规范）
 
 Gihub 仓库 https://github.com/rrezartprebreza/spring-boot-skills
 
@@ -600,7 +736,7 @@ Gihub 仓库 https://github.com/rrezartprebreza/spring-boot-skills
 - **核心理念**：“AI 擅长 Python，但在 Spring Boot 上会幻觉。这个 repo 教 Agent 像高级 Spring 工程师一样编码。”
 - **包含技能**：REST API 规范、测试策略、MCP Java SDK、数据库迁移等
 - **技能结构**：每个 skill 包含 `SKILL.md` + `conventions.md` + `examples/` + `templates/`。每个 Skill 都是 `约定 + 示例 + 模板` 的完整组合，Agent 不仅知道怎么做，还能直接复制正确的代码模板。
-- **安装**：克隆单个 skill 目录到 `.claude/skills/` 即可
+- **安装**：`git clone` 后将需要的单个 skill 目录到 `.claude/skills/` 即可
 
 #### Spring Boot Skills Marketplace — 渐进式架构模式
 
