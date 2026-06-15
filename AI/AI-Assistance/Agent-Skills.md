@@ -13,6 +13,15 @@
 
 Agent Skills 不仅仅是个技术概念，更是一种新的工作方式。可以把它融入到日常工作中，比如把重复的任务封装成技能、把团队的最佳实践固化成技能，让 AI 真正成为得力助手。
 
+### Skill 存在问题
+
+- 目前 Skills 标准统一，但存放位置分裂，难以集中管理，不同 AI 工具目录各异，跨平台使用不便。如：
+    - Claude Code：`~/.claude/skills/`
+    - Github Copilot：`.github/skills/`
+    - Cursor / Windsurf：`.cursor/skills/`
+    - Gemini CLI：`~/.gemini/skills/`
+- 索引缺失，命名混乱无索引，可能会被迫加载多文件试错。
+
 ## Claude Code Skills
 
 目前对 Agent Skills 支持最完善的工具是 Anthropic 官方的 [Claude Code](https://claude.com/product/claude-code)
@@ -620,11 +629,14 @@ mkdir -p .claude/skills/spring-boot-rest-api/references
 
 ## Skill 编写最佳实践
 
-- **控制体量**：SKILL.md 控制在 500 token 以内，超出部分放入 `references/` 目录按需加载
+- **控制体量**：SKILL.md 控制在 500 token 以内，超出部分放入 `references/` 目录按需加载。
 - **明确触发**：触发条件用 “当用户要求……时” 的句式
 - **正反对比**：包含正反例对比，帮助 Agent 理解"什么是好的代码"
 - **模板复用**：使用模板文件，放在 `templates/` 目录供 Agent 复制使用
 - **团队共享**：提交到版本控制，让团队共享
+- **版本管理**：使用 Git 去管理，方便
+- **结合 MCP/RAG 等使用**：如果 Skill 实在过长，可以里面通过 MCP 去获取相应所需资源。
+- 
 
 ### 让不同的 AI 工具共享 Skill
 
@@ -634,16 +646,62 @@ mkdir -p .claude/skills/spring-boot-rest-api/references
 ln -s ~/.claude/skills ~/.agents/skills
 ```
 
-## 参考资源链接
+### Skill 使用效果差
 
-- [Claude Code GitHub Repository](https://github.com/anthropics/claude-code)
-- [skill-creator GitHub](https://github.com/anthropics/claude-code-plugins/tree/main/packages/skill-creator)
-- [Claude Code 文档](https://docs.anthropic.com/claude-code)
-- [官方 Skills 示例](https://github.com/anthropics/claude-code/tree/main/skills)
+- 创建 Skill 时选择的模型差，这样会导致生成的 Skill 质量不高，使用时就算选择最好的模型可能效果也会很差。<span style="color: red;">**建议创建 Skill 时选择最好的模型。**</span>
+- 创建 Skill 时没有梳理好，需要做什么，有什么步骤等等。
 
-## Skill 推荐
+### Skill 没有被调用的原因
 
-### create-plan
+- Skill 放置的全局或者项目路径没有同步好。
+- Skill 描述不够清晰，AI 无法匹配。或者在提示词直接指定调用 Skill。
+- 可能单纯是模型的问题。
+- 用户提示词描述问题，与 Skill 的关联性差。
+- 安装过多的相同或者功能相似的 Skill。
+
+## Skill 生态资源推荐
+
+### Anthropics Skills（官方）
+
+[Anthropics skills: Public repository for Agent Skills](https://github.com/anthropics/skills)
+
+#### frontend-skill
+
+frontend-skill 将设计规范和组件风格编码进指令，让 Codex 生成更具设计感的前端页面。Skill 内部封装了常见的设计原则（间距、色彩、字体、圆角、阴影）以及现代 UI 框架的组件模式，让 AI 在生成页面时自动应用。
+
+- 开源地址 https://github.com/anthropics/skills/tree/main/skills/frontend-design
+- Codex 安装命令：
+
+```bash
+# 从官方Anthropic仓库安装
+git clone https://github.com/anthropics/skills.git ~/.agents/skills/anthropic-skills
+# 然后进入~/.agents/skills/anthropic-skills/skills/frontend-design 即可使用
+# 或使用TokRepo一键安装
+npx tokrepo install frontend-design
+```
+
+### Everything Claude Code
+
+- Github 仓库 https://github.com/affaan-m/ECC
+- 官方简介 https://github.com/affaan-m/ECC/blob/main/README.zh-CN.md
+
+**来自 Anthropic 黑客马拉松获胜者的完整 Claude Code 配置集合。**
+
+不止是配置文件，而是一整套完整系统：技能体系、本能行为、记忆优化、持续学习、安全扫描，以及研究优先的开发模式。包含可直接用于生产环境的智能体、技能模块、钩子、规则、MCP 配置，以及兼容传统命令的适配层。可在 **Claude Code**、**Codex**、**Cursor**、**OpenCode**、**Gemini** 及其他 AI 智能体框架中通用。
+
+### Skills Marketplace
+
+[Skills Marketplace](https://skillsmp.com/zh)：发现适用于 Claude Code、Codex、ChatGPT 以及所有 SKILL.md 工具的开源 agent skills
+
+### skills.sh
+
+[The Agent Skills Directory](https://www.skills.sh/) - 只需一条命令即可安装它们，为您的代理提供程序化知识的访问权限。
+
+### OpenAI Skills（官方）
+
+- Github 仓库 https://github.com/openai/skills
+
+#### create-plan
 
 create-plan 强制 Codex 在写任何代码之前，先拆解任务、输出可审阅的执行计划。**通过在写代码前强制 AI 输出可审阅计划，从根本上解决了“prompt-first 乱写”的问题**。安装后，向 Codex 描述需求，它会先输出一个结构化的执行计划（格式化为 `<NAME>_PLAN.md`），先确认后再开始写代码。
 
@@ -658,6 +716,27 @@ $skill-installer install create-plan
 ```
 
 - 从 LobeHub 安装，访问 https://lobehub.com/skills 搜索 create-plan
+
+#### gh-fix-ci
+
+gh-fix-ci 主要是解决 GitHub Actions 失败排查耗时耗力。很多后端和 DevOps 工程师每周可能要花几个小时在排查 CI 失败上。gh-fix-ci 会自动读取失败的 GitHub Actions 运行记录，汇总错误原因并给出具体修复建议。它把“AI 读取错误日志 -> 理解失败原因 -> 分析相关代码 -> 定位问题根源 -> 给出修复方案”的链路完全自动化了。
+
+Skill 内部执行了 8 步结构化流程：验证 `gh` CLI 认证状态 -> 识别失败的 PR 检查 -> 提取失败日志 -> 区分 GitHub Actions 内外部范围 -> 汇总失败摘要 -> 请求用户批准修复方案 -> 实施修复 -> 推回验证。
+
+- 官方版 https://github.com/openai/skills/tree/main/skills/gh-fix-ci
+- 社区版 https://github.com/davila7/claude-code-templates
+- Codex 安装命令：
+
+```bash
+# 方式一：官方安装
+$skill-installer install gh-fix-ci
+# 方式二：从LobeHub安装 
+curl https://lobehub.com/skills/composiohq-awesome-codex-skills-gh-fix-ci/skill.md
+# 然后按照提示完成安装配置
+# 方式三：从Community Registry安装
+npx @bbhxwl/skills install gh-fix-ci --target codex
+```
+
 
 ### Superpowers
 
@@ -679,41 +758,6 @@ skill-install -t codex install https://github.com/obra/superpowers/archive/main.
 ```
 
 **安装后必须重启 Codex**，因为 Superpowers 依赖会话启动时的钩子来完成技能发现与注入。
-
-### frontend-skill
-
-frontend-skill 将设计规范和组件风格编码进指令，让 Codex 生成更具设计感的前端页面。Skill 内部封装了常见的设计原则（间距、色彩、字体、圆角、阴影）以及现代 UI 框架的组件模式，让 AI 在生成页面时自动应用。
-
-- 开源地址 https://github.com/anthropics/skills/tree/main/skills/frontend-design
-- Codex 安装命令：
-
-```bash
-# 从官方Anthropic仓库安装
-git clone https://github.com/anthropics/skills.git ~/.agents/skills/anthropic-skills
-# 然后进入~/.agents/skills/anthropic-skills/skills/frontend-design 即可使用
-# 或使用TokRepo一键安装
-npx tokrepo install frontend-design
-```
-
-### gh-fix-ci
-
-gh-fix-ci 主要是解决 GitHub Actions 失败排查耗时耗力。很多后端和 DevOps 工程师每周可能要花几个小时在排查 CI 失败上。gh-fix-ci 会自动读取失败的 GitHub Actions 运行记录，汇总错误原因并给出具体修复建议。它把“AI 读取错误日志 -> 理解失败原因 -> 分析相关代码 -> 定位问题根源 -> 给出修复方案”的链路完全自动化了。
-
-Skill 内部执行了 8 步结构化流程：验证 `gh` CLI 认证状态 -> 识别失败的 PR 检查 -> 提取失败日志 -> 区分 GitHub Actions 内外部范围 -> 汇总失败摘要 -> 请求用户批准修复方案 -> 实施修复 -> 推回验证。
-
-- 官方版 https://github.com/openai/skills/tree/main/skills/gh-fix-ci
-- 社区版 https://github.com/davila7/claude-code-templates
-- Codex 安装命令：
-
-```bash
-# 方式一：官方安装
-$skill-installer install gh-fix-ci
-# 方式二：从LobeHub安装 
-curl https://lobehub.com/skills/composiohq-awesome-codex-skills-gh-fix-ci/skill.md
-# 然后按照提示完成安装配置
-# 方式三：从Community Registry安装
-npx @bbhxwl/skills install gh-fix-ci --target codex
-```
 
 ### Spring Boot 专用 Agent Skills
 
@@ -806,5 +850,7 @@ Gihub 仓库 https://github.com/VoltAgent/awesome-claude-code-subagents
 
 Spring AI 社区已将 Agent Skills 概念集成到 Spring 生态中，允许在 Spring Boot 应用内部运行 AI Agent 并加载 Skills。
 
+### 其他开源 Skills
 
-
+- [悟鸣 Agent Skills](https://github.com/chujianyun/skills) - 悟鸣公开维护的一组 Agent Skills，偏实战、偏工作流，主要服务于 AI 工具使用、文档解读、项目配置、运维排障与技能分发。
+- [Agent Skills | Qoder Community](https://qoder-community.pages.dev/zh/skills/) - 增强 Qoder，发现、安装和使用 Agent Skills，帮助 Qoder 完成更专业的任务。从文档处理到代码开发，从营销到数据分析。

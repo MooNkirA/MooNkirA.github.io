@@ -151,7 +151,7 @@ Bolt.new 提供多种定价方案，满足不同用户需求：
 
 Cursor 是目前最的 AI 代码编辑器，被称为“AI 时代的 VSCode"。因为它基于 VSCode 改造，保留了 VSCode 的所有优点，同时加入了强大的 AI 功能。
 
-### TRAE
+### TRAE Work
 
 > - 官网 https://www.trae.cn/
 > - 官方文档 https://docs.trae.cn/
@@ -172,12 +172,13 @@ Trae（含 Trae CN）默认将缓存、配置和运行时数据存储在 C 盘�
 
 **缓存核心目录说明**：
 
-| 目录名称     | 默认路径（Windows）                         | 作用                       |
-| ------------ | ------------------------------------------- | ------------------------ |
-| **Trae CN**  | `C:\Users\<用户名>\AppData\Roaming\Trae CN` | 模型缓存、插件、运行时数据 |
-| **.trae-cn** | `C:\Users\<用户名>\.trae-cn`                | 项目快照、配置、扩展插件   |
+| 目录名称         | 默认路径（Windows）                              | 作用                       |
+| ---------------- | ------------------------------------------------ | -------------------------- |
+| **Trae CN**      | `C:\Users\<用户名>\AppData\Roaming\Trae CN`      | 模型缓存、插件、运行时数据 |
+| **.trae-cn**     | `C:\Users\<用户名>\.trae-cn`                     | 项目快照、配置、扩展插件   |
+| **TRAE SOLO CN** | `C:\Users\<用户名>\AppData\Roaming\TRAE SOLO CN` | 模型缓存、插件、运行时数据 |
 
-> [!tip] 国际版缓存目录的名称不一样，替换成实际目录操作即可。
+> [!tip] TRAE IDE、TRAE Work 与国际版等不同版本的缓存目录的名称不一样，替换成实际目录操作即可。
 
 **符号链接法（推荐，全目录迁移）**：通过创建符号链接，将默认目录映射到新位置，Trae 会继续读写原路径，但实际数据存储在新位置。**适用于所有 Trae 目录**，包括 `Trae CN` 和 `.trae-cn`。
 
@@ -195,10 +196,12 @@ Windows 系统 Trae 缓存目录迁移操作步骤（需要管理员权限）
 ```cmd
 mklink /D "C:\Users\<用户名>\AppData\Roaming\Trae CN" "D:\TraeData\Trae CN"
 mklink /D "C:\Users\<用户名>\.trae-cn" "D:\TraeData\.trae-cn"
+mklink /D "C:\Users\<用户名>\AppData\Roaming\TRAE SOLO CN" "D:\TraeData\TRAE-SOLO-CN"
 
 :: 使用系统变量的方式（效果同上）
 mklink /D "%APPDATA%\Trae CN" "D:\TraeData\Trae CN"
 mklink /D "%USERPROFILE%\.trae-cn" "D:\TraeData\.trae-cn"
+mklink /D "%APPDATA%\TRAE SOLO CN" "D:\TraeData\TRAE-SOLO-CN"
 ```
 
 ### Qoder
@@ -247,12 +250,6 @@ mklink /D "%APPDATA%\Qoder" "D:\QoderData\Qoder"
 rmdir "%USERPROFILE%\.qoder"
 rmdir "%APPDATA%\Qoder"
 ```
-
-### AIXcoder 智能编程助手（未使用，可删）
-
-> 官网：https://www.aixcoder.com/#/
-
-aiXcoder 极速本地版，智能编程助手。功能包括：代码智能补全、支持主流 IDE、支持多编程语言、本地深度学习模型。支持多种主流 IDE，包含 IntelliJ IDEA，Eclipse，PyCharm，Android Studio，PhpStorm，WebStorm、Clion，Visual Studio Code
 
 ## AI 命令行编程工具
 
@@ -305,8 +302,8 @@ Warp 是一个现代化的终端工具，它不仅是终端，还集成了代码
 
 Warp 将 AI 代理能力深度集成到开发者的日常工具链中，代表了开发环境智能化的重要方向。在 OpenAI 的支持下，Warp 有望持续引领终端工具的 AI 化变革。
 
-- 官网：https://www.warp.dev/
-- Github 仓库：https://github.com/warpdotdev/warp
+- 官网 https://www.warp.dev/
+- Github 仓库 https://github.com/warpdotdev/warp
 
 #### GitHub Copilot CLI
 
@@ -316,19 +313,21 @@ GitHub Copilot 是微软推出的 AI 编程助手，而 GitHub Copilot CLI 是�
 
 #### OpenCode
 
-OpenCode 是最近非常火的开源命令行 AI 编程工具，被称为 “Claude Code 的开源版”。OpenCode 最大的优势是 **完全免费开源**，相比 Claude Code，OpenCode 不需要付费订阅，也没有地区限制，对国内用户特别友好。如果想尝试命令行 AI 编程，但不想付费，OpenCode 是最佳选择。
+- 官网 https://opencode.ai/
+- Github 仓库 https://github.com/anomalyco/opencode/
+
+OpenCode 是最近非常火的开源命令行 AI 编程工具，被称为 “Claude Code 的开源版”。OpenCode 最大的优势是 **完全免费开源**，相比 Claude Code，OpenCode 不需要付费订阅，也没有地区限制，对国内用户特别友好，并且提供一些**免费的模型**。如果想尝试命令行 AI 编程，但不想付费，OpenCode 是最佳选择。
 
 它提供直观的终端界面、会话管理、自定义命令等功能。而且支持多模型自由切换，包括 Claude、GPT、Gemini、DeepSeek 等。可以根据不同任务选择最合适的模型，不用被单一模型限制。
 
-使用以下命令安装：
 
-```bash
-curl -fsSL https://opencode.ai/install | bash
-```
 
-然后执行 `opencode` 命令即可使用。
+#### Hermes Agent
 
-## 国内免费大模型 API 完整清单（2026 年 5 月）
+- 官网 https://hermes-agent.nousresearch.com/
+- Github 仓库 https://github.com/NousResearch/hermes-agent
+
+## 国内大模型 API 完整清单（2026 年 5 月）
 
 **核心速览**：截至 2026 年 5 月 3 日，国内共有 10 + 主流平台提供免费大模型 API 服务，其中**智谱 GLM-4.7-Flash 完全免费无上限**、**阿里云百炼 Qwen-Turbo 永久免费**、**百度文心一言 / 讯飞星火 / 腾讯混元**提供长期免费额度，其余平台提供新用户免费体验包。
 
@@ -349,7 +348,7 @@ curl -fsSL https://opencode.ai/install | bash
 
 ### 二、各平台详细介绍与关键配置
 
-#### 1. 智谱 AI（GLM 系列）⭐⭐⭐⭐⭐【最推荐】
+#### 智谱 AI（GLM 系列）⭐⭐⭐⭐⭐【最推荐】
 
 **平台定位**：国内领先的大模型开放平台，编程能力突出，GLM-4.7-Flash 为 30B 级最强模型
 
@@ -387,7 +386,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### 2. 阿里云百炼（通义千问）⭐⭐⭐⭐【模型最全】
+#### 阿里云百炼（通义千问）⭐⭐⭐⭐【模型最全】
 
 **平台定位**：一站式模型服务平台，集成 Qwen 全系列及主流开源模型
 
@@ -426,7 +425,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### 3. 百度文心一言（ERNIE 系列）⭐⭐⭐⭐【中文王者】
+#### 百度文心一言（ERNIE 系列）⭐⭐⭐⭐【中文王者】
 
 **平台定位**：百度研发的中文大模型，中文理解地道，数理逻辑能力强
 
@@ -466,7 +465,7 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.json()["result"])
 ```
 
-#### 4. 讯飞星火（Spark 系列）⭐⭐⭐【语音交互强】
+#### 讯飞星火（Spark 系列）⭐⭐⭐【语音交互强】
 
 **平台定位**：科大讯飞研发的认知大模型，语音能力突出，多语言支持
 
@@ -527,7 +526,7 @@ response = requests.request("POST", url, headers=headers, data=payload)
 print(response.json()["choices"][0]["message"]["content"])
 ```
 
-#### 5. 腾讯混元（Hunyuan 系列）⭐⭐⭐【腾讯生态】
+#### 腾讯混元（Hunyuan 系列）⭐⭐⭐【腾讯生态】
 
 **平台定位**：腾讯研发的大模型，与腾讯云、微信生态深度集成
 
@@ -564,7 +563,7 @@ resp = client.ChatCompletions(req)
 print(resp.Choices[0].Message.Content)
 ```
 
-#### 6. 月之暗面（Kimi 系列）⭐⭐⭐【长文本专家】
+#### 月之暗面（Kimi 系列）⭐⭐⭐【长文本专家】
 
 **平台定位**：月之暗面研发的大模型，长文本处理能力突出，支持 100 万字上下文
 
@@ -600,7 +599,37 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-#### 7. 其他免费大模型 API 平台
+#### OpenRouter
+
+> 官网 https://openrouter.ai/
+
+LLM 的统一接口。更优价格，更佳可用性，无需订阅。有 25+ free models。
+
+#### Agnes AI
+
+> 官网 https://agnes-ai.com/
+
+2026 年 6 月 1 日，Agnes AI 宣布无限期免费开放旗下核心全模态模型 API。包括文本模型  Agnes-2.0-Flash 、图片模型 Agnes-Image-2.1-Flash，以及视频模型 Agnes-Video-2.0。
+
+接入步骤如下：
+
+1. 访问 https://platform.agnes-ai.com ，注册登录后，在控制台里就创建并复制好 API Key。
+2. 打开 AI 工具，根据不同的工具配置方式进行配置。主要是配置以下信息
+    - API key
+    - 接口地址 `https://apihub.agnes-ai.com/v1`
+    - 模型名称填和模型名称，如 `agnes-2.0-flash`
+
+更多模式接入操作详见官方文档：
+
+- [OpenClaw 模型配置操作手册](https://agnes-ai.com/doc/cid1)
+- [HermesAgents 模型配置操作手册](https://agnes-ai.com/doc/cid2)
+- [Claude CLI 接入 Agnes 模型操作手册](https://agnes-ai.com/doc/cid3)
+- [Claude Desktop 接入 Agnes 模型操作手册](https://agnes-ai.com/doc/cid4)
+- [WorkBuddy 接入 Agnes 模型操作手册](https://agnes-ai.com/doc/cid5)
+- [Opencode 接入 Agnes 模型操作手册](https://agnes-ai.com/doc/cid8)
+- [Codex++ 接入 Agnes模型配置手册](https://agnes-ai.com/doc/cid8)
+
+#### 其他免费大模型 API 平台
 
 |平台|免费模型|免费额度|关键配置|适用场景|
 |---|---|---|---|---|

@@ -1,9 +1,3 @@
----
-tags:
-  - Software
-  - AI
----
-
 ## Claude Code 简介
 
 > Claude Code 官方网站: https://claude.ai/code

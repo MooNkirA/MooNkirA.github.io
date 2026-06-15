@@ -1,5 +1,3 @@
-# Claude Code 完整教程
-
 ## 目录
 
 - [什么是 Claude Code](Claude-Code-教程.md#什么是-claude-code)
@@ -675,15 +673,14 @@ claude-code docs components
 3. **解释复杂逻辑**：注释重要部分
 4. **使用 Markdown**：便于阅读和维护
 
----
-
 ## 常见问题
 
 ### 安装问题
 
 #### Q: Node.js 版本过低怎么办？
 
-A: 升级 Node.js 到最新稳定版：
+升级 Node.js 到最新稳定版：
+
 ```bash
 # 使用 nvm 安装（推荐）
 nvm install --lts
@@ -694,14 +691,14 @@ nvm install --lts
 
 #### Q: npm install 失败？
 
-A: 尝试以下步骤：
+尝试以下步骤：
+
 1. 清理 npm 缓存：`npm cache clean --force`
 2. 使用国内镜像源：`npm config set registry https://registry.npmmirror.com`
 3. 检查网络连接
 
 #### Q: API Key 无效？
 
-A: 确认：
 1. API Key 已正确设置
 2. API Key 未过期
 3. 账户有足够额度
@@ -710,7 +707,6 @@ A: 确认：
 
 #### Q: Claude Code 无法理解我的需求？
 
-A: 尝试：
 1. 使描述更具体和清晰
 2. 提供更多上下文信息
 3. 分解复杂需求为多个小任务
@@ -718,7 +714,6 @@ A: 尝试：
 
 #### Q: 生成的代码不符合要求？
 
-A: 尝试：
 1. 明确指定代码风格和限制
 2. 提供更多的代码片段作为示例
 3. 使用 "refactor" 命令要求重新生成
@@ -726,7 +721,6 @@ A: 尝试：
 
 #### Q: 如何提高生成代码的质量？
 
-A:
 1. 在提示词中要求包含注释
 2. 指定测试覆盖率要求
 3. 要求进行代码审查
@@ -736,14 +730,14 @@ A:
 
 #### Q: 配置文件格式错误？
 
-A: 检查 JSON 语法：
+检查 JSON 语法：
+
 1. 使用 JSON 验证工具
 2. 确保所有引号、括号都正确匹配
 3. 确保字符串使用双引号
 
 #### Q: 环境变量不生效？
 
-A: 确认：
 1. 环境变量已正确设置
 2. 终端已重新加载
 3. 配置文件路径正确
@@ -752,7 +746,6 @@ A: 确认：
 
 #### Q: 响应速度慢？
 
-A: 尝试：
 1. 检查网络连接
 2. 减少 `maxTokens` 设置
 3. 使用更快的模型（如 Claude Haiku）
@@ -760,7 +753,6 @@ A: 尝试：
 
 #### Q: 内存占用过高？
 
-A:
 1. 增加 Node.js 内存限制：`node --max-old-space-size=4096 app.js`
 2. 清理缓存：`claude-code cache clear`
 3. 关闭不必要的功能
@@ -769,7 +761,6 @@ A:
 
 #### Q: 如何保护 API Key？
 
-A:
 1. 始终使用环境变量，不要硬编码
 2. 使用 `.gitignore` 排除敏感文件
 3. 定期轮换 API Key
@@ -777,7 +768,8 @@ A:
 
 #### Q: 如何限制敏感操作？
 
-A: 在配置文件中设置权限：
+在配置文件中设置权限：
+
 ```json
 {
   "permissions": {
@@ -792,14 +784,14 @@ A: 在配置文件中设置权限：
 
 #### Q: 如何自定义 Skills？
 
-A: 使用 skill-creator：
+使用 skill-creator：
+
 ```bash
 skill-creator create my-skill
 ```
 
 #### Q: 如何迁移项目配置？
 
-A:
 ```bash
 # 导出配置
 claude-code export-config
@@ -810,7 +802,6 @@ claude-code import-config
 
 #### Q: 如何更新 Claude Code？
 
-A:
 ```bash
 # 更新到最新版本
 npm update -g @anthropic/claude-code
@@ -818,8 +809,6 @@ npm update -g @anthropic/claude-code
 # 或重新安装
 npm install -g @anthropic/claude-code@latest
 ```
-
----
 
 ## 资源链接
 
