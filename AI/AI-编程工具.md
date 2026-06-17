@@ -318,9 +318,7 @@ GitHub Copilot 是微软推出的 AI 编程助手，而 GitHub Copilot CLI 是�
 
 OpenCode 是最近非常火的开源命令行 AI 编程工具，被称为 “Claude Code 的开源版”。OpenCode 最大的优势是 **完全免费开源**，相比 Claude Code，OpenCode 不需要付费订阅，也没有地区限制，对国内用户特别友好，并且提供一些**免费的模型**。如果想尝试命令行 AI 编程，但不想付费，OpenCode 是最佳选择。
 
-它提供直观的终端界面、会话管理、自定义命令等功能。而且支持多模型自由切换，包括 Claude、GPT、Gemini、DeepSeek 等。可以根据不同任务选择最合适的模型，不用被单一模型限制。
-
-
+它提供直观的终端界面、会话管理、自定义命令等功能。而且支持多模型自由切换，包括 Claude、GPT、Gemini、DeepSeek 等。可以根据不同任务选择最合适的模型，不用被单一模型限制。更多详情参考 [[OpenCode|OpenCode 使用教程]]
 
 #### Hermes Agent
 
