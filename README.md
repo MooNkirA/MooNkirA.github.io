@@ -6,9 +6,12 @@
 
 - [[AI-基础|AI 基础概念]]
 - [[Vibe-Coding|Vibe Coding 氛围编程]]
-- [[AI-编程工具|AI 编程工具]]
-    - [[Claude-Code|Claude Code]]
-    - [[OpenCode|OpenCode 使用教程]]
+
+### AI 编程工具
+
+- [[AI-编程工具|AI 编程工具概述]]
+- [[Claude-Code|Claude Code]]
+- [[OpenCode|OpenCode 使用教程]]
 
 ## Java 核心技术
 

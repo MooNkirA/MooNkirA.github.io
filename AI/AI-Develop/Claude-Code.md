@@ -1,6 +1,6 @@
 ## Claude Code 简介
 
-> Claude Code 官方网站: https://claude.ai/code
+> Claude Code 官方网站 https://claude.ai/code
 
 Claude Code 是 Anthropic 公司推出的官方命令行 AI 编程工具，基于 Claude AI 模型构建。它是目前功能最强大的命令行编程工具之一。它可以帮助开发者：
 
@@ -312,7 +312,13 @@ Claude Code 预置了多个内置 Skills，可通过斜杠命令快速调用：
 
 ## 最佳实践
 
-### 1. 提供清晰的上下文
+### 写好 CLAUDE.md
+
+CLAUDE.md 是一份 Claude 行为规范，包含：项目怎么启动、测试跑哪条命令、目录怎么分层、团队的特殊约定等等。Anthropic 建议保持 CLAUDE.md 精简不超过 200 行，只保留 Claude 无法轻易从代码中推断的信息。
+
+要判断某个内容是否需要写进 CLAUDE.md，只要验证删除这些内容后，Claude 会不会更容易犯错？
+
+### 提供清晰的上下文
 
 好的请求示例：
 
@@ -324,7 +330,7 @@ claude-code "在 src/utils/auth.js 中添加 JWT 验证，当前支持登录和�
 claude-code "添加验证"
 ```
 
-### 2. 使用文件路径
+### 使用文件路径
 
 明确指定文件位置：
 
@@ -332,7 +338,7 @@ claude-code "添加验证"
 claude-code "修复 src/components/Header.js 第 42 行的样式问题"
 ```
 
-### 3. 分解复杂任务
+### 分解复杂任务
 
 将大任务分解为小步骤：
 
@@ -346,7 +352,9 @@ claude-code "先重构数据库层"
 claude-code "然后更新 API 层"
 ```
 
-### 4. 利用项目记忆
+先让它只读代码，不要改文件。限定范围，让它先把调用链、关键文件、可能原因讲清楚。等方向对了，再让它补测试、改实现、跑验证。*前面慢一点，后面能少很多返工。*
+
+### 利用项目记忆
 
 Claude Code 会记住你的项目上下文，定期提及：
 
@@ -354,7 +362,7 @@ Claude Code 会记住你的项目上下文，定期提及：
 claude-code "这个改动符合项目的 RESTful 风格吗？"
 ```
 
-### 5. 安全地执行操作
+### 安全地执行操作
 
 始终使用 `--dry-run` 预览：
 
@@ -362,6 +370,28 @@ claude-code "这个改动符合项目的 RESTful 风格吗？"
 claude-code --dry-run "删除所有测试文件"
 claude-code "删除所有测试文件"  # 确认后再执行
 ```
+
+### 权限别全放开
+
+- `git diff`、`git status`、`rg`、`npm test` 这类只读或验证命令，可以适当放宽。
+- `rm -rf`、强制推送 Git、读 `.env` 文件、改生产配置、改密钥证书等等，需要尽量限制。
+
+### 让 Claude 自己验证结果
+
+Anthropic 官方最佳实践推荐：给 Claude 一个能运行的检查。测试、构建、lint、截图对比、脚本输出都可以。
+
+### MCP、Skills、Hooks 各施其职
+
+- MCP 用来连接外部系统，比如数据库、浏览器、Sentry、Notion。
+- Skills 用来沉淀重复流程，比如代码审查、TDD。
+- Hooks 用来做硬约束，比如编辑后格式化、提交前跑测试、拦截危险命令。
+
+### 长任务用 Sub-Agent 或 Worktree 拆开
+
+排查日志、搜大仓库、并行改多个模块，别都塞进一个会话里。
+
+- Sub-Agent 适合做局部调查，只把结论带回来。
+- Worktree 适合多任务并行，一个分支修认证，一个分支改订单，互不干扰。
 
 ## 故障排除
 
