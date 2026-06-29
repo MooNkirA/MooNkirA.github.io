@@ -640,19 +640,21 @@
     "expandedKeys": []
   },
   "AI/Vibe-Coding.md": {
-    "scroll": 37.81635071090047,
+    "scroll": 0,
     "cursor": {
       "from": {
-        "line": 51,
+        "line": 14,
         "ch": 0
       },
       "to": {
-        "line": 51,
+        "line": 14,
         "ch": 0
       }
     },
     "expandedKeys": [
-      "item-2-1"
+      "item-2-1",
+      "item-2-5",
+      "item-3-7"
     ]
   },
   "Python/Python-函数.md": {
@@ -1495,15 +1497,15 @@
     ]
   },
   "AI/AI-Develop/Claude-Code.md": {
-    "scroll": 367.671875,
+    "scroll": 404.24609375,
     "cursor": {
       "from": {
-        "line": 385,
-        "ch": 29
+        "line": 367,
+        "ch": 0
       },
       "to": {
-        "line": 385,
-        "ch": 29
+        "line": 367,
+        "ch": 0
       }
     },
     "expandedKeys": [

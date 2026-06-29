@@ -91,7 +91,7 @@ Vibe Coding 用正式的语言来解释是：**以自然语言提示驱动大型
 
 ### 推荐的 Spring Boot + Agent Skills 工作流
 
-#### 6.1 标准工作流
+#### 标准工作流
 
 ```plaintext
 1. 探索阶段：让 Agent 读取代码库，理解架构  
@@ -101,7 +101,7 @@ Vibe Coding 用正式的语言来解释是：**以自然语言提示驱动大型
 5. 提交阶段：Git commit + push
 ```
 
-#### 6.2 多 Agent 协作模式
+#### 多 Agent 协作模式
 
 对于复杂 Spring Boot 项目，可以按角色分配不同 Skills：
 
