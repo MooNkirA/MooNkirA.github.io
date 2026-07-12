@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/AI-Develop/Claude-Code.md",
+                "file": "其他/编程资源分享.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Claude-Code"
+              "title": "编程资源分享"
             }
           },
           {
@@ -52,7 +52,8 @@
               "title": "Agent-Skills"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -236,9 +237,9 @@
   },
   "active": "0b18f97d4457c32a",
   "lastOpenFiles": [
-    "AI/AI-基础.md",
-    "AI/Vibe-Coding.md",
     "AI/AI-Develop/Claude-Code.md",
+    "AI/Vibe-Coding.md",
+    "AI/AI-基础.md",
     "AI/AI-编程工具.md",
     "AI/AI-Assistance/Agent-Skills.md",
     "README.md",

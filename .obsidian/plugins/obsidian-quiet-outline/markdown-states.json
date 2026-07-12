@@ -641,21 +641,22 @@
     "expandedKeys": []
   },
   "AI/Vibe-Coding.md": {
-    "scroll": 24.852213541666668,
+    "scroll": 39.14336492890995,
     "cursor": {
       "from": {
-        "line": 52,
-        "ch": 0
+        "line": 46,
+        "ch": 31
       },
       "to": {
-        "line": 52,
-        "ch": 0
+        "line": 46,
+        "ch": 31
       }
     },
     "expandedKeys": [
       "item-2-1",
       "item-2-5",
-      "item-3-7"
+      "item-2-4",
+      "item-3-5"
     ]
   },
   "Python/Python-函数.md": {
@@ -1498,14 +1499,14 @@
     ]
   },
   "AI/AI-Develop/Claude-Code.md": {
-    "scroll": 404.24609375,
+    "scroll": 463.181720043181,
     "cursor": {
       "from": {
-        "line": 367,
+        "line": 514,
         "ch": 0
       },
       "to": {
-        "line": 367,
+        "line": 514,
         "ch": 0
       }
     },
@@ -1655,15 +1656,15 @@
     ]
   },
   "其他/编程资源分享.md": {
-    "scroll": 0,
+    "scroll": 17.94818279956819,
     "cursor": {
       "from": {
-        "line": 2,
-        "ch": 0
+        "line": 29,
+        "ch": 38
       },
       "to": {
-        "line": 2,
-        "ch": 0
+        "line": 29,
+        "ch": 38
       }
     },
     "expandedKeys": [
