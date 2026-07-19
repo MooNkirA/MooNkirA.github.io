@@ -10,24 +10,107 @@ This is a personal programming note-taking repository ("MooNkirA's code note") c
 
 ```
 Workspace/
-├── AI/                      # AI-related notes
-├── Database/                # Database concepts and MySQL notes
-├── DevOps/                  # DevOps tools (Maven, Git, Docker, Jenkins)
-├── Java/                    # Java core notes (JDK, collections, IO, reflection, etc.)
-├── JavaWeb/                 # JavaWeb notes (Servlet, JSP, web servers)
-├── JVM/                     # JVM notes (memory model, GC, class loading)
-├── Linux/                   # Linux knowledge
-├── Python/                  # Python notes
-├── 前端资料/                 # Frontend notes (HTML, CSS, JavaScript, Vue, React)
-├── 后端框架/                # Backend frameworks (Spring, MyBatis, Hibernate)
-├── 分布式微服务/            # Distributed microservices (Spring Cloud, Dubbo, etc.)
+├── AI/                      # AI-related notes (assistance, development, experience)
+│   ├── AI-Assistance/       # AI tool usage guides
+│   ├── AI-Develop/          # AI-assisted development notes
+│   ├── AI-Experience/       # Personal AI experience sharing
+│   └── images/
+├── Database/                # Database concepts and notes
+│   ├── MongoDb/
+│   ├── MySQL/
+│   ├── Oracle/
+│   ├── Redis/
+│   └── images/
+├── DevOps/                  # DevOps tools and practices
+│   ├── 应用容器/             # Containerization (Docker, etc.)
+│   ├── 持续集成工具/         # CI tools (Jenkins, etc.)
+│   ├── 测试工具/             # Testing tools
+│   ├── 版本管理工具/         # Version control (Git, etc.)
+│   └── 项目构建工具/         # Build tools (Maven, Gradle, etc.)
+├── Frontend/               # Frontend development notes (renamed from 前端资料)
+│   ├── Bootstrap/
+│   ├── CSS/
+│   ├── HTML/
+│   ├── JavaScript/
+│   ├── React/
+│   ├── TypeScript/
+│   ├── Vue/
+│   ├── 前端工程化工具/       # Frontend engineering tools
+│   ├── 工具类库/             # Utility libraries
+│   └── 移动端Web/            # Mobile web development
+├── JVM/                    # JVM notes (memory model, GC, class loading)
+├── Java/                   # Java core notes (JDK, collections, IO, reflection, etc.)
+├── JavaWeb/                # JavaWeb notes (Servlet, JSP, web servers)
+├── Linux/                  # Linux knowledge
+├── Python/                 # Python notes
+├── attachments/            # Attachments: note templates, mind maps, study notes
+│   ├── API/
+│   ├── Dubbo/
+│   ├── IDE/
+│   ├── JVM/
+│   ├── JavaSE基础/
+│   ├── Maven/
+│   ├── MyBatis/
+│   ├── MySQL/
+│   ├── Python/
+│   ├── Spring/
+│   ├── SpringCloud/
+│   ├── SpringMVC/
+│   ├── Vue/
+│   ├── java学习笔记/
+│   ├── linux/
+│   ├── templates/          # Note templates
+│   ├── 实战项目/
+│   ├── 工具框架/
+│   ├── 常用工具类/
+│   ├── 并发编程/
+│   └── 思维导图-程序开发知识体系
+├── resources/              # Static assets (CSS, JS, images, file-map.json)
+├── 其他/                   # Other resources (software tutorials, dev tools, learning resources)
+│   ├── images/
+│   ├── software/
+│   ├── tools/
+│   └── 学习资源/
+├── 分布式微服务/            # Distributed microservices architecture
+│   ├── Authorization-Certification/
+│   ├── Dubbo/
+│   ├── ElasticStack/
+│   ├── Nginx/
+│   ├── SpringBoot/
+│   ├── SpringCloud/
+│   ├── 任务调度/
+│   ├── 分布式事务/
+│   ├── 分布式文件系统/
+│   ├── 分布式链路追踪/
+│   ├── 分库分表/
+│   ├── 微服务监控/
+│   ├── 服务注册中心/
+│   ├── 消息中件间/
+│   ├── 系统架构/
+│   └── 配置中心/
+├── 后端框架/                # Backend frameworks (Spring, MyBatis, Hibernate, Activiti)
+│   ├── Activiti/
+│   ├── Hibernate/
+│   ├── MyBatis/
+│   ├── Spring/
+│   ├── Spring-Data/
+│   ├── SpringMVC/
+│   └── 工具框架/
 ├── 并发编程/                # Concurrency programming
 ├── 面试手册/                # Interview questions (Java, MySQL, Redis, Spring, Dubbo)
-├── 项目资料/                # Real-world project examples (international logistics, e-commerce)
-├── 其他/                    # Other resources (software tutorials, development tools)
-├── resources/               # Static assets (CSS, images, file-map.json)
-├── index.html               # Docsify documentation site
-└── README.md                # Main index and navigation
+├── 项目资料/                # Real-world project examples
+│   ├── 万信金融/
+│   ├── 品优购/
+│   ├── 品达通用权限系统/
+│   ├── 国际物流云商系统/
+│   ├── 好客租房/
+│   ├── 学成在线/
+│   ├── 红包雨场景案例/
+│   └── 自用信息管理系统/
+├── index.html              # Docsify documentation site
+├── _coverpage.md           # Docsify cover page
+├── _navbar.md              # Docsify navbar
+└── README.md               # Main index and navigation
 ```
 
 ## Obsidian Configuration

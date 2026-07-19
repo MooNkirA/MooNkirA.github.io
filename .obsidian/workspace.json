@@ -53,7 +53,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -235,8 +235,9 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "0b18f97d4457c32a",
+  "active": "558742dba65c5b9d",
   "lastOpenFiles": [
+    "其他/编程资源分享.md",
     "AI/AI-Develop/Claude-Code.md",
     "AI/Vibe-Coding.md",
     "AI/AI-基础.md",
@@ -261,7 +262,6 @@
     "AI/AI-Assistance/images",
     "分布式微服务/系统架构/架构-基础.md",
     "DevOps/项目构建工具/Gradle.md",
-    "其他/编程资源分享.md",
     "其他/学习资源/Spring事务管理（一）快速入门.md",
     "AI/AI-Experience",
     "AI/AI-Develop",
