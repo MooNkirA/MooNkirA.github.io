@@ -529,8 +529,10 @@ http://localhost:40400/auth/oauth/token
 
 ##### 什么是http Basic认证？
 
-> http协议定义的一种认证方式，将客户端id和客户端密码按照“`客户端ID:客户端密码`”的格式拼接，并用base64编码，放在header中请求服务端  
-> 如：`Authorization：Basic WGNXZWJBcHA6WGNXZWJBcHA=`。其中：“WGNXZWJBcHA6WGNXZWJBcHA=”是`用户名:密码`的base64编码  
+> http协议定义的一种认证方式，将客户端id和客户端密码按照“`客户端ID:客户端密码`”的格式拼接，并用base64编码，放在header中请求服务端
+>
+> 如：`Authorization：Basic WGNXZWJBcHA6WGNXZWJBcHA=`。其中：“WGNXZWJBcHA6WGNXZWJBcHA=”是`用户名:密码`的base64编码
+>
 > 如果认证失败服务端返回`401 Unauthorized`
 
 #### 资源服务授权

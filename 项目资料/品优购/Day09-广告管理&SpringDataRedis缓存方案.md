@@ -1404,7 +1404,8 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 
 - 配置hosts:
 
-> 127.0.0.1 www.pinyougou.com  
+> 127.0.0.1 www.pinyougou.com
+>
 > 127.0.0.1 pinyougou.com
 
 - 配置nginx，修改nginx.conf，增加配置

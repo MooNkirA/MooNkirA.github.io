@@ -17,7 +17,7 @@ SpringBoot 项目打包都需要配置 spring-boot-maven-plugin 插件：
 </build>
 ```
 
-> <font color=red>**特别注意：在打包 SpringBoot 工程前，需要先检查 pom.xml 文件是否有配置 spring-boot-maven-plugin 插件，否则打包后无法正常执行程序。**</font>
+> <span style="color: red;">**特别注意：在打包 SpringBoot 工程前，需要先检查 pom.xml 文件是否有配置 spring-boot-maven-plugin 插件，否则打包后无法正常执行程序。**</span>
 
 #### 插件的七个目标
 
@@ -267,7 +267,7 @@ public class JspDemoController {
 </dependency>
 ```
 
-> <font color=purple>**番外：对于 jar 项目，若要支持 jsp，也可以在加入 jasper 依赖的前提下，把 jsp 文件置入 META-INF/resources 目录中**</font>
+> <span style="color: purple;">**番外：对于 jar 项目，若要支持 jsp，也可以在加入 jasper 依赖的前提下，把 jsp 文件置入 META-INF/resources 目录中**</span>
 
 ## Spring Boot 打包与部署运行（Linux 篇）
 
@@ -363,7 +363,7 @@ public class QuickStartApplication {
 }
 ```
 
-> Notes: <font color=red>**需要注意改配置出现的位置，在命令语法中是使用了 options 位置来进行区分。**</font>
+> Notes: <span style="color: red;">**需要注意改配置出现的位置，在命令语法中是使用了 options 位置来进行区分。**</span>
 
 ##### arguments 参数
 
@@ -604,7 +604,7 @@ Spring Boot 默认是使用 `@@` 占位符来读取 maven 的配置属性值，�
 </properties>
 ```
 
-<font color=red>**注意：使用些方式后，使用 mvn 命令打包时，不能使用 `${参数名:默认值}` 这种设置默认值方式**</font>
+<span style="color: red;">**注意：使用些方式后，使用 mvn 命令打包时，不能使用 `${参数名:默认值}` 这种设置默认值方式**</span>
 
 ## 属性加载优先级
 
@@ -676,13 +676,13 @@ Spring Boot 程序启动时，会按以下位置的从上往下的优先级加�
 
 如果不想使用 application.properties/application.yml 作为配置文件，可以通过启动程序时使用参数来指定配置文件。自定义配置文件方式有如下几种：
 
-> <font color=purple>温馨提示</font>：这种方式仅适用于Spring Boot单体项目，实际企业开发的项目都基于微服务，部署到多个服务器上，所有的服务器将不再各自设置自己的配置文件，而是通过配置中心获取配置，动态加载配置信息。
+> <span style="color: purple;">温馨提示</span>：这种方式仅适用于Spring Boot单体项目，实际企业开发的项目都基于微服务，部署到多个服务器上，所有的服务器将不再各自设置自己的配置文件，而是通过配置中心获取配置，动态加载配置信息。
 
 ### 通过程序启动参数加载指定的配置文件
 
 #### 设置配置文件名
 
-通过启动参数 `--spring.config.name` 来指定配置文件的名称。<font color=violet>**注意：仅仅是名称，不要带扩展名，多个配置文件之间使用 `,` 号分隔**</font>
+通过启动参数 `--spring.config.name` 来指定配置文件的名称。<span style="color: violet;">**注意：仅仅是名称，不要带扩展名，多个配置文件之间使用 `,` 号分隔**</span>
 
 ```bash
 java -jar springboot-demo.jar --spring.config.name=default,override
@@ -692,7 +692,7 @@ java -jar springboot-demo.jar --spring.config.name=default,override
 
 #### 设置配置文件路径
 
-通过启动参数 `--spring.config.location` 来指定配置文件的所在路径。<font color=violet>**注意：相对路径名、全路径名均可**</font>。
+通过启动参数 `--spring.config.location` 来指定配置文件的所在路径。<span style="color: violet;">**注意：相对路径名、全路径名均可**</span>。
 
 ```bash
 java -jar springboot-demo.jar --spring.config.location=classpath:/default.properties
@@ -736,7 +736,7 @@ java -jar springboot-demo.jar --spring.config.additional-location=optional:abc/a
 java -jar boot_config_file-0.0.1-SNAPSHOT.jar --spring.config.additional-location=optional:config/*/
 ```
 
-> Notes: 使用通配符批量扫描 mysql 和 redis 目录时，默认的加载顺序是按照文件夹的字母排序，即先加载 mysql 目录后加载 redis 目录。<font color=red>**需要注意的是，通配符只能用在外部目录中，不可以用在 classpath 中的目录上。另外，包含了通配符的目录，只能有一个通配符 `*`，不可以有多个，并且还必须是以 `*/` 结尾，即一个目录的最后部分可以不确定。**</font>
+> Notes: 使用通配符批量扫描 mysql 和 redis 目录时，默认的加载顺序是按照文件夹的字母排序，即先加载 mysql 目录后加载 redis 目录。<span style="color: red;">**需要注意的是，通配符只能用在外部目录中，不可以用在 classpath 中的目录上。另外，包含了通配符的目录，只能有一个通配符 `*`，不可以有多个，并且还必须是以 `*/` 结尾，即一个目录的最后部分可以不确定。**</span>
 
 #### 导入外部文件
 
@@ -806,7 +806,7 @@ spring:
 
 在同一个yml文档中，可以直接使用 “`---`” 来分隔不同环境的配置。
 
-<font color=red>**特别注意，分隔不同环境配置的分隔符必须的3个`-`，不能多不能少**</font>
+<span style="color: red;">**特别注意，分隔不同环境配置的分隔符必须的3个`-`，不能多不能少**</span>
 
 ```yml
 # 指定当前激活那个 profile
@@ -894,7 +894,7 @@ spring:
     include: database,freemarker,jpa
 ```
 
-> <font color=red>值得注意：使用`include`引入的多个配置文件，如果有相同属性的，是后面的配置文件覆盖前端的</font>
+> <span style="color: red;">值得注意：使用`include`引入的多个配置文件，如果有相同属性的，是后面的配置文件覆盖前端的</span>
 
 #### spring.profiles.group 引入多配置文件（2.4版本后）
 

@@ -123,7 +123,8 @@ app.filter('trustHtml', function ($sce) {
 </div>
 ```
 
-> 注意：商品标题文本太长，可使用用样式控制用省略号显示。在style样式中增加下面的属性：  
+> 注意：商品标题文本太长，可使用用样式控制用省略号显示。在style样式中增加下面的属性：
+>
 > `style="line-height: 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"`
 
 ## 搜索业务规则分析

@@ -990,7 +990,8 @@ public class MergeSort {
 
 该数组从逻辑上讲就是一个堆结构，我们用简单的公式来描述一下堆的定义就是：
 
-> 大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]  
+> 大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]
+>
 > 小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]
 
 ### 堆排序基本思想及步骤

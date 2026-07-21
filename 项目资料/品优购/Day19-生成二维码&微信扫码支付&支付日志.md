@@ -437,10 +437,14 @@ unifiedorder=https://api.mch.weixin.qq.com/pay/unifiedorder
 orderquery=https://api.mch.weixin.qq.com/pay/orderquery
 ```
 
-> appid： 微信公众账号或开放平台APP的唯一标识  
-> partner：商户账号  
-> partnerkey：商户密钥  
-> unifiedorder：统一下单请求地址  
+> appid： 微信公众账号或开放平台APP的唯一标识
+>
+> partner：商户账号
+>
+> partnerkey：商户密钥
+>
+> unifiedorder：统一下单请求地址
+>
 > orderquery：订单查询请求地址
 
 - pinyougou-cart-web工具配置pom.xml，依赖pinyougou-pay-interface

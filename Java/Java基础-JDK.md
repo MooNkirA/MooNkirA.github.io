@@ -44,7 +44,7 @@ Oracle JDK 是基于 Open JDK 源代码的商业版本。要学习 Java 新技�
 | ------------------------------------------------------------------------ | -------- | ---- | ----------------------------------------------- |
 | [Java 8](https://www.oracle.com/cn/java/technologies/downloads/#java8)   | 2014-03  | LTS  | 第三方厂商（Azul、Amazon Corretto）仍在维护     |
 | [Java 11](https://www.oracle.com/cn/java/technologies/downloads/#java11) | 2018-09  | LTS  | Oracle 商业支持延长中                           |
-| [Java 17](https://www.oracle.com/cn/java/technologies/downloads/#java17) | 2021-09  | LTS  | <font color=red>**主流生产推荐版本之一**</font> |
+| [Java 17](https://www.oracle.com/cn/java/technologies/downloads/#java17) | 2021-09  | LTS  | <span style="color: red;">**主流生产推荐版本之一**</span> |
 | [Java 21](https://www.oracle.com/cn/java/technologies/downloads/#java21) | 2023-09  | LTS  | 当前最新 LTS，推荐迁移目标                      |
 | [Java 25](https://www.oracle.com/cn/java/technologies/downloads/#java25) | 2025-09  | LTS  | 最新 LTS，2025年9月发布                         |
 
@@ -213,7 +213,7 @@ Java 程序从源代码到运行主要有三步：
 
 ### Java 语言“编译与解释并存”
 
-高级编程语言按照程序的执行方式分为<u>**编译型**</u>和<u>**解释型**</u>两种。
+高级编程语言按照程序的执行方式分为<span style="text-decoration: underline;">**编译型**</span>和<span style="text-decoration: underline;">**解释型**</span>两种。
 
 - **编译型语言**是指编译器针对特定的操作系统将源代码一次性翻译成可被该平台执行的机器码。
 - **解释型语言**是指解释器对源程序逐行解释成特定平台的机器码并立即执行。
