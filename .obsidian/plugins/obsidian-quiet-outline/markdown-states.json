@@ -1566,15 +1566,15 @@
     ]
   },
   "AI/AI-Assistance/Agent-Skills.md": {
-    "scroll": 147.564453125,
+    "scroll": 118.93957345971565,
     "cursor": {
       "from": {
-        "line": 171,
-        "ch": 4
+        "line": 128,
+        "ch": 0
       },
       "to": {
-        "line": 171,
-        "ch": 11
+        "line": 128,
+        "ch": 0
       }
     },
     "expandedKeys": [
@@ -1872,5 +1872,37 @@
       "item-2-4",
       "item-3-6"
     ]
+  },
+  "其他/software/foobar2000.md": {
+    "scroll": 52.087890625,
+    "cursor": {
+      "from": {
+        "line": 22,
+        "ch": 0
+      },
+      "to": {
+        "line": 22,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-2-0",
+      "item-2-2",
+      "item-2-5"
+    ]
+  },
+  "AI/AI-Assistance/未命名.md": {
+    "scroll": 0,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": []
   }
 }

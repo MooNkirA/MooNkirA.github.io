@@ -12,20 +12,14 @@ foobar2000 的原生音频格式支持：MP3、 MP4、 AAC,、CD Audio、 WMA、
 
 ### 汉化版本
 
-- foobar2000 asion 汉化版（目前已暂停更新）
-   - asion's blog | https://www.cnblogs.com/asionwu
-   - [百度网盘](https://pan.baidu.com/s/1wVbB24nSlwiHJWzJOagF9g?pwd=fb2k) 提取码：fb2k
-   - [蓝奏云](https://wwi.lanzoup.com/b0jitwwf) 密码：fb2k
+- foobar2000 asion 汉化版 | https://www.cnblogs.com/asionwu
+   - [夸克](https://pan.quark.cn/s/37f4c713c540) 提取码：2kpb
+   - [百度](https://pan.baidu.com/s/1FommvFX5Ias7P462XyQ6TA?pwd=fb2k)  提取码:fb2k
+   - [迅雷](https://pan.xunlei.com/s/VOLOv0BJRt-j810So9nS2UoLA1?pwd=tnwv) 提取码：tnwv
 - foobox 是一个 foobar2000 默认用户界面 (DUI) 的皮肤配置，具有简洁而美观实用的特点，善于管理曲目数量大的媒体库 ，对音乐各种封面提供丰富的支持。
     - [foobox 博客](https://dream7180.gitee.io/2023/foobox-release/)
     - [foobox 更新日志](https://dream7180.gitee.io/2023/foobox-changelog/)
     - [foobox gitee 仓库](https://gitee.com/dream7180/foobox-cn)
-- foobar2000 智享阁（YeYo）版本
-   - 网页： https://www.esnpc.com/foobar2000-20-simplified-chinese-version/
-   - 文件名 FB_2.0_x86 开头的是32位，FB_2.0_x64 的是64位，自行选择下载
-   - [百度网盘](https://pan.baidu.com/s/1iOPyEPf_pcZDbl3AbWSEYQ) 提取码: 6rgv
-   - [阿里云盘](https://www.aliyundrive.com/s/6Ly1isy9bwD) 提取码: 4p6o
-   - [天翼云盘](https://cloud.189.cn/web/share?code=mYvAnivuIbIv) 访问码：4owd
 
 ## foobar2000 参数配置（整理中）
 
