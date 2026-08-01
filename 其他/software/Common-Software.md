@@ -612,55 +612,35 @@ windows 桌面版缓存目录：`%APPDATA%\listen1\Cache`
 
 ### FastStone 系列软件
 
-FastStone 系列软件是个人免费、商业收费，一共有4款软件。
+FastStone 系列软件是个人免费、商业收费，一共有4款软件。FastStone 官方网站  http://www.faststone.org/
 
-- FastStone Image Viewer 这个是 FastStone 的主要软件，功能强大。
-- FastStone Capture 截图软件，个人认为最大的优点是可以截滚屏的图。
-- FastStone MaxView 纯粹的看图软件，速度奇快无比。
-- FastStone Photo Resizer 图片文件的转换/处理软件。
-
-FastStone 官方网站： http://www.faststone.org/
+| 软件                    | 最新版本 | 说明                                             |
+| ----------------------- | -------- | ------------------------------------------------ |
+| FastStone Image Viewer  | 8.5      | FastStone 的主要看图软件，功能强大               |
+| FastStone Capture       | 11.3     | 截图软件，最大的优点是可以截滚屏的图。还内置录屏 |
+| FastStone MaxView       | 3.5      | 纯粹的看图软件，速度奇快无比                     |
+| FastStone Photo Resizer | 4.5      | 图片文件的转换/处理软件                          |
 
 > Tips: 以下所有系列的下载链接中，如果输入的压缩包版本号大于当前可用的版本，会出现目前可用的文件选择的界面
+
+#### 安装包下载地址
+
+- FastStone Image Viewer
+    - https://www.faststonesoft.net/DN/FSViewerSetup85.zip
+    - https://www.faststonesoft.net/DN/FSViewerSetup85.exe
+    - https://www.faststonesoft.net/DN/FSViewer85.zip
+    - > 家庭用户可免费使用，商业使用须注册。注册及设置方法：如果您使用的旧版如 7.7 版已授权注册为商业版，可以将旧版如 7.7 商业版注册文件及设置文件 `FSSettings.db`，复制到 7.8 版 FSViewer 目录中就能注册 7.8 版并保持旧版如 7.7 版的设置，不必重新注册和设置。
+- FastStone Capture（好像暂无安装版） https://www.faststonesoft.net/DN/FSCapture113.zip
+- FastStone MaxView  https://www.faststonesoft.net/DN/FSMaxViewSetup35.exe
+  
+    - > Tips: 安装版不支持中文，如要汉化，可以使用`FastStone MaxView x.x 绿色汉化中文版`，但该版本因为是绿化版，所以无法在 windows 系统中选择为默认应用。因此需要换种方法去实现，先安装`FSMaxViewSetupxx.exe`的版本，然后将`FastStone MaxView x.x 绿色汉化中文版`的所有文件覆盖安装的目录即可。（如果运行后出现无注册成功的情况，再使用 Keygen 生成激活码注册即可）
+- FastStone Photo Resizer（好像暂无安装版） https://www.faststonesoft.net/DN/FSResizer45.zip
+
+> 注：因国内无法打开官网，以上是直接通过文件服务器下载
 
 #### 全系列破解器（更新于2023.05.04）
 
 解压 Keygen.7z 选择相应的 FastStone 的产品，随便输入一个用户名，然后生成相应的注册码即可。
-
-#### FastStone Image Viewer（目前更新至8.5版本）
-
-官方网站（无法打开）： https://www.faststone.org/FSViewerDetail.htm
-
-官方简体中文版下载地址：（官网无法打开，但下载地址可以下载）
-
-- 安装版 :
-    - https://www.faststonesoft.net/DN/FSViewerSetup85.zip
-    - https://www.faststonesoft.net/DN/FSViewerSetup85.exe
-- 便携版 : https://www.faststonesoft.net/DN/FSViewer85.zip
-
-> 建议使用迅雷或IDM下载
-
-家庭用户可免费使用，商业使用须注册。注册及设置方法：如果您使用的旧版如 7.7 版已授权注册为商业版，可以将旧版如 7.7 商业版注册文件及设置文件 `FSSettings.db`，复制到 7.8 版 FSViewer 目录中就能注册 7.8 版并保持旧版如 7.7 版的设置，不必重新注册和设置。
-
-#### FastStone Capture（目前更新至11.2版）
-
-官网便捷版下载地址（好像暂无安装版）：
-
-- https://www.faststonesoft.net/DN/FSCapture112.zip
-
-#### FastStone MaxView（目前更新至3.5版）
-
-官网安装版下载地址:
-
-- https://www.faststonesoft.net/DN/FSMaxViewSetup35.exe
-
-> Tips: 安装版不支持中文，如要汉化，可以使用`FastStone MaxView x.x 绿色汉化中文版`，但该版本因为是绿化版，所以无法在 windows 系统中选择为默认应用。因此需要换种方法去实现，先安装`FSMaxViewSetupxx.exe`的版本，然后将`FastStone MaxView x.x 绿色汉化中文版`的所有文件覆盖安装的目录即可。（如果运行后出现无注册成功的情况，再使用 Keygen 生成激活码注册即可）
-
-#### FastStone Photo Resizer（目前更新至4.5版）
-
-官网便捷版下载地址（好像暂无安装版）:
-
-- https://www.faststonesoft.net/DN/FSResizer45.zip
 
 ### 截图工具
 
@@ -676,7 +656,7 @@ PixPin 是目前市面上功能最全面的截图工具之一了！包括**截�
 
 ### 其他图像软件
 
-- [Honeyview · 蜂蜜浏览器](https://www.bandisoft.com/honeyview/) - 是一款快速的图片查看器，非常快速的漫画阅览器，同时也是一款非常不错的图像浏览器。
+- [Honeyview · 蜂蜜浏览器](https://www.bandisoft.com/honeyview/)（目前**已停止更新**） - 是一款快速的图片查看器，非常快速的漫画阅览器，同时也是一款非常不错的图像浏览器。
 - [IrfanView](https://www.irfanview.com/) - 堪与 ACDSee 媲美，支持的图像、音频、视频格式众多，并可幻灯显示、批量转换格式、批量重命名、JPG 无损旋转，支持拖放操作；亦具有调整图像大小、调整颜色深度、添加覆盖文字、特效（内置）处理等图像编辑功能，自3.85 版已能支持使用 Adobe Photoshop 的滤镜（8BF 格式）；还可以制作 HTML 格式的缩略图目录、创建自播放幻灯显示（EXE 或 SCR），是图像爱好者必备的袖珍精品。
 - [XnView](https://www.xnview.com/en/) - 经典免费实用看图浏览/管理/转换工具 XnView 是一个图像浏览器和多媒体播放器。它能够支持大约400种文件格式（比如说 png、jpeg、targa、tiff、gif、bmp等）。同时还支持动画 gif、多页面 tiff、多图像图标以及 mpeg、avi、wav、aiff 和 Quicktime 格式的文件。此外，XnView还具有浏览器、幻灯片、屏幕捕捉、缩略图制作、批处理转换、十六进制浏览、拖放、通讯录、扫描输入等功能。该软件支持43种语言，并能够在 Linux/FreeBSD/Irix/Solaris/HP-UX/AIX 等操作系统中使用。除了一般的查看、浏览、幻灯显示等功能外，还自带多种滤镜，方便编辑修改；可以批量转换文件格式，创建缩略图并生成网页，还可自己制作 GIF，小巧实用。 选择安装“资源管理器右键菜单扩展插件”，可在资源管理器右键菜单中增加图片预览功能！
 - [ImageGlass](https://github.com/d2phap/ImageGlass/releases)
@@ -710,7 +690,7 @@ Lightroom Classic 作为一个直观的解决方案，可提供在处理大部�
 
 ![](images/384923923240542.png)
 
-3. （以安装在D盘为例，提前在D盘创建以 Xmind 命名的文件夹）纯英文输入"安装包名称" /D="D:\Xmind"并回车。*tips：安装包名记得要包含.exe*
+3. （以安装在D盘为例，提前在D盘创建以 Xmind 命名的文件夹）纯英文输入`"安装包名称" /D="D:\Xmind"` 并回车。*tips：安装包名记得要包含.exe*
 
 ![](images/466614023258968.png)
 

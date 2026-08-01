@@ -43,17 +43,17 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/AI-Assistance/Agent-Skills.md",
+                "file": "Database/MySQL/MySQL-基础.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Agent-Skills"
+              "title": "MySQL-基础"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -235,14 +235,15 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "558742dba65c5b9d",
+  "active": "950ce86740ca18f0",
   "lastOpenFiles": [
-    "AI/AI-Assistance/未命名.md",
-    "AI/AI-Assistance/Agent-Skills.md",
-    "其他/software/foobar2000.md",
-    "其他/编程资源分享.md",
-    "AI/AI-Develop/Claude-Code.md",
     "AI/Vibe-Coding.md",
+    "其他/编程资源分享.md",
+    "Database/MySQL/MySQL-基础.md",
+    "AI/AI-Assistance/Agent-Skills.md",
+    "AI/AI-Assistance/未命名.md",
+    "其他/software/foobar2000.md",
+    "AI/AI-Develop/Claude-Code.md",
     "AI/AI-基础.md",
     "AI/AI-编程工具.md",
     "README.md",
@@ -272,7 +273,6 @@
     "分布式微服务/分布式文件系统/FastDFS.md",
     "attachments/工具框架/FastDFS安装教程.pdf",
     "DevOps/项目构建工具/Maven-全局配置.md",
-    "DevOps/项目构建工具/Maven-POM.md",
     "Database/images/20260601130646998.jpg",
     "Database/images/20260601130432856.jpg",
     "Database/images/20260601130331945.jpg",
