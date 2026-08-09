@@ -2657,4 +2657,3 @@ public class IpCountAutoConfiguration {
 - [方志朋的专栏 - Spring Boot 系列文章](https://www.fangzhipeng.com/spring-boot.html)
 - [纯洁的微笑-Spring Boot系列文章](http://www.ityouknow.com/spring-boot.html)
 - [江南一点雨-关于Spring Boot](https://www.javaboy.org/springboot/)
-- [Spring Boot 中文文档](https://felord.cn/_doc/_springboot/2.1.5.RELEASE/_book/)

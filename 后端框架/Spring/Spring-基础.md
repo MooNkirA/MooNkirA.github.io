@@ -193,7 +193,6 @@ Spring 系统的 lib 包中都是以基本 jar 包、文档、源代码三种结
 - Spring 最新版本官方文档：https://docs.spring.io/spring-framework/docs/current/reference/html/
 - Spring 5.2.x 官方参考文档：https://docs.spring.io/spring-framework/docs/5.2.12.RELEASE/spring-framework-reference/
 - [Spring 中文文档](https://springdoc.cn/) - SPRINGDOC.CN 提供最新的 Spring Boot, Spring Cloud, Spring Security 等 Spring 框架的官方中文文档。
-- [Spring Framework 5 中文文档](https://felord.cn/_doc/spring/5.x.RELEASE/_book/)
 - [Spring 实战(第 5 版)](https://potoyang.gitbook.io/spring-in-action-v5/)
 
 ## Spring IOC 容器
