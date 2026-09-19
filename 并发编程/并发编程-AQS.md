@@ -5,7 +5,7 @@
 - 互斥，即同一时刻只允许一个线程访问共享资源。
 - 同步，即线程之间如何通信、协作。
 
-以上这两大问题可以通过<font color=red>**信号量**</font>和<font color=red>**管程**</font>来解决。
+以上这两大问题可以通过<span style="color: red;">**信号量**</span>和<span style="color: red;">**管程**</span>来解决。
 
 ### 信号量
 
@@ -565,7 +565,7 @@ protected boolean tryRelease(int arg) {
 }
 ```
 
-`release` 方法用于<font color=purple>**释放独占模式的同步锁**</font>，底层调用工具类 `java.util.concurrent.locks.LockSupport` 的静态方法 `unpark()` 来实现，如果释放失败，则直接返回。此方法是独占模式下释放共享资源的顶层入口。类似的，此方法中调用了 `tryRelease` 并根据其返回值来判断是否完成了释放锁的操作，默认实现也是抛出 `UnsupportedOperationException` 异常的方法，目的也是为了让子类自己去重写。
+`release` 方法用于<span style="color: purple;">**释放独占模式的同步锁**</span>，底层调用工具类 `java.util.concurrent.locks.LockSupport` 的静态方法 `unpark()` 来实现，如果释放失败，则直接返回。此方法是独占模式下释放共享资源的顶层入口。类似的，此方法中调用了 `tryRelease` 并根据其返回值来判断是否完成了释放锁的操作，默认实现也是抛出 `UnsupportedOperationException` 异常的方法，目的也是为了让子类自己去重写。
 
 在独占模式下，线程释放资源之前，必定已经预先拿到了资源，所以重写的方法中只需要减掉相应的资源量即可，不需要过多考虑线程安全问题。当前线程释放完成后，会通过 `unparkSuccessor` 方法激活队列中等待的下一个线程。一般被激活的线程就是当前线程的“next”节点，但如果该线程由于超时或者被中断而已经被激活，则（从队列尾部倒序）查找距离当前线程最近的可激活线程，通过 `LockSupport.unpark()` 方法激活它。
 
@@ -714,7 +714,7 @@ private void doReleaseShared() {
 
 ### AQS 的等待队列
 
-当线程进入临界区，发现必须满足某个（些）条件才能继续，则该线程将在该条件对象上等待，并进入等待区（wait set）。因为在多线程并发的环境中，不确定线程的先后执行顺序。因此需要<font color=red>**通过设置 `Condition` 对象让进入临界区却不满足条件的线程等待，并在条件满足时继续执行，从而可以确保程序按设计的顺序执行**</font>。这就是条件对象的本质。
+当线程进入临界区，发现必须满足某个（些）条件才能继续，则该线程将在该条件对象上等待，并进入等待区（wait set）。因为在多线程并发的环境中，不确定线程的先后执行顺序。因此需要<span style="color: red;">**通过设置 `Condition` 对象让进入临界区却不满足条件的线程等待，并在条件满足时继续执行，从而可以确保程序按设计的顺序执行**</span>。这就是条件对象的本质。
 
 一个锁可以管理多个条件对象，一个条件对象上可能会有多个线程处于等待状态。
 
@@ -805,7 +805,7 @@ volatile Thread thread; // 线程对象
 Node nextWaiter; // 等待队列中的下一个节点
 ```
 
-源码中 `waitStatus` 代表**节点等待状态**，默认 0。<font color=red>**当前节点的值表示后续节点的状态**</font>。
+源码中 `waitStatus` 代表**节点等待状态**，默认 0。<span style="color: red;">**当前节点的值表示后续节点的状态**</span>。
 
 ```java
 volatile int waitStatus;

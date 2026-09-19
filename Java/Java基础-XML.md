@@ -67,12 +67,12 @@ XML 约束是用来规定 XML 文件中应该出现哪些标签，哪些属性�
 
 标签参数说明：
 
-- version(版本)：表示 xml 的版本号。W3C 在 1998 年 2 月发布 1.0 版本，2004 年 2 月又发布 1.1 版本，但因为 1.1 版本不能向下兼容 1.0 版本，所以 1.1 没有人用。同时，在 2004 年 2 月 W3C 又发布了 1.0 版本的第三版。<font color=red>**目前使用 1.0 版本**</font>
-- encoding(编码)：可以指定UTF-8或GBK，是可选属性。<font color=red>**常用的是UTF-8**</font>。
+- version(版本)：表示 xml 的版本号。W3C 在 1998 年 2 月发布 1.0 版本，2004 年 2 月又发布 1.1 版本，但因为 1.1 版本不能向下兼容 1.0 版本，所以 1.1 没有人用。同时，在 2004 年 2 月 W3C 又发布了 1.0 版本的第三版。<span style="color: red;">**目前使用 1.0 版本**</span>
+- encoding(编码)：可以指定UTF-8或GBK，是可选属性。<span style="color: red;">**常用的是UTF-8**</span>。
 
 > Notes: 
 >
-> - 参数的顺序必须是：<font color=red>**version 在前，encoding 在后**</font>，否则会报错。
+> - 参数的顺序必须是：<span style="color: red;">**version 在前，encoding 在后**</span>，否则会报错。
 > - 文档声明的语句必须牌XML文档的最左上角，不能有任何空格和换行。
 
 #### 编码问题
@@ -135,7 +135,7 @@ ecplise 工具会自动根据 xml 文件的文档声明自动设置保存时的�
 <a>welcome to <b>www.moonzero.com</a></b>
 ```
 
-<font color=red>**对于 XML 标签中出现的所有空格和换行，XML 解析程序都会当作标签内容进行处理。**</font>
+<span style="color: red;">**对于 XML 标签中出现的所有空格和换行，XML 解析程序都会当作标签内容进行处理。**</span>
 
 ### 属性
 
@@ -192,7 +192,7 @@ jdbc:mysql://localhost:3306/tempdb?characterEncoding=utf8&useSSL=false&serverTim
 
 有些符号在 XML 语言中是有特殊含义的，如果想原样输出 XML 中的特殊字符，那么就需要对其进行转义。
 
-**转义的语法格式**：<font color=red>**以`&`开始，以`;`结束**</font>
+**转义的语法格式**：<span style="color: red;">**以`&`开始，以`;`结束**</span>
 
 | 特殊字符 |  替代字符  |     英文      |
 | :-----: | :------: | ------------ |
@@ -322,7 +322,7 @@ DTD 文件描述由**四个组成部分**：`前缀//DTD 文件的所有者//DTD
 <!ELEMENT 元素名(标签名) 元素类型或元素内容>
 ```
 
-上面三个要素必须要<font color=red>**空格分隔，空格不能省略**</font>。
+上面三个要素必须要<span style="color: red;">**空格分隔，空格不能省略**</span>。
 
 #### 元素的类别（3种）
 
@@ -463,7 +463,7 @@ Schema `/'ski:mə/`  概要，纲要
 - 制定约束的 XML 文档称为：模式文档 (类似于：类)
 - 被模式该当约束的 XML 文档称为：实例文档 (类似于：对象)
 
-> Notes: <font color=purple>**Schema 也被约束，被官方Schema约束文档所约束。**</font>
+> Notes: <span style="color: purple;">**Schema 也被约束，被官方Schema约束文档所约束。**</span>
 
 ### Schema 的命名空间
 
@@ -496,7 +496,7 @@ xmlns:前缀="URI 地址"
 
 当一个命名空间被定义在某个元素的开始标签中时，所有带有相同前缀的子元素都会与同一个命名空间相关联。
 
-> Notes: <font color=red>**用于标示命名空间的地址不会被解析器用于查找信息。其唯一的作用是赋予命名空间一个唯一的名称。**</font>
+> Notes: <span style="color: red;">**用于标示命名空间的地址不会被解析器用于查找信息。其唯一的作用是赋予命名空间一个唯一的名称。**</span>
 
 #### 统一资源标示符（Uniform Resource Identifier (URI)）
 
@@ -514,7 +514,7 @@ http://www.baidu.com/xxx
 xmlns="namespaceURI"
 ```
 
-为某个元素定义默认的命名空间可以让我们省去在所有的子元素中使用前缀的工作。<font color=red>**一个 XML 文件中只能使用一个默认的命名空间**</font>。例如：
+为某个元素定义默认的命名空间可以让我们省去在所有的子元素中使用前缀的工作。<span style="color: red;">**一个 XML 文件中只能使用一个默认的命名空间**</span>。例如：
 
 ```xml
 <table xmlns="http://www.moonzero.com/html4">
@@ -600,11 +600,11 @@ xmlns="namespaceURI"
 2. `<schema>` 元素包含属性 `xmlns:xs="http://www.w3.org/2001/XMLSchema"`
     - 作用一：表示 schema 中用到的元素和数据类型来自命名空间 `"http://www.w3.org/2001/XMLSchema"`。
     - 作用二：规定了来自命名空间 `"http://www.w3.org/2001/XMLSchema"` 的元素和数据类型使用前缀 `xs`。
-    - <font color=red>**这个引用官方指定的约束，约束来自于该命名空间。一般生成不用去修改。**</font>
+    - <span style="color: red;">**这个引用官方指定的约束，约束来自于该命名空间。一般生成不用去修改。**</span>
 3. `targetNamespace="http://www.moonzero.com/note"` 表示被此 schema 定义的元素 (note, to, from, heading, body) ，被绑定到了命名空间：`"http://www.moonzero.com/note"`。
     - `targetNamespace = "URI字符串"` 注意 URI 字符串，一般设置的公司的域名或网址，不查找该网址是否存在。它的作用就是用来唯一标识一个命名空间。
     - 该模式文档定义的约束将被绑定到`"http://xx//xxx/xxx"`，命名空间(包)中
-    - <font color=red>**注：用于标示命名空间的地址不会被解析器用于查找信息。其唯一的作用是赋予命名空间一个唯一的名称。**</font>
+    - <span style="color: red;">**注：用于标示命名空间的地址不会被解析器用于查找信息。其唯一的作用是赋予命名空间一个唯一的名称。**</span>
 4. `elementFormDefault="qualified"` 使用此 xsd 的实例文档必须遵守此文档的约束。
     - 取值`qualified`: 必须遵循该模式文档定义的约束条件
     - 取值`unqualified`: 使用该模式文档的实例文档不需要遵循约束条件
@@ -640,7 +640,7 @@ xmlns="namespaceURI"
 2. 数据类型： DTD 的类型比较单一，Schema 的数据类型丰富得多，可以指定如：integer、date、double。
 3. 约束功能：约束功能更加强大，可以使用更多规则，甚至可以使用正则表达式来约束。一个 XML 可以有多个 Schema 约束文档。
 4. 复杂度：比 DTD 要复杂。
-5. <font color=red>**可以多个 Schema 模式文档约束一个 XML 实例文档，而一个 DTD 文件只能约束一个 XML 文档**</font>。
+5. <span style="color: red;">**可以多个 Schema 模式文档约束一个 XML 实例文档，而一个 DTD 文件只能约束一个 XML 文档**</span>。
 
 ## XML 解析
 
@@ -654,7 +654,7 @@ xmlns="namespaceURI"
 
 DOM 解析是直接将 XML 文档加载到内存中，在内存中生成一个 DOM 树。DOM 树上的每一个对象都是一个节点(Node)对象。DOM 解析优缺点如下：
 
-- 优点：xml 中的每个元素都是 dom 树上的一个节点，<font color=red>**可以在解析的过程中对结点上的每个元素进行增删改操作**</font>。一般使用在PC端开发。
+- 优点：xml 中的每个元素都是 dom 树上的一个节点，<span style="color: red;">**可以在解析的过程中对结点上的每个元素进行增删改操作**</span>。一般使用在PC端开发。
 - 缺点：如果 XML 文档内容特别大，则会导致内存占用也比较大。
 
 #### SAX 解析
@@ -696,7 +696,7 @@ DOM4J 是一个最优秀的第三方 Java 的 XML API 解析框架，是 jdom �
 
 #### Node 节点信息
 
-<font color=red>**DOM 树中每个元素都抽象成一个节点对象 `Node`，节点是所有元素的父元素**</font>。
+<span style="color: red;">**DOM 树中每个元素都抽象成一个节点对象 `Node`，节点是所有元素的父元素**</span>。
 
 获得 `Node` 对象步骤：
 
@@ -762,7 +762,7 @@ public void setRootElement(Element rootElement)
 public short getNodeType()
 ```
 
-- 得到节点的类型，所有的节点类型在 Node 接口中定义了常量。<font color=red>**注：通过判断返回的类型来筛选需要得到的Node对象**</font>。**常用 Node 常量对象类型**如下：
+- 得到节点的类型，所有的节点类型在 Node 接口中定义了常量。<span style="color: red;">**注：通过判断返回的类型来筛选需要得到的Node对象**</span>。**常用 Node 常量对象类型**如下：
     - Node.ELEMENT_NODE 标签节点
     - Node.TEXT_NODE 文本节点
     - Node.COMMENT_NODE 注释节点
@@ -794,7 +794,7 @@ public interface Element extends Branch
 public Iterator<Node> nodeIterator()
 ```
 
-- Element继承父类的方法，方法返回当前标签下所有的子节点（Node对象）的迭代器，<font color=red>**获取的包含了注解、空白内容等等元素**</font>。
+- Element继承父类的方法，方法返回当前标签下所有的子节点（Node对象）的迭代器，<span style="color: red;">**获取的包含了注解、空白内容等等元素**</span>。
 
 ##### Element 类对元素（标签）Element 的操作相关方法
 
@@ -802,14 +802,14 @@ public Iterator<Node> nodeIterator()
 public Iterator<Element> elementIterator()
 ```
 
-- 获得该元素节点下所有子元素(Element、标签)的迭代器对象。(<font color=red>**只获取到标签对象**</font>)
+- 获得该元素节点下所有子元素(Element、标签)的迭代器对象。(<span style="color: red;">**只获取到标签对象**</span>)
 > 原文档解释：Returns an iterator over all this elements child elements.
 
 ```java
 public Iterator elementIterator(String name)
 ```
 
-- 获得该元素节点下指定名字的所有子元素(Element、标签)的迭代器对象。(<font color=red>**只获取到标签名为name的对象**</font>)
+- 获得该元素节点下指定名字的所有子元素(Element、标签)的迭代器对象。(<span style="color: red;">**只获取到标签名为name的对象**</span>)
 
 ```java
 public List<Element> elements();
@@ -827,7 +827,7 @@ public List<Element> elements(String name);
 public Element element(String name);
 ```
 
-- 得到指定名字name的标签对象，<font color=red>**如果多个同名标签则默认返回第一个元素对象**</font>
+- 得到指定名字name的标签对象，<span style="color: red;">**如果多个同名标签则默认返回第一个元素对象**</span>
 
 ```java
 public String getName();
@@ -839,7 +839,7 @@ public String getName();
 public Element addElement(String name)
 ```
 
-- 继承父类(Branch)的方法，给当前元素标签对象新增一个新的子标签，并<font color=red>**返回该新增的标签对象**</font>
+- 继承父类(Branch)的方法，给当前元素标签对象新增一个新的子标签，并<span style="color: red;">**返回该新增的标签对象**</span>
 > 原文档解释：Adds a new Element node with the given name to this branch and returns a reference to the new node.
 
 ```java
@@ -900,7 +900,7 @@ public String getText();
 public String getTextTrim();
 ```
 
-- 通过元素对象得到元素的文本内容（<font color=red>**会自动去掉包括了左右空格，换行符等内容**</font>）
+- 通过元素对象得到元素的文本内容（<span style="color: red;">**会自动去掉包括了左右空格，换行符等内容**</span>）
 
 ```java
 public String elementText(String name);
@@ -912,7 +912,7 @@ public String elementText(String name);
 public String elementTextTrim(String name);
 ```
 
-- 通过元素对象根据子元素名name得到该元素的文本内容（<font color=red>**会自动去掉包括了左右空格，换行符等内容**</font>）
+- 通过元素对象根据子元素名name得到该元素的文本内容（<span style="color: red;">**会自动去掉包括了左右空格，换行符等内容**</span>）
 
 #### Attribute 类
 

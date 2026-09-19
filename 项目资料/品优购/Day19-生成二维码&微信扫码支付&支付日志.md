@@ -23,7 +23,7 @@
 ### 二维码生成插件qrious
 
 - qrious是一款基于HTML5 Canvas的纯JS二维码生成插件。通过qrious.js可以快速生成各种二维码，你可以控制二维码的尺寸颜色，还可以将生成的二维码进行Base64编码。
-- <font color="red">**缺点：不支持IE9以下版本的浏览器**</font>
+- <span style="color: red;">**缺点：不支持IE9以下版本的浏览器**</span>
 - qrious.js二维码插件的可用配置参数如下
 
 |  **参数**  | **类型** | **默认值**  |             **描述**             |
@@ -273,7 +273,7 @@ public class BarCodeController {
 
 ### HttpClientUtils工具类
 
-- <font color="red">**HttpClient**</font>是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的<font color="red">**支持HTTP协议的客户端编程工具包**</font>，并且它支持HTTP协议最新的版本和建议。HttpClient已经应用在很多的项目中，比如Apache Jakarta上很著名的另外两个开源项目Cactus和HTMLUnit都使用了HttpClient。
+- <span style="color: red;">**HttpClient**</span>是Apache Jakarta Common下的子项目，用来提供高效的、最新的、功能丰富的<span style="color: red;">**支持HTTP协议的客户端编程工具包**</span>，并且它支持HTTP协议最新的版本和建议。HttpClient已经应用在很多的项目中，比如Apache Jakarta上很著名的另外两个开源项目Cactus和HTMLUnit都使用了HttpClient。
 - HttpClient通俗的讲就是模拟了浏览器的行为，如果需要在后端向某一地址提交数据获取结果，就可以使用HttpClient
 - 关于HttpClient（原生）具体的使用暂时不了解，这里为了简化HttpClient的使用，提供了工具类HttpClient（对原生HttpClient进行了封装）
 
@@ -937,7 +937,7 @@ tb_paylog 支付日志表
 
 ### 插入日志记录（新增订单记录时）
 
-修改pinyougou-order-service工程OrderServiceImpl.java的saveOrder方法。<font color="red">**判断如果支付方式为微信支付，向数据库插入支付日志记录，并放入redis存储**</font>
+修改pinyougou-order-service工程OrderServiceImpl.java的saveOrder方法。<span style="color: red;">**判断如果支付方式为微信支付，向数据库插入支付日志记录，并放入redis存储**</span>
 
 ```java
 @Autowired

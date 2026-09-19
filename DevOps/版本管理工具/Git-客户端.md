@@ -194,7 +194,7 @@ Bin
 处理冲突:
 ![](images/592001122247965.jpg)
 
-> Notes: <font color=red>**还需要重新push代码到远程仓库。**</font>
+> Notes: <span style="color: red;">**还需要重新push代码到远程仓库。**</span>
 
 ### idea 取消项目与 git 仓库的关联
 
@@ -513,7 +513,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 ![](images/568912411256282.jpg) ![](images/38832511256914.jpg)
 
-> Notes: <font color=red>**此操作会撤销所有未提交的修改，所以当做还原操作是需要慎重！！！**</font>
+> Notes: <span style="color: red;">**此操作会撤销所有未提交的修改，所以当做还原操作是需要慎重！！！**</span>
 
 #### 检查已修改
 
@@ -610,7 +610,7 @@ C:\Users\Administrator\AppData\Local\Atlassian\SourceTree
 
 - URL：远程仓库的地址
 - 推送 URL：也是相同的
-- Putty 密钥：选择刚才生成的密钥中的私钥(<font color=red>**可以不选择**</font>)
+- Putty 密钥：选择刚才生成的密钥中的私钥(<span style="color: red;">**可以不选择**</span>)
 
 第三步：同步，在本地仓库的文件夹中单击右键，选择“Git同步”
 
@@ -765,7 +765,7 @@ bin
 
 ![](images/223872014246733.jpg)
 
-> Notes: <font color=red>当需要选择不同分支同步代码到远程仓库时使用。一般第一次同步代码用得比较多。</font>
+> Notes: <span style="color: red;">当需要选择不同分支同步代码到远程仓库时使用。一般第一次同步代码用得比较多。</span>
 
 设置 git 服务器地址：
 

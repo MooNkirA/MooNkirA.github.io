@@ -194,7 +194,7 @@ git version 2.16.2
 [root@centOS git-2.16.2]# chown -R git:git /home/git
 ```
 
-> Notes: <font color=red>**每次创建新的仓库都需要授予git用户为拥有者**</font>
+> Notes: <span style="color: red;">**每次创建新的仓库都需要授予git用户为拥有者**</span>
 
 最终完成效果：
 

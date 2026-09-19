@@ -348,7 +348,7 @@ var app = angular.module('pinyougou', ['pagination']);
 
 #### 前端-分页组件配置
 
-- <font color="red">注意：使用分页查询前，在页面的body元素上去掉ng-init指令的调用</font>
+- <span style="color: red;">注意：使用分页查询前，在页面的body元素上去掉ng-init指令的调用</span>
 - paginationConf 变量各属性的意义：
     1. currentPage：当前页码
     2. totalItems: 总记录数
@@ -859,7 +859,7 @@ $scope.ck_all = $scope.ids.length == $scope.dataList.length;
 ### 多条件分页查询品牌
 
 - 实现品牌条件查询功能，输入品牌名称、首字母后查询，并分页
-- <font color="red">需要注意使用get方法传递中文查询条件时乱码的问题</font>
+- <span style="color: red;">需要注意使用get方法传递中文查询条件时乱码的问题</span>
 
 #### 后端-服务接口与实现层（修改原来分页查询方法）
 

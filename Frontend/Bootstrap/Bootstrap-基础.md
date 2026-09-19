@@ -33,7 +33,7 @@
 ### 版本
 
 - 2.x.x：停止维护，兼容性好，代码不够简洁，功能不够完善。
-- 3.x.x：目前使用最多，稳定，但是放弃了支持 IE6-IE7。对 IE8 支持但是界面效果不好，<font color=red>**偏向用于开发响应式布局、移动设备优先的 WEB 项目**</font>。
+- 3.x.x：目前使用最多，稳定，但是放弃了支持 IE6-IE7。对 IE8 支持但是界面效果不好，<span style="color: red;">**偏向用于开发响应式布局、移动设备优先的 WEB 项目**</span>。
 - 4.x.x：最新版，目前还不是很流行
 
 ## Bootstrap 使用
@@ -115,7 +115,7 @@ bootstrap/
 
 #### Bootstrap 文件导入及示例
 
-<font color=red>**导入三个文件及模板的详细解释**</font>：
+<span style="color: red;">**导入三个文件及模板的详细解释**</span>：
 
 ```html
 <!--设置网页的编码-->
@@ -199,11 +199,11 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 `.container` 容器�
 
 ![](images/20211110092639069_18848.png)
 
-> <font color=red>**链接被作为按钮使用时的注意事项**</font>
+> <span style="color: red;">**链接被作为按钮使用时的注意事项**</span>
 >
 > 如果 `<a>` 元素被作为按钮使用，并用于在当前页面触发某些功能，而不是用于链接其他页面或链接当前页面中的其他部分，必须设置 `role="button"` 属性。
 >
-> <font color=red>**跨浏览器展现**</font>。总结最佳实践是：强烈建议尽可能使用 `<button>` 元素来获得在各个浏览器上获得相匹配的绘制效果。
+> <span style="color: red;">**跨浏览器展现**</span>。总结最佳实践是：强烈建议尽可能使用 `<button>` 元素来获得在各个浏览器上获得相匹配的绘制效果。
 
 #### 预定义样式的按钮
 
@@ -257,7 +257,7 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 `.container` 容器�
 | `.form-control` | 所有设置了 `.form-control` 类的`<input>`、`<textarea>`和`<select>`元素都将被默认设置宽度属性为 `width: 100%`                     |
 |  `.form-group`  | 将 label 元素和前面提到的控件包裹在 `.form-group` 中可以获得最好的排列。<br/>每个label包裹的文字是可以点击，可以让后面的文本框获取焦点 |
 
-注：<font color=red>**`<div class="form-group"></div>`包裹相关于表单中的一项，包含一个`<label>`和一个文本框`<input>`**</font>
+注：<span style="color: red;">**`<div class="form-group"></div>`包裹相关于表单中的一项，包含一个`<label>`和一个文本框`<input>`**</span>
 
 如果想点击文字选择选项设置label的for属性，值为文本框/单选框/复选框的id
 
@@ -273,7 +273,7 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 `.container` 容器�
 
 栅格系统英文为“grid systems”,也有人翻译为“网格系统”，它是指将页面布局划分为等宽的列，然后通过列数的定义来模块化页面布局。
 
-Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为<font color=red>**最多12列**</font>。
+Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为<span style="color: red;">**最多12列**</span>。
 
 栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，内容就可以放入这些创建好的布局中。
 
@@ -350,7 +350,7 @@ Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，�
 
 ![](images/20211110104134884_7913.jpg)
 
-从查询结果中了解，<font color=purple>当创建 div 的类样式名 container，会根据屏幕的大小发生变化</font>
+从查询结果中了解，<span style="color: purple;">当创建 div 的类样式名 container，会根据屏幕的大小发生变化</span>
 
 #### 响应式工具
 
@@ -417,7 +417,7 @@ progress-bar 进度条相关属性
 - `aria`：开头的属性，是给残障人士使用的
 - `sr-only`：屏幕朗读
 
-<font color=red>**一般只需要设置`class`和`style`就可以**</font>
+<span style="color: red;">**一般只需要设置`class`和`style`就可以**</span>
 
 |   进度条的类型   |                       类样式                        |
 | :------------: | -------------------------------------------------- |

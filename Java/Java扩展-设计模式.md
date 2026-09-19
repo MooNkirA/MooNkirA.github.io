@@ -119,7 +119,7 @@ public class EagerSingleton {
 
 ### 具体实现
 
-综合以上分析后，推荐使用<font color=red>**volatile 双重检查模式**</font>来创建单例对象。从性能上考虑，一般选择同步代码块去处理线程安全问题。具体实现步骤如下：
+综合以上分析后，推荐使用<span style="color: red;">**volatile 双重检查模式**</span>来创建单例对象。从性能上考虑，一般选择同步代码块去处理线程安全问题。具体实现步骤如下：
 
 1. 定义一个静态的对象成员变量
 2. 要私有构造方法，如果不处理，系统会自动提供一个无参的构造方法。外界就可以直接 new 对象
@@ -222,7 +222,7 @@ public class HolderSingleton {
 
 **小结**：
 
-上述代码中：虽然内部类中的成员变量`INSTANCE`是被`static`修改，但这个是懒加载的，原因是<font color=red>**内部类前面加`static`关键字，表示的是类级内部类，类级内部类只有在使用时才会被加载**</font>。
+上述代码中：虽然内部类中的成员变量`INSTANCE`是被`static`修改，但这个是懒加载的，原因是<span style="color: red;">**内部类前面加`static`关键字，表示的是类级内部类，类级内部类只有在使用时才会被加载**</span>。
 
 具体的执行流程是：当`getInstance`方法第一次被调用的时候，它第一次读取`InstanceHolder.INSTANCE`时，会触发`InstanceHolder`类的初始化。而`InstanceHolder`类在装载并被初始化的时候，会初始化它的静态成员变量、静态域，从而创建`HolderSingleton`的实例。由于是静态的域，因此只会在虚拟机装载类的时候初始化一次，并静态变量的初始化是由虚拟机（JVM）来保证它的线程安全性，在内存只会存在一份，<u>*jvm的初始化时是线程互斥的（待日后理解）*</u>。这个模式的优势在于，`getInstance`方法并没有做线程同步控制，并且只是执行一个域的访问，因此延迟初始化并没有增加任何访问成本。
 
@@ -272,7 +272,7 @@ class EnumSingleton extends Enum {
 
 ## 定义与特点
 
-享元模式（Flyweight Pattern）：主要通过对象的复用来减少对象创建的次数和数量，以减少系统内存的使用和降低系统的负载。享元模式属于<font color=red>**结构型模式**</font>，在系统需要一个对象时，享元模式首先在系统中查找并尝试重用现有的对象，如果未找到匹配的对象，则创建新对象并将其缓存在系统中以便下次使用。
+享元模式（Flyweight Pattern）：主要通过对象的复用来减少对象创建的次数和数量，以减少系统内存的使用和降低系统的负载。享元模式属于<span style="color: red;">**结构型模式**</span>，在系统需要一个对象时，享元模式首先在系统中查找并尝试重用现有的对象，如果未找到匹配的对象，则创建新对象并将其缓存在系统中以便下次使用。
 
 > wikipedia: A flyweight is an object that minimizes memory usage by sharing as much data as possible with other similar objects
 
@@ -417,7 +417,7 @@ public class TemplateMethodPattern {
 
 ## 定义与特点
 
-适配器模式（Adapter）的定义：将一个类的接口转换成另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。<font color=red>**适配器模式分为类结构型模式和对象结构型模式**</font>两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。
+适配器模式（Adapter）的定义：将一个类的接口转换成另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。<span style="color: red;">**适配器模式分为类结构型模式和对象结构型模式**</span>两种，前者类之间的耦合度比后者高，且要求程序员了解现有组件库中的相关组件的内部结构，所以应用相对较少些。
 
 - 该模式的主要优点如下：
 1. 客户端通过适配器可以透明地调用目标接口。
@@ -569,7 +569,7 @@ public static void main(String[] args) {
 
 ## 结构与实现
 
-<font color=red>**建造者（Builder）模式由产品、抽象建造者、具体建造者、指挥者等 4 个要素构成**</font>
+<span style="color: red;">**建造者（Builder）模式由产品、抽象建造者、具体建造者、指挥者等 4 个要素构成**</span>
 
 # 工厂模式（Factory Pattern）
 

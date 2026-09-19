@@ -212,7 +212,7 @@ public void cancelRegister(ConsumerRegisterDTO consumerRegisterDTO) {
 
 #### 项目配置
 
-- 在 apollo 中，修改 account-service 项目中，关联新建的 `micro_service.spring-cloud-hmily` 公共 namespace。<font color=violet>注意：因为账户服务不是事务发起方，所以需要覆盖 `org.dromara.hmily.started=false`</font>
+- 在 apollo 中，修改 account-service 项目中，关联新建的 `micro_service.spring-cloud-hmily` 公共 namespace。<span style="color: violet;">注意：因为账户服务不是事务发起方，所以需要覆盖 `org.dromara.hmily.started=false`</span>
 
 ![](images/61982816239394.png)
 

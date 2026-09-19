@@ -47,7 +47,7 @@ Person person = new Student();
 
 ### 获取 Class 对象
 
-JDK 中有4种方式获取 `Class` 对象。值得注意的是，<font color=red>**4 种方式得到的类对象，是同一个对象**</font>，因为 Class 文件在 JVM 中只存在一份
+JDK 中有4种方式获取 `Class` 对象。值得注意的是，<span style="color: red;">**4 种方式得到的类对象，是同一个对象**</span>，因为 Class 文件在 JVM 中只存在一份
 
 - **方式1: 通过对象实例继承 Object 类中的`getClass()`方法**
 
@@ -800,9 +800,9 @@ public static Object newProxyInstance(ClassLoader loader, Class<?>[] interfaces,
 - 参数`Class<?>[] interfaces`：真实对象所现实的所有接口的class对象数组，即和被代理对象具有相同的行为，实现相同的接口。
 - 参数`InvocationHandler h`：回调处理对象，具体的代理操作，`InvocationHandler`是一个接口，需要传入一个实现了此接口的实现类。（**可以使用匿名内部类来现实**）
 
-<font color=red>**回调处理对象注意事项：不要在invoke方法中通过proxy对象调用方法，因为会产生死循环**</font>
+<span style="color: red;">**回调处理对象注意事项：不要在invoke方法中通过proxy对象调用方法，因为会产生死循环**</span>
 
-<u><font color=purple>**真实对象与代理对象的是实现了共同接口，所以返回的Object代理对象需要转成接口类型**</font></u>
+<u><span style="color: purple;">**真实对象与代理对象的是实现了共同接口，所以返回的Object代理对象需要转成接口类型**</span></u>
 
 > 引用网络资料的解释：为什么jdk动态代理的对象必须实现一个统一的接口，其实可以大致理解为，代理类本身已经 extends 了 `Proxy`，如果传入的是父类，很可能出现这种情况：“`public class $Proxy1 extends Proxy extends 传入的父类`”；这个明显在 java 中是不允许的，Java 只支持单继承，但是实现接口是完全可以的。
 
@@ -824,8 +824,8 @@ public interface InvocationHandler {
 
 `invoke` 方法的作用：每当通过代理对象调用方法时，都会被该方法拦截。方法参数说明如下：
 
-- 参数`Object proxy`：代理对象本身（不一定每次都用得到）。即方法` newProxyInstance()`方法返回的代理对象，该对象一般<font color=red>**不要在 `invoke` 方法中使用，容易出现递归调用**</font>。
-- 参数`Method method`：代理对象调用的方法（即被拦截真实对象的方法），是<font color=red>**真实对象的方法对象**</font>，会进行多次调用，每次调用 method 对象都不同。
+- 参数`Object proxy`：代理对象本身（不一定每次都用得到）。即方法` newProxyInstance()`方法返回的代理对象，该对象一般<span style="color: red;">**不要在 `invoke` 方法中使用，容易出现递归调用**</span>。
+- 参数`Method method`：代理对象调用的方法（即被拦截真实对象的方法），是<span style="color: red;">**真实对象的方法对象**</span>，会进行多次调用，每次调用 method 对象都不同。
 - 参数`Object[] args`：**代理对象调用方法时传递的参数，该参数会传递给真实对象的方法**。
 - 返回值 `Object`：**一般返回真实对象方法执行后的结果**。
 
@@ -1226,7 +1226,7 @@ public void testCustomProxy() {
 - 代理类会继承 `Proxy` 类，该父类中有一个 `InvocationHandler h` 属性，通过接口回调的方式来实现代理增强的逻辑
 - **目标类必须有实现的接口**。如果某个类没有实现接口，那么这个类就不能用 JDK 动态代理。
 - 在代理实现的接口方法中，通过反射调用相应的目标方法
-- 代理增强是借助多态来实现，因此<font color=red>**成员变量、静态方法、final 方法均不能通过代理实现**</font>
+- 代理增强是借助多态来实现，因此<span style="color: red;">**成员变量、静态方法、final 方法均不能通过代理实现**</span>
 - 扩展知识：JDK 的动态代理对反射调用目标对象的方法做了优化。
     - 前 16 次都是使用反射调用，性能较低
     - 第 17 次调用会生成代理类，优化为非反射调用
@@ -1610,7 +1610,7 @@ public void testProxyFastClass() throws InvocationTargetException {
 
 ### CGlib 与 JDK 动态代理的区别
 
-JDK 的动态代理通过 `Proxy` 类使用反射技术来实现，不需要导入其他依依赖。值得注意的是，<font color=red>**当方法被调用到一定的次数后，才会生成不通过反射调用的代理**</font>。
+JDK 的动态代理通过 `Proxy` 类使用反射技术来实现，不需要导入其他依依赖。值得注意的是，<span style="color: red;">**当方法被调用到一定的次数后，才会生成不通过反射调用的代理**</span>。
 
 而 CGlib 需要引入 `asm.jar` 相关依赖，它是使用字节码增强技术来实现。在加载时动态生成两个类，分别是使用目标对象与代理对象来调用原方法，从而避免反射，提高性能。但代价是一个代理类会搭配生成两个 `FastClass` 实现类，代理类中还得增加仅调用原目标对象的 `super` 的相关方法。
 

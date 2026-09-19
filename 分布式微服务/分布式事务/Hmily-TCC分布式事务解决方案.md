@@ -110,7 +110,7 @@ CREATE TABLE `account_info`  (
 INSERT INTO `account_info` VALUES (2, '李四', '2', NULL, 0);
 ```
 
-> <font color=purple>**Hmily 用来存储日志的数据表由它自动创建，在使用的过程中，会在项目的数据库中创建相应的表**</font>
+> <span style="color: purple;">**Hmily 用来存储日志的数据表由它自动创建，在使用的过程中，会在项目的数据库中创建相应的表**</span>
 
 ### 创建 Maven 示例工程
 
@@ -538,7 +538,7 @@ public class AccountInfoTccServiceImpl implements AccountInfoTccService {
 }
 ```
 
-> <font color=red>**注意：Try、Confirm、Cancel 的方法参数必须保持一致。**</font>
+> <span style="color: red;">**注意：Try、Confirm、Cancel 的方法参数必须保持一致。**</span>
 
 ##### 请求控制类与启动类
 
@@ -683,7 +683,7 @@ public class AccountInfoTccServiceImpl implements AccountInfoTccService {
 }
 ```
 
-> <font color=red>**注意：这里的业务方法加入 `@Transactional` 注解是为了解决本地更新数据后可能会出现的异常，让本地事务回滚，因为 hmily 只会回滚远程调用服务时出现的异常**</font>
+> <span style="color: red;">**注意：这里的业务方法加入 `@Transactional` 注解是为了解决本地更新数据后可能会出现的异常，让本地事务回滚，因为 hmily 只会回滚远程调用服务时出现的异常**</span>
 
 ##### 请求控制类与启动类
 

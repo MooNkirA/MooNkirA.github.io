@@ -412,7 +412,7 @@ GitHub Copilot 宣布自 4 月 24 日起，将使用**个人交互数据来训�
 
 主要是个人用户，Copilot Business 和 Copilot Enterprise 用户不受此次更新的影响。如果没用过 Copilot 就没事，如果用过 Copilot 的话，不管是 Copilot 个人付费用户，还是 Copilot 个人免费用户，所有交互数据都被默认用来训练模型了。
 
-> ⚠️Tips: 这个开关是<font color=red>**默认开启**</font>的，需要自己去个人设置中关闭。
+> ⚠️Tips: 这个开关是<span style="color: red;">**默认开启**</span>的，需要自己去个人设置中关闭。
 
 禁用大模型训练设置，进入 Copilot Features 菜单 `https://github.com/settings/copilot/features`。在 Privacy 中关闭 `Allow GitHub to use my data for AI model training` 选项，此选项默认是 `Enabled` 的，手动禁用即可。
 

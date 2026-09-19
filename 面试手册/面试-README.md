@@ -2,31 +2,23 @@
 
 ## Java 专题
 
-<ul class="docs">
-  <li><a href="#/面试手册/面试题-Java基础">Java 基础面试题</a></li>
-  <li><a href="#/面试手册/面试题-Java多线程">Java 多线程面试题</a></li>
-  <li><a href="#/面试手册/面试题-JVM">Java虚拟机(JVM)面试题</a></li>
-</ul>
+- [[面试题-Java基础|Java 基础面试题]]
+- [[面试题-Java多线程|Java 多线程面试题]]
+- [[面试题-JVM|Java虚拟机(JVM)面试题]]
 
 ## 技术框架专题
 
-<ul class="docs">
-  <li><a href="#/面试手册/面试题-Spring">Spring 面试题</a></li>
-</ul>
+- [[面试题-Spring|Spring 面试题]]
 
 ## 数据库专题
 
-<ul class="docs">
-  <li><a href="#/面试手册/面试题-MySQL">MySQL 面试题</a></li>
-  <li><a href="#/面试手册/面试题-Redis">Redis 面试题</a></li>
-</ul>
+- [[面试题-MySQL|MySQL 面试题]]
+- [[面试题-Redis|Redis 面试题]]
 
 ## 分布式与微服务
 
-<ul class="docs">
-  <li><a href="#/面试手册/面试题-分布式微服务">分布式微服务系统面试题</a></li>
-  <li><a href="#/面试手册/面试题-Dubbo">Dubbo 面试题</a></li>
-</ul>
+- [[面试题-分布式微服务|分布式微服务系统面试题]]
+- [[面试题-Dubbo|Dubbo 面试题]]
 
 ## 面试建议
 

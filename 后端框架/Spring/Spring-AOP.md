@@ -270,7 +270,7 @@ public class Actor {
 
 #### Advice(通知/增强)
 
-**Advice(通知/增强)**：是指拦截到Joinpoint之后所要做的处理（<font color=red>**即要增强的功能代码**</font>）。通知的类型（<font color=red>**可以理解成拦截到的方法，什么时候进行增强**</font>），主要以下几种类型：
+**Advice(通知/增强)**：是指拦截到Joinpoint之后所要做的处理（<span style="color: red;">**即要增强的功能代码**</span>）。通知的类型（<span style="color: red;">**可以理解成拦截到的方法，什么时候进行增强**</span>），主要以下几种类型：
 
 - **前置通知(Before)**：在切入点之前执行
 - **后置通知(After Returning)**：在切入点之后执行（只有在切入点方法执行成功时才执行）
@@ -360,9 +360,9 @@ aop 相关的 jar 包
 #### Spring AOP 核心要素总结
 
 - 在 Spring 框架中，**Aspect(切面)会封装成`Advisor`**，并且必须包含`Pointcut`(切入点)和`Advice`(增强)两个要素
-- **Pointcut(切入点)**的作用是：<font color=red>**匹配、拦截**</font>，`ClassFilter`是用于类的拦截；`MethodMatcher`是用过匹配需要增强的方法。主要是用在以下两个节点：
-    1. <font color=red>**初始化时，校验相应的类上是否有切面，并生成代理**</font>
-    2. <font color=red>**当代理对象调用方法的时候，进行匹配拦截**</font>
+- **Pointcut(切入点)**的作用是：<span style="color: red;">**匹配、拦截**</span>，`ClassFilter`是用于类的拦截；`MethodMatcher`是用过匹配需要增强的方法。主要是用在以下两个节点：
+    1. <span style="color: red;">**初始化时，校验相应的类上是否有切面，并生成代理**</span>
+    2. <span style="color: red;">**当代理对象调用方法的时候，进行匹配拦截**</span>
 - **Advice(增强)**就是具体的增强的逻辑
 
 #### 代理的进一步理解
@@ -375,8 +375,8 @@ aop 相关的 jar 包
 
 #### 基于 ajc 编译器
 
-- <font color=red>**编译器增强能突破代理仅能通过方法重写增强的限制：可以对构造方法、静态方法等实现增强**</font>
-- 这种使用编译器修改 class 实现增强，<font color=red>**需要使用 aspectj-maven-plugin 插件进行编译**</font>
+- <span style="color: red;">**编译器增强能突破代理仅能通过方法重写增强的限制：可以对构造方法、静态方法等实现增强**</span>
+- 这种使用编译器修改 class 实现增强，<span style="color: red;">**需要使用 aspectj-maven-plugin 插件进行编译**</span>
 
 引入依赖，基于 ajc 编译器方式实现 AOP，不依赖于 Spring。
 
@@ -717,7 +717,7 @@ public class ClientTest {
 }
 ```
 
-<font color="purple">**注意：如果使用基于子类的方式创建动态代理，对象就不能实现接口，创建的代理需要自己用子类去接收。**</font>
+<span style="color: purple;">**注意：如果使用基于子类的方式创建动态代理，对象就不能实现接口，创建的代理需要自己用子类去接收。**</span>
 
 ### 常用标签
 
@@ -1362,7 +1362,7 @@ String toString();
 
 ![](images/20190402140848492_31445.jpg)
 
-> <font color=red>**注意：`@Order` 注解只能用于切面类上才能生效，标识在方法上无任何效果**</font>
+> <span style="color: red;">**注意：`@Order` 注解只能用于切面类上才能生效，标识在方法上无任何效果**</span>
 
 ## 切入点表达式
 

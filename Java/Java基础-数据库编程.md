@@ -47,11 +47,11 @@ Connection conn = DriverManager.getConnection(url, user, password);
 3. 获得语句执行平台，通过 `Connection` 对象的 `createStatement()` 方法获得 `Statement` 对象。`Statement` 对象就是对SQL语句的执行者对象。
 4. 调用 `Statement` 对象的 `excuteXxx(String sql)` 方法发送要执行的SQL语句，并获得执行后数据库返回结果。
 5. 处理结果，通过 `ResultSet` 的 `next()` 和 `getXxx(索引/字段名)` 方法获得数据库返回的结果集。
-6. 必须关闭释放数据库资源，使用 `close()` 方法。<font color=red>**关闭原则：后开的先关(`ResultSet` -> `Statement` -> `Connection`)**</font>
+6. 必须关闭释放数据库资源，使用 `close()` 方法。<span style="color: red;">**关闭原则：后开的先关(`ResultSet` -> `Statement` -> `Connection`)**</span>
 
-> <font color=purple>**注：一般开发会使用 `PreparedStatement` 来代替父类 `Statement`，使用效率和安全性都更高。**</font>
+> <span style="color: purple;">**注：一般开发会使用 `PreparedStatement` 来代替父类 `Statement`，使用效率和安全性都更高。**</span>
 >
-> <font color=red>JDBC 访问数据库的基础包，在 JavaSE 中的包。导包注意要选择java.sql包</font>
+> <span style="color: red;">JDBC 访问数据库的基础包，在 JavaSE 中的包。导包注意要选择java.sql包</span>
 
 ### 项目（程序）引入驱动 jar 包（MySQL 的驱动）
 
@@ -109,13 +109,13 @@ DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
 使用该方法注册驱动会触发驱动注册两次，一般不推荐使用
 
-<font color=red>**正确的注册驱动使用下面的方式：一般使用 `Class` 类的 `forName("类全名")` 注册驱动，可以解决注册两次的问题**</font>
+<span style="color: red;">**正确的注册驱动使用下面的方式：一般使用 `Class` 类的 `forName("类全名")` 注册驱动，可以解决注册两次的问题**</span>
 
 ```java
 Class.forName("com.mysql.jdbc.Driver");
 ```
 
-> <font color=red>**注：从JDK1.6开始，JDBC的版本是4.0版本后，可以不用写注册驱动的代码了，但是为了兼容之前的版本，注册驱动的代码一般都会保留。**</font>
+> <span style="color: red;">**注：从JDK1.6开始，JDBC的版本是4.0版本后，可以不用写注册驱动的代码了，但是为了兼容之前的版本，注册驱动的代码一般都会保留。**</span>
 
 #### 类常用方法
 
@@ -473,10 +473,10 @@ JDBC 中使用对象 `PreparedStatement` 来抽象预编译语句，使用预编
 
 1. 准备要执行的SQL语句，使用 `?` 临时代替真实的参数
 2. 调用 `Connection` 对象的 `preparedStatement()` 方法创建 `PreparedStatement` 对象，并传递SQL语句
-3. 调用 `PreparedStatement` 对象的 `setXxx(int index, Xxx value)` 给占位符 `?` 使用真实的参数赋值，<font color=red>**`?` 参数序号，从 1 开始**</font>
+3. 调用 `PreparedStatement` 对象的 `setXxx(int index, Xxx value)` 给占位符 `?` 使用真实的参数赋值，<span style="color: red;">**`?` 参数序号，从 1 开始**</span>
 4. 调用 `PreparedStatement` 对象的 `executeUpdate()`/`executeQuery()` 方法，执行SQL语句，不需要再次传递SQL语句。
 
-<font color=red>**注：要先使用 `setXxx()` 方法给占位符 `?` 赋值后再调用 `executeXxx()` 方法**</font>
+<span style="color: red;">**注：要先使用 `setXxx()` 方法给占位符 `?` 赋值后再调用 `executeXxx()` 方法**</span>
 
 ### 释放资源
 
@@ -796,7 +796,7 @@ public class MoonZero {
 
 **连接池**是一个用来创建和管理数据连接对象的容器。
 
-<font color=red>**连接池的核心思想：连接复用**</font>，为数据库连接建立一个“缓冲池”。预先在缓冲池中放入一定数量的连接，当需要建立数据库连接时，只需从“缓冲池”中取出一个连接，使用完毕之后再放回池中。可以通过设定连接池最大连接数来防止系统无限制地与数据库连接，更为重要的是可以通过连接池的管理机制监视数据库的连接的数量、使用情况，为系统开发，测试及性能调整提供依据。
+<span style="color: red;">**连接池的核心思想：连接复用**</span>，为数据库连接建立一个“缓冲池”。预先在缓冲池中放入一定数量的连接，当需要建立数据库连接时，只需从“缓冲池”中取出一个连接，使用完毕之后再放回池中。可以通过设定连接池最大连接数来防止系统无限制地与数据库连接，更为重要的是可以通过连接池的管理机制监视数据库的连接的数量、使用情况，为系统开发，测试及性能调整提供依据。
 
 #### JDBC 中连接数据的问题
 
@@ -967,7 +967,7 @@ ComboPooledDataSource ds = new ComboPooledDataSource();
 ComboPooledDataSource ds = new ComboPooledDataSource("配置名");
 ```
 
-<font color=red>**配置文件的各个属性名，都是以设置方法去掉`set`后的名字。**</font>
+<span style="color: red;">**配置文件的各个属性名，都是以设置方法去掉`set`后的名字。**</span>
 
 Code Demo : C3P0 配置文件
 
@@ -1303,7 +1303,7 @@ EntityManager entityManager = emf.createEntityManager();
 public EntityTransaction getTransaction();
 ```
 
-- 获取事务对象，<font color=red>**但没有开启事务**</font>
+- 获取事务对象，<span style="color: red;">**但没有开启事务**</span>
 
 ```java
 public void persist(Object entity);
@@ -1315,7 +1315,7 @@ public void persist(Object entity);
 public void remove(Object entity);
 ```
 
-- 根据对象的主键id删除数据。<font color=red>**注意：使用JPA删除数据也必须使用持久化对象，即要先查询数据，再删除**</font>
+- 根据对象的主键id删除数据。<span style="color: red;">**注意：使用JPA删除数据也必须使用持久化对象，即要先查询数据，再删除**</span>
 
 ```java
 public <T> T merge(T entity);
@@ -1442,7 +1442,7 @@ X getSingleResult();
 
 ### Query 接口
 
-用于操作SQL的查询接口，执行没有返回数据的JPQL（增删改），<font color=red>**用于删除和更新**</font>
+用于操作SQL的查询接口，执行没有返回数据的JPQL（增删改），<span style="color: red;">**用于删除和更新**</span>
 
 #### 获取实例
 

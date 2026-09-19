@@ -9,7 +9,7 @@
 1. 下载 MyBatis 的源码
 2. 检查 maven 的版本，必须是 3.25 以上，建议使用 maven 的最新版本
 3. MyBatis 的工程是 maven 工程，在开发工具中导入，工程必须使用 jdk1.8 以上版本
-4. <font color=red>**把 MyBatis 源码的 pom 文件中`<optional>true</optional>`，全部改为 false或者注释掉，因为这个会阻断依赖的传递，会导致自己做的demo示例无法依赖到mybatis所依赖的第三方的jar包**</font>
+4. <span style="color: red;">**把 MyBatis 源码的 pom 文件中`<optional>true</optional>`，全部改为 false或者注释掉，因为这个会阻断依赖的传递，会导致自己做的demo示例无法依赖到mybatis所依赖的第三方的jar包**</span>
 5. 在工程目录下执行 `mvn clean install -Dmaven.test.skip=true`，将当前工程安装到本地仓库（pdf 插件报错的话，需要将这个插件屏蔽）
 > 注意：安装过程中会可能会有很多异常信息，只要不中断运行，请耐心等待
 6. 创建测试工程，并依赖此工程
@@ -954,7 +954,7 @@ public class XMLStatementBuilder extends BaseBuilder {
 }
 ```
 
-> <font color=red>**小总结：`XMLMapperBuilder`和`XMLStatementBuilder`负责解析读取配置文件里面的信息，`MapperBuilderAssistant`负责将信息填充到`Configuration`。将文件解析和数据的填充的工作分离在不同的类中，符合单一职责原则。**</font>
+> <span style="color: red;">**小总结：`XMLMapperBuilder`和`XMLStatementBuilder`负责解析读取配置文件里面的信息，`MapperBuilderAssistant`负责将信息填充到`Configuration`。将文件解析和数据的填充的工作分离在不同的类中，符合单一职责原则。**</span>
 
 #### xml配置动态sql的解析封装
 
@@ -1928,7 +1928,7 @@ public BoundSql getBoundSql(Object parameterObject) {
 
 ![](images/20210325225025273_30802.png)
 
-<font color=red>**这里需要注意的是：MyBatis是一级缓存就是存储`BaseExecutor`执行器实例的`PerpetualCache localCache`属性中，所以如果每次创建新的`SqlSession`时，都会创建新的执行器缓存，这就是一级缓存不能跨`SqlSession`的原因**</font>
+<span style="color: red;">**这里需要注意的是：MyBatis是一级缓存就是存储`BaseExecutor`执行器实例的`PerpetualCache localCache`属性中，所以如果每次创建新的`SqlSession`时，都会创建新的执行器缓存，这就是一级缓存不能跨`SqlSession`的原因**</span>
 
 ![](images/20210325225142473_11243.png)
 
@@ -1997,7 +1997,7 @@ MyBatis 的执行器组件是使用模板模式的典型应用，其中`BaseExec
     - `SimpleStatmentHandler`：使用`Statement`对象访问数据库，无须参数化
     - `PreparedStatmentHandler`：使用预编译`PrepareStatement`对象访问数据库
     - `CallableStatmentHandler`：调用存储过程对象操作数据库
-- `RoutingStatementHandler`：`StatementHandler`组件的真正实例化的子类，该类中使用了<font color=red>**静态代理模式**</font>。在构造函数中会根据`MappedStatement`对象所设置的`statementType`值，来创建具体类型的`StatementHandler`实现类，并赋值到类的`delegate`属性中。<font color=red>**注：该类在执行数据库操作时，其实是直接调用了`SimpleStatmentHandler`、`PreparedStatmentHandler`或者`CallableStatmentHandler`的代理实例相应的方法**</font>
+- `RoutingStatementHandler`：`StatementHandler`组件的真正实例化的子类，该类中使用了<span style="color: red;">**静态代理模式**</span>。在构造函数中会根据`MappedStatement`对象所设置的`statementType`值，来创建具体类型的`StatementHandler`实现类，并赋值到类的`delegate`属性中。<span style="color: red;">**注：该类在执行数据库操作时，其实是直接调用了`SimpleStatmentHandler`、`PreparedStatmentHandler`或者`CallableStatmentHandler`的代理实例相应的方法**</span>
 
 `statementType`具体是在每个sql操作标签中的`statementType`指定，默认值：`PREPARED`
 
@@ -2100,7 +2100,7 @@ private Statement prepareStatement(StatementHandler handler, Log statementLog) t
 
 ##### 创建带日志功能的 Connection 代理实例
 
-<font color=red>**值得注意的是，这个`Connection`对象是一个带有日志功能的代理对象**</font>。具体创建的位置在`StatementHandler`组件创建`Statement`对象的前一步
+<span style="color: red;">**值得注意的是，这个`Connection`对象是一个带有日志功能的代理对象**</span>。具体创建的位置在`StatementHandler`组件创建`Statement`对象的前一步
 
 ![](images/20210328155126630_26201.png)
 
@@ -2181,7 +2181,7 @@ protected Statement instantiateStatement(Connection connection) throws SQLExcept
 
 ##### sql语句的占位符
 
-创建完成数据操作对象`Statement`后，就要处理预编译SQL语句，主要是进行`?`占位符的处理。<font color=red>**此部分的处理逻辑是由`ParameterHandler`组件来实现，具体源码分析详见《ParameterHandler 组件》章节**</font>
+创建完成数据操作对象`Statement`后，就要处理预编译SQL语句，主要是进行`?`占位符的处理。<span style="color: red;">**此部分的处理逻辑是由`ParameterHandler`组件来实现，具体源码分析详见《ParameterHandler 组件》章节**</span>
 
 ### ParameterHandler 组件
 
@@ -2408,7 +2408,7 @@ private TypeHandler<?> resolveTypeHandler(Object parameter, JdbcType jdbcType) {
 
 在`StatementHandler`组件的执行过程中，通过`ParameterHandler`组件对预编译的sql占位符进行赋值后，就会执行相应的sql操作，此时就会通过`ResultSetHandler`组件来将sql操作结果进行封装处理
 
-`ResultSetHandler` 将从数据库查询得到的结果按照映射配置文件的映射规则，映射成相应的结果集对象。<font color=red>**在 `ResultSetHandler` 内部实际是做三个步骤：找到映射匹配规则 -> 反射实例化目标对象 -> 根据规则填充属性值**</font>，具体步骤内部调用的流程图如下：
+`ResultSetHandler` 将从数据库查询得到的结果按照映射配置文件的映射规则，映射成相应的结果集对象。<span style="color: red;">**在 `ResultSetHandler` 内部实际是做三个步骤：找到映射匹配规则 -> 反射实例化目标对象 -> 根据规则填充属性值**</span>，具体步骤内部调用的流程图如下：
 
 ![ResultSetHandler组件执行流程图.drawio](images/20210405164021237_8354.jpg)
 
@@ -2546,7 +2546,7 @@ storeObject(resultHandler, resultContext, rowValue, parentMapping, resultSet);
 
 ![](images/20210405123645055_26600.png)
 
-<font color=red>**这里做的操作就是直接将`${}`先设置为`null`做为占位，然后再将相应的参数值原样替换。所以`${}`拼接符是不会加上引号`''`**</font>
+<span style="color: red;">**这里做的操作就是直接将`${}`先设置为`null`做为占位，然后再将相应的参数值原样替换。所以`${}`拼接符是不会加上引号`''`**</span>
 
 ![](images/20210405124045395_5651.png)
 
@@ -3331,7 +3331,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 }
 ```
 
-需要注意：<font color=red>**每一个Mapper接口对应一个MapperFactoryBean对象**</font>
+需要注意：<span style="color: red;">**每一个Mapper接口对应一个MapperFactoryBean对象**</span>
 
 ### SqlSessionTemplate 源码分析
 

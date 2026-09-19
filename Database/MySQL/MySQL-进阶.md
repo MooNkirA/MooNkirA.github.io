@@ -125,7 +125,7 @@ rename table view1_emp to my_view1;
 DROP VIEW [IF EXISTS] 视图名称 [,视图名称] ...;
 ```
 
-> Notes: <font color=red>**删除视图时，只能删除视图的定义，不会删除原表中的数据。**</font>
+> Notes: <span style="color: red;">**删除视图时，只能删除视图的定义，不会删除原表中的数据。**</span>
 
 示例：
 
@@ -135,7 +135,7 @@ drop view if exists view_student_1;
 
 ### 更新视图
 
-可以通过 `UPDATE`、`DELETE` 或 `INSERT` 等语句去操作某些视图，从而更新基表的内容。<font color=red>**对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系**</font>。如果视图包含下述结构中的任何一种，那么它就是不可更新的：
+可以通过 `UPDATE`、`DELETE` 或 `INSERT` 等语句去操作某些视图，从而更新基表的内容。<span style="color: red;">**对于可更新的视图，在视图中的行和基表中的行之间必须具有一对一的关系**</span>。如果视图包含下述结构中的任何一种，那么它就是不可更新的：
 
 - 聚合函数（SUM(), MIN(), MAX(), COUNT()等）
 - DISTINCT
@@ -148,7 +148,7 @@ drop view if exists view_student_1;
 - WHERE 子句中的子查询，引用 FROM 子句中的表。
 - 仅引用文字值（在该情况下，没有要更新的基本表）
 
-> Notes: <font color=red>**视图中虽然可以更新数据，但是有很多的限制。一般情况下，最好将视图作为查询数据的虚拟表，而不要通过视图更新数据。因为，使用视图更新数据时，如果没有全面考虑在视图中更新数据的限制，就可能会造成数据更新失败。**</font>
+> Notes: <span style="color: red;">**视图中虽然可以更新数据，但是有很多的限制。一般情况下，最好将视图作为查询数据的虚拟表，而不要通过视图更新数据。因为，使用视图更新数据时，如果没有全面考虑在视图中更新数据的限制，就可能会造成数据更新失败。**</span>
 
 示例：
 
@@ -305,7 +305,7 @@ SELECT * FROM tb_stu_course_view;
 MySQL 5.0 版本开始支持存储过程。存储过程是经过预编译并存储在数据库中的一段 SQL 语句的集合，功能强大，可以实现一些比较复杂的逻辑功能，类似于 JAVA 语言中的方法；调用存储过程可以简化应用开发
 人员的很多工作，减少数据在数据库和应用服务器之间的传输，对于提高数据处理的效率是有好处的。
 
-<font color=red>**存储过程就是数据库 SQL 语言层面的代码封装与重用。**</font>
+<span style="color: red;">**存储过程就是数据库 SQL 语言层面的代码封装与重用。**</span>
 
 **特性**：
 
@@ -342,7 +342,7 @@ call proc01();
 
 > Notes: 
 >
-> - <font color=red>**特别注意：在语法中，变量声明、游标声明、handler声明是必须按照先后顺序书写的，否则创建存储过程出错。**</font>
+> - <span style="color: red;">**特别注意：在语法中，变量声明、游标声明、handler声明是必须按照先后顺序书写的，否则创建存储过程出错。**</span>
 > - 在命令行中，执行创建存储过程的 SQL 时，需要通过关键字 `delimiter` 指定 SQL 语句的结束符。
 
 #### 调用存储过程
@@ -517,7 +517,7 @@ where condition;
 - `table_name` 参数指表的名称
 - `condition` 参数指查询条件
 
-> Notes: <font color=purple>注意：当将查询结果赋值给变量时，该查询语句的返回结果只能是单行单列！</font>
+> Notes: <span style="color: purple;">注意：当将查询结果赋值给变量时，该查询语句的返回结果只能是单行单列！</span>
 
 示例：
 
@@ -1644,7 +1644,7 @@ mysql> explain select * from t1 order by c1,c2 desc;  --5.7也会使用索引，
 +----+-------------+-------+------------+-------+---------------+-----------+---------+------+------+----------+-----------------------------+
 ```
 
-8.0 版本可见 c2 字段降序。<font color=red>**注意：只有 Innodb 存储引擎支持降序索引**</font>。
+8.0 版本可见 c2 字段降序。<span style="color: red;">**注意：只有 Innodb 存储引擎支持降序索引**</span>。
 
 ```sql
 # ====MySQL 8.0演示====
@@ -1734,7 +1734,7 @@ mysql> select count(*),c2 from t1 group by c2 order by c2;  --8.0版本group by�
 
 在 8.0 版本中，可以使用 `invisible` 关键字在创建表或者进行表变更中设置索引为隐藏索引。索引隐藏只是不可见，但是数据库后台还是会维护隐藏索引的，但在查询时优化器不使用该索引，就算使用`force index` 关键字，优化器也不会使用该索引，同时优化器也不会报索引不存在的错误，因为索引仍然真实存在，必要时，也可以把隐藏索引快速恢复成可见。
 
-> Notes: <font color=red>**主键不能设置为 invisible**</font>。
+> Notes: <span style="color: red;">**主键不能设置为 invisible**</span>。
 
 软删除就可以使用隐藏索引，比如分析某个索引没用了，删除后发现这个索引在某些时候还是有用的，就要把该索引恢复回去，如果表数据量很大的话，这种操作耗费时间是很多的，成本很高，此时就可以将索引先设置为隐藏索引，等到真的确认索引没用了再删除。
 
@@ -2201,4 +2201,4 @@ mysql> set persist innodb_lock_wait_timeout=25;
 }
 ```
 
-<font color=red>**当 my.cnf 和 mysqld-auto.cnf 同时存在时，后者具有更高优先级。**</font>
+<span style="color: red;">**当 my.cnf 和 mysqld-auto.cnf 同时存在时，后者具有更高优先级。**</span>

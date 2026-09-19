@@ -221,7 +221,7 @@ public void batchDeleteUsersTest() {
 }
 ```
 
-<font color=purple>*批量删除时需要注意：在foreach标签中，collection的取值只能是array，如果是“list”会报错*</font>
+<span style="color: purple;">*批量删除时需要注意：在foreach标签中，collection的取值只能是array，如果是“list”会报错*</span>
 
 ## choose、when、otherwise 标签
 

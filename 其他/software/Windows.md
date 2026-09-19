@@ -818,7 +818,7 @@ Write-Host "`n[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 脚本已优雅退出"
 
 > Notes: 
 >
-> - <font color=purple>**环境变量不区分大小写**</font>
+> - <span style="color: purple;">**环境变量不区分大小写**</span>
 > - 系统变量针对所有用户起作用，为了安全一般配置用户环境变量。
 > - 用户变量只对当前用户起作用，不建议为了省事而配置系统环境变量。
 > - 用户环境变量优先级高于系统环境变量。对于环境变量，系统会先检查用户变量，之后再检查系统变量。
@@ -1374,7 +1374,7 @@ pause
 计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions
 ```
 
-找到文件相应的代码字符串，展开并选择【PropertyBag】，选择右侧窗口中的【ThisPCPolicy】鼠标右键点击修改，将值修改为`Hide`。<font color=red>**注意：首字母`H`必须大写**</font>
+找到文件相应的代码字符串，展开并选择【PropertyBag】，选择右侧窗口中的【ThisPCPolicy】鼠标右键点击修改，将值修改为`Hide`。<span style="color: red;">**注意：首字母`H`必须大写**</span>
 
 - 图片：`{0ddd015d-b06c-45d5-8c4c-f59713854639}`
 - 视频：`{35286a68-3c57-41a1-bbb1-0eae73d76c95}`
@@ -1393,7 +1393,7 @@ pause
 2. 右键新建【DWORD (32位)值】，命名为 `TaskbarSi`
 3. 修改`TaskbarSi`数值数据，`0`表示强制使用小图标；`1`表示使用中等图标；`2`表示使用大图标
 
-> <font color=purple>**但目前 win 11 不支持修改小图标的任务栏，修改后时间日期会出现下沉超出屏幕的问题。**</font>
+> <span style="color: purple;">**但目前 win 11 不支持修改小图标的任务栏，修改后时间日期会出现下沉超出屏幕的问题。**</span>
 
 ### 开启 Windows 11 隐藏的教育主题
 

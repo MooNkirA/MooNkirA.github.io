@@ -18,7 +18,7 @@
 
 ![](images/549290500232268.png)
 
-<font color=red>**web.xml 是项目的描述文件，servlet 的配置放在这个文件中**</font>
+<span style="color: red;">**web.xml 是项目的描述文件，servlet 的配置放在这个文件中**</span>
 
 5. 创建完项目后，可以右键点击项目，选择【Edit Configuration】，修改项目的默认根目录的地址、端口号等
 
@@ -50,7 +50,7 @@
 
 ![](images/573601108248471.jpg)
 
-3. 项目的访问地址，网页所在的文件夹。<font color=red>**web.xml 是项目的描述文件，servlet 的配置放在这个文件中**</font>
+3. 项目的访问地址，网页所在的文件夹。<span style="color: red;">**web.xml 是项目的描述文件，servlet 的配置放在这个文件中**</span>
 
 ![](images/214911208243607.jpg)
 

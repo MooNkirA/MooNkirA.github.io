@@ -129,7 +129,7 @@ public class XxxxTest {
 }
 ```
 
-> Tips: 在 Spring Boot 2.2.x+ 版本中，还是一样可以使用 junit 4。<font color=red>**在使用 Junit 5 已无需 `@RunWith` 注解，但需要注意导包时别导错 junit 4 的包，也可以直接将 junit 4 的依赖排除来防止错导包**</font>。
+> Tips: 在 Spring Boot 2.2.x+ 版本中，还是一样可以使用 junit 4。<span style="color: red;">**在使用 Junit 5 已无需 `@RunWith` 注解，但需要注意导包时别导错 junit 4 的包，也可以直接将 junit 4 的依赖排除来防止错导包**</span>。
 
 ### Spring Boot 测试注意问题
 
@@ -544,7 +544,7 @@ Mock 组件单元测试时，也可以使用 `@SpyBean` 注解代替 `@MockBean`
 
 对于上述问题，Spring Boot 提供解决方案，在原始测试用例中添加注解 `@Transactional` 即可实现当前测试用例的事务不提交。当测试程序运行时，只要 标识 `@SpringBootTest` 注解的类上出现 `@Transactional` 注解，Spring Boot 就会认为这是一个测试程序，无需提交事务，从而就可以避免事务的提交。
 
-如果开发者想当前测试用例提交事务，则在测试类上再添加一个 `@RollBack` 注解，设置回滚状态为 `false` 即可正常提交事务。（默认是`@RollBack(true)`）<font color=red>**注意：需要配合注解 `@Transactional` 使用**</font>
+如果开发者想当前测试用例提交事务，则在测试类上再添加一个 `@RollBack` 注解，设置回滚状态为 `false` 即可正常提交事务。（默认是`@RollBack(true)`）<span style="color: red;">**注意：需要配合注解 `@Transactional` 使用**</span>
 
 ```java
 @SpringBootTest

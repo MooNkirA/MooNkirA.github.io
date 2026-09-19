@@ -29,7 +29,7 @@ Servlet 的生命周期包括：加载和实例化、初始化、处理请求以
 
 一个 Servlet 类在 tomcat 中只创建一个对象，等到服务器关闭才销毁，平时是常驻内存的。 
 
-`ServletRequest` 和 `ServletResponse` 是两个接口，Servlet 是运行在 Tomcat 中，<font color=red>**在 service 方法中两个 request 和 response 对象，是由 tomcat 创建出来，并且实例化，由 tomcat 调用 service 方法并且把这两个参数传递进来**</font>。
+`ServletRequest` 和 `ServletResponse` 是两个接口，Servlet 是运行在 Tomcat 中，<span style="color: red;">**在 service 方法中两个 request 和 response 对象，是由 tomcat 创建出来，并且实例化，由 tomcat 调用 service 方法并且把这两个参数传递进来**</span>。
 
 1. 解析web.xml文件，使用dom4j之类工具。
 2. 得到类全名，通过反射实例化Servlet
@@ -171,7 +171,7 @@ public abstract class HttpServlet extends GenericServlet {
 
 Web 服务器一共有三个作用域。其作用范围从小到大：请求域 < 会话域 < 上下文域
 
-- **请求域**作用范围：<font color=red>**只在同一个请求中起作用**</font>，如果请求结束，或换了另一个请求，请求域中的数据将会丢失。
+- **请求域**作用范围：<span style="color: red;">**只在同一个请求中起作用**</span>，如果请求结束，或换了另一个请求，请求域中的数据将会丢失。
 
 #### 作用域的创建与销毁
 
@@ -194,7 +194,7 @@ Web 服务器一共有三个作用域。其作用范围从小到大：请求域 
 
 #### 作用域使用原则
 
-<font color=purple>**尽量使用小的作用域，作用域越小越省资源**</font>。
+<span style="color: purple;">**尽量使用小的作用域，作用域越小越省资源**</span>。
 
 ## Request 请求对象
 
@@ -334,7 +334,7 @@ response.sendRedirect(request.getContextPath() + "/访问的地址");
     - 转发一般用于用户登陆的时候，根据角色转发到相应的模块。
     - 重定向一般用于用户注销登陆时返回主页面和跳转到其它的网站等。
 
-> Notes: <font color=red>**无论转发或重定向，后续的代码都会执行，如果不想后续的代码继续运行，需要加上 `return`**</font>。
+> Notes: <span style="color: red;">**无论转发或重定向，后续的代码都会执行，如果不想后续的代码继续运行，需要加上 `return`**</span>。
 
 ## 会话
 
@@ -421,7 +421,7 @@ Cookie 是被抽象在 Tomcat 中的 `javax.servlet.http.Cookie`。以下为常�
 public Cookie(String name, String value)
 ```
 
-- `Cookie` 类的有参构造方法。创建一个 `Cookie` 对象，并指定键和值。<font color=red>**在默认的情况下，是不支持汉字做为键和值**</font>。*注：该类没有无参的构造方法*
+- `Cookie` 类的有参构造方法。创建一个 `Cookie` 对象，并指定键和值。<span style="color: red;">**在默认的情况下，是不支持汉字做为键和值**</span>。*注：该类没有无参的构造方法*
 
 ```java
 public String getName()
@@ -439,7 +439,7 @@ public String getValue()
 public void setMaxAge(int expiry)
 ```
 
-- 设置 Cookie 过期的时间，单位是秒。<font color=red>只要没有过期或者用户主动清理，即使浏览器关闭后，下次还会把数据发送给服务器</font>。有以下几种设置情况：
+- 设置 Cookie 过期的时间，单位是秒。<span style="color: red;">只要没有过期或者用户主动清理，即使浏览器关闭后，下次还会把数据发送给服务器</span>。有以下几种设置情况：
     - 如果没有设置 Cookie 的过期时间，默认是浏览器关闭以后就过期了。
     - 如果是正数，则指定多少秒后过期。
     - 如果是负数，则相当于没有设置。
@@ -646,7 +646,7 @@ JSESSIONID 是指，会话ID
 > Notes: 
 >
 > - 不同浏览器的会话ID 是不同的，不同的会话ID 可以区分不同的用户。
-> - Session 不会随着浏览器的关闭而死亡，只是不能再次得到之前的会话ID，服务器上的会话没有过期，直到过期才销毁。<font color=red>**默认服务器的过期时间是30分钟**</font>。
+> - Session 不会随着浏览器的关闭而死亡，只是不能再次得到之前的会话ID，服务器上的会话没有过期，直到过期才销毁。<span style="color: red;">**默认服务器的过期时间是30分钟**</span>。
 
 #### 关闭浏览器后再次访问 Session
 
@@ -671,7 +671,7 @@ response.addCookie(jsessionid);
 
 ### HttpSession 的使用
 
-1. 创建时机：由服务器创建，每个用户<font color=red>**第一次**</font>访问的时候创建一个会话对象。每个用户对应一个会话。
+1. 创建时机：由服务器创建，每个用户<span style="color: red;">**第一次**</span>访问的时候创建一个会话对象。每个用户对应一个会话。
 2. 获取 Session 对象，程序可以通过 `javax.servlet.http.HttpServletRequest` 接口的 `getSession()` 方法得到服务器创建好的会话（**本质是获得会话对象**）。
 
 ```java
@@ -778,7 +778,7 @@ int getMaxInactiveInterval();
 </session-config>
 ```
 
-> Notes: 设置 web.xml 的会话配置，并且在代码中设置会话过期的时间，此时<font color=red>**按照就近原则，以代码为准**</font>。
+> Notes: 设置 web.xml 的会话配置，并且在代码中设置会话过期的时间，此时<span style="color: red;">**按照就近原则，以代码为准**</span>。
 
 #### 方式3：立刻失效
 

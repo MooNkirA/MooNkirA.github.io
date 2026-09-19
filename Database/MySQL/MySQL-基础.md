@@ -113,14 +113,14 @@ MySQL 中的数据类型有很多，主要分为三类：数值类型、字符�
 
 |       类型        | 大小(byte) |                                                          说明                                                           |
 | :--------------: | :--------: | ---------------------------------------------------------------------------------------------------------------------- |
-|    `TINYINT`     |     1      | <font color=red>很小的整数型，默认长度4</font>                                                                             |
+|    `TINYINT`     |     1      | <span style="color: red;">很小的整数型，默认长度4</span>                                                                             |
 |    `SMALLINT`    |     2      | 小的整型，默认长度6                                                                                                       |
 |   `MEDIUMINT`    |     3      | 中等大小的整数，默认长度9                                                                                                  |
-| `INT`或`INTEGER` |     4      | <font color=red>普通大小的整数（占4字节），默认长度11</font>                                                                 |
+| `INT`或`INTEGER` |     4      | <span style="color: red;">普通大小的整数（占4字节），默认长度11</span>                                                                 |
 |     `BIGINT`     |     8      | 占用的8个字节，默认长度20                                                                                                  |
 |   `FLOAT(m,d)`   |     4      | 单精度浮点型小数                                                                                                          |
-|  `DOUBLE(m,d)`   |     8      | <font color=red>双精度浮点型小数 d代表小数位数，m代表总位数 (整数位=m-d);</font><br/>比如：DOUBLE(5.2)， 数值共5位，其中小数为2位。 |
-|  `DECIMAL(m,d)`  |            | <font color=red>压缩严格的定点数，取值范围与double相同，但有效取值范围由M(精度)与D(标度)决定</font>                               |
+|  `DOUBLE(m,d)`   |     8      | <span style="color: red;">双精度浮点型小数 d代表小数位数，m代表总位数 (整数位=m-d);</span><br/>比如：DOUBLE(5.2)， 数值共5位，其中小数为2位。 |
+|  `DECIMAL(m,d)`  |            | <span style="color: red;">压缩严格的定点数，取值范围与double相同，但有效取值范围由M(精度)与D(标度)决定</span>                               |
 
 > Tips: 当字段用记录年龄时，因为不会存在负数与数值的范围不会太大，可以设置为 `age tinyint unsigned`
 
@@ -143,9 +143,9 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 |      类型       | 大小(byte) |                                说明                                |
 | :------------: | :--------: | ------------------------------------------------------------------ |
 |   `CHAR(M)`    |   0-255    | `CHAR(x)`，定长的字符串。**性能较好**                                 |
-|  `VARCHAR(M)`  |  0-65535   | <font color=red>可变长的字符串，注意数据不能超过X位数</font>**性能较差** |
+|  `VARCHAR(M)`  |  0-65535   | <span style="color: red;">可变长的字符串，注意数据不能超过X位数</span>**性能较差** |
 |   `TINYBLOB`   |   0-255    | 不超过 255 个字符的二进制字符串                                        |
-|     `BLOB`     |  0-65535   | <font color=red>二进制形式的长文本数据。（图片、视频、音频）</font>       |
+|     `BLOB`     |  0-65535   | <span style="color: red;">二进制形式的长文本数据。（图片、视频、音频）</span>       |
 |  `MEDIUMBLOB`  |   0-16M    | 二进制形式的中等长度文本数据                                           |
 |   `LONGBLOB`   |    0-4G    | 二进制形式的长文本数据                                                |
 |   `TINYTEXT`   |   0-255    | 短文本字符串                                                         |
@@ -187,9 +187,9 @@ MySQL 中存在 float, double 等非标准数据类型，可以存浮点数（�
 | :---------: | :--------: | ---------------------------------------------- | ------------------- | ------------------------------------------------ |
 |   `YEAR`    |     1      | 1901~2155                                      | YYYY                | 年份值                                            |
 |   `TIME`    |     3      | -838:59:59~838:59:59                           | HH:MM:SS            | 时间值或持续时间                                    |
-|   `DATE`    |     3      | 1000-01-01~9999-12-31                          | YYYY-MM-DD          | <font color=red>日期值(只有年月日，没有时分秒)</font> |
-| `DATETIME`  |     8      | 1000-01-01 00:00:00~ 9999-12-31 23:59:59       | YYYY-MM-DD HH:MM:SS | <font color=red>混合日期和时间值</font>             |
-| `TIMESTAMP` |     4      | 1970~01~01 00:00:01 UTC~2038-01-19 03:14:07UTC | YYYYMMDD HHMMSS     | <font color=red>混合日期和时间值，时间戳</font>       |
+|   `DATE`    |     3      | 1000-01-01~9999-12-31                          | YYYY-MM-DD          | <span style="color: red;">日期值(只有年月日，没有时分秒)</span> |
+| `DATETIME`  |     8      | 1000-01-01 00:00:00~ 9999-12-31 23:59:59       | YYYY-MM-DD HH:MM:SS | <span style="color: red;">混合日期和时间值</span>             |
+| `TIMESTAMP` |     4      | 1970~01~01 00:00:01 UTC~2038-01-19 03:14:07UTC | YYYYMMDD HHMMSS     | <span style="color: red;">混合日期和时间值，时间戳</span>       |
 
 > Notes: 尽量使用 timestamp，空间效率高于 datetime，用整数保存时间戳通常不方便处理。若需要存储微秒，可以使用 bigint 存储。其中 `DATETIME` 类型与时区无关；`TIMESTAMP` 显示依赖于所指定得时区，默认在第一个列行的数据修改时可以自动得修改
 
@@ -440,7 +440,7 @@ mysql> show variables like 'character%';
 +--------------------------+-------------------------------------------------------+
 ```
 
-> Notes: <font color=purple>**上面只改变了本次运行时的数据库局部的字符集，重启后也会变回原来的模式**</font>。
+> Notes: <span style="color: purple;">**上面只改变了本次运行时的数据库局部的字符集，重启后也会变回原来的模式**</span>。
 
 ### 字符集的选择原则
 
@@ -516,7 +516,7 @@ create database 数据库名 default character set 字符集;
 create database db2 default character set utf8;
 ```
 
-> Tips: <font color=red>**字符集名称是 `utf8` 而不是 `utf-8`**</font>
+> Tips: <span style="color: red;">**字符集名称是 `utf8` 而不是 `utf-8`**</span>
 
 当指定的名称的数据库不存在时，才创建该数据库
 
@@ -538,7 +538,7 @@ CREATE DATABASE IF NOT EXISTS 数据库名;
 drop database [ if exists ] 数据库名;
 ```
 
-> Tips: 如果删除一个不存在的数据库，将会报错。此时，可以加上参数 `if exists`，如果数据库存在，再执行删除，否则不执行删除。<font color=red>**值得注意的是，删除没有确认信息，做删除处理时需要小心**</font>
+> Tips: 如果删除一个不存在的数据库，将会报错。此时，可以加上参数 `if exists`，如果数据库存在，再执行删除，否则不执行删除。<span style="color: red;">**值得注意的是，删除没有确认信息，做删除处理时需要小心**</span>
 
 示例：
 
@@ -691,7 +691,7 @@ CREATE TABLE sort (
 create table 新表名 like 旧表名;
 ```
 
-<font color="purple">使用子查询可以复制整个表</font>
+<span style="color: purple;">使用子查询可以复制整个表</span>
 
 ```sql
 create table 新表名 as (select * from 要复制的表名);
@@ -1127,7 +1127,7 @@ FROM
 SELECT * FROM 表名;
 ```
 
-> <font color=red>**Tips: `*` 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。**</font>
+> <span style="color: red;">**Tips: `*` 号代表查询所有字段，在实际开发中尽量少用（不直观、影响效率）。**</span>
 
 示例：
 
@@ -1523,7 +1523,7 @@ select 聚合函数名称(数值列名) from 表名;
 
 > Notes:
 >
-> - <font color=red>**聚合函数会排除空值(`null`)的数据**</font>。
+> - <span style="color: red;">**聚合函数会排除空值(`null`)的数据**</span>。
 > - 按聚合函数的结果来查询，列必须是数值列（`COUNT`函数除外），如果不是数值列，则结果为0
 
 #### 常用的聚合函数
@@ -1596,7 +1596,7 @@ select * from 表名 limit m, n;
 >
 > - **起始行数是从 0 开始**，计算公式：`起始索引 = (当前页-1) * 每页显示记录数`
 > - **如果分页同时要进行排序，`limit` 语句要放在 `order by` 的后面。**
-> - <font color=red>**分页查询是数据库的方言，不同的数据库有不同的实现**</font>，MySQL 中是 `LIMIT`
+> - <span style="color: red;">**分页查询是数据库的方言，不同的数据库有不同的实现**</span>，MySQL 中是 `LIMIT`
 
 #### 分页查询示例
 
@@ -2187,7 +2187,7 @@ SELECT * FROM t1 CROSS JOIN t2;
 SELECT * FROM t1, t2;
 ```
 
-> <font color=red>**注：在内连接查询中，`on`子语句与`where`子语句的作用是一样的。**</font>
+> <span style="color: red;">**注：在内连接查询中，`on`子语句与`where`子语句的作用是一样的。**</span>
 
 #### 内连接的驱动表与被驱动表
 
@@ -2381,7 +2381,7 @@ select s.sname,c.sub from student s right join class c on s.class_id=c.cid;
     - 对于外连接的驱动表的记录来说，如果无法在被驱动表中找到匹配`ON`子句中的过滤条件的记录，那么该记录仍然会被加入到结果集中，对应的被驱动表记录的各个字段使用`NULL`值填充。
     - 对于内连接来说，MySQL 会把它和`WHERE`子句一样对待，也就是说：内连接中的`WHERE`子句和`ON`子句是等价的。
 
-<font color=red>*一般情况下，都把只涉及单表的过滤条件放到`WHERE`子句中，把涉及两表的过滤条件都放到`ON`子句中，也一般把放到`ON`子句中的过滤条件也称之为连接条件。*</font>
+<span style="color: red;">*一般情况下，都把只涉及单表的过滤条件放到`WHERE`子句中，把涉及两表的过滤条件都放到`ON`子句中，也一般把放到`ON`子句中的过滤条件也称之为连接条件。*</span>
 
 ### 自连接查询
 
@@ -2436,8 +2436,8 @@ ALTER TABLE AREA ADD CONSTRAINT FOREIGN KEY (parent_id) REFERENCES AREA(id);
 > 注意：
 >
 > - 自连接查询，本质还是使用到内连接或左连接或右连接。
-> - <font color=red>**自连接查询其实不需要依赖自关联表的外键约束的创建，无自关联外键约束也是可以进行自连接查询**</font>
-> - <font color=red>**注意自关联查询表时，必须给表起别名。**</font>
+> - <span style="color: red;">**自连接查询其实不需要依赖自关联表的外键约束的创建，无自关联外键约束也是可以进行自连接查询**</span>
+> - <span style="color: red;">**注意自关联查询表时，必须给表起别名。**</span>
 
 #### 自连接查询的格式
 

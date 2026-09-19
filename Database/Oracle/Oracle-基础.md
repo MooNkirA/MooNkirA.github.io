@@ -202,13 +202,13 @@ select ename,job from emp;
 
 #### 别名用法
 
-在查询的结果列中可以使用别名，<font color=red>**后面的中文只能用双引号**</font>，一般的别名都不用中文
+在查询的结果列中可以使用别名，<span style="color: red;">**后面的中文只能用双引号**</span>，一般的别名都不用中文
 
 ```sql
 select 列名 别名, 列名 别名, …… from 表名;
 ```
 
-<font color=red>**别名中，有没有双引号的区别就在于别名中有没有特殊的符号或者关键字**</font>。示例如下：
+<span style="color: red;">**别名中，有没有双引号的区别就在于别名中有没有特殊的符号或者关键字**</span>。示例如下：
 
 ```sql
 -- 别名用法
@@ -283,7 +283,7 @@ from table
 |    `<=`    | 小于等于       |
 | `<>`或`!=` | 不等于         |
 
-> <font color=red>**注：赋值使用 `:=` 符号**</font>
+> <span style="color: red;">**注：赋值使用 `:=` 符号**</span>
 
 ```sql
 -- 查询薪资大于1500 
@@ -388,7 +388,7 @@ SELECT * |列名
 
 `ORDER BY 列名`，默认的排序规则是升序排列，可以不指定 `ASC`，如果按着降序排列必须指定 `DESC`。如果存在多个排序字段可以用逗号分隔
 
-> <font color=red>**注意：`ORDER BY` 语句要放在 sql 的最后执行**</font>
+> <span style="color: red;">**注意：`ORDER BY` 语句要放在 sql 的最后执行**</span>
 
 ```sql
 -- 工资从小到大排列
@@ -576,7 +576,7 @@ SELECT {DISTINCT} *|列名.. FROM 表名 别名，表名 1 别名
 	{WHERE 限制条件ORDER BY 排序字段 ASC|DESC...}
 ```
 
-这种多表查询也<font color=violet>相当于内连接</font>
+这种多表查询也<span style="color: violet;">相当于内连接</span>
 
 示例：
 
@@ -637,7 +637,7 @@ select e.empno,e.ename,e.mgr,e.deptno,decode(s.grade,
 
 **左连接特点**：左边的表的记录一定会全部显示完整
 
-<font color=red>**外连接查询：判断以哪个表为基准表，如果是基准表，那么它的数据全部显示。使用(`+`)表示左连接或者右连接，等价于 `left join` 或者 `right join`**</font>
+<span style="color: red;">**外连接查询：判断以哪个表为基准表，如果是基准表，那么它的数据全部显示。使用(`+`)表示左连接或者右连接，等价于 `left join` 或者 `right join`**</span>
 
 因为（`+`）这种形式是 oracle 数据库独有的，所以优先掌握 `left join` 或 `right join` 方式的写法。想让哪个表为基准表，那么将(`+`)号放到对面一方。示例：
 
@@ -681,8 +681,8 @@ select select_list
 
 注意：
 
-- <font color=red>**子查询 (内查询) 在主查询之前一次执行完成。**</font>
-- <font color=red>**子查询的结果被主查询使用 (外查询)。**</font>
+- <span style="color: red;">**子查询 (内查询) 在主查询之前一次执行完成。**</span>
+- <span style="color: red;">**子查询的结果被主查询使用 (外查询)。**</span>
 
 #### 子查询的类型
 
@@ -769,7 +769,7 @@ select * from dept d where exists (select * from emp e where e.deptno = d.deptno
 select * from dept d where d.deptno in (select  distinct deptno from emp);
 ```
 
-> <font color=red>如果是大数据量【百万级】的查询，建议使用 `exists`，使用 `in` 的话会全表查询</font>
+> <span style="color: red;">如果是大数据量【百万级】的查询，建议使用 `exists`，使用 `in` 的话会全表查询</span>
 
 #### Oracle 中的伪列
 
@@ -1017,7 +1017,7 @@ select * from emp where job='MANAGER' or job = 'PRESIDENT'; -- b
 
 #### 集合运算的特征
 
-<font color=red>*集合运算两边查询的字段数量、字段类型、顺序必须一致*</font>
+<span style="color: red;">*集合运算两边查询的字段数量、字段类型、顺序必须一致*</span>
 
 ### 递归查询【了解】
 
@@ -1057,7 +1057,7 @@ connect by mgr=prior empno;
 - 单行函数
 - 多行函数
 
-<font color=red>**注意：无论是单行函数还是多行函数，返回的结果都是一个**</font>
+<span style="color: red;">**注意：无论是单行函数还是多行函数，返回的结果都是一个**</span>
 
 ### 单行函数
 
@@ -1336,9 +1336,9 @@ select ename,deptno,
 
 也叫组函数、分组函数，即聚合查询。分组函数作用于一组数据，并对一组数据返回一个值。
 
-<font color=red>在where条件中不能写聚合函数，只能写在having中</font>
+<span style="color: red;">在where条件中不能写聚合函数，只能写在having中</span>
 
-<font color=red>组函数会忽略空值；`NVL` 函数使分组函数无法忽略空值</font>
+<span style="color: red;">组函数会忽略空值；`NVL` 函数使分组函数无法忽略空值</span>
 
 #### 常用的多行函数
 
@@ -1350,11 +1350,11 @@ select ename,deptno,
 |  `min`  | 最小值查询 |
 |  `sum`  | 求和函数   |
 
-> <font color=red>**注：所有的聚合函数都不统计`null`值**</font>
+> <span style="color: red;">**注：所有的聚合函数都不统计`null`值**</span>
 
 `count(字段)` 是根据字段统计所有行，如果字段为 `null`，不进行统计
 
-<font color=red>**`count(1)` 与 `count(*)` 效果完全一样，但 `count(1)` 效率更高。`count(1)` 就是将所有行都看成“1”，不行的数据，所以查询效率更高**</font>
+<span style="color: red;">**`count(1)` 与 `count(*)` 效果完全一样，但 `count(1)` 效率更高。`count(1)` 就是将所有行都看成“1”，不行的数据，所以查询效率更高**</span>
 
 #### 分组数据
 
@@ -1368,7 +1368,7 @@ select *|{[distinct column|expression [aliad],……]}
 	[order by column]
 ```
 
-> <font color=red>**注意：如果两个表关联使用分组查询，`group by` 后面的跟的条件是两个表的分组条件的列名。**</font>
+> <span style="color: red;">**注意：如果两个表关联使用分组查询，`group by` 后面的跟的条件是两个表的分组条件的列名。**</span>
 
 #### 过滤分组数据
 
@@ -1385,7 +1385,7 @@ select *|{[distinct column|expression [aliad],……]}
 
 #### WHERE 和 HAVING 的区别
 
-<font color=red>**最大区别在于：`where` 后面不能有聚合函数**</font>
+<span style="color: red;">**最大区别在于：`where` 后面不能有聚合函数**</span>
 
 ```sql
 -- 计算所有员工数
@@ -1410,15 +1410,15 @@ select round(avg(sal)),decode(deptno,10,'开发部',20,'销售部',30,'运维部
 
 ### 创建表空间
 
-<font color=red>表空间：ORACLE 数据库的逻辑单元，oracle面向的是表空间。</font>
+<span style="color: red;">表空间：ORACLE 数据库的逻辑单元，oracle面向的是表空间。</span>
 
 - 一个实例（数据库）对应多个表空间
 - 一个表空间可以与多个数据文件（物理结构）关联一个数据库下可以建立多个表空间
 - 一个表空间可以建立多个用户、一个用户下可以建立多个表。
 
-<font color=red>*我们(用户)操作表空间，真正存储数据，存到.dbf文件*</font>
+<span style="color: red;">*我们(用户)操作表空间，真正存储数据，存到.dbf文件*</span>
 
-> <font color=red>**注：创建表空间需要dba权限，创建表空间的语法顺序不能调换**</font>
+> <span style="color: red;">**注：创建表空间需要dba权限，创建表空间的语法顺序不能调换**</span>
 
 创建表空间语法与相关参数：
 
@@ -1694,7 +1694,7 @@ constraint person_gender_ck check(gender in (1,2))
 外键关联注意：
 
 - 外键一定是主表的主键，外键的位置在从表中
-- <font color=red>删表时一定先删子表再删主表</font>，如果直接删主表会出现由于约束存在无法删除的问题
+- <span style="color: red;">删表时一定先删子表再删主表</span>，如果直接删主表会出现由于约束存在无法删除的问题
 - 可以强制删除主表 `drop table 主表名 cascade constraint;`【不建议使用】
 - 删除主表的数据可以先删除子表的关联数据，再删主表，也可以使用级联删除
 - 级联删除在外键约束上要加上 `on delete cascade`【不建议使用】
@@ -1796,7 +1796,7 @@ delete from 表名 where 删除条件;
 
 在删除语句中如果不指定删除条件的话就会删除所有的数据
 
-<font color=red>***truncate table 实现数据删除，摧毁表结构，再重建，效率最高。*</font>
+<span style="color: red;">***truncate table 实现数据删除，摧毁表结构，再重建，效率最高。*</span>
 
 **比较 `truncat` 与 `delete` 实现数据删除**
 
@@ -1804,7 +1804,7 @@ delete from 表名 where 删除条件;
 - `delete` 删除可能产生碎片，并且不释放空间
 - `truncate` 是先摧毁表结构，再重构表结构
 
-<font color=red>**注意：插入、更新和删除会引起数据的变化。我们就必须考虑数据的完整性。**</font>
+<span style="color: red;">**注意：插入、更新和删除会引起数据的变化。我们就必须考虑数据的完整性。**</span>
 
 ### Oracle 中的事务
 
@@ -1841,11 +1841,11 @@ commit;
 
 视图，专门用于查询，里面不存储数据，数据都来源于真正的表。
 
-<font color=red>**注：创建视图需要dba权限**</font>
+<span style="color: red;">**注：创建视图需要dba权限**</span>
 
 视图的好处：
 
-1. <font color=red>**视图就是封装了一条复杂查询的语句**</font>。视图是一个虚表。最大的优点就是简化复杂的查询。
+1. <span style="color: red;">**视图就是封装了一条复杂查询的语句**</span>。视图是一个虚表。最大的优点就是简化复杂的查询。
 2. 用视图可以屏蔽一些敏感数据。
 
 #### 创建视图的语法1
@@ -1875,7 +1875,7 @@ create or replace view 视图名称 as 查询语句
 
 使用语法2来创建视图，如果视图已经存在，这样已有的视图会被覆盖。
 
-<font color=red>*不建议通过视图对表中的数据进行修改，因为会受到很多的限制。*</font>
+<span style="color: red;">*不建议通过视图对表中的数据进行修改，因为会受到很多的限制。*</span>
 
 #### 创建视图的语法3
 
@@ -1927,7 +1927,7 @@ create sequence sequence(序列名称)
 
 ### 索引
 
-<font color=red>**索引是用于加速数据存取的数据对象，提高检索数据效率**</font>。合理的使用索引可以大大降低 i/o 次数,从而提高数据访问性能。
+<span style="color: red;">**索引是用于加速数据存取的数据对象，提高检索数据效率**</span>。合理的使用索引可以大大降低 i/o 次数,从而提高数据访问性能。
 
 #### 单列索引
 
@@ -2323,7 +2323,7 @@ end;
 
 ### 游标（光标 Cursor）
 
-在pl/sql中会用到多条记录（类似java程序中的集合概念），<font color=red>**使用游标可以存储查询返回的多条数据，结果集**</font>。
+在pl/sql中会用到多条记录（类似java程序中的集合概念），<span style="color: red;">**使用游标可以存储查询返回的多条数据，结果集**</span>。
 
 游标的定义语法：
 
@@ -2551,9 +2551,9 @@ end;
 
 存储过程（Stored Procedure）是在大型数据库系统中，一组为了完成特定功能的 SQL 语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。存储过程是数据库中的一个重要对象，任何一个设计良好的数据库应用程序都应该用到存储过程
 
-<font color=red>**存储过程：封装了一系列了sql语句，事先编译好，存储在数据库端，供其他程序员调用**</font>
+<span style="color: red;">**存储过程：封装了一系列了sql语句，事先编译好，存储在数据库端，供其他程序员调用**</span>
 
-<font color=red>**好处：效率高**</font>
+<span style="color: red;">**好处：效率高**</span>
 
 - 创建好的存储过程会存在当前用户的`Procedures`中
 - 创建好的存储函数会存在当前用户的`Functions`中
@@ -2569,7 +2569,7 @@ begin
 end;
 ```
 
-> <font color=red>注：如果参数是输入类型*in*，可以省略不写</font>
+> <span style="color: red;">注：如果参数是输入类型*in*，可以省略不写</span>
 
 ### 调用存储过程
 
@@ -2579,7 +2579,7 @@ end;
 call 过程名(参数1, 参数2, ......);
 ```
 
-<font color=red>方式2：可以接收存储过程`out`的参数，注意传递的参数顺序必须按定义存储过程参数的顺序【推荐】</font>
+<span style="color: red;">方式2：可以接收存储过程`out`的参数，注意传递的参数顺序必须按定义存储过程参数的顺序【推荐】</span>
 
 ```sql
 declare
@@ -2589,7 +2589,7 @@ begin
 end;
 ```
 
-<font color=red>方式3：调用存储过程时，传递参数的方式写法不一样，此方式的好处是指定值对应变量顺序可变【推荐】</font>
+<span style="color: red;">方式3：调用存储过程时，传递参数的方式写法不一样，此方式的好处是指定值对应变量顺序可变【推荐】</span>
 
 ```sql
 declare
@@ -2707,7 +2707,7 @@ selecta.appname from appinfo as a;  -- 错误
 
 另一部分是包主体(`package body`),包主体包含了所有被捆绑的过程和函数的声明、执行、异常处理部分。
 
-简单说就是<font color=red>**`packages` 中只有各个方法的定义，`bodies`中涉及具体的实现.**</font>
+简单说就是<span style="color: red;">**`packages` 中只有各个方法的定义，`bodies`中涉及具体的实现.**</span>
 
 所以 `packages` 和 `packagebodies` 是一体的，必须同时存在。如果要外部调用的，就在`package`里声明一下，包内调用的，只要在`body`里写就行了。
 
@@ -2736,7 +2736,7 @@ begin
 end[函数名];
 ```
 
-<font color=red>*注：如果参数是输入类型`in`，可以省略不写。黄色部分需要注意，与存储过程不一样，函数必须有一个返回值*</font>
+<span style="color: red;">*注：如果参数是输入类型`in`，可以省略不写。黄色部分需要注意，与存储过程不一样，函数必须有一个返回值*</span>
 
 过程：
 
@@ -2867,7 +2867,7 @@ select ename,deptno,findDNameByDNo(deptno) from emp;
 
 数据库的连接要素可以在 hibernate-release-5.0.12.Final\project\etc\hibernate.propertie 找到
 
-<font color=red>**orcl是安装oracle时填写的全局数据库名！！！！！**</font>
+<span style="color: red;">**orcl是安装oracle时填写的全局数据库名！！！！！**</span>
 
 ```java
 String driver="oracle.jdbc.OracleDriver";

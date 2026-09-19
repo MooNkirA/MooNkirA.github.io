@@ -6,7 +6,7 @@
 
 Ribbon 组件是 Netflixfa 发布的一个负载均衡器，有助于控制 HTTP 和 TCP 客户端行为。在 Spring Cloud 中推荐使用 Ribbon 来实现负载均衡。即使用客户端根据服务的负载情况去选择空闲或者访问压力小的服务
 
-负载均衡分为**服务端负载均衡**和**客户端负载均衡**，<font color=red>**Spring Cloud Ribbon 是基于客户端的负载均衡工具**</font>
+负载均衡分为**服务端负载均衡**和**客户端负载均衡**，<span style="color: red;">**Spring Cloud Ribbon 是基于客户端的负载均衡工具**</span>
 
 在 Spring Cloud 中，Eureka 一般配合 Ribbon 进行使用，Ribbon 提供了客户端负载均衡的功能，Ribbon 自动的从注册中心（如 Eureka）中获取服务提供者的列表信息，在调用服务节点提供的服务时，并提供客户端的软件负载均衡算法，如轮询、随机等，会合理的进行负载请求服务。
 

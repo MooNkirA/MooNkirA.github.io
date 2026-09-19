@@ -1141,7 +1141,7 @@ protected void configure(HttpSecurity http) throws Exception {
 - `addLogoutHandler(logoutHandler)` 添加一个 `LogoutHandler`，用于实现用户退出时的清理工作。默认 `SecurityContextLogoutHandler` 会被添加为最后一个 `LogoutHandler`
 - `invalidateHttpSession(true)` 指定是否在退出时让 HttpSession 无效。 默认设置为 true
 
-> <font color=red>**注意：如果想让在 GET 请求下退出，必须关闭防止 CSRF 攻击 `csrf().disable()`。如果开启了 CSRF，必须使用 post 方式请求 `/logout`**</font>
+> <span style="color: red;">**注意：如果想让在 GET 请求下退出，必须关闭防止 CSRF 攻击 `csrf().disable()`。如果开启了 CSRF，必须使用 post 方式请求 `/logout`**</span>
 
 #### LogoutHandler
 
@@ -1327,7 +1327,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 ##### 配置注意事项
 
-<font color=red>**规则的顺序是重要的，更具体、细粒度更小的规则应该先写**</font>。否则大范围的规则会覆盖后面小范围的规则，从而导致权限保护失效
+<span style="color: red;">**规则的顺序是重要的，更具体、细粒度更小的规则应该先写**</span>。否则大范围的规则会覆盖后面小范围的规则，从而导致权限保护失效
 
 如现在以 `/admin` 开始的所有内容都需要具有 ADMIN 角色的身份验证用户，即使是 `/admin/login` 路径(因为 `/admin/login` 已经被 `/admin/**` 规则匹配,因此第二个规则被忽略).
 
@@ -1692,7 +1692,7 @@ Spring Security 可以通过 `http.authorizeRequests()` 对 web 请求进行授�
 
 #### 授权决策
 
-`AccessDecisionManager` 采用<font color=red>**投票**</font>的方式来确定是否能够访问受保护资源。
+`AccessDecisionManager` 采用<span style="color: red;">**投票**</span>的方式来确定是否能够访问受保护资源。
 
 ![](images/221533611226462.png)
 
@@ -1718,7 +1718,7 @@ public interface AccessDecisionManager {
 }
 ```
 
-其中<font color=red>**`decide()` 方法就是用来鉴定当前用户是否有访问对应受保护资源的权限**</font>。方法的参数说明如下：
+其中<span style="color: red;">**`decide()` 方法就是用来鉴定当前用户是否有访问对应受保护资源的权限**</span>。方法的参数说明如下：
 
 - `Authentication authentication`：要访问资源的访问者的身份
 - `Object object`：要访问的受保护资源，web 请求对应 `FilterInvocation`

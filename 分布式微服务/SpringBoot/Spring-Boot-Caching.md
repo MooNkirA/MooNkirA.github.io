@@ -342,7 +342,7 @@ public class CodeUtil {
 }
 ```
 
-> <font color=red>**值得注意：为什么不将获取缓存的方法也定义在业务接口（`SMSCodeService`）中？因为 Spring Boot 对方法实现缓存功能是通过代理对象去调用方法来实现，如果在本类中定义读取缓存的方法，调用是通过 `this` 本身实例去调用方法，而不是通过代理去调用，只会调用原生的方法。所以需要将读取缓存的方法定义到其他类中，并且将其加入到 Spring 容器进行管理**</font>
+> <span style="color: red;">**值得注意：为什么不将获取缓存的方法也定义在业务接口（`SMSCodeService`）中？因为 Spring Boot 对方法实现缓存功能是通过代理对象去调用方法来实现，如果在本类中定义读取缓存的方法，调用是通过 `this` 本身实例去调用方法，而不是通过代理去调用，只会调用原生的方法。所以需要将读取缓存的方法定义到其他类中，并且将其加入到 Spring 容器进行管理**</span>
 
 - 创建请求 web 层接口，定义两个方法，一个方法用于提供手机号获取验证码，另一个方法用于提供手机号和验证码进行校验
 
@@ -529,7 +529,7 @@ Memcached 官网：https://www.memcached.org/
 > 注：在 1.4.5 版本以前 memcached 可以作为一个服务安装，而在 1.4.5 及之后的版本删除了该功能。
 
 - 下载的安装包是解压缩就能使用的zip文件，解压到指定目录即可。解压后的目录中可执行文件只有一个 memcached.exe。使用该文件可以将 memcached 作为系统服务启动
-- 在 1.4.5 版本以前 memcached 可以作为一个服务安装，使用<font color=red>管理员权限运行 CMD 命令行窗口</font>，执行以下命令：
+- 在 1.4.5 版本以前 memcached 可以作为一个服务安装，使用<span style="color: red;">管理员权限运行 CMD 命令行窗口</span>，执行以下命令：
 
 ```bash
 memcached目录路径\memcached.exe -d install
@@ -958,7 +958,7 @@ jetcache:
         maxTotal: 50
 ```
 
-<font color=purple>**值得注意的是：因为示例中方法的返回结果是对象，由于 redis 缓存中不支持保存对象，因此需要对 redis 设置当 `Object` 类型数据进入到 redis 中时如何进行类型转换。需要配置 `keyConvertor` 指定 key 的类型转换方式，同时标注 value 的转换类型方式，值进入 redis 时是 java 类型，标注 `valueEncode` 为 java，值从 redis 中读取时转换成java，标注 `valueDecode` 为 java。**</font>
+<span style="color: purple;">**值得注意的是：因为示例中方法的返回结果是对象，由于 redis 缓存中不支持保存对象，因此需要对 redis 设置当 `Object` 类型数据进入到 redis 中时如何进行类型转换。需要配置 `keyConvertor` 指定 key 的类型转换方式，同时标注 value 的转换类型方式，值进入 redis 时是 java 类型，标注 `valueEncode` 为 java，值从 redis 中读取时转换成java，标注 `valueDecode` 为 java。**</span>
 
 - 注意如果需要缓存的方法返回是对象类型时，为了保证 `Object` 类型的值能存到 redis 中，`Object` 类型的数据必须实现序列化接口。
 
@@ -968,7 +968,7 @@ public class Book implements Serializable {
 }
 ```
 
-- 启用缓存的同时，使用 `@EnableMethodCache` 注解开启方法缓存功能，配置 `basePackages` 属性指定哪些包开启方法缓存。<font color=red>**注意：`@EnableCreateCacheAnnotation` 与 `@EnableMethodCache` 需要同时使用才能开启方法缓存功能，因为方法缓存也是基于注解的方式来实现**</font>
+- 启用缓存的同时，使用 `@EnableMethodCache` 注解开启方法缓存功能，配置 `basePackages` 属性指定哪些包开启方法缓存。<span style="color: red;">**注意：`@EnableCreateCacheAnnotation` 与 `@EnableMethodCache` 需要同时使用才能开启方法缓存功能，因为方法缓存也是基于注解的方式来实现**</span>
 
 ```java
 @SpringBootApplication

@@ -60,11 +60,11 @@ public @interface HandlesTypes {
 
 ### 简介
 
-在 web.xml 中配置，<font color=red>**实质是一个 Servlet**</font>
+在 web.xml 中配置，<span style="color: red;">**实质是一个 Servlet**</span>
 
 作用：接收请求，响应结果。相当于转发器，中央处理器
 
-用户请求到达前端控制器，它就相当于 MVC 模式中的 C，`DispatcherServlet` 是整个流程控制的中心，由它调用其它组件处理用户的请求，<font color=red>**`DispatcherServlet`的存在降低了组件之间的耦合性**</font>
+用户请求到达前端控制器，它就相当于 MVC 模式中的 C，`DispatcherServlet` 是整个流程控制的中心，由它调用其它组件处理用户的请求，<span style="color: red;">**`DispatcherServlet`的存在降低了组件之间的耦合性**</span>
 
 ### 执行过程分析
 

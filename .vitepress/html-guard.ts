@@ -3,11 +3,12 @@
  *
  * 策略：配合 markdown.html=false 使用。
  * - markdown-it 的 html:false 会把所有原始 HTML 转义为 &lt; &gt;
- * - 本插件在渲染后处理阶段，把白名单标签（span/font/b/i 等）从转义状态恢复为真实 HTML
+ * - 本插件在渲染后处理阶段，把白名单标签（span/b/i 等）从转义状态恢复为真实 HTML
  * - 这样既避免了裸 HTML 导致 Vue 编译错误，又保留了笔记中的彩色强调样式
  *
- * 注意：当前因部分笔记存在未闭合标签，恢复后会导致 Vue 编译错误。
- * 暂时禁用恢复逻辑，等后续批量修复未闭合标签后再启用。
+ * 注意：恢复逻辑已启用。白名单只放行行内样式标签（span/b/i 等），
+ * 块级标签（ul/div/table 等）不在白名单内，仍保持转义——这些 docsify 遗留结构
+ * 应直接改写成标准 Markdown，而不是靠 HTML 渲染。
  */
 import type MarkdownIt from 'markdown-it'
 
@@ -43,6 +44,7 @@ function restoreAllowedTags(html: string): string {
         .replace(/&quot;/g, '"')
         .replace(/&#39;/g, "'")
         .replace(/&amp;/g, '&')
+
       const slashStr = slash || ''
       return `<${slashStr}${tagName}${restoredAttrs}>`
     },
@@ -70,10 +72,10 @@ export function htmlGuardPlugin(md: MarkdownIt) {
   })
 
   // 重写 render 方法，在渲染后处理 HTML
-  // TODO: 暂时禁用标签恢复，等批量修复未闭合标签后再启用
+  // 恢复白名单行内标签（span/font/b/i 等），块级标签不放行
   md.render = (src: string, env?: any): string => {
     let html = defaultRender(src, env)
-    // html = restoreAllowedTags(html)  // 暂时禁用
+    html = restoreAllowedTags(html)
     return html
   }
 }

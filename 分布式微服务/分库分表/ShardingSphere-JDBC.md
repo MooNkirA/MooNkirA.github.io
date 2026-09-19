@@ -180,7 +180,7 @@ replicate_wild_ignore_table=performance_schema.%
 
 #### 安装 mysql 服务
 
-进入从库所在位置的 bin 目录，以<font color=red>**管理员身份**</font>运行命令行窗口，执行以下命令将从库安装为 windows 服务，<font color=red>**注意配置文件位置**</font>：
+进入从库所在位置的 bin 目录，以<span style="color: red;">**管理员身份**</span>运行命令行窗口，执行以下命令将从库安装为 windows 服务，<span style="color: red;">**注意配置文件位置**</span>：
 
 ```bash
 # 初始化
@@ -205,7 +205,7 @@ mysql -uroot –p
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
 
-> <font color=red>**请注意，如果使用复制的方式来搭建从库数据，在 data 目录下有个文件 auto.cnf，也要与主库不一样，建议直接删除掉，重启服务后将会重新生成。由于从库是从主库复制过来的，因此里面的数据完全一致，可使用原来的账号、密码登录。最后重启主库和从库即可使用**</font>
+> <span style="color: red;">**请注意，如果使用复制的方式来搭建从库数据，在 data 目录下有个文件 auto.cnf，也要与主库不一样，建议直接删除掉，重启服务后将会重新生成。由于从库是从主库复制过来的，因此里面的数据完全一致，可使用原来的账号、密码登录。最后重启主库和从库即可使用**</span>
 
 #### 授权主从复制专用账号
 
@@ -232,7 +232,7 @@ show master status;
 mysql -h localhost -P3307 -uroot -p123456
 ```
 
-<font color=purple>**注意：如果之前此从库已有主库指向，需要先执行以下命令清空**</font>
+<span style="color: purple;">**注意：如果之前此从库已有主库指向，需要先执行以下命令清空**</span>
 
 ```bash
 STOP SLAVE IO_THREAD FOR CHANNEL '';
@@ -252,7 +252,7 @@ CHANGE MASTER TO
  master_log_pos = 592;
 ```
 
-重启主库和从库服务，然后执行以下命令。（<font color=red>**一定要先重启主从数据库**</font>）
+重启主库和从库服务，然后执行以下命令。（<span style="color: red;">**一定要先重启主从数据库**</span>）
 
 ```bash
 show slave status\G
@@ -676,7 +676,7 @@ public interface ProductMapper {
 }
 ```
 
-> 值得注意的是：在编号SQL语句时，<font color=red>**表名均为<u>逻辑表</u>的名称**</font>，非数据库真实存在的表，此处就是通过sql操作逻辑表，由 Sharding-JDBC 根据配置来决定具体操作哪些库、哪些真实表
+> 值得注意的是：在编号SQL语句时，<span style="color: red;">**表名均为<u>逻辑表</u>的名称**</span>，非数据库真实存在的表，此处就是通过sql操作逻辑表，由 Sharding-JDBC 根据配置来决定具体操作哪些库、哪些真实表
 
 ### 功能测试
 

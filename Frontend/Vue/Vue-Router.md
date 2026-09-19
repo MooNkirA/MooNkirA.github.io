@@ -94,7 +94,7 @@ const app = new Vue({
 <router-view></router-view>
 ```
 
-> <font color=red>**注意：当 `<router-link>` 对应的路由匹配成功，将自动设置 `class` 属性值 `.router-link-active`。**</font>
+> <span style="color: red;">**注意：当 `<router-link>` 对应的路由匹配成功，将自动设置 `class` 属性值 `.router-link-active`。**</span>
 
 ## vue-router 基础用法
 
@@ -594,7 +594,7 @@ const router = new VueRouter({
 })
 ```
 
-<font color=red>**值得注意：以 `/` 开头的嵌套路径会被当作根路径，所以子路由不能以“`/`”开头，框架会自动拼接到上级路径的后面。这样的设计是为了使用嵌套组件而无须设置嵌套的路径。**</font>
+<span style="color: red;">**值得注意：以 `/` 开头的嵌套路径会被当作根路径，所以子路由不能以“`/`”开头，框架会自动拼接到上级路径的后面。这样的设计是为了使用嵌套组件而无须设置嵌套的路径。**</span>
 
 `children` 配置就是像 `routes` 配置一样的路由配置数组，所以可以嵌套多层路由。
 
@@ -739,7 +739,7 @@ this.$route.params.pathMatch // '/non-existing'
 
 vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的，单个路由独享的，或者组件级的。
 
-<font color=red>**参数或查询的改变并不会触发进入/离开的导航守卫**</font>。可以通过观察 `$route` 对象来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
+<span style="color: red;">**参数或查询的改变并不会触发进入/离开的导航守卫**</span>。可以通过观察 `$route` 对象来应对这些变化，或使用 `beforeRouteUpdate` 的组件内守卫。
 
 > 导航守卫可以用于**控制路由的访问权限**
 

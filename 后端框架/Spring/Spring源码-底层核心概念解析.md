@@ -454,7 +454,7 @@ SPI全称Service Provider Interface，是Java提供的一套用来被第三方�
 
 ![](images/20210102173348265_455.png)
 
-<font color=red>**Java SPI 实际上是“基于接口的编程＋策略模式＋配置文件”组合实现的动态加载机制。**</font>
+<span style="color: red;">**Java SPI 实际上是“基于接口的编程＋策略模式＋配置文件”组合实现的动态加载机制。**</span>
 
 #### Java SPI 机制基础实现
 
@@ -555,7 +555,7 @@ BeanDefinition 贯穿整个 spring 框架，spring 是根据 BeanDefinition 对�
 
 #### 作用说明
 
-Spring 的容器是用于存储 bean 对象。通常对于容器中存储 bean 的理解是一个个对应配置文件中的 `<bean/>` 标签或者是被注解的类，但是这些都是 bean 的静态表示，是还没有放入容器的物料，最终（<font color=red>**加载完配置，且在 getBean 之前**</font>）加载到容器中的是一个个 `BeanDefinition` 实例。
+Spring 的容器是用于存储 bean 对象。通常对于容器中存储 bean 的理解是一个个对应配置文件中的 `<bean/>` 标签或者是被注解的类，但是这些都是 bean 的静态表示，是还没有放入容器的物料，最终（<span style="color: red;">**加载完配置，且在 getBean 之前**</span>）加载到容器中的是一个个 `BeanDefinition` 实例。
 
 BeanDefinition 的继承关系如下图，`RootBeanDefinition`、`ChildBeanDefinition`，以及 `GenericBeanDefinition` 是三个主要的实现。
 
@@ -1050,7 +1050,7 @@ String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE = WebApplicationContext.class.getN
 
 ### 高级容器的一些具体实现类
 
-注意：<font color=red>**所有后缀为 `*ApplicationContext` 的类都是 `ApplicationContext` 接口的实现，但它们是组合了 `DefaultListableBeanFactory` 的功能，并非继承它**</font>
+注意：<span style="color: red;">**所有后缀为 `*ApplicationContext` 的类都是 `ApplicationContext` 接口的实现，但它们是组合了 `DefaultListableBeanFactory` 的功能，并非继承它**</span>
 
 #### GenericApplicationContext
 
@@ -1183,7 +1183,7 @@ public void testAnnotatedBeanDefinitionReader() {
 }
 ```
 
-> Notes: <font color=red>**该BeanDefinition读取器能解析的注解如`@Conditional`，`@Scope`、`@Lazy`、`@Primary`、`@DependsOn`、`@Role`、`@Description`**</font>
+> Notes: <span style="color: red;">**该BeanDefinition读取器能解析的注解如`@Conditional`，`@Scope`、`@Lazy`、`@Primary`、`@DependsOn`、`@Role`、`@Description`**</span>
 
 ### XmlBeanDefinitionReader
 
@@ -1218,7 +1218,7 @@ System.out.println(context.getBean("userService"));
 
 ## MetadataReader、ClassMetadata、AnnotationMetadata
 
-在 Spring 中需要去解析类的信息，比如类名、类中的方法、类上的注解，这些称之为类的<font color=red>**元数据**</font>，Spring 对类的元数据做了抽象，并提供了一些工具类。
+在 Spring 中需要去解析类的信息，比如类名、类中的方法、类上的注解，这些称之为类的<span style="color: red;">**元数据**</span>，Spring 对类的元数据做了抽象，并提供了一些工具类。
 
 `MetadataReader` 表示类的元数据读取器，默认实现类为 `SimpleMetadataReader`。`ClassMetadata` 封装了类的元数据、`AnnotationMetadata` 封装注解的元数据
 

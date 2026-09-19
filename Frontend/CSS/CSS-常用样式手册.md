@@ -112,8 +112,8 @@ p {
 ```
 
 - **注意细节**：
-- 使用`font`属性时，必须按上面语法格式中的顺序书写，<font color=red>**不能更换顺序**</font>，各个属性以<font color=red>**空格**</font>隔开。
-- 其中不需要设置的属性可以省略（取默认值），但<font color=red>**必须保留`font-size`和`font-family`属性，否则`font`属性将不起作用**</font>。
+- 使用`font`属性时，必须按上面语法格式中的顺序书写，<span style="color: red;">**不能更换顺序**</span>，各个属性以<span style="color: red;">**空格**</span>隔开。
+- 其中不需要设置的属性可以省略（取默认值），但<span style="color: red;">**必须保留`font-size`和`font-family`属性，否则`font`属性将不起作用**</span>。
 
 ## Text（文本样式）
 
@@ -129,7 +129,7 @@ p {
 | 文字间距 | letter-spacing  | 不同单位的数值，允许使用负值                                                                                                 |
 | 单词间距 | word-spacing    | 不同单位的数值，允许使用负值                                                                                                 |
 
-> <font color=red>**使用技巧**：在只一行文字的盒子内，设定文字的行高等于盒子的高度，就可以使文字垂直居中。</font>。注：如果盒子内有多行文字，则不无效
+> <span style="color: red;">**使用技巧**：在只一行文字的盒子内，设定文字的行高等于盒子的高度，就可以使文字垂直居中。</span>。注：如果盒子内有多行文字，则不无效
 
 单行文字垂直居中的实现原理是：行高的上空隙和下空隙把文字挤到中间了；如果行高小于盒子高度，文字会偏上；如果行高大于盒子高度，则文字偏下。
 
@@ -162,7 +162,7 @@ color: rgba(0,0,0,0.3); /* 示例 */
 
 ### line-height（行间距）
 
-`line-height`属性用于设置行间距，就是行与行之间的距离，即字符的垂直间距，一般称为行高。`line-height`常用的属性值单位有三种，分别是：像素px，相对值em和百分比%，实际使用最多的是像素px。<font color=red>**也可以直接写数值，表示 `font-size` 大小的倍数，一般建议写倍数，因为这种可以万一 `font-size` 的大小变化后，依然可以保持相对的大小**</font>。
+`line-height`属性用于设置行间距，就是行与行之间的距离，即字符的垂直间距，一般称为行高。`line-height`常用的属性值单位有三种，分别是：像素px，相对值em和百分比%，实际使用最多的是像素px。<span style="color: red;">**也可以直接写数值，表示 `font-size` 大小的倍数，一般建议写倍数，因为这种可以万一 `font-size` 的大小变化后，依然可以保持相对的大小**</span>。
 
 一般情况下，行距比字号大7.8像素左右就可以了。
 
@@ -213,7 +213,7 @@ p {
 
 ### word-spacing（单词间距）
 
-`word-spacing`属性用于定义英文单词之间的间距，<font color=red>**对中文字符无效**</font>。和`letter-spacing`一样，其属性值可为不同单位的数值，允许使用负值，默认为`normal`。
+`word-spacing`属性用于定义英文单词之间的间距，<span style="color: red;">**对中文字符无效**</span>。和`letter-spacing`一样，其属性值可为不同单位的数值，允许使用负值，默认为`normal`。
 
 `word-spacing`和`letter-spacing`均可对英文进行设置。不同的是`letter-spacing`定义的为字母之间的间距，而`word-spacing`定义的为英文单词之间的间距。
 
@@ -611,7 +611,7 @@ transform: translateY(n);
 **重点**：
 
 - 定义 2D 转换中的移动，沿着 X 和 Y 轴移动元素
-- <font color=red>**translate最大的优点：不会影响到其他元素的位置**</font>
+- <span style="color: red;">**translate最大的优点：不会影响到其他元素的位置**</span>
 - translate中的百分比单位是相对于元素自身的高度/宽度 `translate:(50%,50%);`
 - 对行内标签没有效果
 
@@ -684,7 +684,7 @@ transform: translate() rotate() scale()...等;
 **重点**：
 
 - 其顺序会影转换的效果。（先旋转会改变坐标轴方向）
-- <font color=red>**当同时有位移和其他属性的时候，记得要将位移放到最前**</font>
+- <span style="color: red;">**当同时有位移和其他属性的时候，记得要将位移放到最前**</span>
 
 ## animation（动画）（CSS3）
 
@@ -730,7 +730,7 @@ transform: translate() rotate() scale()...等;
 
 - `0%` 是动画的开始，`100%` 是动画的完成。这样的规则就是动画序列。
 - 在 `@keyframes` 中规定某项 CSS 样式，就能创建由当前样式逐渐改为新样式的动画效果。
-- 动画是使元素从一种样式逐渐变化为另一种样式的效果。<font color=red>**可以改变任意多的样式任意多的次数**</font>。
+- 动画是使元素从一种样式逐渐变化为另一种样式的效果。<span style="color: red;">**可以改变任意多的样式任意多的次数**</span>。
 - 使用百分比来规定变化发生的时间，或用关键词 "`from`" 和 "`to`"，等同于 `0%` 和 `100%`。
 
 ### 动画常用属性
@@ -780,9 +780,9 @@ animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是�
 
 ![](images/20211031222058887_2489.png)
 
-- x轴：水平向右 <font color=red>**注意：x 右边是正值，左边是负值**</font>
-- y轴：垂直向下 <font color=red>**注意：y 下面是正值，上面是负值**</font>
-- z轴：垂直屏幕 <font color=red>**注意：往外面是正值，往里面是负值**</font>
+- x轴：水平向右 <span style="color: red;">**注意：x 右边是正值，左边是负值**</span>
+- y轴：垂直向下 <span style="color: red;">**注意：y 下面是正值，上面是负值**</span>
+- z轴：垂直屏幕 <span style="color: red;">**注意：往外面是正值，往里面是负值**</span>
 
 ### 3D移动 translate3d
 
@@ -811,7 +811,7 @@ animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是�
 
 ![](images/20211031223607469_27685.png)
 
-<font color=red>**透视写在被观察元素的父盒子上面的**</font>
+<span style="color: red;">**透视写在被观察元素的父盒子上面的**</span>
 
 - d：就是视距，视距就是一个距离人的眼睛到屏幕的距离。
 - z：就是 z轴，物体距离屏幕的距离，z轴越大（正值） 我们看到的物体就越大。
@@ -859,7 +859,7 @@ transform-style: flat|preserve-3d;
 |    `flat`     | 子元素将不保留其 3D 位置，即不开启3d立体空间。默认值 |
 | `preserve-3d` | 子元素将保留其 3D 位置，即开启立体空间             |
 
-<font color=red>**此属性需要定义在父级元素，但是影响的是子级元素**</font>。
+<span style="color: red;">**此属性需要定义在父级元素，但是影响的是子级元素**</span>。
 
 ## CSS3 其他新特性（了解）
 
@@ -890,7 +890,7 @@ width: calc(100% - 80px);
 
 过渡（transition)是CSS3中具有颠覆性的特征之一，用于设置当元素从一种样式变换为另一种样式时为元素添加效果。
 
-过渡动画：是从一个状态 渐渐的过渡到另外一个状态，<font color=red>经常和`:hover`一起搭配使用</font>
+过渡动画：是从一个状态 渐渐的过渡到另外一个状态，<span style="color: red;">经常和`:hover`一起搭配使用</span>
 
 - 语法：
 
@@ -903,7 +903,7 @@ transition: 要过渡的属性 花费时间 运动曲线 何时开始;
 3. 运动曲线：默认是 `ease` （可以省略）
 4. 何时开始：单位是秒（必须写单位）可以设置延迟触发时间 默认是 0s （可以省略）
 
-> <font color=red>**注：谁做过渡给谁加**</font>
+> <span style="color: red;">**注：谁做过渡给谁加**</span>
 
 示例：
 

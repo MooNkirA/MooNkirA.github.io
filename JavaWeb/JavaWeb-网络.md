@@ -1,6 +1,6 @@
 ## 网络概述
 
-<font color=red>**网络三要素：IP地址、端口号、协议**</font>
+<span style="color: red;">**网络三要素：IP地址、端口号、协议**</span>
 
 ## HTTP 协议
 
@@ -52,7 +52,7 @@ URL 格式：`http://www.moon.com:8080/news/index.jsp?boardid=5&id=24618&page=1`
 
 ### 什么是 HTTP 请求
 
-将浏览器端的数据发送给服务器，称为 HTTP 请求。而把这些数据封装成一个对象，这个对象就是 <font color=red>**request 请求对象**</font>。
+将浏览器端的数据发送给服务器，称为 HTTP 请求。而把这些数据封装成一个对象，这个对象就是 <span style="color: red;">**request 请求对象**</span>。
 
 ### 浏览器查看 HTTP 请求信息
 
@@ -91,7 +91,7 @@ HTTP 请求由以下四个部分组成：
     - 1.0 版：每次浏览器发送请求给服务器获取 1 个 web 资源之后断开
     - 1.1 版：每次浏览器发送请求给服务器获取多个 web 资源之后断开，1.1 的效率更高。
 
-<font color=red>一个网页如果有多个图片，每个图片都会发送一次请求</font>
+<span style="color: red;">一个网页如果有多个图片，每个图片都会发送一次请求</span>
 
 #### 请求头
 
@@ -103,11 +103,11 @@ HTTP 请求由以下四个部分组成：
 
 - **Referer**：浏览器上一次请求的网页地址，即从哪一个页面跳转过来的
 - **If-Modified-Since**：浏览器在本地缓存当前网页的时间，时区差8个小时
-- **Cookie**：在浏览器端以<font color=red>**字符串的键值对**</font>，保存服务器发送过来的数据
+- **Cookie**：在浏览器端以<span style="color: red;">**字符串的键值对**</span>，保存服务器发送过来的数据
 - **User-Agent**：得到客户端的操作系统信息和浏览器的类型
 - **Connection**：当前 TCP 连接的状态，keep-alive 保持连接，close 关闭连接。在 HTTP1.0 中，每次请求结束就关闭连接；在 HTTP1.1 中，请求会保存连接状态。目前广泛使用 HTTP1.1 的版本。
 - **Host**：请求的服务器主机名和端口号
-- **Content-Length**：客户端请求数据(请求体)的长度，<font color=red>**用于 POST 方法**</font>
+- **Content-Length**：客户端请求数据(请求体)的长度，<span style="color: red;">**用于 POST 方法**</span>
 - **Content-Type**：请求的内容类型，POST 方法时请求类型。GET 方法没有这个请求头。如果使用 POST 请求将表单的数据以 `键=值` 的方式发送给服务器，则它的值是：
 
 ```properties
@@ -221,7 +221,7 @@ get 请求比 post 请求更快的原因总结：
 
 ### 什么是 HTTP 响应
 
-由服务器将数据返回给浏览器，称为响应。将其封装成一个对象，这个对象就是<font color=red>** response 响应对象**</font>。
+由服务器将数据返回给浏览器，称为响应。将其封装成一个对象，这个对象就是<span style="color: red;">** response 响应对象**</span>。
 
 ### HTTP 响应报文
 
@@ -402,7 +402,7 @@ HTTP 的传输流程包括地址解析、封装 HTTP 数据包、封装 TCP 包�
 
 HTTP 被用于在 Web 浏览器和网站服务器之间传递信息，但以明文方式发送内容，不提供任何方式的数据加密，因此存在安全问题。如果攻击者截取了 Web 浏览器和网站服务器之间的传输报文，就可以直接获取到其中的信息，因此 HTTP 不适合传输一些敏感信息，比如身份证号码、密码等。
 
-HTTPS（全称：Hypertext Transfer Protocol over Secure Socket Layer），是以安全为目标的 HTTP 通道，简单讲是加密安全版的 HTTP 协议。它在 HTTP 中加入 SSL 层，SSL 依靠证书来验证服务器的身份，并对浏览器和服务器之间的通信进行数据加密，以保障数据传输的安全性，<font color=red>**其默认端口号是 443**</font>。即 HTTPS 的安全基础是 SSL。
+HTTPS（全称：Hypertext Transfer Protocol over Secure Socket Layer），是以安全为目标的 HTTP 通道，简单讲是加密安全版的 HTTP 协议。它在 HTTP 中加入 SSL 层，SSL 依靠证书来验证服务器的身份，并对浏览器和服务器之间的通信进行数据加密，以保障数据传输的安全性，<span style="color: red;">**其默认端口号是 443**</span>。即 HTTPS 的安全基础是 SSL。
 
 ### 数字证书的合法性的校验流程
 

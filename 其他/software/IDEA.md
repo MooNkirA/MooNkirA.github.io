@@ -188,7 +188,7 @@ idea.system.path=D:/development/JetBrains/.IntelliJIdea/system
 
 ![](images/422814610247212.png)
 
-> Notes: Transparent native-to-ascii conversion 是用于自动转换 ASCII 编码，显式原生内容。工作原理是：在文件中输入文字时他会自动的转换为 Unicode 编码，然后在 idea 中发开文件时他会自动转回文字来显示。这样做是为了防止文件乱码。像 properties 这类文件，一般都不会出现中文乱码！<font color=red>**一般建议都要勾选。**</font>
+> Notes: Transparent native-to-ascii conversion 是用于自动转换 ASCII 编码，显式原生内容。工作原理是：在文件中输入文字时他会自动的转换为 Unicode 编码，然后在 idea 中发开文件时他会自动转回文字来显示。这样做是为了防止文件乱码。像 properties 这类文件，一般都不会出现中文乱码！<span style="color: red;">**一般建议都要勾选。**</span>
 
 2. 打开 IDEA 安装路径，找到如下的安装目录。根据所安装的版本修改相应的配置文件（idea64.exe.vmoptions）
 
@@ -204,7 +204,7 @@ idea.system.path=D:/development/JetBrains/.IntelliJIdea/system
 -Dfile.encoding=UTF-8
 ```
 
-> notes: 最新版本的idea只有64位的配置文件。<font color=red>**特别注意，不能有空格，否则重启后无法打开 IDEA**</font>
+> notes: 最新版本的idea只有64位的配置文件。<span style="color: red;">**特别注意，不能有空格，否则重启后无法打开 IDEA**</span>
 
 3. 如前面的方法均已配置，还有乱码问题，则需要修改idea数据缓存目录中的 idea64.exe.vmoptions，同样在文件的末尾添加：`-Dfile.encoding=UTF-8`，然后重启idea，如图：
 
@@ -976,10 +976,10 @@ Postfix Completion 其实就是关于代码补全的一些模板。在【Setting
 
 ### Project 和 Module 的概念
 
-在 IntelliJ IDEA 中，提出了 Project 和 Module 这两个概念。在 IntelliJ IDEA 中 Project 是<font color=red>**最顶级的结构单元**</font>，然后就是 Module。目前，主流的大型项目结构基本都是多 Module 的结构，这类项目一般是**按功能划分**的，比如：user-core-module、user-facade-module和user-hessian-module等等，模块之间彼此可以**相互依赖**，有着不可分割的业务关系。因此，对于一个 Project 来说：
+在 IntelliJ IDEA 中，提出了 Project 和 Module 这两个概念。在 IntelliJ IDEA 中 Project 是<span style="color: red;">**最顶级的结构单元**</span>，然后就是 Module。目前，主流的大型项目结构基本都是多 Module 的结构，这类项目一般是**按功能划分**的，比如：user-core-module、user-facade-module和user-hessian-module等等，模块之间彼此可以**相互依赖**，有着不可分割的业务关系。因此，对于一个 Project 来说：
 
 - 单 Module 项目的时候，这个单独的 Module 实际上当作是一个 Project。
-- 多 Module 项目的时候，多个模块处于同一个 Project 之中，此时彼此之间具有<font color=red>**互相依赖**</font>的关系。
+- 多 Module 项目的时候，多个模块处于同一个 Project 之中，此时彼此之间具有<span style="color: red;">**互相依赖**</span>的关系。
 - 若多个 Module（模块）没有建立依赖关系的话，则每个 Module（模块）也可以作为单独一个“小项目”运行。
 
 ### 创建 Module
@@ -1255,7 +1255,7 @@ Tomcat 或者 Jetty 这些都是部署的容器，自然会联想到 Deployment 
 
 ![](images/88411523247425.png)
 
-指明当前 maven 工程的名称、模板等信息。<font color=red>**值得注意的是，一个项目组的jdk版本必须一致。**</font>
+指明当前 maven 工程的名称、模板等信息。<span style="color: red;">**值得注意的是，一个项目组的jdk版本必须一致。**</span>
 
 ![](images/74341723231020.png)
 
@@ -1757,8 +1757,8 @@ spring-boot项目中引入如下依赖
 
 ![](images/20201105161742090_4458.jpg)
 
-- <font color=blue>**蓝色**</font>实线箭头是指继承关系
-- <font color=green>**绿色**</font>虚线箭头是指接口实现关系
+- <span style="color: blue;">**蓝色**</span>实线箭头是指继承关系
+- <span style="color: green;">**绿色**</span>虚线箭头是指接口实现关系
 
 ### 同时编辑多行
 
@@ -2250,7 +2250,7 @@ JVM 的参数配置分别是**服务器模式(-server)**和**客户端模式(cli
 
 - `-Xmx1024m`：设置 JVM 最大可用内存为 1024m。
 - `-Xms512m`：设置 JVM 初始内存为 512m(启动时占用内存大小)。此值可以设置与`-Xmx`相同，以避免每次垃圾回收完成后 JVM 重新分配内存。
-- `-Xmn393m`：设置 JVM 年轻代(Young Generation)大小为393m。<font color=red>**整个堆大小 = 年轻代大小 + 年老代大小 + 持久代大小**</font>。持久代一般固定大小为 64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun 官方推荐配置为整个堆的3/8。
+- `-Xmn393m`：设置 JVM 年轻代(Young Generation)大小为393m。<span style="color: red;">**整个堆大小 = 年轻代大小 + 年老代大小 + 持久代大小**</span>。持久代一般固定大小为 64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun 官方推荐配置为整个堆的3/8。
 - `-Xss128k`：设置每个线程的堆栈大小为 128k。JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 256K。更具应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在 3000~5000 左右。
 - `-Xverify:none`：关闭 Java 字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间。
 - `-ea`：启动断言检查机制。

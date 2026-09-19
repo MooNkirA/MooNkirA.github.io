@@ -156,7 +156,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
     - 如果加上`security="none"`属性，：设置此资源不被拦截。如果没有设置登录页`security="none"`，将会出现以下错误
     ![配置说明1](images/20190119111705061_11139.jpg)
 3. `<security:form-login>`： 开启表单登录
-    - 如果没有`<security:form-login />`如果没有配置相关属性，会使用了<font color="red">系统自动生成的登录页面</font>
+    - 如果没有`<security:form-login />`如果没有配置相关属性，会使用了<span style="color: red;">系统自动生成的登录页面</span>
     ![配置说明2](images/20190119111822306_12472.jpg)
     - 说明：因为登录页面会被反复重定向。
     - `<security:form-login>` 标签的相关属性说明
@@ -173,7 +173,7 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 
 ### Spring Security 基本使用步骤与配置
 
-<font color="red">**配置拦截url与编写验证控制器。注意：只能接收post请求**</font>
+<span style="color: red;">**配置拦截url与编写验证控制器。注意：只能接收post请求**</span>
 
 #### Spring Security 依赖
 
@@ -208,8 +208,8 @@ Spring Security是一个能够为基于Spring的企业应用系统提供声明�
 </filter-mapping>
 ```
 
-- <font color="red">*注：配置SpringSecurity委派过滤器时*</font>
-    - <font color="red">*filter-name必须是【springSecurityFilterChain】*</font>
+- <span style="color: red;">*注：配置SpringSecurity委派过滤器时*</span>
+    - <span style="color: red;">*filter-name必须是【springSecurityFilterChain】*</span>
 
 #### applicationContext-security.xml 配置步骤
 
@@ -1205,7 +1205,7 @@ public void updateStatus(Seller seller) {
 
 *注：dubbo的命名空间，在后面自定义认证类需要调用服务时需要使用，现在先设置*
 
-3. 在pinyougou-shop-web创建com.pinyougou.shop.service包下，创建自定义认证类UserDetailsServiceImpl.java实现<font color="red">**UserDetailsService**</font>接口
+3. 在pinyougou-shop-web创建com.pinyougou.shop.service包下，创建自定义认证类UserDetailsServiceImpl.java实现<span style="color: red;">**UserDetailsService**</span>接口
 
 ```java
 /**
@@ -1229,7 +1229,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-<font color="red">*说明：经过上述配置，用户在输入密码123456时就会通过（用户名随意）*</font>
+<span style="color: red;">*说明：经过上述配置，用户在输入密码123456时就会通过（用户名随意）*</span>
 
 ### 认证类调用服务方法
 
@@ -1321,7 +1321,7 @@ public Seller findOne(String username) {
 }
 ```
 
-<font color="red">*说明：经过上述修改后，在登录页面输入用户名和密码与数据库一致即可登录。(即无进行密码加密)*</font>
+<span style="color: red;">*说明：经过上述修改后，在登录页面输入用户名和密码与数据库一致即可登录。(即无进行密码加密)*</span>
 
 ### 密码加密
 

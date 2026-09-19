@@ -41,7 +41,7 @@ SSO单点登录访问流程主要有以下步骤：
 5. 验证票据：SSO服务器验证票据Service Ticket的合法性，验证通过后，允许客户端访问服务。
 6. 传输用户信息：SSO服务器验证票据通过后，传输用户认证结果信息给客户端，并把用户登录信息存入客户端的Session。
 
-<font color="red">***注：CAS服务端往用户浏览器端写入cookies(TGC)是写入到登陆时CAS服务的客户端，而不是写在各个子系统的cookies。如果登陆页面的TGC cookies被删除，其他所有子系统都需要重新登陆。***</font>
+<span style="color: red;">***注：CAS服务端往用户浏览器端写入cookies(TGC)是写入到登陆时CAS服务的客户端，而不是写在各个子系统的cookies。如果登陆页面的TGC cookies被删除，其他所有子系统都需要重新登陆。***</span>
 
 #### CAS官网
 

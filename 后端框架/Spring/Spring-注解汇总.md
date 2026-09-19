@@ -584,7 +584,7 @@ public class ConfigurationTest {
 
 在注解驱动开发时，编写的类都使用注解的方式进行配置，但想让加上相关spring注解(如：`@Controller`、`@Service`、`@Repository`、`@Component`)的类添加到spring的ioc容器中，就需要使用`@ComponentScan`注解来实现组件的扫描。
 
-<font color=red>**注意：在spring4.3版本之后还加入了一个`@ComponentScans`的注解，该注解相当于支持配置多个`@ComponentScan`**</font>
+<span style="color: red;">**注意：在spring4.3版本之后还加入了一个`@ComponentScans`的注解，该注解相当于支持配置多个`@ComponentScan`**</span>
 
 ### 相关属性
 
@@ -1479,7 +1479,7 @@ public class SpringBeanTest {
 - **作用**：该注解是写在类上的，通常都是和注解驱动的配置类一起使用的。其作用是引入其他的配置类。使用了此注解之后，可以使注解驱动开发和早期 xml 配置一样，按不同的功能模块，分别配置不同的内容，使配置更加清晰。同时指定了此注解之后，被引入的类上可以不再使用`@Configuration`，`@Component`等注解的支撑，spring ioc 也可以将引入类加载到 ioc 容器。
 - **使用场景**：当在使用注解驱动开发时，由于配置项过多，如果都写在一个类里面，配置结构和内容将杂乱不堪，此时使用此注解可以把配置项进行分模块进行配置。
 
-> 注：使用`@Bean`也可以实现引入其他类（第三方的类）一样的效果，但`@Import`可以自定义批量导入类；<font color=red>**通过`@Import`注解导入的类，在 spring 容器中注册的名称不是默认的“类名首字母小写”，而是“类的全限定名”**</font>
+> 注：使用`@Bean`也可以实现引入其他类（第三方的类）一样的效果，但`@Import`可以自定义批量导入类；<span style="color: red;">**通过`@Import`注解导入的类，在 spring 容器中注册的名称不是默认的“类名首字母小写”，而是“类的全限定名”**</span>
 
 ### 相关属性
 
@@ -1570,7 +1570,7 @@ public void getBeanDefinitionNamesTest() {
 
 `@Import`注解除了可以直接导入一个（或多个）类，还可以导入实现一些接口的实现类，而这些接口分别是：`ImportSelector`与`ImportBeanDefinitionRegistrar`
 
-<font color=red>**注：`ImportSelector`与`ImportBeanDefinitionRegistrar`这此接口的方法，必须通过`@Import`导入的方式才会被 Spring 调用，如果使用`@Component`等注解加入到 Spring 中，是无法调用接口的方法**</font>
+<span style="color: red;">**注：`ImportSelector`与`ImportBeanDefinitionRegistrar`这此接口的方法，必须通过`@Import`导入的方式才会被 Spring 调用，如果使用`@Component`等注解加入到 Spring 中，是无法调用接口的方法**</span>
 
 ### ImportSelector 和 ImportBeanDefinitionRegistrar 介绍
 
@@ -1603,8 +1603,8 @@ public void getBeanDefinitionNamesTest() {
         - `ImportSelector`是在`@Import`注解解析时就被调用，此时注册中心`BeanDefinitionRegistry`只是spring初始化构造函数时创建的几个BeanDefinition
         - `ImportBeanDefinitionRegistrar`在`@Import`注解解析时，接口方法没有被调用，只会建立好实例与该实现类的注解Metadata元信息的映射关系，真正的调用是在所有BeanDefinition都注册好之后再调用
 - **注意事项**：
-    1. 实现了`ImportSelector`接口或者`ImportBeanDefinitionRegistrar`接口的类<font color=red>**不会被解析成一个Bean注册到容器中**</font>。
-    2. 通过以上两个接口实现注册bean对象到容器中时，<font color=red>**bean的唯一标识是全限定类名，而非短类名**</font>。
+    1. 实现了`ImportSelector`接口或者`ImportBeanDefinitionRegistrar`接口的类<span style="color: red;">**不会被解析成一个Bean注册到容器中**</span>。
+    2. 通过以上两个接口实现注册bean对象到容器中时，<span style="color: red;">**bean的唯一标识是全限定类名，而非短类名**</span>。
     3. 以上两个接口的实现类不能通过`@Component`等注解来加入到spring容器，使用此方式接口的方法不会被spring所调用，必须配合`@Import`注解导入的方式，接口的方法才会被spring所调用。
 
 ### 自定义 ImportSelector
@@ -1829,7 +1829,7 @@ custom.importselector.expression=com.moon.springsample.service..*
 
 ![](images/20200829163236262_18296.png)
 
-> <font color=purple>**注：此处有坑，如果 aspectJ 切入点表达式包含自定义导入器`CustomImportSelector`类的话，会报错，在学习源码后再试试分析分析**</font>
+> <span style="color: purple;">**注：此处有坑，如果 aspectJ 切入点表达式包含自定义导入器`CustomImportSelector`类的话，会报错，在学习源码后再试试分析分析**</span>
 
 #### 改造自定义导入器逻辑，将扫描包路径也定义在配置文件中
 
@@ -2452,7 +2452,7 @@ public class EventSource {
 
 ### 作用与使用场景
 
-- **作用**：用于指定<font color=red>**单例bean对象的创建时机**</font>。<font color=red>**值得注意的是：此注解只对单例bean对象起作用，当指定了`@Scope`注解的`prototype`取值后，此注解不起作用**</font>。在没有使用此注解时，单例bean的生命周期与容器相同。但是当使用了此注解之后，单例对象的创建时机变成了第一次使用时创建。注意：这不是延迟加载思想（因为不是每次使用时都创建，只是第一次创建的时机改变了）。
+- **作用**：用于指定<span style="color: red;">**单例bean对象的创建时机**</span>。<span style="color: red;">**值得注意的是：此注解只对单例bean对象起作用，当指定了`@Scope`注解的`prototype`取值后，此注解不起作用**</span>。在没有使用此注解时，单例bean的生命周期与容器相同。但是当使用了此注解之后，单例对象的创建时机变成了第一次使用时创建。注意：这不是延迟加载思想（因为不是每次使用时都创建，只是第一次创建的时机改变了）。
 - **使用场景**：在实际开发中，当创建的Bean是单例对象时，并不是每个都需要一开始都加载到ioc容器之中，有些对象可以在真正使用的时候再加载，当有此需求时，即可使用此注解。
 - **作用的位置**：可以标识在类上、方法（构造函数）上、属性上
 
@@ -2734,7 +2734,7 @@ public DataSource createLinuxDataSource(@Value("${linux.driver}") String linuxDr
 }
 ```
 
-<font color=red>**注意：如果还是按原来方法重载的方法，是无法实现`@Conditional`注解的条件注册，因为`@Bean`注解的存在，它是在`@Conditional`注解之前执行，所以如果方法重载，spring框架会默认将后面定义的重载方法的返回bean对象注册到容器中**</font>
+<span style="color: red;">**注意：如果还是按原来方法重载的方法，是无法实现`@Conditional`注解的条件注册，因为`@Bean`注解的存在，它是在`@Conditional`注解之前执行，所以如果方法重载，spring框架会默认将后面定义的重载方法的返回bean对象注册到容器中**</span>
 
 - 测试，观察控制台输出
 
@@ -2916,7 +2916,7 @@ public class SpringProfileTest {
 - **使用场景**：当需要把编写的类注入到IOC容器中，就可以使用以上四个注解实现。以上四个注解中`@Component`注解通常用在非三层对象中。而`@Controller`，`@Service`，`@Repository`三个注解一般是针对控制层、业务层、数据层对象使用的，提供更加精确的语义化配置。
     > 在不确定类的使用场景时，可以使用 `@Component` 注解，但建议在可能的情况下最好使用特性化注解，因为它们会根据类不同的目的来提供额外的功能（比如说 `@Repository` 会将异常包装为 `DataAccessException`，这使用调试变得更加容易）
 
-<font color=purple>需要注意的是，Spring 在注解驱动开发时，要求必须先接管类对象，然后会处理类中的属性和方法。如果类没有被 Spring 接管，那么里面的属性和方法上的注解都不会被解析。</font>
+<span style="color: purple;">需要注意的是，Spring 在注解驱动开发时，要求必须先接管类对象，然后会处理类中的属性和方法。如果类没有被 Spring 接管，那么里面的属性和方法上的注解都不会被解析。</span>
 
 ### 相关属性
 
@@ -3334,7 +3334,7 @@ public void valueBasicTest(){
 - 如果没有指定 name，而是指定了 type，则按照 byType 的方式装配 bean 对象。
 - 当 byName 和 byType 都指定了，两个都会校验，有任何一个不符合条件就会报错。
 
-**`@Resource` 注解使用场景**：当某个类的依赖 bean 在 ioc 容器中存在多个的时候，可以使用此注解指定特定的 bean 对象注入。<font color=purple>相当于使用`@Autowired`配合`@Qualifier`注入</font>。
+**`@Resource` 注解使用场景**：当某个类的依赖 bean 在 ioc 容器中存在多个的时候，可以使用此注解指定特定的 bean 对象注入。<span style="color: purple;">相当于使用`@Autowired`配合`@Qualifier`注入</span>。
 
 ### 相关属性
 
@@ -3468,7 +3468,7 @@ beanFactory.getBeansOfType(BeanPostProcessor.class)
 `@Inject` 来源于 JSR-330 标准。
 
 - **作用**：也是根据对象类型进行自动注入，与 `@Resource`、`@Autowired` 的作用是一样。在使用之前需要先导入依赖坐标
-- **使用场景**：在使用`@Autowired`注解的地方，都可以替换成`@Inject`。它也可以出现在方法上，构造函数上和字段上，<font color=red>**但是需要注意的是：因为JRE无法决定构造方法注入的优先级，所以规范中规定类中只能有一个构造方法标识`@Inject`注解。**</font>
+- **使用场景**：在使用`@Autowired`注解的地方，都可以替换成`@Inject`。它也可以出现在方法上，构造函数上和字段上，<span style="color: red;">**但是需要注意的是：因为JRE无法决定构造方法注入的优先级，所以规范中规定类中只能有一个构造方法标识`@Inject`注解。**</span>
 
 ### 需导入的依赖
 
@@ -3703,7 +3703,7 @@ com.moon.springsample.utils.LogUtil@27c86f2d
 LogUtil基于@PreDestroy注解销毁前的方法执行了...
 ```
 
-<font color=purple>*注：这两个注解并非Spring提供，而是JSR250规范提供*</font>
+<span style="color: purple;">*注：这两个注解并非Spring提供，而是JSR250规范提供*</span>
 
 # 用于开启注解 AOP 支持的、配置切面、配置切入点表达式
 
@@ -4032,10 +4032,10 @@ public class EfficiencyAspect {
 
 ### 作用与使用场景
 
-- **作用**：用于配置后置通知。后置通知的执行是在切入点方法<font color=red>**正常执行**</font>之后执行。
+- **作用**：用于配置后置通知。后置通知的执行是在切入点方法<span style="color: red;">**正常执行**</span>之后执行。
 - **使用场景**：此注解是用于配置后置增强切入点方法的。被此注解修饰方法会在切入点方法正常执行情况下之后执行。在实际开发中，像提交事务，记录访问日志，统计方法执行效率等等都可以利用后置通知实现
 
-<font color=red>**需要注意的是：由于基于注解的配置时，spring创建通知方法的拦截器链时，后置通知在最终通知之后，所以会先执行`@After`注解修饰的方法。**</font>
+<span style="color: red;">**需要注意的是：由于基于注解的配置时，spring创建通知方法的拦截器链时，后置通知在最终通知之后，所以会先执行`@After`注解修饰的方法。**</span>
 
 ### 相关属性
 

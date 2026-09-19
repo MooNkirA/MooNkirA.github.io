@@ -1,4 +1,4 @@
-## Java 垃圾回收机制概述
+﻿## Java 垃圾回收机制概述
 
 GC（Gabage Collection）垃圾收集，是 JVM 内部的一个守护线程，也是 Java 与 C++ 的主要区别之一，这也是 JVM 最为标志性的功能。
 
@@ -324,7 +324,7 @@ gceasy.io 是国外一个开源的 GC 日志在线分析工具网站，可以把
 
 ## finalize() 方法的调用与析构函数(finalization)
 
-`protected void finalize() throws Throwable {}` 是 Object 类声明的一个方法。当垃圾回收器（garbage colector）决定回收某对象时，在垃圾回收器执行时会调用被回收对象的 `finalize()` 方法，可以覆盖此方法来实现对其资源的回收。<font color=red>**注意：一旦垃圾回收器准备释放对象占用的内存，将首先调用该对象的 `finalize()` 方法，并且下一次垃圾回收动作发生时，才真正回收对象占用的内存空间**</font>。
+`protected void finalize() throws Throwable {}` 是 Object 类声明的一个方法。当垃圾回收器（garbage colector）决定回收某对象时，在垃圾回收器执行时会调用被回收对象的 `finalize()` 方法，可以覆盖此方法来实现对其资源的回收。<span style="color: red;">**注意：一旦垃圾回收器准备释放对象占用的内存，将首先调用该对象的 `finalize()` 方法，并且下一次垃圾回收动作发生时，才真正回收对象占用的内存空间**</span>。
 
 GC 作为内存回收，其实大部分时候应用都不需要在 finalization 做些事情(也就是不需要重载)。只有在某些很特殊的情况下，比如调用了一些 native 的方法(一般是C写的)，需要要在 finaliztion 里去调用 C 的释放函数。
 

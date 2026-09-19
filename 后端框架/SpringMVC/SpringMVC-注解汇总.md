@@ -298,7 +298,7 @@ public class OrderController {
 `@RequestMapping`的衍生注解是：`@GetMapping`、`@PostMapping`、`@PutMapping`、`@DeleteMapping`、`@PatchMapping`，其衍生的注解的基础用法与`@RequestMapping`一样。但有以下注意细节：
 
 - 衍生注解只是将请求方式限定了，即没有与不用设置method属性，其他属性作用与用法与`@RequestMapping`一样
-- <font color=red>**衍生注解只能标识在方法上，而`@RequestMapping`注解可以分别标识在类与方法上**</font>
+- <span style="color: red;">**衍生注解只能标识在方法上，而`@RequestMapping`注解可以分别标识在类与方法上**</span>
 
 ### 使用示例
 
@@ -494,7 +494,7 @@ public class PathVariableController {
 
 `@InitBinder`用于初始化请求参数的数据绑定器。如请求参数有日期字符串的数据，是无法直接绑定到实体类中的`Date`属性，此时就需要使用该注解来初始化一些数据的转换器，转换成相应的类型封装到实体类中
 
-> <font color=red>**注意点：在某个Controller控制类中使用了`@InitBinder`注解进行数据转换绑定，只能对当前控制类生效，其他的控制类是不起作用**</font>
+> <span style="color: red;">**注意点：在某个Controller控制类中使用了`@InitBinder`注解进行数据转换绑定，只能对当前控制类生效，其他的控制类是不起作用**</span>
 
 ### 相关属性
 
@@ -1097,7 +1097,7 @@ public class ExceptionHandlerController {
 
 ### 作用与用法
 
-`@RequestBody` 注解用于修饰方法的形参，用于获取全部的请求体数据。<font color=red>**注：此注解主要是获取请求体的数据，并没有将json数据封装到实体对象的功能，具体由第三方的json组件或者自定义json转换来实现。**</font>
+`@RequestBody` 注解用于修饰方法的形参，用于获取全部的请求体数据。<span style="color: red;">**注：此注解主要是获取请求体的数据，并没有将json数据封装到实体对象的功能，具体由第三方的json组件或者自定义json转换来实现。**</span>
 
 GET 请求方式无请求体，所以使用 `@RequestBody` 无法接收数据，前端需要使用 POST 方式进行提交。
 
@@ -1561,7 +1561,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
 }
 ```
 
-<font color=red>**注：配置类需要标识`@EnableWebMvc`注解开启web mvc的配置，添加的资源处理规则才生效**</font>
+<span style="color: red;">**注：配置类需要标识`@EnableWebMvc`注解开启web mvc的配置，添加的资源处理规则才生效**</span>
 
 ## Spring MVC 实现 JSON 数据封装成对象
 
@@ -1601,7 +1601,7 @@ Spring MVC 相关注解并没有实现 JSON 数据封装成实体对象的功能
 
 #### 配置类
 
-此示例使用纯注解配置方式，<font color=red>**配置类`SpringMvcConfiguration`确认标识`@EnableWebMvc`注解开启web mvc的注解支持**</font>，其他不需要增加任何配置，因为spring mvc 默认支持jackson
+此示例使用纯注解配置方式，<span style="color: red;">**配置类`SpringMvcConfiguration`确认标识`@EnableWebMvc`注解开启web mvc的注解支持**</span>，其他不需要增加任何配置，因为spring mvc 默认支持jackson
 
 > 注：如果使用基于xml配置文件的方式，则修改springmvc.xml配置文件，在配置处理器映射器和处理器适配器时，使用注解驱动方式`<mvc:annotation-driven />`配置。它默认就支持jackson的转换
 
@@ -1760,7 +1760,7 @@ public class CustomInterceptorController {
 
 ### 多个拦截器执行顺序测试
 
-> 注：多个拦截器的配置方法与单个拦截器配置方法一样，<font color=red>**需要注意是在`addInterceptors`方法中，注册到`InterceptorRegistry`时的顺序决定了多个拦截器的执行顺序**</font>。
+> 注：多个拦截器的配置方法与单个拦截器配置方法一样，<span style="color: red;">**需要注意是在`addInterceptors`方法中，注册到`InterceptorRegistry`时的顺序决定了多个拦截器的执行顺序**</span>。
 >
 > 多个拦截器执行顺序测试结果详见《01-SpringMVC基础.md》，代码示例：`spring-analysis-note\springmvc-sample-annotation\`
 

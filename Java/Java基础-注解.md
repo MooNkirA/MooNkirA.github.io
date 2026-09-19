@@ -279,7 +279,7 @@ public class Day20Test02_02 {
 
 ### 注解是否支持继承
 
-<font color=red>**注解是不支持继承**</font>。不能使用关键字 `extends` 来继承某个 `@interface` 注解，但在编译后，编译器会让注解都自动继承 `java.lang.annotation.Annotation` 接口。
+<span style="color: red;">**注解是不支持继承**</span>。不能使用关键字 `extends` 来继承某个 `@interface` 注解，但在编译后，编译器会让注解都自动继承 `java.lang.annotation.Annotation` 接口。
 
 虽然反编译后发现注解继承了 Annotation 接口，请记住，即使 Java 的接口可以实现多继承，但定义注解时依然无法使用 extends 关键字继承@interface。
 

@@ -35,7 +35,7 @@
 
 #### 配置中心的作用
 
-配置中心将配置从应用中剥离出来，对所有的配置进行单独的统一管理，优雅的解决了配置的动态变更、持久化、运维成本等问题。应用自身既不需要去添加管理配置接口，也不需要自己去实现配置的持久化，更不需要引入“定时任务”以便降低运维成本。总得来说，<font color=red>**配置中心就是一种统一管理各种应用配置的基础服务组件**</font>。
+配置中心将配置从应用中剥离出来，对所有的配置进行单独的统一管理，优雅的解决了配置的动态变更、持久化、运维成本等问题。应用自身既不需要去添加管理配置接口，也不需要自己去实现配置的持久化，更不需要引入“定时任务”以便降低运维成本。总得来说，<span style="color: red;">**配置中心就是一种统一管理各种应用配置的基础服务组件**</span>。
 
 在系统架构中，配置中心是整个微服务基础架构体系中的一个组件，它的功能就是**配置的管理和存取**，但它也是整个微服务架构中不可或缺的一环。如下图，
 
@@ -160,7 +160,7 @@ Apollo 客户端的实现原理如下：
 - Apollo 服务端：Java 1.8+
 - Apollo 客户端：Java 1.7+
 
-> 由于需要同时运行服务端和客户端，所以建议安装 Java 1.8+，<font color=red>**需要配置 `JAVA_HOME` 环境变量**</font>。
+> 由于需要同时运行服务端和客户端，所以建议安装 Java 1.8+，<span style="color: red;">**需要配置 `JAVA_HOME` 环境变量**</span>。
 
 - MySQL 版本要求：5.6.5+
 
@@ -182,7 +182,7 @@ Apollo 客户端的实现原理如下：
 
 Apollo 服务端共需要两个数据库：`ApolloPortalDB` 和 `ApolloConfigDB`
 
-<font color=red>**`ApolloPortalDB`只需要在生产环境部署一个即可，而`ApolloConfigDB`需要在每个环境部署一套。**</font>
+<span style="color: red;">**`ApolloPortalDB`只需要在生产环境部署一个即可，而`ApolloConfigDB`需要在每个环境部署一套。**</span>
 
 > 本地脚本备份位置：`E:\07-编程工具资料\14-配置中心\apollo\sql scripts\`
 
@@ -753,7 +753,7 @@ server.servlet.context-path = /
 
 ![](images/20200705180518251_8996.png)
 
-> <font color=red>**注：每个环境下都有一个`default`集群，通常创建项目后，添加的配置都是在此集群中。所以创建新的集群后，相应的配置都是空**</font>
+> <span style="color: red;">**注：每个环境下都有一个`default`集群，通常创建项目后，添加的配置都是在此集群中。所以创建新的集群后，相应的配置都是空**</span>
 
 #### 同步集群配置
 
@@ -1060,7 +1060,7 @@ apollo:
 
 #### 完整 VM options 配置
 
-<font color=red>**为了保持灵活，都通过 vm options 来匹配环境、集群、缓存路径等。项目启动完整的 VM options 配置如下：**</font>
+<span style="color: red;">**为了保持灵活，都通过 vm options 来匹配环境、集群、缓存路径等。项目启动完整的 VM options 配置如下：**</span>
 
 ```bash
 -Denv=DEV -Dapollo.cacheDir=/opt/data/apollo-config -Dapollo.cluster=DEFAULT

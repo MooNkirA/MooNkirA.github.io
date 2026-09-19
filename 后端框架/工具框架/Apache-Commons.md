@@ -288,7 +288,7 @@ BeanUtils 是 Apache commons 组件的成员之一，是 Apache 组织开发的�
 ```java
 public static void setProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException
 ```
-- 给指定的 JavaBean 对象的属性赋值。<font color=red>如果指定的属性不存在，不抛异常，也不赋值</font>。
+- 给指定的 JavaBean 对象的属性赋值。<span style="color: red;">如果指定的属性不存在，不抛异常，也不赋值</span>。
     - `Object bean`: 要接收的对象
     - `String name`: 对象的属性名
     - `Object value`：要设置的值
@@ -297,13 +297,13 @@ public static void setProperty(Object bean, String name, Object value) throws Il
 public static String getProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException
 ```
 
-- 获得指定对象(bean)中指定属性(name)的值。<font color=red>**如果属性不存在，直接报错**</font>。
+- 获得指定对象(bean)中指定属性(name)的值。<span style="color: red;">**如果属性不存在，直接报错**</span>。
 
 ```java
 public static void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException
 ```
 
-- 将一个 JavaBean 中所有的属性复制赋值给另一个 JavaBean。复制的<font color=red>**两个 JavaBean 的属性不必完全相同，只会对相同属性名进行复制赋值**</font>。*注意：目标在前面的参数*
+- 将一个 JavaBean 中所有的属性复制赋值给另一个 JavaBean。复制的<span style="color: red;">**两个 JavaBean 的属性不必完全相同，只会对相同属性名进行复制赋值**</span>。*注意：目标在前面的参数*
     - `Object dest`：目标对象
     - `Object orig`：源对象
 
@@ -432,7 +432,7 @@ int update(String sql, Object...params);
 - `sql`：需要执行的sql语句
 - `params`：实际参数(真实参数)，给sql语句中的占位符赋值
 
-> 注：以上方法在内部都有释放资源的代码，所以<font color=red>**无需关闭连接**</font>等操作
+> 注：以上方法在内部都有释放资源的代码，所以<span style="color: red;">**无需关闭连接**</span>等操作
 
 
 #### QueryRunner 增删改操作方式2：没有传入任何对象
@@ -458,7 +458,7 @@ int update(Connection conn, String sql, Object...params);
 - `sql`: 需要执行的sql语句
 - `params`: 实际参数(真实参数)，给sql语句中的占位符赋值
 
-> 注：以上方法没有释放资源的代码，<font color=red>**需要操作者手动关闭连接**</font>
+> 注：以上方法没有释放资源的代码，<span style="color: red;">**需要操作者手动关闭连接**</span>
 
 #### QueryRunner 查询操作方式1：没有连接对象
 
@@ -479,7 +479,7 @@ Object query(String sql, ResultSetHandler rsh)
 Object query(String sql, ResultSetHandler rsh, Object... params)
 ```
 
-> 注：以上方法在内部都有释放资源的代码，所以<font color=red>**无需关闭连接**</font>等操作
+> 注：以上方法在内部都有释放资源的代码，所以<span style="color: red;">**无需关闭连接**</span>等操作
 
 #### QueryRunner 查询操作方式2：有连接对象，需要手动关闭资源
 
@@ -496,7 +496,7 @@ Object query(Connection conn, String sql, ResultSetHandler rsh)
 Object query(Connection conn, String sql, ResultSetHandler rsh, Object... params)
 ```
 
-> 注：以上方法没有释放资源的代码，<font color=red>**需要操作者手动关闭连接**</font>
+> 注：以上方法没有释放资源的代码，<span style="color: red;">**需要操作者手动关闭连接**</span>
 
 #### QureyRunner 的操作多个数据方法
 
@@ -512,7 +512,7 @@ int[] batch(String sql, Object[][] params)
     - 一维：sql语句要执行多次
     - 二维：就是每条sql语句中`?`存储的占位符的参数，二维长度是`?`参数的个数
 
-> <font color=red>**注：批量处理，是访问数据库一次，一次性执行重复多个sql语句处理，这样可以减少数据库访问次数的压力(如果使用逐条删除的方式，每次删除都访问数据库一次)。**</font>
+> <span style="color: red;">**注：批量处理，是访问数据库一次，一次性执行重复多个sql语句处理，这样可以减少数据库访问次数的压力(如果使用逐条删除的方式，每次删除都访问数据库一次)。**</span>
 
 示例：
 
@@ -636,7 +636,7 @@ public class QueryRunnerTest {
 
 #### 封装成 JavaBean (BeanHandler / BeanListHandler)
 
-<font color=red>**前提：表的列名与 JavaBean 属性名要相同**</font>
+<span style="color: red;">**前提：表的列名与 JavaBean 属性名要相同**</span>
 
 ```java
 T BeanHandler<T>(Class clazz);
@@ -722,7 +722,7 @@ public class Test02_04 {
 
 #### 封装成 Map (MapHandler / MapListHandler)
 
-<font color=red>**可用于表连接查询的时候**</font>
+<span style="color: red;">**可用于表连接查询的时候**</span>
 
 ```java
 Map<String, Object> MapHandler();
@@ -889,7 +889,7 @@ T ScalarHandler<T>();
 
 把结果集的第一行第一列取出。通常用于只有单行单列的聚合函数查询查询结果集。
 
-> <font color=red>*注：用来统计数量是时返回的数据类型是`long`*</font>
+> <span style="color: red;">*注：用来统计数量是时返回的数据类型是`long`*</span>
 
 Code Demo:
 

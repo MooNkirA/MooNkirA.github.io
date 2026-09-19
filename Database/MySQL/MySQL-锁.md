@@ -226,7 +226,7 @@ select * from t for update skip locked;
 
 ### 概述
 
-表级锁（表锁），每次操作锁住整张表。<font color=red>**开销小，加锁快**</font>；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低，一般用在整表数据迁移的场景。应用在 MyISAM、InnoDB、BDB 等存储引擎中。对于表级锁，主要分为以下三类：
+表级锁（表锁），每次操作锁住整张表。<span style="color: red;">**开销小，加锁快**</span>；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低，一般用在整表数据迁移的场景。应用在 MyISAM、InnoDB、BDB 等存储引擎中。对于表级锁，主要分为以下三类：
 
 - 表锁
 - 元数据锁（meta data lock，MDL）
@@ -284,7 +284,7 @@ show open tables;
 
 ![](images/311250815247308.png)
 
-> <font color=red>**结论：读锁不会阻塞其他客户端的读，但是会阻塞写；写锁既会阻塞其他客户端的读，又会阻塞其他客户端的写。**</font>
+> <span style="color: red;">**结论：读锁不会阻塞其他客户端的读，但是会阻塞写；写锁既会阻塞其他客户端的读，又会阻塞其他客户端的写。**</span>
 
 ### 表级别的 AUTO-INC 锁
 
@@ -371,7 +371,7 @@ SELECT object_type,	object_schema, object_name, lock_type, lock_duration FROM PE
 - **意向共享锁**，英文名：Intention Shared Lock，简称 IS 锁。当事务准备在某条记录上加 S 锁时，需要先在表级别加一个 IS 锁。由语句 `select ... lock in share mode` 添加。与表锁共享锁(read)兼容，与表锁排他锁(write)互斥。当有其他事务对整个表加共享锁之前，需要先获取到意向共享锁。
 - **意向独占锁**，英文名：Intention Exclusive Lock，简称 IX 锁。当事务准备在某条记录上加 X 锁时，需要先在表级别加一个 IX 锁。由 `insert、update、delete、select...for update` 添加 。与表锁共享锁(read)及排他锁(write)都互斥，意向锁之间不会互斥。当其他事务对整个表加排他锁之前，需要先获取到意向排他锁。
 
-> Tips: <font color=red>**一旦事务提交了，意向共享锁、意向排他锁，都会自动释放。**</font>
+> Tips: <span style="color: red;">**一旦事务提交了，意向共享锁、意向排他锁，都会自动释放。**</span>
 
 可以通过以下 SQL，查看意向锁及行锁的加锁情况：
 
@@ -425,7 +425,7 @@ SELECT object_schema,object_name,index_name,lock_type,lock_mode,lock_data FROM p
 
 行级锁（行锁），也称为记录锁，即在操作时锁住某一行数据。开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低，并发度最高。应用在InnoDB存储引擎中。
 
-值得注意的是，InnoDB 的行锁实际是<font color=red>**通过给索引上的索引项加锁(在索引对应的索引项上做标记)**</font>，不是针对整个行记录加的锁。InnoDB 这种行锁实现特点意味着：只有通过索引条件检索数据，InnoDB 才使用行级锁，否则，InnoDB 将使用表锁。如果索引失效，也会从行锁升级为表锁(<font color=red>**RR级别会升级为表锁，RC级别不会升级为表锁**</font>)。
+值得注意的是，InnoDB 的行锁实际是<span style="color: red;">**通过给索引上的索引项加锁(在索引对应的索引项上做标记)**</span>，不是针对整个行记录加的锁。InnoDB 这种行锁实现特点意味着：只有通过索引条件检索数据，InnoDB 才使用行级锁，否则，InnoDB 将使用表锁。如果索引失效，也会从行锁升级为表锁(<span style="color: red;">**RR级别会升级为表锁，RC级别不会升级为表锁**</span>)。
 
 只有执行计划真正使用了索引(不论是使用主键索引、唯一索引或普通索引)，InnoDB 才能使用行锁来对数据加锁：即便在条件中使用了索引字段，但是否使用索引来检索数据是由 MySQL 通过判断不同执行计划的代价来决定的，如果 MySQL 认为全表扫描效率更高，比如对一些很小的表，它就不会使用索引，这种情况下 InnoDB 将使用表锁，而不是行锁。同时当使用范围条件而不是相等条件检索数据，并请求锁时，InnoDB 会给符合条件的已有数据记录的索引项加锁。
 
@@ -464,7 +464,7 @@ InnoDB 中，行锁也是分成了各种类型。即使对同一条记录加行�
 
 MySQL 在 REPEATABLE READ 隔离级别下是可以解决幻读问题的，解决方案有两种，可以使用 MVCC 方案解决，也可以采用加锁方案解决。但是在使用加锁方案解决时有问题，就是事务在第一次执行读取操作时，那些幻影记录尚不存在，无法给这些幻影记录加上记录锁。
 
-InnoDB 提出了一种名为 Gap Locks 的锁，官方的类型名称为：LOCK_GAP，也可以简称为 gap 锁。<font color=red>**间隙锁实质上是对索引前后的间隙上锁，不对索引本身上锁。间隙锁是在可重复读（REPEATABLE READ）隔离级别下才会生效。**</font>。
+InnoDB 提出了一种名为 Gap Locks 的锁，官方的类型名称为：LOCK_GAP，也可以简称为 gap 锁。<span style="color: red;">**间隙锁实质上是对索引前后的间隙上锁，不对索引本身上锁。间隙锁是在可重复读（REPEATABLE READ）隔离级别下才会生效。**</span>。
 
 例如：会话1开启一个事务，执行
 
@@ -496,7 +496,7 @@ insert into `user` values (15, '傷月', 22);
 
 ### Next-Key Locks（临键锁）
 
-有些情况，既想锁住某条记录，又想阻止其他事务在该记录前边的间隙插入新记录，所以 InnoDB 就提出了一种名为 Next-Key Locks 的锁，官方的类型名称为：LOCK_ORDINARY，也可以简称为 next-key 锁。<font color=red>**next-key 锁的本质就是一个记录锁和一个 gap 锁的组合**</font>，即包含记录本身。
+有些情况，既想锁住某条记录，又想阻止其他事务在该记录前边的间隙插入新记录，所以 InnoDB 就提出了一种名为 Next-Key Locks 的锁，官方的类型名称为：LOCK_ORDINARY，也可以简称为 next-key 锁。<span style="color: red;">**next-key 锁的本质就是一个记录锁和一个 gap 锁的组合**</span>，即包含记录本身。
 
 默认情况下，InnoDB 以 REPEATABLE READ 隔离级别运行。在这种情况下，InnoDB 使用 Next-Key Locks 锁进行搜索和索引扫描，这可以防止幻读的发生。
 

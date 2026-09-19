@@ -296,8 +296,8 @@ Java 编译器会从上下文中推断出用什么函数式接口来配合 Lambd
 
 Lambda 表达式可以用来取代唯一抽象方法的内部匿名类的。但是 this 指针指向对象，却是完全不一样的：
 
-- 对于 Java 中的匿名内部类，编译器会自动生成它的类名（`外部类类名$数字`）。而<font color=red>**匿名内部类中的 this，将指向的是这个内部类对象本身**</font>。
-- 对于 Java 中的<font color=red>**Lambda 表达式中的 this，指向的是 Lambda 表达式所在类的对象**</font>。即 Lambda 表达式中的 this 与普通表达式中的 this 没有任何区别。
+- 对于 Java 中的匿名内部类，编译器会自动生成它的类名（`外部类类名$数字`）。而<span style="color: red;">**匿名内部类中的 this，将指向的是这个内部类对象本身**</span>。
+- 对于 Java 中的<span style="color: red;">**Lambda 表达式中的 this，指向的是 Lambda 表达式所在类的对象**</span>。即 Lambda 表达式中的 this 与普通表达式中的 this 没有任何区别。
 
 ### 变量作用域
 
@@ -415,8 +415,8 @@ public class Java8Tester {
 
 **方法引用的注意事项**：
 
-1. <font color=red>**方法引用只能"引用"已经存在的方法**</font>
-2. <font color=red>**Lambda 体中调用的方法的参数列表与返回值类型，要与函数式中接口的抽象方法的参数列表和返回值类型一样**</font>
+1. <span style="color: red;">**方法引用只能"引用"已经存在的方法**</span>
+2. <span style="color: red;">**Lambda 体中调用的方法的参数列表与返回值类型，要与函数式中接口的抽象方法的参数列表和返回值类型一样**</span>
 
 ### 方法引用语法格式
 
@@ -481,7 +481,7 @@ public void test02() {
 
 Java面向对象中，类名只能调用静态方法。而在方法引用中，也可以使用类名引用普通方法。
 
-但类名引用实例方法是有前提的，<font color=red>**当 Lambda 表达式只有一个参数且调用该参数的无参类方法时，可以使用类名实例方法引用，实际上是拿第一个参数作为方法的调用者**</font>。表达式语法如下：
+但类名引用实例方法是有前提的，<span style="color: red;">**当 Lambda 表达式只有一个参数且调用该参数的无参类方法时，可以使用类名实例方法引用，实际上是拿第一个参数作为方法的调用者**</span>。表达式语法如下：
 
 ```java
 // 类名::实例方法名
@@ -1204,7 +1204,7 @@ public interface Function<T, R> {
 
 `java.util.function.Function<T,R>` 接口用来根据一个类型的数据得到另一个类型的数据，前者称为前置条件，后者称为后置条件。`Function`转换型接口，对`apply`方法传入的`T`类型数据进行处理，返回`R`类型的结果，有参有返回的接口。
 
-> <font color=red>**请注意，Function的前置条件泛型和后置条件泛型可以相同。**</font>
+> <span style="color: red;">**请注意，Function的前置条件泛型和后置条件泛型可以相同。**</span>
 
 示例：将 String 类型转换为 Integer 类型
 
@@ -1603,7 +1603,7 @@ stream 所有操作组合在一起即变成了管道，管道中有以下两个�
 
 #### Collection 下的 stream() 方法
 
-在 Java 8 中，所有的 `Collection` 集合接口都有`stream()`为集合创建串行流。<font color=red>**串行的流，就是在一个线程上执行**</font>
+在 Java 8 中，所有的 `Collection` 集合接口都有`stream()`为集合创建串行流。<span style="color: red;">**串行的流，就是在一个线程上执行**</span>
 
 ```java
 public static void main(String[] args) {
@@ -1767,7 +1767,7 @@ public void filterTest() {
 Stream<T> limit(long maxSize);
 ```
 
-Stream流的 `limit` 方法可以对流进行截取，只取用前的`maxSize`个数据。参数是一个long型，<font color=red>**如果集合当前长度大于参数则进行截取。否则不进行操作**</font>。示例如下：
+Stream流的 `limit` 方法可以对流进行截取，只取用前的`maxSize`个数据。参数是一个long型，<span style="color: red;">**如果集合当前长度大于参数则进行截取。否则不进行操作**</span>。示例如下：
 
 ```java
 @Test
@@ -1789,7 +1789,7 @@ public void limitTest() {
 Stream<T> skip(long n);
 ```
 
-Stream流的 `skip` 方法可以跳过前几个元素，并获取一个截取之后的新流。<font color=red>**如果流的当前长度大于n，则跳过前n个；否则将会得到一个长度为0的空流**</font>。示例如下：
+Stream流的 `skip` 方法可以跳过前几个元素，并获取一个截取之后的新流。<span style="color: red;">**如果流的当前长度大于n，则跳过前n个；否则将会得到一个长度为0的空流**</span>。示例如下：
 
 ```java
 @Test

@@ -95,7 +95,7 @@ Spring Cloud Config 服务为外部配置(键值对或YAML)提供了基于 HTTP 
 </dependency>
 ```
 
-<font color=red>**编写测试示例的时候遇到的问题**</font>：
+<span style="color: red;">**编写测试示例的时候遇到的问题**</span>：
 
 ![](images/20201128111110996_18259.png)
 
@@ -313,7 +313,7 @@ eureka: # Eureka 客户端配置
 
 修改 Config Client 客户端（`service-product`）获取从注册中获取 Config Server 的服务地址
 
-<font color=red>**需要注意的是，原来 Config Client 工程是直接配置了 Config Server 的请求地址，上面的示例是先从 Config Server 中读取到相应的配置文件，从而获取到 eureka 注册中心的地址。但此时因为需要从注册中心获取 Config Server 的地址，所以配置中必须配置 eureka 相关信息，不能像之前示例，将 eureka 配置部分放到 config 配置中心的文件中。**</font>
+<span style="color: red;">**需要注意的是，原来 Config Client 工程是直接配置了 Config Server 的请求地址，上面的示例是先从 Config Server 中读取到相应的配置文件，从而获取到 eureka 注册中心的地址。但此时因为需要从注册中心获取 Config Server 的地址，所以配置中必须配置 eureka 相关信息，不能像之前示例，将 eureka 配置部分放到 config 配置中心的文件中。**</span>
 
 ```yml
 spring:

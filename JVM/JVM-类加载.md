@@ -1,4 +1,4 @@
-## 类加载
+﻿## 类加载
 
 当第一次使用某个类时，如果该类的字节码文件(class)还没有加载到内存中，则 JVM 通过类的完全限定名（包名和类名）查找此类的字节码文件，会将该类的字节码文件（`.class`）加载到内存中，并在内存中创建一个 Class 对象(字节码文件对象)，用来封装类在方法区内的数据结构并存放在堆区内。
 
@@ -139,7 +139,7 @@ System.out.println(classLoader); // sun.misc.Launcher$AppClassLoader
 
 ### 双亲委派机制概述
 
-从 JDK1.2 开始，<font color=red>**类的加载过程采用双亲委派机制(PDM)**</font>。这种机制能够很好的保护 java 程序的安全。
+从 JDK1.2 开始，<span style="color: red;">**类的加载过程采用双亲委派机制(PDM)**</span>。这种机制能够很好的保护 java 程序的安全。
 
 双亲委派模型：如果一个类加载器收到了类加载的请求，它首先不会自己去加载这个类，而是把这个请求委派给父类加载器去完成，每一层的类加载器都是如此，这样所有的加载请求都会被传送到顶层的启动类加载器中，只有当父加载无法完成加载请求（它的搜索范围中没找到所需的类）时，才向下委派给子加载器尝试去加载类，直到该类被成功加载。
 
@@ -326,7 +326,7 @@ private ProtectionDomain preDefineClass(String name, ProtectionDomain pd) {
 public ClassLoader getClassLoader()
 ```
 
-> Notes: <font color=red>**如果通过`类名.class.getClassLoader()`获得的类加载器对象是 null，则说明该类是由引导类加载器加载**</font>
+> Notes: <span style="color: red;">**如果通过`类名.class.getClassLoader()`获得的类加载器对象是 null，则说明该类是由引导类加载器加载**</span>
 
 #### 类常用方法
 

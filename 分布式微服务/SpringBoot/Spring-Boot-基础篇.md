@@ -18,7 +18,7 @@ Spring Boot 是全新的 Spring 开发框架，其设计的初衷是简化 Sprin
 
 ### 核心功能
 
-- 核心能力：Spring容器、日志、<font color=red>**自动配置 AutoCongfiguration、Starters**</font>
+- 核心能力：Spring容器、日志、<span style="color: red;">**自动配置 AutoCongfiguration、Starters**</span>
 - web应用的能力：MVC、嵌入式容器
 - 数据访问(持久化)：关系型数据库、非关系型数据库
 - 强大的整合其他技术的能力
@@ -557,14 +557,14 @@ public class Application {
 }
 ```
 
-也可以通过 `scanBasePackages` 属性来指定扫描的基础包，<font color=red>**值得注意的是：如果指定扫描基础包后，原来默认扫描当前引导类所在包及其子包的值就会被覆盖**</font>
+也可以通过 `scanBasePackages` 属性来指定扫描的基础包，<span style="color: red;">**值得注意的是：如果指定扫描基础包后，原来默认扫描当前引导类所在包及其子包的值就会被覆盖**</span>
 
 ```java
 // SpringBoot 应用启动类
 @SpringBootApplication(scanBasePackages={"com.moon.springboot"}) // 指定扫描的基础包
 ```
 
-<font color="purple">注：如果配置 `@SpringBootApplication` 注解，不指定注解扫描的包，默认约定是扫描当前引导类所在的同级包下的所有包和所有类以及下级包的类（若为 JPA 项目还可以扫描标注 `@Entity` 的实体类），建议入口类放置的位置在 groupId + arctifactID 组合的包名下；如果需要指定扫描包使用注解 `@SpringBootApplication(scanBasePackages = 'xxx.xxx.xx')`</font>
+<span style="color: purple;">注：如果配置 `@SpringBootApplication` 注解，不指定注解扫描的包，默认约定是扫描当前引导类所在的同级包下的所有包和所有类以及下级包的类（若为 JPA 项目还可以扫描标注 `@Entity` 的实体类），建议入口类放置的位置在 groupId + arctifactID 组合的包名下；如果需要指定扫描包使用注解 `@SpringBootApplication(scanBasePackages = 'xxx.xxx.xx')`</span>
 
 上面的`@SpringBootApplication`相当于下面的3个注解
 
@@ -944,7 +944,7 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 
 在 yml 配置中是支持二进制，八进制，十六进制。这个问题就出在这里了，因为 0127 在开发者眼中是一个字符串 "0127"，但是在 spring boot 眼中却认作一个数字，而且是一个八进制的数字。当后台使用 String 类型接收数据时，如果配置文件中配置了一个整数值，它是先安装整数进行处理，读取后再转换成字符串。刚好 0127 又是八进制的格式，所以最终以十进制数字 87 的结果存在了。
 
-<font color=red>**总结两个注意点：第一，字符串标准书写加上引号包裹，养成习惯；第二，遇到 0 开头的数据多注意**</font>
+<span style="color: red;">**总结两个注意点：第一，字符串标准书写加上引号包裹，养成习惯；第二，遇到 0 开头的数据多注意**</span>
 
 #### YAML 数据语法格式
 
@@ -988,7 +988,7 @@ person:
 person: {name: haohao,age: 31,addr: beijing}
 ```
 
-- <font color=red>**注意：key1前面的空格个数不限定，在yml语法中，相同缩进代表同一个级别**</font>
+- <span style="color: red;">**注意：key1前面的空格个数不限定，在yml语法中，相同缩进代表同一个级别**</span>
 
 ##### 配置Map数据
 
@@ -1222,7 +1222,7 @@ public class Application {
 }
 ```
 
-> <font color=red>**建议使用 `@EnableConfigurationProperties` 声明引入的配置类，如此在不使用此类的时候，就不会出现因为配置类标识了 `@Component` 注解，而加入到 Spring 容器的情况，从而减少 spring 管控的资源数量。**</font>
+> <span style="color: red;">**建议使用 `@EnableConfigurationProperties` 声明引入的配置类，如此在不使用此类的时候，就不会出现因为配置类标识了 `@Component` 注解，而加入到 Spring 容器的情况，从而减少 spring 管控的资源数量。**</span>
 
 **读取 yml 类型示例映射示意图**
 
@@ -1248,7 +1248,7 @@ public class DemoController {
 
 ##### 配合 @PropertySource 注解读取自定义的配置文件
 
-上面方式1是写在默认配置文件 application.properties 中，如果属性太多，实际项目可能会根据模块去拆分一些配置，并配置在不同的自定义配置文件中。通过 Spring 的 `@PropertySource` 注解可以读取自定义的配置文件，<font color=red>**值得注意的是：此方式只能读取 properties 格式文件，该注解并不支持加载 yml 文件！**</font>
+上面方式1是写在默认配置文件 application.properties 中，如果属性太多，实际项目可能会根据模块去拆分一些配置，并配置在不同的自定义配置文件中。通过 Spring 的 `@PropertySource` 注解可以读取自定义的配置文件，<span style="color: red;">**值得注意的是：此方式只能读取 properties 格式文件，该注解并不支持加载 yml 文件！**</span>
 
 **读取自定义的配置文件的具体步骤**如下：
 
@@ -1361,14 +1361,14 @@ public class DruidConfig {
 }
 ```
 
-- 步骤2：在 application.yml/application.properties 中定义要绑定的属性，<font color=red>**注意：示例配置中 `datasource` 是全小写，非 spring boot 原生 `spring.datasource.driver-class-name` 的配置**</font>
+- 步骤2：在 application.yml/application.properties 中定义要绑定的属性，<span style="color: red;">**注意：示例配置中 `datasource` 是全小写，非 spring boot 原生 `spring.datasource.driver-class-name` 的配置**</span>
 
 ```yml
 datasource:
   driverClassName: com.mysql.jdbc.Driver
 ```
 
-- 步骤3：使用 `@ConfigurationProperties` 注解标识在创建第三方 bean 实例的方法，进行属性绑定，<font color=red>**注意前缀是全小写的 datasource**</font>
+- 步骤3：使用 `@ConfigurationProperties` 注解标识在创建第三方 bean 实例的方法，进行属性绑定，<span style="color: red;">**注意前缀是全小写的 datasource**</span>
 
 ```java
 @Bean
@@ -1436,11 +1436,11 @@ servers:
   IP_ADDRESS: 192.168.0.2      # 常量模式
 ```
 
-也可以说，以上 4 种配置名称模式，最终都可以匹配到 `ipAddress` 这个属性名。其中原因就是在进行匹配时，配置中的名称要去掉中划线和下划线后，忽略大小写的情况下去与 java 代码中的属性名进行忽略大小写的等值匹配，而以上 4 种命名去掉下划线中划线忽略大小写后都是一个词 `ipaddress`，java 代码中的属性名忽略大小写后也是 `ipaddress`，因此就可以进行等值匹配了，这就是为什么这4种格式都能匹配成功的原因。不过<font color=red>**spring boot 官方推荐配置名称使用烤肉串模式，也就是中划线模式**</font>。
+也可以说，以上 4 种配置名称模式，最终都可以匹配到 `ipAddress` 这个属性名。其中原因就是在进行匹配时，配置中的名称要去掉中划线和下划线后，忽略大小写的情况下去与 java 代码中的属性名进行忽略大小写的等值匹配，而以上 4 种命名去掉下划线中划线忽略大小写后都是一个词 `ipaddress`，java 代码中的属性名忽略大小写后也是 `ipaddress`，因此就可以进行等值匹配了，这就是为什么这4种格式都能匹配成功的原因。不过<span style="color: red;">**spring boot 官方推荐配置名称使用烤肉串模式，也就是中划线模式**</span>。
 
 分析上面报错信息，其中 Reason 描述了报错的原因，规范的名称应该是烤肉串(kebab)模式(case)，即使用`-`分隔，使用小写字母数字作为标准字符，且必须以字母开头。所以当配置 `@ConfigurationProperties` 的前缀为 `dataSource` 时，会出现问题。
 
-> <font color=red>**值得注意：以上规则仅针对 springboot 中 `@ConfigurationProperties` 注解进行属性绑定时有效，对 `@Value` 注解进行属性映射无效。**</font>
+> <span style="color: red;">**值得注意：以上规则仅针对 springboot 中 `@ConfigurationProperties` 注解进行属性绑定时有效，对 `@Value` 注解进行属性映射无效。**</span>
 
 #### 常用计量单位绑定
 
@@ -1753,7 +1753,7 @@ logging:
 
 ![](images/20190501093422694_17866.png)
 
-这样程序在运行的时候就可以进行自动构建了，实现了热部署的效果。但值得注意的是：IDEA 不会在每次修改都马上进行构建，<font color=red>**只在 IDEA 失去焦点5秒后进行热部署**</font>，即从 idea 切换到其他软件时进行热部署，比如改完程序需要到浏览器上去调试，这个时候 idea 就自动进行热部署操作。
+这样程序在运行的时候就可以进行自动构建了，实现了热部署的效果。但值得注意的是：IDEA 不会在每次修改都马上进行构建，<span style="color: red;">**只在 IDEA 失去焦点5秒后进行热部署**</span>，即从 idea 切换到其他软件时进行热部署，比如改完程序需要到浏览器上去调试，这个时候 idea 就自动进行热部署操作。
 
 ### 排除静态资源文件
 
@@ -2337,7 +2337,7 @@ public class IpCountProperties {
 }
 ```
 
-> <font color=purple>**注：为防止项目组定义的参数种类过多，产生冲突，通常设置属性前缀会至少使用两级属性作为前缀进行区分。**</font>
+> <span style="color: purple;">**注：为防止项目组定义的参数种类过多，产生冲突，通常设置属性前缀会至少使用两级属性作为前缀进行区分。**</span>
 
 - 在自动配置类中，使用 `@EnableConfigurationProperties` 注解加载属性配置类 `IpCountProperties`
 
@@ -2625,7 +2625,7 @@ public class IpCountAutoConfiguration {
 ```
 
 - `groups` 属性定义了当前配置的提示信息总体描述，当前配置属于哪一个属性封装类
-- `properties` 属性描述了当前配置中每一个属性的具体设置，包含名称、类型、描述、默认值等信息。<font color=red>**注意：这些提示信息都是来自配置属性类中的文档注释**</font>
+- `properties` 属性描述了当前配置中每一个属性的具体设置，包含名称、类型、描述、默认值等信息。<span style="color: red;">**注意：这些提示信息都是来自配置属性类中的文档注释**</span>
 - `hints` 属性默认是空白的，用于设置指定属性，取值的提示信息。（可以参考 Spring Boot 源码中的写法，上面是）
 
 配置信息提示：

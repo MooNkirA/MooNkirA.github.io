@@ -103,7 +103,7 @@ JQ对象[0];
 JQ对象.get(0);
 ```
 
-> Notes: <font color=red>**JQ 对象在低层是一个 JS 数组对象，只需要取出第0个元素即可**</font>
+> Notes: <span style="color: red;">**JQ 对象在低层是一个 JS 数组对象，只需要取出第0个元素即可**</span>
 
 ### jQuery 对象与 DOM 对象之间的转换
 
@@ -120,7 +120,7 @@ JQ 中如果要对某个或一些元素进行操作，操作之前先要选择�
 
 ### jQuery常用的选择器
 
-1. <font color=red>**基本选择器**</font>
+1. <span style="color: red;">**基本选择器**</span>
 2. 层级选择器
 3. 属性选择器
 4. 基本过滤选择器
@@ -137,12 +137,12 @@ JQ 中如果要对某个或一些元素进行操作，操作之前先要选择�
 
 - 通过标签、类、通配符选择器等获取到的如果是多个元素，内部已经进行了遍历的操作，不需要像JS一样，遍历修改，直接后面调用修改的方法即可批量修改。
 - `$("xx","xx",……)` 可以选择多个元素操作，不同元素使用逗号(`,`)隔开
-- <font color=red>**ID 名不能是`xx.xx`这种命名**</font>
+- <span style="color: red;">**ID 名不能是`xx.xx`这种命名**</span>
 
 ### 层级选择器
 
-- `$("A B")`：获得 A 元素内部的所有的 B 元素。<font color=red>**注意：A 与 B 之间有空格**</font>，B 元素是 A 元素的子孙元素。
-- `$("A>B")`：获得 A 元素下面的所有 B 子元素，<font color=red>**不包含孙元素**</font>。
+- `$("A B")`：获得 A 元素内部的所有的 B 元素。<span style="color: red;">**注意：A 与 B 之间有空格**</span>，B 元素是 A 元素的子孙元素。
+- `$("A>B")`：获得 A 元素下面的所有 B 子元素，<span style="color: red;">**不包含孙元素**</span>。
 - `$("A+B")`：获得 A 元素同级，下一个 B 元素。B 是 A 的下一个兄弟元素，如果 A 是老二，B 是老三。
 - `$("A~B")`：获得 A 元素同级，所有后面 B 元素。返回值是一组 B 元素，A 是老二，B 是老三~最后一个兄弟。
 - `元素.siblings()`：获得所有的兄弟元素。得到所有同级的兄弟元素，无论什么标签。
@@ -363,7 +363,7 @@ $(function(){
 
 ## jQuery 的 AJAX 使用
 
-使用 jQuery 的 ajax 开发，大大提供开发效率，并且<font color=red>**具有浏览器兼容性**</font>。
+使用 jQuery 的 ajax 开发，大大提供开发效率，并且<span style="color: red;">**具有浏览器兼容性**</span>。
 
 ### jQuery 的 AJAX 语法格式
 
@@ -401,7 +401,7 @@ function(result) {
 
 - 参数 4：type，设置服务器响应的数据的类型。可以不设置，返回内容格式：xml, html, script, json, text, _default。
     - "text"，默认返回类型
-    - "json"，服务器一般响应的一个字符串，默认 js 接收也是一个字符串，但是<font color=red>**如果设置 json，js 接收的就是 js 对象，如果是对象就可以调用属性**</font>。
+    - "json"，服务器一般响应的一个字符串，默认 js 接收也是一个字符串，但是<span style="color: red;">**如果设置 json，js 接收的就是 js 对象，如果是对象就可以调用属性**</span>。
 
 #### $.get()
 
@@ -500,7 +500,7 @@ response.setContentType("application/json;charset=utf-8");
 
 同步处理异常可以在dao数据访问层直接处理。
 
-<font color=red>**异步处理异常不能直接处理**</font>，因为页面不会刷新，如果在 dao 数据访问层处理后，页面完全不会接收到任何提示信息。所以需要在 dao 层抛出异常，最后<font color=red>**在 servlet 层进行捕获**</font>，再响应异常的信息到页面上。
+<span style="color: red;">**异步处理异常不能直接处理**</span>，因为页面不会刷新，如果在 dao 数据访问层处理后，页面完全不会接收到任何提示信息。所以需要在 dao 层抛出异常，最后<span style="color: red;">**在 servlet 层进行捕获**</span>，再响应异常的信息到页面上。
 
 #### AJAX不能直接进行页面的跳转
 

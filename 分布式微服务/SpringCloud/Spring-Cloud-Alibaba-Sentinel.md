@@ -288,7 +288,7 @@ spring:
 
 **规则就是用来定义如何进行保护资源的**。作用在资源之上，定义以什么样的方式保护资源。Sentinel 支持围绕资源的实时状态设定的规则：流量控制规则、熔断降级规则、系统保护规则、来源访问控制规则和热点参数规则。
 
-> Notes: <font color=violet>**Sentinel 的所有规则可以动态实时调整**</font>。即规则都可以在内存态中动态地查询及修改，修改之后立即生效
+> Notes: <span style="color: violet;">**Sentinel 的所有规则可以动态实时调整**</span>。即规则都可以在内存态中动态地查询及修改，修改之后立即生效
 
 ### 资源保护步骤
 
@@ -482,7 +482,7 @@ Sentinel 支持以下几种规则：**流量控制规则**、**熔断降级规�
 
 流量控制，其原理是监控应用流量的QPS(每秒查询率) 或并发线程数等指标，当达到指定的阈值时对流量进行控制，以避免被瞬时的流量高峰冲垮，从而保障应用的高可用性。
 
-> Notes: <font color=red>**同一个资源可以同时有多个限流规则。**</font>
+> Notes: <span style="color: red;">**同一个资源可以同时有多个限流规则。**</span>
 
 #### 编程式定义流控规则
 
@@ -762,7 +762,7 @@ done;
 
 除了流量控制以外，对调用链路中不稳定的资源进行**熔断降级**也是保障高可用的重要措施之一。
 
-**熔断降级规则**就是设置当满足什么条件的时候，对服务进行降级。<font color=red>**同一个资源可以同时有多个降级规则。**</font>
+**熔断降级规则**就是设置当满足什么条件的时候，对服务进行降级。<span style="color: red;">**同一个资源可以同时有多个降级规则。**</span>
 
 Sentinel 熔断降级会在调用链路中某个资源不正常时，对这个资源的调用进行限制，让请求快速失败，避免导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断。
 
@@ -960,7 +960,7 @@ public String getMessage6(String name, Integer age) {
 
 - 热点限流只支持`QPS 限流模式`
 - 针对参数值时，参数类型必须是基本类型（byte int long float double boolean char）或者 String
-- <font color=red>**通过导航栏的『热点规则』中配置，『资源名』必须是填写 `@SentinelResource` 注解标识的资源名称，否则无法生效！**</font>
+- <span style="color: red;">**通过导航栏的『热点规则』中配置，『资源名』必须是填写 `@SentinelResource` 注解标识的资源名称，否则无法生效！**</span>
 
 ### 访问控制规则（黑白名单 AuthorityRule）/授权规则（暂时有问题）
 
@@ -1052,7 +1052,7 @@ public class RequestOriginParserHandler implements RequestOriginParser {
 
 系统保护规则是应用整体维度的，而不是资源维度的，并且**仅对入口流量生效**。入口流量指的是进入应用的流量（`EntryType.IN`），比如 Web 服务或 Dubbo 服务端接收的请求，都属于入口流量。系统规则支持以下的阈值类型：
 
-- **Load**（仅对 Linux/Unix-like 机器生效）：当系统 load1 超过阈值，且系统当前的<font color=red>**并发线程数超过系统容量**</font>时才会触发系统保护。系统容量由系统的 `maxQps * minRt` 计算得出。设定参考值一般是 `CPU cores * 2.5`。
+- **Load**（仅对 Linux/Unix-like 机器生效）：当系统 load1 超过阈值，且系统当前的<span style="color: red;">**并发线程数超过系统容量**</span>时才会触发系统保护。系统容量由系统的 `maxQps * minRt` 计算得出。设定参考值一般是 `CPU cores * 2.5`。
 - **CPU usage（使用率）**（1.5.0+ 版本）：当系统 CPU 使用率超过阈值即触发系统保护（取值范围 0.0-1.0）。
 - **平均 RT**：当单台机器上所有入口流量的平均 RT 达到阈值即触发系统保护，单位是毫秒。
 - **并发线程数**：当单台机器上所有入口流量的并发线程数达到阈值即触发系统保护。
@@ -1693,7 +1693,7 @@ public class FallbackOutDemo {
 
 通用资源保护是指，无论是使用哪种远程调用的技术，只在需要被保护的方法上使用`@SentinelResource`注解进行熔断配置即可。与Hystrix不同的是，Sentinel对抛出异常和熔断降级做了更加细致的区分，通过`blockHandler`属性指定熔断降级方法；通过`fallback`属性指定触发异常执行的降级方法。
 
-<font color=red>**特别注意：若`blockHandler`和`fallback`都进行了配置，则被限流降级而抛出`BlockException`时只会进入`blockHandler`处理逻辑。若未配置`blockHandler`、`fallback`和`defaultFallback`，则被限流降级时会将`BlockException`直接抛出。**</font>
+<span style="color: red;">**特别注意：若`blockHandler`和`fallback`都进行了配置，则被限流降级而抛出`BlockException`时只会进入`blockHandler`处理逻辑。若未配置`blockHandler`、`fallback`和`defaultFallback`，则被限流降级时会将`BlockException`直接抛出。**</span>
 
 #### 使用示例
 
@@ -2025,7 +2025,7 @@ public interface ProductFeignClient {
 
 - 测试效果
 
-<font color=red>**需要注意：`fallback` 和 `fallbackFactory` 只能使用其中一种方式**</font>
+<span style="color: red;">**需要注意：`fallback` 和 `fallbackFactory` 只能使用其中一种方式**</span>
 
 #### 整合步骤流程图
 

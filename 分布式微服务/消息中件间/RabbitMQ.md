@@ -77,7 +77,7 @@ erlang 下载地址：http://www.erlang.org/downloads
 
 ![](images/413642522220543.png)
 
-下载安装包后，<font color=red>**以管理员方式运行安装**</font>。安装的过程中可能会出现依赖 Windows 组件的提示，根据提示下载安装即可，都是自动执行的，如下：
+下载安装包后，<span style="color: red;">**以管理员方式运行安装**</span>。安装的过程中可能会出现依赖 Windows 组件的提示，根据提示下载安装即可，都是自动执行的，如下：
 
 ![](images/96503522226836.png)
 
@@ -97,7 +97,7 @@ ERLANG_HOME=D:\development\erl10.4
 
 RabbitMQ 的下载地址：http://www.rabbitmq.com/download.html
 
-安装包下载完成后，<font color=red>**以管理员方式运行 RabbitMQ 安装文件**</font>。
+安装包下载完成后，<span style="color: red;">**以管理员方式运行 RabbitMQ 安装文件**</span>。
 
 官方安装说明文档：https://www.rabbitmq.com/install-windows.html
 
@@ -467,7 +467,7 @@ Work queues 工作队列应用场景：对于任务过重或任务较多情况�
 测试结果：
 
 1. 一条消息只会被一个消费者接收；
-2. rabbitmq 采用<font color=red>**轮询**</font>的方式将消息是平均发送给消费者的；
+2. rabbitmq 采用<span style="color: red;">**轮询**</span>的方式将消息是平均发送给消费者的；
 3. 消费者在处理完某条消息后，才会收到下一条消息
 
 ### Publish/Subscribe 发布订阅工作模式
@@ -1627,7 +1627,7 @@ RabbitMQ 的消息默认存放在内存中，如果不特别声明设置，消�
 
 ##### 概述
 
-RabbitMQ 的 <font color=red>消费者默认采用自动 ack</font>，一旦消费者收到消息后会通知 MQ Server 这条消息已经处理好了，MQ 就会移除这条消息。但有可能消费者收到消息还没来得及处理，MQ 服务就宕机了，从而导致消息丢失。
+RabbitMQ 的 <span style="color: red;">消费者默认采用自动 ack</span>，一旦消费者收到消息后会通知 MQ Server 这条消息已经处理好了，MQ 就会移除这条消息。但有可能消费者收到消息还没来得及处理，MQ 服务就宕机了，从而导致消息丢失。
 
 解决方案：消费者设置为手动确认消息。消费者处理完逻辑之后再给 broker 回复 `ack`，表示消息已经成功消费，可以从 broker 中删除。当消息者消费失败的时候，给 broker 回复 `nack`，根据配置决定重新入队还是从 broker 移除，或者进入死信队列。只要没收到消费者的 `acknowledgment`，broker 就会一直保存着这条消息，但不会重新入队，也不会分配给其他消费者。
 
@@ -1781,7 +1781,7 @@ TTL，即 Time-To-Live，代表消息或队列在 RabbitMQ 中存活的最长时
 
 ### 延迟队列
 
-延迟队列，是指进入队列的消息会被延迟消费的队列。<font color=red>**延迟队列 = 死信交换机 + TTL（生存时间）**</font>。
+延迟队列，是指进入队列的消息会被延迟消费的队列。<span style="color: red;">**延迟队列 = 死信交换机 + TTL（生存时间）**</span>。
 
 延迟队列的使用场景场景：超时订单、限时优惠、定时发布等。
 

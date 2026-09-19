@@ -222,7 +222,7 @@ drools 是一款由 JBoss 组织提供的基于 Java 语言开发的开源规则
 </kmodule>
 ```
 
-> Notes: <font color=red>**drools 默认配置文件的名称和位置都是固定写法，不能更改**</font>
+> Notes: <span style="color: red;">**drools 默认配置文件的名称和位置都是固定写法，不能更改**</span>
 
 #### 创建数据输入输出的实体类
 
@@ -420,7 +420,7 @@ drools 规则引擎由以下三部分构成：
 |  query   | 查询                                                       |
 | rule end | 规则体                                                     |
 
-<font color=purple>**Drools 支持的规则文件，除了 drl 形式，还有 Excel 文件类型的。**</font>
+<span style="color: purple;">**Drools 支持的规则文件，除了 drl 形式，还有 Excel 文件类型的。**</span>
 
 ### 规则体语法结构
 
@@ -668,7 +668,7 @@ public void test2() {
 
 ### 执行指定规则
 
-在上面的案例中，调用规则代码时，满足条件的规则都会被执行。Drools 提供了通过<font color=red>**规则过滤器**</font>来实现执行指定某个的规则。对于规则文件不用做任何修改，只需要修改 Java 代码即可，如下：
+在上面的案例中，调用规则代码时，满足条件的规则都会被执行。Drools 提供了通过<span style="color: red;">**规则过滤器**</span>来实现执行指定某个的规则。对于规则文件不用做任何修改，只需要修改 Java 代码即可，如下：
 
 ```java
 KieServices kieServices = KieServices.Factory.get();
@@ -768,7 +768,7 @@ session.fireAllRules();
 session.dispose();
 ```
 
-通过控制台的输出可以看到规则文件中定义的三个规则都触发了，因为 update 方法会再次触发规则的校验。<font color=red>**在更新数据时需要注意防止发生死循环**</font>。
+通过控制台的输出可以看到规则文件中定义的三个规则都触发了，因为 update 方法会再次触发规则的校验。<span style="color: red;">**在更新数据时需要注意防止发生死循环**</span>。
 
 #### insert 方法
 
@@ -958,7 +958,7 @@ end
 
 #### salience 属性
 
-`salience` 属性用于指定规则的执行优先级，取值类型为 `Integer`，<font color=red>**数值越大越优先执行**</font>。每个规则都有一个默认的执行顺序，如果不设置 `salience` 属性（默认值为0），规则体的执行顺序为由上到下。
+`salience` 属性用于指定规则的执行优先级，取值类型为 `Integer`，<span style="color: red;">**数值越大越优先执行**</span>。每个规则都有一个默认的执行顺序，如果不设置 `salience` 属性（默认值为0），规则体的执行顺序为由上到下。
 
 - 创建规则文件 attributes-salience.drl
 

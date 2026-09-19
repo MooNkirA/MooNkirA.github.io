@@ -207,7 +207,7 @@ public void testSuspendAllProcessInstance() {
 
 ![](images/260462616226417.png)
 
-<font color=red>**通过观察上面的操作日志可知，流程实例的挂起与激活实质就是修改相应运行时的表的 `SUSPENSION_STATE_` 字段，“1”代表激活，“2”代表挂起。**</font>
+<span style="color: red;">**通过观察上面的操作日志可知，流程实例的挂起与激活实质就是修改相应运行时的表的 `SUSPENSION_STATE_` 字段，“1”代表激活，“2”代表挂起。**</span>
 
 #### 单个流程实例挂起与激活
 
@@ -240,7 +240,7 @@ public void testSuspendSingleProcessInstance() {
 }
 ```
 
-> <font color=purple>**tips: 值得注意的是，操作单个流程实例是通过 `RuntimeService` 流程运行管理类；而操作全部流程实例是通过 `RepositoryService` 资源管理类**</font>
+> <span style="color: purple;">**tips: 值得注意的是，操作单个流程实例是通过 `RuntimeService` 流程运行管理类；而操作全部流程实例是通过 `RepositoryService` 资源管理类**</span>
 
 如果流程实例被挂起，操作该流程实例的当前任务会抛出异常。以下是测试代码：
 
@@ -588,7 +588,7 @@ public void testQueryProcessInstanceByBusinessKey() {
 
 > 此部分内容在基础篇已有简单了解，此处结合前端的任务负责人分配来回顾
 
-<font color=red>**注意：在实际应用中，完成任务前需要校验任务的负责人是否具有该任务的办理权限**</font>。以下示例是根据任务id查询并完成
+<span style="color: red;">**注意：在实际应用中，完成任务前需要校验任务的负责人是否具有该任务的办理权限**</span>。以下示例是根据任务id查询并完成
 
 ```java
 @Test
@@ -621,7 +621,7 @@ public void testCompletTaskByTaskId() {
 
 比如：在出差申请流程流转时如果出差天数大于 3 天则由总经理审核，否则由人事直接审核，出差天数就可以设置为流程变量，在流程流转时使用。 
 
-<font color=red>**注意：虽然流程变量中理论上可以存储业务数据，并通过 Activiti 的 api 查询流程变量从而实现查询业务数据，但是不建议这样使用，因为业务数据查询应该是由业务系统负责，Activiti 设置流程变量只是为了流程执行需要而创建**</font>
+<span style="color: red;">**注意：虽然流程变量中理论上可以存储业务数据，并通过 Activiti 的 api 查询流程变量从而实现查询业务数据，但是不建议这样使用，因为业务数据查询应该是由业务系统负责，Activiti 设置流程变量只是为了流程执行需要而创建**</span>
 
 ### 流程变量类型
 
@@ -637,7 +637,7 @@ public void testCompletTaskByTaskId() {
 
 流程变量的默认作用域是流程实例。当一个流程变量的作用域为流程实例时，可以称为 global 变量
 
-<font color=red>**Notes: global 变量中变量名不允许重复，设置相同名称的变量，后设置的值会覆盖前设置的变量值**</font>
+<span style="color: red;">**Notes: global 变量中变量名不允许重复，设置相同名称的变量，后设置的值会覆盖前设置的变量值**</span>
 
 #### local 变量
 
@@ -922,11 +922,11 @@ public void completTask() {
 
 ![](images/186273215248859.png)
 
-> Notes: <font color=red>**在完成任务时设置的流程变量也启动流程时设置的一样，变量均在整个流程完成后才销毁**</font>
+> Notes: <span style="color: red;">**在完成任务时设置的流程变量也启动流程时设置的一样，变量均在整个流程完成后才销毁**</span>
 
 ##### 通过当前流程实例设置
 
-通过流程实例id也设置全局变量，<font color=red>**值得注意的是，该流程实例必须未执行完成**</font>。
+通过流程实例id也设置全局变量，<span style="color: red;">**值得注意的是，该流程实例必须未执行完成**</span>。
 
 ```java
 @Test
@@ -1095,7 +1095,7 @@ public void testSetLocalVariableOnCompletTask() {
 }
 ```
 
-> Tips: <font color=purple>**设置作用域为任务的 local 变量，每个任务可以设置同名的变量，互不影响**</font>
+> Tips: <span style="color: purple;">**设置作用域为任务的 local 变量，每个任务可以设置同名的变量，互不影响**</span>
 
 #### 通过当前任务设置
 
@@ -1238,7 +1238,7 @@ public void testQueryTaskCandidateUser() {
 
 > Tips: 
 >
-> - <font color=purple>**即使该用户不是候选人也能拾取，建议拾取时校验是否有资格**</font>
+> - <span style="color: purple;">**即使该用户不是候选人也能拾取，建议拾取时校验是否有资格**</span>
 > - 组任务拾取后，该任务已有负责人，通过候选人将查询不到该任务
 
 示例代码：
@@ -1305,7 +1305,7 @@ public void testQueryAssigneeTask() {
 
 如果个人不想办理该组任务，可以归还组任务，归还后该用户不再是该任务的负责人
 
-> Tips: <font color=red>**建议归还任务前校验该用户是否是该任务的负责人，也可以通过 `setAssignee` 方法将任务委托给其它用户负责，注意被委托的用户可以不是候选人（建议不要这样使用）**</font>
+> Tips: <span style="color: red;">**建议归还任务前校验该用户是否是该任务的负责人，也可以通过 `setAssignee` 方法将任务委托给其它用户负责，注意被委托的用户可以不是候选人（建议不要这样使用）**</span>
 
 ```java
 @Test
@@ -1340,7 +1340,7 @@ public void testAssigneeToGroupTask() {
 
 任务交接是指，任务负责人将任务交给其它候选人办理该任务
 
-> Tips: <font color=red>**建议交接任务前校验被委托的用户是不是候选人**</font>
+> Tips: <span style="color: red;">**建议交接任务前校验被委托的用户是不是候选人**</span>
 
 ```java
 @Test
@@ -1438,7 +1438,7 @@ SELECT * FROM act_ru_identitylink WHERE TASK_ID_ = 'xxx';
 
 排他网关，用来在流程中实现决策。当流程执行到这个网关，所有分支都会判断条件是否为true，如果为true则执行该分支。
 
-> Notes: <font color=red>**排他网关只会选择一个为true的分支执行。如果有两个分支条件都为true，排他网关会选择id值较小的分支去执行**</font>
+> Notes: <span style="color: red;">**排他网关只会选择一个为true的分支执行。如果有两个分支条件都为true，排他网关会选择id值较小的分支去执行**</span>
 
 #### 排他网关流程定义
 
@@ -1545,7 +1545,7 @@ org.activiti.engine.ActivitiException: No outgoing sequence flow of the exclusiv
 > Notes:
 >
 > - 如果同一个并行网关有多个进入和多个外出顺序流，它就同时具有分支和汇聚功能。此时网关会先汇聚所有进入的顺序流，然后再切分成多个并行分支。
-> - <font color=red>**与其他类型网关的主要区别是，并行网关不会解析条件。即使顺序流中定义了条件，也会被忽略**</font>
+> - <span style="color: red;">**与其他类型网关的主要区别是，并行网关不会解析条件。即使顺序流中定义了条件，也会被忽略**</span>
 
 #### 并行网关流程定义
 
@@ -1648,7 +1648,7 @@ public class ActivitiGatewayParallelTest {
 
 ![](images/191512816243996.png)
 
-<font color=red>**总结：所有分支到达汇聚结点，并行网关执行完成**</font>
+<span style="color: red;">**总结：所有分支到达汇聚结点，并行网关执行完成**</span>
 
 ### Inclusive Gateway（包含网关）
 
@@ -1777,7 +1777,7 @@ public class ActivitiGatewayInclusiveTest {
 
 ![](images/281602118224617.png)
 
-> <font color=red>**Notes: 在分支时，需要判断条件，符合条件的分支，将会执行，符合条件的分支最终才进行汇聚**</font>
+> <span style="color: red;">**Notes: 在分支时，需要判断条件，符合条件的分支，将会执行，符合条件的分支最终才进行汇聚**</span>
 
 ### Event Gateway（事件网关）--暂无实现示例
 

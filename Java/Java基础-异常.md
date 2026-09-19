@@ -26,7 +26,7 @@ Error 类：是 Throwable 一个子类，用来指示运行时环境发生的错
 
 特点：此类错误一般表示代码运行时 JVM 出现问题。通常有 VirtualMachineError（虚拟机运行错误）、NoClassDefFoundError（类定义错误）、OutOfMemoryError（内存不足错误）、StackOverflowError（栈溢出错误）等。此类错误发生时，JVM 将终止线程。
 
-> Tips: <font color=red>**这些错误是不受检异常，非代码性错误。因此，当此类错误发生时，应用程序不应该去处理此类错误。按照 Java 惯例，开发时是不应该实现任何新的 Error 子类的！**</font>
+> Tips: <span style="color: red;">**这些错误是不受检异常，非代码性错误。因此，当此类错误发生时，应用程序不应该去处理此类错误。按照 Java 惯例，开发时是不应该实现任何新的 Error 子类的！**</span>
 
 #### Exception（异常）
 
@@ -93,7 +93,7 @@ Exception 异常类又分以下两种：
 
 编译时异常，是指 Exception 类及其子类（除了 `RuntimeException`）。在编译时，Java 编译器会进行检查，如果程序中出现此类异常，必须进行处理，否则无法通过编译。
 
-比如：`ClassNotFoundException`（没有找到指定的类异常），`IOException`（IO流异常），要么通过 `throws` 进行声明抛出，要么通过 `try-catch` 进行捕获处理，否则不能通过编译。在程序中，通常不会自定义该类异常，而是直接使用系统提供的异常类。<font color=red>**该异常必须手动在代码里添加捕获语句来处理该异常**</font>。
+比如：`ClassNotFoundException`（没有找到指定的类异常），`IOException`（IO流异常），要么通过 `throws` 进行声明抛出，要么通过 `try-catch` 进行捕获处理，否则不能通过编译。在程序中，通常不会自定义该类异常，而是直接使用系统提供的异常类。<span style="color: red;">**该异常必须手动在代码里添加捕获语句来处理该异常**</span>。
 
 ### 运行时异常和编译时异常的区别(理解)
 
@@ -332,7 +332,7 @@ finally 代码块的注意事项：
 - 若 catch 与 finally 代码块中都包含 return 语句，则只会执行 finally 中的 return 语句，不会执行 catch 中的 return 语句。
 - finally 中最好不要包含 return 语句，否则程序会提前退出，返回值不是 try 或 catch 中的返回值。
 - `System.exit(0);` 此方法是退出 jvm，只有这种情况 finally 代码块不执行。
-- **finally 代码块是在 return 后面的表达式运算语句之后执行的**。即 return 语句不会马上将运算后的值返回给调用者，而是先把要返回的值保存起来，待 finally 代码块执行完毕之后再向调用者返回其值。<font color=red>**因此不管在 finally 中是否修改了返回值，返回的值都不会改变，仍然返回是之前保存的值**</font>。
+- **finally 代码块是在 return 后面的表达式运算语句之后执行的**。即 return 语句不会马上将运算后的值返回给调用者，而是先把要返回的值保存起来，待 finally 代码块执行完毕之后再向调用者返回其值。<span style="color: red;">**因此不管在 finally 中是否修改了返回值，返回的值都不会改变，仍然返回是之前保存的值**</span>。
 
 ```java
 public static void main(String[] args) {

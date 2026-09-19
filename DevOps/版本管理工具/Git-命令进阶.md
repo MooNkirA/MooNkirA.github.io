@@ -69,7 +69,7 @@ $ git push -f [remote] [branch]
 
 ### 删除任意提交(commit)
 
-> Notes: <font color=red>**同样的警告，不到万不得已的时候不要这么做。**</font>
+> Notes: <span style="color: red;">**同样的警告，不到万不得已的时候不要这么做。**</span>
 
 ```bash
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT

@@ -45,7 +45,7 @@ redis> KEYS *  # 匹配数据库内所有 key
 
 #### keys 命令存在的问题
 
-因为 Redis 是单线程的。keys 指令会导致线程阻塞一段时间，直到执行完毕，服务才能恢复。所以值得注意的是，<font color=red>**如果存在大量键，线上禁止使用此指令**</font>
+因为 Redis 是单线程的。keys 指令会导致线程阻塞一段时间，直到执行完毕，服务才能恢复。所以值得注意的是，<span style="color: red;">**如果存在大量键，线上禁止使用此指令**</span>
 
 ### SCAN 迭代集合元素
 
@@ -447,7 +447,7 @@ SET key value [EX seconds] [PX milliseconds] [NX|XX]
 
 设定`key`持有指定的字符串`value`，如果该`key`存在则进行覆盖操作，无视类型。返回结果为`OK`代表设置成功。
 
-<font color=red>**当 `SET` 命令对一个带有生存时间（TTL）的键进行设置之后，该键原有的生存时间将被清除。**</font>
+<span style="color: red;">**当 `SET` 命令对一个带有生存时间（TTL）的键进行设置之后，该键原有的生存时间将被清除。**</span>
 
 **可选参数**：
 
@@ -875,7 +875,7 @@ redis> STRLEN chinese
 (integer) 6
 ```
 
-> <font color=red>**注意：每个中文占 3 个字节**</font>
+> <span style="color: red;">**注意：每个中文占 3 个字节**</span>
 
 ### GETSET 设置并返回原值
 
@@ -1070,7 +1070,7 @@ Redis 中，可以将set类型看作是没有排序的字符集合，set中可�
 
 SortedSet 和 Set 类型极为类似，它们都是字符串的集合，都不允许重复的元素出现在一个 Set 中。它们之间的主要区别是**SortedSet 中每一个元素都会有一个分数（score）与之关联，Redis 正是通过分数来为集合中的元素进行从小到大的排序（默认）。**
 
-<font color=red>**SortedSet 集合中的元素必须是唯一的，但分数（score）却是可以重复。**</font>
+<span style="color: red;">**SortedSet 集合中的元素必须是唯一的，但分数（score）却是可以重复。**</span>
 
 ### 添加元素
 

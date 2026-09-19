@@ -35,7 +35,7 @@ hibernate-validator 优势：
 
 > 注：以上两个依赖已经包含在 Spring Boot 的进行了依赖管理
 
-<font color=violet>**扩展小细节：在 Spring Boot 2.2.x 版本以前，spring-boot-starter-web 依赖已经包含了 hibernate-validator，可以无需再次导入。但 2.3.x 版本后，已经将 hibernate-validator 从 spring-boot-starter-web 的依赖中移除**</font>
+<span style="color: violet;">**扩展小细节：在 Spring Boot 2.2.x 版本以前，spring-boot-starter-web 依赖已经包含了 hibernate-validator，可以无需再次导入。但 2.3.x 版本后，已经将 hibernate-validator 从 spring-boot-starter-web 的依赖中移除**</span>
 
 ```xml
 <parent>
@@ -97,7 +97,7 @@ hibernate-validator 提供的校验方式为在类的属性上加入相应的注
 - `@Digits(integer=,fraction=)`：验证字符串是否是符合指定格式的数字，interger 指定整数精度，fraction 指定小数精度
 - `@Range(min=, max=)`：检查注释值是否位于（含）指定的最小值和最大值之间（Hibernate validator 扩展注解）
 
-> Notes: <font color=red>**建议使用在 Stirng, Integer 类型，不建议使用在 int 类型上，因为表单值为`""`时无法转换为 int，但可以转换为 Stirng 为`""`，Integer 为 null**</font>
+> Notes: <span style="color: red;">**建议使用在 Stirng, Integer 类型，不建议使用在 int 类型上，因为表单值为`""`时无法转换为 int，但可以转换为 Stirng 为`""`，Integer 为 null**</span>
 
 ```java
 @Range(min=10000, max=50000, message="range.bean.wage")
@@ -519,7 +519,7 @@ public class UserController {
 }
 ```
 
-> Notes: <font color=red>**如果直接在普通类型的方法形参上使用，需要在当前控制类上标识 `@Validated` 注解**</font>
+> Notes: <span style="color: red;">**如果直接在普通类型的方法形参上使用，需要在当前控制类上标识 `@Validated` 注解**</span>
 
 ### 自定义注解校验原理
 

@@ -101,7 +101,7 @@ public class Article {
 
 在 maven 工程的 resources 路径下创建一个名为 `META-INF` 的文件夹，在文件夹下创建一个名为 `persistence.xml` 的配置文件。
 
-> <font color=violet>**注意：`META-INF` 文件夹名称 与 `persistence.xml` 文件名称均不能修改**</font>
+> <span style="color: violet;">**注意：`META-INF` 文件夹名称 与 `persistence.xml` 文件名称均不能修改**</span>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -742,7 +742,7 @@ public void testFindAllWithPageAndPage() {
 
 **方法命名规则查询**就是按照 Spring Data JPA 提供的方法命名规则，来定义查询方法的名称。Spring Data JPA 在程序执行的时候会根据方法名称进行解析，并自动生成查询语句进行查询。
 
-按照 Spring Data JPA 定义的规则，查询方法以 `findBy` 开头，涉及条件查询时，条件的属性用条件关键字连接，<font color=red>**值得注意的是：条件属性首字母需大写**</font>。框架在进行方法名解析时，会先把方法名多余的前缀截取掉，然后对剩下部分进行解析。
+按照 Spring Data JPA 定义的规则，查询方法以 `findBy` 开头，涉及条件查询时，条件的属性用条件关键字连接，<span style="color: red;">**值得注意的是：条件属性首字母需大写**</span>。框架在进行方法名解析时，会先把方法名多余的前缀截取掉，然后对剩下部分进行解析。
 
 #### 命名规则
 
@@ -853,7 +853,7 @@ public void testFindByCreateTimeAfter() {
 
 使用 Spring Data JPA 提供的查询方法已经可以解决大部分的应用场景，但是对于某些业务来说，还是需要灵活的构造查询条件，此就可以使用 `@Query` 注解，结合 JPQL 的语句方式完成查询。
 
-JPQL，全称是 Java Persistence Query Language。JPQL 语句是 JPA 中定义的一种查询语言，此种语言的用意是让开发者忽略数据库表和表中的字段，而关注实体类及实体类中的属性。它的写法十分类似于 SQL 语句的写法，但值得注意的是，<font color=red>**把查询的表名换成实体类名称，把表中的字段名换成实体类的属性名称**</font>。
+JPQL，全称是 Java Persistence Query Language。JPQL 语句是 JPA 中定义的一种查询语言，此种语言的用意是让开发者忽略数据库表和表中的字段，而关注实体类及实体类中的属性。它的写法十分类似于 SQL 语句的写法，但值得注意的是，<span style="color: red;">**把查询的表名换成实体类名称，把表中的字段名换成实体类的属性名称**</span>。
 
 - 在自定义 dao 接口，使用 `@Query`注解，增加 JPQL 查询方法
 

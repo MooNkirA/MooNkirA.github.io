@@ -6,7 +6,7 @@
 
 ### JS跨域请求
 
-js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。<font color="red">**只要协议、域名、端口有任何一个不同，都被当作是不同的域。**</font>
+js跨域是指通过js在不同的域之间进行数据传输或通信，比如用ajax向一个不同的域请求数据，或者通过js获取页面中不同域的框架中(iframe)的数据。<span style="color: red;">**只要协议、域名、端口有任何一个不同，都被当作是不同的域。**</span>
 
 ```
 http://www.pinyougou.com --> http://www.pinyougou.com (不是跨域请求)

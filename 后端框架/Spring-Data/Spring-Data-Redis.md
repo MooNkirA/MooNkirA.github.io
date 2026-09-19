@@ -146,7 +146,7 @@ public class RedisBasicTest {
 - `OxmSerializer`：序列化对象为 xml 字符串
 - `JdkSerializationRedisSerializer`：序列化对象为二进制数据
 
-<font color=purple>`RedisTemplate` 默认使用的是 `JdkSerializationRedisSerializer` 对数据进行序列化。</font>
+<span style="color: purple;">`RedisTemplate` 默认使用的是 `JdkSerializationRedisSerializer` 对数据进行序列化。</span>
 
 Spring Data 提供了两种方式选择不同的序列化器：
 

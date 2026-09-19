@@ -362,7 +362,7 @@ management:
 
 ![](images/590372722247005.png)
 
-但目前除了健康信息，其他信息都查阅不了。原因在于其他12种信息是默认不提供给服务器通过 HTTP 请求查阅的，所以需要开启查阅的内容项 `management.endpoints.web.exposure.include`，其中配置值为 `"*"`，则表示查阅全部（<font color=red>**注意：记得带引号**</font>）
+但目前除了健康信息，其他信息都查阅不了。原因在于其他12种信息是默认不提供给服务器通过 HTTP 请求查阅的，所以需要开启查阅的内容项 `management.endpoints.web.exposure.include`，其中配置值为 `"*"`，则表示查阅全部（<span style="color: red;">**注意：记得带引号**</span>）
 
 ```yml
 management:
@@ -427,13 +427,13 @@ admin-client 服务
 
 启动 server 和 client 服务，访问 server 项目地址
 
-> <font color=violet>**注：server 与 client 工程必须均为 web 应用**</font>
+> <span style="color: violet;">**注：server 与 client 工程必须均为 web 应用**</span>
 
 ## Spring Boot Admin 进阶使用
 
 ### 端点配置
 
-上述端点每一项代表被监控的指标，如果对外开放则监控平台可以查询到对应的端点信息，如果未开放则无法查询对应的端点信息。通过配置 `management.endpoint.端点名称.enabled` 属性来控制端点是否对外开放功能。<font color=red>**值得注意的是，其中 `health` 端点为默认端点，不能关闭。**</font>
+上述端点每一项代表被监控的指标，如果对外开放则监控平台可以查询到对应的端点信息，如果未开放则无法查询对应的端点信息。通过配置 `management.endpoint.端点名称.enabled` 属性来控制端点是否对外开放功能。<span style="color: red;">**值得注意的是，其中 `health` 端点为默认端点，不能关闭。**</span>
 
 ```yml
 management:
@@ -572,7 +572,7 @@ public class HealthConfig extends AbstractHealthIndicator {
 
 ![](images/457452511239676.png)
 
-> <font color=red>**注意：当任意一个组件状态不为 UP 时，整体应用对外服务状态为非 UP 状态，包含引入的第三方组件，比如 redis、RocketMQ 等等**</font>
+> <span style="color: red;">**注意：当任意一个组件状态不为 UP 时，整体应用对外服务状态为非 UP 状态，包含引入的第三方组件，比如 redis、RocketMQ 等等**</span>
 
 ### 自定义 Metrics 端点
 
@@ -641,4 +641,4 @@ management:
 
 ![](images/198145413226841.png)
 
-> Notes: <font color=red>**本人在测试时，无论 `enabled` 是否设置为 true，均可以请求成功**</font>
+> Notes: <span style="color: red;">**本人在测试时，无论 `enabled` 是否设置为 true，均可以请求成功**</span>

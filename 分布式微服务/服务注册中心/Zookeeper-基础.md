@@ -335,11 +335,11 @@ numChildren = 0
 | -------------------------------------- | --------------------------------------------------------------------------------- |
 | cZxid                                  | 数据节点创建时的事务 ID                                                              |
 | ctime                                  | 数据节点创建时的时间                                                                 |
-| <font color=red>**mZxid**</font>       | 数据节点最后一次更新时的事务 ID                                                      |
-| <font color=red>**mtime**</font>       | 数据节点最后一次更新时的时间                                                         |
+| <span style="color: red;">**mZxid**</span>       | 数据节点最后一次更新时的事务 ID                                                      |
+| <span style="color: red;">**mtime**</span>       | 数据节点最后一次更新时的时间                                                         |
 | pZxid                                  | 数据节点的子节点最后一次被修改时的事务 ID                                              |
 | cversion                               | 子节点的更改次数                                                                    |
-| <font color=red>**dataVersion**</font> | 节点数据的更改次数                                                                  |
+| <span style="color: red;">**dataVersion**</span> | 节点数据的更改次数                                                                  |
 | aclVersion                             | 节点的 ACL 的更改次数                                                               |
 | ephemeralOwner                         | 如果节点是临时节点，则表示创建该节点的会话的 SessionID；如果节点是持久节点，则该属性值为 0 |
 | dataLength                             | 数据内容的长度                                                                      |
@@ -393,7 +393,7 @@ ls [-s] [-w] [-R] path
 
 ### 监听器
 
-注册的监听器能够在节点内容发生改变的时候，向客户端发出通知。<font color=red>**需要注意的是 zookeeper 的触发器是一次性的 (One-time trigger)，即触发一次后就会立即失效**</font>。
+注册的监听器能够在节点内容发生改变的时候，向客户端发出通知。<span style="color: red;">**需要注意的是 zookeeper 的触发器是一次性的 (One-time trigger)，即触发一次后就会立即失效**</span>。
 
 可以注册监听器的操作分别有：查询节点（`get`）、查询节点状态（`stat`）、查询节点列表（`ls`）
 
@@ -421,7 +421,7 @@ WatchedEvent state:SyncConnected type:NodeDataChanged path:/hadoop
 
 #### 查看节点列表时注册监听器
 
-使用`ls -w path`命令注册的监听器能够<font color=red>**监听该节点下所有子节点的增加和删除等操作**</font>，会向客户端发出一次通知
+使用`ls -w path`命令注册的监听器能够<span style="color: red;">**监听该节点下所有子节点的增加和删除等操作**</span>，会向客户端发出一次通知
 
 ```bash
 [zk: localhost:2181(CONNECTED) 11] ls -R /hadoop
@@ -747,7 +747,7 @@ Watcher 机制实际上与观察者模式类似，也可看作是一种观察者
 
 #### 事件监听注意事项
 
-- <font color=red>**Zookeeper 只能保证最终的一致性，而无法保证强一致性**</font>。watcher 的通知事件从 server 发送到 client 是异步的，不同的客户端和服务器之间通过 socket 进行通信，由于网络延迟或其他因素导致客户端在不通的时刻监听到事件，Zookeeper 本身提供了 ordering guarantee，即客户端监听事件后，才会感知它所监视 znode 发生了变化。所以**使用 Zookeeper 不能期望能够监控到节点每次的变化**。
+- <span style="color: red;">**Zookeeper 只能保证最终的一致性，而无法保证强一致性**</span>。watcher 的通知事件从 server 发送到 client 是异步的，不同的客户端和服务器之间通过 socket 进行通信，由于网络延迟或其他因素导致客户端在不通的时刻监听到事件，Zookeeper 本身提供了 ordering guarantee，即客户端监听事件后，才会感知它所监视 znode 发生了变化。所以**使用 Zookeeper 不能期望能够监控到节点每次的变化**。
 - 当一个客户端连接到一个新的服务器上时，watch 将会被以任意会话事件触发。当与一个服务器失去连接的时候，是无法接收到 watch 的。而当 client 重新连接时，如果需要的话，所有先前注册过的 watch，都会被重新注册。通常这过程是完全透明的。只有在一个特殊情况下，watch 可能会丢失：对于一个未创建的 znode 的 exist watch，如果在客户端断开连接期间被创建了，并且随后在客户端连接上之前又删除了，这种情况下，这个 watch 事件可能会被丢失。
 
 ### Watcher 架构
@@ -1428,6 +1428,6 @@ ZooKeeper 作为一个分布式协同服务是非常好，但是对于 Service �
 
 但是 ZooKeeper 会出现这样一种情况，当 master 节点因为网络故障与其他节点失去联系时，剩余节点会重新进行 leader 选举。问题在于，选举 leader 的时间过长(需要 30 ~ 120s)，且选举期间整个 zk 集群都是不可用的，这就导致在选举期间注册服务瘫痪。在云部署的环境下，因网络问题使得 zk 集群失去 master 节点是较大概率会发生的事，虽然服务能够最终恢复，但是漫长的选举时间导致的注册长期不可用是不能容忍的。所以当向注册中心查询服务列表时，可以容忍注册中心返回的是几分钟以前的注册信息，但不能接受服务直接 down 掉不可用。
 
-<font color=red>**作为注册中心，可用性的要求要高于一致性！**</font>
+<span style="color: red;">**作为注册中心，可用性的要求要高于一致性！**</span>
 
 在 CAP 模型中，**Zookeeper 整体遵循一致性（CP）原则**，即在任何时候对 Zookeeper 的访问请求能得到一致的数据结果，但是当机器下线或者宕机时，不能保证服务可用性。Zookeeper 不使用最终一致性（AP）模型的原因是，Zookeeper 的核心算法是ZAB，所有设计都是为了强一致性。这个对于分布式协调系统是没有问题的，但是如果将 Zookeeper 为分布式协调服务所做的一致性保障，用在注册中心，或者说服务发现场景，这个其实就不合适。

@@ -965,7 +965,7 @@ Nacos 数据模型 Key 由三元组唯一确定，Namespace 默认是空串，�
 
 #### bootstrap 配置文件
 
-使用 Nacos 使用配置管理，客户端不能使用原来的 application.yml 作为配置文件，必须新建一个 **bootstrap.properties/bootstrap.yml** 作为配置文件。<font color=red>**因为 nacos config 是在特殊的 bootstrap 阶段，将配置被加载到 Spring 环境中**</font>。
+使用 Nacos 使用配置管理，客户端不能使用原来的 application.yml 作为配置文件，必须新建一个 **bootstrap.properties/bootstrap.yml** 作为配置文件。<span style="color: red;">**因为 nacos config 是在特殊的 bootstrap 阶段，将配置被加载到 Spring 环境中**</span>。
 
 > Tips: **配置文件优先级(由高到低)**：bootstrap.properties -> bootstrap.yml -> application.properties -> application.yml
 
@@ -1196,7 +1196,7 @@ Nacos 通过提供配置版本管理及其一键回滚能力，帮助用户改�
 
 #### 历史版本回滚注意问题
 
-需要特别留意，在 1.x 版本中，<font color=red>**不能选择最初的历史版本，会造成此配置丢失**</font>。*官方说 1.2 版本会解决*。
+需要特别留意，在 1.x 版本中，<span style="color: red;">**不能选择最初的历史版本，会造成此配置丢失**</span>。*官方说 1.2 版本会解决*。
 
 如果不小心遇到了此问题，可以在历史版本中找回。
 
@@ -1368,7 +1368,7 @@ Spring Cloud Alibaba Nacos Config 提供以下多种配置方式：
 
 ![](images/556685921230544.png)
 
-经测试，Spring Cloud Alibaba Nacos Config 中的<font color=red>**远程配置优先级高于本地配置**</font>。
+经测试，Spring Cloud Alibaba Nacos Config 中的<span style="color: red;">**远程配置优先级高于本地配置**</span>。
 
 #### 修改本地配置优先级(未测试)
 

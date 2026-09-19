@@ -11,8 +11,8 @@ webpack 官网文档：https://www.webpackjs.com/concepts/
 
 ### 什么是前端工程化
 
-- 前端工程化指的是：在企业级的前端项目开发中，把前端开发所需的<font color=red>工具、技术、流程、经验等进行规范化、标准化</font>。
-- 工程化的好处：前端开发自成体系，有一套<font color=red>标准的开发方案和流程</font>。
+- 前端工程化指的是：在企业级的前端项目开发中，把前端开发所需的<span style="color: red;">工具、技术、流程、经验等进行规范化、标准化</span>。
+- 工程化的好处：前端开发自成体系，有一套<span style="color: red;">标准的开发方案和流程</span>。
 
 > 企业中的 Vue 项目和 React 项目，都是基于工程化的方式进行开发的。
 
@@ -153,7 +153,7 @@ cnpm -v
 
 ![](images/20190407121130122_18022.png)
 
-<font color="purple">**注：如果输入`nrm ls`提示无此命令，就是是因为nrm没有设置为全局变量，所以需要进入到nrm下载的路径下执行**</font>
+<span style="color: purple;">**注：如果输入`nrm ls`提示无此命令，就是是因为nrm没有设置为全局变量，所以需要进入到nrm下载的路径下执行**</span>
 
 - 使 `nrm use XXX` 切换镜像。如果nrm没有安装则需要进行全局安装
     - 输入命令 `npm install -g nrm`
@@ -231,7 +231,7 @@ npm install --global webpack
 
 #### webpack.config.js 文件的作用
 
-`webpack.config.js` 是 webpack 的配置文件。webpack 在真正开始打包构建之前，会<font color=violet>先读取这个配置文件</font>，从而基于给定的配置，对项目进行打包。
+`webpack.config.js` 是 webpack 的配置文件。webpack 在真正开始打包构建之前，会<span style="color: violet;">先读取这个配置文件</span>，从而基于给定的配置，对项目进行打包。
 
 注意：由于 webpack 是基于 node.js 开发出来的打包工具，因此在它的配置文件中，支持使用 node.js 相关的语法和模块进行 webpack 的个性化配置。
 
@@ -247,7 +247,7 @@ module.exports = {
 }
 ```
 
-<font color=red>**注意：凡是修改了 webpack.config.js 配置文件，或修改了 package.json 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效！**</font>
+<span style="color: red;">**注意：凡是修改了 webpack.config.js 配置文件，或修改了 package.json 配置文件，必须重启实时打包的服务器，否则最新的配置文件无法生效！**</span>
 
 #### 启动
 
@@ -467,7 +467,7 @@ module.exports = {
 
 ## 输出(output)
 
-配置 `output` 选项可以控制 webpack 如何向硬盘写入编译文件。<font color=red>**注意，即使可以存在多个入口起点，但只指定一个输出配置**</font>。
+配置 `output` 选项可以控制 webpack 如何向硬盘写入编译文件。<span style="color: red;">**注意，即使可以存在多个入口起点，但只指定一个输出配置**</span>。
 
 ### 配置用法
 
@@ -562,11 +562,11 @@ webpack --mode=production
 - development
     - 开发环境
     - 不会对打包生成的文件进行代码压缩和性能优化
-    - <font color=red>**打包速度快**</font>，适合在开发阶段使用
+    - <span style="color: red;">**打包速度快**</span>，适合在开发阶段使用
 - production
     - 生产环境
     - 会对打包生成的文件进行代码压缩和性能优化
-    - <font color=red>**打包速度很慢**</font>，仅适合在项目发布阶段使用
+    - <span style="color: red;">**打包速度很慢**</span>，仅适合在项目发布阶段使用
 
 ### 示例
 
@@ -606,7 +606,7 @@ loader 用于对模块的源代码进行转换。loader 可以使你在 `import`
 
 在实际开发过程中，webpack 默认只能打包处理以 `.js` 后缀名结尾的模块。其他非 `.js` 后缀名结尾的模块，webpack 默认处理不了，需要调用 loader 加载器才可以正常打包，否则会报错！
 
-loader 加载器的作用：<font color=red>**协助 webpack 打包处理特定的文件模块**</font>。常见的loader如：
+loader 加载器的作用：<span style="color: red;">**协助 webpack 打包处理特定的文件模块**</span>。常见的loader如：
 
 - css-loader 可以打包处理 `.css` 相关的文件
 - less-loader 可以打包处理 `.less` 相关的文件
@@ -901,14 +901,14 @@ devServer: {
 2. 再次运行 `npm run dev` 命令，重新进行项目的打包
 3. 在浏览器中访问项目地址，查看自动打包效果
 
-> <font color=red>**注意：webpack-dev-server 会启动一个实时打包的 http 服务器**</font>
+> <span style="color: red;">**注意：webpack-dev-server 会启动一个实时打包的 http 服务器**</span>
 
 #### 打包生成的文件的存放位置
 
-- 不配置 webpack-dev-server 的情况下，webpack 打包生成的文件，<font color=red>会存放到实际的物理磁盘上</font>
+- 不配置 webpack-dev-server 的情况下，webpack 打包生成的文件，<span style="color: red;">会存放到实际的物理磁盘上</span>
     - 严格遵守开发者在 `webpack.config.js` 中指定配置
     - 根据 output 节点指定路径进行存放
-- 配置了 webpack-dev-server 之后，打包生成的文件<font color=red>存放到了内存中</font>
+- 配置了 webpack-dev-server 之后，打包生成的文件<span style="color: red;">存放到了内存中</span>
     - 不再根据 output 节点指定的路径，存放到实际的物理磁盘上
     - 提高了实时打包输出的性能，因为内存比物理磁盘速度快很多
 
@@ -1073,7 +1073,7 @@ module.exports = {
 
 ![](images/20211114151001725_10983.png)
 
-<font color=red>**使用此选项后：应该将服务器配置为，不允许普通用户访问 source map 文件！**</font>
+<span style="color: red;">**使用此选项后：应该将服务器配置为，不允许普通用户访问 source map 文件！**</span>
 
 #### Source Map 的最佳实践
 

@@ -1606,7 +1606,7 @@ Redis集群中内置了16384个哈希槽，当需要在Redis集群中放置一�
 
 什么时候整个集群不可用(cluster_state:fail)?
 
-A：如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的<font color="red">**slot映射[0-16383]不完整时进入fail状态**</font>. ps : redis-3.0.0.rc1加入cluster-require-full-coverage参数,默认关闭,打开集群兼容部分失败。
+A：如果集群任意master挂掉,且当前master没有slave.集群进入fail状态,也可以理解成集群的<span style="color: red;">**slot映射[0-16383]不完整时进入fail状态**</span>. ps : redis-3.0.0.rc1加入cluster-require-full-coverage参数,默认关闭,打开集群兼容部分失败。
 
 B：如果集群**超过半数以上master挂掉**，无论是否有slave，集群进入fail状态。
 
@@ -2020,7 +2020,7 @@ public class RedisClusterTest {
 
 使用单机版Redis时，将`<context:property-placeholder location="classpath*:props/*.properties"/>`删除
 
-<font color="red">***注意：单机版需要将加载属性文件的配置部分删除，因为使用其他模块加载属性文件即可，否则会引起冲突，服务启动后会报错，说加载不了属性文件***</font>
+<span style="color: red;">***注意：单机版需要将加载属性文件的配置部分删除，因为使用其他模块加载属性文件即可，否则会引起冲突，服务启动后会报错，说加载不了属性文件***</span>
 
 在pinyougou-mapper工程的applicationContext-mapper.xml中已经配置了`<context:property-placeholder location="classpath*:props/*.properties"/>`，如果单机版不删除以上那部分配置，会引起冲突
 

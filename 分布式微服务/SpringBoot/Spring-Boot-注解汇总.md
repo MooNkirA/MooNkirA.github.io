@@ -268,7 +268,7 @@ Spring 4.0 新提供的注解，用来标识一个 Spring Bean 或者  Configura
 | `@AutoConfigureAfter`             | 在某个bean完成自动配置后实例化这个bean             |
 | `@AutoConfigureBefore`            | 在某个bean完成自动配置前实例化这个bean             |
 
-> Notes: 如果在方法或者类上出现以下多个注解，则这多个条件注解是<font color=red>**并且的逻辑关系**</font>，即每个条件都成立，才会加载被标识的 Bean
+> Notes: 如果在方法或者类上出现以下多个注解，则这多个条件注解是<span style="color: red;">**并且的逻辑关系**</span>，即每个条件都成立，才会加载被标识的 Bean
 
 ### @ConditionalOnBean
 

@@ -246,7 +246,7 @@ public String receive(String id) {
 }
 ```
 
-<font color=red>**注意：使用 `@SendTo` 注解标识转发消息的方法，必须有返回值，该返回值是转发给下一个队列的消息内容**</font>
+<span style="color: red;">**注意：使用 `@SendTo` 注解标识转发消息的方法，必须有返回值，该返回值是转发给下一个队列的消息内容**</span>
 
 测试结果
 

@@ -80,7 +80,7 @@ JUnit 5 是当前一代的 JUnit 测试框架，它为 JVM 上的开发人员的
 
 ### 编写 @Test 测试方法
 
-`@Test` 注解标记的方法为测试方法，以便构建工具和 IDE 能够识别并执行它们。<font color=red>**JUnit 5 不再需要手动将测试类与测试方法为 `public`，包可见的访问级别即可**</font>。
+`@Test` 注解标记的方法为测试方法，以便构建工具和 IDE 能够识别并执行它们。<span style="color: red;">**JUnit 5 不再需要手动将测试类与测试方法为 `public`，包可见的访问级别即可**</span>。
 
 ```java
 import org.junit.jupiter.api.Test;
@@ -390,7 +390,7 @@ public class AssertionsTest {
 
 ![](images/561344619250168.png)
 
-<font color=red>**值得注意，`assertTimeoutPreemptively()` 和 `assertTimeout()` 的区别为：两者都是断言超时，前者在指定时间没有完成任务就会立即返回断言失败；后者会在任务执行完毕之后才返回**</font>。
+<span style="color: red;">**值得注意，`assertTimeoutPreemptively()` 和 `assertTimeout()` 的区别为：两者都是断言超时，前者在指定时间没有完成任务就会立即返回断言失败；后者会在任务执行完毕之后才返回**</span>。
 
 ## 异常测试
 

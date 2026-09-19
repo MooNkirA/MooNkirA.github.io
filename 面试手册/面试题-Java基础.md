@@ -93,9 +93,9 @@ jdk1.8 之后，接口可以定义非抽象方法，实现类不需要现实该�
 
 ## Map 的常用实现类 HashMap / LinkedHashMap / TreeMap 的区别
 
-1. HashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键（<font color=purple>**HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null。**</font>），<font color=red>**键是唯一，存储和取出没有顺序**</font>。
-2. LinkedHashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键，<font color=red>**键是唯一，存储和取出有顺序**</font>
-3. TreeMap：从功能上讲，TreeMap 有着比 HashMap 更为强大的功能，它实现了 SortedMap 接口，这意味着它可以对元素进行排序。TreeMap 的性能略微低于 HashMap。如果在开发中需要对元素进行<font color=red>排序</font>，那么使用 HashMap 便无法实现这种功能，使用 TreeMap 的迭代输出将会以元素顺序进行。<font color=red>**LinkedHashMap 是基于元素进入集合的顺序或者被访问的先后顺序排序，TreeMap 则是基于元素的固有顺序 (由 Comparator 或者 Comparable 确定)。即：LinkedHashMap 是根据元素增加或者访问的先后顺序进行排序，而 TreeMap 则根据元素的 Key 进行排序**</font>。
+1. HashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键（<span style="color: purple;">**HashMap 最多只允许一条记录的键为 null，允许多条记录的值为 null。**</span>），<span style="color: red;">**键是唯一，存储和取出没有顺序**</span>。
+2. LinkedHashMap: 基于哈希表的 Map 接口的实现类，并允许使用 null 值和 null 键，<span style="color: red;">**键是唯一，存储和取出有顺序**</span>
+3. TreeMap：从功能上讲，TreeMap 有着比 HashMap 更为强大的功能，它实现了 SortedMap 接口，这意味着它可以对元素进行排序。TreeMap 的性能略微低于 HashMap。如果在开发中需要对元素进行<span style="color: red;">排序</span>，那么使用 HashMap 便无法实现这种功能，使用 TreeMap 的迭代输出将会以元素顺序进行。<span style="color: red;">**LinkedHashMap 是基于元素进入集合的顺序或者被访问的先后顺序排序，TreeMap 则是基于元素的固有顺序 (由 Comparator 或者 Comparable 确定)。即：LinkedHashMap 是根据元素增加或者访问的先后顺序进行排序，而 TreeMap 则根据元素的 Key 进行排序**</span>。
 
 ## 说说 HashMap 底层原理？
 

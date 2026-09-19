@@ -265,7 +265,7 @@ port=3306
 
 #### 开启慢查询日志方式2 - 命令行修改慢查询配置
 
-值得注意的是，<font color=red>**命令行修改配置方式不需要重启即可生效，但如果重启之后会自动失效**</font>。因为 mysql 数据库每次启动，都是读取本身的 my.ini 配置文件，以配置文件的参数为准。
+值得注意的是，<span style="color: red;">**命令行修改配置方式不需要重启即可生效，但如果重启之后会自动失效**</span>。因为 mysql 数据库每次启动，都是读取本身的 my.ini 配置文件，以配置文件的参数为准。
 
 ```sql
 -- 启动停止慢查询日志
@@ -543,7 +543,7 @@ mysql> EXPLAIN SELECT * FROM order_exp;
 
 ### id 列
 
-选定的执行计划中查询的序列号。**表示查询中执行 select 子句或操作表的顺序，<font color=red>id 值越大优先级越高</font>，越先被执行。id 相同，执行顺序由上至下**。
+选定的执行计划中查询的序列号。**表示查询中执行 select 子句或操作表的顺序，<span style="color: red;">id 值越大优先级越高</span>，越先被执行。id 相同，执行顺序由上至下**。
 
 #### 单 SELECT 关键字
 
@@ -825,13 +825,13 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE order_no = 'a';
 
 ### type 列
 
-type 列用于显示连接使用了何种类型，<font color=red>**此列是分析执行计划重要的指标**</font>。连接类型结果值从最好到最差的排序如下：
+type 列用于显示连接使用了何种类型，<span style="color: red;">**此列是分析执行计划重要的指标**</span>。连接类型结果值从最好到最差的排序如下：
 
 ```
 NULL > system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
 ```
 
-实际开发中出现比较多的是 `system | const | eq_ref | ref | range | index | ALL`。<font color=red>**一般来说，保证查询至少达到 range 级别，最好能达到 ref 级别**</font>。
+实际开发中出现比较多的是 `system | const | eq_ref | ref | range | index | ALL`。<span style="color: red;">**一般来说，保证查询至少达到 range 级别，最好能达到 ref 级别**</span>。
 
 #### type 列常见的类型汇总
 
@@ -872,7 +872,7 @@ mysql> EXPLAIN SELECT * FROM test_myisam;
 +----+-------------+-------------+------------+--------+---------------+------+---------+------+-------+----------+-------+
 ```
 
-> <font color=red>**注意：只有在 MyISAM 这种存储引擎中，才会精确统计数据，如果改成使用 InnoDB 存储引擎，因为该引擎的统计非精确的，所以使用 `select * from table` 的话，会进行全表扫描（即 `all` 类型）**</font>
+> <span style="color: red;">**注意：只有在 MyISAM 这种存储引擎中，才会精确统计数据，如果改成使用 InnoDB 存储引擎，因为该引擎的统计非精确的，所以使用 `select * from table` 的话，会进行全表扫描（即 `all` 类型）**</span>
 
 ```sql
 mysql> EXPLAIN SELECT * FROM city;
@@ -898,7 +898,7 @@ mysql> EXPLAIN SELECT * FROM s1 WHERE id = 1;
 
 B+树叶子节点中的记录是按照索引列排序的，对于的聚簇索引来说，它对应的 B+树叶子节点中的记录就是按照 id 列排序的。B+树矮胖，所以这样根据主键值定位一条记录的速度很快。同样，根据唯一联合索引列来定位一条记录的速度也很快，MySQL 会分两步执行，首先在唯一联合索引对应的 B+树中，根据索引列与常数的等值比较条件定位到一条联合索引记录，然后再根据该记录的 id 值到聚簇索引中获取到完整的行记录。
 
-<u>值得注意的是：对于唯一的二级索引来说，<font color=red>**查询该列包含为 NULL 值的情况比较特殊，在 MySQL 中认为每一个 null 都是独一无二的，并且会将所有为 null 值的行数据索引的叶子结点的最前面**</font>。而唯一的二级索引列并不限制 NULL 值的数量，所以可能会访问到多条记录，也就是说 `is null` 不可以使用 `const` 类型访问方法来执行。</u>
+<u>值得注意的是：对于唯一的二级索引来说，<span style="color: red;">**查询该列包含为 NULL 值的情况比较特殊，在 MySQL 中认为每一个 null 都是独一无二的，并且会将所有为 null 值的行数据索引的叶子结点的最前面**</span>。而唯一的二级索引列并不限制 NULL 值的数量，所以可能会访问到多条记录，也就是说 `is null` 不可以使用 `const` 类型访问方法来执行。</u>
 
 #### eq_ref 类型
 
@@ -1067,7 +1067,7 @@ mysql> EXPLAIN SELECT * FROM s1;
 
 possible_keys 列，用于显示可能应用在这张表中的索引。如果为空，则没有可能的索引。可以为相关的域从 WHERE 语句中选择一个合适的语句。
 
-另外需要注意的一点是，<font color=red>**possible keys 列中的值并不是越多越好，可能使用的索引越多，查询优化器计算查询成本时就得花费更长时间**</font>，所以如果可以的话，尽量删除那些用不到的索引。
+另外需要注意的一点是，<span style="color: red;">**possible keys 列中的值并不是越多越好，可能使用的索引越多，查询优化器计算查询成本时就得花费更长时间**</span>，所以如果可以的话，尽量删除那些用不到的索引。
 
 ### key 列
 
@@ -1266,7 +1266,7 @@ mysql> explain select order_number from tb_order group by order_number;
 SELECT * FROM s1 WHERE order_no > 'z' AND order_no LIKE '%a';
 ```
 
-其中的`order_no > 'z'`可以使用到索引，但是`order_no LIKE '%a'`却无法使用到索引。这里出现了<font color=red>**“索引条件下推”**</font>的概念。
+其中的`order_no > 'z'`可以使用到索引，但是`order_no LIKE '%a'`却无法使用到索引。这里出现了<span style="color: red;">**“索引条件下推”**</span>的概念。
 
 1. 先根据`order_no > 'z'`这个条件，定位到二级索引 idx_order_no 中对应的二级索引记录。
 2. 对于指定的二级索引记录，先不着急回表，而是先检测一下该记录是否满足`order_no LIKE '%a'`这个条件，如果这个条件不满足，则该二级索引记录就没必要回表。
@@ -1977,7 +1977,7 @@ mysql> explain select profession, count(*) from tb_user group by profession;
 +----+-------------+---------+------------+-------+----------------------+----------------------+---------+------+------+----------+-------------+
 ```
 
-如果仅仅根据 age 分组，就会出现 Using temporary ；而如果是根据 profession,age 两个字段同时分组，则不会出现 Using temporary。因此可以得到<font color=red>**结论：对于有联合索引的字段进行分组操作，也是符合最左前缀法则的**</font>。
+如果仅仅根据 age 分组，就会出现 Using temporary ；而如果是根据 profession,age 两个字段同时分组，则不会出现 Using temporary。因此可以得到<span style="color: red;">**结论：对于有联合索引的字段进行分组操作，也是符合最左前缀法则的**</span>。
 
 ```sql
 mysql> explain select profession, count(*) from tb_user group by age;
@@ -2254,7 +2254,7 @@ mysql> SELECT COUNT(DISTINCT order_status)/COUNT(*) cnt FROM order_exp;
 2. 哈希算法的选择决定了哈希冲突的概率，不良的哈希算法会导致重复值很多
 3. 不支持范围查找
 
-于是有改进的方案 - <font color=red>**前缀索引**</font>：就是以开始的一部分字符前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。一般情况下需要保证某个列前缀的选择性也是足够高的，以满足查询性能。（尤其对于 BLOB、TEXT 或者很长的 VARCHAR 类型的列，应该使用前缀索引，因为 MySQL 不允许索引这些列的完整长度）。创建语法如下：
+于是有改进的方案 - <span style="color: red;">**前缀索引**</span>：就是以开始的一部分字符前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。一般情况下需要保证某个列前缀的选择性也是足够高的，以满足查询性能。（尤其对于 BLOB、TEXT 或者很长的 VARCHAR 类型的列，应该使用前缀索引，因为 MySQL 不允许索引这些列的完整长度）。创建语法如下：
 
 ```sql
 -- 方式一：
@@ -2263,7 +2263,7 @@ CREATE INDEX 索引名称 ON 表名(字段名(长度));
 ALTER TABLE 表名 ADD KEY (字段名(长度));
 ```
 
-那么前缀索引的的长度选择多少最合适？诀窍在于要选择足够长的前缀以保证较高的选择性，同时又不能太长（以便节约空间)。所谓的<font color=red>**选择性**</font>是指不重复的索引值（基数）和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是 1，这是最好的索引选择性，性能也是最好的。
+那么前缀索引的的长度选择多少最合适？诀窍在于要选择足够长的前缀以保证较高的选择性，同时又不能太长（以便节约空间)。所谓的<span style="color: red;">**选择性**</span>是指不重复的索引值（基数）和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是 1，这是最好的索引选择性，性能也是最好的。
 
 前缀应该足够长，以使得前缀索引的选择性接近于索引整个列。即前缀的“基数”应该接近于完整列的“基数”。为了决定前缀的合适长度，可以找到最常见的值的列表，然后和最常见的前缀列表进行比较
 
@@ -2440,7 +2440,7 @@ WHERE 中的表达式其实等价于` order_status = 0`，但是 MySQL 无法自
 select * from order_exp where insert_time='2021-03-22 18:34:55' and order_status=0 and expire_time='2021-03-22 18:35:14';
 ```
 
-上述语句的联合索引中的三个列都用到。<font color=red>值得注意是，WHERE 子句中的几个`and`连接的搜索条件的顺序对查询结果是否使用索引，是没有任何影响</font>。查询优化器会分析这些搜索条件并且按照可以使用的索引中列的顺序来决定先使用哪个搜索条件，后使用哪个搜索条件。
+上述语句的联合索引中的三个列都用到。<span style="color: red;">值得注意是，WHERE 子句中的几个`and`连接的搜索条件的顺序对查询结果是否使用索引，是没有任何影响</span>。查询优化器会分析这些搜索条件并且按照可以使用的索引中列的顺序来决定先使用哪个搜索条件，后使用哪个搜索条件。
 
 #### 最佳左前缀法则
 
@@ -2463,9 +2463,9 @@ select * from t where b = 1 and c = '3';
 
 ![](images/213611512230362.png)
 
-如果想使用联合索引中尽可能多的列，<font color=red>**搜索条件中的各个列必须是联合索引中从最左边连续的列**</font>。
+如果想使用联合索引中尽可能多的列，<span style="color: red;">**搜索条件中的各个列必须是联合索引中从最左边连续的列**</span>。
 
-> Tips: 最左前缀法则中指的最左边的列，是指在查询时，联合索引的最左边的字段(即是第一个字段)必须存在，与编写SQL时<font color=red>**条件的先后顺序无关**</font>。mysql的查询优化器会优化成索引可以识别的形式。
+> Tips: 最左前缀法则中指的最左边的列，是指在查询时，联合索引的最左边的字段(即是第一个字段)必须存在，与编写SQL时<span style="color: red;">**条件的先后顺序无关**</span>。mysql的查询优化器会优化成索引可以识别的形式。
 
 #### 范围条件放最后
 
@@ -2593,7 +2593,7 @@ SELECT * FROM test_table WHERE `name` like 'moon%' AND age = 22 AND position ='m
 
 **尽量避免使用外键约束**
 
-- 不建议使用外键约束（foreign key），但<font color=red>**一定要在表与表之间的关联键上建立索引**</font>。
+- 不建议使用外键约束（foreign key），但<span style="color: red;">**一定要在表与表之间的关联键上建立索引**</span>。
 - 外键可用于保证数据的参照完整性，但建议在业务端实现。
 - 外键会影响父表和子表的写操作从而降低性能。
 
@@ -2877,7 +2877,7 @@ SET optimizer_trace="enabled=off";
 
 #### 注意事项
 
-<font color=red>**开启 trace 会影响 mysql 性能，所以只能临时分析 sql 使用，用完之后立即关闭**</font>
+<span style="color: red;">**开启 trace 会影响 mysql 性能，所以只能临时分析 sql 使用，用完之后立即关闭**</span>
 
 ### 连接查询的成本
 

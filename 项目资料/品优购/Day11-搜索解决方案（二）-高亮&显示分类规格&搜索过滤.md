@@ -371,7 +371,7 @@ $scope.updateRedis = () => {
 </button>
 ```
 
-<font color="red">***！！（如果在此配置文件中有引入mapper.xml的配置的话）注意：此处配置加载文件的顺序，如果mapper.xml配置文件放在redis配置文件后面会出错***</font>
+<span style="color: red;">***！！（如果在此配置文件中有引入mapper.xml的配置的话）注意：此处配置加载文件的顺序，如果mapper.xml配置文件放在redis配置文件后面会出错***</span>
 
 ![配置缓存注意问题](images/20190208104701417_8426.jpg)
 
@@ -620,7 +620,7 @@ public Map<String, Object> search(Map<String, Object> params) {
 
 **解决方案：**
 
-将common公共模块的redis配置文件中的加载属性文件的部分删除，然后在引用common模块中的redis的服务中，<font color="red">***配置加载依赖模块的配置文件***</font>即可（注意一个系统中，包含依赖的系统，<font color="red">只能一个地方使用classpath*</font>）
+将common公共模块的redis配置文件中的加载属性文件的部分删除，然后在引用common模块中的redis的服务中，<span style="color: red;">***配置加载依赖模块的配置文件***</span>即可（注意一个系统中，包含依赖的系统，<span style="color: red;">只能一个地方使用classpath*</span>）
 
 ```xml
 <context:property-placeholder location="classpath*:props/*.properties"/>
@@ -769,7 +769,7 @@ $scope.removeSearchItem = (key) => {
 };
 ```
 
-<font color="red">***注意：删除规格时，不能直接赋值为空字符串***</font>
+<span style="color: red;">***注意：删除规格时，不能直接赋值为空字符串***</span>
 
 #### 页面调用方法
 

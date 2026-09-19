@@ -18,7 +18,7 @@
 
 ![](images/484011823257025.jpg)
 
-下面的图片比较了 Docker 和传统虚拟化方式的不同之处，可见<font color="red">**容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现**</font>。与传统的虚拟机相比，Docker 优势体现为启动速度快、占用体积小。
+下面的图片比较了 Docker 和传统虚拟化方式的不同之处，可见<span style="color: red;">**容器是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统，而传统方式则是在硬件层面实现**</span>。与传统的虚拟机相比，Docker 优势体现为启动速度快、占用体积小。
 
 ![](images/20190405222326753_21073.png)
 
@@ -63,7 +63,7 @@ Docker 可以帮助构建和部署容器，只需要把自己的应用程序或�
 - 镜像是 Docker 生命周期中的构建或者打包阶段
 - 容器则是启动或者执行阶段
 
-<font color=red>**Docker 容器就是：一个镜像格式、一些列标准操作、一个执行环境。镜像是静态的定义，容器是镜像运行时的实例。**</font>
+<span style="color: red;">**Docker 容器就是：一个镜像格式、一些列标准操作、一个执行环境。镜像是静态的定义，容器是镜像运行时的实例。**</span>
 
 Docker 在执行上述操作时，并不关心容器中到底装了什么，它不管是 web 服务器，还是数据库，或者是应用程序服务器什么的。所有的容器都按照相同的方式将内容“装载”进去。
 
@@ -250,7 +250,7 @@ Docker 镜像是由文件系统叠加而成（是一种文件的存储形式）�
 
 ![Docker镜像与容器](images/20190405231315054_13164.png)
 
-从下载过程中可以看到<font color=red>**镜像是由多层存储构成**</font>。下载也是一层层的去下载，<font color=red>**并非单一文件**</font>。
+从下载过程中可以看到<span style="color: red;">**镜像是由多层存储构成**</span>。下载也是一层层的去下载，<span style="color: red;">**并非单一文件**</span>。
 
 ```bash
 > docker pull ubuntu
@@ -281,7 +281,7 @@ docker images
 - CREATED：镜像的创建日期（不是获取该镜像的日期）
 - SIZE：镜像大小
 
-<font color="red">**说明：这些镜像都是存储在 Docker 宿主机的/var/lib/docker 目录下**</font>
+<span style="color: red;">**说明：这些镜像都是存储在 Docker 宿主机的/var/lib/docker 目录下**</span>
 
 为了区分同一个仓库下的不同镜像，Docker 提供了一种称为标签（Tag）的功能。每个镜像在列出来时都带有一个标签，例如 12.10、12.04 等等。每个标签对组成特定镜像的一些镜像层进行标记（比如，标签 12.04 就是对所有 Ubuntu12.04 镜像层的标记）。这种机制使得同一个仓库中可以存储多个镜像。--- 版本号
 
@@ -316,7 +316,7 @@ docker search 镜像名称
 查询的结果列说明：
 
 - INDEX：索引名称
-- <font color=red>**NAME：镜像名称**</font>
+- <span style="color: red;">**NAME：镜像名称**</span>
 - DESCRIPTION：镜像描述
 - STARS：(星级)用户评价，反应一个镜像的受欢迎程度
 - OFFICIAL：是否官方
@@ -436,7 +436,7 @@ docker image rm $(docker images -f dangling=true)
 docker image prune
 ```
 
-> Notes: <font color="red">**删除镜像前，需要将当前镜像所创建的容器删除，否则会警告，不能删除错镜像**</font>
+> Notes: <span style="color: red;">**删除镜像前，需要将当前镜像所创建的容器删除，否则会警告，不能删除错镜像**</span>
 
 ### 悬挂镜像
 
@@ -666,7 +666,7 @@ docker restart 5f4465d7430c
 
 ### 删除容器
 
-<font color=red>**注意：只能删除处于终止状态的容器**</font>
+<span style="color: red;">**注意：只能删除处于终止状态的容器**</span>
 
 删除指定的容器的语法：
 
@@ -867,7 +867,7 @@ c3p0.initialPoolSize=2
 
 测试：地址栏输入http://192.168.12.132:9000/ssm
 
-<font color="red">**注意：docker 容器之间通信需要用容器的 IP**</font>
+<span style="color: red;">**注意：docker 容器之间通信需要用容器的 IP**</span>
 
 ### Nginx 部署
 

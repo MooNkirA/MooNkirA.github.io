@@ -253,7 +253,7 @@ public class DemoController {
 
 Spring MVC 和其他许多 Web 框架一样，是围绕前端控制器模式设计的，`DispatcherServlet` 就是相当于一个中央处理器、转发器，作用是接收请求，响应结果。
 
-用户请求到达前端控制器，它就相当于 MVC 模式中的 C，`DispatcherServlet` 是整个流程控制的中心，由它调用其它组件处理用户的请求，<font color=red>**`DispatcherServlet`的存在降低了组件之间的耦合性**</font>
+用户请求到达前端控制器，它就相当于 MVC 模式中的 C，`DispatcherServlet` 是整个流程控制的中心，由它调用其它组件处理用户的请求，<span style="color: red;">**`DispatcherServlet`的存在降低了组件之间的耦合性**</span>
 
 #### 处理器映射器 HandlerMapping
 
@@ -349,7 +349,7 @@ Spring 的模型-视图-控制器（MVC）框架是围绕一个 `DispatcherServl
 
 ## DispatcherServlet 前端控制器配置
 
-DispatcherServlet 和其他 Servlet 一样，<font color=red>**实质是一个 Servlet**</font>。需要通过使用 Java 编程式配置或在 web.xml 中根据 Servlet 规范进行声明和映射。通过配置来绑定请求映射、视图解析、异常处理等方面的组件。
+DispatcherServlet 和其他 Servlet 一样，<span style="color: red;">**实质是一个 Servlet**</span>。需要通过使用 Java 编程式配置或在 web.xml 中根据 Servlet 规范进行声明和映射。通过配置来绑定请求映射、视图解析、异常处理等方面的组件。
 
 ### DispatcherServlet 注册与初始化配置
 
@@ -568,7 +568,7 @@ org.springframework.web.servlet.ViewResolver=org.springframework.web.servlet.vie
 org.springframework.web.servlet.FlashMapManager=org.springframework.web.servlet.support.SessionFlashMapManager
 ```
 
-> <font color=red>**注意：如果没有手动创建的以上接口的自定义实现并加入到 Spring，Spring MVC 会去自动创建默认的实现，但只会保存在 `DispatcherServlet` 中相应的属性中，此时 Spring 容器是没有这些实现的实例。**</font>
+> <span style="color: red;">**注意：如果没有手动创建的以上接口的自定义实现并加入到 Spring，Spring MVC 会去自动创建默认的实现，但只会保存在 `DispatcherServlet` 中相应的属性中，此时 Spring 容器是没有这些实现的实例。**</span>
 
 ### 映射器和适配器
 
@@ -632,7 +632,7 @@ public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
 <mvc:annotation-driven />
 ```
 
-<font color=red>**注意事项：上面配置中，处理器映射器和处理器适配器必须配对使用**</font>。否则会报【HTTP Status 500 - No adapter for handler】的异常
+<span style="color: red;">**注意事项：上面配置中，处理器映射器和处理器适配器必须配对使用**</span>。否则会报【HTTP Status 500 - No adapter for handler】的异常
 
 ![](images/204432014220567.jpg)
 
@@ -938,7 +938,7 @@ public SimpleControllerHandlerAdapter simpleControllerHandlerAdapter() {
 - `RouterFunctionMapping`：用于解析函数式 `RequestPredicate`（定义匹配逻辑与请求路径）、`HandlerFunction`（定义具体的处理逻辑）
 - `SimpleUrlHandlerMapping`：用于映射静态资源，基于通配符，如：`/**`、`/img/**` 等
 
-> <font color=red>**注意：以上的映射器有顺序的限制，不需要顺意调换定义的顺序，否则会出现所有请求只能匹配到一种映射器的情。Spring boot 的默认顺序如上述**</font>
+> <span style="color: red;">**注意：以上的映射器有顺序的限制，不需要顺意调换定义的顺序，否则会出现所有请求只能匹配到一种映射器的情。Spring boot 的默认顺序如上述**</span>
 
 `HandlerAdapter` 负责实现对各种各样的 handler 的适配调用
 
@@ -1117,10 +1117,10 @@ Spring MVC 默认支持绑定 `javax.servlet.http.HttpSession` 类型的参数�
 
 ### Model / ModelMap
 
-- `org.springframework.ui.Model` 是模型，是一个接口。<font color=red>**用于设置响应的模型数据**</font>
+- `org.springframework.ui.Model` 是模型，是一个接口。<span style="color: red;">**用于设置响应的模型数据**</span>
 - `org.springframework.ui.ModelMap` 是一个实现类，使用 `ModelMap` 和使用 `Model` 是一样的。使用 `Model`，Spring MVC 在执行的时候，会实例化成 `ModelMap`
 
-使用 `Model` 响应模型数据，就可以不使用 `ModelAndView`，视图可以使用字符串 String 返回。<font color=red>**不管是 `Model` 还是 `ModelAndView`，其本质都是使用 `Request` 对象向 jsp 传递数据**</font>
+使用 `Model` 响应模型数据，就可以不使用 `ModelAndView`，视图可以使用字符串 String 返回。<span style="color: red;">**不管是 `Model` 还是 `ModelAndView`，其本质都是使用 `Request` 对象向 jsp 传递数据**</span>
 
 #### Model / ModelMap 相关方法
 
@@ -1162,7 +1162,7 @@ public String queryItemById(Model model, HttpServletRequest request) {
 
 ### @RequestParam 注解绑定参数
 
-设置请求的参数名称，与方法形参名称匹配。<font color=red>**绑定后传递的请求参数必须是设置的值。注意：注解的使用位置在需要绑定的形参前面**</font>
+设置请求的参数名称，与方法形参名称匹配。<span style="color: red;">**绑定后传递的请求参数必须是设置的值。注意：注解的使用位置在需要绑定的形参前面**</span>
 
 示例：使用 `@RequestParam` 注解解决请求参数与方法形参名称不匹配的问题
 
@@ -1188,7 +1188,7 @@ public String queryItemById(Model model,
 
 ### Map 类型参数绑定
 
-控制器方法形参可以使用 `Map` 集合实现参数绑定，但<font color=purple>**必须要配合 `@RequestParam` 注解一起使用**</font>
+控制器方法形参可以使用 `Map` 集合实现参数绑定，但<span style="color: purple;">**必须要配合 `@RequestParam` 注解一起使用**</span>
 
 ```java
 /**
@@ -1252,7 +1252,7 @@ public String queryItemById(Model model, Integer id) {
 
 如果请求提交的参数很多，或者提交的表单中的内容很多的时候，可以使用简单类型接受数据，也可以使用 pojo（对象类型）接收数据。
 
-注意：<font color=red>**pojo 对象中的属性名 setter 方法和提交的表单中 input 元素的 `name` 属性一致或是上送的 json 对象属性名一致。（注：与属性名称无关，set 方法名称去掉 set 后的，首字母改成小写后与请求的参数名称一致即可）**</font>。Spring MVC 框架会自动将请求参数赋值给 pojo 的属性
+注意：<span style="color: red;">**pojo 对象中的属性名 setter 方法和提交的表单中 input 元素的 `name` 属性一致或是上送的 json 对象属性名一致。（注：与属性名称无关，set 方法名称去掉 set 后的，首字母改成小写后与请求的参数名称一致即可）**</span>。Spring MVC 框架会自动将请求参数赋值给 pojo 的属性
 
 示例：
 
@@ -1470,7 +1470,7 @@ public String queryItem(Model model, QueryVo queryVo) {
 }
 ```
 
-> <font color=red>**注意事项：使用 list 类型参数绑定，list 需要作为 pojo 的属性。不能直接在方法的形参中使用 list，否则不能完成绑定**</font>
+> <span style="color: red;">**注意事项：使用 list 类型参数绑定，list 需要作为 pojo 的属性。不能直接在方法的形参中使用 list，否则不能完成绑定**</span>
 
 ### 参数解析器
 
@@ -2714,7 +2714,7 @@ public String testInterceptor(Model model){
 4. 响应 jsp 页面
 5. 执行拦截器的 afterCompletion 方法
 
-如果设置<font color=red>**preHandle 方法返回值为 false**</font>，则只会执行 preHandle 方法，终止执行。请求的方法都被拦截，不再执行
+如果设置<span style="color: red;">**preHandle 方法返回值为 false**</span>，则只会执行 preHandle 方法，终止执行。请求的方法都被拦截，不再执行
 
 ![](images/20200922100757124_22779.jpg)
 
@@ -2809,7 +2809,7 @@ UserController.java 编写跳转到登陆页面方法与登陆方法
 涉及小知识：
 
 - 如果是跨模块访问的话，使用绝对路径；因为不同模块的命名空间可能会不一样。如：用户模块`@Requestmapping("user")`和商品模块`@Requestmapping("item")`
-- <font color=red>**如果是当前模块之间的访问，使用相对路径**</font>
+- <span style="color: red;">**如果是当前模块之间的访问，使用相对路径**</span>
 
 ```java
 // 使用注解让spring容器管理
@@ -3383,7 +3383,7 @@ int arg1
 
 ### 生成参数表
 
-如果编译时添加了 `-parameters` 参数，可以生成参数表，通过反射就可以拿到方法参数名（<font color=red>**注：这种方式对象类与接口都同样有效**</font>）
+如果编译时添加了 `-parameters` 参数，可以生成参数表，通过反射就可以拿到方法参数名（<span style="color: red;">**注：这种方式对象类与接口都同样有效**</span>）
 
 ```bash
 javac -parameters Bean1.java
@@ -3455,7 +3455,7 @@ int age
 
 如果编译时添加了 `-g` 参数，可以生成调试信息，但分为以下两种情况：
 
-> <font color=red>**注：大部分 IDE 编译时都会自动加 `-g` 参数**</font>
+> <span style="color: red;">**注：大部分 IDE 编译时都会自动加 `-g` 参数**</span>
 
 #### 普通类
 
@@ -3555,7 +3555,7 @@ public void testGetMethodArgumentName2() throws Exception {
 
 #### 接口
 
-对于接口，使用 `-g` 参数编译，不会包含局部变量表，无法获取方法参数名。<font color=purple>**扩展：这也是 MyBatis 在实现 Mapper 接口时为何要提供 `@Param` 注解来辅助获得参数名**</font>
+对于接口，使用 `-g` 参数编译，不会包含局部变量表，无法获取方法参数名。<span style="color: purple;">**扩展：这也是 MyBatis 在实现 Mapper 接口时为何要提供 `@Param` 注解来辅助获得参数名**</span>
 
 ```bash
 javac -g Bean2.java

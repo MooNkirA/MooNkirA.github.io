@@ -276,7 +276,7 @@ protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
 invokeBeanFactoryPostProcessors(beanFactory);
 ```
 
-以上两个接口的调用，是完成<font color=red>**对 BeanDefinition 的动态修改**</font>
+以上两个接口的调用，是完成<span style="color: red;">**对 BeanDefinition 的动态修改**</span>
 
 ```java
 protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
@@ -296,7 +296,7 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 
 #### 接口的作用
 
-<font color=red>**这个接口的理解：用于获取 `BeanDefinitionRegistry` 对象，获取到此对象就可以获取这个对象中注册的所有 `BeanDefinition` 对象，就可以完成里面所有 `BeanDefinition` 对象的新增、修改、删除、查询操作。**</font>
+<span style="color: red;">**这个接口的理解：用于获取 `BeanDefinitionRegistry` 对象，获取到此对象就可以获取这个对象中注册的所有 `BeanDefinition` 对象，就可以完成里面所有 `BeanDefinition` 对象的新增、修改、删除、查询操作。**</span>
 
 #### 在spring中的调用时机
 
@@ -559,11 +559,11 @@ public interface BeanPostProcessor {
 
 ### BeanPostProcessor 接口的作用
 
-BeanPostProcessor（后置处理器）：这个接口里面有两个方法，可以进行相应的操作，<font color=red>**bean实例化前的操作，以及bean实例化后的操作**</font>，这个实例化在其他正常的实例化方法之前，比如可以阻止其他 bean 的 IOC 依赖注入，把实现了 BeanPostProcessor 接口的类实例化，并且加入到 BeanFactory
+BeanPostProcessor（后置处理器）：这个接口里面有两个方法，可以进行相应的操作，<span style="color: red;">**bean实例化前的操作，以及bean实例化后的操作**</span>，这个实例化在其他正常的实例化方法之前，比如可以阻止其他 bean 的 IOC 依赖注入，把实现了 BeanPostProcessor 接口的类实例化，并且加入到 BeanFactory
 
 ### BeanPostProcessor 的注册
 
-在AbstractApplicationContext类的`refresh()`方法中，调用`registerBeanPostProcessors(beanFactory);`方法。此方法完成了 `BeanPostProcessor` 的注册，<font color=red>**就是把实现 `BeanPostProcessor` 接口的类提前实例化**</font>
+在AbstractApplicationContext类的`refresh()`方法中，调用`registerBeanPostProcessors(beanFactory);`方法。此方法完成了 `BeanPostProcessor` 的注册，<span style="color: red;">**就是把实现 `BeanPostProcessor` 接口的类提前实例化**</span>
 
 1. 此方法里面一开始就获取到 BeanFactory 中所有注册的 BeanDefinition 对象的名称 beanName。
 
@@ -1541,7 +1541,7 @@ protected BeanWrapper autowireConstructor(
 
 ![](images/20210129151619775_20650.png)
 
-<font color=red>**总结：由以上源码分析可知，不管是Field，Method、或者是构造函数，凡是使用`@Autowired`注解，如果自动注入的参数是一个引用的类型，就会触发这个引用类型的getBean方法来进行实例化，获取bean实例**</font>
+<span style="color: red;">**总结：由以上源码分析可知，不管是Field，Method、或者是构造函数，凡是使用`@Autowired`注解，如果自动注入的参数是一个引用的类型，就会触发这个引用类型的getBean方法来进行实例化，获取bean实例**</span>
 
 #### 无 @Autowired 注解的有参构造函数实例化过程
 
@@ -1834,7 +1834,7 @@ public void inject(Object target, @Nullable String beanName, @Nullable PropertyV
 
 ![](images/20200512233942404_30191.png)
 
-`element.inject`其实就是通过反射来完成依赖注入调用。<font color=red>**注：其中 value 值的获取，如果依赖的属性是一个引用类型必定会触发该属性的`BeanFactory.getBean()`操作，从 spring 容器中获取到对应的实例。**</font>
+`element.inject`其实就是通过反射来完成依赖注入调用。<span style="color: red;">**注：其中 value 值的获取，如果依赖的属性是一个引用类型必定会触发该属性的`BeanFactory.getBean()`操作，从 spring 容器中获取到对应的实例。**</span>
 
 - 字段属性依赖注入
 
@@ -2016,7 +2016,7 @@ public abstract static class InjectedElement {
 }
 ```
 
-<font color=red>**上述过程是对`@Autowired`、`@Resource`以及`@Value`注解修饰的`Field`和`Method`等完成依赖注入**</font>
+<span style="color: red;">**上述过程是对`@Autowired`、`@Resource`以及`@Value`注解修饰的`Field`和`Method`等完成依赖注入**</span>
 
 ##### @Autowired 自动匹配小结(待研究分析，补充)
 
@@ -2433,11 +2433,11 @@ public Object postProcessBeforeInitialization(Object bean, String beanName) {
 }
 ```
 
-> <font color=red>**注：通过`@Import`注解导入的类，在spring容器中注册的名称不是默认的“类名首字母小写”，而是“类的全限定名”**</font>
+> <span style="color: red;">**注：通过`@Import`注解导入的类，在spring容器中注册的名称不是默认的“类名首字母小写”，而是“类的全限定名”**</span>
 
 ##### 番外：ImportAware 接口的运用示例
 
-- 创建`ImportAware`接口的实现类。<font color=red>**注意：此实现类不需要使用`@Component`之类的注解，而是通过`@Import`注解的方式，让spring容器管理**</font>
+- 创建`ImportAware`接口的实现类。<span style="color: red;">**注意：此实现类不需要使用`@Component`之类的注解，而是通过`@Import`注解的方式，让spring容器管理**</span>
 
 ```java
 public class CustomImportAware implements ImportAware {
@@ -2545,7 +2545,7 @@ public class CustomInitializingBean implements InitializingBean {
 </beans>
 ```
 
-> <font color=red>**注意：通过xml配置文件的方式实现类创建后执行`init-method`，相应的方法的执行顺序是在实现了`InitializingBean`接口的`afterPropertiesSet()`方法执行之后。init-method配置的方法必须是无参数的方法**</font>
+> <span style="color: red;">**注意：通过xml配置文件的方式实现类创建后执行`init-method`，相应的方法的执行顺序是在实现了`InitializingBean`接口的`afterPropertiesSet()`方法执行之后。init-method配置的方法必须是无参数的方法**</span>
 
 测试：
 
@@ -2616,7 +2616,7 @@ protected void invokeInitMethods(String beanName, final Object bean, @Nullable R
 
 `InitializingBean.afterPropertiesSet`、`init-method`和有`@PostConstruct`注解的方法其实核心功能都是一样的，只是调用时序不一样而已，都是在该类实例化和 IOC 做完后调用的，可以在这些方法中做一些在 spring 或者 servlet 容器启动的时候的初始化工作。比如缓存预热，比如缓存数据加载到内存，比如配置解析，等等初始化工作。
 
-<font color=red>**从源码的分析可知，这3种初始化方法的调用时序是：`@PostConstruct` -> `InitializingBean.afterPropertiesSet` -> `init-method`（xml配置）**</font>
+<span style="color: red;">**从源码的分析可知，这3种初始化方法的调用时序是：`@PostConstruct` -> `InitializingBean.afterPropertiesSet` -> `init-method`（xml配置）**</span>
 
 #### AOP入口
 
@@ -2635,15 +2635,15 @@ protected Object initializeBean(final String beanName, final Object bean, @Nulla
 }
 ```
 
-<font color=red>**这也是一个 `BeanPostProcessor` 接口的运用，在这里会返回 bean 的代理实例，这个就是 AOP 的入口。**</font>
+<span style="color: red;">**这也是一个 `BeanPostProcessor` 接口的运用，在这里会返回 bean 的代理实例，这个就是 AOP 的入口。**</span>
 
 ### 循环依赖
 
-> <font color=red>**注：此部分的逻辑是在IOC/DI依赖注入之前，为了方便理解，先分析了依赖注入与bean实例化后操作流程再来分析**</font>
+> <span style="color: red;">**注：此部分的逻辑是在IOC/DI依赖注入之前，为了方便理解，先分析了依赖注入与bean实例化后操作流程再来分析**</span>
 
 #### 循环依赖流程图
 
-> TODO: 循环依赖参照流程图（引用其他资料。）<font color="red">有时间自己再重新整理</font>
+> TODO: 循环依赖参照流程图（引用其他资料。）<span style="color: red;">有时间自己再重新整理</span>
 
 ![](images/20200531165112369_24084.png)
 
@@ -3268,7 +3268,7 @@ public void testPrototype() throws InterruptedException {
 
 #### 多例Bean注意项
 
-- scope 作用域：默认是单例模式，即 `scope="singleton"`。另外 scope 还有 prototype、request、session、global session 作用域。`scope="prototype"`表示多例。<font color=red>**注：request 和 session 作用域只会在 web 环境才会存在(此时 bean 的管理是由 tomcat 进行的)**</font>
+- scope 作用域：默认是单例模式，即 `scope="singleton"`。另外 scope 还有 prototype、request、session、global session 作用域。`scope="prototype"`表示多例。<span style="color: red;">**注：request 和 session 作用域只会在 web 环境才会存在(此时 bean 的管理是由 tomcat 进行的)**</span>
 - Scope 是 `Prototype` 时，不管是否同一个线程，只要是 `getBean()` 方法就会得到一个新的实例
 - Scope 是 `Prototype` 时，在spring容器启动中，是不会创建实例，需要主动调用 `getBean()` 时才会创建实例
 - Request 作用域时，是把实例存储到 request 对象中(此时 bean 的管理是由 tomcat 进行的)， 通过 `request.getAttruibte/setAttibute` 进行操作
@@ -5084,7 +5084,7 @@ private void registerBeanDefinitionForImportedConfigurationClass(ConfigurationCl
 
 前面已经收集过每个标识了`@Bean`注解的方法，并封装成`BeanMethod`对象。此处调用`loadBeanDefinitionsForBeanMethod`方法，封装成BeanDefinition对象，并注册
 
-<font color=red>**需要注意的是：通过`@Bean`注解创建的对象，会设置其相应的BeanDefinition的`factoryBeanName`属性值为当前类的名称，`factoryMethodName`属性值为当前方法名**</font>
+<span style="color: red;">**需要注意的是：通过`@Bean`注解创建的对象，会设置其相应的BeanDefinition的`factoryBeanName`属性值为当前类的名称，`factoryMethodName`属性值为当前方法名**</span>
 
 ![](images/20210218220553135_6968.png)
 
@@ -5191,7 +5191,7 @@ public class MyFactoryBean implements FactoryBean<Bird> {
 
 ### 源码分析
 
-> <font color=red>**经上面差异测试，可以知道，在调用`@Bean`注解的方法获取对象时，不是通过类实例本身调用，而是通过代理调用**</font>
+> <span style="color: red;">**经上面差异测试，可以知道，在调用`@Bean`注解的方法获取对象时，不是通过类实例本身调用，而是通过代理调用**</span>
 
 `ConfigurationClassPostProcessor`实现了`BeanDefinitionRegistryPostProcessor`接口，分别实现了`postProcessBeanDefinitionRegistry`与`postProcessBeanFactory`方法。而在前面的源码分析中，此两个方法的调用时序是：先`postProcessBeanDefinitionRegistry`后`postProcessBeanFactory`。
 
@@ -5500,7 +5500,7 @@ public void testPropertiesByXml() {
 }
 ```
 
-> <font color=red>**注：`@PropertySource`注解引入配置文件与xml配置中`<context:property-placeholder>`标签效果一样，也可以实现将注入属性值替换相应占位符的值，同时也会将properties或xml配置文件的值会注册到`Environment`对象中**</font>
+> <span style="color: red;">**注：`@PropertySource`注解引入配置文件与xml配置中`<context:property-placeholder>`标签效果一样，也可以实现将注入属性值替换相应占位符的值，同时也会将properties或xml配置文件的值会注册到`Environment`对象中**</span>
 
 ![](images/20210212170144330_26134.png)
 
@@ -5539,7 +5539,7 @@ public class CustomResourceLoaderAware implements ResourceLoaderAware {
 
 #### 注意事项
 
-<font color=red>**注：如果都不配置以上的任何一种参数解析方案，xml则直接将占位符（el表达式）当成字符串赋值给相应的属性**</font>，结果如下：
+<span style="color: red;">**注：如果都不配置以上的任何一种参数解析方案，xml则直接将占位符（el表达式）当成字符串赋值给相应的属性**</span>，结果如下：
 
 ```
 ${moon.name} :: ${moon.password}

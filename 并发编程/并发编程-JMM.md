@@ -278,7 +278,7 @@ public void actor2(I_Result r) {
 - 情况1：线程1 先执行，这时 `ready = false`，所以进入 else 分支结果为 1
 - 情况2：线程2 先执行 `num = 2`，但没来得及执行 `ready = true`，线程1 执行，还是进入 else 分支，结果为1
 - 情况3：线程2 执行到` ready = true`，线程1 执行，这回进入 if 分支，结果为 4（因为 num 已经执行过了）
-- <font color=red>**情况4**</font>：线程2 执行 `ready = true`，切换到线程1，进入 if 分支，相加为 0，再切回线程2 执行 num = 2，因此最终结果是 0
+- <span style="color: red;">**情况4**</span>：线程2 执行 `ready = true`，切换到线程1，进入 if 分支，相加为 0，再切回线程2 执行 num = 2，因此最终结果是 0
 
 ### 测试工具 jcstress
 

@@ -35,7 +35,7 @@ spring:
     password: 123456
 ```
 
-可以对 HikariCP 配置其独立的属性，<font color=red>**但需要注意：`url` 地址需要单独配置，如果配置到 `hikari` 子属性中，程序启动会报错**</font>
+可以对 HikariCP 配置其独立的属性，<span style="color: red;">**但需要注意：`url` 地址需要单独配置，如果配置到 `hikari` 子属性中，程序启动会报错**</span>
 
 ```yml
 spring:
@@ -163,7 +163,7 @@ spring:
 
 **部分配置项解析**：
 
-- `spring.h2.console`：用于开启 H2 数据库控制台访问程序。<font color=red>**值得注意的是：H2 数据库线上运行时请务必关闭**</font>
+- `spring.h2.console`：用于开启 H2 数据库控制台访问程序。<span style="color: red;">**值得注意的是：H2 数据库线上运行时请务必关闭**</span>
 - `spring.datasource.hikari.driver-class-name` 的配置可能省略，因为 spring boot 会根据数据库的类型去选择相应的驱动类，如指定了则使用指定的驱动类。
 - `spring.datasource.schema`：配置数据库初始化相关表结构
 - `spring.datasource.data`：配置数据库初始化数据

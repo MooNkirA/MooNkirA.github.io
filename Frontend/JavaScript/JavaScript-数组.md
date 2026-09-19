@@ -210,7 +210,7 @@ console.log(Array.from([12,45,47,56,213,4654,154]))
 
 ### push() 在数组的尾部位置添加一个或更多元素
 
-`push()` 方法可向数组的尾部添加一个或多个元素，并返回数组新的长度，<font color=red>**注：该方法将改变原数组**</font>。
+`push()` 方法可向数组的尾部添加一个或多个元素，并返回数组新的长度，<span style="color: red;">**注：该方法将改变原数组**</span>。
 
 ```js
 array.push(item1 [...，itemN])
@@ -226,7 +226,7 @@ console.log(names) // ["moon", "abc"]
 
 ### unshift() 在数组的头部位置添加一个或更多元素
 
-`unshift()` 方法可向数组的头部添加一个或更多元素，并返回数组新的长度，<font color=red>**注：该方法将改变原数组**</font>。
+`unshift()` 方法可向数组的头部添加一个或更多元素，并返回数组新的长度，<span style="color: red;">**注：该方法将改变原数组**</span>。
 
 ```js
 array.unshift(item1[..., itemN])
@@ -242,7 +242,7 @@ console.log(fruits) // 输出：Lemon,Pineapple,Banana,Orange,Apple,Mango
 
 ### pop() 删除数组最后一个元素并返回删除的元素
 
-`pop()` 方法用于删除数组的最后一个元素并返回该元素，<font color=red>**注：此方法会改变原数组的长度**</font>。
+`pop()` 方法用于删除数组的最后一个元素并返回该元素，<span style="color: red;">**注：此方法会改变原数组的长度**</span>。
 
 ```js
 array.pop()
@@ -259,7 +259,7 @@ console.log(colors); // => ['blue', 'green']
 
 ### shift() 删除并返回数组的第一个元素
 
-`shift()` 方法用于移除数组的第一个元素，并将该元素值返回。<font color=red>**此方法改变数组的长度**</font>。
+`shift()` 方法用于移除数组的第一个元素，并将该元素值返回。<span style="color: red;">**此方法改变数组的长度**</span>。
 
 ```js
 array.shift()
@@ -276,7 +276,7 @@ console.log(colors); // => ['green', 'black']
 
 ### splice() 对数组删除/替换/插入元素
 
-`splice()` 方法用于添加、删除、替换数组中的元素，返回增删改后的数组。<font color=red>**注：此方法会改变原始数组**</font>。
+`splice()` 方法用于添加、删除、替换数组中的元素，返回增删改后的数组。<span style="color: red;">**注：此方法会改变原始数组**</span>。
 
 ```js
 array.splice(index, len, [item, ...itemN])
@@ -406,7 +406,7 @@ console.log(colors); // []
 
 ### fill() 使用一个固定值来填充数组
 
-`fill()` 方法用于将一个固定元素填充数组中指定的位置，可以理解为使用默认内容初始化数组。<font color=red>**注：该方法会改变原始数组**</font>。
+`fill()` 方法用于将一个固定元素填充数组中指定的位置，可以理解为使用默认内容初始化数组。<span style="color: red;">**注：该方法会改变原始数组**</span>。
 
 
 ```js
@@ -440,7 +440,7 @@ array.copyWithin(target[, start[, end]])
 - start（可选）：读取数据的起始位置，默认为0。如果为负值，表示倒数
 - end（可选）：停止读取数据的索引位置，默认等于数组长度。如果为负值，表示倒数
 
-> Notes: <font color=red>**当 end 小于 start 时，该方法不生效！**</font>
+> Notes: <span style="color: red;">**当 end 小于 start 时，该方法不生效！**</span>
 
 ```js
 let numbers = [1, 2, 3, 4, 5];
@@ -591,9 +591,9 @@ function test2(fruit) {
 
 ### find() 和 findIndex() 查找第一个符合条件的数组元素/索引
 
-`find()` 方法查找目标数组中满足回调函数的**第一个目标元素**；find() 方法会为数组中的每个元素依次调用一次传入的筛选条件，找到第一个满足条件的数组元素时，直接返回符合条件的元素，之后的元素不会再调用筛选函数，如果没有符合条件的元素返回 undefined。<font color=red>**注: find() 对于空数组，函数是不会执行，并且不会改变数组的原始值**</font> 
+`find()` 方法查找目标数组中满足回调函数的**第一个目标元素**；find() 方法会为数组中的每个元素依次调用一次传入的筛选条件，找到第一个满足条件的数组元素时，直接返回符合条件的元素，之后的元素不会再调用筛选函数，如果没有符合条件的元素返回 undefined。<span style="color: red;">**注: find() 对于空数组，函数是不会执行，并且不会改变数组的原始值**</span> 
 
-`findIndex()` 函数也是查找目标元素，找到就返回元素的位置（索引），找不到就返回 -1。<font color=red>**注: findIndex() 对于空数组，函数是不会执行，并且不会改变数组的原始值**</font> 
+`findIndex()` 函数也是查找目标元素，找到就返回元素的位置（索引），找不到就返回 -1。<span style="color: red;">**注: findIndex() 对于空数组，函数是不会执行，并且不会改变数组的原始值**</span> 
 
 ```js
 array.find/findIndex(callback(currentValue, index, arr), thisArg)
@@ -767,7 +767,7 @@ strt2 = `索引号为 ${index2} 的值为 ${array1.at(index2)}`;
 
 ### slice() 选取数组的一部分
 
-`slice()` 方法可从已有的数组中返回选定的元素；此方法也可提取字符串的某个部分，并以新的字符串返回被提取的部分。注意：<font color=red>**`slice()` 方法不会改变原始数组**</font>。语法如下：
+`slice()` 方法可从已有的数组中返回选定的元素；此方法也可提取字符串的某个部分，并以新的字符串返回被提取的部分。注意：<span style="color: red;">**`slice()` 方法不会改变原始数组**</span>。语法如下：
 
 ```js
 array.slice([fromIndex[，toIndex]])
@@ -793,7 +793,7 @@ console.log(villains) // ["kira", "N"]
 
 ### filter() 过滤符合条件的数值元素
 
-`filter()` 对原数组进行筛选过滤出旧数组中符合条件的元素，最终创建一个新的筛选后的数组，筛选条件由调用方提供。<font color=red>**注：`filter()` 不会对空数组进行检测，并且是创建一个新数组，不会改变原始数组**</font>
+`filter()` 对原数组进行筛选过滤出旧数组中符合条件的元素，最终创建一个新的筛选后的数组，筛选条件由调用方提供。<span style="color: red;">**注：`filter()` 不会对空数组进行检测，并且是创建一个新数组，不会改变原始数组**</span>
 
 ```js
 array.filter(predicate(currentValue[, index[, arr]]), thisArg)
@@ -842,7 +842,7 @@ console.log(evenNumbers); // 输出: [2, 4, 6]
 
 ### for...of 循环
 
-`for...of` 循环是用于遍历数组所有元素项。<font color=red>**注：此方式可以随时使用`break`语句停止遍历。**</font>
+`for...of` 循环是用于遍历数组所有元素项。<span style="color: red;">**注：此方式可以随时使用`break`语句停止遍历。**</span>
 
 ```js
 for (const item of array) {
@@ -865,7 +865,7 @@ for (const color of colors) {
 
 ### for 循环
 
-for 循环使用递增的索引变量的方式遍历数组所有元素项，index变量从0递增到`colors.length-1`。<font color=red>**注：此方式可以随时使用`break`语句停止遍历。**</font>
+for 循环使用递增的索引变量的方式遍历数组所有元素项，index变量从0递增到`colors.length-1`。<span style="color: red;">**注：此方式可以随时使用`break`语句停止遍历。**</span>
 
 ```js
 for (let i; i < array.length; i++) {
@@ -929,7 +929,7 @@ array.map(callback(currentValue[, index[, arr]]), thisArg)
     - arr（可选）：当前元素属于的数组对象；
 - thisArg（可选）：执行 callback 函数时使用的 this 值。
 
-> Notes: <font color=red>**`array.map()` 不会对空数组进行检测；并且创建一个新的映射数组，而不改变原始数组。**</font>
+> Notes: <span style="color: red;">**`array.map()` 不会对空数组进行检测；并且创建一个新的映射数组，而不改变原始数组。**</span>
 
 例：有一个字符串数组，将其转为 int 数组
 

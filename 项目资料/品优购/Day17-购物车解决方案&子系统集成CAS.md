@@ -1,4 +1,4 @@
-## 购物车需求分析与解决方案
+﻿## 购物车需求分析与解决方案
 
 ### 需求分析
 
@@ -521,7 +521,7 @@ public class Cart implements Serializable {
 }
 ```
 
-<font color="red">***说明：这个类是对每个商家的购物车进行的封装。***</font>
+<span style="color: red;">***说明：这个类是对每个商家的购物车进行的封装。***</span>
 
 ### 配置域名访问
 
@@ -640,7 +640,7 @@ app.controller('cartController', function ($scope, $controller, baseService) {
 
 使用cookie存储购物车数据，服务层负责逻辑，控制层负责读写cookie。
 
-<font color="red">*说明：cookie的value存储`List<Cart>`的json格式字符串数据。*</font>
+<span style="color: red;">*说明：cookie的value存储`List<Cart>`的json格式字符串数据。*</span>
 
 #### 购物车-服务接口层
 
@@ -918,7 +918,7 @@ public class CartController {
 }
 ```
 
-<font color="red">*注：可以使用Spring MVC将`HttpServletRequest`与`HttpServletResponse`注入到当前控制类的成员变量中，也是可以做为方法的局部变量注入；以前一直是某个方法使用则注入为方法的局部变量*</font>
+<span style="color: red;">*注：可以使用Spring MVC将`HttpServletRequest`与`HttpServletResponse`注入到当前控制类的成员变量中，也是可以做为方法的局部变量注入；以前一直是某个方法使用则注入为方法的局部变量*</span>
 
 - 测试：
     - 查看购物车：http://cart.moon.com/cart/findCart
@@ -1012,7 +1012,7 @@ app.controller('cartController', function ($scope, $controller, baseService) {
 </div>
 ```
 
-<font color="">**注：JavaScript的`toFixed()`方法，可把`Number`四舍五入为指定小数位数的数字。语法：`NumberObject.toFixed(num)`，参数：num规定小数的位数，是0 ~ 20之间的值，包括0和20。**</font>
+<span>**注：JavaScript的`toFixed()`方法，可把`Number`四舍五入为指定小数位数的数字。语法：`NumberObject.toFixed(num)`，参数：num规定小数的位数，是0 ~ 20之间的值，包括0和20。**</span>
 
 #### 购物车数量增减与移除
 
@@ -1111,7 +1111,7 @@ $scope.findCart = () => {
 
 判断当前用户是否登录，如果未登录采用Cookie存储，如果登录则采用Redis存储。登录后要进行Cookie购物车与Redis购物车的合并操作，并清除Cookie购物车。
 
-<font color="red">**说明：redis的value存储`List<Cart>`二进制数据。**</font>
+<span style="color: red;">**说明：redis的value存储`List<Cart>`二进制数据。**</span>
 
 #### 购物车存取-后端部分
 
@@ -1864,7 +1864,7 @@ app.controller('itemController', function ($scope, $controller) {
 </ul>
 ```
 
-<font color="red">*注：因为配置静态网页，里面有\icontroller\temController.js，详情页面优先使用静态资源的js文件，所以需要将静态资源的js删除，或者将新的js文件替换*</font>
+<span style="color: red;">*注：因为配置静态网页，里面有\icontroller\temController.js，详情页面优先使用静态资源的js文件，所以需要将静态资源的js删除，或者将新的js文件替换*</span>
 
 ## 配置Nginx携带域名
 
@@ -1887,4 +1887,4 @@ server {
 }
 ```
 
-<font color="red">*注：如果不配置携带域名，使用CAS单点登陆时就会返回端口号*</font>
+<span style="color: red;">*注：如果不配置携带域名，使用CAS单点登陆时就会返回端口号*</span>

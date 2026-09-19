@@ -21,7 +21,7 @@ Less （Leaner Style Sheets 的缩写） 是一门向后兼容的 CSS 扩展语�
 >
 > 常见的CSS预处理器：Sass、Less、Stylus
 
-总结：<font color=red>**Less 是一门 CSS 预处理语言，它扩展了CSS的动态特性。**</font>
+总结：<span style="color: red;">**Less 是一门 CSS 预处理语言，它扩展了CSS的动态特性。**</span>
 
 ### Less 安装
 

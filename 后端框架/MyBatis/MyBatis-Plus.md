@@ -330,7 +330,7 @@ public class UserMapperTest {
 - 参数 `Serializable` 为任意类型主键 `Mybatis-Plus` 不推荐使用复合主键约定每一张表都有自己的唯一 `id` 主键
 - 对象 `Wrapper` 为条件构造器
 
-> <font color=red>**注：这些方法仅适合单表操作**</font>
+> <span style="color: red;">**注：这些方法仅适合单表操作**</span>
 >
 > 官方文档地址：[Mapper CRUD 接口](https://baomidou.com/guide/crud-interface.html#mapper-crud-%E6%8E%A5%E5%8F%A3)
 
@@ -1944,7 +1944,7 @@ spring:
 
 ### 修改主键的生成策略
 
-<font color=red>**主键生成策略必须使用`INPUT`**</font>
+<span style="color: red;">**主键生成策略必须使用`INPUT`**</span>
 
 - 修改全局配置（application.yml），增加主键生成策略
 
@@ -2358,7 +2358,7 @@ private Integer deleted;
 
 ### 特别说明
 
-<font color=red>**MP 的逻辑删除功能只对自动注入的 sql 起效**</font>，_即原`BaseMapper`的方法与自定义的 SQL 注入器的方法才有效_。
+<span style="color: red;">**MP 的逻辑删除功能只对自动注入的 sql 起效**</span>，_即原`BaseMapper`的方法与自定义的 SQL 注入器的方法才有效_。
 
 - 插入: 不作限制
 - 查找: 追加`where`条件过滤掉已删除数据，且使用 `wrapper.entity` 生成的`where`条件会忽略该字段
@@ -3014,7 +3014,7 @@ private <T> void printPageInfo(Page<T> page) {
 |  `dbType`  |  `DbType`  |         | 数据库类型(根据类型获取应使用的分页方言，参见 `插件#findIDialect` 方法) |
 | `dialect`  | `IDialect` |         | 方言实现类(参见 `插件#findIDialect` 方法)                               |
 
-> <font color=red>**建议单一数据库类型的均设置 dbType**</font>
+> <span style="color: red;">**建议单一数据库类型的均设置 dbType**</span>
 
 #### 自定义 mapper 接口分页查询
 

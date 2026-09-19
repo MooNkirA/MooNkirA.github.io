@@ -230,7 +230,7 @@ public class MessageSender {
 }
 ```
 
-> <font color=red>**注：`@EnableBinding`注解绑定消息发送通道。可以标识在Spring容器管理的配置bean或者入口类上，但一般建议标识在消息发送相关的类上。**</font>
+> <span style="color: red;">**注：`@EnableBinding`注解绑定消息发送通道。可以标识在Spring容器管理的配置bean或者入口类上，但一般建议标识在消息发送相关的类上。**</span>
 
 #### 测试发送消息
 
@@ -752,7 +752,7 @@ public void sendMessageByCustomChannel() {
 
 ![](images/20201127084118094_19960.png)
 
-实现此需求只需要在服务消费者端设置`spring.cloud.stream.bindings.输入通道名称.group` 属性即可，<font color=red>**在同一个 group 中的多个消费者只有一个可以获取到消息并消费**</font>。配置如下：
+实现此需求只需要在服务消费者端设置`spring.cloud.stream.bindings.输入通道名称.group` 属性即可，<span style="color: red;">**在同一个 group 中的多个消费者只有一个可以获取到消息并消费**</span>。配置如下：
 
 ```yml
 spring:
@@ -773,7 +773,7 @@ spring:
 
 ![](images/20201127085451235_13094.png)
 
-<font color=red>经测试，同一个分组的多个消费者默认是以**轮询**（非绝对，只确保同一个组内多个消费不重复消费而已）的方法进行消费</font>
+<span style="color: red;">经测试，同一个分组的多个消费者默认是以**轮询**（非绝对，只确保同一个组内多个消费不重复消费而已）的方法进行消费</span>
 
 ## 消息分区
 

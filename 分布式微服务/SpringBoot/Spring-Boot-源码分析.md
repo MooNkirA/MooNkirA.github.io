@@ -465,7 +465,7 @@ Spring Boot 已经提供了 `org.springframework.boot.web.servlet.filter.Ordered
 
 ## 条件装配实现原理
 
-<font color=red>**条件装配的底层是本质上是 `@Conditional` 注解与 `Condition` 接口配合应用**</font>。
+<span style="color: red;">**条件装配的底层是本质上是 `@Conditional` 注解与 `Condition` 接口配合应用**</span>。
 
 以下是实现原理的小示例，如果项目中引入 druid 依赖则加载指定的 bean，否则不加载。
 

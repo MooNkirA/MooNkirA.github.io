@@ -1,6 +1,6 @@
 ## Spring 概述
 
-Spring 是一个开放源代码的设计层面框架。Spring 是分层的 Java SE/EE 应用 full-stack 轻量级开源框架，<font color=red>**以 IoC（Inverse Of Control：反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核**</font>，提供了展现层 SpringMVC 和持久层 Spring JDBC 以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的 Java EE 企业应用开源框架。
+Spring 是一个开放源代码的设计层面框架。Spring 是分层的 Java SE/EE 应用 full-stack 轻量级开源框架，<span style="color: red;">**以 IoC（Inverse Of Control：反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核**</span>，提供了展现层 SpringMVC 和持久层 Spring JDBC 以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的 Java EE 企业应用开源框架。
 
 spring 是一站式框架
 
@@ -15,7 +15,7 @@ spring 是一站式框架
 
 以往在三层架构中，都使用 `new` 关键字来创建层与层之间的关系。`new` 关系字有很强的耦合性问题。以后在三层架构中创建依赖关系时不使用 `new` 对象。
 
-实际开发中，理想状态应该是：<font color=red>**在编译时不依赖，在运行时才依赖**</font>
+实际开发中，理想状态应该是：<span style="color: red;">**在编译时不依赖，在运行时才依赖**</span>
 
 原来获取对象都是使得 `new` 方式，是主动；使用工厂为查找或者创建对象，是被动；这种被动接收方式获取对象的思想就是控制反转，是 spring 框架核心之一。它的作用只有一个：削减计算机程序的耦合。
 
@@ -128,11 +128,11 @@ public class UserDaoImpl implements IUserDao {
 
 错误原因分析：当时配置文件顺序错误。
 
-当测试层调用工具类创建 service 层对象时，工厂类开始读取 xml 文件，但当时 xml 文本顺序是 service 标签在 dao 标签上面，<font color=red>xml 的解析是有层级关系的。但 xml 解析第一行时，userService 标签已经读取了，程序就开始创建 userService 对象，创建 service 层对象的同时，也开始创建 dao 层对象，但现在 xml 只是解析第一行，map 集合中没有 userDao 标签的类全名，所有此时 userDao 无法创建，对象为 null。</font>
+当测试层调用工具类创建 service 层对象时，工厂类开始读取 xml 文件，但当时 xml 文本顺序是 service 标签在 dao 标签上面，<span style="color: red;">xml 的解析是有层级关系的。但 xml 解析第一行时，userService 标签已经读取了，程序就开始创建 userService 对象，创建 service 层对象的同时，也开始创建 dao 层对象，但现在 xml 只是解析第一行，map 集合中没有 userDao 标签的类全名，所有此时 userDao 无法创建，对象为 null。</span>
 
 当 xml 继续解析，但 dao 层对象已经创建，所以在后台使用 debug 查看解析 xml 后的 map 集合是有数据，但 userDao 对象却是 null
 
-所以需要<font color=red>将 userDao 标签放到上面，才确保创建 userService 层时，xml 全部解析完。因为如果工厂类没有读取到 map 集合有对应的 id 时，是不会去创建对象的。</font>
+所以需要<span style="color: red;">将 userDao 标签放到上面，才确保创建 userService 层时，xml 全部解析完。因为如果工厂类没有读取到 map 集合有对应的 id 时，是不会去创建对象的。</span>
 
 ### Spring Framework 的技术模块
 
@@ -185,7 +185,7 @@ Spring 系统的 lib 包中都是以基本 jar 包、文档、源代码三种结
 - commons-logging-1.2.jar
 - dom4j-1.6.1.jar
 
-> <font color=red>**注：要使用 spring，其实只需要导入 spring-context-x.x.x.RELEASE 即可**</font>
+> <span style="color: red;">**注：要使用 spring，其实只需要导入 spring-context-x.x.x.RELEASE 即可**</span>
 
 ### Spring 相关资源文档
 
@@ -449,7 +449,7 @@ IOC 和 DI 关系：依赖注入不能单独存在，需要在 IOC 基础之上�
 
 ### 方式1：构造器注入
 
-使用类中的构造函数，给成员变量赋值。赋值的操作是通过配置的方式，让 Spring 框架来注入。<font color=red>**注意，必须提供与配置文件对应配置的成员变量的有参构造方法**</font>
+使用类中的构造函数，给成员变量赋值。赋值的操作是通过配置的方式，让 Spring 框架来注入。<span style="color: red;">**注意，必须提供与配置文件对应配置的成员变量的有参构造方法**</span>
 
 #### constructor-arg 标签
 
@@ -463,7 +463,7 @@ IOC 和 DI 关系：依赖注入不能单独存在，需要在 IOC 基础之上�
 | `type`  | 指定参数在构造方法中的数据类型（可选，一般很少用）                                                              |
 | `name`  | 指定构造方法中的参数名称（**注：参数名称是构造方法的参数名称**）                                                |
 | `value` | 给成员变量赋值，包含基本数据类型和 String 类型                                                                |
-|  `ref`  | 给成员变量赋值为其他bean类型，值为其他bean的id，<font color=purple>**必须是在配置文件中配置过的bean对象**</font> |
+|  `ref`  | 给成员变量赋值为其他bean类型，值为其他bean的id，<span style="color: purple;">**必须是在配置文件中配置过的bean对象**</span> |
 
 #### 示例
 
@@ -586,7 +586,7 @@ public void testP() {
 - `<property>`表示List结构的子标签分别是：`<array>`、`<list>`、`<set>`
 - `<property>`表示Map结构的子标签分别是：`<map>-子标签<entry>`、`<props>-子标签<prop>`
 
-> Notes: <font color=red>**在注入集合数据时，只要结构相同，标签是可以互换，一般只需要记住`<list>`和`<map>`标签即可**</font>
+> Notes: <span style="color: red;">**在注入集合数据时，只要结构相同，标签是可以互换，一般只需要记住`<list>`和`<map>`标签即可**</span>
 
 示例配置：
 
@@ -828,7 +828,7 @@ Spring 创建的 Bean 对象的都有其作用范围。Spring 框架支持6种�
 
 #### singleton 单例对象
 
-一个应用只有一个共享的对象实例，无论有多少个 Bean 引用它，都始终指向同一个 Bean 对象。它的作用范围就是整个引用。<font color=red>**该模式在多线程下是不安全的**</font>。Singleton 作用域是 Spring 中的缺省作用域。**单例 bean 生命周期**如下：
+一个应用只有一个共享的对象实例，无论有多少个 Bean 引用它，都始终指向同一个 Bean 对象。它的作用范围就是整个引用。<span style="color: red;">**该模式在多线程下是不安全的**</span>。Singleton 作用域是 Spring 中的缺省作用域。**单例 bean 生命周期**如下：
 
 - 对象创建：当应用加载，创建容器时，对象就被创建了。
 - 对象存活：只要容器在，对象一直存活
@@ -1075,7 +1075,7 @@ com.moon.springsample.bean.PrototypeScopeBean1@1bb1fde8
 com.moon.springsample.bean.PrototypeScopeBean1@1bb1fde8
 ```
 
-从测试结果可见，期望的是多例对象，但每次获取都是同一个对象。原因其实很简单，就是单例对象只会被初始化一次，依赖注入也只有一次，所有后续每次获取注入的对象都是初始化时注入的对象。解决作用域失效有以下几种方式，<font color=red>**其原理都是推迟其他作用域 bean 的获取时机**</font>
+从测试结果可见，期望的是多例对象，但每次获取都是同一个对象。原因其实很简单，就是单例对象只会被初始化一次，依赖注入也只有一次，所有后续每次获取注入的对象都是初始化时注入的对象。解决作用域失效有以下几种方式，<span style="color: red;">**其原理都是推迟其他作用域 bean 的获取时机**</span>
 
 #### 解决方式1 - @Lazy 注解
 
@@ -1317,7 +1317,7 @@ UserService 实现 DisposableBean 接口实现销毁的 destroy() 方法执行�
 
 ### @PostConstruct & @PreDestroy 注解方式实现生命周期回调
 
-`@PostConstruct` 和 `@PreDestroy` 注解修饰方法来指定相应的初始化和销毁方法。<font color=purple>*注：这两个注解并非 Spring 提供，而是 JSR250 规范提供*</font>
+`@PostConstruct` 和 `@PreDestroy` 注解修饰方法来指定相应的初始化和销毁方法。<span style="color: purple;">*注：这两个注解并非 Spring 提供，而是 JSR250 规范提供*</span>
 
 1. 创建 `LogUtil` 类，定义 `@PostConstruct` 和 `@PreDestroy` 注解修饰的方法
 
@@ -1464,7 +1464,7 @@ OrdinaryBean 构造方法执行了...
 ************* 容器关闭完毕 *************
 ```
 
-<font color=red>**注：`BeanPostProcessor` 对 IOC 容器中所有组件（对象）都生效**</font>
+<span style="color: red;">**注：`BeanPostProcessor` 对 IOC 容器中所有组件（对象）都生效**</span>
 
 ### Bean 的生命周期总结
 
@@ -1732,9 +1732,9 @@ public interface BeanPostProcessor {
 }
 ```
 
-`BeanPostProcessor` 接口定义了<font color=red>**Bean的初始化之前以及初始化之后**</font>的回调方法，可以实现这些方法来提供自定义（或覆盖容器的默认）实例化逻辑、依赖性解决逻辑等。
+`BeanPostProcessor` 接口定义了<span style="color: red;">**Bean的初始化之前以及初始化之后**</span>的回调方法，可以实现这些方法来提供自定义（或覆盖容器的默认）实例化逻辑、依赖性解决逻辑等。
 
-通过实现 `BeanPostProcessor` 接口可以干涉 Spring 创建 Bean 的过程，在 Spring 容器对任意一个 Bean 完成实例化、配置和初始化的<font color=red>**前后**</font>去完成一些用户自定义的处理逻辑，也可以通过判断 beanName 来进行针对性处理（针对某个Bean，或某部分Bean）。
+通过实现 `BeanPostProcessor` 接口可以干涉 Spring 创建 Bean 的过程，在 Spring 容器对任意一个 Bean 完成实例化、配置和初始化的<span style="color: red;">**前后**</span>去完成一些用户自定义的处理逻辑，也可以通过判断 beanName 来进行针对性处理（针对某个Bean，或某部分Bean）。
 
 Spring 支持创建一个或多个自定义 `BeanPostProcessor` 实现。
 
@@ -1838,7 +1838,7 @@ Spring 框架通常会将回调接口或注解与自定义 `BeanPostProcessor` �
 - 在后置处理器实现类上标识 `@Order` 注解，并指定排序值
 - 实现 `org.springframework.core.PriorityOrdered` 接口，在 `getOrder()` 方法返回排序值
 
-以上几种方式均可控制 `BeanPostProcessor` 实例的加载顺序。总体规则是：<font color=red>**数值越小，优先级越高**</font>。但值得注意的是，实现了 `PriorityOrdered` 接口的优先级最高，`Ordered` 接口与 `@Order` 注解是平级，没有实现排序的排最后。（在源码分析里可以看到原因）
+以上几种方式均可控制 `BeanPostProcessor` 实例的加载顺序。总体规则是：<span style="color: red;">**数值越小，优先级越高**</span>。但值得注意的是，实现了 `PriorityOrdered` 接口的优先级最高，`Ordered` 接口与 `@Order` 注解是平级，没有实现排序的排最后。（在源码分析里可以看到原因）
 
 创建多个 `BeanPostProcessor`，使用不同方式指定排序值
 
@@ -2685,7 +2685,7 @@ public class MyEventPublisher implements ApplicationEventPublisherAware {
 
 也可以直接使用 `@Autowired` 自动注入事件发布器对象 `ApplicationEventPublisher`。
 
-> Notes: <font color=red>**在默认情况下，事件监听器是同步接收事件的。`ApplicationEventPublisher.publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理**</font>。若修改为异步监听事件，详见下面的章节内容
+> Notes: <span style="color: red;">**在默认情况下，事件监听器是同步接收事件的。`ApplicationEventPublisher.publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理**</span>。若修改为异步监听事件，详见下面的章节内容
 
 #### 事件监听
 
@@ -2771,7 +2771,7 @@ public class SpringEventTest {
 
 ### 异步事件监听
 
-<font color=red>**值得注意，在默认情况下，事件监听器是同步接收事件的。这意味着上面的 `ApplicationEventPublisher` 事件发布器的 `publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理。**</font>
+<span style="color: red;">**值得注意，在默认情况下，事件监听器是同步接收事件的。这意味着上面的 `ApplicationEventPublisher` 事件发布器的 `publishEvent()` 方法会阻塞，直到所有的监听器都完成对事件的处理。**</span>
 
 如果需要将事件监听器改成异步接收事件，只需要在容器中增加 `ApplicationEventMulticaster` 接口的实例即可（默认实现类 `SimpleApplicationEventMulticaster`），在配置类添加如下代码：
 

@@ -175,7 +175,7 @@ apache-snapshots：代理仓库。存储snapshots构件，代理地址https://re
 </distributionManagement>
 ```
 
-> <font color=red>**注意：pom.xml这里`<id>`和 settings.xml 配置 `<id>` 对应！**</font>
+> <span style="color: red;">**注意：pom.xml这里`<id>`和 settings.xml 配置 `<id>` 对应！**</span>
 
 ![](images/20220116223834359_10069.jpg)
 
@@ -207,7 +207,7 @@ apache-snapshots：代理仓库。存储snapshots构件，代理地址https://re
 
 nexus中包括很多仓库，hosted中存放的是企业自己发布的jar包及第三方公司的jar包，proxy中存放的是中央仓库的jar，为了方便从私服下载jar包可以将多个仓库组成一个仓库组，每个工程需要连接私服的仓库组下载jar包
 
-打开nexus配置仓库组，<font color=red>将右边的选项拖到左边</font>，组成仓库组。仓库组包括了本地仓库、代理仓库等
+打开nexus配置仓库组，<span style="color: red;">将右边的选项拖到左边</span>，组成仓库组。仓库组包括了本地仓库、代理仓库等
 
 ![](images/20220116224151293_12074.jpg)
 
@@ -253,7 +253,7 @@ nexus中包括很多仓库，hosted中存放的是企业自己发布的jar包及
 </activeProfiles>
 ```
 
-<font color=purple>*需要从私服下载资源，只需要配置settings.xml*</font>
+<span style="color: purple;">*需要从私服下载资源，只需要配置settings.xml*</span>
 
 配置成功后，右键 -> update project,通过eclipse查看Effective pom，有效pom是maven软件最终使用的pom内容，程序员不直接编辑有效pom
 

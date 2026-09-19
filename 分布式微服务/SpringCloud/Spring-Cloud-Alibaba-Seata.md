@@ -304,7 +304,7 @@ seata-server.bat -p 9000 -m file
 
 在需要进行分布式控制的微服务中（*示例是订单微服务、商品微服务*），添加 Spring Cloud Alibaba 依赖管理工具和 Seata 依赖
 
-<font color=red>**特别注意有坑：这个 Spring Cloud Alibaba 的版本是 <u>2.1.0.RELEASE</u>！！！如果使用更高的版本，io.seata:seata-all 的版本就不是0.7.1，以下示例相关配置将不会生效！！！**</font>
+<span style="color: red;">**特别注意有坑：这个 Spring Cloud Alibaba 的版本是 <u>2.1.0.RELEASE</u>！！！如果使用更高的版本，io.seata:seata-all 的版本就不是0.7.1，以下示例相关配置将不会生效！！！**</span>
 
 ```xml
 <dependencyManagement>
@@ -421,7 +421,7 @@ spring:
 
 #### 在微服务开启全局事务
 
-Seata 实现全局事务，只需要在<font color=red>**业务发起方**</font>的方法上使用 `@GlobalTransactional` 注解，即可开启全局事务，Seata 会将事务的 xid 通过拦截器添加到调用其他服务的请求中，实现分布式事务。
+Seata 实现全局事务，只需要在<span style="color: red;">**业务发起方**</span>的方法上使用 `@GlobalTransactional` 注解，即可开启全局事务，Seata 会将事务的 xid 通过拦截器添加到调用其他服务的请求中，实现分布式事务。
 
 ```java
 @Override

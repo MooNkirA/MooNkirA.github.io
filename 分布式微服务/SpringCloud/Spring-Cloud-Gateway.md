@@ -87,7 +87,7 @@ Spring Cloud Gateway 是 Spring 官方基于 Spring 5.0，Spring Boot 2.0 和 Pr
 </dependency>
 ```
 
-<font color=red>**注意：SpringCloud Gateway 内部使用的 web 框架为 netty + webflux，和 Spring MVC 不兼容。引入的限流组件是 hystrix。redis 底层不再使用 jedis，而是 lettuce**</font>
+<span style="color: red;">**注意：SpringCloud Gateway 内部使用的 web 框架为 netty + webflux，和 Spring MVC 不兼容。引入的限流组件是 hystrix。redis 底层不再使用 jedis，而是 lettuce**</span>
 
 #### 配置启动类
 
@@ -498,7 +498,7 @@ eureka:
       defaultZone: http://localhost:8001/eureka/ # Eureka server 地址，多个eureka server之间用,隔开
 ```
 
-<font color=red>**配置动态路由要点：配置uri属性以`lb://`开头（lb代表从注册中心获取服务），后面接的就是需要转发到的服务名称**</font>
+<span style="color: red;">**配置动态路由要点：配置uri属性以`lb://`开头（lb代表从注册中心获取服务），后面接的就是需要转发到的服务名称**</span>
 
 测试访问网关请求地址以`product`开头时，会通过注册中心获取转发的地址，自动转发到地址：`http://127.0.0.1:9001/product/xxx`。配置完成启动项目即可在浏览器访问进行测试
 
@@ -958,7 +958,7 @@ spring:
             - RewritePath=/red(?<segment>/?.*), $\{segment}
 ```
 
-以上示例是：访问 `http://localhost:8081/red/hello`，在请求相应下游服务前，将请求路径 `/red/hello` 重写成 `/hello`，相当于访问 `/hello`。<font color=red>**请注意，由于YAML规范，应将`$`替换为`$\`**</font>
+以上示例是：访问 `http://localhost:8081/red/hello`，在请求相应下游服务前，将请求路径 `/red/hello` 重写成 `/hello`，相当于访问 `/hello`。<span style="color: red;">**请注意，由于YAML规范，应将`$`替换为`$\`**</span>
 
 #### 重写转发路径(内置局部过滤器应用案例)
 
@@ -991,7 +991,7 @@ spring:
             - RewritePath=/shop-service-product/(?<segment>.*), /$\{segment}
 ```
 
-> <font color=red>*注：属性名称对大小写敏感，在做示例的就将`Path`属性写成`path`，结果后台一直报错说无法映射路径*</font>
+> <span style="color: red;">*注：属性名称对大小写敏感，在做示例的就将`Path`属性写成`path`，结果后台一直报错说无法映射路径*</span>
 
 ### 自定义局部过滤器
 
@@ -1274,7 +1274,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
 
 ### 概述
 
-路由规则是网关的核心内容，配置在应用的属性配置文件中，<font color=red>**启动的时候将路由规则加载到内存，属于静态路由方式**</font>。在高可靠架构中，网关服务都会部署多个实例，此时静态路由方式就出现不足，例如更新路由规则时，需要重启所有的网关服务实例，造成系统中断。
+路由规则是网关的核心内容，配置在应用的属性配置文件中，<span style="color: red;">**启动的时候将路由规则加载到内存，属于静态路由方式**</span>。在高可靠架构中，网关服务都会部署多个实例，此时静态路由方式就出现不足，例如更新路由规则时，需要重启所有的网关服务实例，造成系统中断。
 
 ### 采用 Nacos 实现动态路由的分析
 
@@ -1588,7 +1588,7 @@ public class RouteNacos {
 
 ![](images/20201030151518627_10542.png)
 
-为了更好的控制流量，<font color=red>**漏桶算法需要通过两个变量进行控制：一个是桶的大小，支持流量突发增多时可以存多少的水（burst），另一个是水桶漏洞的大小（rate）**</font>。
+为了更好的控制流量，<span style="color: red;">**漏桶算法需要通过两个变量进行控制：一个是桶的大小，支持流量突发增多时可以存多少的水（burst），另一个是水桶漏洞的大小（rate）**</span>。
 
 #### 令牌桶算法
 

@@ -274,7 +274,7 @@ B、
     ipv6=true
 ```
 
-> <font color="red">**注：按网上的方法暂时无法解决，但使用studio3t是可以连接**</font>
+> <span style="color: red;">**注：按网上的方法暂时无法解决，但使用studio3t是可以连接**</span>
 
 ## studio3t 客户端使用
 

@@ -672,7 +672,7 @@ ReactDOM.render(
 );
 ```
 
-值得注意的是：<font color=red>**内联 `style` 属性需要使用驼峰命名法编写**</font>。例如，HTML `<ul style="background-color: black">` 在组件里应该写成 `<ul style={{ backgroundColor: 'black' }}>`。
+值得注意的是：<span style="color: red;">**内联 `style` 属性需要使用驼峰命名法编写**</span>。例如，HTML `<ul style="background-color: black">` 在组件里应该写成 `<ul style={{ backgroundColor: 'black' }}>`。
 
 #### JavaScript 函数调用
 
@@ -822,7 +822,7 @@ export default function PackingList() {
 
 当 JavaScript `&&` 表达式的左侧（即条件）为 true 时，它则返回其右侧的值（即例子的“勾选符号”）。但条件的结果是 false，则整个表达式会变成 false。在 JSX 里，React 会将 false 视为一个“空值”，就像 null 或者 undefined，这样 React 就不会在这里进行任何渲染。
 
-> Notes: 特别注意，<font color=red>**切勿将数字放在 `&&` 左侧**</font>。因为 JavaScript 会自动将左侧的值转换成布尔类型，用于判断条件成立与否。如果左侧是 0，整个表达式将变成左侧的值（0），React 此时则会渲染 0 而不是不进行渲染。
+> Notes: 特别注意，<span style="color: red;">**切勿将数字放在 `&&` 左侧**</span>。因为 JavaScript 会自动将左侧的值转换成布尔类型，用于判断条件成立与否。如果左侧是 0，整个表达式将变成左侧的值（0），React 此时则会渲染 0 而不是不进行渲染。
 
 #### 选择性地将 JSX 赋值给变量 
 

@@ -16,7 +16,7 @@
 
 ## UUID
 
-UUID（Universally Unique Identifier），通用唯一识别码的缩写。UUID 是由一组 32 位数的 16 进制数字所构成，所以 UUID 理论上的总数为 16<sup>32</sup> = 2<sup>128</sup> ≈ 3.4 x 10<sup>38。也就是说若每纳秒产生 1 兆个 UUID，要花 100 亿年才会将所有 UUID 用完。
+UUID（Universally Unique Identifier），通用唯一识别码的缩写。UUID 是由一组 32 位数的 16 进制数字所构成，所以 UUID 理论上的总数为 16<sup>32</sup> = 2<sup>128</sup> ≈ 3.4 x 10<sup>38</sup>。也就是说若每纳秒产生 1 兆个 UUID，要花 100 亿年才会将所有 UUID 用完。
 
 生成的 UUID 是由 `8-4-4-4-12` 格式的数据组成，其中 32 个字符和 4个 连字符 `-`，一般使用的时候会将连字符删除 `uuid.toString().replaceAll("-","")`。
 

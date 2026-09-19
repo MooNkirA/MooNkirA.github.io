@@ -1147,7 +1147,7 @@ public interface TransactionDefinition {
 
 #### 超时时间
 
-<font color=red>**默认值是-1，没有超时限制**</font>。如果有，以秒为单位进行设置
+<span style="color: red;">**默认值是-1，没有超时限制**</span>。如果有，以秒为单位进行设置
 
 ```java
 int TIMEOUT_DEFAULT = -1;
@@ -1155,7 +1155,7 @@ int TIMEOUT_DEFAULT = -1;
 
 #### 是否是只读事务
 
-建议<font color=red>**查询时设置为只读**</font>。属性`Reonly`，取值如下：
+建议<span style="color: red;">**查询时设置为只读**</span>。属性`Reonly`，取值如下：
 
 - `true`：只读，只用于查询
 - `false`：不只读，用于增删改
@@ -1221,7 +1221,7 @@ boolean isCompleted();
 ![Spring事务失效的场景.xmind](images/177400010248986.png)
 
 1. 使用 `@Transactional` 注解标识的方法所在的类，没有让 Spring 管理。因为 Spring 事务是由 AOP 机制实现的，也就是说从 Spring IOC 容器获取 bean 时，Spring 会为目标类创建代理，从而支持事务的。
-2. 没有在 Spring 配置文件（或者配置类）中启用事务管理器。<font color=red>**注：如果是 Spring Boot 项目，它默认会自动配置事务管理器并开启事务支持**</font>。
+2. 没有在 Spring 配置文件（或者配置类）中启用事务管理器。<span style="color: red;">**注：如果是 Spring Boot 项目，它默认会自动配置事务管理器并开启事务支持**</span>。
 
 ```java
 @Configuration

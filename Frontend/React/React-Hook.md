@@ -68,7 +68,7 @@ React 允许将标签、CSS 和 JavaScript 组合成自定义『组件』，即*
 
 ### 定义组件 
 
-<font color=red>**React 组件是一段可以使用标签进行扩展的 JavaScript 函数**</font>。例如：
+<span style="color: red;">**React 组件是一段可以使用标签进行扩展的 JavaScript 函数**</span>。例如：
 
 ```jsx
 export default function Profile() {
@@ -89,7 +89,7 @@ export default function Profile() {
 
 使用 `function Profile() { }` 定义名为 Profile 的 JavaScript 函数。
 
-> Notes: React 组件是常规的 JavaScript 函数，但<font color=red>**组件的名称必须以大写字母开头**</font>，否则它们将无法运行！
+> Notes: React 组件是常规的 JavaScript 函数，但<span style="color: red;">**组件的名称必须以大写字母开头**</span>，否则它们将无法运行！
 
 #### 添加标签
 

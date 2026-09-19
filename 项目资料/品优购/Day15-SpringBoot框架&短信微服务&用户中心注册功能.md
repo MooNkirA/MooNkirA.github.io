@@ -20,7 +20,7 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 
 可以使用SpringBoot创建java应用，并使用`java –jar`启动它，或者采用传统的war部署方式。
 
-<font color="red">**Spring Boot主要特点：**</font>
+<span style="color: red;">**Spring Boot主要特点：**</span>
 
 - 创建独立的Spring应用程序
 - 嵌入的Tomcat，无需部署WAR文件
@@ -29,7 +29,7 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 - 提供生产就绪型功能，如指标，健康检查和外部配置
 - 绝对没有代码生成和对XML没有要求配置
 
-<font color="red">***Spring Boot主要的作用是用于简化spring整合其他框架，自动解决不同框架的依赖jar包的冲突，内嵌了整合其他框架的代码***</font>
+<span style="color: red;">***Spring Boot主要的作用是用于简化spring整合其他框架，自动解决不同框架的依赖jar包的冲突，内嵌了整合其他框架的代码***</span>
 
 ### Spring Boot 入门demo
 
@@ -60,7 +60,7 @@ Spring Boot其设计目的是用来简化Spring应用的初始搭建以及开发
 </dependencies>
 ```
 
-- 配置依赖后，工程会自动添加许多jar包。这些jar包正是做开发时需要导入的jar包。因为这些jar包刚才引入的<font color="red">***spring-boot-starter-web**</font>所引用了，所以引用spring-boot-starter-web后会自动把依赖传递过来
+- 配置依赖后，工程会自动添加许多jar包。这些jar包正是做开发时需要导入的jar包。因为这些jar包刚才引入的<span style="color: red;">***spring-boot-starter-web**</span>所引用了，所以引用spring-boot-starter-web后会自动把依赖传递过来
 
 #### 变更JDK版本
 
@@ -113,7 +113,7 @@ public class Application {
 - `@EnableAutoConfiguration`：Spring Boot会自动根据你jar包的依赖来自动配置项目。
 - `@ComponentScan`： 告诉Spring哪个packages 的用注解标识的类会被spring自动扫描并且装入bean容器。
 
-<font color="purple">***注：如果配置@SpringBootApplication注解，不指定注解扫描的包，默认约定是扫描当前引导类所在的同级包下的<u>所有包和所有类以及下级包的类（若为JPA项目还可以扫描标注@Entity的实体类）</u>，建议入口类放置的位置在groupId+arctifactID组合的包名下；如果需要指定扫描包使用注解`@SpringBootApplication(scanBasePackages = 'xxx.xxx.xx')`***</font>
+<span style="color: purple;">***注：如果配置@SpringBootApplication注解，不指定注解扫描的包，默认约定是扫描当前引导类所在的同级包下的<u>所有包和所有类以及下级包的类（若为JPA项目还可以扫描标注@Entity的实体类）</u>，建议入口类放置的位置在groupId+arctifactID组合的包名下；如果需要指定扫描包使用注解`@SpringBootApplication(scanBasePackages = 'xxx.xxx.xx')`***</span>
 
 直接执行这个引导类，现控制台会出现【Spring】标识，这个代表成功启动
 
@@ -299,7 +299,7 @@ application-jpa.properties
 application-freemarker.properties
 ```
 
-- 第二步：在application.properties总配置文件指定，加载的多个配置文件。<font color="red">***需要在application.properties中指定其它配置文件：***</font>
+- 第二步：在application.properties总配置文件指定，加载的多个配置文件。<span style="color: red;">***需要在application.properties中指定其它配置文件：***</span>
 
 ```properties
 spring.profiles.active=database,jpa,freemarker
@@ -324,7 +324,7 @@ spring:
 
 其实application.yml配置文件就是将原来application.properties使用（`.`）分割的方式，改为树状结构，使用（`:`）分割。
 
-<font color="purple">***注意：最后key的字段与值之间的冒号（:）后面一定要有一个空格。***</font>
+<span style="color: purple;">***注意：最后key的字段与值之间的冒号（:）后面一定要有一个空格。***</span>
 
 **多配置文件：**
 
@@ -336,7 +336,7 @@ application-jpa.yml
 application-freemarker.yml
 ```
 
-- 第二步：在application.yml总配置文件指定，加载的多个配置文件。<font color="red">***需要在application.yml中指定其它配置文件：***</font>
+- 第二步：在application.yml总配置文件指定，加载的多个配置文件。<span style="color: red;">***需要在application.yml中指定其它配置文件：***</span>
 
 ```yml
 spring:
@@ -389,7 +389,7 @@ public class MyMessageListener {
 }
 ```
 
-测试：启动服务后，在浏览器执行`http://localhost:8888/send?message=moon`即可看到控制台输出消息提示。<font color="red">**Spring Boot内置了ActiveMQ的服务**</font>，所以不用单独启动也可以执行应用程序。
+测试：启动服务后，在浏览器执行`http://localhost:8888/send?message=moon`即可看到控制台输出消息提示。<span style="color: red;">**Spring Boot内置了ActiveMQ的服务**</span>，所以不用单独启动也可以执行应用程序。
 
 #### 使用外部ActiveMQ服务
 
@@ -562,7 +562,7 @@ public class SmsSendUtil {
 
 #### 阿里云官网：短信服务SDK升级说明
 
-短信服务新版SDK源码已经托管至开源平台Github，您使用GitHub clone的方式使用SDK，也可以使用依赖管理工具安装（PHP除外），<font color="red">***Demo代码可通过OpenAPI Explorer生成，所有SDK均只依赖SDK核心库，使用通用的Request及Response来处理接口请求及响应***</font>。
+短信服务新版SDK源码已经托管至开源平台Github，您使用GitHub clone的方式使用SDK，也可以使用依赖管理工具安装（PHP除外），<span style="color: red;">***Demo代码可通过OpenAPI Explorer生成，所有SDK均只依赖SDK核心库，使用通用的Request及Response来处理接口请求及响应***</span>。
 
 2019年1月22日，短信服务发布了新版SDK，此日期后接入SDK的用户使用的均为新版SDK；2019年1月22日前接入的SDK的用户使用的是旧版SDK。相较于旧版SDK，新版SDK有以下优势：
 
@@ -651,7 +651,7 @@ public class CommonRpc {
 
 ### 使用Spring Boot搭建短信微服务工程
 
-<font color="red">***注意：本项目当时使用的Spring Boot版本是`1.5.6.RELEASE`，但配置后maven报错，上去官网（2019.2.15）去找当时最新的版本`2.1.2.RELEASE`，项目没有报错，暂时使用，观察是否使用时与1.5.6版有什么区别***</font>
+<span style="color: red;">***注意：本项目当时使用的Spring Boot版本是`1.5.6.RELEASE`，但配置后maven报错，上去官网（2019.2.15）去找当时最新的版本`2.1.2.RELEASE`，项目没有报错，暂时使用，观察是否使用时与1.5.6版有什么区别***</span>
 
 ***注：本次使用新版的短信发送，没有使用教程的方法***
 
@@ -771,7 +771,7 @@ sms:
   accessKeySecret: xxxxx
 ```
 
-<font color="red">***注：上传到GIT的发送短信配置id与secret改了，不能正常发送短信的***</font>
+<span style="color: red;">***注：上传到GIT的发送短信配置id与secret改了，不能正常发送短信的***</span>
 
 ### 短信工具类
 
@@ -1780,7 +1780,7 @@ templateCode=SMS_126580621
 signName=\u51cc\u6708
 ```
 
-<font color="red">注意：此处不能将jms.properties直接在resources目录下，因为applicationContext-service.xml引入了mapper层的配置`<import resource="classpath:applicationContext-mapper.xml"/>`，而mapper配置文件中引入了`<context:property-placeholder location="classpath*:props/*.properties"/>`</font>
+<span style="color: red;">注意：此处不能将jms.properties直接在resources目录下，因为applicationContext-service.xml引入了mapper层的配置`<import resource="classpath:applicationContext-mapper.xml"/>`，而mapper配置文件中引入了`<context:property-placeholder location="classpath*:props/*.properties"/>`</span>
 
 ![properties文件导入关系](images/20190217132952649_22405.png)
 
@@ -1838,7 +1838,7 @@ public void sendSmsCode(String phone) {
 
 ![处理properties中文属性的问题2](images/20190217162548642_21010.png)
 
-<font color="purple">***解决方法1：使用jdk自带的`native2ascii`命令，将中文转换后再复制到properties文件中***</font>
+<span style="color: purple;">***解决方法1：使用jdk自带的`native2ascii`命令，将中文转换后再复制到properties文件中***</span>
 
 ![处理properties中文属性的问题3](images/20190217164128372_11933.png)
 

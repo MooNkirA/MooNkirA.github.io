@@ -330,7 +330,7 @@ public void testConfigLogFile() throws IOException {
 }
 ```
 
-> <font color=violet>**注：可以同时配置多个 Handler**</font>
+> <span style="color: violet;">**注：可以同时配置多个 Handler**</span>
 
 ### Logger 之间的父子关系
 
@@ -1068,7 +1068,7 @@ java.lang.ArithmeticException: / by zero
 
 SLF4J 支持各种日志框架。SLF4J 发行版附带了几个称为 “SLF4J-binding” 的 jar 文件，每个绑定对应一个受支持的框架。
 
-> <font color=red>**值得注意的是：在使用时确保只保留一套日志实现，如果同时出现多个实现，默认也只会使用第一个实现**</font>
+> <span style="color: red;">**值得注意的是：在使用时确保只保留一套日志实现，如果同时出现多个实现，默认也只会使用第一个实现**</span>
 
 #### slf4j 直接绑定的日志组件
 
@@ -1243,14 +1243,14 @@ Logback 构建在三个主要的类上：Logger，Appender 和 Layout。这三�
 
 #### logback 层级
 
-在 logback 中每一个 logger 都依附在 `LoggerContext` 上，它负责产生 logger，并且通过一个**树状**的层级结构来进行管理。一个 Logger 被当作为一个实体，<font color=red>**它们的命名是大小写敏感的**</font>，并且遵循以下规则：
+在 logback 中每一个 logger 都依附在 `LoggerContext` 上，它负责产生 logger，并且通过一个**树状**的层级结构来进行管理。一个 Logger 被当作为一个实体，<span style="color: red;">**它们的命名是大小写敏感的**</span>，并且遵循以下规则：
 
 如果一个 logger 的名字加上一个 `.` 作为另一个 logger 名字的前缀，那么该 logger 就是另一个 logger 的祖先。如果一个 logger 与另一个 logger 之间没有其它的 logger，则该 logger 就是另一个 logger 的父级。例如：
 
 - 名为 `com.moon` 的 logger 是名为 `com.moon.service` 的 logger 的父级
 - 名为 `com` 的 logger 是名为 `com.moon` 的 logger 的父级，是名为 `com.moon.service` 的 logger 的祖先
 
-<font color=red>**在 logback 中有一个 root logger，它是 logger 层次结构的最高层，它是一个特殊的 logger，因为它是每一个层次结构的一部分。**</font>
+<span style="color: red;">**在 logback 中有一个 root logger，它是 logger 层次结构的最高层，它是一个特殊的 logger，因为它是每一个层次结构的一部分。**</span>
 
 #### logback 日志输出等级
 
@@ -2394,7 +2394,7 @@ log4j2 最大的特点就是异步日志，其性能的提升主要也是从异�
 
 Log4j2 提供了两种实现异步日志的方式，一个是通过 AsyncAppender，一个是通过 AsyncLogger，分别对应的 Appender 组件和 Logger 组件
 
-<font color=red>**注意：配置异步日志需要添加依赖**</font>
+<span style="color: red;">**注意：配置异步日志需要添加依赖**</span>
 
 ```xml
 <dependency>
@@ -2850,7 +2850,7 @@ try {
 
 ### 阿里巴巴 Java 开发手册日志规约（节选嵩山版）
 
-- <font color=red>**【强制】**</font>应用中不可直接使用日志系统（Log4j、Logback）中的 API，而应依赖使用日志框架（SLF4J、JCL--Jakarta Commons Logging）中的 API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。_说明：日志框架（SLF4J、JCL--Jakarta Commons Logging）的使用方式（推荐使用 SLF4J）_
+- <span style="color: red;">**【强制】**</span>应用中不可直接使用日志系统（Log4j、Logback）中的 API，而应依赖使用日志框架（SLF4J、JCL--Jakarta Commons Logging）中的 API，使用门面模式的日志框架，有利于维护和各个类的日志处理方式统一。_说明：日志框架（SLF4J、JCL--Jakarta Commons Logging）的使用方式（推荐使用 SLF4J）_
 
 ```java
 /* 使用 SLF4J：*/
@@ -2864,25 +2864,25 @@ import org.apache.commons.logging.LogFactory;
 private static final Log log = LogFactory.getLog(Test.class);
 ```
 
-- <font color=red>**【强制】**</font>所有日志文件至少保存 15 天，因为有些异常具备以“周”为频次发生的特点。对于当天日志，以“`应用名.log`”来保存，保存在`/home/admin/应用名/logs/`目录下，过往日志格式为: `{logname}.log.{保存日期}`，日期格式：`yyyy-MM-dd`，以 aap 应用为例：
+- <span style="color: red;">**【强制】**</span>所有日志文件至少保存 15 天，因为有些异常具备以“周”为频次发生的特点。对于当天日志，以“`应用名.log`”来保存，保存在`/home/admin/应用名/logs/`目录下，过往日志格式为: `{logname}.log.{保存日期}`，日期格式：`yyyy-MM-dd`，以 aap 应用为例：
 
 > - 日志保存位置：/home/admin/aapserver/logs/aap.log
 > - 历史日志名称为：aap.log.2016-08-01
 
-- <font color=red>**【强制】**</font>应用中的扩展日志（如打点、临时监控、访问日志等）命名方式：`appName_logType_logName.log`。这种命名的好处：通过文件名就可知道日志文件属于什么应用，什么类型，什么目的，也有利于归类查找。_说明：推荐对日志进行分类，如将错误日志和业务日志分开存放，便于开发人员查看，也便于通过日志对系统进行及时监控。_
+- <span style="color: red;">**【强制】**</span>应用中的扩展日志（如打点、临时监控、访问日志等）命名方式：`appName_logType_logName.log`。这种命名的好处：通过文件名就可知道日志文件属于什么应用，什么类型，什么目的，也有利于归类查找。_说明：推荐对日志进行分类，如将错误日志和业务日志分开存放，便于开发人员查看，也便于通过日志对系统进行及时监控。_
 
 > - `logType`: 日志类型，如 stats/monitor/access 等；
 > - `logName`: 日志描述
 >
 > 示例：mppserver 应用中单独监控时区转换异常，如：`mppserver_monitor_timeZoneConvert.log`
 
-- <font color=red>**【强制】**</font>在日志输出时，字符串变量之间的拼接使用占位符的方式。_说明：因为`String`字符串的拼接会使用`StringBuilder`的`append()`方式，有一定的性能损耗。使用占位符仅是替换动作，可以有效提升性能。_
+- <span style="color: red;">**【强制】**</span>在日志输出时，字符串变量之间的拼接使用占位符的方式。_说明：因为`String`字符串的拼接会使用`StringBuilder`的`append()`方式，有一定的性能损耗。使用占位符仅是替换动作，可以有效提升性能。_
 
 ```java
 logger.debug("Processing trade with id: {} and symbol: {}", id, symbol);
 ```
 
-- <font color=red>**【强制】**</font>对于 trace/debug/info 级别的日志输出，必须进行日志级别的开关判断。_说明：虽然在 `debug(参数)` 的方法体内第一行代码`isDisabled(Level.DEBUG_INT)`为真时（Slf4j 的常见实现 Log4j 和 Logback），就直接 return，但是参数可能会进行字符串拼接运算。此外，如果`debug(getName())`这种参数内有`getName()`方法调用，无谓浪费方法调用的开销。_
+- <span style="color: red;">**【强制】**</span>对于 trace/debug/info 级别的日志输出，必须进行日志级别的开关判断。_说明：虽然在 `debug(参数)` 的方法体内第一行代码`isDisabled(Level.DEBUG_INT)`为真时（Slf4j 的常见实现 Log4j 和 Logback），就直接 return，但是参数可能会进行字符串拼接运算。此外，如果`debug(getName())`这种参数内有`getName()`方法调用，无谓浪费方法调用的开销。_
 
 ```java
 // 如果判断为真，那么可以输出 trace 和 debug 级别的日志
@@ -2891,21 +2891,21 @@ if (logger.isDebugEnabled()) {
 }
 ```
 
-- <font color=red>**【强制】**</font>避免重复打印日志，浪费磁盘空间，务必在日志配置文件中设置 `additivity=false`。
+- <span style="color: red;">**【强制】**</span>避免重复打印日志，浪费磁盘空间，务必在日志配置文件中设置 `additivity=false`。
 
 ```java
 <logger name="com.taobao.dubbo.config" additivity="false">
 ```
 
-- <font color=red>**【强制】**</font>生产环境禁止直接使用 `System.out` 或 `System.err` 输出日志或使用 `e.printStackTrace()` 打印异常堆栈。_说明：标准日志输出与标准错误输出文件每次 Jboss 重启时才滚动，如果大量输出送往这两个文件，容易造成文件大小超过操作系统大小限制。_
+- <span style="color: red;">**【强制】**</span>生产环境禁止直接使用 `System.out` 或 `System.err` 输出日志或使用 `e.printStackTrace()` 打印异常堆栈。_说明：标准日志输出与标准错误输出文件每次 Jboss 重启时才滚动，如果大量输出送往这两个文件，容易造成文件大小超过操作系统大小限制。_
 
-- <font color=red>**【强制】**</font>日志打印时禁止直接用 JSON 工具将对象转换成 String。
+- <span style="color: red;">**【强制】**</span>日志打印时禁止直接用 JSON 工具将对象转换成 String。
 
 > - 说明：如果对象里某些 `get` 方法被覆写，存在抛出异常的情况，则可能会因为打印日志而影响正常业务流程的执行。
 > - 正例：打印日志时仅打印出业务相关属性值或者调用其对象的`toString()`方法。
 
-- <font color=gold>**【推荐】**</font>谨慎地记录日志。生产环境禁止输出 debug 日志；有选择地输出 info 日志；如果使用 warn 来记录刚上线时的业务行为信息，一定要注意日志输出量的问题，避免把服务器磁盘撑爆，并记得及时删除这些观察日志。_说明：大量地输出无效日志，不利于系统性能提升，也不利于快速定位错误点。_
-- <font color=gold>**【推荐】**</font>可以使用 warn 日志级别来记录用户输入参数错误的情况，避免用户投诉时，无所适从。如非必要，请不要在此场景打出 error 级别，避免频繁报警。_说明：注意日志输出的级别，error 级别只记录系统逻辑出错、异常或者重要的错误信息。_
+- <span style="color: gold;">**【推荐】**</span>谨慎地记录日志。生产环境禁止输出 debug 日志；有选择地输出 info 日志；如果使用 warn 来记录刚上线时的业务行为信息，一定要注意日志输出量的问题，避免把服务器磁盘撑爆，并记得及时删除这些观察日志。_说明：大量地输出无效日志，不利于系统性能提升，也不利于快速定位错误点。_
+- <span style="color: gold;">**【推荐】**</span>可以使用 warn 日志级别来记录用户输入参数错误的情况，避免用户投诉时，无所适从。如非必要，请不要在此场景打出 error 级别，避免频繁报警。_说明：注意日志输出的级别，error 级别只记录系统逻辑出错、异常或者重要的错误信息。_
 
 ## 实践过程需要注意的问题
 

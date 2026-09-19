@@ -112,7 +112,7 @@ mvn -v
 
 #### 全局 setting 与用户 setting
 
-maven 仓库地址、私服等配置信息需要在 setting.xml 文件中配置，分为<font color=red>全局配置</font>和<font color=red>用户配置</font>。
+maven 仓库地址、私服等配置信息需要在 setting.xml 文件中配置，分为<span style="color: red;">全局配置</span>和<span style="color: red;">用户配置</span>。
 
 - 在 maven 安装目录下的有 `conf/setting.xml` 文件，此 setting.xml 文件用于 maven 的所有 project 项目，它作为 maven 的全局配置。
 - 如需要个性配置则需要在用户配置中设置，用户配置的 setting.xml 文件默认的位置在：`${user.dir}/.m2/settings.xml` 目录中，`${user.dir}` 指 windows 中的用户目录。
@@ -210,18 +210,18 @@ Maven 包含了一个项目对象模型(Project Object Model)，一组标准集�
 
 #### 仓库的类型
 
-<font color=red>本地仓库</font>
+<span style="color: red;">本地仓库</span>
 
 - 用来存储从远程仓库或中央仓库下载的插件和 jar 包，项目使用一些插件或 jar 包，优先从本地仓库查找
 - 默认本地仓库位置在 `${user.dir}/.m2/repository`，`${user.dir}`表示 windows 用户目录
 
-<font color=red>远程仓库（私服）</font>
+<span style="color: red;">远程仓库（私服）</span>
 
 - 如果本地需要插件或者 jar 包，本地仓库没有，默认去远程仓库下载
 - 远程仓库可以在互联网内也可以在局域网内
 - 私服在一定范围内共享资源，仅对内部开放，不对外共享。可以保存具有版权的资源，包含购买或自主研发的 jar。因为中央仓库中的 jar 都是开源的，不能存储具有版权的资源。
 
-<font color=red>中央仓库</font>
+<span style="color: red;">中央仓库</span>
 
 在maven软件中内置一个远程仓库地址，它是[中央仓库](https://repo1.maven.org/maven2)，服务于整个互联网，它是由Maven团队自己维护，里面存储了非常全的jar包，它包含了世界上大部分流行的开源项目构件
 
@@ -246,7 +246,7 @@ maven 的工作需要从仓库下载一些 jar 包，如下图所示，本地的
 
 #### 定义
 
-坐标(GAV)：是 Maven 作为<font color=red>**查找定位 jar 包（项目/组件）的唯一依据**</font>。例如：`struts2-core-2.3.24.jar`
+坐标(GAV)：是 Maven 作为<span style="color: red;">**查找定位 jar 包（项目/组件）的唯一依据**</span>。例如：`struts2-core-2.3.24.jar`
 
 坐标的规则：`Apache(公司名称)+struts2(项目名称)+2.3.24(版本信息)`
 
@@ -419,7 +419,7 @@ Maven 为了让构建过程能够尽可能自动化完成，所以必须约定�
 
 - **约定大于配置**
 
-如果每次创建工程都要针对各个目录的位置进行详细的配置，是相关麻烦的事情。因此标准的 Maven 工程目录结构没有采用配置的方式，而是**基于约定**。目前开发领域的技术发展趋势就是：<font color=red>**约定大于配置，配置大于编码**</font>。
+如果每次创建工程都要针对各个目录的位置进行详细的配置，是相关麻烦的事情。因此标准的 Maven 工程目录结构没有采用配置的方式，而是**基于约定**。目前开发领域的技术发展趋势就是：<span style="color: red;">**约定大于配置，配置大于编码**</span>。
 
 ### Maven 核心配置文件 pom.xml
 
@@ -707,17 +707,17 @@ maven 项目管理所依赖的 jar 包不需要手动向工程添加 jar 包，�
 
 #### compile
 
-compile（编译依赖范围），指A在编译时依赖B，此范围为默认依赖范围。<font color=violet>*编译范围的依赖会用在编译、测试、运行，由于运行时需要。所以编译范围的依赖会被打包到war包中*</font>。**添加依赖范围默认值是 compile**
+compile（编译依赖范围），指A在编译时依赖B，此范围为默认依赖范围。<span style="color: violet;">*编译范围的依赖会用在编译、测试、运行，由于运行时需要。所以编译范围的依赖会被打包到war包中*</span>。**添加依赖范围默认值是 compile**
 
 #### provided
 
-provided（容器已经提供依赖范围），provided 依赖只有在当 JDK 或者一个容器已提供该依赖之后才使用，provided 依赖<font color=violet>*在编译和测试时需要，在运行时不需要，不会打包到 war 包中*</font>，比如：servlet-api 和 jsp-api 被 tomcat 容器提供，全用默认依赖范围，在 package 后 jsp-api 和 servlet-api 是存在 war 包中；使用 provided 后，打包后是不存在的。就是避免和服务器上已有的同类 jar 包产生冲突，同时减轻服务器的负担。
+provided（容器已经提供依赖范围），provided 依赖只有在当 JDK 或者一个容器已提供该依赖之后才使用，provided 依赖<span style="color: violet;">*在编译和测试时需要，在运行时不需要，不会打包到 war 包中*</span>，比如：servlet-api 和 jsp-api 被 tomcat 容器提供，全用默认依赖范围，在 package 后 jsp-api 和 servlet-api 是存在 war 包中；使用 provided 后，打包后是不存在的。就是避免和服务器上已有的同类 jar 包产生冲突，同时减轻服务器的负担。
 
 ![](images/20220117224108310_3609.jpg)
 
 #### test
 
-test（测试依赖范围），在编译和运行时都不需要，它们<font color=violet>*只有在测试编译和测试运行阶段可用*</font>，比如：junit。由于运行时不需要所以<font color=violet>*test范围依赖不会被打包到war包中*</font>。
+test（测试依赖范围），在编译和运行时都不需要，它们<span style="color: violet;">*只有在测试编译和测试运行阶段可用*</span>，比如：junit。由于运行时不需要所以<span style="color: violet;">*test范围依赖不会被打包到war包中*</span>。
 
 #### system
 
@@ -733,11 +733,11 @@ system 范围依赖与 provided 类似，但是必须显式的提供一个对于
 </dependency>
 ```
 
-> Notes: 显然这种引入依赖方式需要指定 systemPath 磁盘路径，完全不具有可移植性，<font color=violet>*因此不推荐使用 system 依赖*</font>。
+> Notes: 显然这种引入依赖方式需要指定 systemPath 磁盘路径，完全不具有可移植性，<span style="color: violet;">*因此不推荐使用 system 依赖*</span>。
 
 #### runtime
 
-runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在运行和测试系统的时候需要，但在编译的时候不需要**</font>。因为编译时根据接口调用方法，但是实际运行时则需要接口的具体实现类。由于运行时需要所以<font color=violet>*runtime 范围的依赖会被打包至 war/jar 包*</font>。比如：jdbc 的数据库驱动包、Spring Boot 热部署等
+runtime（运行时期依赖范围），<span style="color: violet;">**runtime 依赖在运行和测试系统的时候需要，但在编译的时候不需要**</span>。因为编译时根据接口调用方法，但是实际运行时则需要接口的具体实现类。由于运行时需要所以<span style="color: violet;">*runtime 范围的依赖会被打包至 war/jar 包*</span>。比如：jdbc 的数据库驱动包、Spring Boot 热部署等
 
 ```xml
 <!--热部署 -->
@@ -817,7 +817,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 ![](images/20220117224332847_20139.jpg)
 
-<font color=red>**总结：如果使用到 tomcat 自带 jar 包，将项目中依赖作用范围设置为：`provided`，其他可以默认**</font>
+<span style="color: red;">**总结：如果使用到 tomcat 自带 jar 包，将项目中依赖作用范围设置为：`provided`，其他可以默认**</span>
 
 ![](images/20220117224357919_32210.jpg)
 
@@ -839,7 +839,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 - **直接依赖**：在当前项目中通过依赖配置建立的依赖关系
 - **间接依赖**：在当前项目中引入的依赖，如果该被引入的资源依赖其他资源，那么当前项目就间接依赖其他资源
 
-根据上面示例，<font color=red>B 是 A 的直接依赖，C 是 A 的传递依赖</font>，如果 C 依赖 D，则 D 也可能是 A 的传递依赖
+根据上面示例，<span style="color: red;">B 是 A 的直接依赖，C 是 A 的传递依赖</span>，如果 C 依赖 D，则 D 也可能是 A 的传递依赖
 
 #### 依赖范围对传递依赖的影响（了解）
 
@@ -877,7 +877,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 </dependency>
 ```
 
-> <font color=red>**注意：模块在使用`<parent>`继承中，在父项目中的 optional 配置对子项目并无影响。**</font>
+> <span style="color: red;">**注意：模块在使用`<parent>`继承中，在父项目中的 optional 配置对子项目并无影响。**</span>
 
 例如，在 parent 项目中配置统一的依赖版本控制，此时其他子项目需要 Junit 的 jar 包时可以直接在项目中引入，父项目中的 optional 配置对子项目并无影响。
 
@@ -1001,7 +1001,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 ![](images/20220117225556743_6369.jpg)
 
-<font color=red>**直接使用 `<exclusion>` 标签**</font>:
+<span style="color: red;">**直接使用 `<exclusion>` 标签**</span>:
 
 ```xml
 <!-- struts2-spring-plugin依赖spirng-beans-3.0.5 -->
@@ -1021,7 +1021,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 #### 手动解决依赖冲突：锁定版本（推荐使用）
 
-面对众多的依赖，有一种方法不用考虑依赖路径、声明优化等因素可以采用直接锁定版本的方法确定依赖构件的版本，版本锁定后则不考虑依赖的声明顺序或依赖的路径，<font color=red>**以锁定的版本为准添加到工程中，此方法在企业开发中常用**</font>
+面对众多的依赖，有一种方法不用考虑依赖路径、声明优化等因素可以采用直接锁定版本的方法确定依赖构件的版本，版本锁定后则不考虑依赖的声明顺序或依赖的路径，<span style="color: red;">**以锁定的版本为准添加到工程中，此方法在企业开发中常用**</span>
 
 在 pom.xml 文件中，通过使用 `<dependencyManagement>` 标签来锁定依赖的版本。注意点如下：
 
@@ -1071,7 +1071,7 @@ runtime（运行时期依赖范围），<font color=violet>**runtime 依赖在�
 
 ### 三套生命周期
 
-在 maven 中存在“三套”生命周期，每一套生命周期相互<font color=red>**独立**</font>，互不影响。<font color=red>**在同一套生命周期内，执行后面的命令前面操作会自动执行**</font>
+在 maven 中存在“三套”生命周期，每一套生命周期相互<span style="color: red;">**独立**</span>，互不影响。<span style="color: red;">**在同一套生命周期内，执行后面的命令前面操作会自动执行**</span>
 
 三套生命周期分别是：
 
@@ -1147,9 +1147,9 @@ site 生命周期包含如下 4 个阶段：
 
 每个 maven 命令对应生命周期的某个阶段，例如：`mvn clean`命令对应 clean 生命周期的 clean 阶段，`mvn test` 命令对应 default 生命周期的test  阶段。
 
-<font color=red>**执行某个命令时，会将该命令所在生命周期阶段之前的命令全部自动执行**</font>，比如：执行 `mvn clean` 命令会自动执行 `pre-clean` 和 `clean` 两个阶段，`mvn test`命令会自动执行 `validate`、`compile`、`test` 等阶段。
+<span style="color: red;">**执行某个命令时，会将该命令所在生命周期阶段之前的命令全部自动执行**</span>，比如：执行 `mvn clean` 命令会自动执行 `pre-clean` 和 `clean` 两个阶段，`mvn test`命令会自动执行 `validate`、`compile`、`test` 等阶段。
 
-> Notes: <font color=red>**执行某个生命周期的某个阶段不会影响其它的生命周期！**</font>
+> Notes: <span style="color: red;">**执行某个生命周期的某个阶段不会影响其它的生命周期！**</span>
 
 如果要同时执行多个生命周期的阶段可在命令行输入多个命令，中间以空格隔开，例如：`clean package` 该命令执行 clean 生命周期的 clean 阶段和 default 生命周期的 package 阶段。
 
@@ -1347,7 +1347,7 @@ public class MyPluginOfFistBlood extends AbstractMojo {
 
 #### 使用插件
 
-Maven 会根据插件的 artifactId 来<font color=red>**识别插件前缀**</font>。例如下面两种情况
+Maven 会根据插件的 artifactId 来<span style="color: red;">**识别插件前缀**</span>。例如下面两种情况
 
 - 前置匹配
     - 匹配规则：`${prefix}-maven-plugin`
@@ -1442,7 +1442,7 @@ mvn hello:sayHello
 </modules>
 ```
 
-> <font color=red>**需要注意：参与聚合操作的模块最终执行顺序与模块间的依赖关系有关，与配置顺序无关**</font>
+> <span style="color: red;">**需要注意：参与聚合操作的模块最终执行顺序与模块间的依赖关系有关，与配置顺序无关**</span>
 
 #### 在聚合父工程中定义依赖管理
 
@@ -2013,7 +2013,7 @@ $ mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor -Dversion=1.
 
 ### 批量删除maven项目错误后生成`*.lastUpdated`文件
 
-在项目运行错误后，在本地仓库下生成`.lastUpdated`文件，会影响项目的运行。使用批处理文件可以将里面文件删除，<font color=red>**注：将`REPOSITORY_PATH`变量改成本地仓库的路径**</font>
+在项目运行错误后，在本地仓库下生成`.lastUpdated`文件，会影响项目的运行。使用批处理文件可以将里面文件删除，<span style="color: red;">**注：将`REPOSITORY_PATH`变量改成本地仓库的路径**</span>
 
 ```bat
 set REPOSITORY_PATH=D:\development\maven\repository

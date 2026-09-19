@@ -31,7 +31,7 @@ Eureka 是 Netflix 开发的服务发现框架，SpringCloud 将它集成在自�
 
 ![](images/52805312230256.png)
 
-<font color=red>**Eureka包含两个组件：`Eureka Server` 和 `Eureka Client`**</font>，作用如下：
+<span style="color: red;">**Eureka包含两个组件：`Eureka Server` 和 `Eureka Client`**</span>，作用如下：
 
 - Eureka Client 是一个 Java 客户端，用于简化与 Eureka Server 的交互。客户端同时也就别一个内置的、使用轮询(round-robin)负载算法的负载均衡器。
 - Eureka Server 提供服务发现的能力，各个微服务节点启动时，会通过 Eureka Client 向 Eureka Server 进行注册自己的信息（例如网络信息），Eureka Server 服务注册表中将会存储所有可用服务节点的信息到内存中，服务节点的信息可以在管理平台界面中直观的看到。
@@ -175,7 +175,7 @@ public class ProductApplication {
 }
 ```
 
-> <font color=red>**注：从Spring Cloud Edgware版本开始，`@EnableDiscoveryClient` 或 `@EnableEurekaClient` 可省略。只需加上相关依赖，并进行相应配置，即可将微服务注册到服务发现组件上。**</font>
+> <span style="color: red;">**注：从Spring Cloud Edgware版本开始，`@EnableDiscoveryClient` 或 `@EnableEurekaClient` 可省略。只需加上相关依赖，并进行相应配置，即可将微服务注册到服务发现组件上。**</span>
 
 #### 订单服务注册
 
@@ -378,7 +378,7 @@ eureka:
       defaultZone: http://eureka01:8001/eureka/
 ```
 
-<font color=purple>**说明：在配置文件中通过连字符（`---`）将文件分为三个部分，第一部分为应用名称，第二部分和第三部分是根据不同的`profiles`选项动态添加，可以在IDEA启动时进行激活配置**</font>
+<span style="color: purple;">**说明：在配置文件中通过连字符（`---`）将文件分为三个部分，第一部分为应用名称，第二部分和第三部分是根据不同的`profiles`选项动态添加，可以在IDEA启动时进行激活配置**</span>
 
 #### 启动服务
 
@@ -922,7 +922,7 @@ public class EurekaServerInitializerConfiguration
 
 - 实例化了Eureka Server的管控台的Controller类 `EurekaController`
 - 实例化`EurekaServerBootstrap`类
-- 实例化`jersey`相关配置类。<font color=red>**jersey是RESTful的Web服务框架**</font>
+- 实例化`jersey`相关配置类。<span style="color: red;">**jersey是RESTful的Web服务框架**</span>
 
 ```java
 public class EurekaServerAutoConfiguration extends WebMvcConfigurerAdapter {
@@ -999,7 +999,7 @@ public class EurekaServerAutoConfiguration extends WebMvcConfigurerAdapter {
 
 #### 暴露的服务端接口
 
-集成了`Jersey`，可以找到在EurekaServer的依赖包中的 `eureka-core-x.x.x.jar`，可以看到一系列`XXXResource`的类。<font color=red>**这些类都是通过`Jersey`发布了供客户端调用的服务接口**</font>
+集成了`Jersey`，可以找到在EurekaServer的依赖包中的 `eureka-core-x.x.x.jar`，可以看到一系列`XXXResource`的类。<span style="color: red;">**这些类都是通过`Jersey`发布了供客户端调用的服务接口**</span>
 
 ![](images/20201011225911509_18018.png)
 

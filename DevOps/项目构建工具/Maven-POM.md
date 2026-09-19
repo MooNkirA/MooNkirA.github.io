@@ -422,7 +422,7 @@ SiteMojo 的父类是：`AbstractSiteRenderingMojo`，在父类中可以看到 `
 
 ![](images/268531722239584.jpg)
 
-> Notes: <font color=red>**重要结论，插件可设置的内容均由该插件来定义。**</font>
+> Notes: <span style="color: red;">**重要结论，插件可设置的内容均由该插件来定义。**</span>
 
 #### 指定 JDK 版本
 
@@ -520,7 +520,7 @@ maven-compiler-plugin 插件，可以通过 `<configuration>` 标签来指定当
 
 `<plugins>` 标签的作用是定义 Maven 插件，主要用于扩展 Maven 的功能，帮助开发人员更方便地构建、打包、发布项目。插件可以通过 Maven 的插件中心或者构建的私有仓库来使用，能在构建过程中执行特定的任务，比如编译、打包、测试等。
 
-<font color=red>**插件的配置可以分为两种方式：全局配置和项目配置**</font>。
+<span style="color: red;">**插件的配置可以分为两种方式：全局配置和项目配置**</span>。
 
 - 全局配置是在 Maven 安装目录下的 conf/settings.xml 文件中进行配置，可以被所有的项目使用。
 - 项目配置则是在项目的 pom.xml 文件中进行配置，只对当前项目生效。
@@ -734,7 +734,7 @@ maven-clean-plugin 用于清理 Maven 项目中的目标文件和构建临时文
 - `*`  匹配零个或多个字符
 - `**` 匹配零个或多个目录
 
-<font color=red>**需要注意的是，Maven 的通配符仅支持`*`和`**`，不支持其他通配符（例如`?`）。同时，通配符匹配的范围是相对于构建目录的，即默认情况下是相对于 pom.xml 文件的目录**</font>。
+<span style="color: red;">**需要注意的是，Maven 的通配符仅支持`*`和`**`，不支持其他通配符（例如`?`）。同时，通配符匹配的范围是相对于构建目录的，即默认情况下是相对于 pom.xml 文件的目录**</span>。
 
 #### maven-release-plugin
 

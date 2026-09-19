@@ -144,7 +144,7 @@ SolrCloud是基于Solr和Zookeeper的分布式搜索方案，它的主要思想�
 
 ### Zookeeper简介
 
-Apache Hbase和Apache Solr的分布式集群都用到了zookeeper；<font color="red">***zookeeper是一个分布式的、开源的程序协调服务***</font>，是hadoop项目下的一个子项目。
+Apache Hbase和Apache Solr的分布式集群都用到了zookeeper；<span style="color: red;">***zookeeper是一个分布式的、开源的程序协调服务***</span>，是hadoop项目下的一个子项目。
 
 ### Zookeeper功能
 
@@ -182,7 +182,7 @@ SolrCloud需要Solr基于Zookeeper部署，由于SolrCloud需要由多台服务�
 
 1. Collection
 
-Collection在SolrCloud集群中是一个<font color="red">***逻辑意义***</font>上的完整的索引结构。它常常被划分为一个或多个Shard（分片），它们使用相同的配置信息。
+Collection在SolrCloud集群中是一个<span style="color: red;">***逻辑意义***</span>上的完整的索引结构。它常常被划分为一个或多个Shard（分片），它们使用相同的配置信息。
 
 比如：针对商品信息搜索可以创建一个collection。
 
@@ -254,7 +254,7 @@ Spring Data Solr就是为了方便Solr的开发所研制的一个框架，其底
 
 创建`com.moon.pojo`包，将品优购的Item实体类拷入本工程，属性使用@Field注解标识，如果属性与配置文件定义的域名称不一致，需要在注解中指定域名称。
 
-<font color="red">***注意：price属性与数据库字段相对应，需要设置成BigDecimal，再将其转成double***</font>
+<span style="color: red;">***注意：price属性与数据库字段相对应，需要设置成BigDecimal，再将其转成double***</span>
 
 ```java
 public class Item implements Serializable {
@@ -1216,7 +1216,7 @@ public class ItemSearchController {
 }
 ```
 
-<font color="red">***注：控制映射的注解@PostMapping的参数不能与web.xml配置默认跳转的页面一样，所以此处【/Search】***</font>
+<span style="color: red;">***注：控制映射的注解@PostMapping的参数不能与web.xml配置默认跳转的页面一样，所以此处【/Search】***</span>
 
 #### 拷贝静态资源
 

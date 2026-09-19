@@ -450,7 +450,7 @@ this.aspectJAdvisorsBuilder.buildAspectJAdvisors()
 
 #### 查找实现 Advisor 接口的切面
 
-先调用父类`AbstractAdvisorAutoProxyCreator`的逻辑，通过分析父类的方法的逻辑可知，Spring会收集所有实现`Advisor`接口的实例，所以可以<font color=red>**通过实现`Advisor`接口来自定义一些切面实现，这种方式实现的切面也会被Spring收集与管理**</font>
+先调用父类`AbstractAdvisorAutoProxyCreator`的逻辑，通过分析父类的方法的逻辑可知，Spring会收集所有实现`Advisor`接口的实例，所以可以<span style="color: red;">**通过实现`Advisor`接口来自定义一些切面实现，这种方式实现的切面也会被Spring收集与管理**</span>
 
 ![](images/20210226152313171_19445.png)
 
@@ -747,7 +747,7 @@ public static boolean makeAdvisorChainAspectJCapableIfNecessary(List<Advisor> ad
 
 ![](images/20210227220344497_5893.png)
 
-<font color=red>**总结：因为切面都是链式调用，所以增加此默认切面的目的是，可以在任意其他切面上，通过工具方法`ExposeInvocationInterceptor.currentInvocation()`，获取到当前`MethodInvocation`对象，从此对象中可以获取到调用的参数、方法、实例对象等，用于切面间的数据传递**</font>
+<span style="color: red;">**总结：因为切面都是链式调用，所以增加此默认切面的目的是，可以在任意其他切面上，通过工具方法`ExposeInvocationInterceptor.currentInvocation()`，获取到当前`MethodInvocation`对象，从此对象中可以获取到调用的参数、方法、实例对象等，用于切面间的数据传递**</span>
 
 ### 切面的排序
 
@@ -1155,7 +1155,7 @@ public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException 
 }
 ```
 
-前面`createAopProxy`方法返回了`JdkDynamicAopProxy`或者`ObjenesisCglibAopProxy`，调用`getProxy`方法创建代理对象，并且把代理工厂对象传递到 jdk 和 cglib 中，<font color=red>**特别注意：这里的代理对象和`JdkDynamicAopProxy`或者`ObjenesisCglibAopProxy`是一一对应的，一个需要代理的bean对应一个代理**</font>
+前面`createAopProxy`方法返回了`JdkDynamicAopProxy`或者`ObjenesisCglibAopProxy`，调用`getProxy`方法创建代理对象，并且把代理工厂对象传递到 jdk 和 cglib 中，<span style="color: red;">**特别注意：这里的代理对象和`JdkDynamicAopProxy`或者`ObjenesisCglibAopProxy`是一一对应的，一个需要代理的bean对应一个代理**</span>
 
 ![](images/20210228230135123_24969.png)
 
@@ -1519,7 +1519,7 @@ public Object proceed() throws Throwable {
 
 ![](images/20210306093025719_29887.png)
 
-- 在调用完默认切面后，又会再次调用`proceed`方法，<font color=red>**此时`this.currentInterceptorIndex`的值为0**</font>，按拦截器数组的顺序会先执行`AspectJAroundAdvice`内部的`invoke`方法，如下图所示:
+- 在调用完默认切面后，又会再次调用`proceed`方法，<span style="color: red;">**此时`this.currentInterceptorIndex`的值为0**</span>，按拦截器数组的顺序会先执行`AspectJAroundAdvice`内部的`invoke`方法，如下图所示:
 
 ![](images/20210306093130469_4935.png)
 
@@ -1533,11 +1533,11 @@ public Object proceed() throws Throwable {
 
 ![](images/20210306112024432_22879.png)
 
-<font color=red>**注意的是，通过`joinPoint.proceed()`方法会再次调用到`proceed`方法，此时会将`MethodBeforeAdviceInterceptor`与`AspectJAfterAdvice`的拦截器都执行完，`joinPoint.proceed()`方法才会执行结束**</font>
+<span style="color: red;">**注意的是，通过`joinPoint.proceed()`方法会再次调用到`proceed`方法，此时会将`MethodBeforeAdviceInterceptor`与`AspectJAfterAdvice`的拦截器都执行完，`joinPoint.proceed()`方法才会执行结束**</span>
 
 ![](images/20210306094324656_6984.png)
 
-- 在调用`@Around`切面中，又会再次调用`proceed`方法，<font color=red>**此时`this.currentInterceptorIndex`的值为1**</font>，按拦截器数组的顺序会先执行`MethodBeforeAdviceInterceptor`内部的`invoke`方法，如下图所示:
+- 在调用`@Around`切面中，又会再次调用`proceed`方法，<span style="color: red;">**此时`this.currentInterceptorIndex`的值为1**</span>，按拦截器数组的顺序会先执行`MethodBeforeAdviceInterceptor`内部的`invoke`方法，如下图所示:
 
 ![](images/20210306094703412_20772.png)
 
@@ -1545,11 +1545,11 @@ public Object proceed() throws Throwable {
 
 ![](images/20210306094806642_21575.png)
 
-<font color=red>**注意的是：与`@Around`的切面调用不一样，`@Before`拦截器会在`invoke`方法中，先调用`@Before`的方法，然后再自己再回调`proceed()`方法**</font>
+<span style="color: red;">**注意的是：与`@Around`的切面调用不一样，`@Before`拦截器会在`invoke`方法中，先调用`@Before`的方法，然后再自己再回调`proceed()`方法**</span>
 
 ![](images/20210306095015187_111.png)
 
-- 在调用完`@Before`切面后，又会再次调用`proceed`方法，<font color=red>**此时`this.currentInterceptorIndex`的值为2**</font>，按拦截器数组的顺序会先执行`AspectJAfterAdvice`内部的`invoke`方法，如下图所示:
+- 在调用完`@Before`切面后，又会再次调用`proceed`方法，<span style="color: red;">**此时`this.currentInterceptorIndex`的值为2**</span>，按拦截器数组的顺序会先执行`AspectJAfterAdvice`内部的`invoke`方法，如下图所示:
 
 ![](images/20210306100455099_12341.png)
 
@@ -1559,7 +1559,7 @@ public Object proceed() throws Throwable {
 
 此时方法继续执行，切面`AspectJAfterAdvice`中的`invoke`完成值的返回，把返回值返回给上一个执行的advice，然后在`finally`代码块中会反射调用`@After`的方法。
 
-> <font color=red>**注意此时此finally中的逻辑还没有调用，在等`@Around`注解方法中的`joinPoint.proceed()`方法执行完成后，再执行**</font>如下图所示
+> <span style="color: red;">**注意此时此finally中的逻辑还没有调用，在等`@Around`注解方法中的`joinPoint.proceed()`方法执行完成后，再执行**</span>如下图所示
 
 ![](images/20210306100900509_5382.png)
 

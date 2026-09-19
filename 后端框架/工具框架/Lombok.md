@@ -851,7 +851,7 @@ User user = User.builder()
     .build();
 ```
 
-> Notes: <font color=red>**值得需要注意的是，如果类继承了一个父类，那么 `@Builder` 只会生成当前类的字段和参数，不包括父类的。**</font>
+> Notes: <span style="color: red;">**值得需要注意的是，如果类继承了一个父类，那么 `@Builder` 只会生成当前类的字段和参数，不包括父类的。**</span>
 
 #### 不推荐使用 @Builder 注解的说明
 

@@ -57,7 +57,7 @@ public class Junit4QuickstartTest {
 }
 ```
 
-> Notes: <font color=red>**JUnit 4 测试方法必须是 `public` 修饰，没有返回值，没有方法参数，必须使用 `@Test` 注解修饰。这和 Junit 5 有差别！**</font>
+> Notes: <span style="color: red;">**JUnit 4 测试方法必须是 `public` 修饰，没有返回值，没有方法参数，必须使用 `@Test` 注解修饰。这和 Junit 5 有差别！**</span>
 
 ### 运行单元测试
 
@@ -72,8 +72,8 @@ public class Junit4QuickstartTest {
 
 ### 查看测试结果
 
-- 输出标识是<font color=green>**绿色**</font>：表示测试没有问题
-- 输出标识是<font color=red>**红色**</font>：表示测试失败，有 Bug
+- 输出标识是<span style="color: green;">**绿色**</span>：表示测试没有问题
+- 输出标识是<span style="color: red;">**红色**</span>：表示测试失败，有 Bug
 
 ![](images/355264116240248.png)
 

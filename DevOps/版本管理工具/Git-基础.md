@@ -14,7 +14,7 @@ Git是分布式的版本控制工具，其特点如下：
 
 #### SVN
 
-SVN是<font color=red>**集中式版本控制软件**</font>，版本库是集中放在中央服务器的。每个程序员使用自己电脑，首先要从中央服务器哪里得到最新的版本，编程完将完成的代码推送到中央服务器。集中式版本控制系统是必须联网才能工作
+SVN是<span style="color: red;">**集中式版本控制软件**</span>，版本库是集中放在中央服务器的。每个程序员使用自己电脑，首先要从中央服务器哪里得到最新的版本，编程完将完成的代码推送到中央服务器。集中式版本控制系统是必须联网才能工作
 
 标准的集中式版本控制工具管理方式：
 
@@ -25,11 +25,11 @@ SVN是<font color=red>**集中式版本控制软件**</font>，版本库是集�
 1. 服务器单点故障，一旦宕机无法提交代码，即容错性较差
 3. 离线无法提交代码，无法及时记录开发人员的提交行为
 
-<font color=red>每天都同步一次即可，需要手动同步上传代码</font>
+<span style="color: red;">每天都同步一次即可，需要手动同步上传代码</span>
 
 #### Git
 
-Git是<font color=red>**分布式版本控制软件**</font>，它可以没有中央服务器，每个人的电脑就是一个完整的版本库。工作的时候就不需要联网了，因为版本都是在自己的电脑上。当多人开发时，只需把各自的修改推送到远程仓库，就可以所有成员都可以看到修改了。
+Git是<span style="color: red;">**分布式版本控制软件**</span>，它可以没有中央服务器，每个人的电脑就是一个完整的版本库。工作的时候就不需要联网了，因为版本都是在自己的电脑上。当多人开发时，只需把各自的修改推送到远程仓库，就可以所有成员都可以看到修改了。
 
 分布式版本控制工具管理方式：
 
@@ -111,7 +111,7 @@ Git 的工作流程图
 
 ### 工作区和暂存区
 
-Git 和其它版本控制软件如 SVN 的一个不同之处就是有<font color=red>**暂存区**</font>的概念。
+Git 和其它版本控制软件如 SVN 的一个不同之处就是有<span style="color: red;">**暂存区**</span>的概念。
 
 #### 工作区 (Working Directory)
 
@@ -226,7 +226,7 @@ doc/**/*.pdf
 
 ![](images/518713620239669.png)
 
-> Notes: <font color=red>以下章节的命令中，`[]` 包裹的代表可以省略</font>
+> Notes: <span style="color: red;">以下章节的命令中，`[]` 包裹的代表可以省略</span>
 
 ### 常用命令速查表
 
@@ -591,7 +591,7 @@ $ git remote add <shortname> <url>
 $ git remote rm <shortname>
 ```
 
-> Notes: <font color=red>**只是从本地移除远程仓库的关联关系，并不会真正影响到远程仓库**</font>
+> Notes: <span style="color: red;">**只是从本地移除远程仓库的关联关系，并不会真正影响到远程仓库**</span>
 
 #### remote update - 更新远程分支列表
 
@@ -850,7 +850,7 @@ $ git branch -dr [remote/branch]
 $ git merge <被合并的分支名>
 ```
 
-> Notes: <font color=red>**合并本地所有分支之后，需要使用 `push` 指令推送到远程仓库中**</font>
+> Notes: <span style="color: red;">**合并本地所有分支之后，需要使用 `push` 指令推送到远程仓库中**</span>
 
 选择一个 commit，合并进当前分支
 
@@ -1654,7 +1654,7 @@ git config --global core.autocrlf false
 #### 常见错误
 
 - **解决合并冲突后建了个新的 MR**：因为冲突解决的错误行为，有可能在解决之后，修改被提交到了一个新的分支。这时候应该把你的分支 reset 到新的去，force push，再删掉新的；而不是关掉原先的 MR，在新分支上开个新 MR。
-- **把分支搞乱**：如果真的遇到了多分支复杂交错的情况，有两个方法可以尝试清理出来。<font color=red>*注：两个方法最后都需要force push。*</font>
+- **把分支搞乱**：如果真的遇到了多分支复杂交错的情况，有两个方法可以尝试清理出来。<span style="color: red;">*注：两个方法最后都需要force push。*</span>
     - 强制rebase。Fetch一下整个repo；把你的分支rebase到目标分支上的时候勾选force；这时候在列表里选要拿去rebase的commit。大部分时候这都能行。但有时候git因为分支太错综复杂而搞不清楚commit，在列表里会有遗漏。
     - Cherry-pick。在目标分支上新建一个临时分支；把有用的commit都cherry-pick过去；把你的分支reset到那个临时分支上；最后删掉那个临时分支。
 
@@ -1695,7 +1695,7 @@ git commit -m "Rename file (case change)"
 git push
 ```
 
-方法3：临时修改 Git 配置（<font color=red>**推荐**</font>）
+方法3：临时修改 Git 配置（<span style="color: red;">**推荐**</span>）
 
 ```bash
 # 1. 临时关闭大小写忽略

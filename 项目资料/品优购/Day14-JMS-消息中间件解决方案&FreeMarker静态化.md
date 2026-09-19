@@ -4,7 +4,7 @@
 
 #### 品优购系统模块
 
-目前已经完成了5个web模块和3个服务模块。其中运营商后台的调用关系最多，用到了商家商品服务、内容服务、搜索服务。这种模块之间的依赖也称之为耦合。而耦合越多，之后的维护工作就越困难。那么如何改善系统模块调用关系、<font color="red">***减少模块之间的耦合、提高系统的吐吞量***</font>？接下来就介绍一种解决方案----消息中间件。
+目前已经完成了5个web模块和3个服务模块。其中运营商后台的调用关系最多，用到了商家商品服务、内容服务、搜索服务。这种模块之间的依赖也称之为耦合。而耦合越多，之后的维护工作就越困难。那么如何改善系统模块调用关系、<span style="color: red;">***减少模块之间的耦合、提高系统的吐吞量***</span>？接下来就介绍一种解决方案----消息中间件。
 
 #### 什么是消息中间件
 
@@ -12,7 +12,7 @@
 
 常见的消息中间件产品:
 
-1. <font color="red">**ActiveMQ**</font>
+1. <span style="color: red;">**ActiveMQ**</span>
     - ActiveMQ是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ是一个完全支持JMS1.1和J2EE 1.4规范的JMS Provider实现。本项目中使用 ActiveMQ作为消息中间件。【5W/s吞吐量】
 2. RabbitMQ
 	- AMQP协议的领导实现，支持多种场景。淘宝的MySQL集群内部有使用它进行通讯，OpenStack开源云平台的通信组件，最先在金融行业得到运用。【5W/s吞吐量】
@@ -21,7 +21,7 @@
 3. Kafka
     - Apache下的一个子项目 。特点：高吞吐，在一台普通的服务器上既可以达到16W/s的吞吐量；完全的分布式系统。适合处理海量数据。（没有处理事务）
 
-<font color="red">**扩展**</font>
+<span style="color: red;">**扩展**</span>
 
 - 目前还没有很好的方案处理分布式事务。企业一般在分布式系统都会使用ActiveMQ消息中件间来处理不同服务之间的事务；
 - 另一种处理事务的方案是，将不同的服务做成一个服务，当成本地事务处理即可。
@@ -306,7 +306,7 @@ public class ConsumerTest {
 
 #### 运行测试
 
-同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<font color="red">**只有一个消费者会接收到消息**</font>。
+同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<span style="color: red;">**只有一个消费者会接收到消息**</span>。
 
 ### 发布/订阅模式
 
@@ -411,7 +411,7 @@ public class ConsumerTest {
 
 #### 运行测试
 
-同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<font color="red">**每个消费者会接收到消息**</font>。
+同时开启2个以上的消费者，再次运行生产者，观察每个消费者控制台的输出，会发现<span style="color: red;">**每个消费者会接收到消息**</span>。
 
 ## Spring 整合 JMS
 
@@ -990,7 +990,7 @@ public class ItemMessageListener implements SessionAwareMessageListener<MapMessa
 }
 ```
 
-<font color="red">***注意：以上的代码因为ActiveMQMapMessage Map集合消息体的setObject()是不能设置数组，所以上面的代码才会出现转成集合发送消息，接收消息后又将集合转回数组***</font>
+<span style="color: red;">***注意：以上的代码因为ActiveMQMapMessage Map集合消息体的setObject()是不能设置数组，所以上面的代码才会出现转成集合发送消息，接收消息后又将集合转回数组***</span>
 
 ---
 
@@ -1234,7 +1234,7 @@ server {
 
 ### 注意
 
-<font color="red">***说明：商品详细页是静态页，在开发阶段我们可以使用tomcat来进行测试。部署在生产环境是部署在Nginx中。***</font>
+<span style="color: red;">***说明：商品详细页是静态页，在开发阶段我们可以使用tomcat来进行测试。部署在生产环境是部署在Nginx中。***</span>
 
 ---
 
@@ -1263,7 +1263,7 @@ server {
 
 运用消息中间件ActiveMQ实现运营商后台系统与商品详情系统零耦合。运营商执行商品审核后，向ActiveMQ发送消息（商品ID），商品详情系统从ActiveMQ接收到消息后执行网页生成操作。
 
-<font color="red">***注：此处网页静态化使用主题订阅而不使用消息队列的原因是：后面需要对商品详情页面做集群。多个tomcat都需要更新详情页面***</font>
+<span style="color: red;">***注：此处网页静态化使用主题订阅而不使用消息队列的原因是：后面需要对商品详情页面做集群。多个tomcat都需要更新详情页面***</span>
 
 ### 消息生产者（运营商后台）
 
@@ -1326,7 +1326,7 @@ public boolean updateStatus(@RequestParam("ids") Long[] ids,
 }
 ```
 
-<font color="red">***注：此处因为使用MapMessage消息体，其中setObject()的方法，不能放数组，所以只能比较麻烦地先将数组转成集合，消费时再才集合转回数组***</font>
+<span style="color: red;">***注：此处因为使用MapMessage消息体，其中setObject()的方法，不能放数组，所以只能比较麻烦地先将数组转成集合，消费时再才集合转回数组***</span>
 
 ### 消息消费者（商品详情）
 #### 工程配置
@@ -1478,7 +1478,7 @@ public class PageMessageListener implements SessionAwareMessageListener<TextMess
 }
 ```
 
-- <font color="red">**注：如果生成的静态页面有出现乱码的情况，则需要修改以下的地方**</font>
+- <span style="color: red;">**注：如果生成的静态页面有出现乱码的情况，则需要修改以下的地方**</span>
 
 ![乱码问题](images/20190214173439965_16731.jpg)
 

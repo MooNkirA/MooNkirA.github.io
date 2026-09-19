@@ -366,7 +366,7 @@ CREATE DATABASE activiti_sample DEFAULT CHARACTER SET utf8;
 
 #### 添加 activiti 默认配置文件
 
-因此示例使用 activiti 提供的默认方式来创建 mysql 数据库表。默认方式的要求是在 resources 下创建 activiti.cfg.xml 文件（注意：<font color=purple>**默认方式目录和文件名不能修改**</font>，因为 activiti 的源码中已经设置，到固定的目录读取固定文件名的文件。）
+因此示例使用 activiti 提供的默认方式来创建 mysql 数据库表。默认方式的要求是在 resources 下创建 activiti.cfg.xml 文件（注意：<span style="color: purple;">**默认方式目录和文件名不能修改**</span>，因为 activiti 的源码中已经设置，到固定的目录读取固定文件名的文件。）
 
 默认方式需要在 activiti.cfg.xml 配置 `ProcessEngineConfiguration` 具体实现的实例对象（`org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration` 是默认实现），并且 bean 的名字叫 `processEngineConfiguration`（名字固定不可修改），其作用是用来创建 `ProcessEngine`，在创建 `ProcessEngine` 时会执行数据库进行建表的操作。具体有以下两种配置方式：
 
@@ -1085,7 +1085,7 @@ public void testQueryProcessDefinition() {
 - `act_re_deployment`
 - `act_re_procdef`
 
-> <font color=red>**notes: 若当前的流程实例启动并且没有完成，删除时需要使用级联删除，否则会报错**</font>
+> <span style="color: red;">**notes: 若当前的流程实例启动并且没有完成，删除时需要使用级联删除，否则会报错**</span>
 
 #### 代码实现
 

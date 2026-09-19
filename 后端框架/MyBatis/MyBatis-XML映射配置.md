@@ -19,7 +19,7 @@ SQL 映射文件的顶级元素（以下是按照应被定义的顺序列出）�
 ### 映射文件编写注意问题
 
 - 映射文件中，`<select>`标签体内的sql语句不能出现“`;`”结尾
-- `namespace`属性：命名空间，作用就是对 sql 进行分类化管理，理解为 sql 隔离；<font color=red>**注意：！！使用 mapper 代理方法开发，namespace 必须和 Mapper 代理接口的全限定名称一致**</font>
+- `namespace`属性：命名空间，作用就是对 sql 进行分类化管理，理解为 sql 隔离；<span style="color: red;">**注意：！！使用 mapper 代理方法开发，namespace 必须和 Mapper 代理接口的全限定名称一致**</span>
 
 ## select 查询映射
 
@@ -1210,14 +1210,14 @@ public void queryUsersAndOrdersTest() {
 
 `#{}`表示一个占位符号，用于预编译处理，`#{}`接收输入参数，类型可以是简单类型（八种基本类型+字符串String），pojo、hashmap。
 
-- <font color=red>**如果接收简单类型，`#{}`中可以写成value或其它名称**</font>。
+- <span style="color: red;">**如果接收简单类型，`#{}`中可以写成value或其它名称**</span>。
 - 如果接收pojo对象值，通过OGNL读取对象中的属性值，如果实体类中属性是引用类型，通过`属性.属性.属性...`的方式获取对象属性值
 
 ### ${} 字符串拼接符
 
 `${}`表示一个拼接符号。`${}`接收输入参数，类型可以是简单类型，pojo、hashmap。
 
-- 但<font color=red>如果接收简单类型，`${}`中只能写成value</font>。
+- 但<span style="color: red;">如果接收简单类型，`${}`中只能写成value</span>。
 - `${}`接收pojo对象值，通过OGNL读取对象中的属性值，通过`属性.属性.属性...`的方式获取对象属性值
 
 > Notes: 通常不建议使用 `${}`，因为可能会引用 sql 注入的问题。虽然实际项目中会经过三层构架后可以将字符进行处理，但还是不建议使用。

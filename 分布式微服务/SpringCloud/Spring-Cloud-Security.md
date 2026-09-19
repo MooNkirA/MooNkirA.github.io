@@ -765,7 +765,7 @@ public AuthorizationServerEndpointsConfigurer pathMapping(String defaultPath, St
 - `/oauth/check_token`：用于资源服务访问的令牌解析端点
 - `/oauth/token_key`：提供公有密匙的端点，如果使用 JWT 令牌的话
 
-<font color=red>**需要注意的是，授权端点这个 URL 应该被 Spring Security 保护起来只供授权用户访问**</font>
+<span style="color: red;">**需要注意的是，授权端点这个 URL 应该被 Spring Security 保护起来只供授权用户访问**</span>
 
 #### 配置令牌访问端点
 
@@ -931,8 +931,8 @@ http://授权服务地址/uaa/oauth/token
 - `client_id`：客户端准入标识。
 - `client_secret`：客户端秘钥，和授权配置类（*示例中的`AuthorizationServerConfig`*）中设置的 `secret` 一致。
 - `grant_type`：授权类型，填写 `authorization_code`，表示授权码模式
-- `code`：授权码，就是刚刚上一步获取的授权码，<font color=red>**注意：授权码只使用一次就无效了，需要重新申请**</font>
-- `redirect_uri`：申请授权码时的跳转 url，<font color=red>**一定和申请授权码时用的 redirect_uri 一致**</font>
+- `code`：授权码，就是刚刚上一步获取的授权码，<span style="color: red;">**注意：授权码只使用一次就无效了，需要重新申请**</span>
+- `redirect_uri`：申请授权码时的跳转 url，<span style="color: red;">**一定和申请授权码时用的 redirect_uri 一致**</span>
 
 5. **授权服务器返回令牌(access_token)**
 

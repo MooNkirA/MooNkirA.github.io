@@ -280,7 +280,7 @@ mysql –uroot –p
 set password = password('Root_123');
 ```
 
-<font color=red>**注意：密码必须包含大小写字母、数字、特殊符号**</font>
+<span style="color: red;">**注意：密码必须包含大小写字母、数字、特殊符号**</span>
 
 ![](images/20201201090151187_1048.jpg)
 
@@ -514,7 +514,7 @@ MySQL会以windows服务的方式为我们提供数据存储功能。开启和�
 1. 右键点击我的电脑 --> 管理 --> 服务与应用程序 --> 服务 --> 找到 MySQL 服务开启或停止。
 2. 或者：开始 --> 搜索 --> services.msc --> 服务 --> 可以找到 MySQL 服务开启或停止。
 
-<font color="purple">（如果不需要开机时就启动MySQL，右键MySQL --> 属性 --> 启动类型选“手动”）</font>
+<span style="color: purple;">（如果不需要开机时就启动MySQL，右键MySQL --> 属性 --> 启动类型选“手动”）</span>
 
 ![mysql服务](images/20190403145741573_20104.jpg)
 
@@ -548,9 +548,9 @@ mysql [-h 127.0.0.1] [-P 3306] -u root -p
 参数说明：
 
 - `-h`：MySQL 服务所在的主机 IP
-- `-P`：MySQL 服务端口号，默认3306。<font color=red>**注意：参数是大写**</font>
+- `-P`：MySQL 服务端口号，默认3306。<span style="color: red;">**注意：参数是大写**</span>
 - `-u`：MySQL 数据库用户名
-- `-p`：MySQL 数据库用户名对应的密码。<font color=red>**注意：参数是小写**</font>
+- `-p`：MySQL 数据库用户名对应的密码。<span style="color: red;">**注意：参数是小写**</span>
 
 `[]` 内为可选参数，如果需要连接远程的 MySQL，需要加上这两个参数来指定远程主机 IP、端口，如果连接本地的 MySQL，则无需指定这两个参数。
 

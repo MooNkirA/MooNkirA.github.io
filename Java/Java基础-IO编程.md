@@ -4,7 +4,7 @@
 
 所有数据(视频、音频、图片、文本文件)在计算机中都是由0和1组成。计算机只能识别0和1；
 
-数据在计算机的表现形式就是：**二进制数据**。在数据传输过程中，一切数据(文本、图像、声音等)最终存储的均为一个个字节，即二进制数字。所以数据传输过程中使用二进制数据可以完成任意数据的传递，<font color=red>**任何数据在传输过程中都是以0和1格式传输**</font>。
+数据在计算机的表现形式就是：**二进制数据**。在数据传输过程中，一切数据(文本、图像、声音等)最终存储的均为一个个字节，即二进制数字。所以数据传输过程中使用二进制数据可以完成任意数据的传递，<span style="color: red;">**任何数据在传输过程中都是以0和1格式传输**</span>。
 
 向一个文件中存储一定的数据(一些数字)，如果使用文本方式打开，则会以文本的方式解释数据。如果以视频的方式打开，则会以视频的方式解释数据。音频、可行执行文件等亦是如此。所以，在文件传输过程中，要时刻明确，传输的始终为二进制数据。
 
@@ -119,12 +119,12 @@ while (true) {
 **绝对路径**
 
 - 以盘符开始到文件的全路径
-- 在整个系统中，<font color=red>**具有唯一性**</font>
+- 在整个系统中，<span style="color: red;">**具有唯一性**</span>
 
 **相对路径**
 
 - 从某个参照目录开始到指定文件所经过的路径
-- 在整个系统中，<font color=red>**不具有唯一性**</font>
+- 在整个系统中，<span style="color: red;">**不具有唯一性**</span>
 - 相对路径一般是在 Eclipse 中的某个项目当中创建一个文件夹(目录)开始。如 a.txt 相对于 myIO 项目根目录经过了 `a/b/a.txt`，则 `a/b/a.txt` 就是该文件的相对路径
 
 ### File 类的使用
@@ -169,7 +169,7 @@ public File(File parent, String child);
 - parent 为 File 类型，为了使用 `File` 类中的方法
 - 例：`File f = new File(new File("E:\\documents\\"), "aaa.txt");`
 
-<font color=red>**注意：File的构造方法不会去判断路径是否存在，需要自己去调用方法处理**</font>
+<span style="color: red;">**注意：File的构造方法不会去判断路径是否存在，需要自己去调用方法处理**</span>
 
 #### 文件创建
 
@@ -179,7 +179,7 @@ public boolean createNewFile() throws IOException;
 
 根据构造方法指定的路径创建文件，如果文件已经存在，则什么不做。如果文件不存在，则创建文件。
 
-<font color=red>**只能用来创建文件，不能创建文件夹**</font>。在创建文件时，如果文件所在的文件夹不存在，则报错系统找不到指定的路径。<font color=red>**创建文件时，必须确保文件夹已经存在**</font>。
+<span style="color: red;">**只能用来创建文件，不能创建文件夹**</span>。在创建文件时，如果文件所在的文件夹不存在，则报错系统找不到指定的路径。<span style="color: red;">**创建文件时，必须确保文件夹已经存在**</span>。
 
 #### 文件夹创建
 
@@ -187,9 +187,9 @@ public boolean createNewFile() throws IOException;
 public boolean mkdir();
 ```
 
-- 根据路径字符串创建文件夹（<font color=red>**单级目录，下面不能再创建新的目录**</font>）
+- 根据路径字符串创建文件夹（<span style="color: red;">**单级目录，下面不能再创建新的目录**</span>）
 - 如果文件夹存在，则什么不做；如果文件夹不存在，则创建。创建成功返回`true`，否则返回`false`
-- 需要注意：<font color=red>**只能用来创建文件夹，不能创建文件**</font>
+- 需要注意：<span style="color: red;">**只能用来创建文件夹，不能创建文件**</span>
 - 使用`mkdir`方法创建文件夹时，必须保证其所在文件夹已经存在，否则创建失败(不会报错)
 
 ```java
@@ -198,7 +198,7 @@ public boolean mkdirs();
 
 - 一次性创建多级文件夹（最常用）。如果父文件夹不存在，则会先创建父文件夹。
 - 创建成功返回`true`，否则返回`false`
-- 需要注意：<font color=red>**只能用来创建文件夹，不能创建文件**</font>
+- 需要注意：<span style="color: red;">**只能用来创建文件夹，不能创建文件**</span>
 
 #### 文件/文件夹删除
 
@@ -208,7 +208,7 @@ public boolean delete();
 
 删除此抽象路径名表示的文件或目录。如果删除成功返回`true`；如果不成功则返回`false`。
 
-- `File`对象是文件：直接删除文件(<font color=red>**Java 删除时，不会使用 windows 的回收站**</font>)
+- `File`对象是文件：直接删除文件(<span style="color: red;">**Java 删除时，不会使用 windows 的回收站**</span>)
 - `File`对象是文件夹：只删定义路径中最后一个文件夹且只能删除空文件夹，如果不是空文件夹，即不能删除。
 
 #### 获取文件/文件夹信息
@@ -217,8 +217,8 @@ public boolean delete();
 public long length()
 ```
 
-- 获得文件大小，单位：字符。<font color=red>**只能是文件，不能是文件夹**</font>。
-- > API: 返回由此抽象路径名表示的文件的长度（单位：字符）。如果此路径名表示一个目录，则返回值是不确定的(<font color=red>**垃圾值**</font>)。
+- 获得文件大小，单位：字符。<span style="color: red;">**只能是文件，不能是文件夹**</span>。
+- > API: 返回由此抽象路径名表示的文件的长度（单位：字符）。如果此路径名表示一个目录，则返回值是不确定的(<span style="color: red;">**垃圾值**</span>)。
 
 ```java
 public String getName();
@@ -251,7 +251,7 @@ public String getParent();
 public File getParentFile()
 ```
 
-- 获得上一级文件路径对象；（<font color=blue>**应该是用于返回上一级目录再继续进行其他操作**</font>）
+- 获得上一级文件路径对象；（<span style="color: blue;">**应该是用于返回上一级目录再继续进行其他操作**</span>）
 - > API: 返回此抽象路径名父目录的抽象路径名；如果此路径名没有指定父目录，则返回 null。
 
 ```java
@@ -327,7 +327,7 @@ public boolean isFile();
 
 #### 获取文件/文件夹列表（重点）
 
-需要注意：<font color=red>**File 对象必须是文件夹**</font>
+需要注意：<span style="color: red;">**File 对象必须是文件夹**</span>
 
 ```java
 public String[] list()
@@ -343,7 +343,7 @@ public File[] listFiles();
 - 获得当前文件夹对象下所有文件（子文件和子文件夹），返回 `File` 对象数组。
 - > API: 返回一个抽象路径名数组，这些路径名表示此抽象路径名表示的目录中的文件。
 
-<font color=red>**注意：如果是`File`对象是文件，则返回去的数组为`null`。所以在使用List获取方法前，需要判断`File`对象是否是文件夹。**</font>
+<span style="color: red;">**注意：如果是`File`对象是文件，则返回去的数组为`null`。所以在使用List获取方法前，需要判断`File`对象是否是文件夹。**</span>
 
 示例代码：
 
@@ -536,7 +536,7 @@ public interface FileFilter {
 
 ### 接口的调用时机
 
-每当遍历获得一个子文件或子文件夹时，系统内部会创建一个文件对象，然后将该文件对象作为参数调用，文件过滤的`accept`方法，由`accept`的返回值决定该文件是否要过滤。<font color=red>**返回`false`表示过滤该文件，`ture`则不过滤**</font>。
+每当遍历获得一个子文件或子文件夹时，系统内部会创建一个文件对象，然后将该文件对象作为参数调用，文件过滤的`accept`方法，由`accept`的返回值决定该文件是否要过滤。<span style="color: red;">**返回`false`表示过滤该文件，`ture`则不过滤**</span>。
 
 ### File 类使用过滤器的方法
 
@@ -663,7 +663,7 @@ IO 流用来处理设备之间的数据传输。Java 对数据的操作是通过
 
 在 IO 开发过程中，传输最频繁的数据为字符，而以字节方式传输字符需要每次将字符串转换成字节再处理，而且也丧失了程序员对数据内容的判断。所以，为了方便对字符进行操作，Java 提供了专门以字符作为操作单位的类——『字符流』，但其底层仍然为字节流。
 
-> 注意：<font color=red>**字符流只能操作字符，无法操作其他数据，如声音、视频等**</font>。
+> 注意：<span style="color: red;">**字符流只能操作字符，无法操作其他数据，如声音、视频等**</span>。
 
 ### FileWriter 输出字符流
 
@@ -859,7 +859,7 @@ while ((len = fr.read(chs)) != -1) {
 public class BufferedWriter extends Writer
 ```
 
-> Tips: <font color=red>**缓冲流一样是用基本流的方法，只是创建对象的比较麻烦，但缓冲流的效率会比较高，一般都是使用缓冲流。**</font>
+> Tips: <span style="color: red;">**缓冲流一样是用基本流的方法，只是创建对象的比较麻烦，但缓冲流的效率会比较高，一般都是使用缓冲流。**</span>
 
 ##### 构造方法
 
@@ -1128,7 +1128,7 @@ public FileOutputStream(File file, boolean append) throws FileNotFoundException
 
 - 通过 `File` 对象创建 `FileOutputStream` 对象。参数 `append` 为 true 代表每次写入都向文件末尾追加，默认为 false 则每次都以覆盖方式写入。
 
-> Notes: <font color=red>**直接 `new FileOutputStream(file)` 创建对象，写入数据，会覆盖原有的文件**</font>。
+> Notes: <span style="color: red;">**直接 `new FileOutputStream(file)` 创建对象，写入数据，会覆盖原有的文件**</span>。
 
 #### 字节输出流的使用步骤
 
@@ -1289,7 +1289,7 @@ public class Test1_05 {
 
 利用缓冲区临时存储多个数据，统一调用底层资源将数据写入到目标文件中。Java 在常规 IO 流的基础上，提供了更为高效的缓冲流，如下：
 
-- 高效流使用普通流对象作为构造方法参数。将普通流包装，提供高效的装饰。<font color=red>**即在读写还是用到普通流来实现，高效流只提供了缓冲区（缓冲区就新建一个字节数组，而默认的数组长度是8192）**</font>。
+- 高效流使用普通流对象作为构造方法参数。将普通流包装，提供高效的装饰。<span style="color: red;">**即在读写还是用到普通流来实现，高效流只提供了缓冲区（缓冲区就新建一个字节数组，而默认的数组长度是8192）**</span>。
 - 高效流 `write` 写出数据时，写出位置为缓冲区，并非目标资源。需要通过 `flush` 刷新方法将缓冲区的内容写出到目标文件中。
 - 高效输出流的关闭 `close` 方法先会自动调用 `flush` 方法，再关闭流。
 - 都通减少调用底层资源的使用资料来达到高效
@@ -1602,7 +1602,7 @@ public class Test2_03 {
 
 转换流是字符流的一种，创建对象时传入对应字节流对象即可完成转换动作。转换流同样使用了包装的思想，其构造方法接收的同样为 IO 流对象，并非某个文件资源。关闭转换流的同时即关闭了对应的字节流。
 
-<font color=purple>**构造方法传入字节流对象自身调用字符流的方法**</font>
+<span style="color: purple;">**构造方法传入字节流对象自身调用字符流的方法**</span>
 
 ### 字符编码表
 
@@ -1649,7 +1649,7 @@ ASCII 码表：American Standard Code for Information Interchange/美国信息�
 public class OutputStreamWriter extends Writer
 ```
 
-OutputStreamWriter 是<font color=red>**字符流通向字节流**</font>的桥梁：可使用<font color=red>**指定的 charset 将要写入流中的字符编码成字节**</font>。
+OutputStreamWriter 是<span style="color: red;">**字符流通向字节流**</span>的桥梁：可使用<span style="color: red;">**指定的 charset 将要写入流中的字符编码成字节**</span>。
 
 ![](images/216702612256927.jpg)
 
@@ -1727,7 +1727,7 @@ public void write(String str, int off, int len) throws IOException
 public class InputStreamReader extends Reader
 ```
 
-InputStreamReader 是<font color=red>**字节流通向字符流的桥梁**</font>：它使用<font color=red>**指定的 charset 读取字节并将其解码为字符**</font>
+InputStreamReader 是<span style="color: red;">**字节流通向字符流的桥梁**</span>：它使用<span style="color: red;">**指定的 charset 读取字节并将其解码为字符**</span>
 
 ![](images/198664612249596.jpg)
 
@@ -1816,7 +1816,7 @@ FileReader / FileWriter 构造方法实际上使用的是 InputStreamReader / Ou
 
 ### 打印流的概念与分类
 
-打印流的作用是：为其他流添加功能，使其能方便输出各种数据类型的值。其最大的特点是：<font color=red>**只有输出数据的流，没有读取数据的流**</font>。分成以下两类：
+打印流的作用是：为其他流添加功能，使其能方便输出各种数据类型的值。其最大的特点是：<span style="color: red;">**只有输出数据的流，没有读取数据的流**</span>。分成以下两类：
 
 - 字节打印流: `java.io.PrintStream`，继承了 `FilterOutputStream`，顶层父类是 `OutputStream`
 
@@ -1902,7 +1902,7 @@ public void println(数据类型 变量名);
 - 字节流：以字节为单位输入输出数据，按照 8 位传输。
 - 字符流：以字符为单位输入输出数据，按照 16 位传输。
 - 字节流可以处理所有格式的文件。
-- <font color=red>**字符流在处理文本的效率比字节流高**</font>。
+- <span style="color: red;">**字符流在处理文本的效率比字节流高**</span>。
 
 在 Java 中，可以根据结尾来判断是字节流还是字符流。
 
@@ -2031,7 +2031,7 @@ Java NIO 和 传统的 BIO 有着相同的目的和作用，但还是有以下�
 
 #### NIO 三大核心组件
 
-<font color=red>**NIO 主要有三大核心部分：Channel(通道)，Buffer(缓冲区), Selector(选择器)**</font>。
+<span style="color: red;">**NIO 主要有三大核心部分：Channel(通道)，Buffer(缓冲区), Selector(选择器)**</span>。
 
 传统的 BIO 基于字节流和字符流进行操作，而 NIO 基于 Channel(通道)和 Buffer(缓冲区)进行操作，数据总是从通道读取到缓冲区中，或者从缓冲区写入到通道中。Selector(选择区)用于监听多个通道的事件（比如：连接请求，数据到达等），因此使用单个线程就可以监听多个客户端通道。
 
@@ -2494,7 +2494,7 @@ Java NIO 中的网络通道是非阻塞 IO 的实现，基于事件驱动，非�
 - 将每一个客户端连接交给一个拥有固定数量线程的连接池。
     - 优点：程序编写相对简单，可以处理大量的连接。
     - 缺点：线程的开销非常大，连接如果非常多，排队现象会比较严重。
-- <font color=red>**【推荐】**</font>使用 Java 的 NIO，用非阻塞的 IO 方式处理。这种模式可以用一个线程，处理大量的客户端连接
+- <span style="color: red;">**【推荐】**</span>使用 Java 的 NIO，用非阻塞的 IO 方式处理。这种模式可以用一个线程，处理大量的客户端连接
 
 #### 基础示例
 
@@ -2940,7 +2940,7 @@ public class Properties extends Hashtable<Object,Object>
 
 `java.util.Properties` 类继承 `Hashtable`，实现了 `Map` 接口，是属性集合（完全可以当成双列集合使用）。
 
-使用时不需要指定泛型变量，<font color=red>**键和值默认都是字符串类型**</font>。可以与 IO 流技术相结合，实现从文件中读取数据到集合中，也可以直接将集合的数据保存到文件中。
+使用时不需要指定泛型变量，<span style="color: red;">**键和值默认都是字符串类型**</span>。可以与 IO 流技术相结合，实现从文件中读取数据到集合中，也可以直接将集合的数据保存到文件中。
 
 `Properies` 类特点：键和值必须是 `String` 类型，不支持泛型。与 IO 有关的集合类，对文件进行操作，文件就叫属性文件。
 
@@ -3059,8 +3059,8 @@ public synchronized void load(Reader reader) throws IOException
 
 ![](images/49242616239297.png)
 
-- <font color=red>**序列化：将数据结构或对象转换成二进制字节流的过程**</font>。要实现对象的序列化需要使用的流：`ObjectOutputStream` 继承 `OutputStream`
-- <font color=red>**反序列化：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程**</font>。要实现对象的反序列化需要使用的流：`ObjectInputStream` 继承 `InputStream`
+- <span style="color: red;">**序列化：将数据结构或对象转换成二进制字节流的过程**</span>。要实现对象的序列化需要使用的流：`ObjectOutputStream` 继承 `OutputStream`
+- <span style="color: red;">**反序列化：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程**</span>。要实现对象的反序列化需要使用的流：`ObjectInputStream` 继承 `InputStream`
 
 #### 序列化协议对应于 TCP/IP 四层模型中的层级
 
@@ -3103,7 +3103,7 @@ public interface Serializable {
 
 `Serializable`接口，没有任何方法，该接口属于标记性接口，仅用于标识可序列化的语义。接口的作用是，能够保证实现了该接口的类的对象可以直接被序列化到文件中
 
-> Notes: <font color=red>**被保存的对象要求实现 `Serializable` 接口，否则不能直接保存到文件中。否则会出现`java.io.NotSerializableException`。**</font>
+> Notes: <span style="color: red;">**被保存的对象要求实现 `Serializable` 接口，否则不能直接保存到文件中。否则会出现`java.io.NotSerializableException`。**</span>
 
 #### serialVersionUID
 
@@ -3265,7 +3265,7 @@ public int available() throws IOException
 
 #### InvalidClassException 异常
 
-`java.io.InvalidClassException`: 无效的类异常。此异常是<font color=red>**序列号冲突**</font>。
+`java.io.InvalidClassException`: 无效的类异常。此异常是<span style="color: red;">**序列号冲突**</span>。
 
 - 出错的核心问题：**类改变后，类的序列化号也改变，就和文件中的序列化号不一样**
 - 解决方法：**修改类的时候，让序列化号不变，自定义一个序列号，不要系统随机生成序列号。**
@@ -3282,7 +3282,7 @@ public int available() throws IOException
 - 如果父类没有实现序列化接口，而子类序列化了，子类中的属性能正常序列化，但父类的属性会丢失，不能序列化。
 - 用 Java 序列化的二进制字节数据只能由 Java 反序列化，不能被其他语言反序列化。如果要进行前后端或者不同语言之间的交互一般需要将对象转变成 Json/Xml 通用格式的数据，再恢复原来的对象。
 - 如果某个字段不想被序列化，在该字段前加上 `transient` 关键字即可。在被反序列化后，`transient` 修饰的变量值会被设为对应类型的初始值，例如，int 类型变量的值是 0，对象类型变量的值是 null。
-- <font color=red>**序列化不会保存静态变量**</font>。
+- <span style="color: red;">**序列化不会保存静态变量**</span>。
 - 序列化对象会将其状态保存为一组字节；反序列化时，再将这些字节组装成对象。
 
 ### 扩展

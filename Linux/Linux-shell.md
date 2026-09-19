@@ -91,7 +91,7 @@ $VAR
 
 **位置变量**是指函数或脚本后跟的第 n 个参数。格式：`$1` ~ `$n`。
 
-> Notes: <font color=red>**需要注意的是从第 10 个开始要用花括号调用，例如 `${10}`**</font>
+> Notes: <span style="color: red;">**需要注意的是从第 10 个开始要用花括号调用，例如 `${10}`**</span>
 
 `shift` 命令可对位置变量控制，每执行一次 `shift` 命令，位置变量个数就会减一，而变量值则提前一位。`shift n`：可设置向前移动 n 位。
 
@@ -154,7 +154,7 @@ var_url=$(java -jar test.jar)
 
 ### 变量引用
 
-<font color=red>**Shell 中所有变量引用均使用 `$` 符，后跟变量名**</font>。例如：
+<span style="color: red;">**Shell 中所有变量引用均使用 `$` 符，后跟变量名**</span>。例如：
 
 ```shell
 $abc
@@ -196,7 +196,7 @@ echo $VAR
 
 ## Shell 字符串处理之 ${}
 
-<font color=red>**`${}` 还有一个重要的功能，就是文本处理（单行文本）**</font>
+<span style="color: red;">**`${}` 还有一个重要的功能，就是文本处理（单行文本）**</span>
 
 ### 获取字符串长度
 
@@ -276,7 +276,7 @@ ${parameter/pattern/string}
 参数说明：
 
 - parameter：要进行替换的变量
-- pattern：要被替换的字符串，可以是正则表达式。<font color=red>**注：前面一个正斜杠为只匹配第一个字符串，两个正斜杠为匹配所有字符。**</font>
+- pattern：要被替换的字符串，可以是正则表达式。<span style="color: red;">**注：前面一个正斜杠为只匹配第一个字符串，两个正斜杠为匹配所有字符。**</span>
 - string：替换的内容
 
 示例脚本
@@ -720,7 +720,7 @@ for i in "$@"; {
 
 #### 指定分隔符
 
-默认 for 循环的取值列表是<font color=red>**以空白符分隔**</font>。如果想指定分隔符，可以重新赋值 `$IFS` 变量。示例如下：
+默认 for 循环的取值列表是<span style="color: red;">**以空白符分隔**</span>。如果想指定分隔符，可以重新赋值 `$IFS` 变量。示例如下：
 
 ```shell
 #!/bin/bash

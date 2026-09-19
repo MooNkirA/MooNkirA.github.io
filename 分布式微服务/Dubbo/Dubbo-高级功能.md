@@ -124,7 +124,7 @@ rpcContext.setAttachment("retries", 5);
 </dubbo:reference>
 ```
 
-> <font color=red>**注：如果服务提供方与消费方都设置了重试次数，最终与消费方的重试次数为准**</font>
+> <span style="color: red;">**注：如果服务提供方与消费方都设置了重试次数，最终与消费方的重试次数为准**</span>
 
 #### Failfast Cluster
 
@@ -263,7 +263,7 @@ dubbo:
 
 在开发及测试环境下，经常需要绕过注册中心，只测试指定服务提供者，这时候可能需要点对点直连，点对点直连方式，将以服务接口为单位，忽略注册中心的提供者列表，A 接口配置点对点，不影响 B 接口从注册中心获取列表。
 
-> <font color=red>**为了避免复杂化线上环境，不要在线上使用这个功能，只应在测试阶段使用。**</font>
+> <span style="color: red;">**为了避免复杂化线上环境，不要在线上使用这个功能，只应在测试阶段使用。**</span>
 
 ### 通过 XML 配置
 
@@ -451,7 +451,7 @@ dubbo 提供了通过分组对结果进行聚合并返回聚合后的结果的�
 
 dubbo 提供了以下类型的合并的实现，是根据服务接口的返回值的类型去找相应的实现
 
-> <font color=red>**值得注意：这个服务返回值合并只是一次PRC调用，如果其中某个服务执行失败，则调用结果失败。**</font>
+> <span style="color: red;">**值得注意：这个服务返回值合并只是一次PRC调用，如果其中某个服务执行失败，则调用结果失败。**</span>
 
 ![](images/20210717095903124_3599.png)
 
@@ -866,7 +866,7 @@ assert(status.equals("OK"));
 
 `RpcContext` 是一个 `ThreadLocal` 的临时状态记录器，当接收到 RPC 请求，或发起 RPC 请求时，`RpcContext` 的状态都会变化。比如：A 调 B，B 再调 C，则 B 机器上，在 B 调 C 之前，`RpcContext` 记录的是 A 调 B 的信息，在 B 调 C 之后，`RpcContext` 记录的是 B 调 C 的信息。
 
-> <font color=red>**注：每一次RPC调用的上下文信息对象都不一样。**</font>
+> <span style="color: red;">**注：每一次RPC调用的上下文信息对象都不一样。**</span>
 
 ### 服务消费方
 
@@ -942,7 +942,7 @@ public class XxxServiceImpl implements XxxService {
 
 ### Provider 端异步执行
 
-Dubbo 服务提供方的异步执行。Provider 端异步执行将阻塞的业务从 Dubbo 内部线程池切换到业务自定义线程，避免 Dubbo 线程池的过度占用，有助于避免不同服务间的互相影响。<font color=red>**异步执行无益于节省资源或提升 RPC 响应性能（只是提高了应用的吞量）**</font>，因为如果业务执行需要阻塞，则始终还是要有线程来负责执行。
+Dubbo 服务提供方的异步执行。Provider 端异步执行将阻塞的业务从 Dubbo 内部线程池切换到业务自定义线程，避免 Dubbo 线程池的过度占用，有助于避免不同服务间的互相影响。<span style="color: red;">**异步执行无益于节省资源或提升 RPC 响应性能（只是提高了应用的吞量）**</span>，因为如果业务执行需要阻塞，则始终还是要有线程来负责执行。
 
 #### 定义 CompletableFuture 签名的接口
 
@@ -1929,7 +1929,7 @@ configs:
 2. 二进制数据比文本数据体积更小，传输更快
 3. TCP/IP 的长连接比 HTTP 的短连接更高效
 
-<font color=red>**优化性能的关注点不能只聚焦在“传输”这个过程，而“序列化/反序列化”是每次『传输』前、后的操作其性能至关重要**</font>。
+<span style="color: red;">**优化性能的关注点不能只聚焦在“传输”这个过程，而“序列化/反序列化”是每次『传输』前、后的操作其性能至关重要**</span>。
 
 ### Kyro 简介
 

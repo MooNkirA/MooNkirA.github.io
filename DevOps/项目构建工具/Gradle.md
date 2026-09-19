@@ -90,7 +90,7 @@ Gradle 6.0.1
 
 ![](images/67230915247122.png)
 
-> <font color=red>**注：变量的名称必须叫“`GRADLE_USER_HOME`”**</font>
+> <span style="color: red;">**注：变量的名称必须叫“`GRADLE_USER_HOME`”**</span>
 
 #### 方式2：初始化配置文件并配置镜像
 
@@ -123,9 +123,9 @@ allprojects {
 3. 第三条和第四条是从国内和国外的网络上仓库获取
 4. 最后的 `mavenCentral()` 是从Apache提供的中央仓库获取 jar 包
 
-<font color=red>**Tips：实际操作方式是 gradle 找到 maven 对应的 jar 包，然后复制到上面配置的环境变量 `GRADLE_USER_HOME` 中，所以当仓库是 gradle 和 maven 混合使用时，大概率会有两份数据冗余**</font>
+<span style="color: red;">**Tips：实际操作方式是 gradle 找到 maven 对应的 jar 包，然后复制到上面配置的环境变量 `GRADLE_USER_HOME` 中，所以当仓库是 gradle 和 maven 混合使用时，大概率会有两份数据冗余**</span>
 
-> Notes: <font color=red>**上面配置的远程仓库的协议注意必须是 https，否则会提示协议错误，不安全**</font>
+> Notes: <span style="color: red;">**上面配置的远程仓库的协议注意必须是 https，否则会提示协议错误，不安全**</span>
 >
 > ![](images/363112009220842.png)
 
@@ -667,7 +667,7 @@ dependencies {
 
 添加一些简单的业务代码进行测试
 
-> <font color=red>**Notes: 后面比较新的版本中，`compile` 语句已弃用，并已在 Gradle 7.0+ 中删除。新版本需要改用 `implementation` 或 `api`**</font>
+> <span style="color: red;">**Notes: 后面比较新的版本中，`compile` 语句已弃用，并已在 Gradle 7.0+ 中删除。新版本需要改用 `implementation` 或 `api`**</span>
 
 ## Gradle 配置与缓存目录
 

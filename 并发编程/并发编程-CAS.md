@@ -646,7 +646,7 @@ private <T> void increment(Supplier<T> supplier, Consumer<T> action) {
 20000000 cost:91
 ```
 
-原子累加器性能提升的原因很简单，就是在有竞争时，<font color=red>**设置多个累加单元**</font>，Therad-0 累加 Cell[0]，而 Thread-1 累加 Cell[1] ... 最后将结果汇总。这样它们在累加时操作的不同的 Cell 变量，因此减少了 CAS 重试失败，从而提高性能。
+原子累加器性能提升的原因很简单，就是在有竞争时，<span style="color: red;">**设置多个累加单元**</span>，Therad-0 累加 Cell[0]，而 Thread-1 累加 Cell[1] ... 最后将结果汇总。这样它们在累加时操作的不同的 Cell 变量，因此减少了 CAS 重试失败，从而提高性能。
 
 ## Unsafe 类
 
@@ -658,7 +658,7 @@ private <T> void increment(Supplier<T> supplier, Consumer<T> action) {
 public final class Unsafe {}
 ```
 
-`sun.misc.Unsafe` 类提供了非常底层的，操作内存、线程的方法。使 Java 拥有了像 C 语言的指针一样操作内存空间的能力，同时也带来了指针的问题。过度的使用 Unsafe 类会使得出错的几率变大，因此 Java 官方并<u>**不建议使用**</u>的，官方文档也几乎没有。<font color=red>**Unsafe 对象不能直接调用，只能通过反射获得**</font>。
+`sun.misc.Unsafe` 类提供了非常底层的，操作内存、线程的方法。使 Java 拥有了像 C 语言的指针一样操作内存空间的能力，同时也带来了指针的问题。过度的使用 Unsafe 类会使得出错的几率变大，因此 Java 官方并<u>**不建议使用**</u>的，官方文档也几乎没有。<span style="color: red;">**Unsafe 对象不能直接调用，只能通过反射获得**</span>。
 
 ![](images/231170922239684.png)
 

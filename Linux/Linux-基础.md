@@ -13,7 +13,7 @@ Unix 是一个强大的多用户、多任务操作系统
 Linux 的特点：它是多用户，多任务，丰富的网络功能，可靠的系统安全，良好的可移植性，具有标准兼容性，良好的用户界面，出色的速度性能
 
 - Linux 的基本思想有两点：
-    1. <font color=red>**一切都是文件**</font>
+    1. <span style="color: red;">**一切都是文件**</span>
     2. 每个软件都有确定的用途
 
 全字符界面，需要任何页面效果渲染，速度快。linux安全性好，开源
@@ -23,7 +23,7 @@ Linux 的特点：它是多用户，多任务，丰富的网络功能，可靠�
 
 ### Linux 系统的应用
 
-- 服务器系统：<font color=red>**Web 应用服务器**</font>、数据库服务器、接口服务器、DNS、FTP 等等；
+- 服务器系统：<span style="color: red;">**Web 应用服务器**</span>、数据库服务器、接口服务器、DNS、FTP 等等；
 - 嵌入式系统：路由器、防火墙、手机、PDA、IP 分享器、交换器、家电用品的微电脑控制器等等，高性能运算、计算密集型应用：Linux 有强大的运算能力。
 - 桌面应用系统
 - 移动手持系统：android底层就是linux系统
@@ -32,8 +32,8 @@ Linux 的特点：它是多用户，多任务，丰富的网络功能，可靠�
 
 Linux 的版本分为两种：内核版本(https://www.kernel.org/)和发行版本。
 
-- <font color=red>**内核版本**</font>是指在 Linus 领导下的内核小组开发维护的系统内核的版本号
-- <font color=red>**发行版本**</font>是一些组织和公司根据自己发行版的不同而自定的
+- <span style="color: red;">**内核版本**</span>是指在 Linus 领导下的内核小组开发维护的系统内核的版本号
+- <span style="color: red;">**发行版本**</span>是一些组织和公司根据自己发行版的不同而自定的
 
 目前学习使用的版本 CentOS是 Linux 发行版之一。Red Hat Enterprise Linux 提供的源代码编译而成。很多公司使用 CentOS 替代商业版 RedHat Linux
 
@@ -48,14 +48,14 @@ Linux 的版本分为两种：内核版本(https://www.kernel.org/)和发行版�
     - `/boot/vmlinuz` 为 linux 的内核文件，以及`/boot/gurb`。建议单独分区，分区大小 100M 即可
 - `/dev`：(devices) 存放 linux 系统下的设备文件，访问该目录下某个文件，相当于访问某个设备。
      - 常用的是挂载光驱 `mount` `/dev/cdrom` `/mnt`。
-- <font color=red>**`/etc`：(etcetera) 系统配置文件存放的目录，不建议在此目录下存放可执行文件。**</font>
+- <span style="color: red;">**`/etc`：(etcetera) 系统配置文件存放的目录，不建议在此目录下存放可执行文件。**</span>
     - 重要的配置文件有`/etc/inittab`、`/etc/fstab`、`/etc/init.d`、`/etc/X11`、`/etc/sysconfig`、`/etc/xinetd.d` 修改配置文件之前记得备份。注：`/etc/X11` 存放与 x windows 有关的设置。
 - `/home`：系统默认的用户家目录，新增用户账号时，用户的家目录都存放在此目录下，`~`表示当前用户的家目录，`~test` 表示用户 `test` 的家目录。建议单独分区，并设置较大的磁盘空间，方便用户存放数据
 - `/lib`：(library) `/usr/lib`: `/usr/local/lib`：系统使用的函数库的目录，程序在执行过程中，需要调用一些额外的参数时需要函数库的协助，比较重要的目录为`/lib/modules`。
-- <font color=red>**`/root`： 系统管理员 root 的家目录，系统第一个启动的分区为`/`，所以最好将`/root`和`/`放置在一个分区下**</font>。
+- <span style="color: red;">**`/root`： 系统管理员 root 的家目录，系统第一个启动的分区为`/`，所以最好将`/root`和`/`放置在一个分区下**</span>。
 - `/sbin`: (super user binaries) `/usr/sbin`: `/usr/local/sbin`： 放置系统管理员使用的可执行命令。
     - 如 `fdisk`、`shutdown`、`mount` 等。与`/bin` 不同的是，这几个目录是给系统管理员root账号使用的命令，一般用户只能"查看"而不能设置和使用。
-- <font color=red>**`/usr`：(unix shared resources) 应用程序存放目录**</font>
+- <span style="color: red;">**`/usr`：(unix shared resources) 应用程序存放目录**</span>
     - `/usr/bin`：存放应用程序
     - `/usr/share`：存放共享数据
     - `/usr/lib`：存放不能直接运行的，却是许多程序运行所必需的一些函数库文件。
@@ -88,7 +88,7 @@ Linux 的版本分为两种：内核版本(https://www.kernel.org/)和发行版�
 1. **以 “`.`” 字符开头的文件名是隐藏文件**。直接使用`ls`或者`ll`命令是否无法列出它们，需要使用`ls -a`或者`ll -a`才能显示这些文件。
 2. **文件名和命令名是大小写敏感的**。文件名“File1”和“file1”是指两个不同的文件名。
 3. **Linux 没有“文件扩展名”的概念**。与其它系统不一样，文件不是根据文件的扩展名来决定该文件的用途与内容。但是有些应用程序还是会根据扩展名来决定文件的作用！
-4. **Linux 支持长文件名，文件名可能包含空格，标点符号**。<font color=red>**但标点符号仅限使用“`.`”（点），“`－`”（中划线），“`_`”（下划线）。最重要的是，不要在文件名中使用空格**</font>。如果想表示词与词间的空格，用下划线字符来代替。*过些时候，你会感激自己这样做*。
+4. **Linux 支持长文件名，文件名可能包含空格，标点符号**。<span style="color: red;">**但标点符号仅限使用“`.`”（点），“`－`”（中划线），“`_`”（下划线）。最重要的是，不要在文件名中使用空格**</span>。如果想表示词与词间的空格，用下划线字符来代替。*过些时候，你会感激自己这样做*。
 
 ## vi / vim 文档编辑器
 

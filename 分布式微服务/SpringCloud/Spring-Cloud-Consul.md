@@ -326,7 +326,7 @@ server节点也作为WAN gossip Pool的一部分。这个Pool不同于LAN Pool�
 
 这使得数据中心之间只有一个很低的耦合，但是由于故障检测，连接缓存和复用，跨数据中心的请求都是相对快速和可靠的。
 
-<font color=red>**总结：**</font>
+<span style="color: red;">**总结：**</span>
 
 `agent`命令用于启动一个consul的守护进程，其中有3个参数：`dev`、`client`、`server`
 

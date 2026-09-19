@@ -393,7 +393,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 </div>
 ```
 
-<font color="red">*注：关于输入框绑定值的问题，因为goods对象中扩展属性是对象数据，如果直接改变局部变量item，数组里的引用对象也会改变*</font>
+<span style="color: red;">*注：关于输入框绑定值的问题，因为goods对象中扩展属性是对象数据，如果直接改变局部变量item，数组里的引用对象也会改变*</span>
 
 ---
 
@@ -408,11 +408,11 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 ### 显示规格选项列表
 
 - 由于模板中只记录了规格名称，而除了显示规格名称还是显示规格下的规格选项，所以需要在后端扩充方法
-- 此功能查询tb_type_template表中的spec_ids字段，<font color="red">**查询显示规格名称**</font>
+- 此功能查询tb_type_template表中的spec_ids字段，<span style="color: red;">**查询显示规格名称**</span>
 
 ![规格选择分析2](images/20190125155235331_27140.jpg)
 
-- 还需要查询tb_specification_option表中的option_name字段，<font color="red">**查询显示规格下的规格选项**</font>
+- 还需要查询tb_specification_option表中的option_name字段，<span style="color: red;">**查询显示规格下的规格选项**</span>
 
 ![规格选择分析3](images/20190125155241041_11956.jpg)
 
@@ -807,7 +807,7 @@ $scope.$watch('goods.typeTemplateId', function (newVal, oldVal) {
 
 #### 保存数据时，清空所有新增页面绑定的数据
 
-<font color="red">***注：在goodsController.js中的saveOrUpdate方法，在请求保存后台成功后，将之前查询后台返回的规格选项数据清空***</font>
+<span style="color: red;">***注：在goodsController.js中的saveOrUpdate方法，在请求保存后台成功后，将之前查询后台返回的规格选项数据清空***</span>
 
 ```js
 // 清空后台返回的规格选项数据

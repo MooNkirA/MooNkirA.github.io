@@ -209,13 +209,13 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, props);
 SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environment, props);
 ```
 
-<font color=red>**注意：如果一个属性在不只一个地方进行了配置，MyBatis将按照下面的顺序来加载属性**</font>：
+<span style="color: red;">**注意：如果一个属性在不只一个地方进行了配置，MyBatis将按照下面的顺序来加载属性**</span>：
 
 1. 在properties元素体内定义的属性首先被读取。
 2. 然后会读取properties元素中resource或url加载的属性，它会覆盖已读取的同名属性。
 3. 最后读取作为方法参数传递的属性，并覆盖之前读取过的同名属性。
 
-因此，<font color=red>**通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的则是 properties 元素中指定的属性。**</font>
+因此，<span style="color: red;">**通过方法参数传递的属性具有最高优先级，resource/url 属性中指定的配置文件次之，最低优先级的则是 properties 元素中指定的属性。**</span>
 
 ### 属性默认值
 
@@ -381,7 +381,7 @@ sqlMapConfig.xml文件包扫描方式配置别名示例：
 </typeAliases>
 ```
 
-<font color=purple>*注：实现开发中，推荐使用包扫描方式*</font>
+<span style="color: purple;">*注：实现开发中，推荐使用包扫描方式*</span>
 
 每一个在包`com.moon.entity`中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。比如`com.moon.entity.Author`的别名为`author`；若有注解，则别名为其注解值。见下面的例子：
 

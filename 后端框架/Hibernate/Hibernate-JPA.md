@@ -2,8 +2,8 @@
 
 JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方制定的 ORM 标准。Hibernate 对 JPA 标准有两套支持：
 
-- **兼容性的支持**：操作的接口是 Hibernate 原来框架的，只有<font color=red>映射注解</font>使用 JPA 标准接口提供。
-- **完全性的支持**：<font color=red>操作的接口和映射的注解全部使用 JPA 的标准</font>。
+- **兼容性的支持**：操作的接口是 Hibernate 原来框架的，只有<span style="color: red;">映射注解</span>使用 JPA 标准接口提供。
+- **完全性的支持**：<span style="color: red;">操作的接口和映射的注解全部使用 JPA 的标准</span>。
 
 ## Hibernate JPA 兼容性的支持（了解）
 
@@ -25,10 +25,10 @@ JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方�
 
 ![](images/131585209240352.jpg)
 
-1. 需要一个总配置文件存储框架需要的信息。<font color=red>**注意：配置文件必须要放在 `classpath:/META-INF/persistence.xml`**</font>。
+1. 需要一个总配置文件存储框架需要的信息。<span style="color: red;">**注意：配置文件必须要放在 `classpath:/META-INF/persistence.xml`**</span>。
 2. 需要通过 `Persistence` 类来获得配置文件的信息，构造 `EntityManagerFactory`（实体管理工厂）。
 3. 通过实体管理工厂的对象获得操作类对象，实体管理类对象。
-4. 操作类操作数据库表之前，必须要配置一个和数据表关联的实体类（有关联注解的），<font color=red>**不要忘了在总配置文件加载**</font>。
+4. 操作类操作数据库表之前，必须要配置一个和数据表关联的实体类（有关联注解的），<span style="color: red;">**不要忘了在总配置文件加载**</span>。
 
 ### 配置步骤示例（待补充测试用例）
 
@@ -43,7 +43,7 @@ JPA（Java Persistence API）：Java 持久化 API。是一套 Sun Java 官方�
 </dependency>
 ```
 
-- **创建一个总配置文件（persistence.xml）**。<font color=red>**注意此文件必须放在 classpath:/META-INF/persistence.xml**</font>，Eclipse 已经支持了 JPA 框架，所有不需要配置 xsd 文件，直接使用。
+- **创建一个总配置文件（persistence.xml）**。<span style="color: red;">**注意此文件必须放在 classpath:/META-INF/persistence.xml**</span>，Eclipse 已经支持了 JPA 框架，所有不需要配置 xsd 文件，直接使用。
 
 ![](images/43595809258778.jpg) ![2](images/114335809246645.jpg)
 
@@ -138,7 +138,7 @@ public class Customer implements Serializable {
 
 ### 使用 JPA 注解来替代配置文件
 
-<font color=red>JPA 注解的作用其实就是代替 XML 配置文件</font>，将程序的元数据写在代码上。而<font color=red>元数据就是，启动程序必须依赖的数据</font>。
+<span style="color: red;">JPA 注解的作用其实就是代替 XML 配置文件</span>，将程序的元数据写在代码上。而<span style="color: red;">元数据就是，启动程序必须依赖的数据</span>。
 
 配置文件不是编程语言的语法，所以是无法断点调试的。而注解是 Java 语法，报错的时候，可以快速的定位问题。
 
@@ -151,7 +151,7 @@ public class Customer implements Serializable {
 
 如果代码使用纯 JPA 标准编写，不修改代码只修改一下配置文件，即可将 Hibernate 的代码移植到其他 OpenJPA 和 EclipseTOP 等 JPA 框架。
 
-注意：<font color=red>OpenJPA 使用是 JPA2.0 规则</font>，而 Hibernate 使用的 JPA2.1 规范。所以将 Hibernate 编写的 JPA 代码切换 OpenJPA 的代码，需要修改配置文件版本。<font color=red>**配置文件中的属性名必须大写开头**</font>。
+注意：<span style="color: red;">OpenJPA 使用是 JPA2.0 规则</span>，而 Hibernate 使用的 JPA2.1 规范。所以将 Hibernate 编写的 JPA 代码切换 OpenJPA 的代码，需要修改配置文件版本。<span style="color: red;">**配置文件中的属性名必须大写开头**</span>。
 
 示例：修改配置文件，openJPA 可以直接使用。
 
@@ -185,9 +185,9 @@ public class Customer implements Serializable {
 
 - `@Entity`：声明该类是一个 JPA 标准的实体类。标识此注解会在创建 SessionFactory 时，加载映射配置。
 - `@Table`：指定实体类关联的表。
-    - `name`：指定数据库表的名称。<font color=red>**注意如果不指定表名，默认使用类名对应表名。不区别大小写**</font>。
+    - `name`：指定数据库表的名称。<span style="color: red;">**注意如果不指定表名，默认使用类名对应表名。不区别大小写**</span>。
 - `@Column`：指定实体类属性和数据库表字段之间的对应关系。可选属性如下：
-    - `name`：指定数据库表的列名称。<font color=red>**如果属性和字段一致，可以省略不写**</font>
+    - `name`：指定数据库表的列名称。<span style="color: red;">**如果属性和字段一致，可以省略不写**</span>
     - `unique`：是否唯一
     - `nullable`：是否可以为空
     - `inserttable`：是否可以插入
@@ -205,11 +205,11 @@ public class Customer implements Serializable {
     - `strategy`：自定义主键生成策略
 - `@SequenceGenerate`：使用 SEQUENCE 策略时，用于设置策略的参数。
 - `@TableGenerate`：使用 TABLE 主键策略时，用于设置策略的参数。
-- `@JoinTable`：关联查询时，表与表是<font color=red>多对多</font>的关系时，指定多对多关联表<font color=red>中间表的参数</font>。针对中间表的配置。
+- `@JoinTable`：关联查询时，表与表是<span style="color: red;">多对多</span>的关系时，指定多对多关联表<span style="color: red;">中间表的参数</span>。针对中间表的配置。
     - `name`：配置中间表的名称
     - `joinColumns`：中间表的外键字段关联当前实体类所对应表的主键字段
     - `inverseJoinColumn`：中间表的外键字段关联对方表的主键字段
-- `@JoinColumn`：关联查询时，表与表是一对多或者多对一的关系时，声明表关联的<font color=red>外键字段</font>作为连接表的条件。必须配合关联表的注解一起使用。
+- `@JoinColumn`：关联查询时，表与表是一对多或者多对一的关系时，声明表关联的<span style="color: red;">外键字段</span>作为连接表的条件。必须配合关联表的注解一起使用。
     - `name`：指定外键字段的名称
     - `referencedColumnName`：指定引用主表的主键字段名称
     - `unique`：是否唯一。默认值不唯一
@@ -232,13 +232,13 @@ public class Customer implements Serializable {
     - `cascade`：配置级联操作。
     - `fetch`：配置是否采用延迟加载。
     - `targetEntity`：配置目标的实体类。映射多对多的时候不用写。
-- `@Transient`：使用该注解标识的字段，不与数据库表字段进行映射。（<font color=red>**注：就算属性标识 `@Column` 的注解，也不会与数据库相应名字的字段进行映射。**</font>）
+- `@Transient`：使用该注解标识的字段，不与数据库表字段进行映射。（<span style="color: red;">**注：就算属性标识 `@Column` 的注解，也不会与数据库相应名字的字段进行映射。**</span>）
 
 ### 主键生成策略
 
 所谓的主键生成策略即使，自动生成 ID 列值的策略。JPA 提供了四种主键生成策略：
 
-1. `IDENTITY`：ID 自增长策略。<font color=red>**只能用于支持 ID 自增长的数据库**</font>，并且只能用于数字类型。
+1. `IDENTITY`：ID 自增长策略。<span style="color: red;">**只能用于支持 ID 自增长的数据库**</span>，并且只能用于数字类型。
 
 ```java
 @Id
@@ -246,7 +246,7 @@ public class Customer implements Serializable {
 private BigInteger id;
 ```
 
-2. `SEQUENCE`：序列生成策略，<font color=red>**用于有序列的数据库，如 Oracle**</font>，并且只能用于数字类型。指定使用 SEQUENCE 策略时和 Hibernate 的 xml 一样用法。如果在 MySQL 里面使用一个表模拟序列；如果使用在 Oracle 里面直接使用序列。
+2. `SEQUENCE`：序列生成策略，<span style="color: red;">**用于有序列的数据库，如 Oracle**</span>，并且只能用于数字类型。指定使用 SEQUENCE 策略时和 Hibernate 的 xml 一样用法。如果在 MySQL 里面使用一个表模拟序列；如果使用在 Oracle 里面直接使用序列。
 
 ```java
 @Id
@@ -262,7 +262,7 @@ private BigInteger id;
 private BigInteger id;
 ```
 
-4. `AUTO`（了解）：由框架决定<font color=red>根据不同的数据库指定一个策略</font>。由于结果的不固定性。基本上没有人使用。
+4. `AUTO`（了解）：由框架决定<span style="color: red;">根据不同的数据库指定一个策略</span>。由于结果的不固定性。基本上没有人使用。
 
 ```java
 @Id
@@ -322,13 +322,13 @@ Customer c = em.find(Customer.class, 22L);
 Customer c = em.getReference(Customer.class, 22L);
 ```
 
-<font color=red>**注意：使用 JPA 删除数据也必须使用持久化对象，否则报错**</font> `java.lang.IllegalArgumentException: Removing a detached instance day61.entity.Customer#24`
+<span style="color: red;">**注意：使用 JPA 删除数据也必须使用持久化对象，否则报错**</span> `java.lang.IllegalArgumentException: Removing a detached instance day61.entity.Customer#24`
 
 ### JPQL 操作（删除，修改）
 
 JPQL（Java Persistence Query Language）：Java 持久化查询语言。几乎等同 HQL，一样直接操作的是对象，不是表。
 
-注意：与 HQL 有所区别，<font color=red>**在 JPQL 中，如果使用 `?` 设置参数，必须要在 `?` 后面指定下标，并且下标必须不能是负数**</font>
+注意：与 HQL 有所区别，<span style="color: red;">**在 JPQL 中，如果使用 `?` 设置参数，必须要在 `?` 后面指定下标，并且下标必须不能是负数**</span>
 
 ```java
 /**

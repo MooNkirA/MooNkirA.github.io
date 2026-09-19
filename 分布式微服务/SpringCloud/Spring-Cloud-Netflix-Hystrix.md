@@ -222,7 +222,7 @@ public class OrderApplication {
 }
 ```
 
-注：随着功能的增多，微服务的启动类中的注解也越来越多。所以<font color=red>**SpringCloud提供了一个组合注解注解：`@SpringCloudApplication`。此注解相关于`@SpringBootApplication` + `@EnableDiscoveryClient` + `@EnableCircuitBreaker`**</font>，注解源码如下：
+注：随着功能的增多，微服务的启动类中的注解也越来越多。所以<span style="color: red;">**SpringCloud提供了一个组合注解注解：`@SpringCloudApplication`。此注解相关于`@SpringBootApplication` + `@EnableDiscoveryClient` + `@EnableCircuitBreaker`**</span>，注解源码如下：
 
 ```java
 @Target(ElementType.TYPE)
@@ -543,7 +543,7 @@ public class OrderApplication {
 
 ![](images/20201019150719838_6878.png)
 
-> <font color=red>**注：每个需要监控的微服务，都需要配置相应Hystrix DashBoard监控。只是访问时通过聚合监控项目可以查询所有节点的情况**</font>
+> <span style="color: red;">**注：每个需要监控的微服务，都需要配置相应Hystrix DashBoard监控。只是访问时通过聚合监控项目可以查询所有节点的情况**</span>
 
 #### 搭建聚合监控工程
 

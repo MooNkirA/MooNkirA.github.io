@@ -160,7 +160,7 @@ Hibernate 默认情况下，需要以格式 `<classname>.hbm.xml` 保存映射�
 
 #### increment
 
-increment 策略是指<font color=red>**不使用数据库本地的自增长策略**</font>，而是由 Hibernate 框架产生一个自增长的 ID 值，赋予数据库的主键。
+increment 策略是指<span style="color: red;">**不使用数据库本地的自增长策略**</span>，而是由 Hibernate 框架产生一个自增长的 ID 值，赋予数据库的主键。
 
 ![](images/309750115258775.jpg)
 
@@ -186,13 +186,13 @@ sequence 是使用序列的实现 ID 生成策略，主要用于有序列的数�
 
 为什么有序列的数据库（Oracle）使用 SEQUENCE 策略而不用 native 策略？因为 SEQUENCE 策略是可以设置序列的名字，步长等参数的，而 Native 策略是不可以。另外 Native 策略生成的序列名统一使用 Hibernate_sequence。如果出现多个表的情况，就导致多个表使用同一个序列，这样会导致表的 ID 值断号不连续。
 
-<font color=red>**使用 SEQUENCE 策略可以设置每一个表对应的一个序列的参数，参数设置参数名！！！！**</font>
+<span style="color: red;">**使用 SEQUENCE 策略可以设置每一个表对应的一个序列的参数，参数设置参数名！！！！**</span>
 
 #### native
 
 native 是使用数据库本地的策略，就是数据库里面使用怎么样的策略就用什么策略，HIbernate 不做任何的判断。如 MySQL 数据库使用了 `increment_auto`(自增长策略)；如果 Oracle 使用 native 则使用序列生成主键值。
 
-<font color=red>**注意：Oracle 使用 native 这种方式不好的地方是，序列名为 Hibernate_SEQUENCE.而且多个表使用一个序列。会导致序列断号。**</font>
+<span style="color: red;">**注意：Oracle 使用 native 这种方式不好的地方是，序列名为 Hibernate_SEQUENCE.而且多个表使用一个序列。会导致序列断号。**</span>
 
 #### uuid
 

@@ -297,7 +297,7 @@ windows --> preferences --> 搜索“content assist”
 
 ![](images/20201106101126012_9333.png)
 
-<font color=red>**总结：首先第一步中的作用是指当输入一个字母的时候eclipse就会马上联想相关的单词并显示出来，并且那些联想的单词总是跟着，如果觉得比较烦的话，就改为默认的点号。第二步中才是重点，作用是就是当用`alt+/`快捷键的时候会联想出来的。**</font>
+<span style="color: red;">**总结：首先第一步中的作用是指当输入一个字母的时候eclipse就会马上联想相关的单词并显示出来，并且那些联想的单词总是跟着，如果觉得比较烦的话，就改为默认的点号。第二步中才是重点，作用是就是当用`alt+/`快捷键的时候会联想出来的。**</span>
 
 ### 取消空格上屏
 
@@ -547,7 +547,7 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 ![](images/412730423247012.jpg)
 
-> <font color=red>**注：约束文件的路径在【\spring-framework-4.2.4.RELEASE\schema\beans】，如果使用其他类型，就根据类型选择不同的文件夹**</font>
+> <span style="color: red;">**注：约束文件的路径在【\spring-framework-4.2.4.RELEASE\schema\beans】，如果使用其他类型，就根据类型选择不同的文件夹**</span>
 
 ### 向 xml 文件中增加约束
 
@@ -582,7 +582,7 @@ Eclipse 的首选项 --> 搜索 jsp，找到 JSP Files 选择指定的编码，�
 
 ### Spring Tool Suite 4 / 3.9.8
 
-Spring Tool Suite(STS) 是一个基于 Eclipse 针对 Spring 应用量身定制的开发环境。提供了开发 Spring 应用必须的编码、调试、运行和部署功能。STS 在最新的 Eclipse 发布版本基础上集成了 Pivotal tc 服务器、Pivotal Cloud Foundry、Git、Maven、AspectJ 等必要的工具。<font color=red>**两个版本都安装**</font>
+Spring Tool Suite(STS) 是一个基于 Eclipse 针对 Spring 应用量身定制的开发环境。提供了开发 Spring 应用必须的编码、调试、运行和部署功能。STS 在最新的 Eclipse 发布版本基础上集成了 Pivotal tc 服务器、Pivotal Cloud Foundry、Git、Maven、AspectJ 等必要的工具。<span style="color: red;">**两个版本都安装**</span>
 
 ![](images/20201106104504990_27193.png)
 

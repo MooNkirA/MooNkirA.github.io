@@ -611,7 +611,7 @@ public List<Brand> findAll() {
 
 ### AngularJS 简介
 
-- AngularJS  诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架。AngularJS有着诸多特性，最为核心的是：<font color="red">**MVC、模块化、自动化双向数据绑定、依赖注入**</font>等等
+- AngularJS  诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架。AngularJS有着诸多特性，最为核心的是：<span style="color: red;">**MVC、模块化、自动化双向数据绑定、依赖注入**</span>等等
 - 官方网站：https://angularjs.org/
 - 下载地址：https://code.angularjs.org/
 
@@ -719,7 +719,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 - 使用时需要在使用的标签加班属性【ng-app】
 - 例：`<body ng-app> (()) </body>`
 
-<font color="red">*一般都定义在`<body>`标签中*</font>
+<span style="color: red;">*一般都定义在`<body>`标签中*</span>
 
 #### 表达式
 
@@ -788,7 +788,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
     - `var 变量名 = angular.module("模块名", []);`
 - 定义控制器语法格式：
     - `模块变量名.controller("控制器名", function($scope){});`
-- <font color="blue">ng-app指定模块变量名，ng-controller指定所使用的控制器。</font>
+- <span style="color: blue;">ng-app指定模块变量名，ng-controller指定所使用的控制器。</span>
 - 理解`$scope`作用域：
     - `$scope`贯穿整个 AngularJS App应用，它与数据模型相关联，同时也是表达式执行的上下文。有了`$scope`就在视图和控制器之间建立了一个通道，基于作用域视图在修改数据时会立刻更新`$scope`，同样的`$scope`发生改变时也会立刻重新渲染视图。
     - 在方法，如果想定义一个可变方法名的时候，可以使用`$scope[变量名]`来实现
@@ -835,7 +835,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
     - ng-mouseleave：鼠标离开事件
     - ng-mousemove：鼠标移动事件
     - ng-mouseover：鼠标进入事件
-- <font color="red">ng-xxx事件指令，绑定控制器的某个方法。</font>
+- <span style="color: red;">ng-xxx事件指令，绑定控制器的某个方法。</span>
 
 ```html
 <script type="text/javascript">
@@ -871,7 +871,7 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 - 语法格式：`ng-repeat="变量名 in 集合或数组"`
     - `$index`：获取迭代时的索引号
 
-<font color="red">注：循环的里的变量，到循环外就无效</font>
+<span style="color: red;">注：循环的里的变量，到循环外就无效</span>
 
 - 循环数组
 
@@ -1019,9 +1019,9 @@ AngularJS是建立在这样的信念上的：即声明式编程应该用于构�
 
 #### `$timeout`服务
 
-- `$timeout`服务对应了`window.setTimeout`函数，<font color="red">只执行一次</font>。如果想循环输出，需要放到函数里
+- `$timeout`服务对应了`window.setTimeout`函数，<span style="color: red;">只执行一次</span>。如果想循环输出，需要放到函数里
 - 语法格式：`$timeout(函数, 间隔时间毫秒)`;
-- <font color="red">注：使用内置服务，需要在定义模块时声明到function的参数列表中</font>
+- <span style="color: red;">注：使用内置服务，需要在定义模块时声明到function的参数列表中</span>
 
 ```html
 <head>
@@ -1445,7 +1445,7 @@ public Map<String, Object> user(@RequestBody Map<String, Object> map) {
 }
 ```
 
-<font color="red">*注：post请求后端可以使用map集合接收，也可以使用实体类接收*</font>
+<span style="color: red;">*注：post请求后端可以使用map集合接收，也可以使用实体类接收*</span>
 
 #### `$event`对象用法
 

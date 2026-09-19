@@ -100,7 +100,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 
 配置 mybatis 的运行环境，数据源、事务等。了解即可，因为在整合 Spring 的时候，这个配置文件的标签都不用了
 
-> <font color=red>注：mybatis 框架需要加载 Mapper.xml 映射文件</font>
+> <span style="color: red;">注：mybatis 框架需要加载 Mapper.xml 映射文件</span>
 
 SqlMapConfig.xml 示例：
 
@@ -148,7 +148,7 @@ SqlMapConfig.xml 示例：
 **映射文件命名格式**：
 
 - User.xml（原始ibatis命名方式）
-- <font color=red>**mapper代理开发映射文件名称格式：XxxMapper.xml**</font>，如：UserMapper.xml、ItemsMapper.xml。**在映射文件中配置sql语句**
+- <span style="color: red;">**mapper代理开发映射文件名称格式：XxxMapper.xml**</span>，如：UserMapper.xml、ItemsMapper.xml。**在映射文件中配置sql语句**
 
 映射配置文件模版在参考文档可以查询
 
@@ -539,7 +539,7 @@ public void queryUserById_annotationTest() {
 }
 ```
 
-> Tips: <font color=purple>*注解开发，实际开发中不推荐使用*</font>
+> Tips: <span style="color: purple;">*注解开发，实际开发中不推荐使用*</span>
 
 ## MyBatis 缓存
 
@@ -551,7 +551,7 @@ MyBatis 包含一个非常强大的查询缓存特性，使用缓存可以使应
 
 #### 实现步骤
 
-一级缓存是指 `SqlSession` 级别的缓存，当在同一个 `SqlSession` 中进行相同的 SQL 语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存 1024 条 SQL。<font color=red>**一级缓存默认开启，无需配置**</font>。测试代码如下：
+一级缓存是指 `SqlSession` 级别的缓存，当在同一个 `SqlSession` 中进行相同的 SQL 语句查询时，第二次以后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存 1024 条 SQL。<span style="color: red;">**一级缓存默认开启，无需配置**</span>。测试代码如下：
 
 ```java
 public void oneCacheTest() {
@@ -665,7 +665,7 @@ public void secondCacheTest() {
 
 ![](images/20210314161254850_27178.jpg)
 
-<font color=purple>**说明：MyBatis 框架的二级缓存，实际开发中不推荐使用，尤其在分布式项目中。原因是 MyBatis 的二级缓存不能实现细粒度的控制。如果使用缓存，推荐可以使用 Redis**</font>
+<span style="color: purple;">**说明：MyBatis 框架的二级缓存，实际开发中不推荐使用，尤其在分布式项目中。原因是 MyBatis 的二级缓存不能实现细粒度的控制。如果使用缓存，推荐可以使用 Redis**</span>
 
 #### 二级缓存原理
 
@@ -1774,13 +1774,13 @@ mybatis和spring整合后，使用单例模式管理sqlSessionFactory
 
 #### 常用方法
 
-<font color=violet>*说明：自动提交事务，只要sql语句一执行，就马上提交。如果同时有多个操作，如果有个操作失败，则之前的其他操作无法回滚，此时需要使用手动提交的方式*</font>
+<span style="color: violet;">*说明：自动提交事务，只要sql语句一执行，就马上提交。如果同时有多个操作，如果有个操作失败，则之前的其他操作无法回滚，此时需要使用手动提交的方式*</span>
 
 ```java
 SqlSession openSession();
 ```
 
-- 开启会话，返回SqlSession对象。<font color=red>**默认是关闭自动提交事务**</font>
+- 开启会话，返回SqlSession对象。<span style="color: red;">**默认是关闭自动提交事务**</span>
 
 ```java
 SqlSession openSession(boolean autoCommit);
@@ -1799,7 +1799,7 @@ public interface SqlSession extends Closeable
 
 `org.apache.ibatis.session.SqlSession` 是一个面向用户（程序员）的接口，提供了很多操作数据库的方法。如：selectOne(返回单个对象)、selectList（返回单个或多个对象）。在 SqlSesion 实现类中除了有接口中的方法（操作数据库的方法）还有数据域属性。
 
-<font color=red>*SqlSession是线程不安全的*</font>。因此 **SqlSession 最佳应用场合在方法体内，定义成局部变量使用**
+<span style="color: red;">*SqlSession是线程不安全的*</span>。因此 **SqlSession 最佳应用场合在方法体内，定义成局部变量使用**
 
 #### 常用方法
 
@@ -1860,7 +1860,7 @@ int update(String statement, Object parameter)
 
 - 作用：使用给定的参数对象statement执行更新语句。返回受影响的行数
 - 参数`statement`：唯一标识符匹配语句。等于映射文件中的`namespace+"."+statement`的id
-- 参数`parameter`：传递给语句的参数对象，和映射文件中的`parameterType`类型一致，<font color=red>注意参数必须设置id（主键）</font>
+- 参数`parameter`：传递给语句的参数对象，和映射文件中的`parameterType`类型一致，<span style="color: red;">注意参数必须设置id（主键）</span>
 
 ```java
 <T> T getMapper(Class<T> type)
@@ -1908,7 +1908,7 @@ int update(String statement, Object parameter)
 
 ### Mybatis 的预编译
 
-<font color=red>**Mybatis 默认情况下，将对所有的 SQL 进行预编译**</font>。
+<span style="color: red;">**Mybatis 默认情况下，将对所有的 SQL 进行预编译**</span>。
 
 Mybatis 底层使用 `PreparedStatement` 和占位符来实现预编译。默认情况下，将对所有的 SQL 进行预编译，将 `#{}` 替换为占位符 `?`，然后将带有占位符`?`的 SQL 模板发送至数据库服务器，由服务器对此无参数的 SQL 进行编译后，将编译结果缓存，然后直接执行带有真实参数的 SQL。
 

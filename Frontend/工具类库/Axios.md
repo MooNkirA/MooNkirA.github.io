@@ -750,7 +750,7 @@ async handleUploadFile(event) {
 
 查阅相关资料得知，axios 在请求发送出去之前会进行一次拦截，自动给请求设置一些参数。上面示例会出现 `application/x-www-form-urlencoded` 这个参数就是因为 axios 设置了 post 请求的默认请求头，如果没有在 `config` 中指定其它请求头的话，就会使用默认的。然而，发送 `multipart/form-data` 格式的请求时，不需要自己指定 `Content-Type` 属性，由浏览器自动去设置。
 
-因此<font color=red>**解决问题的关键就是不让 axios 自动配置**</font>！在 axios 的 `config` 中有一个 `transformRequest` 属性，官方的解释是可以在请求发送之前进行人为干预。属性值是一个数组，里面可以定义一个函数，接收两个参数，分别是 `data` 和 `headers`。其中 `data` 参数就是上面示例中定义的 `FormData` 对象；`headers` 参数则是 axios 预定义的请求头。输出 `headers` 信息如下：
+因此<span style="color: red;">**解决问题的关键就是不让 axios 自动配置**</span>！在 axios 的 `config` 中有一个 `transformRequest` 属性，官方的解释是可以在请求发送之前进行人为干预。属性值是一个数组，里面可以定义一个函数，接收两个参数，分别是 `data` 和 `headers`。其中 `data` 参数就是上面示例中定义的 `FormData` 对象；`headers` 参数则是 axios 预定义的请求头。输出 `headers` 信息如下：
 
 ![](images/122714011240455.png)
 

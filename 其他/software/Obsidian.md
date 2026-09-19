@@ -80,11 +80,11 @@ tags:
 
 ![](images/423833986361550.png)
 
-6. 【Advanced】->【Markdown URL 格式】，此设置就是用于实现将 `![[xxx.jpg]]` 的链接写法替换成 `![](images/xxx.jpg)` 写法的<font color=red>**需求解决方案的关键配置**</font>。这里也是支持表达式设置，如有不同的需求可参考官方文档。此处设置 `images/${generatedAttachmentFileName}`即可实现将图片变成 Markdown 语法的标准写法。
+6. 【Advanced】->【Markdown URL 格式】，此设置就是用于实现将 `![[xxx.jpg]]` 的链接写法替换成 `![](images/xxx.jpg)` 写法的<span style="color: red;">**需求解决方案的关键配置**</span>。这里也是支持表达式设置，如有不同的需求可参考官方文档。此处设置 `images/${generatedAttachmentFileName}`即可实现将图片变成 Markdown 语法的标准写法。
 
 ![](images/89265992714012.png)
 
-> [!note] 值得注意，此需求只为了统一图片按标准 Markdown 语法链接写法，<font color=red>**其他类型的附件建议手动管理**</font>，此项目的附件都统一存到根目录的 attachments 目录中，需要引入附件的时候手动编写 `![[]]`，避免将非图片类的文件保存到 `images` 文件夹中，要保持其纯净不被污染。
+> [!note] 值得注意，此需求只为了统一图片按标准 Markdown 语法链接写法，<span style="color: red;">**其他类型的附件建议手动管理**</span>，此项目的附件都统一存到根目录的 attachments 目录中，需要引入附件的时候手动编写 `![[]]`，避免将非图片类的文件保存到 `images` 文件夹中，要保持其纯净不被污染。
 
 ## 文档编辑
 
@@ -173,7 +173,7 @@ Calendar 日历插件，快速新建日记
 Content
 ```
 
-> Note: 特别注意，此功能必须在 Templater 的设置中开启 `Automatic jump to cursor` 选项。（<font color=red>**此选项默认是关闭的，如果设置模板没有实现光标定位的效果，请检查此配置项！**</font>）
+> Note: 特别注意，此功能必须在 Templater 的设置中开启 `Automatic jump to cursor` 选项。（<span style="color: red;">**此选项默认是关闭的，如果设置模板没有实现光标定位的效果，请检查此配置项！**</span>）
 
 **多光标定位（高级用法）**：如果需要多个光标位置，用 `tp.file.cursor(1)` `tp.file.cursor(2)`，按 `Tab` 可以在多个光标之间切换。
 
@@ -248,7 +248,7 @@ tR += calloutHead + content
 
 #### 在日志中使用 dataview 插件上下
 
-在日志模板中，使用 dataview 动态增加“上一篇日志”和“下一篇日志”链接的效果。将以下代码复制到日志模板中。<font color=red>**需要将代码块的语言 `js` 改成 `dataviewjs`**</font>
+在日志模板中，使用 dataview 动态增加“上一篇日志”和“下一篇日志”链接的效果。将以下代码复制到日志模板中。<span style="color: red;">**需要将代码块的语言 `js` 改成 `dataviewjs`**</span>
 
 ```js
 // 1. 仅筛选带 #Diary 标签的日记，并按文件名（日期）升序排列

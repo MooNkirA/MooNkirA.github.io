@@ -101,7 +101,7 @@ app.service('brandService', function ($http) {});
 
 - 有些功能是每个页面都有可能用到的，比如分页，复选等等，如果再开发另一个功能，还需要重复编写。通过继承的方式来实现让这些通用的功能只写一次。
 - 语法格式：`$controller("baseController",{$scope:$scope});`
-- <font color="red">说明：`$controller`也是angular提供的一个服务，可以实现伪继承，实际上就是与BaseController共享`$scope`</font>
+- <span style="color: red;">说明：`$controller`也是angular提供的一个服务，可以实现伪继承，实际上就是与BaseController共享`$scope`</span>
 
 #### 前端控制层-创建父控制器
 
@@ -573,7 +573,7 @@ $scope.addTableRow = function () {
 #### 增加页面，删除行实现
 
 - 实现思路：在每一行将索引值传递给集合，在集合中删除。
-- <font color="red">*注意：$index 用于获取ng-repeat指令循环中的索引。*</font>
+- <span style="color: red;">*注意：$index 用于获取ng-repeat指令循环中的索引。*</span>
 - 修改specification.html每行的删除按钮，增加点击事件
 
 ```html
@@ -1224,7 +1224,7 @@ $scope.json2String = (jsonStr, key) => {
 
 ### 新增模板-品牌下拉列表
 
-在弹出窗口中有个品牌下拉列表，要求品牌是可以选择多个，这与之前的单选的下拉列表是不同的。实现这个功能，需要使用<font color="red">**select2组件**</font>来完成
+在弹出窗口中有个品牌下拉列表，要求品牌是可以选择多个，这与之前的单选的下拉列表是不同的。实现这个功能，需要使用<span style="color: red;">**select2组件**</span>来完成
 
 ![select2 组件效果](images/20190118123348934_12592.jpg)
 
@@ -1251,7 +1251,7 @@ $scope.json2String = (jsonStr, key) => {
     <!-- select2组件 end -->
     ```
 
-     - <font color="red">**注：select2组件js文件必须放在最后，如果放在angular分层之后，组件将读取不到数据。因为html文件是从上往下顺序解析**</font>
+     - <span style="color: red;">**注：select2组件js文件必须放在最后，如果放在angular分层之后，组件将读取不到数据。因为html文件是从上往下顺序解析**</span>
      - 修改typeTemplateController.js，定义品牌列表数据
 
     ```js

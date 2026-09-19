@@ -33,7 +33,7 @@ Hibernate 底层是对 JDBC 进行封装，使用 Hibernate 的好处是，不�
 
 ### ORM 思想
 
-ORM：（Object Relational Mapping）对象关系映射。在访问数据库前，<font color=red>**将实体类的类名和数据库表的表名关联起来**</font>。通过**操作实体类的对象**，直接由框架生成操作数据库的 SQL 操作数据库表。
+ORM：（Object Relational Mapping）对象关系映射。在访问数据库前，<span style="color: red;">**将实体类的类名和数据库表的表名关联起来**</span>。通过**操作实体类的对象**，直接由框架生成操作数据库的 SQL 操作数据库表。
 
 ORM 是一种实现使用实体类对象操作数据库表的设计思想。
 
@@ -76,11 +76,11 @@ ORM 是一种实现使用实体类对象操作数据库表的设计思想。
 
 #### Step 2：创建实体类
 
-<font color=red>**hibernate 要求实体类有一个属性是唯一的，一般都是用作 id（对应数据表的主键）**</font>。注：使用 hibernate 时，不需要手动创建表，hibernate 会自动创建表格。
+<span style="color: red;">**hibernate 要求实体类有一个属性是唯一的，一般都是用作 id（对应数据表的主键）**</span>。注：使用 hibernate 时，不需要手动创建表，hibernate 会自动创建表格。
 
 #### Step 3：配置实体类和数据库表 - 对应关系(映射关系)
 
-1. 创建 xml 格式配置文件实现映射关系，这个映射配置文件名称和位置没有固定要求。<font color=red>*建议：在实体类所在包里面创建。命名：`实体类名称.hbm.xml`*</font>
+1. 创建 xml 格式配置文件实现映射关系，这个映射配置文件名称和位置没有固定要求。<span style="color: red;">*建议：在实体类所在包里面创建。命名：`实体类名称.hbm.xml`*</span>
 2. 配置文件是 xml 格式，在配置文件中首先引入 xml 约束。
     - 在 hibernate 里面引入的约束目前都是 dtd 约束
     - 使用网络约束：从【`http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd`】可下载 dtd 约束文件 `hibernate-mapping-3.0.dtd`。或者使用本址约束：解压 hibernate-core-5.0.12.Final.jar 再搜索 `*.dtd`
@@ -369,7 +369,7 @@ INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw 
 
 ### Hibernate 使用步骤
 
-<font color=red>**前 4 步和后 2 步都是固定，第 5 步是根据实际情况而变化。**</font>
+<span style="color: red;">**前 4 步和后 2 步都是固定，第 5 步是根据实际情况而变化。**</span>
 
 > Notes: 这里的 Session 与 Javaweb 中的 Session 是两个不同的东西。
 
@@ -427,7 +427,7 @@ sessionFactory.close();
 
 ### 创建 Hibernate 工具类
 
-<font color=red>**注意：要理解为什么，一个项目只能有一个连接池。如果出现多个连接池，有可能导致事务处理不同步。**</font>
+<span style="color: red;">**注意：要理解为什么，一个项目只能有一个连接池。如果出现多个连接池，有可能导致事务处理不同步。**</span>
 
 hibernate 工具类示例：
 
@@ -601,7 +601,7 @@ void close() throws HibernateException;
 public interface Session extends SharedSessionContract, EntityManager, HibernateEntityManager, AutoCloseable, Closeable
 ```
 
-`org.hibernate.Session` 接口的作用类似 JDBC 的 Statement。用于操作数据库的数据。<font color=red>**Session 操作是必须先映射，后操作**</font>。Session 对象是轻量级的，并被设计为每次实例化都需要与数据库的交互。持久对象通过 Session 对象保存和检索。
+`org.hibernate.Session` 接口的作用类似 JDBC 的 Statement。用于操作数据库的数据。<span style="color: red;">**Session 操作是必须先映射，后操作**</span>。Session 对象是轻量级的，并被设计为每次实例化都需要与数据库的交互。持久对象通过 Session 对象保存和检索。
 
 Session 对象不应该长时间保持开启状态因为它们通常情况下并非线程安全，并且它们应该按照所需创造和销毁。
 
@@ -621,7 +621,7 @@ void saveOrUpdate(Object object);
 void saveOrUpdate(String entityName, Object object);
 ```
 
-- 如果数据库没有记录就保存，如果有记录就更新，重要的判断依据是 OID 是否相同，OID（Object ID）就是在配置文件配置为 `<id>` 属性。<font color=purple>**注：如果想修改某个字段，保留其他字段，必须先查询再修改**</font>。
+- 如果数据库没有记录就保存，如果有记录就更新，重要的判断依据是 OID 是否相同，OID（Object ID）就是在配置文件配置为 `<id>` 属性。<span style="color: purple;">**注：如果想修改某个字段，保留其他字段，必须先查询再修改**</span>。
 
 ```java
 void delete(Object object);
@@ -647,7 +647,7 @@ Object load(String entityName, Serializable id);
 void load(Object object, Serializable id);
 ```
 
-- 用于通过 OID，获得一条记录，<font color=red>**有延迟**</font>。
+- 用于通过 OID，获得一条记录，<span style="color: red;">**有延迟**</span>。
 
 ```java
 <T> T get(Class<T> entityType, Serializable id);
@@ -658,13 +658,13 @@ Object get(String entityName, Serializable id, LockMode lockMode);
 Object get(String entityName, Serializable id, LockOptions lockOptions);
 ```
 
-- 用于通过 OID，获得一条记录，<font color=red>**无延迟**</font>。
+- 用于通过 OID，获得一条记录，<span style="color: red;">**无延迟**</span>。
 
 ```java
 Transaction beginTransaction();
 ```
 
-- 打开并且启动事务（增删改操作必须），并返回关联事务对象。继承自 `org.hibernate.SharedSessionContract`。<font color=purple>**注：在同一个 session 对象中，如果多次 `beginTransaction()`，并且在事务没有提交的情况下，都是同一个事务对象。**</font>
+- 打开并且启动事务（增删改操作必须），并返回关联事务对象。继承自 `org.hibernate.SharedSessionContract`。<span style="color: purple;">**注：在同一个 session 对象中，如果多次 `beginTransaction()`，并且在事务没有提交的情况下，都是同一个事务对象。**</span>
 
 ```java
 Transaction getTransaction();
@@ -785,7 +785,7 @@ public class HibernateDao {
 
 由于项目几乎都使用 Spring 框架，不能使用 new 创建对象。所以不能使用构造函数传递 session 给 DAO，可以使用线程绑定来实现外层的 session 和 DAO 的 session 是同一个对象。
 
-所谓的线程绑定，就是使用一个线程变量将对象 `ThreadLoad` 保存起来，从而保证同一条线程获得同一个对象。<font color=red>**线程绑定的作用，就是让同一条线程获得 session 对象是相同的，不需要参数传递 session！！！**</font>实现步骤如下：
+所谓的线程绑定，就是使用一个线程变量将对象 `ThreadLoad` 保存起来，从而保证同一条线程获得同一个对象。<span style="color: red;">**线程绑定的作用，就是让同一条线程获得 session 对象是相同的，不需要参数传递 session！！！**</span>实现步骤如下：
 
 - 修改全局配置文件配置
 
@@ -1032,9 +1032,9 @@ Hibernate 的核心工作就是提取 Java 类属性中的值，并且将它们�
 - 所有将被持久化的 Java 类都需要一个默认的构造函数。
 - 为了使对象能够在 Hibernate 和数据库中容易识别，所有类都需要包含一个代表 ID 的字段（名称可随意）。此属性映射到数据库表的主键列。
 - 所有将被持久化的属性声明必须使用私有的 `private`，并具有由 JavaBean 风格定义的 getXxx 和 setXxx 方法，用于设置和获得属性值。
-- Hibernate 的一个重要特征为代理，因此所有持久化类属性的声明<font color=red>**不能使用 `final` 关键字**</font>修饰，所有方法都声明为 `public`。
+- Hibernate 的一个重要特征为代理，因此所有持久化类属性的声明<span style="color: red;">**不能使用 `final` 关键字**</span>修饰，所有方法都声明为 `public`。
 - 所有的类是不可扩展或按 EJB 要求实现的一些特殊的类和接口。
-- [**可选**]建议实现一个序列接口 `Serializable`。<font color=red>**如果需要将对象缓存到本地文件，必须加上**</font>。
+- [**可选**]建议实现一个序列接口 `Serializable`。<span style="color: red;">**如果需要将对象缓存到本地文件，必须加上**</span>。
 
 > Tips: POJO 的名称用于强调一个给定的对象是普通的 Java 对象，而不是特殊的对象，尤其不是一个 Enterprise JavaBean。
 
@@ -1065,7 +1065,7 @@ public class Employee {
 
 ### 持久化类的三种状态
 
-由于 Hibernate 框架是一个<font color=red>**先映射，后操作**</font>的框架，因此实体类（持久化类）对象是有状态的。所谓的状态就是实体类的<font color=red>**对象和数据库是否有关联的情况**</font>。
+由于 Hibernate 框架是一个<span style="color: red;">**先映射，后操作**</span>的框架，因此实体类（持久化类）对象是有状态的。所谓的状态就是实体类的<span style="color: red;">**对象和数据库是否有关联的情况**</span>。
 
 1. 瞬时态/自由态（transient）：与数据库的表没有任何关联关系的实体对象。瞬时态对象不存在持久化标识 OID（相当于主键值），并且尚未与 Hibernate Session 关联。
 2. 持久态：正在与数据库保持连接的关系，通常是将一个瞬时状态实例通过与一个 Session 关联的方式将其转化为持久状态实例。持久态对象存在持久化标识 OID，加入到了 Session 缓存中，并且相关联的 Session 没有关闭，在数据库中有对应的记录。
@@ -1269,7 +1269,7 @@ public class HibernateSQLTest {
 
 #### 概述
 
-Hibernate 是支持一级缓存，即 Session 级别的缓存。<font color=red>同一个 session 查询同样的数据，只查询一次数据库</font>。如果出现同多次同样的查询（get/load），直接返回缓存的数据。
+Hibernate 是支持一级缓存，即 Session 级别的缓存。<span style="color: red;">同一个 session 查询同样的数据，只查询一次数据库</span>。如果出现同多次同样的查询（get/load），直接返回缓存的数据。
 
 Hibernate 默认情况就支持一级缓存。如果支持缓存，使用多次 get 查方法只有一条 sql 语句，说明只查询一次数据库，其余次数的数据直接在缓存中获得。
 
@@ -1281,7 +1281,7 @@ Hibernate 默认情况就支持一级缓存。如果支持缓存，使用多次 
 2. 清空 `clear()`。没有关闭 session，只是将缓存清空
 3. 清空指定的实体态对象 `evit()`
 
-<font color=red>**注意：close，clear，evit 清空缓存只是将持久态转成游离态，清空的是数据和数据库的关联，而不是清空数据。**</font>
+<span style="color: red;">**注意：close，clear，evit 清空缓存只是将持久态转成游离态，清空的是数据和数据库的关联，而不是清空数据。**</span>
 
 ### 二级缓存
 
@@ -1315,7 +1315,7 @@ hql 使用的使用 query 对象，需要配置二级缓存。
 query.setCacheable(true);
 ```
 
-4. <font color=red>**注意：配置二级缓存，实体类必须要实现序列化接口**</font>9.7. 
+4. <span style="color: red;">**注意：配置二级缓存，实体类必须要实现序列化接口**</span>9.7. 
 ### 查询层次缓存
 
 Hibernate 也实现了一个和二级缓存密切集成的查询结果集缓存。这是一个可选择的、并且需要两个额外的物理缓存区域，它们保存着缓存的查询结果和表单上一次更新时的时间戳。这仅对以同一个参数频繁运行的查询来说是有用的。
@@ -1324,12 +1324,12 @@ Hibernate 也实现了一个和二级缓存密切集成的查询结果集缓存�
 
 #### 概述
 
-当对象变成<font color=red>持久态对象</font>的时候，和数据库表关联后。在 session 中<font color=red>**会保存<u>两份数据的副本</u>：一份是缓存，一个是快照**</font>。缓存与快照的区别如下：
+当对象变成<span style="color: red;">持久态对象</span>的时候，和数据库表关联后。在 session 中<span style="color: red;">**会保存<u>两份数据的副本</u>：一份是缓存，一个是快照**</span>。缓存与快照的区别如下：
 
 - 缓存的作用：用于提高查询的效率。
 - 快照的作用：用于更新数据，用于对比使用。
 
-<font color=red>**快照的支持就是持久态对象直接可以通过直接修改属性更新数据库表的数据，不需要 update 方法**</font>。示例：
+<span style="color: red;">**快照的支持就是持久态对象直接可以通过直接修改属性更新数据库表的数据，不需要 update 方法**</span>。示例：
 
 ```java
 public void update2() {
@@ -1353,7 +1353,7 @@ public void update2() {
 
 #### 实现原理
 
-当获得一个持久态对象，此时 Session 保存两份副本，一份是快照数据(不能手动修改)，一份是缓存数据。此时再调用对象的 set 方法修改某个属性，<font color=red>修改属性的同时修改缓存的数据，但快照数据保持不变</font>。最后提交事务，就会<font color=red>对比快照与缓存中的数据，如果数据不一样，则更新数据库</font>（不需要再将使用 `update()` 方法）。
+当获得一个持久态对象，此时 Session 保存两份副本，一份是快照数据(不能手动修改)，一份是缓存数据。此时再调用对象的 set 方法修改某个属性，<span style="color: red;">修改属性的同时修改缓存的数据，但快照数据保持不变</span>。最后提交事务，就会<span style="color: red;">对比快照与缓存中的数据，如果数据不一样，则更新数据库</span>（不需要再将使用 `update()` 方法）。
 
 ![](images/216724816259477.jpg)
 
