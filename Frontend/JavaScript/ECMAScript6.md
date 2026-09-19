@@ -1,4 +1,4 @@
-## ES6 简介
+﻿## ES6 简介
 
 ES6，是ECMAScript 6的简称，它是 JavaScript 语言的下一代标准，己于 2015 年 6 月正式发布。它的目标是使JavaScript语言可以用于编写复杂的大型应用程序，成为企业级开发语言。
 
@@ -643,7 +643,7 @@ p.then(function (msg) {
 console.log('异步请求结束!');
 ```
 
-![promise使用示例](20190421110058157_24233.png)
+![promise使用示例](images/20190421110058157_24233.png)
 
 ### Promise.prototype.then()
 

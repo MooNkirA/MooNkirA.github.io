@@ -559,7 +559,7 @@ Mini-Transaction 执行过程中可能产生若干条 redo 日志，这些 redo 
 Mini-Transaction 运行过程中产生的一组 redo 日志是在 Mini-Transaction 结束时会被复制到 log buffer 中，但在一些情况下它们会被刷新到磁盘里，比如：
 
 - log buffer 空间不足时。log buffer 的大小是有限的（通过系统变量 innodb_log_buffer_size 指定），如果不停的往这个有限大小的 log buffer 里塞入日志，很快它就会被填满。InnoDB 认为如果当前写入 log buffer 的 redo 日志量已经占满了 log buffer 总容量的大约一半左右，就需要把这些日志刷新到磁盘上。
-- 事务提交时。使用 redo 日志记录事务的操作主要是因为它占用的空间少，并且是顺序写，在事务提交时可以不把修改过的 Buffer Pool 页面刷新到磁盘，但是为了保证持久性，必须要把修改这些页面对应的 redo 日志刷新到磁盘。<u>*注意，此时除了本事务，可能还会有刷入其他事务的日志。</u>*
+- 事务提交时。使用 redo 日志记录事务的操作主要是因为它占用的空间少，并且是顺序写，在事务提交时可以不把修改过的 Buffer Pool 页面刷新到磁盘，但是为了保证持久性，必须要把修改这些页面对应的 redo 日志刷新到磁盘。<span style="color: violet;">*注意，此时除了本事务，可能还会有刷入其他事务的日志。*</span>
 - MySQL 后台有一个线程，大约每秒都会刷新一次 log buffer 中的 redo 日志到磁盘。
 - 正常关闭服务器时
 - 触发 checkpoint 规则

@@ -50,7 +50,7 @@ hibernate-validator 优势：
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
-    </dependency> 
+    </dependency>
 	<!-- <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-validator</artifactId>
@@ -113,7 +113,7 @@ private BigDecimal wage;
 
 - `@CreditCardNumber`：信用卡验证
 - `@Email`：验证是否是邮件地址，如果为 null，不进行验证，算通过验证。（Hibernate validator 扩展注解）
-- `@ScriptAssert(lang=, script=, alias=)` 
+- `@ScriptAssert(lang=, script=, alias=)`
 - `@URL(protocol=, host=, port=, regexp=, flags=)`：检查是否是一个有效的 URL，如果提供了 protocol，host 等，则该 URL 还需满足提供的条件
 - `@Pattern(regex=)`：验证 String 对象是否符合正则表达式的规则
 
@@ -621,7 +621,7 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 		}
 
 		return returnValue;
-	}    
+	}
 
     // ...省略
 }
@@ -629,7 +629,7 @@ public class MethodValidationInterceptor implements MethodInterceptor {
 
 3. `org.springframework.validation.beanvalidation.LocalValidatorFactoryBean`，最终是使用它来执行验证功能的，它也是 Spring MVC 默认的验证器。默认情况下，`LocalValidatorFactoryBean` 会配置一个 `SpringConstraintValidatorFactory` 实例。如果有指定的 `ConstraintValidatorFactory`，就会使用指定的，因此在遇到自定义约束注解的时候，就会自动实例化 `@Constraint` 指定的关联 `Validator`，从而完成数据校验过程。
 
-![](images/515756960941110)
+![](images/515756960941110.jpg)
 
 4. `org.springframework.validation.beanvalidation.SpringValidatorAdapter` 是 `javax.validation.Validator` 到 Spring 的 Validator 的适配，通过它就可以对接到 Bean Validation 来完成校验了。
 

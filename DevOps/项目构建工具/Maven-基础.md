@@ -1298,7 +1298,7 @@ mavan 执行每个生命周期都是通过插件来完成，所以对相应的�
 
 - 每一个 Mojo 类都需要实现 `org.apache.maven.plugin.Mojo` 接口。
 
-![](images/55692723247618)
+![](images/55692723247618.jpg)
 
 - 基于实现 Mojo 接口的方式比较困难。可以继承 `AbstractMojo` 抽象类，只要实现 `execute()` 这一个方法即可。示例如下：
 
@@ -1848,7 +1848,7 @@ mvn clean resources:resources -PdevJDBCProfile
 
 执行效果如下：
 
-![](images/20761323239588)
+![](images/20761323239588.jpg)
 
 ## help 插件
 

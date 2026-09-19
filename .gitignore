@@ -35,3 +35,8 @@ vx_recycle_bin
 Work
 desktop.ini
 .*.cloudSyncDisk
+
+# VitePress
+node_modules/
+.vitepress/dist/
+.vitepress/cache/

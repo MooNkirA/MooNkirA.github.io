@@ -145,7 +145,7 @@ idea.system.path=D:/development/JetBrains/.IntelliJIdea/system
 
 ![](images/101241921239591.png)
 
-> Tips: 
+> Tips:
 >
 > - SDKs 全称是 Software Development Kit，配置时一定是选择 JDK 的安装根目录，而不是 JRE 的目录
 > - 点击“+”按钮，可以从本地添加多个 JDK
@@ -1383,7 +1383,7 @@ public class DebugTest {
         int n = 0;
         int result = m / n;
         System.out.println(result);
-        
+
         // Person p1 = new Person(1001);
         // System.out.println(p1.getName().toUpperCase());
     }
@@ -1791,7 +1791,7 @@ spring-boot项目中引入如下依赖
 
 IDEA 2021.2 现在可以展示微服务的图表，在这上面可以看到微信服务交互关系。可以点击 Endpoints 工具窗口中的相应图标进行构建生成。
 
-![](images/488954214238592)
+![](images/488954214238592.jpg)
 
 ### 自动清理缓存和日志(2021.2+版本)
 
@@ -2052,7 +2052,7 @@ Lombok 是一个实用的java工具，使用它可以消除java代码的臃肿�
 
 可以在 mapper 接口中和 mapper 的 xml 文件中来回跳转，就想接口跳到实现类那样简单。
 
-> 目前安装的版本是：Free Mybatis plugin，还一个插件叫 Mybatis plugin 
+> 目前安装的版本是：Free Mybatis plugin，还一个插件叫 Mybatis plugin
 
 ### Key promoter X（快捷键提示）
 
@@ -2252,7 +2252,7 @@ JVM 的参数配置分别是**服务器模式(-server)**和**客户端模式(cli
 - `-Xms512m`：设置 JVM 初始内存为 512m(启动时占用内存大小)。此值可以设置与`-Xmx`相同，以避免每次垃圾回收完成后 JVM 重新分配内存。
 - `-Xmn393m`：设置 JVM 年轻代(Young Generation)大小为393m。<font color=red>**整个堆大小 = 年轻代大小 + 年老代大小 + 持久代大小**</font>。持久代一般固定大小为 64m，所以增大年轻代后，将会减小年老代大小。此值对系统性能影响较大，Sun 官方推荐配置为整个堆的3/8。
 - `-Xss128k`：设置每个线程的堆栈大小为 128k。JDK5.0 以后每个线程堆栈大小为 1M，以前每个线程堆栈大小为 256K。更具应用的线程所需内存大小进行调整。在相同物理内存下，减小这个值能生成更多的线程。但是操作系统对一个进程内的线程数还是有限制的，不能无限生成，经验值在 3000~5000 左右。
-- `-Xverify:none`：关闭 Java 字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间。 
+- `-Xverify:none`：关闭 Java 字节码验证，从而加快了类装入的速度，并使得在仅为验证目的而启动的过程中无需装入类，缩短了启动时间。
 - `-ea`：启动断言检查机制。
 
 ### -XX:+AlwaysPreTouch

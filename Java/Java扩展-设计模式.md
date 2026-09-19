@@ -550,7 +550,7 @@ public static void main(String[] args) {
 适配者中的业务代码被调用！
 ```
 
-# 建造者模式（Builder Pattern）（整理中！）    
+# 建造者模式（Builder Pattern）（整理中！）
 
 ## 定义与特点
 
@@ -914,7 +914,7 @@ public class CoffeeStore {
 现咖啡店业务发生改变，不仅要生产**咖啡**还要生产**甜点**
 
 - 同一个产品等级（产品分类）
-    - 咖啡：拿铁咖啡、美式咖啡 
+    - 咖啡：拿铁咖啡、美式咖啡
     - 甜点：提拉米苏、抹茶慕斯
 - 同一个风味，就是同一个产品族（相当于同一个品牌）
     - 美式风味：美式咖啡、抹茶慕斯
@@ -1073,7 +1073,7 @@ public class LoginReq {
 
 // 响应参数：LoginResp
 @Data
-public class LoginResp{  
+public class LoginResp{
     private Integer userId;
     private String userName;
     private String roleCode;
@@ -1824,7 +1824,7 @@ ProductVO param = ProductVO.builder()
 
 测试结果
 
-![](images/101202020231048)
+![](images/101202020231048.jpg)
 
 场景 3：创建商品库存参数异常（如下stock参数），被库存处理器截断，返回错误信息。
 
@@ -1838,7 +1838,7 @@ ProductVO param = ProductVO.builder()
 
 测试结果
 
-![](images/519432220249474)
+![](images/519432220249474.jpg)
 
 场景4：创建商品所有处理器校验通过，保存商品。
 
@@ -1851,7 +1851,7 @@ ProductVO param = ProductVO.builder()
 
 测试结果
 
-![](images/262662320237341)
+![](images/262662320237341.jpg)
 
 # 门面模式（整理中！）
 

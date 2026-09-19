@@ -313,7 +313,7 @@ UTF8 和 UTF8MB4 是常用的两种字符集，根据业务情况而决定选那
 
 校对规则，（COLLATE）又叫『比较和排序规则』。它是一组规则，负责决定某一字符集下的字符进行比较和排序的结果。如：a,B,c,D，如果使用 utf-8 的编码，按照普通的字母顺序，而且不区分大小写。如果想使用字母的二进制比较和排序，则可以修改它的校对规则。
 
-> Notes: 
+> Notes:
 >
 > - utf8_general_ci：按照普通的字母顺序，而且不区分大小写（比如：a B c D）
 > - utf8_bin：按照二进制排序（比如：A 排在 a 前面，B D a c）
@@ -822,7 +822,7 @@ rename table sutdent to stu;
 ALTER TABLE 表名 CHARACTER SET 新字符集;
 ```
 
-示例： 
+示例：
 
 ```sql
 alter table student character set gbk;
@@ -1087,7 +1087,7 @@ mysql 查询数据有两种方式
 ```sql
 SELECT [all|distinct] |top 数字[percent]
     [ALL | DISTINCT | DISTINCTROW ]
-    
+
 	字段 as 常量 | 包含字段表达式 | 函数(如：sum, max) | 常量
 FROM
 	表或结果集
@@ -1385,15 +1385,15 @@ SQL-92 中加入了行与行比较的功能。如 `=`、`<`、`>` 和 `IN` 等�
 
 具体的 SQL 类似如下：
 
-![](images/516312022230863)
+![](images/516312022230863.jpg)
 
 Mybatis 的动态 SQL 实现，类似如下
 
-![](images/495842422237156)
+![](images/495842422237156.jpg)
 
 此类型 SQL 同样能走索引
 
-![](images/63382222249289)
+![](images/63382222249289.jpg)
 
 总结：行行比较是 SQL 规范，不是某个关系型数据库的规范，即关系型数据库都应该支持这种写法。行行比较是 SQL-92 中引入的，SQL-92 是 1992 年制定的规范，即该写法不是新特性，而是很早就存在的基础功能！
 
@@ -1442,9 +1442,9 @@ select ~3;   -- 位取反
 ```sql
 select
     字段名1，字段名2，……
-from 
+from
     表名
-order by 
+order by
     字段名1 [asc|desc]，字段名2[asc|desc]……
 ```
 
@@ -1521,7 +1521,7 @@ MySQL 会为每个线程分配一个内存（sort-buffer）用于排序，该内
 select 聚合函数名称(数值列名) from 表名;
 ```
 
-> Notes: 
+> Notes:
 >
 > - <font color=red>**聚合函数会排除空值(`null`)的数据**</font>。
 > - 按聚合函数的结果来查询，列必须是数值列（`COUNT`函数除外），如果不是数值列，则结果为0
@@ -2503,7 +2503,7 @@ SELECT * FROM emp WHERE age > 50;
 
 ```sql
 SELECT * FROM emp WHERE salary < 5000
-UNION 
+UNION
 SELECT * FROM emp WHERE age > 50;
 ```
 
@@ -3025,7 +3025,7 @@ select * from mysql.user;
 CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
 ```
 
-> Notes: 
+> Notes:
 >
 > - 在 MySQL 中需要通过`用户名@主机名`的方式，来唯一标识一个用户。
 > - “主机名”表示创建的用户使用的IP地址，可以设置为localhost(代表仅允许本机)或者`'%'`（代表允许所有IP地址登录）
@@ -3118,7 +3118,7 @@ grant all on temp_db.* from 'zero'@'*';
 grant all on *.* from 'moon'@'localhost';
 ```
 
-> Notes: 
+> Notes:
 >
 > - 多个权限之间，使用英文逗号`,`分隔
 > - 授权时，数据库名和表名均可使用`*`进行通配，代表所有
@@ -3839,9 +3839,9 @@ SELECT
 	CHARACTER_MAXIMUM_LENGTH AS '最大长度',
 	( CASE WHEN is_nullable = 'NO' THEN '否' ELSE '是' END ) AS '是否可空',
 	( CASE WHEN column_key = 'PRI' THEN '是' ELSE '否' END ) AS '是否主键',
-	COLUMN_COMMENT AS '描述' 
+	COLUMN_COMMENT AS '描述'
 FROM
-	INFORMATION_SCHEMA.COLUMNS 
+	INFORMATION_SCHEMA.COLUMNS
 WHERE
     table_schema = '数据库名'
     AND table_name = '表名';
