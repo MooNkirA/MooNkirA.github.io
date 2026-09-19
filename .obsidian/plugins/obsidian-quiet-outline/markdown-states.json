@@ -150,15 +150,15 @@
     ]
   },
   "其他/software/Common-Software.md": {
-    "scroll": 235.62890625,
+    "scroll": 212.3661971830986,
     "cursor": {
       "from": {
-        "line": 251,
-        "ch": 0
+        "line": 228,
+        "ch": 50
       },
       "to": {
-        "line": 251,
-        "ch": 0
+        "line": 228,
+        "ch": 50
       }
     },
     "expandedKeys": [
@@ -169,19 +169,15 @@
       "item-2-45",
       "item-2-55",
       "item-3-56",
-      "item-3-62",
       "item-3-66",
-      "item-2-68",
       "item-3-69",
-      "item-2-72",
-      "item-2-77",
       "item-3-15",
       "item-3-8",
       "item-3-27",
       "item-3-29",
       "item-3-32",
-      "item-3-78",
-      "item-3-20"
+      "item-3-20",
+      "item-3-24"
     ]
   },
   "Index.md": {
@@ -440,33 +436,26 @@
     ]
   },
   "其他/software/Windows.md": {
-    "scroll": 26.718009478672986,
+    "scroll": 1733.8675595238096,
     "cursor": {
       "from": {
-        "line": 45,
-        "ch": 11
+        "line": 1760,
+        "ch": 8
       },
       "to": {
-        "line": 45,
-        "ch": 11
+        "line": 1760,
+        "ch": 8
       }
     },
     "expandedKeys": [
       "item-2-0",
-      "item-3-3",
-      "item-2-9",
-      "item-3-15",
-      "item-2-17",
-      "item-3-19",
-      "item-2-21",
-      "item-3-24",
-      "item-3-28",
-      "item-3-31",
-      "item-3-45",
-      "item-2-57",
-      "item-2-62",
-      "item-2-67",
-      "item-2-81"
+      "item-3-9",
+      "item-3-27",
+      "item-3-35",
+      "item-2-39",
+      "item-3-75",
+      "item-3-80",
+      "item-2-99"
     ]
   },
   "AI/Claude-Code.md": {
@@ -602,15 +591,15 @@
     ]
   },
   "AI/AI-编程工具.md": {
-    "scroll": 313.7693436010268,
+    "scroll": 201.15252976190476,
     "cursor": {
       "from": {
-        "line": 348,
-        "ch": 0
+        "line": 153,
+        "ch": 8
       },
       "to": {
-        "line": 348,
-        "ch": 0
+        "line": 153,
+        "ch": 8
       }
     },
     "expandedKeys": [
@@ -644,11 +633,11 @@
     "scroll": 39.14336492890995,
     "cursor": {
       "from": {
-        "line": 34,
+        "line": 30,
         "ch": 0
       },
       "to": {
-        "line": 34,
+        "line": 30,
         "ch": 0
       }
     },
@@ -656,7 +645,8 @@
       "item-2-1",
       "item-2-5",
       "item-2-4",
-      "item-3-5"
+      "item-3-5",
+      "item-2-11"
     ]
   },
   "Python/Python-函数.md": {

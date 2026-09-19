@@ -756,9 +756,9 @@ Markdown可以和HTML的语法兼容，可以通过HTML的标签来实现下划�
 代码示例：
 
 ```html
-<font color=red>****</font>
-<font color=purple>****</font>
-<font color=violet>****</font>
+<span style="color: red;">****</span>
+<span style="color: purple;">****</span>
+<span style="color: violet;">****</span>
 ```
 
 ### 字体、字号配置

@@ -224,8 +224,9 @@ set LANG=zh_CN.UTF8
 
 VNote 是一个受 Vim 启发的开源笔记记录实用程序，还具有 Markdown 编辑功能。当然，您可以像具有便笺管理功能的可高度配置的 Markdown 编辑器一样轻松地查看它，它不会让人失望。
 
-- VNote 官网： https://app.vnote.fun/zh_cn/
-- VNote Github 仓库： https://github.com/vnotex/vnote
+- [VNote 官网](https://docs.vnote.fun/zh/)
+- [VNote Github 仓库](https://github.com/vnotex/vnote)
+- [VNote Gitee 仓库](https://gitee.com/vnotex/vnote)
 - VNote 下载 
    - [百度网盘](https://pan.baidu.com/share/init?surl=Fou1flmBsQUQ8Qs9V_M6Aw#list/path=%2F)  提取码：note
    - [天翼云盘](https://cloud.189.cn/web/share?code=Av67NvmEJVBv)

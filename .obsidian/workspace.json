@@ -13,13 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/Vibe-Coding.md",
+                "file": "AI/AI-编程工具.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Vibe-Coding"
+              "title": "AI-编程工具"
             }
           },
           {
@@ -28,13 +28,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Database/MySQL/MySQL-基础.md",
+                "file": "其他/software/Windows.md",
                 "mode": "source",
                 "source": true,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "MySQL-基础"
+              "title": "Windows"
             }
           }
         ]
@@ -221,11 +221,20 @@
   },
   "active": "9e6a2a1ee3db7973",
   "lastOpenFiles": [
+    "AGENTS.md.tmp.4680.1789744502837",
+    "CLAUDE.md",
+    "CLAUDE.md.tmp.4680.1789743271003",
+    "AGENTS.md.tmp.4680.1789743264246",
+    "AGENTS.md",
+    "新建 文本文档.txt",
+    "新建文件夹",
+    "AI/Vibe-Coding.md",
+    "其他/software/Windows.md",
     "Database/MySQL/MySQL-基础.md",
+    "其他/software/Common-Software.md",
     "后端框架/Spring/Spring-基础.md",
     "分布式微服务/SpringBoot/Spring-Boot-基础篇.md",
     "其他/编程资源分享.md",
-    "AI/Vibe-Coding.md",
     "AI/AI-Assistance/Agent-Skills.md",
     "AI/AI-Assistance/未命名.md",
     "其他/software/foobar2000.md",
@@ -243,29 +252,20 @@
     "其他/software/Visual-Studio-Code.md",
     "项目资料/红包雨场景案例/02-系统设计.md",
     "项目资料/自用信息管理系统/MoonSystem项目开发笔记.md",
-    "项目资料/品达通用权限系统/04-权限服务开发.md",
     "AI/AI-Assistance/images/20260604194535109.jpg",
     "AI/AI-Assistance/images/20260604193434554.jpg",
     "AI/AI-Assistance/images/20260604192954221.jpg",
     "AI/AI-Assistance/images/20260604191259691.jpg",
     "AI/AI-Assistance/images",
-    "分布式微服务/系统架构/架构-基础.md",
-    "DevOps/项目构建工具/Gradle.md",
-    "其他/学习资源/Spring事务管理（一）快速入门.md",
     "AI/AI-Experience",
     "AI/AI-Develop",
     "AI/AI-Assistance",
-    "AI/未命名.md",
     "attachments/工具框架/FastDFS安装教程.pdf",
     "Database/images/20260601130646998.jpg",
     "Database/images/20260601130432856.jpg",
     "Database/images/20260601130331945.jpg",
     "Database/images/20260601125915490.jpg",
     "Database/images/20260601125729907.jpg",
-    "test.js",
-    "AI/images",
-    "CLAUDE.md.tmp.17628.1777895976114",
-    "copilot/copilot-conversations",
-    "copilot/copilot-custom-prompts"
+    "test.js"
   ]
 }

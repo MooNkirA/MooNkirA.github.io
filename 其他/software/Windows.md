@@ -1653,6 +1653,111 @@ Microsoft 在 Windows 11 中添加了一些新功能。例如，Snap Layouts。�
 |          重新加载当前页面          | Ctrl + R |
 |     打开一个新选项卡并切换到它      | Ctrl + T |
 
+## Windows Terminal
+
+### 概念
+
+Windows Terminal（WT）是微软推出的现代终端应用，基于 XAML 构建，支持**多标签页、多窗口、GPU 加速渲染**，可在一个应用中集成 `cmd.exe`、PowerShell、WSL 等多种终端环境。每个终端环境对应一个**配置文件（Profile）**，全部配置存放在 `settings.json` 中，可通过设置界面右下角的「打开 JSON 文件」按钮直接编辑。
+
+### 标签页标题被覆盖问题
+
+双击 `.bat` 启动项目时，标签页标题经常**被 `node` / `npm` 等程序输出覆盖**，显示不出预期的项目名称。原因在于：<span style="color: purple;">**双击 bat 文件永远走「命令提示符」（`cmd.exe`）这个配置文件**</span>，而应用程序运行时可以自行修改窗口标题。
+
+要固定标签页标题，有 A、B 两档方案：
+
+- **A 档（最简单）**：给「命令提示符」配置文件设固定标题 + 打开「抑制应用程序标题」→ 所有 `cmd` 窗口标签页统一显示该标题，<span style="color: red;">**缺点：多个项目无法区分**</span>
+- **B 档（推荐）**：为每个项目各建一个专用配置文件 → 标签页显示各自标题，且以后可从 WT 下拉菜单一键启动
+
+#### A 档：修改「命令提示符」配置文件
+
+1. 打开 Windows Terminal → 点标签页行最右侧的 `⌄` 下拉箭头 → 设置（或直接按 `Ctrl + ,`）
+2. 左侧导航栏找到 配置文件 → 命令提示符（即 `cmd.exe` 项），点它。这里修改的是系统默认 `cmd.exe` 的配置，所有双击 bat 启动的窗口都走这个配置
+3. 右侧顶部找到「选项卡标题」（Tab title）输入框，填入固定标题，如 `[Dev] demo-web`。该字段即标签页上最终显示的标题
+4. 向下滚动到「高级」（Advanced）部分 → 打开「抑制应用程序标题」（Suppress the application title）开关。此开关用于阻止程序（如 `node` / `npm`）运行时自行改写标题
+5. 点右下角「保存」
+
+> [!note]
+> 效果：任何从这个配置启动的窗口（含双击 bat），标签页标题固定为你填的内容，`node` / `npm` 都无法再覆盖。
+
+#### B 档：为项目各建专用配置文件（推荐）
+
+打开设置（同上）→ 左侧最底部「添加新的配置文件」→「新建空配置文件」。*下文示例统一使用 `demo-web` 等示例名称，实际配置时替换为你自己的项目名、脚本路径与端口。*
+
+以 `demo-web` 为例，各字段按下表填写：
+
+| 字段 | 值（示例） | 说明 |
+| :--- | :--- | :--- |
+| 名称 | `demo-web Dev` | 配置文件的显示名称，会出现在 WT 下拉菜单中，可自定义 |
+| 命令行 | `cmd.exe /d /s /c "C:\demo\script\run-dev-demo-web.bat"` | 启动时执行的命令：`cmd.exe /d /s /c` 表示启动 `cmd` 并执行后面的 bat，执行完保持窗口不关闭 |
+| 启动目录 | `C:\demo\demo-web` | 打开终端时的初始工作目录，即 bat 运行时的当前目录 |
+| 选项卡标题 | `[Dev] demo-web (8080)` | 标签页上显示的固定标题，写清项目名与端口便于区分 |
+| 高级 → 抑制应用程序标题 | 打开 | 阻止程序运行时覆盖标签页标题 |
+
+> [!note] 名称、命令行与启动目录要对应同一项目
+>
+> 一个项目对应一个配置文件：命令行指向该项目的启动脚本（bat），启动目录指向该项目源码目录，选项卡标题写该项目名与端口，这样从标签页标题就能一眼分辨当前是哪个项目。
+
+项目较多时，可为每个项目各建一个配置，端口对照示意如下（示例）：
+
+| 项目（示例） | 端口 |
+| :--- | :--- |
+| `demo-web` | 8080 |
+| `demo-api` | 8081 |
+| `demo-admin` | 8082 |
+| `demo-gateway` | 8083 |
+
+保存后，点 WT 下拉箭头 `⌄` → 选择对应配置即可启动，标签页直接显示固定标题，永不被覆盖。
+
+> [!tip] 可选：桌面快捷方式
+>
+> 桌面建快捷方式，目标填 `wt.exe -p "demo-web Dev"`，`-p` 参数后跟配置文件的名称，双击即启动该配置。
+
+### 新版 WT：UI 中无「抑制应用程序标题」开关
+
+新版 Windows Terminal 把「抑制应用程序标题」开关从「高级」页**移除**（配置里出现 "Developer Command Prompt for VS 18" 即为新版本），高级页只剩文本抗锯齿、altGr 别名、历史记录大小等选项。<span style="color: purple;">**该开关现在只能通过 `settings.json` 手动配置**</span>，不是找漏了选项。
+
+#### 手动修改 settings.json
+
+1. 打开设置 → 右下角「打开 JSON 文件」按钮，用记事本打开 `settings.json`
+2. 找到目标 profile（特征：`"commandline"` 里含对应 bat 路径），在 `"tabTitle"` 一行后面加逗号 + 新的一行：
+
+```json
+{
+    "commandline": "cmd.exe /d /s /c \"C:\\demo\\script\\run-dev-demo-web.bat\"",
+    "guid": "{00000000-0000-0000-0000-000000000000}",
+    "hidden": false,
+    "name": "demo-web",
+    "startingDirectory": null,
+    "tabTitle": "demo-web (8080)",
+    "suppressApplicationTitle": true
+}
+```
+
+各字段含义：
+
+| 字段 | 说明 |
+| :--- | :--- |
+| `commandline` | 启动命令，与 GUI 中的「命令行」对应，内含 bat 路径 |
+| `guid` | 配置文件的唯一标识，由 WT 自动生成，示例为占位符，**无需手动填写** |
+| `name` | 配置文件名称，显示在下拉菜单中 |
+| `startingDirectory` | 启动目录，`null` 表示继承默认设置 |
+| `tabTitle` | 标签页固定标题，不设置则显示程序输出的标题 |
+| `suppressApplicationTitle` | 是否抑制应用标题：`true` 表示程序无法覆盖标签页标题，<span style="color: purple;">**新版本唯一可行的设置入口**</span> |
+
+3. 保存（UTF-8 编码，记事本默认即可）→ WT 自动热重载，**无需重启**
+
+> [!warning] 其余项目要一起处理（否则依然不显示）
+>
+> - `demo-api`：同样加 `"suppressApplicationTitle": true`
+> - `demo-admin`：加 `"tabTitle": "demo-admin (8082)"` 和 `"suppressApplicationTitle": true`
+> - `demo-gateway`：整个 profile 还没建，需新增一段（含命令行、名称、`tabTitle`、`suppressApplicationTitle`）
+
+### 注意事项
+
+- <span style="color: red;">**双击 bat 永远走「命令提示符」配置文件**</span>，想区分多个项目必须用 B 档（从 WT 菜单或快捷方式启动），这是 WT 的机制决定的
+- 修改 `settings.json` 保存即生效，WT 自动热重载，无需重启电脑
+- 临时应急：直接右键标签页 → 重命名选项卡，可手动改当前窗口标题，最快但每次都要手动
+
 ## 待整理资料
 
 ### 如何更改或配置 Windows 11/10 中隐藏的电源选项

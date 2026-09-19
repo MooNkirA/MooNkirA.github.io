@@ -151,7 +151,7 @@ Bolt.new 提供多种定价方案，满足不同用户需求：
 
 Cursor 是目前最的 AI 代码编辑器，被称为“AI 时代的 VSCode"。因为它基于 VSCode 改造，保留了 VSCode 的所有优点，同时加入了强大的 AI 功能。
 
-### TRAE Work
+### TRAE
 
 > - 官网 https://www.trae.cn/
 > - 官方文档 https://docs.trae.cn/
