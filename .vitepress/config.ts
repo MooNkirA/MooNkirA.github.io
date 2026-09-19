@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress'
+﻿import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import { wikilinkPlugin } from './wikilink'
 import { generateSidebar } from './sidebar'
@@ -53,7 +53,7 @@ export default withMermaid(
               displayDetails: '显示详细列表',
               resetButtonTitle: '清除查询',
               backButtonTitle: '关闭搜索',
-              noResultsText: '😅 找不到结果',
+              noResultsText: '未找到结果',
               footer: { selectText: '选择', navigateText: '切换' },
             },
           },
@@ -62,8 +62,8 @@ export default withMermaid(
 
       // 上一页 / 下一页
       docFooter: {
-        prev: '上一篇',
-        next: '下一篇',
+        prev: '上一页',
+        next: '下一页',
       },
 
       // 页脚
@@ -79,15 +79,6 @@ export default withMermaid(
         pattern: 'https://github.com/MooNkirA/MooNkirA.github.io/edit/main/:path',
         text: '在 GitHub 上编辑此页',
       },
-
-      // 最后更新时间
-      lastUpdated: {
-        text: '最后更新',
-        formatOptions: {
-          dateStyle: 'short',
-          timeStyle: 'short',
-        },
-      },
     },
 
     // ===== Markdown 增强 =====
@@ -95,26 +86,19 @@ export default withMermaid(
       lineNumbers: false,
       html: false, // 禁用原始 HTML，避免旧笔记中的裸 HTML 导致 Vue 编译错误
       config(md) {
-        // 放行需要的内联样式标签（span/font/b/i 等），其余 HTML 全部转义
+        // html-guard 在渲染后处理：从被转义的文本中恢复白名单 span/font 标签
         md.use(htmlGuardPlugin)
         md.use(wikilinkPlugin, { srcDir })
       },
     },
 
     // ===== Vue 编译器配置 =====
-    // 笔记中包含 JSX/TSX 代码示例（如 style={{ backgroundColor }}），
-    // 其中的 {{ }} 会被 Vue 误判为模板插值。改成分隔符禁用插值解析。
+    // 注意：不要修改 delimiters，会破坏 VitePress 主题组件自身的 {{ }} 插值渲染
+    // 笔记中的 JSX {{ }} 问题通过在 markdown 代码块中自然处理
     vue: {
       template: {
-        compilerOptions: {
-          delimiters: ['\u0000{{', '}}\u0000'],
-        },
+        compilerOptions: {},
       },
-    },
-
-    // ===== Mermaid =====
-    mermaid: {
-      // 明暗主题自动切换
     },
 
     // ===== 构建输出 =====
@@ -124,7 +108,23 @@ export default withMermaid(
     // 不监听的目录
     ignoreDeadLinks: true, // 忽略死链（旧笔记中有一些失效的图片/链接引用）
 
-    // 排除 images 目录（无扩展名图片文件会被 Vite 误判为 JS 模块）
-    srcExclude: ['**/images/**'],
+    // 排除非文档文件和不需要处理的目录
+    srcExclude: ['**/images/**', 'AGENTS.md', '**/.obsidian/**', '**/.trae/**', '**/.claude/**'],
+
+    // ===== Vite 配置 =====
+    // 强制预构建 CJS 模块，解决 dev 模式下 ESM 互操作问题
+    vite: {
+      optimizeDeps: {
+        include: [
+          'dayjs',
+          '@braintree/sanitize-url',
+          'fastdom',
+          'fastdom/extensions/fastdom-promised',
+          'debug',
+          'cytoscape',
+          'cytoscape-cose-bilkent',
+        ],
+      },
+    },
   }),
 )

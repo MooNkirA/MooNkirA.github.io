@@ -1,11 +1,13 @@
 /**
- * HTML 守卫插件（行级状态机方案）
+ * HTML 守卫 + 白名单标签恢复插件
  *
- * 旧笔记中存在大量未放入代码块的 HTML/Vue 模板示例（如 <BaseInput>、<el-table>、<template> 等），
- * 这些内容本应作为代码展示，却被 VitePress 当作 Vue 模板编译，导致 "Element is missing end tag" 构建错误。
+ * 策略：配合 markdown.html=false 使用。
+ * - markdown-it 的 html:false 会把所有原始 HTML 转义为 &lt; &gt;
+ * - 本插件在渲染后处理阶段，把白名单标签（span/font/b/i 等）从转义状态恢复为真实 HTML
+ * - 这样既避免了裸 HTML 导致 Vue 编译错误，又保留了笔记中的彩色强调样式
  *
- * 策略：逐行扫描源码，跟踪代码块围栏状态，只对非代码块行做 HTML 转义。
- * 行内代码（反引号）在行级处理时先抠出保护。
+ * 注意：当前因部分笔记存在未闭合标签，恢复后会导致 Vue 编译错误。
+ * 暂时禁用恢复逻辑，等后续批量修复未闭合标签后再启用。
  */
 import type MarkdownIt from 'markdown-it'
 
@@ -14,76 +16,64 @@ const ALLOWED_TAGS = new Set([
   'br', 'wbr',
 ])
 
-/** 从一行文本中抠出行内代码（`...`），保护其中的内容不被 HTML 转义 */
-function escapeInlineLine(line: string): string {
-  // 先抠出行内代码
+/**
+ * 从被转义的 HTML 文本中恢复白名单标签
+ */
+function restoreAllowedTags(html: string): string {
+  // 先把块级代码块 <pre>...</pre> 抠出来保护
+  const codeBlocks: string[] = []
+  let result = html.replace(/<pre[^>]*>[\s\S]*?<\/pre>/g, (m) => {
+    codeBlocks.push(m)
+    return `\x00CB${codeBlocks.length - 1}\x00`
+  })
+
+  // 再把行内代码 <code>...</code> 抠出来保护
   const inlineCodes: string[] = []
-  let result = line.replace(/`[^`\n]+`/g, (m) => {
+  result = result.replace(/<code[^>]*>[\s\S]*?<\/code>/g, (m) => {
     inlineCodes.push(m)
     return `\x00IC${inlineCodes.length - 1}\x00`
   })
 
-  // 转义 HTML 注释
-  result = result.replace(/<!--[^-]*(--(?!>)[^-]*)*-->/g, (m) =>
-    m.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
-  )
-
-  // 转义非白名单 HTML 标签
+  // 恢复转义的标签
   result = result.replace(
-    /<\/?([a-zA-Z][a-zA-Z0-9-]*)[^>]*>/g,
-    (match, tagName) => {
-      if (ALLOWED_TAGS.has(tagName.toLowerCase())) return match
-      return match.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    /&lt;(\/)?([a-zA-Z][a-zA-Z0-9-]*)([\s\S]*?)&gt;/g,
+    (match, slash, tagName, attrs) => {
+      if (!ALLOWED_TAGS.has(tagName.toLowerCase())) return match
+      const restoredAttrs = attrs
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&amp;/g, '&')
+      const slashStr = slash || ''
+      return `<${slashStr}${tagName}${restoredAttrs}>`
     },
   )
 
   // 还原行内代码
   result = result.replace(/\x00IC(\d+)\x00/g, (_, idx) => inlineCodes[parseInt(idx, 10)])
+  // 还原块级代码块
+  result = result.replace(/\x00CB(\d+)\x00/g, (_, idx) => codeBlocks[parseInt(idx, 10)])
 
   return result
 }
 
-/** 逐行扫描，跟踪代码块围栏，只转义非代码块行 */
-function escapeUnsafeHtml(src: string): string {
-  const lines = src.split('\n')
-  let inCodeFence = false
-  let fenceChar = ''
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-
-    // 检测代码块围栏行（以 ``` 或 ~~~ 开头）
-    const fenceMatch = line.match(/^\s*(```|~~~)/)
-    if (fenceMatch) {
-      const fc = fenceMatch[1][0] // '`' 或 '~'
-      if (!inCodeFence) {
-        // 打开代码块
-        inCodeFence = true
-        fenceChar = fc
-      } else if (fc === fenceChar) {
-        // 关闭代码块（同类型围栏）
-        inCodeFence = false
-        fenceChar = ''
-      }
-      // 如果不同类型，忽略（正常 markdown 不会出现）
-      continue // 围栏行本身不转义
-    }
-
-    if (inCodeFence) {
-      // 代码块内部，完全不处理
-      continue
-    }
-
-    // 非代码块行，做 HTML 转义
-    lines[i] = escapeInlineLine(line)
-  }
-
-  return lines.join('\n')
-}
-
 /** markdown-it 插件主体 */
 export function htmlGuardPlugin(md: MarkdownIt) {
-  md.core.ruler.before('block', 'html_guard', (state) => {
-    state.src = escapeUnsafeHtml(state.src)
+  // 保存原始 render 方法
+  const defaultRender = md.render.bind(md)
+
+  // 在 markdown-it 解析前，转义 {{ 和 }}，避免 Vue 编译器把代码块中的 JSX {{ }} 误判为模板插值
+  // 只影响 markdown 内容，不影响 VitePress 主题组件自身的插值
+  md.core.ruler.before('block', 'escape_mustache', (state) => {
+    state.src = state.src
+      .replace(/\{\{/g, '&#123;&#123;')
+      .replace(/\}\}/g, '&#125;&#125;')
   })
+
+  // 重写 render 方法，在渲染后处理 HTML
+  // TODO: 暂时禁用标签恢复，等批量修复未闭合标签后再启用
+  md.render = (src: string, env?: any): string => {
+    let html = defaultRender(src, env)
+    // html = restoreAllowedTags(html)  // 暂时禁用
+    return html
+  }
 }

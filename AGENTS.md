@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-这是一个个人编程笔记仓库（“MooNkirA 的代码笔记”），按技术主题组织成体系化的中文技术文档。全仓库约 413 篇 Markdown 笔记，同时是 **Obsidian 笔记库** 和 **Docsify 静态文档站**（在线地址 https://moonkira.github.io/#/ ）。
+这是一个个人编程笔记仓库（“MooNkirA 的代码笔记”），按技术主题组织成体系化的中文技术文档。全仓库约 413 篇 Markdown 笔记，同时是 **Obsidian 笔记库** 和 **VitePress 静态文档站**（在线地址 https://moonkira.github.io/ ）。
 
 内容重心：`分布式微服务/`（86 篇）、`项目资料/`（78 篇）、`后端框架/`（47 篇）、`Frontend/`（35 篇）。
 
@@ -59,7 +59,7 @@ Workspace/
 │       Spring/ SpringCloud/ SpringMVC/ Vue/ java学习笔记/ linux/
 │       实战项目/ 工具框架/ 常用工具类/ 并发编程/
 ├── images/                  # 仓库级图片目录（当前仅剩一个未被引用的空 UUID 子目录）
-├── resources/               # 静态资源与 file-map 生成脚本（见下文）
+├── resources/               # 仅保留 README 打赏图片（images/wechat_pay.png、images/ali_pay.jpg）
 ├── 其他/                    # 软件教程、开发工具、学习资源、编程资源分享
 ├── 分布式微服务/              # 分布式与微服务（16 个子目录，86 篇，内容最多）
 ├── 后端框架/                 # Spring、SpringMVC、Spring-Data、MyBatis、Hibernate、Activiti
@@ -68,19 +68,20 @@ Workspace/
 ├── 项目资料/                 # 实战项目案例（品优购、万信金融、学成在线、好客租房等）
 ├── .trae/skills/            # 本仓库的 Agent Skill（写作风格、Obsidian 相关工具技能）
 ├── .obsidian/               # Obsidian 配置与插件（已纳入版本管理）
-├── index.html               # Docsify 文档站入口
-├── README.md                # 手工维护的笔记索引（Docsify 首页）
+├── .vitepress/              # VitePress 配置（config.ts、sidebar.ts、wikilink.ts、html-guard.ts）
+├── .github/workflows/        # GitHub Actions（deploy.yml：push main 自动部署到 Pages）
+├── index.md                 # VitePress 首页（home layout）
+├── README.md                # 手工维护的笔记索引（含打赏二维码）
+├── package.json             # VitePress 依赖与脚本（pnpm 管理）
 └── AGENTS.md                # 本文件；CLAUDE.md 通过 @AGENTS.md 指向此处
 ```
-
-> `_coverpage.md` 与 `_navbar.md` 目前**未在 Docsify 中启用**（`coverpage: false`、`loadNavbar: false`），属历史遗留文件；不要指望改它们能影响站点。
 
 ## 命名与链接约定
 
 - **文件命名**：主导模式是 `主题-子主题.md`，例如 `Java基础-IO编程.md`、`并发编程-线程池.md`、`JVM-GC.md`。子主题在 Java 系用中文、Python 系多用英文，各目录内部保持一致即可。
-- **文件名需全仓库唯一**：<span style="color: purple;">**`file-map.json` 以“不含扩展名的文件名”为键**</span>，同名文件会互相覆盖导致 wiki 链接跳错。当前 413 篇零重名，新增笔记时务必先确认没有同名文件。
+- **文件名需全仓库唯一**：<span style="color: purple;">**VitePress 的 wikilink 插件以”不含扩展名的文件名”为键**</span>，同名文件在构建期后者覆盖前者，会导致 wiki 链接跳错。当前 413 篇零重名，新增笔记时务必先确认没有同名文件。
 - **项目实战类笔记**允许保留教程原始序号风格：`Day07-商品录入模块.md`、`15-项目部署.md`。
-- **跨笔记链接**：Obsidian wiki 链接，实际以带别名形式为主 `[[文件名|显示别名]]`（317 处），锚点形式 `[[文件名#章节|别名]]`；正文里提到其他笔记/章节用书名号《》。
+- **跨笔记链接**：Obsidian wiki 链接，实际以带别名形式为主 `[[文件名|显示别名]]`（317 处），锚点形式 `[[文件名#章节|别名]]`；正文里提到其他笔记/章节用书名号《》。VitePress 构建期由 `.vitepress/wikilink.ts` 自动将其转为标准 Markdown 链接。
 - **图片**：`![](images/文件名.png)`，引用**与笔记同级的 `images/` 子目录**（全仓库 5254 处这种写法，无 `./images/`、`../images/`）。不要臆造路径。
 - 笔记**通常不带 YAML frontmatter**（413 篇中仅 5 篇有），也不写手动 TOC 目录；约 29 篇以 `## 参考…` 收尾。
 
@@ -117,70 +118,68 @@ Workspace/
 
 **主题与外观**：主题 AnuPpuccin（`.obsidian/appearance.json`，`cssTheme: "AnuPpuccin"`）；启用片段 `snippets/extended-colorschemes.css`（另有两枚护眼背景片段未启用）。
 
-## Docsify 文档站
+## VitePress 文档站
 
-站点由 `index.html`（约 269 行）配置，依赖全部走 CDN（docsify 主库、docsify-darklight-theme、13 个 Prism 语言组件、search、zoom-image、copy-code、emoji），无本地构建步骤。
+站点由 VitePress（`^1.6.4`）驱动，配置在 `.vitepress/` 目录下，包管理用 pnpm。
 
-**`window.$docsify` 实际生效项：**
+**核心配置文件（`.vitepress/`）：**
 
-- `maxLevel: 6`、`homepage: 'README.md'`
-- `loadSidebar: false`、`loadNavbar: false`、`coverpage: false`、`mergeNavbar: true`、`auto2top: true`
-- `search`：`paths: 'auto'`、`depth: 6`
-- Mermaid 不是通过 docsify 插件，而是自定义 `markdown.renderer.code` 钩子实现的
-- 导航是 `index.html` 里硬编码的 `<nav>` 块（含 `#/面试手册/面试-README` 等中文 hash 路由）
+| 文件 | 作用 |
+| :--- | :--- |
+| `config.ts` | 主配置：站点标题、导航、搜索、页脚、构建输出等 |
+| `sidebar.ts` | 自动扫描目录树生成侧边栏，按一级分类分组 |
+| `wikilink.ts` | 构建期扫描所有 `.md` 建立文件名→URL 映射，将 `[[文件名]]` 转为标准 Markdown 链接 |
+| `html-guard.ts` | 从被转义的文本中恢复白名单 `<span>`/`<font>` 标签（旧笔记中的彩色样式） |
+| `clean-broken-images.cjs` / `fix-img-paths.cjs` | 维护期脚本（清理坏图、修正图片路径） |
 
-**没有 `alias`、没有 `relativePath`；全仓库不存在任何 `_sidebar.md`。** 因此新增目录或笔记**不需要**创建侧边栏文件，站点导航靠 README 索引 + 搜索。
-
-**Wiki 链接转换插件（`index.html` 末尾）：** `hook.init` 用 `fetch("/resources/file-map.json")` 读取映射（**根绝对路径**），`hook.beforeEach` 用正则解析 `[[名#锚|别名]]` 的三种形式，命中则改写为 `[别名](/目录/文件.md#锚)`，未命中则原样留成字面量。
-
-### 本地预览
-
-<span style="color: red;">**不要直接双击用 `file://` 打开 `index.html`。**</span>根绝对路径的 `fetch("/resources/file-map.json")` 与 `//` 协议 CDN 在 `file://` 下都会失败，wiki 链接全部退化为字面 `[[...]]`。需要一个以仓库根为文档根的静态服务，例如：
+**常用命令（在仓库根目录执行）：**
 
 ```bash
-# 在仓库根目录
-python -m http.server 3000     # 或 npx serve -l 3000
+pnpm docs:dev       # 本地开发预览（默认 http://localhost:5173）
+pnpm docs:build     # 构建到 .vitepress/dist/
+pnpm docs:preview   # 预览构建产物
 ```
 
-### file-map.json 由脚本生成
+<span style="color: red;">**构建时若 OOM，需加内存上限**：</span>413 篇笔记全量 build 在默认 Node 堆下会触发 heap out of memory（exit 134），需先设 `NODE_OPTIONS=--max-old-space-size=8192` 再执行 build。
 
-`resources/file-map.json`（405 条，键为文件名，值为仓库根相对路径，中文不转义）由脚本生成，**不是手工维护**：
+**`config.ts` 实际生效项：**
 
-```bash
-cd resources
-python file_map_generator.py     # 或双击 resources/update-file-map.bat
-```
+- `base: '/'`、`cleanUrls: true`、`outDir: '.vitepress/dist'`
+- 首页是根目录 `index.md`（VitePress home layout），不是 `README.md`
+- 搜索用 VitePress 内置 `provider: 'local'`（Minisearch），中文界面
+- Mermaid 由 `vitepress-plugin-mermaid` npm 包提供
+- 侧边栏由 `sidebar.ts` 自动生成，**不需要手写 `_sidebar.md`**
+- `srcExclude` 排除了 `**/images/**`、`AGENTS.md`、`.obsidian/**`、`.trae/**`、`.claude/**`
+- `ignoreDeadLinks: true`（旧笔记中的失效图片/链接不报错）
+- `markdown.html: false`（禁用原始 HTML，避免旧笔记中的裸 HTML 导致 Vue 编译错误）
 
-- 脚本从仓库根 `rglob("*.md")` 扫描，仅跳过路径含 `resources` 的文件，输出 `{"Java基础-IO编程": "/Java/Java基础-IO编程.md", ...}`。
-- **不会排除** `.obsidian/`、`.trae/`、`.claude/` 等点目录，也不会处理同名冲突。
-- 新增/移动/删除笔记后必须重新生成，否则 Docsify 中对应链接失效。
-- `update-file-map.bat` 内无 `cd`，只能从 `resources/` 目录内执行。
+**Wiki 链接处理**：`.vitepress/wikilink.ts` 在构建期自行扫描仓库内所有 `.md` 文件（排除 `.obsidian`、`.trae`、`.claude`、`.vscode`、`.git`、`node_modules`、`.vitepress`、`resources`、`attachments`），建立映射后将 `[[文件名#章节|别名]]` 替换为标准链接。**不再需要 `file-map.json`，也没有任何生成脚本需要手动跑。**
+
+**旧 `_coverpage.md` / `_navbar.md`**：已从根目录删除，不再使用。
 
 ## 索引与部署
 
-- **`README.md` 是手工维护的笔记索引**：12 个 `##` 分区（AI、Java 核心技术、后端框架、前端、数据库、DevOps、Linux、分布式微服务、并发编程、Python、其他、项目实战），条目全部用 `[[文件名|别名]]`。新增重要笔记应补进对应分区——目前有缺口（`面试手册/` 的 10 篇面试题、`其他/学习资源/` 等尚未收录）。
-- **发布方式**：无 CI、无构建流水线。`git remote` 指向 `git@github.com:MooNkirA/MooNkirA.github.io.git`，`main` 分支即用户站点仓库，**`git push` 即上线**，Pages 直接服务仓库根。
-- `.nojekyll`（空文件）用于关闭 Jekyll 处理，保证 `_` 开头文件与点目录原样发布；`.obsidian/`、`resources/` 也在发布范围内。
-- `.gitignore` 只忽略编辑器与构建产物（`.vscode`、`*.class`、`target`、`*.iml`、VNote 缓存、`desktop.ini` 等），不忽略笔记内容。
+- **`README.md`**：手工维护的笔记索引，12 个 `##` 分区（AI、Java 核心技术、后端框架、前端、数据库、DevOps、Linux、分布式微服务、并发编程、Python、其他、项目实战），条目全部用 `[[文件名|别名]]`；末尾含打赏二维码（引用 `resources/images/` 下的两张图）。新增重要笔记应补进对应分区——目前有缺口（`面试手册/` 的 10 篇面试题、`其他/学习资源/` 等尚未收录）。
+- **首页是 `index.md`**（VitePress home layout），不是 `README.md`。
+- **发布方式**：GitHub Actions 自动部署，配置在 `.github/workflows/deploy.yml`。push 到 `main` 分支后自动触发：ubuntu runner 上 `pnpm install` → `pnpm docs:build`（已配 8GB 堆）→ 上传 `.vitepress/dist` 为 artifact → `deploy-pages` 发布到 GitHub Pages。也支持在 Actions 页面手动 `workflow_dispatch` 触发。Pages 来源设为 "GitHub Actions"，不需要本地 build 或手动推送 dist。
+- `.nojekyll`（空文件）用于关闭 Jekyll 处理，保证 `_` 开头文件与点目录原样发布。
+- `.gitignore` 忽略编辑器与构建产物（`.vscode`、`*.class`、`target`、`*.iml`、VNote 缓存、`desktop.ini`、`node_modules/`、`.vitepress/dist/`、`.vitepress/cache/` 等），不忽略笔记内容。
 
 ## 新增一篇笔记的完整流程
 
 1. 读 `.trae/skills/moon-note-style/SKILL.md`，按其骨架与约定撰写。
-2. 确认文件名符合 `主题-子主题.md` 且**全仓库无同名文件**。
+2. 确认文件名符合 `主题-子主题.md` 且**全仓库无同名文件**（wikilink 插件以文件名为键，重名会覆盖）。
 3. 放到对应主题目录（一层深，如 `Java/`、`分布式微服务/SpringBoot/`）；跨主题的概览笔记可放在主题目录顶层。
 4. 图片放到该笔记同级的 `images/` 目录，用 `![](images/xxx.png)` 引用。
-5. 用 `[[文件名|别名]]` 关联相关笔记。
+5. 用 `[[文件名|别名]]` 关联相关笔记（VitePress 构建期自动解析为标准链接，无需手动维护映射表）。
 6. 在 `README.md` 的相应分区补一条索引。
-7. 执行 `cd resources && python file_map_generator.py` 重新生成映射。
-8. 校对：对照 Skill 的 12 项清单自查，尤其 `<font>`/`<u>`、H1、行尾硬换行、代码块语言标注。
+7. 校对：对照 Skill 的 12 项清单自查，尤其 `<font>`/`<u>`、H1、行尾硬换行、代码块语言标注。
 
 ## 已知问题与待确认项
 
-- `header-enhancer` 已禁用，与“编号交给插件”的风格约定冲突（见上文 callout）。
-- `resources/file-map.json` 存在 **9 条失效条目**，指向已删除的 `.claude/skills/*` 与已移动的 `AI/Agent-Skills.md`、`AI/Claude-Code*.md`；`.claude/` 目录已在工作区删除，其 Skill 迁到了 `.trae/skills/`（目前未纳入版本管理）。运行一次生成脚本即可清理。
-- `file_map_generator.py` 不排除点目录，未来若点目录内含 `.md` 会被写入映射。
+- `header-enhancer` 已禁用，与”编号交给插件”的风格约定冲突（见上文 callout）。
 - `AI/AI-Experience/` 是空目录；根 `images/` 仅剩一个未被任何笔记引用的空 UUID 子目录 `images/23b0f52d-9c8b-40bb-a170-48968575303f/`。
-- `resources/css/`、`resources/js/` 下有大量未引用的 docsify 旧主题与本地 `mermaid.min.js` 备份（`vue.css`、`buble.css`、`dark.css`、`dolphin.css`、`pure.css`、`theme-custom.css` 及 `prismjs@1.22.0/`、`docsify-themeable@0.8.4/` 等），实际生效的只有 `custom.css`。
+- VitePress 全量 build 内存消耗大（413 篇笔记），默认 Node 堆会 OOM，需 `NODE_OPTIONS=--max-old-space-size=8192`（CI 已在 `.github/workflows/deploy.yml` 中配好，本地 build 需手动设）。
 - `AGENTS.md` 尚未纳入版本管理；`CLAUDE.md` 已缩减为 `@AGENTS.md` 入口。
 
 ## 协作注意事项
