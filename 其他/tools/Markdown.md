@@ -138,7 +138,7 @@ Markdown 应用程序在处理单词或短语中间添加的下划线上并不�
 >
 >> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
 
-#### 带有其它元素的块引用（Blockquotes with Other Elements）    
+#### 带有其它元素的块引用（Blockquotes with Other Elements）
 
 块引用可以包含其他 Markdown 格式的元素。注意：并非所有元素都可以使用
 
@@ -418,8 +418,8 @@ See the section on [`code`](#code).
 
 渲染效果如下：
 
-I love supporting the **[EFF](https://eff.org)**.  
-This is the *[Markdown Guide](https://www.markdownguide.org)*.  
+I love supporting the **[EFF](https://eff.org)**.
+This is the *[Markdown Guide](https://www.markdownguide.org)*.
 See the section on [`code`](#code).
 
 #### 引用式链接（待整理）
@@ -612,6 +612,8 @@ That is so funny! :joy:
 
 大多 Markdown 应用程序允许你在 Markdown 格式文本中添加 HTML 标签。如通过 HTML 标签添加图像更加容易。当需要更改元素的属性时（例如为文本指定颜色或更改图像的宽度），使用 HTML 标签更方便些。
 
+> [!warning] 以下 HTML 的标签，并非全部 Markdown 软件都能支持其渲染！甚至可能会引起渲染时报错，页面无法正常显示。
+
 ### 上下标
 
 ```html
@@ -670,15 +672,17 @@ Markdown可以和HTML的语法兼容，可以通过HTML的标签来实现下划�
 
 ### 文字居中
 
-使用 `<center>` 标签来文字居中，原理就是此标签自带了 `text-align: center` 的样式
+使用 `<center>` 标签来文字居中，原理就是此标签自带了 `text-align: center` 的样式。但有部分 Markdown 软件可能不支持渲染此标签，可以尝试换成 `<span style="display:block;text-align:center;">`。
 
 ```html
 <center>我居中了？？</center>
+<!-- 或者 -->
+<span style="display:block;text-align:center;">我居中了？？</span>
 ```
 
 渲染效果如下：
 
-<center>我居中了？？</center>
+<span style="display:block;text-align:center;">我居中了？？</span>
 
 ### 文字悬浮注释
 
@@ -719,7 +723,7 @@ Markdown可以和HTML的语法兼容，可以通过HTML的标签来实现下划�
 
 <details>
   <summary>点击查看更多</summary>
-  <p>我是一段被隐藏的内容</p>
+  我是一段被隐藏的内容
 </details>
 
 ### 进度条
@@ -731,9 +735,7 @@ Markdown可以和HTML的语法兼容，可以通过HTML的标签来实现下划�
 
 渲染效果如下：
 
-<div>
-    <progress max="100" value="60"/>
-</div>
+<progress max="100" value="60"/>
 
 ## 字体、字号与颜色、背景颜色
 
@@ -812,7 +814,7 @@ Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏�
 - 半方大的空白`&ensp;`或`&#8194;`
 - 全方大的空白`&emsp;`或`&#8195;`
 - 不断行的空白格`&nbsp;`或`&#160;`
-  
+
 ### 方式二
 
 在段落首输入如下代码，实现首行缩进

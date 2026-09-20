@@ -291,10 +291,7 @@ tab的宽度设置
 
 ### 官方快捷键列表
 
-- 官网地址：https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
-- windows 快捷键
-
-<img src="../../resources/attachments/IDE/Visual-Studio-Code-keyboard-shortcuts-windows.jpg" alt="" style="width: 80%; height: auto;">
+官网地址 https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
 
 ### 常用快捷键
 

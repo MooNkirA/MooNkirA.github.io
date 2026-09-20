@@ -152,7 +152,7 @@ ALTER TABLE 表名 DROP [INDEX|KEY] 索引名;
 - **R-tree 索引（空间索引）**：空间索引是 MyISAM 引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少，了解即可。
 - **Full-text（全文索引）**：全文索引也是 MyISAM 的一个特殊索引类型，主要用于全文索引，InnoDB 从 MySQL 5.6 版本开始支持全文索引。
 
-<center><b>MyISAM、InnoDB、Memory 三种存储引擎对各种索引类型的支持</b></center>
+**MyISAM、InnoDB、Memory 三种存储引擎对各种索引类型的支持**
 
 |    索引     |   InnoDB引擎    | MyISAM引擎 | Memory引擎 |
 | ----------- | -------------- | --------- | ---------- |

@@ -13,8 +13,8 @@ const srcDir = resolve(__dirname, '..')
 export default withMermaid(
   defineConfig({
     // ===== 站点信息 =====
-    title: 'MooNkirA Code Note',
-    description: '个人编程笔记 —— Java、分布式、前端、数据库与 DevOps',
+    title: 'MooN Code Note',
+    description: '个人编程笔记 —— AI、分布式、全栈、数据库与 DevOps',
     lang: 'zh-CN',
     // 用户站点（MooNkirA.github.io），base 为根路径
     base: '/',
@@ -26,12 +26,12 @@ export default withMermaid(
       // 顶部导航
       nav: [
         { text: '首页', link: '/' },
-        { text: '面试手册', link: '/面试手册/' },
-        { text: '编程资源分享', link: '/其他/编程资源分享' },
         {
           text: '语雀',
           link: 'https://www.yuque.com/moonkira/code-note',
         },
+        { text: '编程资源分享', link: '/其他/编程资源分享' },
+        { text: 'Github', link: 'https://github.com/MooNkirA/MooNkirA.github.io' },
       ],
 
       // 侧边栏：自动生成
@@ -68,7 +68,7 @@ export default withMermaid(
 
       // 页脚
       footer: {
-        message: '基于 VitePress 构建 · MooNkirA',
+        message: 'I know where dry desert ends, green grass grows · MooN',
       },
 
       // 返回顶部
@@ -109,10 +109,14 @@ export default withMermaid(
     ignoreDeadLinks: true, // 忽略死链（旧笔记中有一些失效的图片/链接引用）
 
     // 排除非文档文件和不需要处理的目录
-    srcExclude: ['**/images/**', 'AGENTS.md', '**/.obsidian/**', '**/.trae/**', '**/.claude/**'],
+    srcExclude: ['**/images/**', '**/attachments/**', '**/resources/**', 'AGENTS.md', '**/.obsidian/**', '**/.trae/**', '**/.claude/**'],
 
     // ===== Vite 配置 =====
     // 强制预构建 CJS 模块，解决 dev 模式下 ESM 互操作问题
+    // 注意：必须写与 mermaid 源码中完全一致的导入写法（带 .js 后缀）。
+    // mermaid 的 dist 里是 `import ... from 'fastdom/extensions/fastdom-promised.js'`，
+    // Vite 按精确字符串匹配预构建条目，不带 .js 的条目不会命中，会退化为直接
+    // 下发原始 CJS 文件，导致浏览器报 "does not provide an export named 'default'"。
     vite: {
       optimizeDeps: {
         include: [
@@ -120,6 +124,7 @@ export default withMermaid(
           '@braintree/sanitize-url',
           'fastdom',
           'fastdom/extensions/fastdom-promised',
+          'fastdom/extensions/fastdom-promised.js',
           'debug',
           'cytoscape',
           'cytoscape-cose-bilkent',

@@ -35,6 +35,7 @@
 - [Markdown 参考笔记](tools/Markdown)
 - [Hexo 博客搭建工具](tools/Hexo)
 - [docsify 文档类型网站搭建工具](tools/docsify)
+- [VitePress 文档构建工具](tools/VitePress)
 - [Mermaid 基于 Javascript 的绘图语法](tools/Mermaid)
 
 ## 学习资源

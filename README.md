@@ -1,4 +1,4 @@
-﻿> 个人编程笔记文档，持续更新中...😉
+> 个人编程笔记文档，持续更新中...😉
 
 ## 🤖 Artificial Intelligence（人工智能）
 
@@ -487,6 +487,7 @@
 - [Markdown 参考笔记](其他/tools/Markdown.md)
 - [Hexo 博客搭建工具](其他/tools/Hexo.md)
 - [docsify 文档类型网站搭建工具](其他/tools/docsify.md)
+- [VitePress 文档构建工具](其他/tools/VitePress.md)
 - [Mermaid 基于 Javascript 的绘图语法](其他/tools/Mermaid.md)
 
 ### 🖥️ 系统软件工具
@@ -522,4 +523,4 @@ Github Pages 在线阅读地址：[点击进入](https://moonkira.github.io/#/)
 
 如果本项目对你有帮助，今天可以喝杯咖啡吗？😁
 
-![](resources/images/wechat_pay.png)  ![](resources/images/ali_pay.jpg)
+![](attachments/images/wechat_pay.png)  ![](attachments/images/ali_pay.jpg)

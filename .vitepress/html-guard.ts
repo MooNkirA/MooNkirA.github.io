@@ -6,15 +6,21 @@
  * - 本插件在渲染后处理阶段，把白名单标签（span/b/i 等）从转义状态恢复为真实 HTML
  * - 这样既避免了裸 HTML 导致 Vue 编译错误，又保留了笔记中的彩色强调样式
  *
- * 注意：恢复逻辑已启用。白名单只放行行内样式标签（span/b/i 等），
+ * 注意：恢复逻辑已启用。白名单默认只放行行内样式标签（span/b/i 等），
  * 块级标签（ul/div/table 等）不在白名单内，仍保持转义——这些 docsify 遗留结构
  * 应直接改写成标准 Markdown，而不是靠 HTML 渲染。
+ * 另放行少量有真实用途且 Vue 模板编译器能识别的标签：
+ * details/summary（折叠块）、abbr（悬浮注释）、progress（进度条）。
+ * 注意：center 不能放行——Vue 编译器不识别该标签，会按自定义组件解析，
+ * 导致 SSR 产物中该元素内容整体丢失（实测 MySQL-索引.md 的居中标题在构建后消失）。
+ * 需要居中请用 <span style="display:block;text-align:center;">。
  */
 import type MarkdownIt from 'markdown-it'
 
 const ALLOWED_TAGS = new Set([
   'span', 'font', 'b', 'i', 'em', 'strong', 'u', 'small', 'sub', 'sup', 'mark',
   'br', 'wbr',
+  'details', 'summary', 'abbr', 'progress',
 ])
 
 /**

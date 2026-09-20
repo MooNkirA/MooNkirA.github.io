@@ -20,7 +20,6 @@
     ".vitepress/cache/",
     ".git/",
     ".github/",
-    ".trae/",
     ".claude/"
   ]
 }
