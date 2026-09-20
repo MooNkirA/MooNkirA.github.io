@@ -7,5 +7,35 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontSize": 13,
-    "editor.fontFamily": "'Cascadia Code SemiBold', Consolas, 'Courier New', monospace"
+    "editor.fontFamily": "'Cascadia Code SemiBold', Consolas, 'Courier New', monospace",
+
+    // ===== 排除目录：文件浏览器中隐藏 =====
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/.vitepress/dist": true,
+        "**/.vitepress/cache": true,
+        "**/.obsidian/workspace": true,
+        "**/.obsidian/workspace-mobile.json": true,
+        "**/.obsidian/cache": true,
+        "**/.trash": true
+    },
+
+    // ===== 排除目录：搜索时不检索 =====
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/.vitepress/dist": true,
+        "**/.vitepress/cache": true,
+        "**/attachments": true,
+        "**/resources": true,
+        "**/images": true
+    },
+
+    // ===== 排除目录：文件监听不监控（提升性能） =====
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/.vitepress/dist/**": true,
+        "**/.vitepress/cache/**": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true
+    }
 }

@@ -377,7 +377,7 @@ public void testLogParent() {
 
 输出结果：
 
-```true
+```
 logger2 Parent: java.util.logging.LogManager$RootLogger@573fd745 , name:
 六月 17, 2022 7:40:56 下午 com.moon.log.JULTest testLogParent
 严重: severe
@@ -2953,7 +2953,7 @@ log.info("req = {}", aRequest);
 
 打印结果却是以下形式：
 
-```console
+```
 com.hollis.java.ways.ApplyRequest@39ddf169
 ```
 

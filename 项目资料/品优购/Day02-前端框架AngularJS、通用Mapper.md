@@ -484,7 +484,7 @@ public void delete() {
 	添加相关查询条件方法。
 
     > 例：`criteria.andEqualTo("categoryId", categoryId)`
-    > 
+    >
     > `criteria.andEqualTo("status", "1")`
 
 ![Example查询对象相关方法](images/20181217230619072_19983.jpg)
@@ -1475,7 +1475,7 @@ export class SimpleFormComponent implements OnInit {
 
 成功运行以上代码，当我们点击按钮时，控制台将输出
 
-```cmd
+```bash
 MouseEvent {isTrusted: true, screenX: 180, screenY: 207, clientX: 165,  clientY: 75…}
 ```
 

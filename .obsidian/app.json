@@ -13,5 +13,14 @@
   "useMarkdownLinks": false,
   "showInlineTitle": false,
   "strictLineBreaks": true,
-  "useTab": false
+  "useTab": false,
+  "userIgnoreFilters": [
+    "node_modules/",
+    ".vitepress/dist/",
+    ".vitepress/cache/",
+    ".git/",
+    ".github/",
+    ".trae/",
+    ".claude/"
+  ]
 }

@@ -1410,7 +1410,7 @@ log4j.appender.stdout.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%t]
 
 - 配置nginx，修改nginx.conf，增加配置
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  www.moon.com moon.com;

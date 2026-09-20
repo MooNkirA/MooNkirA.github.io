@@ -459,7 +459,7 @@ db.createUser(
 
 1. 在 mongo.conf 中设置`auth=true`
 
-```conf
+```properties
 # 开启认证登陆
 auth=true
 ```

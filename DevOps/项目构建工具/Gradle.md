@@ -358,7 +358,7 @@ dependencies {
 ```groovy
 dependencies {
     def bootVersion = "2.5.8"
-    compile     "org.springframework.boot:spring-boot-starter-web:${bootVersion}",  
+    compile     "org.springframework.boot:spring-boot-starter-web:${bootVersion}",
                 "org.springframework.boot:spring-boot-starter-data-jpa:${bootVersion}",
                 "org.springframework.boot:spring-boot-starter-tomcat:${bootVersion}"
 }
@@ -410,8 +410,8 @@ dependencies {
       [group: 'org.springframework', name: 'spring-aop', version: '2.5']
   )
   // 采用简写方式声明
-  compile 'org.projectlombok:lombok:1.16.10' 
-  // 采用简写方式传入多个 
+  compile 'org.projectlombok:lombok:1.16.10'
+  // 采用简写方式传入多个
   compile 'org.springframework:spring-core:2.5',
           'org.springframework:spring-aop:2.5'
 }
@@ -433,7 +433,7 @@ dependencies {
 
 依赖存在于本地文件系统中，即中央仓库与私服都没有的jar，，可以通过 `FileCollection` 接口及其子接口提供的方法加载这些依赖（支持文件通配符）
 
-```groovy  
+```groovy
 dependencies {
     // 指定多个依赖
     compile files('hibernate.jar', 'libs/spring.jar')
@@ -450,7 +450,7 @@ dependencies {
 
 跟随 Gradle 发行包或者基于 Gradle API 的一些依赖，通常在插件开发时使用，当前提供了如下三种：
 
-```groovy  
+```groovy
 dependencies {
     // 加载Gradle自带的groovy作为依赖
     compile localGroovy()
@@ -687,7 +687,7 @@ dependencies {
 
 使用命令`gradle -?`或`gradle -h`或`gradle --help`查询gradle相关命令与说明
 
-```console
+```
 -?, -h, --help            Shows this help message.
 -a, --no-rebuild          Do not rebuild project dependencies.
 -b, --build-file          Specify the build file.

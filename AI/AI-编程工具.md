@@ -193,7 +193,7 @@ Windows 系统 Trae 缓存目录迁移操作步骤（需要管理员权限）
 - 确认原位置目录已删除（剪切后自动删除）。**必须删除，否则他那符号链接时会报错**。
 - 以管理员身份运行 `CMD`（搜索 "cmd" -> 右键 -> 以管理员身份运行）。执行以下命令（替换`<用户名>`和目标路径）：
 
-```cmd
+```bash
 mklink /D "C:\Users\<用户名>\AppData\Roaming\Trae CN" "D:\TraeData\Trae CN"
 mklink /D "C:\Users\<用户名>\.trae-cn" "D:\TraeData\.trae-cn"
 mklink /D "C:\Users\<用户名>\AppData\Roaming\TRAE SOLO CN" "D:\TraeData\TRAE-SOLO-CN"
@@ -226,7 +226,7 @@ Qoder 是面向真实软件的智能体编程平台。
 - 目标盘新建总目录（示例：`D:\QoderData`），用于存放所有迁移数据
 - **必须用管理员权限 CMD** 执行命令
 
-```cmd
+```bash
 mkdir D:\QoderData\.qoder
 mkdir D:\QoderData\Qoder
 ```
@@ -236,7 +236,7 @@ mkdir D:\QoderData\Qoder
     - 剪切 `%APPDATA%\Qoder` -> `D:\QoderData\Qoder`
 - 使用管理员 CMD 创建符号链接
 
-```cmd
+```bash
 :: 迁移核心目录 .qoder
 mklink /D "%USERPROFILE%\.qoder" "D:\QoderData\.qoder"
 
@@ -246,7 +246,7 @@ mklink /D "%APPDATA%\Qoder" "D:\QoderData\Qoder"
 
 - 删除符号链接（恢复默认）
 
-```cmd
+```bash
 rmdir "%USERPROFILE%\.qoder"
 rmdir "%APPDATA%\Qoder"
 ```

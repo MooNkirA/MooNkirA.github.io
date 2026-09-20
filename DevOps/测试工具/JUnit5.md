@@ -400,7 +400,7 @@ public class AssertionsTest {
 
 ```java
 public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable)
-public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable, String message) 
+public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable, String message)
 public static <T extends Throwable> T assertThrows(Class<T> expectedType, Executable executable, Supplier<String> messageSupplier)
 ```
 
@@ -441,7 +441,7 @@ public class ExceptionTest {
 执行结果
 
 ```java
-org.opentest4j.AssertionFailedError: Unexpected exception type thrown, 
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown,
 Expected :class java.lang.NullPointerException
 Actual   :class java.lang.NumberFormatException
 
@@ -775,7 +775,7 @@ void testWithCsvFileSource(String first, int second) {
 
 在 resources 目录中创建 two-column.csv 文件，内容如下：
 
-```csv
+```
 foo, 1
 bar, 2
 "baz, qux", 3

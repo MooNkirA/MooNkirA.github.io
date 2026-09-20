@@ -82,7 +82,7 @@ Elasticsearch 提供 RESTful Api 接口进行索引、搜索，并且支持多�
 
 - bin：脚本目录，包括：启动、停止等可执行脚本
 - config：配置文件目录，包括 ES 服务器所有使用的配置文件
-- jdk：此目录中包含了一个完整的 JDK 工具包，版本17，当 ES 升级时，使用最新版本的 JDK 
+- jdk：此目录中包含了一个完整的 JDK 工具包，版本17，当 ES 升级时，使用最新版本的 JDK
 - lib：包含 ES 运行的依赖 jar 文件
 - data：索引目录，存放索引文件的地方
 - logs：日志目录，包含 ES 运行后产生的所有日志文件
@@ -198,7 +198,7 @@ su elasticsearch
 
 方法2：也可通过下边的方式修改文件进行持久设置。打开`/etc/security/limits.conf`文件，将下边的设置加入到此文件中
 
-```conf
+```bash
 elasticsearch ‐ nofile 65536
 ```
 
@@ -1657,7 +1657,7 @@ public class TestSearch {
 
 测试结果
 
-```console
+```
 搜索匹配到的总记录数：3
 主键id====1
 name字段====Bootstrap开发
@@ -1757,7 +1757,7 @@ public void testSearchPage() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：3
 主键id====1
 name字段====Bootstrap开发
@@ -1841,7 +1841,7 @@ public void testTermQuery() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：1
 主键id====3
 name字段====spring开发基础
@@ -1922,7 +1922,7 @@ public void testTermQueryByIds() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：2
 主键id====1
 name字段====Bootstrap开发
@@ -2017,7 +2017,7 @@ public void testMatchQuery() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：2
 主键id====3
 name字段====spring开发基础
@@ -2065,7 +2065,7 @@ searchSourceBuilder.query(QueryBuilders.matchQuery("description", "spring开发�
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：1
 主键id====1
 name字段====Bootstrap开发
@@ -2182,7 +2182,7 @@ public void testMultiMatchQuery() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：2
 主键id====3
 name字段====spring开发基础
@@ -2466,7 +2466,7 @@ public void testFilter() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：1
 主键id====3
 name字段====spring开发基础
@@ -2576,7 +2576,7 @@ public void testSort() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：3
 主键id====1
 name字段====Bootstrap开发
@@ -2756,7 +2756,7 @@ public void testHighlight() throws IOException {
 
 搜索结果
 
-```console
+```
 搜索匹配到的总记录数：3
 主键id====1
 name字段====Bootstrap<tag>开发</tag>

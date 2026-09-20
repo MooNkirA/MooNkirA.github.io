@@ -33,7 +33,7 @@ $ git commit --amend --only -m 'xxxxxxx'
 如果只是单个提交(commit)，则通过以下命令修改：
 
 ```bash
-$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"  
+$ git commit --amend --author "New Authorname <authoremail@mydomain.com>"
 ```
 
 > 如果需要修改所有历史，参考 'git filter-branch'的指南页.
@@ -73,7 +73,7 @@ $ git push -f [remote] [branch]
 
 ```bash
 $ git rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT
-$ git push -f [remote] [branch]  
+$ git push -f [remote] [branch]
 ```
 
 或者做一个 交互式rebase 删除那些想要删除的提交(commit)里所对应的行。
@@ -81,13 +81,13 @@ $ git push -f [remote] [branch]
 ### 尝试推一个修正后的提交(amended commit)到远程，但是报错：
 
 ```
-To https://github.com/yourusername/repo.git  
-! [rejected]        mybranch -> mybranch (non-fast-forward)  
-error: failed to push some refs to 'https://github.com/tanay1337/webmaker.org.git'  
-hint: Updates were rejected because the tip of your current branch is behind  
-hint: its remote counterpart. Integrate the remote changes (e.g.  
-hint: 'git pull ...') before pushing again.  
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.  
+To https://github.com/yourusername/repo.git
+! [rejected]        mybranch -> mybranch (non-fast-forward)
+error: failed to push some refs to 'https://github.com/tanay1337/webmaker.org.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
 注意，rebasing(见下面)和修正(amending)会用一个**新的提交(commit)代替旧的**，所以如果之前已经往远程仓库上推过一次修正前的提交(commit)，那现在就必须强推(`force push`) (`-f`)。注意*总是*确保指明一个分支!
@@ -146,13 +146,13 @@ $ git add -N filename.x
 
 ```bash
 $ git commit -m "WIP"
-$ git add .  
-$ git stash  
-$ git reset HEAD^  
-$ git stash pop --index 0  
+$ git add .
+$ git stash
+$ git reset HEAD^
+$ git stash pop --index 0
 ```
 
-> Notes: 
+> Notes:
 >
 > 1. 这里使用`pop`仅仅是因为想尽可能保持幂等。
 > 2. 假如不加上`--index`，会把暂存的文件标记为存储。
@@ -178,13 +178,13 @@ $ git stash pop
 如果只是想重置源(origin)和本地(local)之间的一些提交(commit)，使用以下命令：
 
 ```bash
-# one commit  
+# one commit
 (my-branch)$ git reset --hard HEAD^
-# two commits  
+# two commits
 (my-branch)$ git reset --hard HEAD^^
-# four commits  
+# four commits
 (my-branch)$ git reset --hard HEAD~4
-# or  
+# or
 (main)$ git checkout -f
 ```
 
@@ -243,10 +243,10 @@ $ git reset --hard c5bc55a
 先确认没有推送(push)本地的内容到远程。使用`git status` 命令显示领先(ahead)源(origin)多少个提交：
 
 ```bash
-(my-branch)$ git status  
-# On branch my-branch  
-# Your branch is ahead of 'origin/my-branch' by 2 commits.  
-#   (use "git push" to publish your local commits)  
+(my-branch)$ git status
+# On branch my-branch
+# Your branch is ahead of 'origin/my-branch' by 2 commits.
+#   (use "git push" to publish your local commits)
 #
 ```
 
@@ -309,12 +309,12 @@ HEAD is now at a13b85e
 这会把这个文件内容从分支 `solution` 拿到分支 `develop` 里来：
 
 ```
-# On branch develop  
-# Your branch is up-to-date with 'origin/develop'.  
-# Changes to be committed:  
-#  (use "git reset HEAD <file>..." to unstage)  
-#  
-#        modified:   file1.txt 
+# On branch develop
+# Your branch is up-to-date with 'origin/develop'.
+# Changes to be committed:
+#  (use "git reset HEAD <file>..." to unstage)
+#
+#        modified:   file1.txt
 ```
 
 然后正常提交
@@ -324,25 +324,25 @@ HEAD is now at a13b85e
 假设有一个`main`分支，执行`git log`，看到做过两次提交：
 
 ```bash
-(main)$ git log  
-  
-commit e3851e817c451cc36f2e6f3049db528415e3c114  
-Author: Alex Lee <alexlee@example.com>  
-Date:   Tue Jul 22 15:39:27 2014 -0400  
-  
-    Bug #21 - Added CSRF protection  
-  
-commit 5ea51731d150f7ddc4a365437931cd8be3bf3131  
-Author: Alex Lee <alexlee@example.com>  
-Date:   Tue Jul 22 15:39:12 2014 -0400  
-  
-    Bug #14 - Fixed spacing on title  
-  
-commit a13b85e984171c6e2a1729bb061994525f626d14  
-Author: Aki Rose <akirose@example.com>  
-Date:   Tue Jul 21 01:12:48 2014 -0400  
-  
-    First commit 
+(main)$ git log
+
+commit e3851e817c451cc36f2e6f3049db528415e3c114
+Author: Alex Lee <alexlee@example.com>
+Date:   Tue Jul 22 15:39:27 2014 -0400
+
+    Bug #21 - Added CSRF protection
+
+commit 5ea51731d150f7ddc4a365437931cd8be3bf3131
+Author: Alex Lee <alexlee@example.com>
+Date:   Tue Jul 22 15:39:12 2014 -0400
+
+    Bug #14 - Fixed spacing on title
+
+commit a13b85e984171c6e2a1729bb061994525f626d14
+Author: Aki Rose <akirose@example.com>
+Date:   Tue Jul 21 01:12:48 2014 -0400
+
+    First commit
 ```
 
 先用提交hash(commit hash)标记bug (`e3851e8` for #21, `5ea5173` for #14).
@@ -404,23 +404,23 @@ README.md foo.txt
 添加文件并做一次提交
 
 ```bash
-(my-branch)$ git add .  
-(my-branch)$ git commit -m 'foo.txt added'  
-(my-branch)$ foo.txt added  
- 1 files changed, 1 insertions(+)  
- create mode 100644 foo.txt  
-(my-branch)$ git log  
-  
-commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012  
-Author: siemiatj <siemiatj@example.com>  
-Date:   Wed Jul 30 00:34:10 2014 +0200  
-  
-    foo.txt added  
-  
-commit 69204cdf0acbab201619d95ad8295928e7f411d5  
-Author: Kate Hudson <katehudson@example.com>  
-Date:   Tue Jul 29 13:14:46 2014 -0400  
-  
+(my-branch)$ git add .
+(my-branch)$ git commit -m 'foo.txt added'
+(my-branch)$ foo.txt added
+ 1 files changed, 1 insertions(+)
+ create mode 100644 foo.txt
+(my-branch)$ git log
+
+commit 4e3cd85a670ced7cc17a2b5d8d3d809ac88d5012
+Author: siemiatj <siemiatj@example.com>
+Date:   Wed Jul 30 00:34:10 2014 +0200
+
+    foo.txt added
+
+commit 69204cdf0acbab201619d95ad8295928e7f411d5
+Author: Kate Hudson <katehudson@example.com>
+Date:   Tue Jul 29 13:14:46 2014 -0400
+
     Fixes #6: Force pushing after amending commits
 ```
 
@@ -451,7 +451,7 @@ Switched to a new branch 'my-branch-help'
 (my-branch-help)$ git reset --hard 4e3cd85
 HEAD is now at 4e3cd85 foo.txt added
 (my-branch-help)$ ls
-README.md foo.txt 
+README.md foo.txt
 ```
 
 Git的 `reflog` 在rebasing出错的时候也是同样有用的。
@@ -537,27 +537,27 @@ Switched to a new branch 'daves'
 在执行了交互式 rebase的命令(interactive rebase command)后，将在编辑器里看到类似下面的内容
 
 ```
-pick a9c8a1d Some refactoring  
-pick 01b2fd8 New awesome feature  
-pick b729ad5 fixup  
-pick e3851e8 another fix  
-  
-# Rebase 8074d12..b729ad5 onto 8074d12  
-#  
-# Commands:  
-#  p, pick = use commit  
-#  r, reword = use commit, but edit the commit message  
-#  e, edit = use commit, but stop for amending  
-#  s, squash = use commit, but meld into previous commit  
-#  f, fixup = like "squash", but discard this commit's log message  
-#  x, exec = run command (the rest of the line) using shell  
-#  
-# These lines can be re-ordered; they are executed from top to bottom.  
-#  
-# If you remove a line here THAT COMMIT WILL BE LOST.  
-#  
-# However, if you remove everything, the rebase will be aborted.  
-#  
+pick a9c8a1d Some refactoring
+pick 01b2fd8 New awesome feature
+pick b729ad5 fixup
+pick e3851e8 another fix
+
+# Rebase 8074d12..b729ad5 onto 8074d12
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
 # Note that empty commits are commented out
 ```
 
@@ -566,34 +566,34 @@ pick e3851e8 another fix
 例如如果想**单独保留最旧(first)的提交(commit)，组合所有剩下的到第二个里面**，就应该编辑第二个提交(commit)后面的每个提交(commit) 前的单词为 `f`：
 
 ```bash
-pick a9c8a1d Some refactoring  
-pick 01b2fd8 New awesome feature  
-f b729ad5 fixup  
+pick a9c8a1d Some refactoring
+pick 01b2fd8 New awesome feature
+f b729ad5 fixup
 f e3851e8 another fix
 ```
 
 如果想组合这些提交(commit)**并重命名这个提交(commit)**，应该在第二个提交(commit)旁边添加一个`r`，或者更简单的用`s` 替代 `f`：
 
 ```
-pick a9c8a1d Some refactoring  
-pick 01b2fd8 New awesome feature  
-s b729ad5 fixup  
+pick a9c8a1d Some refactoring
+pick 01b2fd8 New awesome feature
+s b729ad5 fixup
 s e3851e8 another fix
 ```
 
 可以在接下来弹出的文本提示框里重命名提交(commit)
 
 ```
-Newer, awesomer features  
-  
-# Please enter the commit message for your changes. Lines starting  
-# with '#' will be ignored, and an empty message aborts the commit.  
-# rebase in progress; onto 8074d12  
-# You are currently editing a commit while rebasing branch 'main' on '8074d12'.  
-#  
-# Changes to be committed:  
-# modified:   README.md  
-# 
+Newer, awesomer features
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# rebase in progress; onto 8074d12
+# You are currently editing a commit while rebasing branch 'main' on '8074d12'.
+#
+# Changes to be committed:
+# modified:   README.md
+#
 ```
 
 如果成功了，应该看到类似下面的内容：
@@ -660,36 +660,36 @@ noop
 如果不能成功的完成 rebase，可能必须要解决冲突。首先执行 `git status` 找出哪些文件有冲突:
 
 ```bash
-(my-branch)$ git status  
-On branch my-branch  
-Changes not staged for commit:  
-  (use "git add <file>..." to update what will be committed)  
-  (use "git checkout -- <file>..." to discard changes in working directory)  
-  
- modified:   README.md  
+(my-branch)$ git status
+On branch my-branch
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+ modified:   README.md
 ```
 
 在这个例子里面, `README.md` 有冲突。打开这个文件找到类似下面的内容：
 
 ```
- <<<<<<< HEAD  
-   some code  
-   =========  
-   some code  
+ <<<<<<< HEAD
+   some code
+   =========
+   some code
    >>>>>>> new-commit
 ```
 
 需要解决新提交的代码(示例里, 从中间`==`线到`new-commit`的地方)与`HEAD` 之间不一样的地方。有时候这些合并非常复杂，应该使用可视化的差异编辑器(visual diff editor):
 
 ```bash
-(main*)$ git mergetool -t opendiff  
+(main*)$ git mergetool -t opendiff
 ```
 
 在解决完所有冲突和测试过后，`git add` 变化了的(changed)文件，然后用`git rebase --continue` 继续rebase。
 
 ```bash
-(my-branch)$ git add README.md  
-(my-branch)$ git rebase --continue  
+(my-branch)$ git add README.md
+(my-branch)$ git rebase --continue
 ```
 
 如果在解决完所有的冲突过后，得到了与提交前一样的结果，可以执行`git rebase --skip`。
@@ -697,7 +697,7 @@ Changes not staged for commit:
 任何时候想结束整个rebase 过程，回来rebase前的分支状态,，可以做：
 
 ```bash
-(my-branch)$ git rebase --abort  
+(my-branch)$ git rebase --abort
 ```
 
 ## Stash
@@ -706,7 +706,7 @@ Changes not staged for commit:
 
 暂存工作目录下的所有改动：
 
-```ba
+```bash
 $ git stash
 ```
 
@@ -833,26 +833,26 @@ $ git update-ref refs/tags/<tag_name> <hash>
 在 OS X 和 Linux 下，Git的配置文件储存在 `~/.gitconfig`。在`[alias]` 部分添加了一些快捷别名(和一些容易拼写错误的)，如下：
 
 ```
-[alias]  
-    a = add  
-    amend = commit --amend  
-    c = commit  
-    ca = commit --amend  
-    ci = commit -a  
-    co = checkout  
-    d = diff  
-    dc = diff --changed  
-    ds = diff --staged  
-    f = fetch  
-    loll = log --graph --decorate --pretty=oneline --abbrev-commit  
-    m = merge  
-    one = log --pretty=oneline  
-    outstanding = rebase -i @{u}  
-    s = status  
-    unpushed = log @{u}  
-    wc = whatchanged  
-    wip = rebase -i @{u}  
-    zap = fetch -p  
+[alias]
+    a = add
+    amend = commit --amend
+    c = commit
+    ca = commit --amend
+    ci = commit -a
+    co = checkout
+    d = diff
+    dc = diff --changed
+    ds = diff --staged
+    f = fetch
+    loll = log --graph --decorate --pretty=oneline --abbrev-commit
+    m = merge
+    one = log --pretty=oneline
+    outstanding = rebase -i @{u}
+    s = status
+    unpushed = log @{u}
+    wc = whatchanged
+    wip = rebase -i @{u}
+    zap = fetch -p
 ```
 
 ### 缓存一个仓库(repository)的用户名和密码

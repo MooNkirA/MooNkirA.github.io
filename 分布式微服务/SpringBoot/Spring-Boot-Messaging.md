@@ -392,7 +392,7 @@ public class MessageListener {
     public void receive(String id) {
         System.out.println("direct_queue 队列已完成短信发送业务，id：" + id);
     }
-    
+
     // 如果定义多个监听同一个队列，那么 RabbitMQ 会以轮询的方式让每个消费者平均消费消息
     @RabbitListener(queues = "direct_queue")
     public void receive2(String id) {
@@ -659,7 +659,7 @@ public class MessageListener implements RocketMQListener<String> {
 
 启动工程与 RocketMQ 服务，在浏览器访问 http://localhost/order/S1838323 。观察项目控制台日志输出
 
-```console
+```
 系统很忙碌地处理 id 为：S1838323 的订单....
 接收到 id：S1838323 的订单，准备给用户发送短信通知...
 消息发送成功！

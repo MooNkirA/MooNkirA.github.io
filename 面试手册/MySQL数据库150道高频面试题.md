@@ -66,27 +66,27 @@ name age sex
 
 以`页28`为例，它对应`目录项2` ，这个目录项中包含着该页的`页号28`以及该页中用户记录的`最小主键值 5`。我们只需要把几个目录项在物理存储器上连续存储（比如：数组），就可以实现根据主键值快速查找某条记录的功能了。`比如：查找主键值为 20 的记录，具体查找过程分两步：`
 
-1. 先从目录项中根据二分法快速确定出`主键值为20的记录在目录项3中`（因为 12 ≤ 20 < 209 ），`对应页9`。 
+1. 先从目录项中根据二分法快速确定出`主键值为20的记录在目录项3中`（因为 12 ≤ 20 < 209 ），`对应页9`。
 2. 再到页9中根据二分法快速定位到主键值为 20 的用户记录。
 
-至此，针对数据页做的简易目录就搞定了。这个目录有一个别名，称为`索引` 。 
+至此，针对数据页做的简易目录就搞定了。这个目录有一个别名，称为`索引` 。
 
 #### InnoDB中的索引方案
 
-我们新分配一个编号为30的页来专门存储`目录项记录`，页10、28、9、20专门存储`用户记录`： 
+我们新分配一个编号为30的页来专门存储`目录项记录`，页10、28、9、20专门存储`用户记录`：
 
 ![image-20220709073749310](images/image-20220709074801215.png)
 
 ![img](images/1557565-20220429110413866-1755798300.png)
 
-`目录项记录和普通的用户记录的不同点：` 
+`目录项记录和普通的用户记录的不同点：`
 
 - 目录项记录 的 record_type 值是1，而 普通用户记录 的 record_type 值是0。
 - 目录项记录只有主键值和页的编号两个列，而普通的用户记录的列是用户自己定义的，包含很多列，另外还有InnoDB自己添加的隐藏列。
 
 `现在查找主键值为 20 的记录，具体查找过程分两步：`
 
-1. 先到页30中通过二分法快速定位到对应目录项，因为 12 ≤ 20 < 209 ，就是页9。 
+1. 先到页30中通过二分法快速定位到对应目录项，因为 12 ≤ 20 < 209 ，就是页9。
 2. 再到页9中根据二分法快速定位到主键值为 20 的用户记录。
 
 **更复杂的情况如下：**
@@ -203,7 +203,7 @@ AVL的生成演示：https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
 **普通树的问题**
 
 - 左子树全部为空，从形式上看，更像一个单链表，不能发挥BST的优势。
-- `解决方案：平衡二叉树(AVL)` 
+- `解决方案：平衡二叉树(AVL)`
 
 ![image-20220708231622916](images/image-20220708231622916.png)
 
@@ -424,7 +424,7 @@ c2，c3 - > index
 
 c3,c2 -> index
 
-where c3=? 
+where c3=?
 
 全职匹配
 
@@ -453,11 +453,11 @@ where c3=?
 
 ```sql
 CREATE TABLE customer (
-    
+
   id INT UNSIGNED AUTO_INCREMENT,
   customer_no VARCHAR(200),
   customer_name VARCHAR(200),
-    
+
   PRIMARY KEY(id), -- 主键索引：列设定为主键后会自动建立索引，唯一且不能为空。
   UNIQUE INDEX uk_no (customer_no), -- 唯一索引：索引列值必须唯一，允许有NULL值，且NULL可能会出现多次。
   KEY idx_name (customer_name), -- 普通索引：既不是主键，列值也不需要唯一，单纯的为了提高查询速度而创建。
@@ -515,9 +515,9 @@ CREATE INDEX idx_no_name ON customer1(customer_no,customer_name); -- 复合索�
 
 创建索引时避免有如下极端误解：
 
- 1）宁滥勿缺。认为一个查询就需要建一个索引。 
+ 1）宁滥勿缺。认为一个查询就需要建一个索引。
 
-2）宁缺勿滥。认为索引会消耗空间、严重拖慢更新和新增速度。 
+2）宁缺勿滥。认为索引会消耗空间、严重拖慢更新和新增速度。
 
 3）抵制惟一索引。认为业务的惟一性一律需要在应用层通过“先查后插”方式解决。
 
@@ -591,7 +591,7 @@ EXPLAIN SELECT * FROM emp WHERE emp.name IS NOT NULL
 - 类型转换导致索引失效
 
 ```sql
-EXPLAIN SELECT * FROM emp WHERE name='123'; 
+EXPLAIN SELECT * FROM emp WHERE name='123';
 EXPLAIN SELECT * FROM emp WHERE name= 123; --索引失效
 ```
 
@@ -722,13 +722,13 @@ Select id,age,name from stu order by name;
 
 - 增大sort_buffer_size参数的设置
 - 增大max_length_for_sort_data参数的设置
-- 减少select 后面的查询的字段。 禁止使用select * 
+- 减少select 后面的查询的字段。 禁止使用select *
 
-**提高Order By的速度** 
+**提高Order By的速度**
 
 1. Order by时select * 是一个大忌。只Query需要的字段， 这点非常重要。在这里的影响是：
     - 当Query的字段大小总和小于max_length_for_sort_data 而且排序字段不是 TEXT|BLOB 类型时，会用改进后的算法——单路排序， 否则用老算法——多路排序。
-    - 两种算法的数据都有可能超出sort_buffer的容量，超出之后，会创建tmp文件进行合并排序，导致多次I/O，但是用单路排序算法的风险会更大一些，所以要提高sort_buffer_size。 
+    - 两种算法的数据都有可能超出sort_buffer的容量，超出之后，会创建tmp文件进行合并排序，导致多次I/O，但是用单路排序算法的风险会更大一些，所以要提高sort_buffer_size。
 2. 尝试提高 sort_buffer_size
     - 不管用哪种算法，提高这个参数都会提高效率，当然，要根据系统的能力去提高，因为这个参数是针对每个进程（connection）的 1M-8M之间调整。 MySQL5.7和8.0，InnoDB存储引擎默认值是1048576字节，1MB。
 
@@ -740,7 +740,7 @@ SHOW VARIABLES LIKE '%sort_buffer_size%';
     - 提高这个参数， 会增加用改进算法的概率。
 
 ```sql
-SHOW VARIABLES LIKE '%max_length_for_sort_data%'; 
+SHOW VARIABLES LIKE '%max_length_for_sort_data%';
 ```
 
 - 5.7默认1024字节
@@ -848,13 +848,13 @@ MySQL服务器之外的客户端程序，与具体的语言相关，例如Java�
 
 **SQL Interface：SQL接口：**
 
-- `接收用户的SQL命令，并且返回用户需要查询的结果。`比如SELECT ... FROM就是调用SQL Interface 
+- `接收用户的SQL命令，并且返回用户需要查询的结果。`比如SELECT ... FROM就是调用SQL Interface
 - MySQL支持DML（数据操作语言）、DDL（数据定义语言）、存储过程、视图、触发器、自定义函数等多种SQL语言接口
 
 **Parser：解析器：**
 
 - 在SQL命令传递到解析器的时候会被解析器验证和解析。解析器中SQL 语句进行`语法分析、语法解析`，并为其创建`语法树`。
-- 
+-
 
 **语法分析**
 
@@ -886,7 +886,7 @@ MySQL服务器之外的客户端程序，与具体的语言相关，例如Java�
 
 - MySQL内部维持着一些Cache和Buffer，比如Query Cache用来缓存一条SELECT语句的执行结果，如果能够在其中找到对应的查询结果，那么就不必再进行查询解析、查询优化和执行的整个过程了，直接将结果反馈给客户端。
 - 这个缓存机制是由一系列小缓存组成的。比如表缓存，记录缓存，key缓存，权限缓存等 。
-- 这个查询缓存可以在不同客户端之间共享 。 
+- 这个查询缓存可以在不同客户端之间共享 。
 
 
 
@@ -992,11 +992,11 @@ SHOW VARIABLES LIKE '%default_storage_engine%';
 `4. Blackhole引擎`
 
 - `Blackhole引擎没有实现任何存储机制，它会丢弃所有插入的数据，不做任何保存`。
-- 但服务器会记录Blackhole表的日志，所以可以用于复制数据到备库，或者简单地记录到日志。但这种应用方式会碰到很多问题，因此并不推荐。 
+- 但服务器会记录Blackhole表的日志，所以可以用于复制数据到备库，或者简单地记录到日志。但这种应用方式会碰到很多问题，因此并不推荐。
 
 
 
-`5. CSV引擎` 
+`5. CSV引擎`
 
 - `CSV引擎可以将普通的CSV文件作为MySQL的表来处理，但不支持索引`。
 - CSV引擎可以作为一种数据交换的机制，非常有用。
@@ -1046,7 +1046,7 @@ https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html
 
 #### 能否单独为一张表设置存储引擎？
 
-### 
+###
 
 `方法1：`
 
@@ -1059,7 +1059,7 @@ SET DEFAULT_STORAGE_ENGINE=MyISAM;
 `方法2：`
 
 或者修改 my.cnf 文件：vim /etc/my.cnf
-新增一行：default-storage-engine=MyISAM 
+新增一行：default-storage-engine=MyISAM
 重启MySQL：systemctl restart mysqld
 
 `方法3：`
@@ -1130,7 +1130,7 @@ ALTER TABLE 表名 ENGINE = 存储引擎名称;
 
 3 交回来
 
-事务是数据库的逻辑工作单位，事务中包含的各操作**要么都做，要么都不做** 
+事务是数据库的逻辑工作单位，事务中包含的各操作**要么都做，要么都不做**
 
 **2 、一致性**  consistency
 
@@ -1138,19 +1138,19 @@ ALTER TABLE 表名 ENGINE = 存储引擎名称;
 
 **保证要吃完** 刚张嘴挂了，失去一致性
 
-事 务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。因此当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。如果数据库系统 运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，这时数据库就处于一种不正确的状态，或者说是 不一致的状态。 
+事 务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。因此当数据库只包含成功事务提交的结果时，就说数据库处于一致性状态。如果数据库系统 运行中发生故障，有些事务尚未完成就被迫中断，这些未完成事务对数据库所做的修改有一部分已写入物理数据库，这时数据库就处于一种不正确的状态，或者说是 不一致的状态。
 **3 、隔离性** isolation
 
 并发事务互相干扰
 
 **不被干扰** 刚张嘴别人塞了东西
 
-一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰。 
+一个事务的执行不能其它事务干扰。即一个事务内部的操作及使用的数据对其它并发事务是隔离的，并发执行的各个事务之间不能互相干扰。
 **4 、持续性** **永久性** durability
 
 **保存** 吃到肚子里
 
-也称永久性，指一个事务一旦提交，它对数据库中的数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。 
+也称永久性，指一个事务一旦提交，它对数据库中的数据的改变就应该是永久性的。接下来的其它操作或故障不应该对其执行结果有任何影响。
 
 ### 并发事务会有哪些问题？
 
@@ -1158,7 +1158,7 @@ ALTER TABLE 表名 ENGINE = 存储引擎名称;
 
 #### 什么是脏读 丢失修改 不可重复读 幻读
 
-#### 
+####
 
 **脏读（Dirty read）**
 
@@ -1194,7 +1194,7 @@ ALTER TABLE 表名 ENGINE = 存储引擎名称;
 
 #### 什么是事务隔离级别？
 
-```pgsql
+```
 事务隔离级别                    脏读     不可重复读(被修改)    幻读（删减）
 读未提交（read-uncommitted）    是        是            是
 不可重复读（read-committed）    否        是            是
@@ -1252,7 +1252,7 @@ insert、update、delete
 
 **非锁定读**
 
-v10 -> age=18 
+v10 -> age=18
 
 v11 ->age=19
 
@@ -1377,7 +1377,7 @@ mysql的xa事务分为两部分：
 
 XA 事务语法示例如下：
 
-```text
+```
 XA START '自定义事务id';
 
 SQL语句...
@@ -1492,8 +1492,8 @@ error log主要记录MySQL在启动、关闭或者运行过程中的错误信息
 
 0.1秒
 
-- MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超过阀值的语句，具体指运行时间超过long_query_time值的SQL，则会被记录到慢查询日志中。 
-- long_query_time的默认值为10，意思是运行10秒以上的语句。 
+- MySQL的慢查询日志是MySQL提供的一种日志记录，它用来记录在MySQL中响应时间超过阀值的语句，具体指运行时间超过long_query_time值的SQL，则会被记录到慢查询日志中。
+- long_query_time的默认值为10，意思是运行10秒以上的语句。
 - 由他来查看哪些SQL超出了我们的最大忍耐时间值，比如一条sql执行超过5秒钟，我们就算慢SQL，希望能收集超过5秒的sql，结合之前explain进行全面分析。
 - 默认情况下，MySQL数据库没有开启慢查询日志，需要我们手动来设置这个参数。
 - 当然，如果不是调优需要的话，一般不建议启动该参数，因为开启慢查询日志会或多或少带来一定的性能影响。慢查询**日志支持将日志记录写入文件**。
@@ -1558,7 +1558,7 @@ binlog 写入策略：
 取值2：每次事务提交 都写给操作系统 由系统接管什么时候写入磁盘   每次都把redo log写到系统的page cache中，由系统接管什么时候写入磁盘
 ```
 
-时机顺序： 
+时机顺序：
 
 - 1 开启事务
 - 2 查询数据库中需要更新的字段，加载到内存中 形成数据**脏页**
@@ -1661,7 +1661,7 @@ MySQL在5.5.3之后增加了这个utf8mb4的编码，mb4就是most bytes 4的意
 
 #### 有没有在开发中使用过TEXT,BLOB 数据类型
 
- BLOB 之前做ERP的时候使用过，互联网项目一般不用BLOB 
+ BLOB 之前做ERP的时候使用过，互联网项目一般不用BLOB
 
 TEXT  文献，文章，小说类，新闻，会议内容 等
 
@@ -1830,7 +1830,7 @@ Too many tables; MySQL can only use 61 tables in a join；
 
 官方自带：
 
-- EXPLAIN 
+- EXPLAIN
 - mysqldumpslow
 - show profiles 时间
 - optimizer_trace
@@ -1850,13 +1850,13 @@ Too many tables; MySQL can only use 61 tables in a join；
 
 `SHOW VARIABLES LIKE '%slow_query_log%'; `
 
-默认情况下slow_query_log的值为OFF，表示慢查询日志是禁用的， 
+默认情况下slow_query_log的值为OFF，表示慢查询日志是禁用的，
 
-​                               
+​
 
 1. 开启：`set global     slow_query_log=1;` 只对窗口生效，重启服务失效
 
- 
+
 
 1. 慢查询日志记录long_query_time时间
 
@@ -1884,9 +1884,9 @@ SET SESSION long_query_time=0.1; #session可省略
 
 1. 永久生效
 
-1. - 修改配置文件my.cnf（其它系统变量也是如此） 
+1. - 修改配置文件my.cnf（其它系统变量也是如此）
    - [mysqld]下增加或修改参数
-   - slow_query_log 和slow_query_log_file后，然后重启MySQL服务器。也即将如下两行配置进my.cnf文件 
+   - slow_query_log 和slow_query_log_file后，然后重启MySQL服务器。也即将如下两行配置进my.cnf文件
 
 slow_query_log =1
 
@@ -1910,7 +1910,7 @@ SELECT * FROM emp WHERE deptid > 1;
 
 /var/lib/mysql/localhost-slow.log
 
-SHOW GLOBAL STATUS LIKE '%Slow_queries%'; 
+SHOW GLOBAL STATUS LIKE '%Slow_queries%';
 
 **日志分析工具mysqldumpslow**
 
@@ -1946,7 +1946,7 @@ a)   mysqldumpslow --help
 
 ·    -g: 后边搭配一个正则匹配模式，大小写不敏感的；
 
-  得到返回记录集最多的10个SQL  mysqldumpslow  -s r -t 10 /var/lib/mysql/localhost-slow.log  得到访问次数最多的10个SQL  mysqldumpslow  -s c -t 10 /var/lib/mysql/localhost-slow.log  得到按照时间排序的前10条里面含有左连接的查询语句  mysqldumpslow  -s t -t 10 -g  "left join"  /var/lib/mysql/localhost-slow.log  另外建议在使用这些命令时结合 | 和more 使用 ，否则有可能出现爆屏情况  mysqldumpslow  -s r -t 10 /var/lib/mysql/localhost-slow.log | more  
+  得到返回记录集最多的10个SQL  mysqldumpslow  -s r -t 10 /var/lib/mysql/localhost-slow.log  得到访问次数最多的10个SQL  mysqldumpslow  -s c -t 10 /var/lib/mysql/localhost-slow.log  得到按照时间排序的前10条里面含有左连接的查询语句  mysqldumpslow  -s t -t 10 -g  "left join"  /var/lib/mysql/localhost-slow.log  另外建议在使用这些命令时结合 | 和more 使用 ，否则有可能出现爆屏情况  mysqldumpslow  -s r -t 10 /var/lib/mysql/localhost-slow.log | more
 ```
 
 
@@ -1963,7 +1963,7 @@ a)   mysqldumpslow --help
 
 #### 132 EXPLAIN关键字中的重要指标有哪些？
 
-## 
+##
 
 ### EXPLAIN是什么
 
@@ -1985,7 +1985,7 @@ EXPLAIN + SQL语句
 
 ```sql
 USE atguigudb;
- 
+
 CREATE TABLE t1(id INT(10) AUTO_INCREMENT, content VARCHAR(100) NULL, PRIMARY KEY (id));
 CREATE TABLE t2(id INT(10) AUTO_INCREMENT, content VARCHAR(100) NULL, PRIMARY KEY (id));
 CREATE TABLE t3(id INT(10) AUTO_INCREMENT, content VARCHAR(100) NULL, PRIMARY KEY (id));
@@ -2045,7 +2045,7 @@ EXPLAIN SELECT * FROM t1, t2, t3;
 
 
 
-- **id不同：**如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行 
+- **id不同：**如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行
 
 ```sql
 EXPLAIN SELECT t1.id FROM t1 WHERE t1.id =(
@@ -2125,7 +2125,7 @@ EXPLAIN SELECT * FROM t3 WHERE id = ( SELECT id FROM t2 WHERE content = t3.conte
 - **UNCACHEABLE SUBQUREY：**表示这个subquery的查询要受到外部系统变量的影响
 
 ```sql
-EXPLAIN SELECT * FROM t3 
+EXPLAIN SELECT * FROM t3
 WHERE id = ( SELECT id FROM t2 WHERE content = @@character_set_server);
 ```
 
@@ -2137,9 +2137,9 @@ WHERE id = ( SELECT id FROM t2 WHERE content = @@character_set_server);
 - **UNION RESULT：**UNION会对查询结果进行查询去重，MYSQL会使用临时表来完成UNION查询的去重工作，针对这个临时表的查询就是"UNION RESULT"。
 
 ```sql
-EXPLAIN 
-SELECT * FROM t3 WHERE id = 1 
-UNION  
+EXPLAIN
+SELECT * FROM t3 WHERE id = 1
+UNION
 SELECT * FROM t2 WHERE id = 1;
 ```
 
@@ -2152,8 +2152,8 @@ SELECT * FROM t2 WHERE id = 1;
 ```sql
  EXPLAIN SELECT * FROM t1 WHERE content IN
  (
- SELECT content FROM t2 
- UNION 
+ SELECT content FROM t2
+ UNION
  SELECT content FROM t3
  );
 ```
@@ -2202,13 +2202,13 @@ EXPLAIN SELECT * FROM (SELECT * FROM t1 WHERE content = 't1_832') AS derived_t1;
 
 
 
-#### type **☆** 
+#### type **☆**
 
 > **说明：**
 >
-> 结果值从最好到最坏依次是： 
+> 结果值从最好到最坏依次是：
 >
-> `system > const > eq_ref > ref` > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > `range > index > ALL` 
+> `system > const > eq_ref > ref` > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > `range > index > ALL`
 >
 > `比较重要的包含：system、const 、eq_ref 、ref、range > index > ALL`
 >
@@ -2229,7 +2229,7 @@ EXPLAIN SELECT * FROM t1;
 
 - **index：**当使用`覆盖索引`，但需要扫描全部的索引记录时
 
-`覆盖索引：`如果能通过读取索引就可以得到想要的数据，那就不需要读取用户记录，或者不用再做回表操作了。一个索引包含了满足查询结果的数据就叫做覆盖索引。 
+`覆盖索引：`如果能通过读取索引就可以得到想要的数据，那就不需要读取用户记录，或者不用再做回表操作了。一个索引包含了满足查询结果的数据就叫做覆盖索引。
 
 ```sql
 -- 只需要读取聚簇索引部分的非叶子节点，就可以得到id的值，不需要查询叶子节点
@@ -2359,16 +2359,16 @@ EXPLAIN SELECT id FROM t1 WHERE id = 1;
 
 
 
-#### key_len **☆** 
+#### key_len **☆**
 
 表示索引使用的字节数，根据这个值可以判断索引的使用情况，`检查是否充分利用了索引，针对联合索引值越大越好。`
 
 **如何计算：**
 
-1. 先看索引上字段的类型+长度。比如：int=4 ; varchar(20) =20 ; char(20) =20 
+1. 先看索引上字段的类型+长度。比如：int=4 ; varchar(20) =20 ; char(20) =20
 2. 如果是varchar或者char这种字符串字段，视字符集要乘不同的值，比如utf8要乘 3，如果是utf8mb4要乘4，GBK要乘2
 3. varchar这种动态字符串要加2个字节
-4. 允许为空的字段要加1个字节 
+4. 允许为空的字段要加1个字节
 
 ```sql
 -- 创建索引
@@ -2432,7 +2432,7 @@ EXPLAIN SELECT * FROM t_emp WHERE `name` = '风清扬';
 
 
 
-#### Extra **☆** 
+#### Extra **☆**
 
 包含不适合在其他列中显示但十分重要的额外信息。通过这些额外信息来`理解MySQL到底将如何执行当前的查询语句`。MySQL提供的额外信息有好几十个，这里只挑介绍比较重要的介绍。
 
@@ -2559,9 +2559,9 @@ EXPLAIN SELECT * FROM t_emp, t_dept WHERE t_dept.id = t_emp.deptId;
 
 4. 定位到具体sql
 
-   
 
-**2 pidstat** 
+
+**2 pidstat**
 
 1. 定位到线程
 2. 在PERFORMANCE_SCHEMA.THREADS中记录了thread_os_id 找到线程执行的sql
@@ -2590,9 +2590,9 @@ EXPLAIN SELECT * FROM t_emp, t_dept WHERE t_dept.id = t_emp.deptId;
 
 **垂直分库**
 
-一个数据库由很多表的构成，每个表对应着**不同的业务**，垂直切分是指按照业务将表进行分类，分布到不同 的数据库上面，这样也就将数据或者说压力分担到不同的库上面，如下图：       
+一个数据库由很多表的构成，每个表对应着**不同的业务**，垂直切分是指按照业务将表进行分类，分布到不同 的数据库上面，这样也就将数据或者说压力分担到不同的库上面，如下图：
 
-![](images/111.jpg)   
+![](images/111.jpg)
 
 系统被切分成了，用户，订单交易，支付几个模块。
 
@@ -2600,7 +2600,7 @@ EXPLAIN SELECT * FROM t_emp, t_dept WHERE t_dept.id = t_emp.deptId;
 
 把一张表里的内容按照不同的规则 写到不同的库里
 
-相对于垂直拆分，水平拆分不是将表做分类，而是按照某个字段的某种规则来分散到多个库之中，每个表中包含一部分数据。简单来说，我们可以将数据的水平切分理解为是按照数据行的切分，就是将表中的某些行切分 到一个数据库，而另外的某些行又切分到其他的数据库中，如图： 
+相对于垂直拆分，水平拆分不是将表做分类，而是按照某个字段的某种规则来分散到多个库之中，每个表中包含一部分数据。简单来说，我们可以将数据的水平切分理解为是按照数据行的切分，就是将表中的某些行切分 到一个数据库，而另外的某些行又切分到其他的数据库中，如图：
 
 ![](images/222.jpg)
 
@@ -2661,7 +2661,7 @@ EXPLAIN SELECT * FROM t_emp, t_dept WHERE t_dept.id = t_emp.deptId;
 
 ### 有没有使用过外键？有什么需要注意的地方？
 
-不得使用外键与级联，一切外键概念必须在应用层解决。 
+不得使用外键与级联，一切外键概念必须在应用层解决。
 
 说明：以学生和成绩的关系为例，学生表中的 student_id是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为 级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻 塞，存在数据库更新风暴的风险；外键影响数据库的插入速度。
 

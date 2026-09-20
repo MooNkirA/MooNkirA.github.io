@@ -531,7 +531,7 @@ app.controller('indexController', ($scope, baseService) => {
     - 第一步：修改hosts增加`127.0.0.1  shop.moon.com`
     - 第二步：修改nginx.conf增加反向代理
 
-    ```conf
+    ```json
     server {
         listen       80;
         server_name  shop.moon.com;

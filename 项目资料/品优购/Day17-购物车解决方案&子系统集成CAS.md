@@ -528,7 +528,7 @@ public class Cart implements Serializable {
 - 修改hosts文件，增加映射：`127.0.0.1  cart.pinyougou.com`
 - 修改nginx.conf配置文件，设置携带域名: `proxy_set_header Host $host;`
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  cart.moon.com;
@@ -995,7 +995,7 @@ app.controller('cartController', function ($scope, $controller, baseService) {
                 </li>
 				<li class="yui3-u-1-8">
 					<a href="javascript:void(0)" class="increment mins">-</a>
-					<input autocomplete="off" type="text" 
+					<input autocomplete="off" type="text"
                            ng-model="orderItem.num" minnum="1" class="itxt" />
 					<a href="javascript:void(0)" class="increment plus">+</a>
 				</li>
@@ -1870,7 +1870,7 @@ app.controller('itemController', function ($scope, $controller) {
 
 修改nginx/conf/nginx.conf文件，增加`proxy_set_header Host $host;`配置
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  www.moon.com moon.com;

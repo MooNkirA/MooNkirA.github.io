@@ -613,7 +613,7 @@ ${(!(10 gt 10))?string('true','false')}
     - 修改Hosts：`127.0.0.1  item.moon.com`
     - 修改nginx.conf配置反向代理
 
-    ```conf
+    ```json
     server {
 		listen       80;
 		server_name  item.moon.com;

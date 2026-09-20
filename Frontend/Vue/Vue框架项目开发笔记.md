@@ -265,7 +265,7 @@ rules: {
 
 如果配置后还出现错误
 
-```cmd
+```bash
 This dependency was not found:
 * common/stylus/index.styl in ./src/main.js
 To install it, you can run: npm install --save common/stylus/index.styl

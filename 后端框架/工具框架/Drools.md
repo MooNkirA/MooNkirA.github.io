@@ -35,17 +35,17 @@
 // 检查用户信息合法性，返回true表示检查通过，返回false表示检查不通过
 public boolean checkUser(User user){
     // 如果申请人既没房也没车，同时学历为大专以下，并且月薪少于5000，那么不通过
-    if(user.getHouse() == null && user.getcar() == null 
+    if(user.getHouse() == null && user.getcar() == null
        && user.getEducation().equals("大专以下") && user.getSalary < 5000){
         return false;
     }
     // 如果申请人既没房也没车，同时学历为大专或本科，并且月薪少于3000，那么不通过
-    else if(user.getHouse() == null && user.getcar() == null && user.getEducation().equals("大专或本科") 
+    else if(user.getHouse() == null && user.getcar() == null && user.getEducation().equals("大专或本科")
        && user.getSalary < 3000){
         return false;
     }
     // 如果申请人既没房也没车，同时学历为本科以上，并且月薪少于2000，同时之前没有信用卡的，那么不通过
-    else if(user.getHouse() == null && user.getcar() == null && user.getEducation().equals("本科以上") 
+    else if(user.getHouse() == null && user.getcar() == null && user.getEducation().equals("本科以上")
        && user.getSalary < 2000 && user.getHasCreditCard() == false){
         return false;
     }
@@ -2987,7 +2987,7 @@ public class CreditCardApplyInfo {
 
     private boolean checkResult = true; // 审核是否通过
     private double quota = 0; // 额度
-    
+
     public String toString() {
         if (checkResult) {
             return "审核通过，信用卡额度为：" + quota;
@@ -3317,9 +3317,9 @@ public void test1() throws Exception{
     session.setGlobal("listRules",list);
 ​
     session.insert(personInfoEntity);
-    
+
     session.getAgenda().getAgendaGroup("sign").setFocus();
-    
+
     session.fireAllRules();
 ​
     for (String s : list) {
@@ -3557,7 +3557,7 @@ WorkBench 是 KIE 组件中的元素，也称为 KIE-WB，是 Drools-WB 与 JBPM
 - 第一步：配置 Tomcat 的环境变量 `CATALINA_HOME`，对应的值为Tomcat安装目录
 - 第二步：在 Tomcat 的 bin 目录下创建 setenv.bat 文件，内容如下：
 
-```bat
+```bash
 CATALINA_OPTS="-Xmx512M \
     -Djava.security.auth.login.config=$CATALINA_HOME/webapps/kie-drools-wb/WEB-INF/classes/login.config \
     -Dorg.jboss.logging.provider=jdk"
@@ -3836,25 +3836,25 @@ public void test1() throws Exception{
     // 通过此URL可以访问到maven仓库中的jar包
     // URL地址构成：http://ip地址:Tomcat端口号/WorkBench工程名/maven2/坐标/版本号/xxx.jar
     String url = "http://localhost:8080/kie-drools-wb/maven2/com/moon/pro1/1.0.0/pro1-1.0.0.jar";
-    
+
     KieServices kieServices = KieServices.Factory.get();
-    
+
     // 通过Resource资源对象加载jar包
     UrlResource resource = (UrlResource) kieServices.getResources().newUrlResource(url);
     // 通过Workbench提供的服务来访问maven仓库中的jar包资源，需要先进行Workbench的认证
     resource.setUsername("kie");
     resource.setPassword("kie");
     resource.setBasicAuthentication("enabled");
-    
+
     // 将资源转换为输入流，通过此输入流可以读取jar包数据
     InputStream inputStream = resource.getInputStream();
-    
+
     // 创建仓库对象，仓库对象中保存Drools的规则信息
     KieRepository repository = kieServices.getRepository();
-    
+
     // 通过输入流读取maven仓库中的jar包数据，包装成KieModule模块添加到仓库中
     KieModule kieModule = repository.addKieModule(kieServices.getResources().newInputStreamResource(inputStream));
-    
+
     // 基于KieModule模块创建容器对象，从容器中可以获取session会话
     KieContainer kieContainer = kieServices.newKieContainer(kieModule.getReleaseId());
     KieSession session = kieContainer.newKieSession();

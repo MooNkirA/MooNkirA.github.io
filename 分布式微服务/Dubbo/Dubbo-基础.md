@@ -1382,8 +1382,8 @@ Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据
 **配置协议选项**
 
 ```xml
-<dubbo:protocol name=“dubbo” port=“9090” server=“netty” client=“netty” 
-    codec=“dubbo” serialization=“hessian2” charset=“UTF-8” threadpool=“fixed” 
+<dubbo:protocol name=“dubbo” port=“9090” server=“netty” client=“netty”
+    codec=“dubbo” serialization=“hessian2” charset=“UTF-8” threadpool=“fixed”
     threads=“100” queues=“0” iothreads=“9” buffer=“8192” accepts=“1000” payload=“8388608” />
 ```
 
@@ -1526,7 +1526,7 @@ public void dubboSPI() {
 
 测试结果
 
-```console
+```
 AAAA,你好，调通了A实现！
 I'm default,你好，调通了B实现！
 ```

@@ -34,14 +34,14 @@ zipStorePath=wrapper/dists
 
 2. 修改源码项目的 `settings.gradle` 文件，增加阿里云仓库 spring 插件库
 
-```gradle
+```json
 pluginManagement {
  repositories {
      // 阿里云仓库 spring-plugin (旧版)
         // maven { url 'https://maven.aliyun.com/repository/public' }
         // 阿里云仓库 spring-plugin (新版)
         maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
-  gradlePluginPortal()    
+  gradlePluginPortal()
   maven { url 'https://repo.spring.io/plugins-release' }
  }
 }
@@ -60,7 +60,7 @@ kotlin.stdlib.default.dependency=false
 
 4. 修改源码项目的`build.gradle`文件，增加阿里云仓库
 
-```gradle
+```groovy
 repositories {
     // 添加 maven 本地仓库
     mavenLocal()

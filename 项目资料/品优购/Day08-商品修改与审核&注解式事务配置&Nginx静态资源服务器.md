@@ -248,7 +248,7 @@ public Goods findOne(Long id) {
 
         // 2.根据商品id，调用商品描述数据访问层查询商品描述数据
         goods.setGoodsDesc(goodsDescMapper.selectByPrimaryKey(id));
-        
+
         return goods;
     } catch (Exception e) {
         e.printStackTrace();
@@ -1281,7 +1281,7 @@ public class GoodsServiceImpl implements GoodsService {
 	3. 配置hosts：127.0.0.1  image.pinyougou.com
 	4. 配置Nginx反向代理：
 
-```conf
+```json
 server {
     listen       80;
     server_name  image.pinyougou.com;

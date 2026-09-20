@@ -61,7 +61,7 @@ regsvr32 vcruntime140_1.dll
 
 增加如下内容
 
-```conf
+```properties
 # 数据库路径
 dbpath=D:\development\MongoDB\Server\4.0\data
 # 日志输出文件路径

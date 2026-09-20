@@ -412,7 +412,7 @@ RDB 持久化有手动触发和自动触发的两种方式。
 
 - 修改配置文件 redis.conf，配置快照参数
 
-```conf
+```bash
 save 900 1     # 每900秒(15分钟)至少有1个key发生变化，则dump内存快照。
 save 300 10    # 每300秒(5分钟)至少有10个key发生变化，则dump内存快照
 save 60 10000  # 每60秒(1分钟)至少有10000个key发生变化，则dump内存快照
@@ -497,7 +497,7 @@ AOF 的主要作用是解决了数据持久化的实时性，AOF 是 Redis 持�
 
 ![](images/20190511103409610_11558.jpg)
 
-```conf
+```bash
 appendonly yes # 启用 aof 持久化方式
 ```
 
@@ -513,7 +513,7 @@ appendonly yes # 启用 aof 持久化方式
 
 修改 redis.conf 设置文件，设置 `appendfsync` 参数
 
-```conf
+```bash
 # appendfsync always # 每收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用
 appendfsync everysec # 每秒强制写入磁盘一次，性能和持久化方面做了折中，推荐
 # appendfsync no # 完全依赖 os，性能最好,持久化没保证（操作系统自身的同步）
@@ -554,7 +554,7 @@ BGREWRITEAOF
 
 redis.conf 配置示例：
 
-```conf
+```bash
 no-appendfsync-on-rewrite yes # 正在导出 rdb 快照的过程中，要不要停止同步 aof
 auto-aof-rewrite-percentage 100 # aof 文件大小比起上次重写时的大小，增长率100%时，触发重写
 auto-aof-rewrite-min-size 64mb # aof 文件大小至少超过 64M 时，触发重写
@@ -850,7 +850,7 @@ Redis v4.0 版本后新增了 2 种淘汰机制：
 - volatile-lfu：最少使用，从已设置过期时间的数据集中挑选最不经常使用的数据淘汰。
 - allkeys-lfu：当内存不足以容纳新写入数据时，从数据集中移除最不经常使用的 key。
 
-> Tips: 
+> Tips:
 >
 > - `volatile` 前缀的策略是对已设置过期时间的数据集淘汰数据；`allkeys` 前缀的策略是对全部数据集淘汰数据；后缀的 `lru`、`ttl`、`random` 则是三种不同的淘汰策略；还有一种特殊 `no-enviction` 永不回收的策略。
 > - LRU（Least Recently Used）：最近使用次数最少

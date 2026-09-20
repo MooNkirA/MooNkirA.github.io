@@ -8,7 +8,7 @@ Lombok 是一款 Java 开发插件，使得 Java 开发者可以通过其定义�
 
 在 build.gradle 文件中添加 lombok 依赖
 
-```gradle
+```groovy
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
@@ -204,7 +204,7 @@ public class LazyGetterDemo {
 
 运行结果
 
-```console
+```
 createValue(not lazy)
 Main instance is created
 createValue(lazy)
@@ -885,9 +885,9 @@ User user = User.builder()
 public @interface Accessors {
 
     boolean fluent() default false;
-    
+
     boolean chain() default false;
-    
+
     boolean makeFinal() default false;
 
     String[] prefix() default {};

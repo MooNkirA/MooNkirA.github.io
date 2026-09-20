@@ -131,7 +131,7 @@ export default {
 
 1. 需要在布局文件中，将Content内容替换成{this.props.children}，意思是引入传递的内容。
 
-```jax
+```jsx
 import React from 'react'
 import { Layout } from 'antd';
 

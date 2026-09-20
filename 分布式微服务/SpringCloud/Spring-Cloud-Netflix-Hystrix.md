@@ -454,7 +454,7 @@ public interface ProductFeignClient {
 
 在 `shop-service-order` 工程启动类中，标识 `@EnableCircuitBreaker` 开启 Hystrix 支持
 
-```javas
+```java
 @SpringBootApplication(scanBasePackages = "com.moon.order")
 @EntityScan("com.moon.entity") // 指定扫描实体类的包路径
 @EnableFeignClients // 开启Feign的支持

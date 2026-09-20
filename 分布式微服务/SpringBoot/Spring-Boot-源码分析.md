@@ -8,7 +8,7 @@
 
 1. 进入到下载的源码目录执行如下命令：
 
-```bush
+```bash
 mvn -Dmaven.test.skip=true clean install
 ```
 
@@ -326,7 +326,7 @@ class AspectJAutoProxyRegistrar implements ImportBeanDefinitionRegistrar {
 ```
 
 ```java
-public abstract class AopConfigUtils {  
+public abstract class AopConfigUtils {
     // ...
     @Nullable
     public static BeanDefinition registerAspectJAnnotationAutoProxyCreatorIfNecessary(BeanDefinitionRegistry registry) {
@@ -472,7 +472,7 @@ Spring Boot 已经提供了 `org.springframework.boot.web.servlet.filter.Ordered
 - 编写条件判断类，实现 `Condition` 接口，在 `matches` 方法中指定条件判断逻辑
 
 ```java
-public class MyCondition implements Condition { 
+public class MyCondition implements Condition {
     // 如果存在 Druid 依赖，条件成立
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         return ClassUtils.isPresent("com.alibaba.druid.pool.DruidDataSource", null);
@@ -542,7 +542,7 @@ SpringApplication 构造方法中会完成以下的操作：
 10. refresh 容器，发布 application started 事件
 11. 执行 runner，发布 application ready 事件，若发生异常，则发布 application failed 事件
 
-### ConfigurableApplicationContext 
+### ConfigurableApplicationContext
 
 添加 Spring Boot 最基础的依赖与编写最基础的入口，启动后用于源码的断点跟踪。
 

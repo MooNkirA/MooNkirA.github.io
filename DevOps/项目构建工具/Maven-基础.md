@@ -2015,7 +2015,7 @@ $ mvn install:install-file -DgroupId=com.baidu -DartifactId=ueditor -Dversion=1.
 
 在项目运行错误后，在本地仓库下生成`.lastUpdated`文件，会影响项目的运行。使用批处理文件可以将里面文件删除，<span style="color: red;">**注：将`REPOSITORY_PATH`变量改成本地仓库的路径**</span>
 
-```bat
+```bash
 set REPOSITORY_PATH=D:\development\maven\repository
 rem 正在搜索...
 for /f "delims=" %%i in ('dir /b /s "%REPOSITORY_PATH%\*lastUpdated*"') do (

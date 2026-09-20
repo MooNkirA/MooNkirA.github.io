@@ -630,7 +630,7 @@ class Car {
 
 程序输出程序
 
-```console
+```
 ===================构造器引用========================
 Collided com.moon.java.jdk8methodref.Car@3b9a45b3
 Collided com.moon.java.jdk8methodref.Car@7699a589
@@ -937,7 +937,7 @@ class Car implements Vehicle, FourWheeler {
 
 程序输出结果
 
-```console
+```
 我是一辆车!
 我是一辆四轮车!
 按喇叭!!!
@@ -3109,7 +3109,7 @@ public class Java8Tester {
 
 程序输出结果：
 
-```console
+```
 使用 Java 7:
 列表: [abc, , bc, efg, abcd, , jkl]
 空字符数量为: 2
@@ -3122,7 +3122,7 @@ public class Java8Tester {
 列表中最小的数 : 1
 所有数之和 : 85
 平均数 : 9
-随机数: 
+随机数:
 1940609383
 1273448576
 -1208033961
@@ -3802,7 +3802,7 @@ public class Java8Tester {
 
 程序输出结果：
 
-```console
+```
 第一个参数值存在: false
 第二个参数值存在: true
 10
@@ -4402,7 +4402,7 @@ public class Java8Tester {
 
 程序输出结果：
 
-```console
+```
 当前时间: 2019-07-22T10:57:38.601
 date1: 2019-07-22
 月: JULY, 日: 22, 秒: 38
@@ -4442,7 +4442,7 @@ public class Java8Tester {
 
 程序输出结果：
 
-```console
+```
 date1: 2015-12-03T10:15:30+08:00[Asia/Shanghai]
 ZoneId: Europe/Paris
 当期时区: Asia/Shanghai
@@ -4518,7 +4518,7 @@ public class Java8Tester {
 
 程序输出结果：
 
-```console
+```
 Base64 编码字符串 (基本) :cnVub29iP2phdmE4
 原始字符串: runoob?java8
 Base64 编码字符串 (URL) :VHV0b3JpYWxzUG9pbnQ_amF2YTg=

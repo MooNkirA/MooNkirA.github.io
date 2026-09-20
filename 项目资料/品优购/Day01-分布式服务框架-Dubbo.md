@@ -154,20 +154,20 @@ Zookeeper 是 Apacahe Hadoop 的子项目，是一个树型的目录服务，支
 
 1. 使用rz命令上传【zookeeper-3.4.11.tar.gz】
 
-```cmd
+```bash
 cd /usr/local
 ```
 
 2. 解压与删除
 
-```cmd
+```bash
 tar -xzvf zookeeper-3.4.11.tar.gz
 rm -rf zookeeper-3.4.11.tar.gz
 ```
 
 3. 创建data目录
 
-```cmd
+```bash
 # 重命名
 mv zookeeper-3.4.11 dubbo-zookeeper
 # 切换目录
@@ -178,7 +178,7 @@ mkdir data
 
 4. 修改zoo.cfg
 
-```cmd
+```bash
 cd conf
 cp zoo_sample.cfg zoo.cfg
 
@@ -190,7 +190,7 @@ dataDir=/usr/local/dubbo-zookeeper/data（新建的data目录所在的位置）
 
 5. 启动与查看状态
 
-```cmd
+```bash
 cd /usr/local/dubbo-zookeeper/bin
 ./zkServer.sh start
 或
@@ -207,7 +207,7 @@ cd /usr/local/dubbo-zookeeper/bin
 
 6. 开放 2181 端口: zookeeper 使用 2181端口号，为了能对外正常使用zookeeper，需要开放 2181 端口号，或者关闭防火墙
 
-```cmd
+```bash
 # 对外开放2181端口
 firewall-cmd --zone=public --add-port=2181/tcp --permanent
 
@@ -348,7 +348,7 @@ systemctl disable firewalld.service
 		xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
 			http://code.alibabatech.com/schema/dubbo
 			http://code.alibabatech.com/schema/dubbo/dubbo.xsd
-	 
+
 	b. 注册服务
 		<!-- 导入数据访问的Spring配置文件 -->
 		<import resource="classpath:applicationContext-mapper.xml"/>
@@ -363,10 +363,10 @@ systemctl disable firewalld.service
 		<dubbo:protocol name="dubbo" port="20880"/>
 
 		<!-- 配置需要暴露的服务 -->
-		<dubbo:service 
-			interface="com.pinyougou.sellergoods.service.BrandService" 
+		<dubbo:service
+			interface="com.pinyougou.sellergoods.service.BrandService"
 			ref="branddService"/>
-		<bean id="branddService" 
+		<bean id="branddService"
 			class="com.pinyougou.sellergoods.service.impl.BrandServiceImpl"/>
 
 二、服务消费者(pinyougou-manager-web)：

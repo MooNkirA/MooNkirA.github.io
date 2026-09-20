@@ -1030,7 +1030,7 @@ public class TestClient {
 
 *暂时使用静态数据，待用户登录调通再连接数据库校验用户信息*
 
-#### service 层    
+#### service 层
 
 此分层主要的处理逻辑是：调用认证服务申请令牌，并将令牌存储到redis
 
@@ -1408,7 +1408,7 @@ cookie最终会写到xuecheng.com域名下，可通过nginx代理进行认证，
 
 1. 配置nginx代理（conf/nginx.conf），在ucenter.xuecheng.com下配置代理路径，并启动nginx
 
-```conf
+```json
 server {
     listen       80;
     server_name  ucenter.xuecheng.com;

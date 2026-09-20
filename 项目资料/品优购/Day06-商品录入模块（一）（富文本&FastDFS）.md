@@ -634,7 +634,7 @@ Storage 保存文件，分为很多组，组和组之间的数据不一样，组
 
 新增`src/test/resources/fastdfs_client.conf`文件，配置内容：
 
-```conf
+```properties
 # 配置追踪服务器连接地址
 tracker_server=192.168.12.131:22122
 ```
@@ -834,7 +834,7 @@ pinyougou-shop-web工程pom.xml引入依赖
 
 1. 将“fastdfs-test”工程中的`fastdfs_client.conf`文件拷贝到pinyougou-shop-web工程`src/main/resources`目录下。
 
-```conf
+```json
 # 配置追踪服务器连接地址
 tracker_server=192.168.12.131:22122
 ```

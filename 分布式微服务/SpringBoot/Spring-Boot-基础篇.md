@@ -105,7 +105,7 @@ Spring Boot2.0 里面有一个重大的变化叫**响应式编程**，相比于�
 
 ![](images/_jdk版本2_1536461119_32443.jpg)
 
-> Notes: 
+> Notes:
 >
 > - 虽然JDK1.6或者1.7都可以使用SpringBoot，但SpringBoot官方建议使用JDK1.8，要使用JDK1.8，首先必须要配置JDK1.8后，才可以使用上述方法设置。
 > - **如果是传统的maven项目，是需要配置jdk插件，但spring boot项目中，只需要配置`<properties>`属性即可**
@@ -779,12 +779,12 @@ spring:
 
 ```java
 @EnableAutoConfiguration(
-        exclude = {MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class}, 
+        exclude = {MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class},
         excludeName = {"org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration", "org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration"}
 )
 // 或者
 @SpringBootApplication(
-        exclude = {MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class}, 
+        exclude = {MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class},
         excludeName = {"org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration", "org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration"}
 )
 ```
@@ -2173,7 +2173,7 @@ spring.mvc.throw-exception-if-no-handler-found=true
 
 例如：张三访问网站功能15次，IP地址：192.168.0.135，李四访问网站功能20次，IP地址：61.129.65.248。那么在网站后台就输出如下监控信息，此信息每10秒刷新一次。
 
-```console
+```
          IP访问监控
 +-----ip-address-----+--num--+
 |     192.168.0.135  |   15  |
@@ -2188,7 +2188,7 @@ spring.mvc.throw-exception-if-no-handler-found=true
 - 配置项：为了提升统计数据展示的灵活度，可以通过 Spring Boot 配置项来控制输出频度，输出的数据格式，统计数据的显示模式等
     - 输出频度，默认 10 秒
     - 数据特征：累计数据 / 阶段数据，默认累计数据
-    - 输出格式：详细模式 / 极简模式 
+    - 输出格式：详细模式 / 极简模式
 
 ### 自定义 starter 功能实现
 
@@ -2444,7 +2444,7 @@ public Book get(@PathVariable Integer id) {
 
 - 启动工程，发送数次查询请求后，观察控制台日志
 
-```console
+```
          IP访问监控
 +-----ip-address-----+--num--+
 |   0:0:0:0:0:0:0:1  |   11  |

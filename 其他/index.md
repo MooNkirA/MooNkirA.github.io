@@ -1,42 +1,46 @@
-# 其他
+# 其他资源
 
-## 笔记
+编程资源汇总，涵盖开发软件、编程辅助工具、系统软件与学习资源。
 
-- [Develop-Environment](Develop-Environment)
-- [OS](OS)
-- [编程开发相关](编程开发相关)
+## 资源汇总
+
 - [编程资源分享](编程资源分享)
+- [编程开发相关](编程开发相关)
+- [操作系统知识](OS)
+- [个人开发环境搭建资源信息文档](Develop-Environment)
 
-## 分类
+## 编程开发软件
 
-### software
+### 开发工具
 
-- [Common-Software](software/Common-Software)
-- [Development-Tools](software/Development-Tools)
-- [IDEA](software/IDEA)
-- [Microsoft-Office](software/Microsoft-Office)
+- [IntelliJ IDEA 使用教程](software/IDEA)
+- [Eclipse 使用教程](software/eclipse)
+- [Visual Studio Code 使用教程](software/Visual-Studio-Code)
+- [PyCharm 使用教程](software/PyCharm)
+- [常用开发工具](software/Development-Tools)
+
+### 系统与其他软件
+
+- [Windows 系统相关教程](software/Windows)
+- [Microsoft Office 系列教程](software/Microsoft-Office)
+- [网页浏览器系列教程](software/Web-Browser)
+- [常用软件教程](software/Common-Software)
+- [foobar2000 - 本地顶级音乐播放器](software/foobar2000)
+- [Everything - 本地高效搜索神器](software/everything)
+- [Total Commander - 文件管理器](software/TotalCommander)
 - [Obsidian](software/Obsidian)
-- [PyCharm](software/PyCharm)
-- [TotalCommander](software/TotalCommander)
-- [Visual-Studio-Code](software/Visual-Studio-Code)
-- [Web-Browser](software/Web-Browser)
-- [Windows](software/Windows)
-- [eclipse](software/eclipse)
-- [everything](software/everything)
-- [foobar2000](software/foobar2000)
 
-### tools
+## 编程辅助工具
 
-- [Hexo](tools/Hexo)
-- [Markdown](tools/Markdown)
-- [Mermaid](tools/Mermaid)
-- [docsify](tools/docsify)
+- [Markdown 参考笔记](tools/Markdown)
+- [Hexo 博客搭建工具](tools/Hexo)
+- [docsify 文档类型网站搭建工具](tools/docsify)
+- [Mermaid 基于 Javascript 的绘图语法](tools/Mermaid)
 
-### 学习资源
+## 学习资源
 
-- [Spring事务管理（一）快速入门](学习资源/Spring事务管理（一）快速入门)
-- [Vue2相关知识点简介](学习资源/Vue2相关知识点简介)
-- [Vue项目架构设计与工程化实践](学习资源/Vue项目架构设计与工程化实践)
-- [后端架构师技术大全（69个点）](学习资源/后端架构师技术大全（69个点）)
-- [技术同学必会的MySQL设计规约](学习资源/技术同学必会的MySQL设计规约)
-
+- [Spring 事务管理快速入门](学习资源/Spring事务管理（一）快速入门)
+- [Vue2 相关知识点简介](学习资源/Vue2相关知识点简介)
+- [Vue 项目架构设计与工程化实践](学习资源/Vue项目架构设计与工程化实践)
+- [后端架构师技术大全](学习资源/后端架构师技术大全（69个点）)
+- [技术同学必会的 MySQL 设计规约](学习资源/技术同学必会的MySQL设计规约)

@@ -52,7 +52,7 @@ Windows 系统，VSCode 的扩展和用户数据都是默认在 C 盘下的。
 4. 确认原位置目录已删除（移动后自动删除）
 5. 打开终端（cmd 或者 wt），**必须管理员权限（Windows）**，普通用户无法创建系统级符号链接。运行以下命令。*注：win 11 只能打开Windows 终端，需要设置使用 cmd 命令行。*
 
-```cmd
+```bash
 mklink /D "C:\Users\<你的用户名>\.vscode" "D:\Apps\VSCode\.vscode"
 mklink /D "C:\Users\<你的用户名>\AppData\Roaming\Code" "D:\Apps\VSCode\Code"
 
@@ -62,7 +62,7 @@ mklink /D "%USERPROFILE%\AppData\Roaming\Code" "D:\Apps\VSCode\Code"
 ```
 
 > [!note] 比较链接 `.vscode` 与 `.vscode\extensions` 的区别：
-> 
+>
 > - **直接链接整个 `.vscode`（推荐）**
 >     - ✅ 一条命令搞定，不用管 `extensions`。
 >     - ✅ 后续 VS Code 若在 `.vscode` 下新增子目录（如缓存），自动落到其他位置。
@@ -75,7 +75,7 @@ mklink /D "%USERPROFILE%\AppData\Roaming\Code" "D:\Apps\VSCode\Code"
 
 1. 删除符号链接，此操作不会删实际文件。
 
-```cmd
+```bash
 rmdir "%USERPROFILE%\.vscode"
 rmdir "%USERPROFILE%\AppData\Roaming\Code"
 ```
@@ -351,9 +351,9 @@ VScode对多行编辑有两种模式。
 
 ```json
 {
- // Place your snippets for c here. Each snippet is defined under a snippet name and has a prefix, body and 
+ // Place your snippets for c here. Each snippet is defined under a snippet name and has a prefix, body and
  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
- // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+ // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
  // same ids are connected.
  // Example:
  // "Print to console": {
@@ -647,7 +647,7 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
     "background": "yellow", //背景色
     "icon": "check", //标签样式 check 是一个对号的样式
     "rulerColour": "yellow", //边框颜色
-    "type": "tag", //填充色类型  可在TODO TREE 细节页面找到允许的值 
+    "type": "tag", //填充色类型  可在TODO TREE 细节页面找到允许的值
     "iconColour": "yellow" //标签颜色
 },
 "todo-tree.highlights.customHighlight": {
@@ -658,7 +658,7 @@ Todo Tree 是管理项目中的 TODO 注释和其他标记。通过扫描的项�
         "rulerColour": "#c9c552", //外框颜色
         "iconColour": "#c9c552", //标签颜色
     },
-    //bug		必须要修复的BUG  
+    //bug		必须要修复的BUG
     "BUG": {
         "background": "#eb5c5c",
         "icon": "bug",
@@ -765,43 +765,43 @@ beautify：格式化代码的工具，可以格式化 JSON|JS|HTML|CSS|SCSS。�
 module.exports = {
   // 1.一行代码的最大字符数，默认是80(printWidth: <int>)
   printWidth: 80, // 单行长度
-  
+
   // 2.tab宽度为2空格(tabWidth: <int>)
   tabWidth: 2, // 缩进长度
-  
+
   // 3.是否使用tab来缩进，我们使用空格(useTabs: <bool>)
   useTabs: false, // 使用空格代替tab缩进
-  
+
   // 4.结尾是否添加分号，false的情况下只会在一些导致ASI错误的其工况下在开头加分号，我选择无分号结尾的风格(semi: <bool>)
   semi: false, // 句末不使用分号
-  
+
   // 5.使用单引号(singleQuote: <bool>)
   singleQuote: true,
 
   // 6.object对象中key值是否加引号（quoteProps: "<as-needed|consistent|preserve>"）as-needed只有在需求要的情况下加引号，consistent是有一个需要引号就统一加，preserve是保留用户输入的引号
   // 仅在必需时为对象的key添加引号
   // quoteProps: 'as-needed',
-  
+
   // 7.在jsx文件中的引号需要单独设置（jsxSingleQuote: <bool>）, true: jsx中使用单引号; false: jsx中不使用单引号
   // jsxSingleQuote: false,
-  
+
   // 8.尾部逗号设置，es5是尾部逗号兼容es5，none就是没有尾部逗号，all是指所有可能的情况，需要node8和es2017以上的环境。（trailingComma: "<es5|none|all>"）
   // all 多行时尽可能打印尾随逗号
   // trailingComma: 'es5',
-  
+
   // 9.object对象里面的key和value值和括号间的空格(bracketSpacing: <bool>) -eg: { foo: bar }
   // bracketSpacing: true,
-  
+
   // 10.jsx标签多行属性写法时，尖括号是否另起一行(jsxBracketSameLine: <bool>)
   // jsxBracketSameLine: false,
-  
+
   // 11.箭头函数单个参数的情况是否省略括号，默认always是总是带括号（arrowParens: "<always|avoid>"）
   // arrowParens: 'avoid',
-  
+
   // 12.range是format执行的范围，可以选执行一个文件的一部分，默认的设置是整个文件（rangeStart: <int>  rangeEnd: <int>）
   // rangeStart: 0,
   // rangeEnd: Infinity,
-  
+
   // 14. requirePragma: <bool>,格式化有特定开头编译指示的文件 比如下面两种
   /**
    * @prettier
@@ -820,13 +820,13 @@ module.exports = {
 
   // 17. htmlWhitespaceSensitivity: "<css|strict|ignore>" html中的空格敏感性
   // htmlWhitespaceSensitivity: "ignore", // 对HTML全局空白不敏感
-  
+
   // 18. vue script和style标签中是否缩进,开启可能会破坏编辑器的代码折叠
   // vueIndentScriptAndStyle: false,
-  
+
   // 19. endOfLine: "<lf|crlf|cr|auto>" 行尾换行符,默认是lf,
   // endOfLine: 'lf',
-  
+
   // 20.embeddedLanguageFormatting: "off",默认是auto,控制被引号包裹的代码是否进行格式化
   // embeddedLanguageFormatting: 'off',
 };
@@ -852,7 +852,7 @@ module.exports = {
   "tabWidth": 4,
   "trailingComma": "es5",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false  
+  "vueIndentScriptAndStyle": false
 }
 ```
 
@@ -980,7 +980,7 @@ markdownlint是vscode上一款非常好用的 Markdown 格式检查扩展工具�
 
 Markdown Preview Mermaid Support 支持 mermaid 预览，如流程图、甘特图等
 
-#### MdTableEditor 
+#### MdTableEditor
 
 操作表格的插件，提升表格编辑效率
 
@@ -1026,7 +1026,7 @@ Draw.io 的内嵌扩展，绘图神器
 VSCode 现在将该功能内置，可以在文件中自动删除末尾的空白字符。不需要命令或突出显示，它会在保存文件时自动修剪文件，使其成为一个后台操作，无需再费心考虑末尾的空白字符问题。在 settings.json 文件配置启用自动修剪：
 
 ```json
-{  
+{
     "files.trimTrailingWhitespace": true
 }
 ```
@@ -1034,10 +1034,10 @@ VSCode 现在将该功能内置，可以在文件中自动删除末尾的空白�
 有些情况下可能希望关闭这个设置，例如使用 vscode 写 markdown 文档时，因为根据 CommonMark 规范，必须在行的末尾放置两个或更多空格才能在输出中创建硬行换行。因此可以在 settings.json 文件中配置关闭：
 
 ```json
-{  
-    "[markdown]": {  
+{
+    "[markdown]": {
         "files.trimTrailingWhitespace": false
-    }  
+    }
 }
 ```
 
@@ -1170,10 +1170,10 @@ VsCode 内置功能，设置自动导入：
 
 ```json
 {
-    "javascript.suggest.autoImports": true,  
-    "typescript.suggest.autoImports": true,  
-    "javascript.updateImportsOnFileMove.enabled": "prompt",  
-    "typescript.updateImportsOnFileMove.enabled": "prompt"  
+    "javascript.suggest.autoImports": true,
+    "typescript.suggest.autoImports": true,
+    "javascript.updateImportsOnFileMove.enabled": "prompt",
+    "typescript.updateImportsOnFileMove.enabled": "prompt"
 }
 ```
 

@@ -677,7 +677,7 @@ cd /usr/local/nginx/conf
 vi nginx.conf
 ```
 
-```conf
+```json
 # 在http节点内添加：
 # 配置集群节点
 upstream pinyougou-manager-web {
@@ -718,7 +718,7 @@ cd ../sbin
 
 每个请求按时间顺序逐一分配到不同的服务器，如果当前服务器 down 掉，则会跳转到下一台服务器。**此配置存在的问题是 session 不能共享**。如果用户登陆时是第 1 台 tomcat，再次访问时跳到第 2 台 tomcat，当前 session 在第 2 台不存在，此时就需要用户再次登陆。如果使用这种配置需要解决 session 的问题，如其中一种方案就是将 session 存放到 redis 中
 
-```conf
+```json
 upstream pinyougou-manager-web {
     server 192.168.12.132:8081;
     server 192.168.12.132:8082;
@@ -729,7 +729,7 @@ upstream pinyougou-manager-web {
 
 指定在轮询的基础上加上权重，weight 和访问比率成正比，即用于表明服务器的性能好坏，若服务器性能较好则可将大部分请求分配给它，已实现其力所能及。如下配置，即每两个请求分配到 8081 的 tomcat 中，一个请求分配到 8082 的 tomcat 中
 
-```conf
+```json
 upstream pinyougou-manager-web {
     server 192.168.12.132:8081 weight=2;
     server 192.168.12.132:8082 weight=1;
@@ -740,7 +740,7 @@ upstream pinyougou-manager-web {
 
 每个请求按访问 ip 的 hash 结果分配，当新的请求到达时，先将其客户端 IP 通过哈希算法进行哈希出一个值，在随后的请求客户端 IP 的哈希值只要相同，就会被分配至同一个后端服务器，**该调度算法可以解决 session 的问题**。
 
-```conf
+```json
 upstream pinyougou-manager-web {
     ip_hash;
     server 192.168.12.132:8081;
@@ -922,7 +922,7 @@ vi rule.xml
 vim partition-item-id.txt
 ```
 
-```txt
+```
 0-127=0
 128-255=1
 256-511=2

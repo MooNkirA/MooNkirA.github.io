@@ -6,19 +6,19 @@
 
 合并单元格内容的函数
 
-```excel
+```js
 =CONCATENATE(text1,text2,...)
 ```
 
 合并一列内容
 
-```excel
+```js
 =PHONETIC(C1:C26)
 ```
 
 #### ABS 函数-取绝对值
 
-```excel
+```js
 =ABS(表达式)
 // 例：单元格B1减去单元格A1
 =ABS(B1-A1)
@@ -33,7 +33,7 @@
 
 - 从身份证号中提取出生年月日
 
-```excel
+```js
 =MID(B4,7,4)&"年"&MID(B4,11,2)&"月"&MID(B4,13,2)&"日"
 
 =TEXT(MID(B4,7,8),"0年00月00日")
@@ -41,13 +41,13 @@
 
 - 身份证号计算年龄
 
-```excel
+```js
 =DATEDIF(TEXT(MID(B4,7,8),"0000-00-00"),TODAY(),"y")
 ```
 
 - 从身份证号中区分男女。可以通过 `MOD` 函数（是取余数的函数）取第 1 7位数字除以 2 的余数，如果余数是 0，则第 17 位是偶数，也就是该身份证是女性；如果余数是 1 则说明身份证是男性。
 
-```excel
+```js
 =IF(MOD(MID(A2,17,1),2),"男","女")
 ```
 
@@ -55,7 +55,7 @@
 
 数字按长度补 0，并转换为文本，单纯的改为数字（单元格格式，自定义，示例8个0），只是显示8位，实际导入数据库的时候还是实际的位数
 
-```excel
+```js
 =REPT(补位内容,总位数-LEN(A2))&A2
 ```
 
@@ -96,7 +96,7 @@
 
 假设数据在 A2:B7 范围，在 D2 输入日期，在 E2 输入公式：
 
-```excel
+```js
 =TEXTJOIN(CHAR(10), TRUE,
   LET(
     filtered, FILTER(B$2:B$7, A$2:A$7=D2),
@@ -115,12 +115,12 @@
    - 选择"日期"列 -> 分组依据 -> 高级 -> 选择"工作内容"列，操作"所有行"
    - 添加自定义列：
 
-```vba
+```vb
 Text.Combine(
 List.Transform(
     Table.Column([Grouped],"工作内容"),
     each Text.From(List.PositionOf(Table.Column([Grouped],"工作内容"),_)+1) & ". " & _
-), 
+),
 "#(lf)"
 )
 ```
@@ -131,52 +131,52 @@ List.Transform(
 
 按 Alt+F11 打开 VBA 编辑器，插入模块，粘贴以下代码：
 
-```vba
+```vb
 Sub MergeByDateWithNumbers()
     Dim dict As Object, ws As Worksheet
     Dim lastRow As Long, i As Long
     Dim dateStr As String, content As String
     Dim arr() As String, j As Integer
-    
+
     Set dict = CreateObject("Scripting.Dictionary")
     Set ws = ActiveSheet
     lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
-    
+
     '收集数据
     For i = 2 To lastRow
         dateStr = ws.Cells(i, 1).Value
         content = ws.Cells(i, 2).Value
-        
+
         If dict.exists(dateStr) Then
             dict(dateStr) = dict(dateStr) & Chr(10) & content
         Else
             dict(dateStr) = content
         End If
     Next i
-    
+
     '处理序号并输出
     Dim outputWs As Worksheet
     Set outputWs = Worksheets.Add(After:=ws)
     outputWs.Range("A1").Value = "日期"
     outputWs.Range("B1").Value = "合并内容"
-    
+
     Dim rowNum As Integer: rowNum = 2
     Dim key As Variant, items As Variant
-    
+
     For Each key In dict.keys
         items = Split(dict(key), Chr(10))
         content = ""
-        
+
         For j = LBound(items) To UBound(items)
             content = content & (j + 1) & ". " & items(j) & IIf(j < UBound(items), Chr(10), "")
         Next j
-        
+
         outputWs.Cells(rowNum, 1).Value = key
         outputWs.Cells(rowNum, 2).Value = content
         outputWs.Cells(rowNum, 2).WrapText = True
         rowNum = rowNum + 1
     Next key
-    
+
     outputWs.Columns("B").ColumnWidth = 50
     MsgBox "处理完成，结果已输出到新工作表", vbInformation
 End Sub
@@ -188,14 +188,14 @@ End Sub
 
 1. 添加辅助列 C，在 C2 输入以下公式，并向下填充，得到每行在相同日期中的序号。
 
-```excel
+```js
 =COUNTIF($A$2:A2,A2)
 ```
 
 2. 在 E 列列出唯一日期（可使用删除重复项功能）
 3. 在 F2 输入数组公式（按Ctrl+Shift+Enter）：
 
-```excel
+```js
 =TEXTJOIN(CHAR(10),TRUE,IF($A$2:$A$7=E2,$C$2:$C$7&". "&$B$2:$B$7,""))
 ```
 
@@ -203,7 +203,7 @@ End Sub
 
 **实践应用公式，使用 TEXTJOIN 函数（Excel 2019/365 推荐）**：
 
-```excel
+```js
 =IFERROR(TEXTJOIN(CHAR(10), TRUE,
   LET(
     filtered, FILTER(Work_List!$B:$B, Work_List!$A:$A=A3),
@@ -217,7 +217,7 @@ End Sub
 
 **实践应用公式，辅助列+公式组合（适用于旧版 Excel）**：
 
-```excel
+```js
 =TEXTJOIN(CHAR(10),TRUE,IF(Work_List!$A:$A=A3,Work_List!$B:$B&". "&Work_List!$C:$C,""))
 ```
 

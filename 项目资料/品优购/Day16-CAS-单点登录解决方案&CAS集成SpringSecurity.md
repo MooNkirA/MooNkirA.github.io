@@ -158,7 +158,7 @@ warn.cookie.secure=false
 - 修改hosts：`127.0.0.1  sso.moon.com`
 - 修改nginx.conf：
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  sso.moon.com;

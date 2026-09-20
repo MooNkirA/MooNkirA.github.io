@@ -406,7 +406,7 @@ public void testPasswrodEncoder() {
 
 测试结果
 
-```console
+```
 第1次加密结果：$2a$10$qiCvnloZdWHEKJ6SksfsfuK/R59..k5bs126qScOW228GS9jqbaLO
 第1次校验：true
 第2次加密结果：$2a$10$wAi2tVm9QnLUOT95IxKynu6DBDOxrX8.iaLqgXQfMKacGVaZqPMCm
@@ -853,7 +853,7 @@ refresh_user:function(){
 
 上边实现在首页显示当前用户信息，首页需要通过Nginx代理请求认证服务，所以需要在首页的虚拟主机上配置代理路径
 
-```conf
+```json
 # 认证授权
 location ^~ /openapi/auth/ {
 	proxy_pass http://auth_server_pool/auth/;
@@ -1151,7 +1151,8 @@ public void configure(HttpSecurity http) throws Exception {
 
 #### 完整的路由配置
 
-```yml# 网关zuul配置
+```yml
+# 网关zuul配置
 zuul:
   routes:
     manage-course: # 路由名称，名称任意，保持所有路由名称唯一
@@ -1555,12 +1556,12 @@ public class LoginFilter extends ZuulFilter {
 
 1. 配置代理。通过nginx转发到gateway，在www.xuecheng.com虚拟主机来配置
 
-```conf
+```json
 server {
     listen       80;
     server_name  www.xuecheng.com;
 	......
-	# 微服务网关	
+	# 微服务网关
 	location /api {
 		proxy_pass http://api_server_pool;
 	}

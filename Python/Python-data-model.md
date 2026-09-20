@@ -32,8 +32,8 @@ print(type(a), type(b), type(c), type(d))
 - `isinstance()` 函数：判断变量是否为指定的对象类型。
 
 ```python
-a = 20  
-print(type(a))  # 结果：<class 'int'>  
+a = 20
+print(type(a))  # 结果：<class 'int'>
 print(isinstance(a, int))  # 结果：True
 ```
 
@@ -87,18 +87,18 @@ Python 3.x 的 Number 类型包含 **int、float、bool、complex（复数）**�
 Python3 中，bool 是 int 的子类，True 和 False 可以和数字相加，`True==1`、`False==0` 会返回 **True**，但可以通过 `is` 来判断对象身份。
 
 ```python
-print(b == 1)  # 结果：True  
-print(c == 0)  # 结果：True  
-print(b + 1)  # 结果：2  
-print(c + 1)  # 结果：1  
-print(1 is True)  # 结果：False  
+print(b == 1)  # 结果：True
+print(c == 0)  # 结果：True
+print(b + 1)  # 结果：2
+print(c + 1)  # 结果：1
+print(1 is True)  # 结果：False
 print(0 is False)  # 结果：False
 ```
 
 > [!info] `1 is True` 可能会出现 SyntaxWarning。
-> 
+>
 > Python 检测到在用 `is` 比较一个字面量整数（如 1）和 True，这通常是代码错误。因为 `is` 比较的是对象身份（是否同一个对象），而不是值是否相等。所有Python 建议使用 `==` 来比较值，除非确实需要检查是否是同一个对象。
-> 
+>
 > 在 Python 2.x 中是没有布尔型的，它用数字 0 表示 False，用 1 表示 True。
 
 ### float(浮点型)
@@ -119,8 +119,8 @@ print("格式化字符串" % (变量1, 变量2, ...))
 示例：
 
 ```python
->>> s = 'Hello'  
->>> x = len(s)  
+>>> s = 'Hello'
+>>> x = len(s)
 >>> print("The length of %s is %d" % (s, x))
 The length of Hello is 5
 ```
@@ -202,17 +202,17 @@ His height is 1.83 m
 f-string 是 python3.6 之后版本添加的，称之为**字面量格式化字符串**，是新的格式化字符串的语法。**f-string** 格式化字符串以 `f` 开头，后面跟着字符串，字符串中的表达式用大括号 `{}` 包起来，它会将变量或表达式计算后的值替换到相应位置。*此方式更简单，不用判断变量类型选择使用 `%s` 还是 `%d`。*
 
 ```python
-name = 'MooN'  
-age = 23  
+name = 'MooN'
+age = 23
 print(f"My name is {name} and I'm {age} years old")
 ```
 
 在 Python 3.8 的版本可以使用 `=` 符号来拼接运算表达式与结果：
 
 ```python
-x = 1  
-print(f'{x + 1}')  # Python 3.6 结果：2  
-y = 1  
+x = 1
+print(f'{x + 1}')  # Python 3.6 结果：2
+y = 1
 print(f'{y + 1 = }')  # Python 3.8 结果：y + 1 = 2
 ```
 
@@ -314,7 +314,7 @@ print(s2.strip("@")) # 输出：python
 
 ```python
 s = "  hello python  "
-print(s.lstrip()) # 输出：hello python  
+print(s.lstrip()) # 输出：hello python
 ```
 
 - `rstrip(chars=None)`：去除字符串**右侧**指定的字符，默认去除空白字符
@@ -394,19 +394,19 @@ print(s2.isalpha()) # 输出：False
 在**隐式类型转换**中，Python 会自动将一种数据类型转换为另一种数据类型，不需要人为干预。例如：
 
 ```python
-num_int = 123  
-num_flo = 1.23  
-  
-num_new = num_int + num_flo  
-  
-print("num_int 数据类型为:", type(num_int)) # <class 'int'>  
-print("num_flo 数据类型为:", type(num_flo)) # <class 'float'>  
-print("num_new 值为:", num_new) # 124.23  
+num_int = 123
+num_flo = 1.23
+
+num_new = num_int + num_flo
+
+print("num_int 数据类型为:", type(num_int)) # <class 'int'>
+print("num_flo 数据类型为:", type(num_flo)) # <class 'float'>
+print("num_new 值为:", num_new) # 124.23
 print("num_new 数据类型为:", type(num_new)) # <class 'float'>
 ```
 
 > [!note] 代码解析：
-> 
+>
 > - 上面示例对两个不同数据类型的变量 `num_int` 和 `num_flo` 进行相加运算，并存储在变量 `num_new` 中。
 > - 然后查看三个变量的数据类型。在输出结果中，分别 `num_int` 是 `整型（integer）` ， `num_flo` 是 `浮点型（float）`。
 > - 而新的变量 `num_new` 是 `浮点型（float）`，这是因为 Python 会将较小的数据类型转换为较大的数据类型，以避免数据丢失。
@@ -414,17 +414,17 @@ print("num_new 数据类型为:", type(num_new)) # <class 'float'>
 会出现报错的示例：整型数据与字符串类型的数据进行相加。
 
 ```python
-num_int = 123  
-num_str = "456"  
-  
+num_int = 123
+num_str = "456"
+
 print("num_int 数据类型为:", type(num_int))  # <class 'int'>
 print("num_str 数据类型为:", type(num_str))  # <class 'str'>
-print(num_int + num_str) 
+print(num_int + num_str)
 ```
 
 程序执行会报以下的异常：
 
-```console
+```
 Traceback (most recent call last):
   File "D:\code\python-demo\test.py", line 7, in <module>
     print(num_int + num_str)
@@ -441,13 +441,13 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```python
 num_int = 123
 num_str = "456"
-  
+
 print("num_int 数据类型为:", type(num_int)) # <class 'int'>
 print("类型转换前，num_str 数据类型为:", type(num_str)) # <class 'str'>
 
 num_str = int(num_str)  # 强制转换为整型
 print("类型转换后，num_str 数据类型为:", type(num_str)) # <class 'int'>
-  
+
 num_sum = num_int + num_str
 print("num_int 与 num_str 相加结果为:", num_sum) # 579
 print("sum 数据类型为:", type(num_sum)) # <class 'int'>
@@ -931,9 +931,9 @@ print("a" + "b" + "c")  # 字符串连续拼接 abc
 错误示例（类型不同禁止相加）：
 
 ```python
-# 报错：列表和元组类型不同，无法相加  
-[1,2] + (3,4)  
-# 报错：列表和字符串类型不同，无法相加  
+# 报错：列表和元组类型不同，无法相加
+[1,2] + (3,4)
+# 报错：列表和字符串类型不同，无法相加
 [1,2] + "abc"
 ```
 
@@ -1127,7 +1127,7 @@ s = {[1,2]}
 - `len(set)`：统计集合内元素总个数
     - 参数：传入集合对象
     - 返回值：返回整数类型的元素数量
-  
+
 ```python
 s = {1, 2, 3, 3}
 print(len(s))  # 3
@@ -1515,14 +1515,14 @@ good_dict = {(1,2): "test"}  # 元组（元素不可变）可作为 key
 ```
 
 - **重复键会覆盖**：定义字典时若出现重复 key，后序值会覆盖前序值，无任何提示。
- 
+
 ```python
 dup_dict = {"name": "Bob", "name": "Alice"}
 print(dup_dict)  # 输出: {"name": "Alice"}
 ```
 
 - **key 为数值类型时，等值不同类型会视为不同 key**：如 `1`（int）和 `1.0`（float）哈希值不同，是两个独立 key。
- 
+
 ```python
 num_dict = {1: "int", 1.0: "float"}
 print(num_dict)  # 输出: {1: 'int', 1.0: 'float'}
@@ -1982,7 +1982,7 @@ print(d2) # {'a': 1, 'b': 2}
 ### 类型转换总结
 
 > [!note] 类型转换注意
-> 
+>
 > - `bool(x)` 类型转换，对于整数类型 `0` 则为 False，其他的整数都为 True；对于空字符串则为 False，其他均为 True。
 > - 有序 -> 无序转换：列表/元组/字符串转集合后，**顺序丢失 + 自动去重**
 > - 字典转换共性：字典转list/tuple/set，默认只会提取 `key`，无法直接保留 value

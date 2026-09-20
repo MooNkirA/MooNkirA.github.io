@@ -38,7 +38,7 @@ Guava 是一个 Google 开发的 基于 java 的类库集合的扩展项目，�
 
 ### gradle 依赖
 
-```gradle
+```groovy
 // https://mvnrepository.com/artifact/com.google.guava/guava
 implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
 ```

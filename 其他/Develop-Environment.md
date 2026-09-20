@@ -197,7 +197,7 @@ echo.开启Nginx代理......
 cd /d %NGINX_PATH%
 start nginx
 echo.开启Nginx代理成功！
-pause 
+pause
 ```
 
 ```bash
@@ -300,7 +300,7 @@ E:\deployment\memcached\memcached.exe -d stop
 - redis-4.0.12版本，安装位置：/usr/local/redis
 - redis (docker 版本) 脚本存放的位置（红包雨场景实战）：`/usr/local/script/redis.sh`
 
-```shall
+```sh
 docker run -id --name=redis -p 6379:6379 redis
 ```
 
@@ -309,7 +309,7 @@ docker run -id --name=redis -p 6379:6379 redis
 - zookeeper (docker 版本)
     - 脚本存放的位置（红包雨场景实战）：`/usr/local/script/zookeeper.sh`
 
-```shall
+```sh
 docker run -id --name=zookeeper -v /opt/data/zksingle:/data -p 2181:2181 -e ZOO_LOG4J_PROP="INFO,ROLLINGFILE" zookeeper
 ```
 
@@ -705,11 +705,11 @@ mysql-connector-java-5.1.44
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 </beans>

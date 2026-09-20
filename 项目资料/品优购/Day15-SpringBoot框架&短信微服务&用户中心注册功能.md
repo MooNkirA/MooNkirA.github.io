@@ -1347,7 +1347,7 @@ public class SmsController {
 - 修改hosts文件：`127.0.0.1  user.moon.com`
 - 修改Nginx的nginx.conf配置反向代理
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  user.moon.com;

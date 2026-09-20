@@ -130,7 +130,7 @@
 
 1. 在nginx中配置虚拟主机，修改`\nginx-1.14.2-xc-edu\conf\nginx.conf`文件，在`alias`属性上增加静态门户工程的主目录：
 
-```conf
+```json
 server {
     listen       80;
     server_name  www.xuecheng.com;
@@ -145,7 +145,7 @@ server {
 
 2. 配置hosts文件，位置：C:\WINDOWS\system32\Drivers\etc\hosts文件
 
-```hosts
+```
 # 学成在线项目配置域名
 127.0.0.1  www.xuecheng.com
 ```
@@ -184,7 +184,7 @@ include/footer.html：页尾
 
 5. 在nginx虚拟主机中开通SSI
 
-```conf
+```json
 server {
     listen       80;
     server_name  www.xuecheng.com;

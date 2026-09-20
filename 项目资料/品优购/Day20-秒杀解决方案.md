@@ -454,7 +454,7 @@
 - 修改hosts文件增加映射：`127.0.0.1 seckill.moon.com`
 - 修改nginx.conf文件
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  seckill.moon.com;
@@ -802,7 +802,7 @@ public SeckillGoods findOne(Long id) {
 
 ```js
 
-app.controller('seckillGoodsController', function ($scope, $controller, 
+app.controller('seckillGoodsController', function ($scope, $controller,
                     $location, baseService) {
     ......
     /* 根据秒杀商品id查询秒杀商品 */

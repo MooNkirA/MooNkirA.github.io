@@ -252,7 +252,7 @@ public class TestSimpleDateFormat {
 
 输出结果
 
-```console
+```
 :: parsing date string ::
 Thu Jul 29 00:00:00 CST 41920
 Mon Jul 29 00:00:00 CST 2019
@@ -329,7 +329,7 @@ public class TestSimpleDateFormat {
 
 - 输出结果正确
 
-```console
+```
 :: parsing date string ::
 Mon Jul 29 00:00:00 CST 2019
 Mon Jul 29 00:00:00 CST 2019
@@ -403,7 +403,7 @@ public class TestSimpleDateFormat {
 
 程序输出结果
 
-```console
+```
 :: parsing date string ::
 2019-07-29
 2019-07-29

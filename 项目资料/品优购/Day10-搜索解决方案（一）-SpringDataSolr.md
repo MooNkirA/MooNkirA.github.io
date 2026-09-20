@@ -1316,7 +1316,7 @@ app.controller('searchController', function ($scope, baseService) {
 - 配置hosts：127.0.0.1  search.moon.com
 - 配置Nginx反向代理：
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  search.moon.com;

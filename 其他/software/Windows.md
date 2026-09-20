@@ -21,7 +21,7 @@
 - `net share` ：查看共享资源
     - `net share 要共享的文件夹` ：指定共享文件
     - `net share 要删除的共享文件夹 /delete` ：删除共享文件
-- `nslookupn` ：检查网站IP地址 
+- `nslookupn` ：检查网站IP地址
     - `nslookup 对方网站域名`
 - `netsh wlan show` ：探秘Wi-Fi配置文件
     - `netsh wlan show profile SSID key=clear`，输入完成后Windows会自动返回当前已连接WIFI的详细信息，包括SSID和连接密码。当前这里有一个前提，那就是你现在已经成功连接了。
@@ -62,7 +62,7 @@ taskkill -f -t -im "进程名称"
 
 ##### 基本语法
 
-```cmd
+```bash
 mklink [参数] "链接位置" "真实目标位置"
 ```
 
@@ -147,7 +147,7 @@ mklink [参数] "链接位置" "真实目标位置"
 
 Windows 没有直接的「列出所有链接」命令，常用以下方式查看：
 
-```cmd
+```bash
 :: 查看当前目录下的符号链接与联接（/AL 仅列出重解析点）
 dir /AL
 
@@ -295,13 +295,13 @@ fsutil reparsepoint query "C:\WeType" | findstr "Substitute Name"
 
 1. 文件符号链接（无参数）。一般用于**单个文件**映射
 
-```cmd
+```bash
 mklink "C:\test.txt" "D:\real\test.txt"
 ```
 
 2. 目录符号链接 `/D`。用于文件夹，支持网络路径、跨磁盘
 
-```cmd
+```bash
 mklink /D "C:\WeType" "D:\WeType"
 ```
 
@@ -310,7 +310,7 @@ mklink /D "C:\WeType" "D:\WeType"
     - 不需要复杂权限、不区分相对/绝对路径
     - **软件迁移、缓存迁移、C 盘瘦身首选**
 
-```cmd
+```bash
 mklink /J "C:\WeType" "D:\WeType"
 ```
 
@@ -319,7 +319,7 @@ mklink /J "C:\WeType" "D:\WeType"
     - 删除原文件，链接依然可用（双备份效果）
     - 无法用于文件夹
 
-```cmd
+```bash
 mklink /H "C:\file.txt" "C:\real\file.txt"
 ```
 
@@ -346,7 +346,7 @@ mklink /H "C:\file.txt" "C:\real\file.txt"
 
 ```bash
 @echo off
-rem //设置变量 
+rem //设置变量
 set NAME="以太网"
 rem //以下属性值可以根据需要更改
 set ADDR=192.168.14.73
@@ -370,15 +370,15 @@ if %operate%==3 goto 3
 
 :1
 echo 正在设置静态IP，请稍等...
-rem //可以根据你的需要更改 
+rem //可以根据你的需要更改
 echo IP地址 = %ADDR%
 echo 掩码 = %MASK%
 echo 网关 = %GATEWAY%
-netsh interface ipv4 set address %NAME% static %ADDR% %MASK% %GATEWAY% 
-echo 首选DNS = %DNS1% 
+netsh interface ipv4 set address %NAME% static %ADDR% %MASK% %GATEWAY%
+echo 首选DNS = %DNS1%
 netsh interface ipv4 set dns %NAME% static %DNS1%
-echo 备用DNS = %DNS2% 
-if "%DNS2%"=="" (echo DNS2为空) else (netsh interface ipv4 add dns %NAME% %DNS2%) 
+echo 备用DNS = %DNS2%
+if "%DNS2%"=="" (echo DNS2为空) else (netsh interface ipv4 add dns %NAME% %DNS2%)
 echo 静态IP已设置！
 pause
 goto 3
@@ -389,7 +389,7 @@ echo 正在设置动态IP，请稍等...
 echo 正在从DHCP自动获取IP地址...
 netsh interface ip set address %NAME% dhcp
 echo 正在从DHCP自动获取DNS地址...
-netsh interface ip set dns %NAME% dhcp 
+netsh interface ip set dns %NAME% dhcp
 echo 动态IP已设置！
 pause
 goto 3
@@ -492,32 +492,32 @@ pause
 启用/禁用网络连接脚本，**注意：需要使用管理员身份运行脚本**。
 
 ```shell
-@echo off 
- 
-:: BatchGotAdmin 
-:------------------------------------- 
-REM --> Check for permissions 
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system" 
- 
-REM --> If error flag set, we do not have admin. 
-if '%errorlevel%' NEQ '0' ( 
- echo Requesting administrative privileges... 
- goto UACPrompt 
-) else ( goto gotAdmin ) 
- 
-:UACPrompt 
- echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs" 
- echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs" 
- 
- "%temp%\getadmin.vbs" 
- exit /B 
- 
-:gotAdmin 
- if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" ) 
- pushd "%CD%" 
- CD /D "%~dp0" 
-:-------------------------------------- 
- 
+@echo off
+
+:: BatchGotAdmin
+:-------------------------------------
+REM --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM --> If error flag set, we do not have admin.
+if '%errorlevel%' NEQ '0' (
+ echo Requesting administrative privileges...
+ goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+ echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+ echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+
+ "%temp%\getadmin.vbs"
+ exit /B
+
+:gotAdmin
+ if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+ pushd "%CD%"
+ CD /D "%~dp0"
+:--------------------------------------
+
 cls
 @ECHO OFF
 title 启用或禁用本地连接
@@ -816,7 +816,7 @@ Write-Host "`n[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] 脚本已优雅退出"
 
 环境变量可分为**用户变量**与**系统变量**两类，在注册表中都有对应的项。
 
-> Notes: 
+> Notes:
 >
 > - <span style="color: purple;">**环境变量不区分大小写**</span>
 > - 系统变量针对所有用户起作用，为了安全一般配置用户环境变量。
@@ -953,7 +953,7 @@ win10系统：
 2. 按照如下顺序找到windows：[HKEY_CURRENT_USER\Control Panel\Colors] windows。双击windows 进入编辑状态 将原本数值删除并输入：`202 234 206`。点击确定退出注册表。
 3. 按照如下顺序找到 window：[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\DefaultColors\Standard]。双击 window 打开编辑窗口，默认是勾选十六进制（若不是请勾选十六进制），将原始数据改为：`caeace`。点击确定退出注册表。
 
-### AHCI 开启方法 
+### AHCI 开启方法
 
 先去修改到 compatible（兼容模式）进入系统
 
@@ -1064,7 +1064,7 @@ Windows10 系统更改软件程序默认安装目录的方法
 
 ### 修复 win10 右键无新建 txt 文本文件
 
-```bat
+```bash
 Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\.txt]
 @="txtfile"
@@ -1229,7 +1229,7 @@ Windows Registry Editor Version 5.00
 ```
 
 > [!info] 注意事项 (中文乱码问题)：
-> 
+>
 > 在复制代码保存时，编码必须选择 `UTF-16 LE` 格式，否则右键菜单的中文会乱码。
 
 - 当想要删除这个文件 Hash 右键菜单的功能时，只需运行以下代码即可。同样也可以保存成 `.reg`，只需双击导入，如：**卸载删除哈希校验右键菜单.reg**
@@ -1300,7 +1300,7 @@ WinGet 命令行实用工具可从命令行安装应用程序和其他程序包�
 - **安全可靠**：通过 winget 安装的软件包均来自微软官方或可信的源，避免了从非官方渠道下载软件可能带来的安全风险，如流氓捆绑软件、病毒等。
 - **易于学习**：winget 的命令相对简单，用户只需稍加学习即可快速掌握，无需具备复杂的编程或技术背景。
 - **集成度高**：winget 可以与 Windows Terminal、PowerShell 或 CMD 等集成，用户可以在这些环境中直接使用 winget 命令。
-- **支持多种格式**：新版本的 winget 支持采用 .zip 格式的软件包，这意味着它可以从 .zip 文件中提取并运行安装程序，或者从文件中安装一个或多个可移植软件包，进一步扩大了其适用范围。 
+- **支持多种格式**：新版本的 winget 支持采用 .zip 格式的软件包，这意味着它可以从 .zip 文件中提取并运行安装程序，或者从文件中安装一个或多个可移植软件包，进一步扩大了其适用范围。
 
 **缺点**：
 
@@ -1354,7 +1354,7 @@ if not exist "software_list.txt" (
 REM 逐行读取软件列表文件并安装软件
 for /f "tokens=*" %%a in (software_list.txt) do (
     echo Installing software: %%a
-    winget install %%a 
+    winget install %%a
 )
 
 echo All software is already installed!

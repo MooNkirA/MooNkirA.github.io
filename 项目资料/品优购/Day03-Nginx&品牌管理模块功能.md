@@ -69,7 +69,7 @@ netstat -ano | findstr "80"
 
 - 对于运营商后台管理系统，可以添加如下nginx配置：
 
-```conf
+```json
 server {
     listen       80;
     server_name  manager.moon.com;

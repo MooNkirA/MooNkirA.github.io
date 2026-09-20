@@ -1210,7 +1210,7 @@ page.dir=E:/pyg/item/
 
 在nginx的配置文件nginx.conf中添加如下配置信息
 
-```conf
+```json
 server {
 	listen       80;
 	server_name  item.moon.com;
