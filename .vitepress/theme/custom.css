@@ -1,0 +1,249 @@
+/**
+ * 自定义主题样式
+ *
+ * 在 VitePress 默认主题之上叠加的自定义 CSS，
+ * 文件由 .vitepress/theme/index.ts 自动引入。
+ *
+ * 包含两部分：
+ * 1. 多主题色切换（蓝为默认，另有 绿 / 紫 / 青 / 橙），通过 html[data-theme] 分组定义 CSS 变量
+ * 2. 首页 hero 品牌名动态渐变色
+ */
+
+/* ===== 主题色变量 ===== */
+/* 品牌色走 VitePress 的 --vp-c-brand-* 变量，亮色与暗色各一组；
+   --theme-hero-gradient 供首页标题渐变使用，随主题切换 */
+/* 蓝色（默认） */
+:root {
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #3b6fe0;
+  --vp-c-brand-3: #2f5fc4;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #3b82f6, #60a5fa, #3b82f6, #2563eb, #3b82f6);
+}
+.dark {
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #3b6fe0;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.16);
+}
+
+/* 绿色 */
+html[data-theme='green'] {
+  --vp-c-brand-1: #42b883;
+  --vp-c-brand-2: #3aa675;
+  --vp-c-brand-3: #36855f;
+  --vp-c-brand-soft: rgba(66, 184, 131, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #42b883, #5fb78c, #42b883, #2a9d8f, #42b883);
+}
+html[data-theme='green'].dark {
+  --vp-c-brand-1: #42b883;
+  --vp-c-brand-2: #3aa675;
+  --vp-c-brand-3: #36855f;
+  --vp-c-brand-soft: rgba(66, 184, 131, 0.16);
+}
+
+/* 蓝色（显式，与默认一致；供切换器显式设置） */
+html[data-theme='blue'] {
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #3b6fe0;
+  --vp-c-brand-3: #2f5fc4;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #3b82f6, #60a5fa, #3b82f6, #2563eb, #3b82f6);
+}
+html[data-theme='blue'].dark {
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #3b6fe0;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.16);
+}
+
+/* 紫色 */
+html[data-theme='purple'] {
+  --vp-c-brand-1: #8b5cf6;
+  --vp-c-brand-2: #7c3aed;
+  --vp-c-brand-3: #6d28d9;
+  --vp-c-brand-soft: rgba(139, 92, 246, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #8b5cf6, #a78bfa, #8b5cf6, #7c3aed, #8b5cf6);
+}
+html[data-theme='purple'].dark {
+  --vp-c-brand-1: #a78bfa;
+  --vp-c-brand-2: #8b5cf6;
+  --vp-c-brand-3: #7c3aed;
+  --vp-c-brand-soft: rgba(139, 92, 246, 0.16);
+}
+
+/* 青色 */
+html[data-theme='teal'] {
+  --vp-c-brand-1: #14b8a6;
+  --vp-c-brand-2: #0d9488;
+  --vp-c-brand-3: #0f766e;
+  --vp-c-brand-soft: rgba(20, 184, 166, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #14b8a6, #2dd4bf, #14b8a6, #0d9488, #14b8a6);
+}
+html[data-theme='teal'].dark {
+  --vp-c-brand-1: #2dd4bf;
+  --vp-c-brand-2: #14b8a6;
+  --vp-c-brand-3: #0d9488;
+  --vp-c-brand-soft: rgba(20, 184, 166, 0.16);
+}
+
+/* 橙色 */
+html[data-theme='orange'] {
+  --vp-c-brand-1: #f97316;
+  --vp-c-brand-2: #ea580c;
+  --vp-c-brand-3: #c2410c;
+  --vp-c-brand-soft: rgba(249, 115, 22, 0.14);
+  --theme-hero-gradient: linear-gradient(120deg, #f97316, #fb923c, #f97316, #ea580c, #f97316);
+}
+html[data-theme='orange'].dark {
+  --vp-c-brand-1: #fb923c;
+  --vp-c-brand-2: #f97316;
+  --vp-c-brand-3: #ea580c;
+  --vp-c-brand-soft: rgba(249, 115, 22, 0.16);
+}
+
+/* ===== 首页 hero 品牌名：动态渐变色 ===== */
+/* 渐变跟随当前主题色（--theme-hero-gradient），背景缓慢流动 */
+/* 注意：系统若开启「减少动态效果」，VitePress 内置样式会把动画压为 1ms，
+   此处用 !important 强制启用；如希望尊重系统动画偏好，删除 !important 即可 */
+.VPHome .VPHomeHero .name {
+  background: var(--theme-hero-gradient);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation-name: hero-gradient-flow !important;
+  animation-duration: 8s !important;
+  animation-timing-function: ease-in-out !important;
+  animation-iteration-count: infinite !important;
+}
+
+@keyframes hero-gradient-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== 主题色切换器（导航栏右侧，与明暗切换相邻） ===== */
+/* nav-bar-content-after 插槽默认渲染在最右侧（社交链接之后），
+   通过 flex order 重排：主题色切换器 → 明暗切换旁，GitHub 图标移到最右 */
+.theme-color-switcher {
+  position: relative;
+  order: 1;
+  margin-left: 10px;  /* 与左侧明暗切换保持间距 */
+  margin-right: 8px;  /* 与右侧 GitHub 图标保持间距 */
+}
+
+.VPSocialLinks {
+  order: 2; /* GitHub 图标移到最右侧 */
+}
+
+/* 触发器按钮 */
+.theme-color-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.theme-color-trigger:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.theme-color-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.theme-color-label {
+  line-height: 1;
+}
+
+.theme-color-arrow {
+  font-size: 10px;
+  opacity: 0.7;
+  transition: transform 0.2s;
+}
+
+.theme-color-trigger[aria-expanded='true'] .theme-color-arrow {
+  transform: rotate(180deg);
+}
+
+/* 下拉菜单 */
+.theme-color-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 132px;
+  padding: 6px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+  box-shadow: var(--vp-shadow-3);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.theme-color-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--vp-c-text-1);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.theme-color-option:hover {
+  background: var(--vp-c-bg-mute);
+}
+
+.theme-color-option.active {
+  color: var(--vp-c-brand-1);
+}
+
+.theme-color-check {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+/* ===== 首页时隐藏导航「首页」项 ===== */
+/* 由 Layout.vue 监听路由，在 <html> 上切换 home-hide-nav-home 类：
+   访问首页时隐藏，访问其他页面时显示（便于返回首页） */
+html.home-hide-nav-home .VPNavBarMenu > .VPLink {
+  display: none;
+}
+
+html.home-hide-nav-home .VPNavScreenMenu > .VPNavScreenMenuLink:first-child {
+  display: none;
+}
+
+/* 移动端菜单暂未放置切换器，隐藏 */
+@media (max-width: 959px) {
+  .theme-color-switcher {
+    display: none;
+  }
+}

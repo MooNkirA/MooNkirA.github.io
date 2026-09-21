@@ -1661,14 +1661,7 @@
         "ch": 0
       }
     },
-    "expandedKeys": [
-      "item-1-0",
-      "item-2-1",
-      "item-2-6",
-      "item-2-11",
-      "item-2-13",
-      "item-2-17"
-    ]
+    "expandedKeys": []
   },
   "DevOps/项目构建工具/Gradle.md": {
     "scroll": 140.35872395833334,
@@ -2125,7 +2118,7 @@
     ]
   },
   "其他/tools/VitePress.md": {
-    "scroll": 155.31414177761783,
+    "scroll": 155.38035264483628,
     "cursor": {
       "from": {
         "line": 116,
@@ -2145,6 +2138,73 @@
       "item-2-29",
       "item-2-34",
       "item-2-10"
+    ]
+  },
+  "其他/学习资源/后端架构师技术大全（69个点）.md": {
+    "scroll": 359.828125,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-0",
+      "item-2-36",
+      "item-2-50",
+      "item-2-64"
+    ]
+  },
+  "其他/学习资源/技术同学必会的MySQL设计规约.md": {
+    "scroll": 388.9136786188579,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": []
+  },
+  "其他/学习资源/Vue2相关知识点简介.md": {
+    "scroll": 24.054502369668246,
+    "cursor": {
+      "from": {
+        "line": 0,
+        "ch": 0
+      },
+      "to": {
+        "line": 0,
+        "ch": 0
+      }
+    },
+    "expandedKeys": [
+      "item-1-0"
+    ]
+  },
+  "其他/学习资源/Vue项目架构设计与工程化实践.md": {
+    "scroll": 47.07943262411347,
+    "cursor": {
+      "from": {
+        "line": 61,
+        "ch": 55
+      },
+      "to": {
+        "line": 61,
+        "ch": 55
+      }
+    },
+    "expandedKeys": [
+      "item-1-0",
+      "item-2-5"
     ]
   }
 }

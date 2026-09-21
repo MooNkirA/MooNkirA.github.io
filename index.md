@@ -4,7 +4,7 @@ layout: home
 hero:
   name: MooNkirA Code Note
   text: 个人编程笔记
-  tagline: AI · 全栈 · 分布式微服务 · 数据库 · DevOps
+  tagline: 系统化沉淀的技术知识库：AI 编程 · 全栈开发 · 分布式微服务 · 数据库与 DevOps
   actions:
     - theme: brand
       text: 开始浏览
@@ -71,7 +71,7 @@ features:
     link: /面试手册/
     icon: 📝
   - title: 其他资源
-    details: 开发软件、编程工具、系统软件、学习资源与编程资源分享
+    details: 开发软件、编程工具、系统软件与编程资源分享
     link: /其他/
     icon: 🛠️
 ---

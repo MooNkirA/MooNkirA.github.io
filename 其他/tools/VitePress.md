@@ -299,7 +299,7 @@ features:
     link: /AI/
     icon: 🤖
   - title: 其他资源
-    details: 开发软件、编程工具、系统软件、学习资源与编程资源分享
+    details: 开发软件、编程工具、系统软件与编程资源分享
     link: /其他/
     icon: 🛠️
 ---

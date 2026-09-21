@@ -11,15 +11,10 @@
             "id": "23c38eaa075f97e7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "其他/tools/VitePress.md",
-                "mode": "source",
-                "source": true,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "VitePress"
+              "title": "新标签页"
             }
           }
         ]
@@ -87,8 +82,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -206,10 +200,18 @@
       "oz-clear-unused-images:Clear Unused Images": false
     }
   },
-  "active": "23c38eaa075f97e7",
+  "active": "887be6577aa678c7",
   "lastOpenFiles": [
-    "其他/tools/Markdown.md",
+    "其他/学习资源/技术同学必会的MySQL设计规约.md",
+    "其他/学习资源/后端架构师技术大全（69个点）.md",
+    "其他/学习资源/Vue项目架构设计与工程化实践.md",
+    "其他/学习资源/Vue2相关知识点简介.md",
+    "其他/学习资源/images/20190123223617171_14723.png",
+    "其他/学习资源/images/640-1533307319803.jpg",
+    "其他/学习资源/images/640-1533307319791.jpg",
+    "其他/学习资源/images/640.jpg",
     "其他/tools/VitePress.md",
+    "其他/tools/Markdown.md",
     "Database/MySQL/MySQL-索引.md",
     "分布式微服务/SpringBoot/images/_重建索引2_1536458518_15991.png",
     "AGENTS.md",
@@ -236,10 +238,6 @@
     "AI/AI-基础.md",
     "AI/AI-Develop/OpenCode.md",
     "AI/AI-Develop/Claude-Code-教程.md",
-    "DevOps/版本管理工具/Git-命令进阶.md",
-    "分布式微服务/SpringBoot/Spring-Boot-部署运维篇.md",
-    "Java/Java基础-JDK.md",
-    "DevOps/版本管理工具/Git-基础.md",
     "AI/AI-Assistance/images/20260608221927965.png",
     "AI/AI-Assistance/images/20260604194535109.jpg",
     "AI/AI-Assistance/images/20260604193434554.jpg",
@@ -249,10 +247,6 @@
     "AI/AI-Experience",
     "AI/AI-Develop",
     "AI/AI-Assistance",
-    "attachments/工具框架/FastDFS安装教程.pdf",
-    "Database/images/20260601130646998.jpg",
-    "Database/images/20260601130432856.jpg",
-    "Database/images/20260601130331945.jpg",
-    "Database/images/20260601125915490.jpg"
+    "attachments/工具框架/FastDFS安装教程.pdf"
   ]
 }
