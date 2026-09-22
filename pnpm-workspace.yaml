@@ -2,3 +2,10 @@ allowBuilds:
   esbuild: true
 onlyBuiltDependencies:
   - esbuild
+
+# 安全修复：vite <= 6.4.2 存在 CVE-2026-53571(High) / CVE-2026-39365 / CVE-2026-53632；
+# esbuild <= 0.24.2 存在 GHSA-67mh-4wv8-2f99。
+# VitePress 1.6.4 声明 vite ^5.4.14（5.x 已无修复版本），故用 overrides 强制到已修复版本。
+overrides:
+  vite: ^6.4.3
+  esbuild: ^0.25.0
