@@ -78,7 +78,7 @@ Windows Registry Editor Version 5.00
 
 ```reg
 Windows Registry Editor Version 5.00
- 
+
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{c18463bf-812e-4ba5-abd3-c5ea6c473ae2}]
 @="坚果云"
 ```
@@ -199,16 +199,16 @@ Cmder 是一款命令行工具，分两个版本：
 设置 cmder 为 windows 的默认终端：点击【setting..】-> 集成 -> 默认终端 -> 勾选【强制使用ConEmu作为控制台应用程序的默认终端】
 
 永久修改 cmder 的字符编码
-	
+
 打开 cmder，按下快捷键 `Win + Alt + P`，在搜索框中输入 `chcp` 后回车，可看到 cmder 的配置输入框（等同于 Settings -> Startup -> Environment）。然后在配置框中，添加：
-	
+
 ```bash
 chcp 65001
 set LANG=zh_CN.UTF8
 ```
 
 > 一些网上使用参考教程：
-> 
+>
 > - https://zhuanlan.zhihu.com/p/65105636
 > - https://blog.csdn.net/csdn_moming/article/details/50968258
 
@@ -227,7 +227,7 @@ VNote 是一个受 Vim 启发的开源笔记记录实用程序，还具有 Markd
 - [VNote 官网](https://docs.vnote.fun/zh/)
 - [VNote Github 仓库](https://github.com/vnotex/vnote)
 - [VNote Gitee 仓库](https://gitee.com/vnotex/vnote)
-- VNote 下载 
+- VNote 下载
    - [百度网盘](https://pan.baidu.com/share/init?surl=Fou1flmBsQUQ8Qs9V_M6Aw#list/path=%2F)  提取码：note
    - [天翼云盘](https://cloud.189.cn/web/share?code=Av67NvmEJVBv)
 - [VNote’s Documentation](https://vnote.readthedocs.io/zh-cn/latest/) - 用于参考软件相关配置，如主题、片段等。
@@ -333,7 +333,7 @@ UIFontSize = 0
 DisableAntiAlias = false
 UseSysColors = false
 UseTabs = true
-ZoomLevels = 
+ZoomLevels =
 ZoomIncrement = 0
 
 FixedPageUI [
@@ -368,14 +368,14 @@ Annotations [
     UnderlineColor = #00ff00
     SquigglyColor = #ff00ff
     StrikeOutColor = #ff0000
-    FreeTextColor = 
-    FreeTextBackgroundColor = 
+    FreeTextColor =
+    FreeTextBackgroundColor =
     FreeTextOpacity = 100
     FreeTextSize = 12
     FreeTextBorderWidth = 1
-    TextIconColor = 
-    TextIconType = 
-    DefaultAuthor = 
+    TextIconColor =
+    TextIconType =
+    DefaultAuthor =
 ]
 
 ExternalViewers [
@@ -633,7 +633,7 @@ FastStone 系列软件是个人免费、商业收费，一共有4款软件。Fas
     - > 家庭用户可免费使用，商业使用须注册。注册及设置方法：如果您使用的旧版如 7.7 版已授权注册为商业版，可以将旧版如 7.7 商业版注册文件及设置文件 `FSSettings.db`，复制到 7.8 版 FSViewer 目录中就能注册 7.8 版并保持旧版如 7.7 版的设置，不必重新注册和设置。
 - FastStone Capture（好像暂无安装版） https://www.faststonesoft.net/DN/FSCapture113.zip
 - FastStone MaxView  https://www.faststonesoft.net/DN/FSMaxViewSetup35.exe
-  
+
     - > Tips: 安装版不支持中文，如要汉化，可以使用`FastStone MaxView x.x 绿色汉化中文版`，但该版本因为是绿化版，所以无法在 windows 系统中选择为默认应用。因此需要换种方法去实现，先安装`FSMaxViewSetupxx.exe`的版本，然后将`FastStone MaxView x.x 绿色汉化中文版`的所有文件覆盖安装的目录即可。（如果运行后出现无注册成功的情况，再使用 Keygen 生成激活码注册即可）
 - FastStone Photo Resizer（好像暂无安装版） https://www.faststonesoft.net/DN/FSResizer45.zip
 
@@ -677,6 +677,103 @@ Lightroom Classic 作为一个直观的解决方案，可提供在处理大部�
 
 - [官方教程和社区资源](https://helpx.adobe.com/cn/support/lightroom-classic-china.html)
 - [全20集【Adobe Lightroom Classic从思路到后期调色】各功能详解视频教程目录](https://www.bilibili.com/read/cv13519248/)
+
+### gif2webp（GIF 转动态 WebP）
+
+gif2webp 是 Google libwebp 官方包自带的命令行工具，专门用于把 Animated GIF 转成 Animated WebP，原生保留帧延时、disposal、循环次数信息。无 GUI，纯命令行。
+
+> [!note] XnView MP / FastStone 等看图软件**不能稳定地把动态 GIF 导出为动态 WebP**（要么只导出首帧，要么不支持动画编码），gif2webp 是最稳妥的替代方案。
+
+#### 下载与安装
+
+1. 官方下载页 https://developers.google.cn/speed/webp/download
+2. Windows 选 `libwebp-xxx-windows-x64.zip`（64 位）
+3. 解压后，`bin` 文件夹里有 `gif2webp.exe`，同时还有 `cwebp` / `dwebp` / `vwebp` 等配套工具
+
+建议单独建一个干净目录，例如 `D:\tools\webp\`，把 `gif2webp.exe` 放进去，方便管理。
+
+#### 基本使用
+
+**方式 A：直接 CMD 使用**
+
+```cmd
+cd /d D:\tools\webp
+gif2webp "D:\test\demo.gif" -o "D:\test\demo.webp"
+```
+
+- 路径加引号：防止文件名 / 文件夹带空格报错
+- `-o`：指定输出文件，**必须带**，不加只打印信息、不生成文件
+
+**常用参数组合**
+
+| 场景           | 命令                                                              | 说明                                                       |
+| :------------- | :--------------------------------------------------------------- | :--------------------------------------------------------- |
+| 有损压缩（推荐） | `gif2webp -lossy -q 85 "demo.gif" -o "demo.webp"`                | `-q` 画质 0~100，越高越清晰、文件越大，默认 75             |
+| 无损压缩       | `gif2webp -lossless "demo.gif" -o "demo.webp"`                   | 画质不变，文件更大                                         |
+| 尽力压缩       | `gif2webp -min_size -lossy -q 80 "demo.gif" -o "demo.webp"`      | 编码器尽力压到最小，适合网页表情包，速度慢                 |
+| 调压缩方法     | `gif2webp -lossy -q 80 -m 6 "demo.gif" -o "demo.webp"`           | `-m` 0~6，默认 4；6 最慢、压缩率最好                       |
+
+> 完整参数见官方文档：https://developers.google.cn/speed/webp/docs/gif2webp
+
+> [!warning] gif2webp 不需要 `-loop` 参数
+> `-loop` 是 `img2webp` 的参数，网上教程常抄混。gif2webp 会自动继承 GIF 本身的循环次数（GIF 是无限循环，转出来就是无限循环）。
+
+#### 批量转换（整个文件夹）
+
+在 `D:\tools\webp` 新建 `批量转webp.bat`，把脚本放到 GIF 文件夹双击运行：
+
+```bat
+@echo off
+:: 把脚本放在 gif 同目录运行
+for %%i in (*.gif) do (
+    echo 正在转换：%%i
+    gif2webp -lossy -q 85 "%%i" -o "%%~ni.webp"
+)
+echo 全部转换完成
+pause
+```
+
+> [!tip] 免配环境变量版本
+> 若不想把 `gif2webp.exe` 加入系统 PATH，把脚本里的 exe 写成绝对路径即可：
+
+```bat
+@echo off
+set "gif2webp=D:\tools\webp\gif2webp.exe"
+for %%i in (*.gif) do (
+    echo 转换：%%i
+    %gif2webp% -lossy -q 85 "%%i" -o "%%~ni.webp"
+)
+echo 完成
+pause
+```
+
+#### 验证是否转成动态 WebP（易踩坑）
+
+<span style="color: red;">**不要用 FastStone、Windows 默认照片、XnView 缩略图验证**</span>——它们要么不支持播放动态 WebP，要么缩略图只显示首帧，会让你误以为转换失败。
+
+正确验证方式：
+- 拖进 Edge / Chrome 浏览器打开，浏览器原生支持 Animated WebP
+- 用官方包自带的 `vwebp.exe` 打开播放
+
+#### 常见问题排查
+
+| 现象                     | 原因与解决                                                                                                   |
+| :----------------------- | :----------------------------------------------------------------------------------------------------------- |
+| 转出来还是静态           | 检查源 GIF 本身是否只有 1 帧静态图                                                                           |
+| 透明边缘异常             | 加 `-exact` 参数保留透明通道原色：`gif2webp -lossy -q85 -exact test.gif -o test.webp`                        |
+| 转换后速度变快 / 变慢    | 源 GIF 帧延时编码不标准，gif2webp 忠实读取 GIF 内部延时值，不是工具问题                                      |
+| 报错「不是内部命令」     | exe 路径写错或未加入 PATH，改用绝对路径                                                                      |
+
+#### 右键拖拽懒人脚本
+
+新建 `拖拽转webp.bat`，和 `gif2webp.exe` 放一起，把 GIF 直接拖到脚本图标上：
+
+```bat
+@echo off
+D:\tools\webp\gif2webp.exe -lossy -q 85 "%~1" -o "%~dpn1.webp"
+echo 转换完成：%~dpn1.webp
+pause
+```
 
 ## 思维导图
 
