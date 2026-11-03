@@ -48,7 +48,7 @@ export default withMermaid(
             {
               text: 'AI 编程工具',
               items: [
-                { text: 'Claude Code 教程', link: '/AI/AI-Develop/Claude-Code-教程' },
+                { text: 'Claude Code', link: '/AI/AI-Develop/Claude-Code' },
                 { text: 'OpenCode 教程', link: '/AI/AI-Develop/OpenCode' },
               ]
             }

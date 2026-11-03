@@ -23,6 +23,14 @@ Claude Code 是 Anthropic 公司推出的官方命令行 AI 编程工具，基�
 
 Claude Code 的缺点就是使用 Anthropic 的 API，按 Token 计费。
 
+### 适用场景
+
+- 快速原型开发：用自然语言描述需求，直接生成可运行的项目骨架
+- 代码重构与优化：分析现有实现，统一调整命名、结构和风格
+- Bug 修复与调试：结合报错日志定位问题并给出修复方案
+- 单元测试生成与代码审查：补全测试用例，检查质量与安全问题
+- 文档编写：根据代码生成说明文档与注释
+
 ## 安装
 
 ### 系统要求
@@ -75,6 +83,14 @@ claude --version
 
 成功安装后应显示版本号。
 
+#### 安装检查清单
+
+- [ ] Node.js 版本 >= 18
+- [ ] npm 可用（`npm --version` 能输出结果）
+- [ ] Git 已安装
+- [ ] `claude --version` 能输出版本号
+- [ ] 已完成登录，或已配置可用的第三方模型
+
 ### 切换第三方模型
 
 Claude Code 虽然默认使用 Anthropic 的 Claude 模型，但它是支持切换第三方模型。很多国产大模型（如 DeepSeek、智谱等）都提供了兼容 OpenAI 格式的 API，可以直接对接 Claude Code 使用。有以下两种
@@ -96,6 +112,33 @@ Claude Code 虽然默认使用 Anthropic 的 Claude 模型，但它是支持切�
 ```
 
 方式二：使用开源软件 CC-Switch 配置（简单易用，推荐。具体配置详见 [[Development-Tools#CC Switch|CC Switch 笔记]]），软件具体的实现原理也是修改对应 CLI 的配置文件（如 Claude Code 则将软件界面填写的内容，修改到对应的 `C:\Users\用户名\.claude\settings.json` 配置文件中）
+
+### 环境变量配置
+
+除了写入 `settings.json`，也可以通过环境变量临时指定模型与鉴权信息，适合在不同项目之间切换模型：
+
+```bash
+# macOS / Linux
+export ANTHROPIC_BASE_URL="https://open.bigmodel.cn/api/anthropic"
+export ANTHROPIC_AUTH_TOKEN="Your API Key"
+export ANTHROPIC_MODEL="glm-4.7-flash"
+```
+
+```powershell
+# Windows PowerShell
+$env:ANTHROPIC_BASE_URL="https://open.bigmodel.cn/api/anthropic"
+$env:ANTHROPIC_AUTH_TOKEN="Your API Key"
+$env:ANTHROPIC_MODEL="glm-4.7-flash"
+```
+
+```bat
+:: Windows CMD
+set ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic
+set ANTHROPIC_AUTH_TOKEN=Your API Key
+set ANTHROPIC_MODEL=glm-4.7-flash
+```
+
+> [!warning] 环境变量只在当前终端会话生效，关闭终端后即失效；需要长期生效请写入 `settings.json`，或用 CC-Switch 管理。
 
 ## 基本使用
 
@@ -330,6 +373,26 @@ claude-code "在 src/utils/auth.js 中添加 JWT 验证，当前支持登录和�
 claude-code "添加验证"
 ```
 
+### 提示词技巧
+
+上下文之外，提示词本身也要尽量具体、可验证：
+
+- 明确输入输出：写清参数、返回值和边界条件，例如「接收两个 `YYYY-MM-DD` 格式的日期，返回天数差」
+- 指定技术约束：语言版本、是否允许第三方库、代码风格与注释要求
+- 给出参考示例：贴出现有代码片段或期望的输出格式，让 Claude 对齐风格
+
+**好的提示词**：
+
+```text
+创建一个函数，接收两个 YYYY-MM-DD 格式的日期参数，使用 JavaScript 返回它们之间的天数差。
+```
+
+**不好的提示词**：
+
+```text
+写个日期函数
+```
+
 ### 使用文件路径
 
 明确指定文件位置：
@@ -434,6 +497,12 @@ node --version  # 需要 18+
 # 升级 Node.js
 nvm install 18
 nvm use 18
+
+# 清理 npm 缓存
+npm cache clean --force
+
+# 使用国内镜像源
+npm config set registry https://registry.npmmirror.com
 ```
 
 #### 3. 内存不足
@@ -460,6 +529,53 @@ claude-code --context-size 2048
 2. 确认依赖已安装
 3. 查看错误日志
 4. 重新请求并详细说明问题
+
+#### 5. API Key 无效
+
+**问题**: 提示鉴权失败或额度不足
+
+**解决方案**:
+
+1. 确认 `ANTHROPIC_AUTH_TOKEN` / `ANTHROPIC_API_KEY` 已正确设置，且没有被其他环境变量覆盖
+2. 确认 Key 未过期，账户有可用额度
+3. 使用第三方模型时，检查 `ANTHROPIC_BASE_URL` 是否与 Key 所属平台一致
+
+#### 6. 响应速度慢
+
+**问题**: 请求等待时间长
+
+**解决方案**:
+
+1. 检查网络连接与代理设置
+2. 降低 `maxTokens`，避免一次生成过长内容
+3. 日常任务可切换到更快的模型（如 Haiku 系列）
+4. 查看 API 配额是否耗尽
+
+#### 7. 如何更新 Claude Code
+
+```bash
+# 更新到最新版本
+npm update -g @anthropic-ai/claude-code
+
+# 或重新安装最新版
+npm install -g @anthropic-ai/claude-code@latest
+```
+
+#### 8. 如何保护 API Key
+
+1. 优先使用环境变量或 `settings.json`，不要硬编码到代码中
+2. 用 `.gitignore` 排除包含密钥的配置文件
+3. 定期轮换 Key，并监控 API 用量
+
+#### 9. 配置文件格式错误
+
+**问题**: 修改 `settings.json` 后启动报解析错误
+
+**解决方案**:
+
+1. 确认 JSON 语法正确，字符串使用双引号
+2. 确认引号、括号成对匹配，没有多余逗号
+3. 用 JSON 校验工具检查后再保存
 
 ### 日志和调试
 
@@ -525,9 +641,29 @@ alias ccs="claude-code --simplify"
 
 支持多种编辑器集成：
 
-- **VS Code**: Claude Code 扩展
-- **JetBrains**: 插件支持
-- **Neovim**: Vim 插件
+- **VS Code**：在扩展面板（Ctrl+Shift+X）搜索 “Claude Code”，安装 Anthropic 官方扩展
+- **JetBrains**（IntelliJ IDEA、WebStorm 等）：在插件市场安装 Claude Code 插件
+- **Neovim**：通过社区插件或终端面板直接调用 Claude Code CLI
+- **其他编辑器**：可直接在编辑器的终端窗口中运行 `claude`，共享项目上下文
+
+### 4. 自定义 Skills
+
+Skills 是 Claude Code 的能力扩展包，用来把重复流程（代码审查、TDD、发布检查等）沉淀成可复用的规范。自定义 Skill 放在项目的 `.claude/skills/<skill-name>/` 目录，核心是一个 `SKILL.md`，写明触发条件、步骤和约束：
+
+```markdown
+---
+name: code-reviewer
+description: 按团队规范审查本次改动的代码
+---
+
+## 审查步骤
+
+1. 读取 `git diff`，确认改动范围
+2. 检查命名、异常处理与边界条件
+3. 输出问题清单，按「必须改 / 建议改」分级
+```
+
+> [!tip] Skill 只写 Claude 无法从代码中推断的约定，避免与 CLAUDE.md 内容重复。
 
 ## 总结
 

@@ -16,6 +16,5 @@ AI 编程工具与辅助开发实践，涵盖 AI 基础概念、Vibe Coding、Cl
 
 ### AI-Develop
 
-- [Claude Code 教程](AI-Develop/Claude-Code-教程)
 - [Claude Code](AI-Develop/Claude-Code)
 - [OpenCode 使用教程](AI-Develop/OpenCode)

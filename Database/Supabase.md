@@ -287,13 +287,8 @@ CREATE POLICY "Auth update" ON public.todos FOR UPDATE TO authenticated USING (t
 CREATE POLICY "Auth delete" ON public.todos FOR DELETE TO authenticated USING (true);
 ```
 
----
-
 ## 七、免费版使用避坑总结
+
 1. 免费项目**7天无请求自动休眠**，用GitHub Actions定时请求一次保活
 2. 数据库上限 **500MB**，图片/文件放 Storage（1GB），别存数据库
 3. 免费版**无自动备份**，定期用Navicat导出SQL备份
-
----
-
-要不要我把以上所有步骤整理成一份可直接复制的**完整SQL脚本+Navicat连接参数清单**，你直接粘贴就能用？
