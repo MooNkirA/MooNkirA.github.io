@@ -1752,11 +1752,63 @@ Windows Terminal（WT）是微软推出的现代终端应用，基于 XAML 构�
 > - `demo-admin`：加 `"tabTitle": "demo-admin (8082)"` 和 `"suppressApplicationTitle": true`
 > - `demo-gateway`：整个 profile 还没建，需新增一段（含命令行、名称、`tabTitle`、`suppressApplicationTitle`）
 
+### 关闭 Quake 下拉式终端窗口
+
+按下 ``Win + /` `` 时从屏幕顶部滑出的那种下拉式终端，是 Windows Terminal 的 **Quake 模式（Quake Mode）**。它的窗口名称固定为 `_quake`，一旦窗口被命名成 `_quake`，终端就会：
+
+- 自动吸附到显示器上半屏，**只能从底部调整高度**，左右和顶部都拖不动
+- <span style="color: purple;">**自动进入焦点模式（Focus Mode）**</span>，隐藏标题栏与标签页，所以看上去只剩一个光秃秃的终端框
+- 最小化后从任务栏和 `Alt + Tab` 中消失
+
+它由 `quakeMode` 动作召唤（默认动作 ID 为 `Terminal.QuakeMode`），等价于手动执行命令 `wt -w _quake`。
+
+#### 临时关闭窗口 / 退出焦点模式
+
+- 关闭窗口：在终端里输入 `exit` 回车；或按 `Ctrl + Shift + W`（只剩一个标签时会直接关窗）；或按 `Alt + F4`
+- 退出焦点模式（找回标题栏与标签页）：按 `Ctrl + Shift + P` 打开命令面板 → 输入「切换焦点模式」（`toggleFocusMode`）→ 回车；再执行一次即可切回焦点模式
+
+> [!warning] 焦点模式下看不到关闭按钮，优先用 `exit`
+> 焦点模式把标题栏和标签页全藏了，界面上找不到关闭按钮，此时最稳的做法是在终端里输入 `exit`。
+
+#### 永久禁用 Quake 模式（解绑召唤快捷键）
+
+Quake 模式本身没有「启用 / 停用」开关，能做的只是**把召唤它的快捷键解绑**，解绑后 ``Win + ` `` 不再弹窗，也不会自动生成 `_quake` 窗口。
+
+- **GUI 方式**：设置（`Ctrl + ,`）→ 左侧【操作】（Actions）→ 搜索 `quake` / 「全局召唤」→ 找到绑定 ``Win + ` `` 的那条 → 删除绑定或清除按键
+- **改 `settings.json`**：新版 WT 把动作与键绑定拆成两个数组，动作写在 `actions`，键绑定写在 `keybindings`，解绑要加到 `keybindings` 里
+
+方式一，使用 `unbound` 命令解绑：
+
+```json
+{ "id": "unbound", "keys": "win+sc(41)" }
+```
+
+方式二，把按键对应的默认绑定置空（在 GUI 里删除默认绑定后，`settings.json` 里留下的就是这条记录）：
+
+```json
+{ "id": null, "keys": "win+sc(41)" }
+```
+
+<span style="color: purple;">**为什么写 `win+sc(41)` 而不是 ``win+` ``**</span>：反引号是 WT 的键位保留写法，默认配置里用**扫描码形式**表示这个键，十进制 `41` 即十六进制的 `0x29`，正是反引号（grave）键的扫描码，两者等价。
+
+> [!tip] 只解绑快捷键，已经开着的窗口不会自己消失
+> 解绑只是让它不再响应 ``Win + ` ``，正在运行的 `_quake` 窗口仍在，需要进去 `exit` 一次。
+
+> [!warning] 解绑之后若又把它最小化，就只能去任务管理器
+> 官方说明：<span style="color: red;">**没有绑定 `quakeMode` 动作时，`_quake` 窗口一旦最小化，会从任务栏和 `Alt + Tab` 中完全消失**</span>，此时只能用任务管理器（`taskmgr`）结束 `Windows Terminal` 进程。
+
+#### 避免它再次出现
+
+- 不要用 `wt -w _quake` 启动终端，这是手动造出 Quake 窗口的命令
+- 关闭时用 `exit` 正常退出，不要最小化（最小化等于把它藏起来）
+- 检查桌面或开始菜单快捷方式的目标里是否带了 `wt -w _quake` 参数
+
 ### 注意事项
 
 - <span style="color: red;">**双击 bat 永远走「命令提示符」配置文件**</span>，想区分多个项目必须用 B 档（从 WT 菜单或快捷方式启动），这是 WT 的机制决定的
 - 修改 `settings.json` 保存即生效，WT 自动热重载，无需重启电脑
 - 临时应急：直接右键标签页 → 重命名选项卡，可手动改当前窗口标题，最快但每次都要手动
+- Quake 窗口（`_quake`）最小化后会从任务栏与 `Alt + Tab` 消失，想彻底关掉见《关闭 Quake 下拉式终端（`_quake` 窗口）》章节
 
 ## 待整理资料
 
