@@ -16,6 +16,7 @@
 - [Eclipse 使用教程](software/eclipse)
 - [Visual Studio Code 使用教程](software/Visual-Studio-Code)
 - [PyCharm 使用教程](software/PyCharm)
+- [WebStorm 使用教程](software/WebStorm)
 - [常用开发工具](software/Development-Tools)
 
 ### 系统与其他软件

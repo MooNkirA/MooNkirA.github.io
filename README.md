@@ -479,6 +479,7 @@
 - [Eclipse 使用教程](其他/software/eclipse.md)
 - [Visual Studio Code 使用教程](其他/software/Visual-Studio-Code.md)
 - [PyCharm 使用教程](其他/software/PyCharm.md)
+- [WebStorm 使用教程](其他/software/WebStorm.md)
 - [常用开发工具](其他/software/Development-Tools.md)
 
 ### 🛠️ 编程辅助工具
